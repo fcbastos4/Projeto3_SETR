@@ -102,7 +102,7 @@ int main(void)
 	/* Add the callback function by calling gpio_add_callback()   */
 	gpio_add_callback(but.port, &button1CbData);
     gpio_add_callback(but.port, &button2CbData);
-    gpio_add_callback(but.port, &button0CbData);
+    gpio_add_callback(but.port, &button4CbData);
 
 	/* 
  	* No need for a while(1) at the end of the main. 
