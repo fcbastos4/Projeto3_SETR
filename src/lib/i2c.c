@@ -55,8 +55,10 @@ int get_temp(void)
     }
 
     printk("Last temperature reading is %d \n\r",temp);
+    
     return temp;
-    /* Pause  */ 
-    k_msleep(UPDATE_PERIOD_MS);    
+    /* Pause   
+    k_msleep(UPDATE_PERIOD_MS); 
+    */   
  
 }

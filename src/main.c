@@ -4,6 +4,7 @@
  *  ...
  * 
  *  \author Guilherme Santos, 103143
+ * 	\author Francisco Bastos, 103359
  *  \date 22/05/20025 
  */
 
