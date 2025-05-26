@@ -13,8 +13,19 @@
 #include <zephyr/device.h>          /* for device_is_ready() and device structure */
 #include <zephyr/devicetree.h>		/* for DT_NODELABEL() */
 #include <zephyr/drivers/gpio.h>    /* for GPIO api*/
-
+#include <zephyr/drivers/uart.h>
+#include <zephyr/sys/printk.h>
+#include <zephyr/logging/log.h>
+#include "lib/cmd_proc.h"
 #include "lib/i2c.h" 
+
+LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
+
+#define RECEIVE_BUFF_SIZE 128
+#define RECEIVE_TIMEOUT_MS 100
+
+const struct device *uart = DEVICE_DT_GET(DT_NODELABEL(uart0));  // Ajuste conforme necessário
+static uint8_t rx_buf[RECEIVE_BUFF_SIZE];
 
 /* Get led0 and button0 node IDs. Refer to the DTS file */
 #define LED0_NODE DT_ALIAS(led0)
@@ -173,6 +184,33 @@ int main(void)
     gpio_add_callback(but4.port, &button4CbData);
 
 	printk("System ready. Press buttons to toggle LEDs. Inicial temperture 25 C.\n");
+       int ret;
+
+    if (!device_is_ready(uart)) {
+        printk("UART device not ready\n");
+        return 1;
+    }
+
+    // Define o callback de recepção UART
+    ret = uart_callback_set(uart, cmd_proc_uart_handler, NULL);
+    if (ret < 0) {
+        printk("Failed to set UART callback: %d\n", ret);
+        return 1;
+    }
+
+    // Inicia a recepção UART
+    ret = uart_rx_enable(uart, rx_buf, sizeof(rx_buf), RECEIVE_TIMEOUT_MS);
+    if (ret < 0) {
+        printk("Failed to enable UART RX: %d\n", ret);
+        return 1;
+    }
+
+    printk("UART frame parser ready\r\n");
 		
 	return 0;
 }
+
+
+
+
+
