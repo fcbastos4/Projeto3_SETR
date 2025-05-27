@@ -11,6 +11,10 @@
  * @param user_data  Dados do utilizador (não usados neste contexto).
 
  */
+extern int temperature;
+extern int max_temperature;
+
+
 void cmd_proc_uart_handler(const struct device *dev, struct uart_event *evt, void *user_data);
 
 #endif // CMD_PROC_H

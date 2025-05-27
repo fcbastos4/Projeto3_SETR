@@ -14,6 +14,8 @@ LOG_MODULE_REGISTER(cmd_proc, LOG_LEVEL_DBG);
 #define E_O_Frame '!'
 #define RECEIVE_BUFF_SIZE 128
 
+extern int temperature;
+extern int max_temperature;
 extern const struct device *uart;
 
 static uint8_t rx_buf[RECEIVE_BUFF_SIZE] = {0};
@@ -55,8 +57,8 @@ static void process_command(const char *cmd, const char *data) {
 
     if (strcmp(cmd, "C") == 0) {
         // Simula temperatura atual como 25°C
-        char reply[32];
-        int temp = 25;
+        char reply[64];
+        int temp = temperature;
         char checksum[4];
         char cs_received[4] = {0};
 
@@ -77,7 +79,13 @@ static void process_command(const char *cmd, const char *data) {
             uart_send(reply);
         }
 
-    } else 
+    } 
+    else if(strcmp(cmd, "M") == 0)
+    {
+
+
+    }
+    else 
     {
         send_ack("Ei"); // Comando inválido
     }
@@ -93,16 +101,18 @@ static void process_frame(const char *frame) {
         return;
     }
 
-    sscanf(frame, "#%1s%3s!", cmd, data);
+    sscanf(frame, "#%1s!", cmd);
 
    if (strcmp(cmd, "M") == 0){
+        sscanf(frame, "#%1s%6s!", cmd, data);
+        printf("FRAME: %s",frame);
         if (frame_len != 10){
         send_ack("Ef"); // Erro de framing
         return;
         }
     }
     else if (strcmp(cmd, "C") == 0) {
-
+        sscanf(frame, "#%1s%3s!", cmd, data);
         if (frame_len != 7) {
             send_ack("Ef"); // Erro de framing
             return;

@@ -10,6 +10,7 @@
 #include <zephyr/sys/printk.h>
 #include <zephyr/drivers/i2c.h> /* Required for  I2C */
 
+
 #include "i2c.h"
 
 #define ERR_FATAL -1   /* If I2C fails ...*/

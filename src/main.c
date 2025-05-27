@@ -16,6 +16,7 @@
 #include <zephyr/drivers/uart.h>
 #include <zephyr/sys/printk.h>
 #include <zephyr/logging/log.h>
+#include <zephyr/drivers/i2c.h>
 #include "lib/cmd_proc.h"
 #include "lib/i2c.h" 
 
@@ -46,12 +47,13 @@ static const struct gpio_dt_spec but2 = GPIO_DT_SPEC_GET(BUT1_NODE, gpios);
 static const struct gpio_dt_spec but4 = GPIO_DT_SPEC_GET(BUT3_NODE, gpios);
 
 static bool led1_state = false; // LED1 state (false = off, true = on)
-static int desired_temp = 25;	// Desired temperture
-static int temperture = 25;		// Actual temperture
+static int desired_temp = 25;	// Desired temperature
+int temperature = 25;		// Actual temperature
+int max_temperature = 70;
 
 // Function to update LEDs based on temperature deviation
 void update_leds() {
-    int deviation = temperture - desired_temp;
+    int deviation = temperature - desired_temp;
 
     // LED2 (Normal): ON if within ±2°C of temp
     if (deviation >= -2 && deviation <= 2) {
@@ -65,14 +67,14 @@ void update_leds() {
         gpio_pin_set_dt(&led2, 0); // LED2 OFF
         gpio_pin_set_dt(&led3, 1); // LED3 ON (Warning Low)
         gpio_pin_set_dt(&led4, 0); // LED4 OFF
-		printk("Warning! Temperture Low!\n");
+		printk("Warning! temperature Low!\n");
     }
     // LED4 (Warning High): ON if >2°C above temp
     else if (deviation > 2) {
         gpio_pin_set_dt(&led2, 0); // LED2 OFF
         gpio_pin_set_dt(&led3, 0); // LED3 OFF
         gpio_pin_set_dt(&led4, 1); // LED4 ON (Warning High)
-		printk("Warning! Temperture High!\n");
+		printk("Warning! temperature High!\n");
     }
 }
 
@@ -100,8 +102,8 @@ void button2Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 {
 	k_msleep(100); // Debounce
 
-	temperture++;
-	printk("Actual tempertrure: %d C\n", temperture);
+	temperature++;
+	printk("Actual temperature: %d C\n", temperature);
 	update_leds();
 
 	return;
@@ -111,8 +113,8 @@ void button4Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 {
 	k_msleep(100); // Debounce
 
-    temperture--;
-	printk("Actual tempertrure: %d C\n", temperture);
+    temperature--;
+	printk("Actual temperature: %d C\n", temperature);
 	update_leds();
 
 	return;
@@ -183,25 +185,25 @@ int main(void)
     gpio_add_callback(but2.port, &button2CbData);
     gpio_add_callback(but4.port, &button4CbData);
 
-	printk("System ready. Press buttons to toggle LEDs. Inicial temperture 25 C.\n");
-       int ret;
-
+	printk("System ready. Press buttons to toggle LEDs. Inicial temperature 25 C.\n");
+    
+    int ret1;
     if (!device_is_ready(uart)) {
         printk("UART device not ready\n");
         return 1;
     }
 
     // Define o callback de recepção UART
-    ret = uart_callback_set(uart, cmd_proc_uart_handler, NULL);
-    if (ret < 0) {
-        printk("Failed to set UART callback: %d\n", ret);
+    ret1 = uart_callback_set(uart, cmd_proc_uart_handler, NULL);
+    if (ret1 < 0) {
+        printk("Failed to set UART callback: %d\n", ret1);
         return 1;
     }
 
     // Inicia a recepção UART
-    ret = uart_rx_enable(uart, rx_buf, sizeof(rx_buf), RECEIVE_TIMEOUT_MS);
-    if (ret < 0) {
-        printk("Failed to enable UART RX: %d\n", ret);
+    ret1 = uart_rx_enable(uart, rx_buf, sizeof(rx_buf), RECEIVE_TIMEOUT_MS);
+    if (ret1 < 0) {
+        printk("Failed to enable UART RX: %d\n", ret1);
         return 1;
     }
 
