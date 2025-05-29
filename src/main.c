@@ -18,6 +18,8 @@
 #include <zephyr/logging/log.h>
 #include "lib/cmd_proc.h"
 #include "lib/sensor_temp.h" 
+#include "lib/task_control.h"
+
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 
@@ -46,9 +48,9 @@ static const struct gpio_dt_spec but2 = GPIO_DT_SPEC_GET(BUT1_NODE, gpios);
 static const struct gpio_dt_spec but4 = GPIO_DT_SPEC_GET(BUT3_NODE, gpios);
 
 static bool led1_state = false; // LED1 state (false = off, true = on)
-static int desired_temp = 25;	// Desired temperature
+int desired_temp = 25;	// Desired temperature
 int temperature = 25;		// Actual temperature
-int max_temperature = 70;
+int max_temperature = 30;
 
 // Function to update LEDs based on temperature deviation
 void update_leds() {
@@ -133,6 +135,7 @@ void button4Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
  */
 int main(void)
 {
+	task_control_init();
 	int ret = 0;
 	
 	static struct gpio_callback button1CbData; // Define variable for holding callback data

@@ -1,11 +1,56 @@
 // The provided address in the datasheet is an 8-bit address 1001 101b.
 // Therefore, it must be logically shifted to the right by 1 bit to get the 7-bit address.
 // 1001 101b -> 100 1101 = 4d
-
 &i2c0 {
-    tc74sensor: tc74sensor@4d{
+    tc74sensor: tc74sensor@4d {
         compatible = "i2c-device";
-        reg = < 0x4d >;
+        reg = <0x4d>;
         label = "TC74SENSOR";
     };
+};
+
+/ {
+	
+	extleds {
+		compatible = "gpio-leds";
+		extled4: extled_4 {
+			gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
+			label = "External LED 4";
+		};
+	};	
+	
+	pwmleds {
+		compatible = "pwm-leds";
+		pwm_led2: pwm_led_2 {
+			// Note that the "1" refers to the PWM channel (0...3)
+			pwms = <&pwm1 1 PWM_MSEC(20) PWM_POLARITY_INVERTED>;
+		};
+	};
+
+
+};
+
+&pwm1 {
+	status = "okay";
+	pinctrl-0 = <&pwm1_default>;
+	pinctrl-1 = <&pwm1_sleep>;
+	pinctrl-names = "default", "sleep";	
+};
+
+&pinctrl {
+	
+	pwm1_default: pwm1_default {
+		group1 {
+			// Note that here PWM channels are labeled PWM_OUTx
+			psels = <NRF_PSEL(PWM_OUT1, 0, 15)>;
+			nordic,invert;
+		};
+	};
+
+	pwm1_sleep: pwm1_sleep {
+		group1 {
+			// Note that here PWM channels are labeled PWM_OUTx
+			psels = <NRF_PSEL(PWM_OUT1, 0, 15)>;			
+		};
+	};
 };
