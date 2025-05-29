@@ -16,9 +16,8 @@
 #include <zephyr/drivers/uart.h>
 #include <zephyr/sys/printk.h>
 #include <zephyr/logging/log.h>
-#include <zephyr/drivers/i2c.h>
 #include "lib/cmd_proc.h"
-#include "lib/i2c.h" 
+#include "lib/sensor_temp.h" 
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 
@@ -53,6 +52,9 @@ int max_temperature = 70;
 
 // Function to update LEDs based on temperature deviation
 void update_leds() {
+	printk("temperature: %d", temperature);
+	printk("temperature: %d", desired_temp);
+
     int deviation = temperature - desired_temp;
 
     // LED2 (Normal): ON if within ±2°C of temp
@@ -102,10 +104,16 @@ void button2Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 {
 	k_msleep(100); // Debounce
 
-	temperature++;
-	printk("Actual temperature: %d C\n", temperature);
+	desired_temp++;
+	if (desired_temp <= max_temperature)
+	{
+		printk("Actual temperature: %d C\n", desired_temp);
+	} else {
+		desired_temp = max_temperature;
+		printk("Maximum opereating temperature!");
+	}
+	
 	update_leds();
-
 	return;
 }
 
@@ -113,8 +121,8 @@ void button4Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 {
 	k_msleep(100); // Debounce
 
-    temperature--;
-	printk("Actual temperature: %d C\n", temperature);
+    desired_temp--;
+	printk("Actual temperature: %d C\n", desired_temp);
 	update_leds();
 
 	return;
@@ -206,13 +214,27 @@ int main(void)
         printk("Failed to enable UART RX: %d\n", ret1);
         return 1;
     }
+	printk("UART frame parser ready\r\n");
 
-    printk("UART frame parser ready\r\n");
+	temperature = get_temp();
 		
 	return 0;
 }
 
+/*
+#include <zephyr/kernel.h>
+#include <zephyr/sys/printk.h>
+#include "i2c.h"
 
 
+void main(void)
+{
+    uint8_t temp;
 
-
+    while (1) {
+        if (get_temp(&temp) == 0) {
+            printk("Temperature: %d°C\n", temp);
+        }
+        k_sleep(K_MSEC(500));
+	}
+}*/
