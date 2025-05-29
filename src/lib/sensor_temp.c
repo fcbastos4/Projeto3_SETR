@@ -6,7 +6,7 @@
 
 #define TC74_CMD_RTR 0x00   /* Read temperature command */
 #define TC74_CMD_RWCR 0x01  /* Read/write configuration register */
-
+extern int temperature;         // actual temperature
 /* I2C device vars and defines */
 #define I2C0_NID DT_NODELABEL(tc74sensor)
 static const struct i2c_dt_spec dev_i2c = I2C_DT_SPEC_GET(I2C0_NID);
@@ -44,6 +44,7 @@ int get_temp(void)
         }
 
         printk("Last temperature reading is %d \n\r",temp);
+        temperature = temp;
         
         /* Pause  */ 
          k_msleep(UPDATE_PERIOD_MS);

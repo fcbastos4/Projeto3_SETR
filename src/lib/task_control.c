@@ -6,6 +6,7 @@
 #include <zephyr/devicetree.h>
 #include <zephyr/logging/log.h>
 #include "task_control.h"
+#include "sensor_temp.h"
 
 LOG_MODULE_REGISTER(task_control, LOG_LEVEL_INF);
 
@@ -40,6 +41,7 @@ static void control_thread(void *a, void *b, void *c) {
 
         /* Safe access to shared variables */
         k_mutex_lock(&temp_mutex, K_FOREVER);
+        temp = get_temp();
         temp = temperature;
         k_mutex_unlock(&temp_mutex);
 

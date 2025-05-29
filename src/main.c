@@ -50,7 +50,7 @@ static const struct gpio_dt_spec but4 = GPIO_DT_SPEC_GET(BUT3_NODE, gpios);
 static bool led1_state = false; // LED1 state (false = off, true = on)
 int desired_temp = 25;	// Desired temperature
 int temperature = 25;		// Actual temperature
-int max_temperature = 30;
+int max_temperature = 40;
 
 // Function to update LEDs based on temperature deviation
 void update_leds() {
