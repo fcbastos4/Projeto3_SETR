@@ -29,11 +29,15 @@ extern int temperature;
 extern int max_temperature;
 extern const struct device *uart;
 
+static struct k_mutex uart_mutex;
+
 static uint8_t rx_buf[RECEIVE_BUFF_SIZE] = {0};
 static size_t rx_buf_index = 0;
 
 static void uart_send(const char *data) {
+    k_mutex_lock(&uart_mutex, K_FOREVER);
     int ret = uart_tx(uart, data, strlen(data), SYS_FOREVER_MS);
+    k_mutex_unlock(&uart_mutex);
     if (ret) {
         LOG_ERR("UART send failed: %d", ret);
     }
@@ -94,7 +98,6 @@ static void process_command(const char *cmd, const char *data) {
     {
         char reply[64];
         char temp_str[4] = {0};
-        //char checksum[4];
         char cs_received[4] = {0};
 
         strncpy(temp_str, data, 3); 
@@ -200,4 +203,7 @@ void cmd_proc_uart_handler(const struct device *dev, struct uart_event *evt, voi
         default:
             break;
     }
+}
+void cmd_proc_init(void) {
+    k_mutex_init(&uart_mutex);
 }

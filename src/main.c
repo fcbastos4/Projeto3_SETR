@@ -182,6 +182,7 @@ void button4Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 int main(void)
 {
 	task_control_init();
+    cmd_proc_init();
 	int ret = 0;
 	
 	static struct gpio_callback button1CbData; // Define variable for holding callback data
