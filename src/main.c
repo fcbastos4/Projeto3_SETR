@@ -25,6 +25,7 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 
 #define RECEIVE_BUFF_SIZE 128
 #define RECEIVE_TIMEOUT_MS 100
+#define UPDATE_PERIOD_MS 500 		/* Time between temperature readings */
 
 const struct device *uart = DEVICE_DT_GET(DT_NODELABEL(uart0));  // Ajuste conforme necessário
 static uint8_t rx_buf[RECEIVE_BUFF_SIZE];
@@ -52,12 +53,28 @@ int desired_temp = 25;	// Desired temperature
 int temperature = 25;		// Actual temperature
 int max_temperature = 40;
 
+// Thread Priorities
+#define TEMP_THREAD_PRIORITY 5
+#define LED_THREAD_PRIORITY  6
+
+// Thread stack areas and data
+K_THREAD_STACK_DEFINE(temp_stack, 1024);
+K_THREAD_STACK_DEFINE(led_stack, 1024);
+static struct k_thread temp_thread_data;
+static struct k_thread led_thread_data;
+
+// Mutex and semaphore
+K_MUTEX_DEFINE(temp_mutex);
+K_SEM_DEFINE(led_sem, 0, 1); // Binary semaphore
+
 // Function to update LEDs based on temperature deviation
 void update_leds() {
 	printk("temperature: %d", temperature);
 	printk("temperature: %d", desired_temp);
 
+    k_mutex_lock(&temp_mutex, K_FOREVER);
     int deviation = temperature - desired_temp;
+    k_mutex_unlock(&temp_mutex);
 
     // LED2 (Normal): ON if within ±2°C of temp
     if (deviation >= -2 && deviation <= 2) {
@@ -82,6 +99,29 @@ void update_leds() {
     }
 }
 
+/* Temperature Thread */
+void temp_thread(void *a, void *b, void *c) {
+    while (1) {
+        int temp = get_temp();
+        k_mutex_lock(&temp_mutex, K_FOREVER);
+        temperature = temp;
+        k_mutex_unlock(&temp_mutex);
+
+        k_sem_give(&led_sem);  // Signal LED thread
+        k_msleep(UPDATE_PERIOD_MS); // Sleep for configured update period
+	}
+}
+
+/* LED Thread */
+void led_thread(void *a, void *b, void *c) {
+    while (1) {
+        k_sem_take(&led_sem, K_FOREVER);
+        if (led1_state) {
+            update_leds();
+        }
+    }
+}
+
 /* Define the callback function */
 void button1Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
 {
@@ -92,7 +132,7 @@ void button1Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 
 	if (led1_state) {
         printk("Power On. ");		// estão com muito delay
-		update_leds();
+		k_sem_give(&led_sem);
     } else {
         printk("Power Off\n");		// !!!!!!!!!!!!!!!!!!!!!
 		gpio_pin_set_dt(&led2, 0);  // LED2 OFF
@@ -106,6 +146,8 @@ void button2Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 {
 	k_msleep(100); // Debounce
 
+	k_mutex_lock(&temp_mutex, K_FOREVER);
+
 	desired_temp++;
 	if (desired_temp <= max_temperature)
 	{
@@ -115,7 +157,8 @@ void button2Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 		printk("Maximum opereating temperature!");
 	}
 	
-	update_leds();
+	k_mutex_unlock(&temp_mutex);
+    k_sem_give(&led_sem);
 	return;
 }
 
@@ -123,10 +166,13 @@ void button4Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 {
 	k_msleep(100); // Debounce
 
+	k_mutex_lock(&temp_mutex, K_FOREVER);
+
     desired_temp--;
 	printk("Actual temperature: %d C\n", desired_temp);
-	update_leds();
 
+	k_mutex_unlock(&temp_mutex);
+    k_sem_give(&led_sem);
 	return;
 }
 
@@ -219,25 +265,16 @@ int main(void)
     }
 	printk("UART frame parser ready\r\n");
 
-	temperature = get_temp();
+	// Start threads
+    k_thread_create(&temp_thread_data, temp_stack,
+                    K_THREAD_STACK_SIZEOF(temp_stack),
+                    temp_thread, NULL, NULL, NULL,
+                    TEMP_THREAD_PRIORITY, 0, K_NO_WAIT);
+
+    k_thread_create(&led_thread_data, led_stack,
+                    K_THREAD_STACK_SIZEOF(led_stack),
+                    led_thread, NULL, NULL, NULL,
+                    LED_THREAD_PRIORITY, 0, K_NO_WAIT);
 		
 	return 0;
 }
-
-/*
-#include <zephyr/kernel.h>
-#include <zephyr/sys/printk.h>
-#include "i2c.h"
-
-
-void main(void)
-{
-    uint8_t temp;
-
-    while (1) {
-        if (get_temp(&temp) == 0) {
-            printk("Temperature: %d°C\n", temp);
-        }
-        k_sleep(K_MSEC(500));
-	}
-}*/

@@ -42,5 +42,16 @@ Comandos de confirmação:
 
 * Comandos em que há uma resposta explícita (E.g. #Cyyy!) não precisão de confirmação. As respostas a estes comandos é uma confirmação implícita de sucesso, nestes casos. 
 
+## Ficheiros 
+* **cmd_proc (.c/.h)**: Ficheiros header e sua respetiva implementação do módulo de processamento dos comandos recebidos via UART
+* **sensor_temp (.c/.h)**: Ficheiros header e sua respetiva implementação do módulo de leitura do sensor de temperatura
+* **task_control (.c/.h)**: Ficheiros header e sua respetiva implementação do módulo de controlo da temperatura
+* **RTDB (.c/.h)**: Ficheiros header e sua respetiva implementação do módulo de base de dados em tempo-real (Real-Time Database)
+* **unity (.c/.h)**: Ficheiros header e sua respetiva implementação das funções a utilizar para o teste dos módulos a desenvolver (ficheiros retirados da comunidade ThrowTheSwitch.org github )
+* **main.c**: Integração e implementação dos vários módulos 
+* **test.c**: Ficheiro para teste específico das funções desenvolvidas, usando unity
+* **README.md**: Instruções de compilação e para abrir documentação html
+* **MAINPAGE.md**: Ficheiro de configuração da página principal html
+
 \author Guilherme Santos, gui.santos@ua.pt
 \author Francisco Bastos, fcbastos4@ua.pt

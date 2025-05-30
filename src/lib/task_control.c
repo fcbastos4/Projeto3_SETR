@@ -1,3 +1,13 @@
+/** \file task_control.c
+ *  \brief
+ * 
+ *  ...
+ * 
+ *  \author Guilherme Santos, 103143
+ * 	\author Francisco Bastos, 103359
+ *  \date 22/05/20025 
+ */
+
 #include <zephyr/kernel.h>
 #include <zephyr/sys/printk.h>
 #include <zephyr/drivers/gpio.h>

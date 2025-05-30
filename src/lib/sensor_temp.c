@@ -1,3 +1,13 @@
+/** \file sensor_temp.c
+ *  \brief
+ * 
+ *  ...
+ * 
+ *  \author Guilherme Santos, 103143
+ * 	\author Francisco Bastos, 103359
+ *  \date 22/05/20025 
+ */
+
 #include <zephyr/sys/printk.h>
 #include <zephyr/drivers/i2c.h> /* Required for  I2C */
 #include "sensor_temp.h"
@@ -12,7 +22,7 @@ extern int temperature;         // actual temperature
 static const struct i2c_dt_spec dev_i2c = I2C_DT_SPEC_GET(I2C0_NID);
 
 /* Other defines*/
-#define UPDATE_PERIOD_MS 500 /* Time between temperature readings */
+
 
 /* 
  * Main() function
@@ -36,7 +46,7 @@ int get_temp(void)
         printk("Failed to write to I2C device at address %x, register %x \n\r", dev_i2c.addr ,TC74_CMD_RTR);
     }
 
-    while(1) {
+    // while(1) {
         /* Read temperature register */       
         ret = i2c_read_dt(&dev_i2c, &temp, sizeof(temp));
         if(ret != 0){
@@ -46,11 +56,9 @@ int get_temp(void)
         printk("Last temperature reading is %d \n\r",temp);
         temperature = temp;
         
-        /* Pause  */ 
-         k_msleep(UPDATE_PERIOD_MS);
         return temp;
             
-    }
+    //}
  
 }
 
