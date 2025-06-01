@@ -19,6 +19,8 @@
 #include "lib/cmd_proc.h"
 #include "lib/sensor_temp.h" 
 #include "lib/task_control.h"
+#include "lib/RTDB.h"
+
 
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
@@ -49,9 +51,6 @@ static const struct gpio_dt_spec but2 = GPIO_DT_SPEC_GET(BUT1_NODE, gpios);
 static const struct gpio_dt_spec but4 = GPIO_DT_SPEC_GET(BUT3_NODE, gpios);
 
 static bool led1_state = false; // LED1 state (false = off, true = on)
-int desired_temp = 25;	// Desired temperature
-int temperature = 25;		// Actual temperature
-int max_temperature = 40;
 
 // Thread Priorities
 #define TEMP_THREAD_PRIORITY 5
@@ -69,12 +68,12 @@ K_SEM_DEFINE(led_sem, 0, 1); // Binary semaphore
 
 // Function to update LEDs based on temperature deviation
 void update_leds() {
-	printk("temperature: %d", temperature);
-	printk("temperature: %d", desired_temp);
+    int temp = rtdb_get_temperature();
+    int des_temp = rtdb_get_desired_temperature();
+	printk("temperature: %d", temp);
+	printk("temperature: %d", des_temp);
 
-    k_mutex_lock(&temp_mutex, K_FOREVER);
-    int deviation = temperature - desired_temp;
-    k_mutex_unlock(&temp_mutex);
+    int deviation = temp - des_temp;
 
     // LED2 (Normal): ON if within ±2°C of temp
     if (deviation >= -2 && deviation <= 2) {
@@ -103,9 +102,7 @@ void update_leds() {
 void temp_thread(void *a, void *b, void *c) {
     while (1) {
         int temp = get_temp();
-        k_mutex_lock(&temp_mutex, K_FOREVER);
-        temperature = temp;
-        k_mutex_unlock(&temp_mutex);
+        rtdb_set_temperature(temp);
 
         k_sem_give(&led_sem);  // Signal LED thread
         k_msleep(UPDATE_PERIOD_MS); // Sleep for configured update period
@@ -146,18 +143,19 @@ void button2Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 {
 	k_msleep(100); // Debounce
 
-	k_mutex_lock(&temp_mutex, K_FOREVER);
-
-	desired_temp++;
-	if (desired_temp <= max_temperature)
-	{
-		printk("Actual temperature: %d C\n", desired_temp);
-	} else {
-		desired_temp = max_temperature;
-		printk("Maximum opereating temperature!");
-	}
 	
-	k_mutex_unlock(&temp_mutex);
+    int desired = rtdb_get_desired_temperature();
+    int max = rtdb_get_max_temperature();
+
+    desired++;
+    if (desired <= max) {
+        rtdb_set_desired_temperature(desired);
+        printk("Actual temperature: %d C\n", desired);
+    } else {
+        rtdb_set_desired_temperature(max); // Trava no limite
+        printk("Maximum operating temperature!\n");
+    }
+
     k_sem_give(&led_sem);
 	return;
 }
@@ -166,12 +164,11 @@ void button4Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 {
 	k_msleep(100); // Debounce
 
-	k_mutex_lock(&temp_mutex, K_FOREVER);
+    int desired = rtdb_get_desired_temperature();
 
-    desired_temp--;
-	printk("Actual temperature: %d C\n", desired_temp);
-
-	k_mutex_unlock(&temp_mutex);
+    desired--;
+    rtdb_set_desired_temperature(desired);
+    printk("Actual temperature: %d C\n", desired);
     k_sem_give(&led_sem);
 	return;
 }
@@ -183,6 +180,7 @@ int main(void)
 {
 	task_control_init();
     cmd_proc_init();
+    rtdb_init();
 	int ret = 0;
 	
 	static struct gpio_callback button1CbData; // Define variable for holding callback data

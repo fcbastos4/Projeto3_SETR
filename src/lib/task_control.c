@@ -17,6 +17,8 @@
 #include <zephyr/logging/log.h>
 #include "task_control.h"
 #include "sensor_temp.h"
+#include "RTDB.h"
+
 
 LOG_MODULE_REGISTER(task_control, LOG_LEVEL_INF);
 
@@ -27,12 +29,12 @@ static const struct pwm_dt_spec pwm_resistor = PWM_DT_SPEC_GET(LEDPWM_NODE);
 
 extern int temperature;         // actual temperature
 extern int max_temperature;     // temperature setpoint
+extern int desired_temp;     // temperature setpoint
 
 /* Mutexes to protect shared variables */
 static struct k_mutex temp_mutex;
-static struct k_mutex max_temp_mutex;
+static struct k_mutex des_temp_mutex;
 
-static int hysteresis = 1;      // ±1°C hysteresis band
 
 #define CONTROL_INTERVAL_MS 500
 
@@ -47,27 +49,20 @@ static void control_thread(void *a, void *b, void *c) {
     bool heating;
 
     while (1) {
-        int temp = 0, max = 0;
 
-        /* Safe access to shared variables */
-        k_mutex_lock(&temp_mutex, K_FOREVER);
-        temp = get_temp();
-        temp = temperature;
-        k_mutex_unlock(&temp_mutex);
+        int temp     = rtdb_get_temperature();
+        int setpoint = rtdb_get_desired_temperature();
+        int hyst     = rtdb_get_hysteresis();
 
-        k_mutex_lock(&max_temp_mutex, K_FOREVER);
-        max = max_temperature;
-        k_mutex_unlock(&max_temp_mutex);
+        int error = setpoint - temp;
 
-        int error = max - temp;
-
-        // ON/OFF control with hysteresis
-        if (error >= hysteresis) {
+        // ON/OFF control with hysteresis with inverted signal
+        if (error >= hyst) {
             heating = false;
         } else {
             heating = true;
         }
-        printf("\r\nERROR: %d HEATING: %d\r\n",error,heating);
+        printf("\r\nERROR: %d HEATING: %d  SETPOINT:%d\r\n",error,heating,setpoint);
 
         uint32_t pulse = heating ? PWM_PERIOD : 0;
 
@@ -89,7 +84,7 @@ void task_control_init(void) {
 
     /* Init mutexes */
     k_mutex_init(&temp_mutex);
-    k_mutex_init(&max_temp_mutex);
+    k_mutex_init(&des_temp_mutex);
 
     k_thread_create(&control_tid,
                     control_stack,

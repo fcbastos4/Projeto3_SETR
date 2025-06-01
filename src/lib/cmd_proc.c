@@ -18,6 +18,9 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "cmd_proc.h"
+#include "task_control.h"
+#include "RTDB.h"
+
 
 LOG_MODULE_REGISTER(cmd_proc, LOG_LEVEL_DBG);
 
@@ -25,8 +28,6 @@ LOG_MODULE_REGISTER(cmd_proc, LOG_LEVEL_DBG);
 #define E_O_Frame '!'
 #define RECEIVE_BUFF_SIZE 128
 
-extern int temperature;
-extern int max_temperature;
 extern const struct device *uart;
 
 static struct k_mutex uart_mutex;
@@ -72,15 +73,14 @@ static void process_command(const char *cmd, const char *data) {
     if (strcmp(cmd, "C") == 0) {
 
         char reply[64];
-        int temp = temperature;
+        int temp = rtdb_get_temperature();
         char checksum[4];
         char cs_received[4] = {0};
 
         strncpy(cs_received, data, 3); 
-
         snprintf(checksum, sizeof(checksum), "%03d", temp);
-        uint8_t cs = compute_checksum("C", checksum);
 
+        uint8_t cs = compute_checksum("C", "");  // Checksum só do comando "C"
         int cs_input = atoi(cs_received);
 
         if(cs != cs_input)
@@ -108,7 +108,7 @@ static void process_command(const char *cmd, const char *data) {
         int cs_input = atoi(cs_received);
         int temp_input = atoi(temp_str);
 
-        max_temperature = temp_input;
+        rtdb_set_temperature(temp_input);
 
         // printf("\r\nDATA = %s    CS = %03d    CS_INPUT = %d   TEMP_STR = %s   CS_RECEIVED = %s\r\n", data,cs,cs_input,temp_str,cs_received);
 
@@ -121,7 +121,34 @@ static void process_command(const char *cmd, const char *data) {
             snprintf(reply, sizeof(reply), "\r\n#m%03d%03d!\r\n", temp_input, cs);
             uart_send(reply);
         }
+    }
+    else if(strcmp(cmd, "S") == 0)
+    {
+        char reply[64];
+        char histerese_str[4] = {0};
+        char cs_received[4] = {0};
 
+        strncpy(histerese_str, data, 3); 
+        strncpy(cs_received, data + 3, 3); 
+
+        uint8_t cs = compute_checksum("S", histerese_str);
+
+        int cs_input = atoi(cs_received);
+        int histerese_input = atoi(histerese_str);
+
+        rtdb_set_hysteresis(histerese_input);
+
+        // printf("\r\nDATA = %s    CS = %03d    CS_INPUT = %d   histerese_str = %s   CS_RECEIVED = %s\r\n", data,cs,cs_input,histerese_str,cs_received);
+
+        if(cs != cs_input)
+        {
+            send_ack("Es");
+        }
+        else{
+            //LOG_HEXDUMP_INF(reply, strlen(reply), "UART SENT:");   
+            snprintf(reply, sizeof(reply), "\r\n#m%03d%03d!\r\n", histerese_input, cs);
+            uart_send(reply);
+        }
     }
     else 
     {
@@ -156,6 +183,19 @@ static void process_frame(const char *frame) {
         }
         
         if (!isdigit(data[0]) || !isdigit(data[1]) || !isdigit(data[2])) {
+            send_ack("Ef"); // Erro de framing
+            return;
+            }
+            
+    }
+      else if (strcmp(cmd, "S") == 0) {
+        sscanf(frame, "#%1s%6s!", cmd, data);
+        if (frame_len != 10) {
+            send_ack("Ef"); // Erro de framing
+            return;
+        }
+        
+        if (!isdigit(data[0]) || !isdigit(data[1]) || !isdigit(data[2]) || !isdigit(data[3]) || !isdigit(data[4]) || !isdigit(data[5])) {
             send_ack("Ef"); // Erro de framing
             return;
             }
