@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "cmd_proc.h"
+#include "RTDB.h"
 
 LOG_MODULE_REGISTER(cmd_proc, LOG_LEVEL_DBG);
 
@@ -25,8 +26,8 @@ LOG_MODULE_REGISTER(cmd_proc, LOG_LEVEL_DBG);
 #define E_O_Frame '!'
 #define RECEIVE_BUFF_SIZE 128
 
-extern int temperature;
-extern int max_temperature;
+/*extern int temperature;
+extern int max_temperature;*/
 extern const struct device *uart;
 
 static uint8_t rx_buf[RECEIVE_BUFF_SIZE] = {0};
@@ -68,7 +69,8 @@ static void process_command(const char *cmd, const char *data) {
     if (strcmp(cmd, "C") == 0) {
 
         char reply[64];
-        int temp = temperature;
+        //int temp = temperature;
+        int temp = rtdb_get_temperature();
         char checksum[4];
         char cs_received[4] = {0};
 
@@ -76,6 +78,7 @@ static void process_command(const char *cmd, const char *data) {
 
         snprintf(checksum, sizeof(checksum), "%03d", temp);
         uint8_t cs = compute_checksum("C", checksum);
+        printk("CS: %d",cs);
 
         int cs_input = atoi(cs_received);
 
@@ -105,7 +108,9 @@ static void process_command(const char *cmd, const char *data) {
         int cs_input = atoi(cs_received);
         int temp_input = atoi(temp_str);
 
-        max_temperature = temp_input;
+        //max_temperature = temp_input;
+        rtdb_set_max_temp(temp_input);
+
 
         // printf("\r\nDATA = %s    CS = %03d    CS_INPUT = %d   TEMP_STR = %s   CS_RECEIVED = %s\r\n", data,cs,cs_input,temp_str,cs_received);
 

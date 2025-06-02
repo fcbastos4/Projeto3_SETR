@@ -16,7 +16,7 @@
 
 #define TC74_CMD_RTR 0x00   /* Read temperature command */
 #define TC74_CMD_RWCR 0x01  /* Read/write configuration register */
-extern int temperature;         // actual temperature
+// extern int temperature;         // actual temperature
 /* I2C device vars and defines */
 #define I2C0_NID DT_NODELABEL(tc74sensor)
 static const struct i2c_dt_spec dev_i2c = I2C_DT_SPEC_GET(I2C0_NID);
@@ -35,9 +35,9 @@ int get_temp(void)
     if (!device_is_ready(dev_i2c.bus)) {
 	    printk("I2C bus %s is not ready!\n\r",dev_i2c.bus->name);
 	    return ERR_FATAL;
-    } else {
+    } /*else {
         printk("I2C bus %s, device address %x ready\n\r",dev_i2c.bus->name, dev_i2c.addr);
-    }    
+    }*/    
     
     /* Write (command RTR) to set the read address to temperature */
     /* Only necessary if a config done before (not the case), but let's stay in the safe side */
@@ -54,12 +54,10 @@ int get_temp(void)
         }
 
         printk("Last temperature reading is %d \n\r",temp);
-        temperature = temp;
         
         return temp;
             
     //}
- 
 }
 
 /*

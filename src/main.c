@@ -19,6 +19,7 @@
 #include "lib/cmd_proc.h"
 #include "lib/sensor_temp.h" 
 #include "lib/task_control.h"
+#include "lib/RTDB.h"
 
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
@@ -48,10 +49,10 @@ static const struct gpio_dt_spec but1 = GPIO_DT_SPEC_GET(BUT0_NODE, gpios);
 static const struct gpio_dt_spec but2 = GPIO_DT_SPEC_GET(BUT1_NODE, gpios);
 static const struct gpio_dt_spec but4 = GPIO_DT_SPEC_GET(BUT3_NODE, gpios);
 
-static bool led1_state = false; // LED1 state (false = off, true = on)
-int desired_temp = 25;	// Desired temperature
-int temperature = 25;		// Actual temperature
-int max_temperature = 40;
+// static bool led1_state = false; // LED1 state (false = off, true = on)
+// int desired_temp;	            // Desired temperature
+// int temperature;		        // Actual temperature
+// int max_temperature;
 
 // Thread Priorities
 #define TEMP_THREAD_PRIORITY 5
@@ -63,60 +64,75 @@ K_THREAD_STACK_DEFINE(led_stack, 1024);
 static struct k_thread temp_thread_data;
 static struct k_thread led_thread_data;
 
-// Mutex and semaphore
-K_MUTEX_DEFINE(temp_mutex);
+// semaphore
 K_SEM_DEFINE(led_sem, 0, 1); // Binary semaphore
 
 // Function to update LEDs based on temperature deviation
 void update_leds() {
-	printk("temperature: %d", temperature);
-	printk("temperature: %d", desired_temp);
+    /*printk("temperature: %d", temperature);
+    printk("temperature: %d", desired_temp);*/
+    int dummy = 0; // Dummy variable to avoid unused variable warning
+    int state;
+    if (dummy == 0)
+    {
+        state = -1; // -1: undefined, 0: normal, 1: low, 2: high
+        dummy = 1;
+    } 
+    
 
-    k_mutex_lock(&temp_mutex, K_FOREVER);
-    int deviation = temperature - desired_temp;
-    k_mutex_unlock(&temp_mutex);
+    int current_temp = rtdb_get_temperature();
+    int desired_temp = rtdb_get_setpoint();
+
+    int deviation = current_temp - desired_temp;
 
     // LED2 (Normal): ON if within ±2°C of temp
-    if (deviation >= -2 && deviation <= 2) {
+    if (deviation >= -2 && deviation <= 2 && state != 0) {
         gpio_pin_set_dt(&led2, 1); // LED2 ON (Normal)
         gpio_pin_set_dt(&led3, 0); // LED3 OFF
         gpio_pin_set_dt(&led4, 0); // LED4 OFF
-		printk("Normal State.\n");
+        state = 0; // Normal state
+        printk("Normal State.\n");
     }
     // LED3 (Warning Low): ON if >2°C below temp
-    else if (deviation < -2) {
+    else if (deviation < -2 && state != 1) {
         gpio_pin_set_dt(&led2, 0); // LED2 OFF
         gpio_pin_set_dt(&led3, 1); // LED3 ON (Warning Low)
         gpio_pin_set_dt(&led4, 0); // LED4 OFF
-		printk("Warning! temperature Low!\n");
+        state = 1; // High state
+        printk("Warning! temperature Low!\n");
     }
     // LED4 (Warning High): ON if >2°C above temp
-    else if (deviation > 2) {
+    else if (deviation > 2 && state != 2) {
         gpio_pin_set_dt(&led2, 0); // LED2 OFF
         gpio_pin_set_dt(&led3, 0); // LED3 OFF
         gpio_pin_set_dt(&led4, 1); // LED4 ON (Warning High)
-		printk("Warning! temperature High!\n");
+        state = 2; // Low state
+        printk("Warning! temperature High!\n");
+    } else {
+        return;     // No change needed
     }
 }
 
 /* Temperature Thread */
 void temp_thread(void *a, void *b, void *c) {
     while (1) {
-        int temp = get_temp();
-        k_mutex_lock(&temp_mutex, K_FOREVER);
-        temperature = temp;
-        k_mutex_unlock(&temp_mutex);
+        if (rtdb_get_system_on()) {
+            int temp = get_temp();
+            
+            rtdb_set_temperature(temp);     // Store safely in RTDB
 
-        k_sem_give(&led_sem);  // Signal LED thread
-        k_msleep(UPDATE_PERIOD_MS); // Sleep for configured update period
-	}
-}
+            k_sem_give(&led_sem);           // Signal LED thread
+        }
+
+        k_msleep(UPDATE_PERIOD_MS);         // Sleep for configured update period
+    }
+ }
 
 /* LED Thread */
 void led_thread(void *a, void *b, void *c) {
     while (1) {
         k_sem_take(&led_sem, K_FOREVER);
-        if (led1_state) {
+        if (rtdb_get_system_on()) {
             update_leds();
         }
     }
@@ -125,125 +141,129 @@ void led_thread(void *a, void *b, void *c) {
 /* Define the callback function */
 void button1Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
 {
-	k_msleep(100); // Debounce delay 
+    k_msleep(100); // Debounce delay 
 
-    gpio_pin_toggle_dt(&led1);
-	led1_state = !led1_state; // Toggle state tracking
+    /*gpio_pin_toggle_dt(&led1);
+    led1_state = !led1_state; // Toggle state tracking*/
 
-	if (led1_state) {
+    bool system_on = rtdb_get_system_on();
+    rtdb_set_system_on(!system_on);
+
+    if (!system_on) {
         printk("Power On. ");		// estão com muito delay
-		k_sem_give(&led_sem);
+        gpio_pin_set_dt(&led1, 1);  // LED1 ON
+        k_sem_give(&led_sem);
     } else {
         printk("Power Off\n");		// !!!!!!!!!!!!!!!!!!!!!
-		gpio_pin_set_dt(&led2, 0);  // LED2 OFF
+        gpio_pin_set_dt(&led1, 0);  // LED1 OFF
+        gpio_pin_set_dt(&led2, 0);  // LED2 OFF
         gpio_pin_set_dt(&led3, 0);  // LED3 OFF
         gpio_pin_set_dt(&led4, 0);  // LED4 OFF
     }
-	return;
+    return;
 }
 
 void button2Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
 {
-	k_msleep(100); // Debounce
+    k_msleep(100); // Debounce
 
-	k_mutex_lock(&temp_mutex, K_FOREVER);
+    int temp = rtdb_get_setpoint();
+    int max = rtdb_get_max_temp();
 
-	desired_temp++;
-	if (desired_temp <= max_temperature)
-	{
-		printk("Actual temperature: %d C\n", desired_temp);
-	} else {
-		desired_temp = max_temperature;
-		printk("Maximum opereating temperature!");
-	}
-	
-	k_mutex_unlock(&temp_mutex);
+    temp++;
+    if (temp <= max)
+    {
+        printk("Setpoint temperature: %d C\n", temp);
+    } else {
+        temp = max;
+        printk("Maximum opereating temperature!");
+    }
+    rtdb_set_setpoint(temp);
+
     k_sem_give(&led_sem);
-	return;
+    return;
 }
 
 void button4Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
 {
-	k_msleep(100); // Debounce
+    k_msleep(100); // Debounce
 
-	k_mutex_lock(&temp_mutex, K_FOREVER);
+    int temp = rtdb_get_setpoint();
+    temp--;
+    rtdb_set_setpoint(temp);
+    printk("New setpoint: %d C\n", temp);
 
-    desired_temp--;
-	printk("Actual temperature: %d C\n", desired_temp);
-
-	k_mutex_unlock(&temp_mutex);
     k_sem_give(&led_sem);
-	return;
+    return;
 }
 
 /*
- * The main function
- */
+* The main function
+*/
 int main(void)
 {
-	task_control_init();
-	int ret = 0;
-	
-	static struct gpio_callback button1CbData; // Define variable for holding callback data
+    task_control_init();
+    int ret = 0;
+        
+    static struct gpio_callback button1CbData; // Define variable for holding callback data
     static struct gpio_callback button2CbData; // Define variable for holding callback data
     static struct gpio_callback button4CbData; // Define variable for holding callback data 
 
-	/* Check if devices are ready */
-	if (!device_is_ready(led1.port) || !device_is_ready(led2.port) || !device_is_ready(led3.port) || !device_is_ready(led4.port) || !device_is_ready(but1.port) || !device_is_ready(but2.port) || !device_is_ready(but4.port)) {
-		return 0;
-	}	
+    /* Check if devices are ready */
+    if (!device_is_ready(led1.port) || !device_is_ready(led2.port) || !device_is_ready(led3.port) || !device_is_ready(led4.port) || !device_is_ready(but1.port) || !device_is_ready(but2.port) || !device_is_ready(but4.port)) {
+        return 0;
+    }	
 
-	/* Configure the GPIO pins for input/output and set active logic */
-	/* Note that the devicetree activates the internal pullup and sets the active low flag */
-	/*   so an external resistor is not needed and pressing the button causes a logic level of 1*/
-	ret = gpio_pin_configure_dt(&led1, GPIO_OUTPUT_INACTIVE);
-	if (ret < 0) {
-		return 0;
-	}
+    /* Configure the GPIO pins for input/output and set active logic */
+    /* Note that the devicetree activates the internal pullup and sets the active low flag */
+    /*   so an external resistor is not needed and pressing the button causes a logic level of 1*/
+    ret = gpio_pin_configure_dt(&led1, GPIO_OUTPUT_INACTIVE);
+    if (ret < 0) {
+        return 0;
+    }
     ret = gpio_pin_configure_dt(&led2, GPIO_OUTPUT_INACTIVE);
-	if (ret < 0) {
-		return 0;
-	}
+    if (ret < 0) {
+        return 0;
+    }
     ret = gpio_pin_configure_dt(&led3, GPIO_OUTPUT_INACTIVE);
-	if (ret < 0) {
-		
-		return 0;
-	}
-	ret = gpio_pin_configure_dt(&led4, GPIO_OUTPUT_INACTIVE);
-	if (ret < 0) {
-		return 0;
-	}
+    if (ret < 0) {        
+        return 0;
+    }
+    ret = gpio_pin_configure_dt(&led4, GPIO_OUTPUT_INACTIVE);
+    if (ret < 0) {
+        return 0;
+    }
 
-	ret = gpio_pin_configure_dt(&but1, GPIO_INPUT);
-	if (ret < 0) {
-		return 0;
-	}
+    ret = gpio_pin_configure_dt(&but1, GPIO_INPUT);
+    if (ret < 0) {
+        return 0;
+    }
     ret = gpio_pin_configure_dt(&but2, GPIO_INPUT);
-	if (ret < 0) {
-		return 0;
-	}
+    if (ret < 0) {
+        return 0;
+    }
     ret = gpio_pin_configure_dt(&but4, GPIO_INPUT);
-	if (ret < 0) {
-		return 0;
-	}
+    if (ret < 0) {
+        return 0;
+    }
 
-	/* Set interrupt */
-	ret = gpio_pin_interrupt_configure_dt(&but1, GPIO_INT_EDGE_TO_ACTIVE);
-	gpio_init_callback(&button1CbData, button1Pressed, BIT(but1.pin));
+    /* Set interrupt */
+    ret = gpio_pin_interrupt_configure_dt(&but1, GPIO_INT_EDGE_TO_ACTIVE);
+    gpio_init_callback(&button1CbData, button1Pressed, BIT(but1.pin));
 
     ret = gpio_pin_interrupt_configure_dt(&but2, GPIO_INT_EDGE_TO_ACTIVE);
-	gpio_init_callback(&button2CbData, button2Pressed, BIT(but2.pin));
+    gpio_init_callback(&button2CbData, button2Pressed, BIT(but2.pin));
 
     ret = gpio_pin_interrupt_configure_dt(&but4, GPIO_INT_EDGE_TO_ACTIVE);
-	gpio_init_callback(&button4CbData, button4Pressed, BIT(but4.pin));
-	
-	/* Add the callback function by calling gpio_add_callback()   */
-	gpio_add_callback(but1.port, &button1CbData);
+    gpio_init_callback(&button4CbData, button4Pressed, BIT(but4.pin));
+        
+    /* Add the callback function by calling gpio_add_callback()   */
+    gpio_add_callback(but1.port, &button1CbData);
     gpio_add_callback(but2.port, &button2CbData);
     gpio_add_callback(but4.port, &button4CbData);
 
-	printk("System ready. Press buttons to toggle LEDs. Inicial temperature 25 C.\n");
-    
+    printk("System ready. Press buttons to toggle LEDs. Inicial temperature 25 C.\n");
+        
     int ret1;
     if (!device_is_ready(uart)) {
         printk("UART device not ready\n");
@@ -263,9 +283,13 @@ int main(void)
         printk("Failed to enable UART RX: %d\n", ret1);
         return 1;
     }
-	printk("UART frame parser ready\r\n");
+    printk("UART frame parser ready\r\n");
 
-	// Start threads
+    rtdb_init();    // Initializing RTDB, default values
+
+        
+
+    // Start threads
     k_thread_create(&temp_thread_data, temp_stack,
                     K_THREAD_STACK_SIZEOF(temp_stack),
                     temp_thread, NULL, NULL, NULL,
@@ -275,6 +299,6 @@ int main(void)
                     K_THREAD_STACK_SIZEOF(led_stack),
                     led_thread, NULL, NULL, NULL,
                     LED_THREAD_PRIORITY, 0, K_NO_WAIT);
-		
-	return 0;
-}
+            
+    return 0;
+    }
