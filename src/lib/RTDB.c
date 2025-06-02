@@ -1,73 +1,92 @@
-// rtdb.c - Real-Time Database for shared variables with mutex protection
+/** \file RTDB.c
+ *  \brief
+ * 
+ *  ...
+ * 
+ *  \author Guilherme Santos, 103143
+ * 	\author Francisco Bastos, 103359
+ *  \date 2/06/20025 
+ */
 
-#include "RTDB.h"
-#include "sensor_temp.h"
 #include <zephyr/kernel.h>
+#include "RTDB.h"
 
-// Internal data
-int temperature = 25;
-int max_temperature = 40;
-int hysteresis = 1;
-int desired_temp = 35;	// Desired temperature
+rtdb_t rtdb = {
+    .system_on = false,
+    .temperature = 25,
+    .max_temp = 40,
+    .setpoint = 20,
+    .hysteresis = 3
+};
 
-// Mutex for protecting access to shared variables
-static struct k_mutex rtdb_mutex;
+struct k_mutex rtdb_mutex;
 
+// Init function to be called in `main()`
 void rtdb_init(void) {
     k_mutex_init(&rtdb_mutex);
 }
 
-int rtdb_get_temperature(void) {
-    int value = get_temp();
+bool rtdb_get_system_on(void) {
     k_mutex_lock(&rtdb_mutex, K_FOREVER);
-    value = temperature;
+    bool value = rtdb.system_on;
     k_mutex_unlock(&rtdb_mutex);
     return value;
+}
+
+int rtdb_get_temperature(void) {
+    k_mutex_lock(&rtdb_mutex, K_FOREVER);
+    int value = rtdb.temperature;
+    k_mutex_unlock(&rtdb_mutex);
+    return value;
+}
+
+int rtdb_get_max_temp(void) {
+    k_mutex_lock(&rtdb_mutex, K_FOREVER);
+    int value = rtdb.max_temp;
+    k_mutex_unlock(&rtdb_mutex);
+    return value;
+}
+
+int rtdb_get_setpoint(void) {
+    k_mutex_lock(&rtdb_mutex, K_FOREVER);
+    int value = rtdb.setpoint;
+    k_mutex_unlock(&rtdb_mutex);
+    return value;
+}
+
+int rtdb_get_hysteresis(void) {
+    k_mutex_lock(&rtdb_mutex, K_FOREVER);
+    int value = rtdb.hysteresis;
+    k_mutex_unlock(&rtdb_mutex);
+    return value;
+}
+
+void rtdb_set_system_on(bool value) {
+    k_mutex_lock(&rtdb_mutex, K_FOREVER);
+    rtdb.system_on = value;
+    k_mutex_unlock(&rtdb_mutex);
 }
 
 void rtdb_set_temperature(int value) {
     k_mutex_lock(&rtdb_mutex, K_FOREVER);
-    temperature = value;
+    rtdb.temperature = value;
     k_mutex_unlock(&rtdb_mutex);
 }
 
-int rtdb_get_max_temperature(void) {
-    int value;
+void rtdb_set_max_temp(int value) {
     k_mutex_lock(&rtdb_mutex, K_FOREVER);
-    value = max_temperature;
-    k_mutex_unlock(&rtdb_mutex);
-    return value;
-}
-
-void rtdb_set_max_temperature(int value) {
-    k_mutex_lock(&rtdb_mutex, K_FOREVER);
-    max_temperature = value;
+    rtdb.max_temp = value;
     k_mutex_unlock(&rtdb_mutex);
 }
 
-void rtdb_set_hysteresis(int value){
+void rtdb_set_setpoint(int value) {
     k_mutex_lock(&rtdb_mutex, K_FOREVER);
-    hysteresis = value;
+    rtdb.setpoint = value;
     k_mutex_unlock(&rtdb_mutex);
-
-}
-int rtdb_get_hysteresis(void) {
-    int value;
-    k_mutex_lock(&rtdb_mutex, K_FOREVER);
-    value = hysteresis;
-    k_mutex_unlock(&rtdb_mutex);
-    return value;
 }
 
-void rtdb_set_desired_temperature(int value) {
+void rtdb_set_hysteresis(int value) {
     k_mutex_lock(&rtdb_mutex, K_FOREVER);
-    desired_temp = value;
+    rtdb.hysteresis = value;
     k_mutex_unlock(&rtdb_mutex);
-}
-int rtdb_get_desired_temperature(void) {
-    int value;
-    k_mutex_lock(&rtdb_mutex, K_FOREVER);
-    value = desired_temp;
-    k_mutex_unlock(&rtdb_mutex);
-    return value;
 }

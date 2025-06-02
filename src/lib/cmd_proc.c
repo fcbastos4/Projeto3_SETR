@@ -108,7 +108,7 @@ static void process_command(const char *cmd, const char *data) {
         int cs_input = atoi(cs_received);
         int temp_input = atoi(temp_str);
 
-        rtdb_set_temperature(temp_input);
+        rtdb_set_max_temperature(temp_input);
 
         // printf("\r\nDATA = %s    CS = %03d    CS_INPUT = %d   TEMP_STR = %s   CS_RECEIVED = %s\r\n", data,cs,cs_input,temp_str,cs_received);
 

@@ -19,7 +19,6 @@
 #include "sensor_temp.h"
 #include "RTDB.h"
 
-
 LOG_MODULE_REGISTER(task_control, LOG_LEVEL_INF);
 
 #define LEDPWM_NODE DT_NODELABEL(pwm_led2)
@@ -27,14 +26,13 @@ LOG_MODULE_REGISTER(task_control, LOG_LEVEL_INF);
 
 static const struct pwm_dt_spec pwm_resistor = PWM_DT_SPEC_GET(LEDPWM_NODE);
 
-extern int temperature;         // actual temperature
-extern int max_temperature;     // temperature setpoint
-extern int desired_temp;     // temperature setpoint
+//extern int temperature;         // actual temperature
+//extern int max_temperature;     // temperature setpoint
+//static int hysteresis = 3;      // ±1°C hysteresis band
 
 /* Mutexes to protect shared variables */
-static struct k_mutex temp_mutex;
-static struct k_mutex des_temp_mutex;
-
+/*static struct k_mutex temp_mutex;
+static struct k_mutex max_temp_mutex;*/
 
 #define CONTROL_INTERVAL_MS 500
 
@@ -49,31 +47,42 @@ static void control_thread(void *a, void *b, void *c) {
     bool heating;
 
     while (1) {
+        // int temp = 0, max = 0;
 
-        int temp     = rtdb_get_temperature();
-        int setpoint = rtdb_get_desired_temperature();
-        int hyst     = rtdb_get_hysteresis();
+        /* Safe access to shared variables */
+        /*k_mutex_lock(&temp_mutex, K_FOREVER);
+        temp = temperature;
+        k_mutex_unlock(&temp_mutex);
 
-        int error = setpoint - temp;
+        k_mutex_lock(&max_temp_mutex, K_FOREVER);
+        max = max_temperature;
+        k_mutex_unlock(&max_temp_mutex);*/
 
-        // ON/OFF control with hysteresis with inverted signal
-        if (error >= hyst) {
-            heating = false;
-        } else {
-            heating = true;
+        int temp = rtdb_get_temperature();
+        int max = rtdb_get_max_temp();
+        int hysteresis = rtdb_get_hysteresis();
+
+        int error = max - temp;
+
+        if(rtdb_get_system_on()) {
+            // ON/OFF control with hysteresis
+            if (error >= hysteresis) {
+                heating = false;
+            } else {
+                heating = true;
+            }
+            printf("\r\nERROR: %d HEATING: %d\r\n",error,heating);
+
+            uint32_t pulse = heating ? PWM_PERIOD : 0;
+
+            int ret = pwm_set_dt(&pwm_resistor, PWM_PERIOD, pulse);
+            if (ret) {
+                LOG_ERR("pwm_set_dt failed: %d", ret);
+            } /*else {
+                LOG_INF("Heating %s | Temp: %d | Setpoint: %d",
+                        heating ? "ON" : "OFF", temp, max);
+            }*/
         }
-        printf("\r\nERROR: %d HEATING: %d  SETPOINT:%d\r\n",error,heating,setpoint);
-
-        uint32_t pulse = heating ? PWM_PERIOD : 0;
-
-        int ret = pwm_set_dt(&pwm_resistor, PWM_PERIOD, pulse);
-        if (ret) {
-            LOG_ERR("pwm_set_dt failed: %d", ret);
-        } /*else {
-            LOG_INF("Heating %s | Temp: %d | Setpoint: %d",
-                    heating ? "ON" : "OFF", temp, max);
-        }*/
-
         k_msleep(CONTROL_INTERVAL_MS);
     }
 }
@@ -83,8 +92,8 @@ void task_control_init(void) {
     static struct k_thread control_tid;
 
     /* Init mutexes */
-    k_mutex_init(&temp_mutex);
-    k_mutex_init(&des_temp_mutex);
+    /*k_mutex_init(&temp_mutex);
+    k_mutex_init(&max_temp_mutex);*/
 
     k_thread_create(&control_tid,
                     control_stack,
