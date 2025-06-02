@@ -1,7 +1,9 @@
 /** \file cmd_proc.c
- *  \brief
+ *  \brief Este módulo é responsável por implementar as funções e variáveis
  * 
- *  ...
+ *  Este módulo é responsável por interpretar comandos recebidos da UART,
+ *  validar o checksum e executar ações como leitura e configuração de parâmetros
+ *  como temperatura máxima ou histerese.
  * 
  *  \author Guilherme Santos, 103143
  * 	\author Francisco Bastos, 103359

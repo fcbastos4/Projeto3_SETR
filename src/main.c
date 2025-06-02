@@ -55,7 +55,7 @@ static const struct gpio_dt_spec but4 = GPIO_DT_SPEC_GET(BUT3_NODE, gpios);
 // int max_temperature;
 
 // Thread Priorities
-#define TEMP_THREAD_PRIORITY 5
+#define TEMP_THREAD_PRIORITY 4
 #define LED_THREAD_PRIORITY  6
 
 // Thread stack areas and data
