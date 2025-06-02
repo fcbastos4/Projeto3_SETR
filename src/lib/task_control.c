@@ -85,6 +85,12 @@ static void control_thread(void *a, void *b, void *c) {
             if (ret) {
                 LOG_ERR("pwm_set_dt failed: %d", ret);
             }
+        }else {
+            // Sistema desligado: garante PWM desligado
+            int ret = pwm_set_dt(&pwm_resistor, PWM_PERIOD, PWM_PERIOD);
+            if (ret) {
+                LOG_ERR("pwm_set_dt failed (system off): %d", ret);
+            }
         }
 
         // Espera antes da próxima iteração
