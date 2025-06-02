@@ -1,0 +1,555 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/dma.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">dma.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2dma_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Copyright (c) 2016 Intel Corporation</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_DMA_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_DMA_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="group__dma__interface.html#gae442d8ba73be7e53b68165647b0ea402">   34</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__dma__interface.html#gae442d8ba73be7e53b68165647b0ea402">dma_channel_direction</a> {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a52f28a5eff23fcddd2a138092d9f7cd5">   36</a></span>    <a class="code hl_enumvalue" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a52f28a5eff23fcddd2a138092d9f7cd5">MEMORY_TO_MEMORY</a> = 0x0,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a4617446ef0e7c2bced585b309011a25a">   38</a></span>    <a class="code hl_enumvalue" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a4617446ef0e7c2bced585b309011a25a">MEMORY_TO_PERIPHERAL</a>,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a5fbc19c9e12c11973c0cf0a593ccf165">   40</a></span>    <a class="code hl_enumvalue" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a5fbc19c9e12c11973c0cf0a593ccf165">PERIPHERAL_TO_MEMORY</a>,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402ae23cbfefccef9d19dd91f0c746004449">   42</a></span>    <a class="code hl_enumvalue" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402ae23cbfefccef9d19dd91f0c746004449">PERIPHERAL_TO_PERIPHERAL</a>,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a7e2b4150c28b057598975e95e8b7494c">   44</a></span>    <a class="code hl_enumvalue" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a7e2b4150c28b057598975e95e8b7494c">HOST_TO_MEMORY</a>,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a61e65f3065bf7cdb40efc9039debbb60">   46</a></span>    <a class="code hl_enumvalue" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a61e65f3065bf7cdb40efc9039debbb60">MEMORY_TO_HOST</a>,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402ae7c3dacfd3496576c41f9c663537419a">   51</a></span>    <a class="code hl_enumvalue" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402ae7c3dacfd3496576c41f9c663537419a">DMA_CHANNEL_DIRECTION_COMMON_COUNT</a>,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a273f9cdcc2af613375cb3e235bfda037">   57</a></span>    <a class="code hl_enumvalue" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a273f9cdcc2af613375cb3e235bfda037">DMA_CHANNEL_DIRECTION_PRIV_START</a> = <a class="code hl_enumvalue" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402ae7c3dacfd3496576c41f9c663537419a">DMA_CHANNEL_DIRECTION_COMMON_COUNT</a>,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_enumvalue" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a9114b4138c9dfb506b9428a229c55a02">DMA_CHANNEL_DIRECTION_MAX</a> = 0x7</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a9114b4138c9dfb506b9428a229c55a02">   63</a></span>};</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="};">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="group__dma__interface.html#gafe0877ef4bd7790a4bcd46052088231c">   70</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__dma__interface.html#gafe0877ef4bd7790a4bcd46052088231c">dma_addr_adj</a> {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ggafe0877ef4bd7790a4bcd46052088231cac1fe38db8443f6d8e406c66ba6bdd15e">   72</a></span>    <a class="code hl_enumvalue" href="group__dma__interface.html#ggafe0877ef4bd7790a4bcd46052088231cac1fe38db8443f6d8e406c66ba6bdd15e">DMA_ADDR_ADJ_INCREMENT</a>,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ggafe0877ef4bd7790a4bcd46052088231caacc38507d8ef3eb8021ae85d9b61b717">   74</a></span>    <a class="code hl_enumvalue" href="group__dma__interface.html#ggafe0877ef4bd7790a4bcd46052088231caacc38507d8ef3eb8021ae85d9b61b717">DMA_ADDR_ADJ_DECREMENT</a>,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ggafe0877ef4bd7790a4bcd46052088231cafeb870c1a6f9db8238a97f3ac9c6da4f">   76</a></span>    <a class="code hl_enumvalue" href="group__dma__interface.html#ggafe0877ef4bd7790a4bcd46052088231cafeb870c1a6f9db8238a97f3ac9c6da4f">DMA_ADDR_ADJ_NO_CHANGE</a>,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="};">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="group__dma__interface.html#gade594552920aabbfd2106059a338498b">   82</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__dma__interface.html#gade594552920aabbfd2106059a338498b">dma_channel_filter</a> {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    DMA_CHANNEL_NORMAL, <span class="comment">/* normal DMA channel */</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    DMA_CHANNEL_PERIODIC, <span class="comment">/* can be triggered by periodic sources */</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>};</div>
+</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="foldopen" id="foldopen00090" data-start="{" data-end="};">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ga08c366c8d47672eeeb37b258af20101b">   90</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__dma__interface.html#ga08c366c8d47672eeeb37b258af20101b">dma_attribute_type</a> {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    DMA_ATTR_BUFFER_ADDRESS_ALIGNMENT,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    DMA_ATTR_BUFFER_SIZE_ALIGNMENT,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    DMA_ATTR_COPY_ALIGNMENT,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    DMA_ATTR_MAX_BLOCK_COUNT,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>};</div>
+</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="};">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="structdma__block__config.html">  104</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structdma__block__config.html">dma_block_config</a> {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">#ifdef CONFIG_DMA_64BIT</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    uint64_t <a class="code hl_variable" href="structdma__block__config.html#a9fbd1deae8936a806ecc79bad3f3b9bb">source_address</a>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    uint64_t <a class="code hl_variable" href="structdma__block__config.html#a9a66e0a647c55e94423ababf44c04325">dest_address</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="structdma__block__config.html#a9fbd1deae8936a806ecc79bad3f3b9bb">  112</a></span>    uint32_t <a class="code hl_variable" href="structdma__block__config.html#a9fbd1deae8936a806ecc79bad3f3b9bb">source_address</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="structdma__block__config.html#a9a66e0a647c55e94423ababf44c04325">  114</a></span>    uint32_t <a class="code hl_variable" href="structdma__block__config.html#a9a66e0a647c55e94423ababf44c04325">dest_address</a>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="structdma__block__config.html#a3180ef98f007ad9be7f6ff363dc125c3">  117</a></span>    uint32_t <a class="code hl_variable" href="structdma__block__config.html#a3180ef98f007ad9be7f6ff363dc125c3">source_gather_interval</a>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="structdma__block__config.html#a18bafb80538bca9c12197955770b6511">  119</a></span>    uint32_t <a class="code hl_variable" href="structdma__block__config.html#a18bafb80538bca9c12197955770b6511">dest_scatter_interval</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="structdma__block__config.html#ae38027f6262c34d9f1abe4f923d904b4">  121</a></span>    uint16_t <a class="code hl_variable" href="structdma__block__config.html#ae38027f6262c34d9f1abe4f923d904b4">dest_scatter_count</a>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="structdma__block__config.html#a8ffcde07d02317b3cc1b327bd0b88395">  123</a></span>    uint16_t <a class="code hl_variable" href="structdma__block__config.html#a8ffcde07d02317b3cc1b327bd0b88395">source_gather_count</a>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="structdma__block__config.html#a3fdab19df16d5e96054aabffbf27fcc1">  125</a></span>    uint32_t <a class="code hl_variable" href="structdma__block__config.html#a3fdab19df16d5e96054aabffbf27fcc1">block_size</a>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="structdma__block__config.html#a937168582c7473fe1b2b696cd1433605">  127</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structdma__block__config.html">dma_block_config</a> *<a class="code hl_variable" href="structdma__block__config.html#a937168582c7473fe1b2b696cd1433605">next_block</a>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="structdma__block__config.html#abbac399f6c6e18ad2ed25359ebb799ef">  129</a></span>    uint16_t  <a class="code hl_variable" href="structdma__block__config.html#abbac399f6c6e18ad2ed25359ebb799ef">source_gather_en</a> :  1;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="structdma__block__config.html#a778935d5b806002b902b72304b845ea0">  131</a></span>    uint16_t  <a class="code hl_variable" href="structdma__block__config.html#a778935d5b806002b902b72304b845ea0">dest_scatter_en</a> :   1;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="structdma__block__config.html#a9110f948520186aa5718f57b4bbbd24a">  139</a></span>    uint16_t  <a class="code hl_variable" href="structdma__block__config.html#a9110f948520186aa5718f57b4bbbd24a">source_addr_adj</a> :   2;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="structdma__block__config.html#ad69502226d2c60adbdb9fe5e93dc0a05">  147</a></span>    uint16_t  <a class="code hl_variable" href="structdma__block__config.html#ad69502226d2c60adbdb9fe5e93dc0a05">dest_addr_adj</a> :     2;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="structdma__block__config.html#a4f8f5b65002f65eaacdd3dde26c47170">  149</a></span>    uint16_t  <a class="code hl_variable" href="structdma__block__config.html#a4f8f5b65002f65eaacdd3dde26c47170">source_reload_en</a> :  1;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="structdma__block__config.html#a7dedf429f44f3af6fcc0db125d6494c8">  151</a></span>    uint16_t  <a class="code hl_variable" href="structdma__block__config.html#a7dedf429f44f3af6fcc0db125d6494c8">dest_reload_en</a> :    1;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="structdma__block__config.html#a877a30b62fd8e0e1773890a10c8a2751">  153</a></span>    uint16_t  <a class="code hl_variable" href="structdma__block__config.html#a877a30b62fd8e0e1773890a10c8a2751">fifo_mode_control</a> : 4;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="structdma__block__config.html#aecf6805b898a70922c58d15127bafc92">  160</a></span>    uint16_t  <a class="code hl_variable" href="structdma__block__config.html#aecf6805b898a70922c58d15127bafc92">flow_control_mode</a> : 1;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    uint16_t  _reserved :          3;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>};</div>
+</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="group__dma__interface.html#gad4fc9a9c59f4e07c81a4c2f3b57c9ccb">  166</a></span><span class="preprocessor">#define DMA_STATUS_COMPLETE 0</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="group__dma__interface.html#gab74c89289c8429071522cb89ac066eea">  168</a></span><span class="preprocessor">#define DMA_STATUS_BLOCK    1</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="group__dma__interface.html#gaca9b0a9ed3ffdc84275187e0b05c20d9">  188</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__dma__interface.html#gaca9b0a9ed3ffdc84275187e0b05c20d9">dma_callback_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">void</span> *user_data,</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                   uint32_t channel, <span class="keywordtype">int</span> status);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="foldopen" id="foldopen00195" data-start="{" data-end="};">
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="structdma__config.html">  195</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structdma__config.html">dma_config</a> {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="structdma__config.html#a8e6c5cab5ec030066a3e57e0507fbf9f">  197</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#a8e6c5cab5ec030066a3e57e0507fbf9f">dma_slot</a> :             8;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="structdma__config.html#aaf903b1badff8b0fc4ef18a34c2773d7">  209</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#aaf903b1badff8b0fc4ef18a34c2773d7">channel_direction</a> :    3;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="structdma__config.html#a39526177f03017d245651b4f51820161">  216</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#a39526177f03017d245651b4f51820161">complete_callback_en</a> : 1;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="structdma__config.html#a66d7fe742d6e1c1f2e58a49105892961">  223</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#a66d7fe742d6e1c1f2e58a49105892961">error_callback_en</a> :    1;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="structdma__config.html#a2927e31730c6ca2f5ac8db38c255d9f7">  230</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#a2927e31730c6ca2f5ac8db38c255d9f7">source_handshake</a> :     1;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="structdma__config.html#af570b4050200ec510df323bd31558233">  237</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#af570b4050200ec510df323bd31558233">dest_handshake</a> :       1;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="structdma__config.html#a284d96c59945aaa851d235802aee979a">  241</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#a284d96c59945aaa851d235802aee979a">channel_priority</a> :     4;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="structdma__config.html#a7c77afc1f546efda6ce22f50560b8840">  243</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#a7c77afc1f546efda6ce22f50560b8840">source_chaining_en</a> :   1;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="structdma__config.html#a8a304fdada9ec7fc87402449e1410486">  245</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#a8a304fdada9ec7fc87402449e1410486">dest_chaining_en</a> :     1;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="structdma__config.html#ace2dc918fcfea264a579b1084fcb7fe5">  247</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#ace2dc918fcfea264a579b1084fcb7fe5">linked_channel</a>   :     7;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="structdma__config.html#afa70dbf1ee7bb5fb6a771f634783b7a2">  249</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#afa70dbf1ee7bb5fb6a771f634783b7a2">cyclic</a> :               1;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    uint32_t  _reserved :             3;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="structdma__config.html#ac9144783b4843182451b440d97ecd273">  253</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#ac9144783b4843182451b440d97ecd273">source_data_size</a> :    16;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno"><a class="line" href="structdma__config.html#adfa9efbfbef3ed41b2f8dd5b9c441e08">  255</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#adfa9efbfbef3ed41b2f8dd5b9c441e08">dest_data_size</a> :      16;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="structdma__config.html#ad750b724bab1503ded7c163d8228aa80">  257</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#ad750b724bab1503ded7c163d8228aa80">source_burst_length</a> : 16;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno"><a class="line" href="structdma__config.html#aca47b00f817e55bf662fdd6767a59ed0">  259</a></span>    uint32_t  <a class="code hl_variable" href="structdma__config.html#aca47b00f817e55bf662fdd6767a59ed0">dest_burst_length</a> :   16;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="structdma__config.html#adb776a4940c71b61cab60eb05159b2d4">  261</a></span>    uint32_t <a class="code hl_variable" href="structdma__config.html#adb776a4940c71b61cab60eb05159b2d4">block_count</a>;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno"><a class="line" href="structdma__config.html#aca6a1cb9b580a61bf91490fecf10cb16">  263</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structdma__block__config.html">dma_block_config</a> *<a class="code hl_variable" href="structdma__config.html#aca6a1cb9b580a61bf91490fecf10cb16">head_block</a>;</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="structdma__config.html#a510eed1cadbf411c9e94e1d1fb43d39d">  265</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structdma__config.html#a510eed1cadbf411c9e94e1d1fb43d39d">user_data</a>;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="structdma__config.html#a69110abc43227bd7df217c4e25bb964b">  267</a></span>    <a class="code hl_typedef" href="group__dma__interface.html#gaca9b0a9ed3ffdc84275187e0b05c20d9">dma_callback_t</a> <a class="code hl_variable" href="structdma__config.html#a69110abc43227bd7df217c4e25bb964b">dma_callback</a>;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>};</div>
+</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="foldopen" id="foldopen00273" data-start="{" data-end="};">
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="structdma__status.html">  273</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structdma__status.html">dma_status</a> {</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="structdma__status.html#a92ec05d9207caa828064661897f2f31c">  275</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structdma__status.html#a92ec05d9207caa828064661897f2f31c">busy</a>;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="structdma__status.html#aacfe94ad8e60ea77bca2423bd9bf8409">  277</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__dma__interface.html#gae442d8ba73be7e53b68165647b0ea402">dma_channel_direction</a> <a class="code hl_variable" href="structdma__status.html#aacfe94ad8e60ea77bca2423bd9bf8409">dir</a>;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="structdma__status.html#a3a33f92b1d100f988fca2bea0a6deb24">  279</a></span>    uint32_t <a class="code hl_variable" href="structdma__status.html#a3a33f92b1d100f988fca2bea0a6deb24">pending_length</a>;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="structdma__status.html#a2b481bf13de03e49146eb6a26563776e">  281</a></span>    uint32_t <a class="code hl_variable" href="structdma__status.html#a2b481bf13de03e49146eb6a26563776e">free</a>;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="structdma__status.html#aa7288b85f41098e59ad4f96dcea4ccde">  283</a></span>    uint32_t <a class="code hl_variable" href="structdma__status.html#aa7288b85f41098e59ad4f96dcea4ccde">write_position</a>;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno"><a class="line" href="structdma__status.html#afa401acfb26cd26b73e4a52066989847">  285</a></span>    uint32_t <a class="code hl_variable" href="structdma__status.html#afa401acfb26cd26b73e4a52066989847">read_position</a>;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="structdma__status.html#a9f743c98e6343d55eccc27e528b79b1a">  287</a></span>    uint64_t <a class="code hl_variable" href="structdma__status.html#a9f743c98e6343d55eccc27e528b79b1a">total_copied</a>;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>};</div>
+</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="foldopen" id="foldopen00295" data-start="{" data-end="};">
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="structdma__context.html">  295</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structdma__context.html">dma_context</a> {</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno"><a class="line" href="structdma__context.html#a25355c8cc60df536c9a37cdef52aa653">  297</a></span>    int32_t <a class="code hl_variable" href="structdma__context.html#a25355c8cc60df536c9a37cdef52aa653">magic</a>;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="structdma__context.html#ac6685cf14ca69c7b77160e5031c0a800">  299</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structdma__context.html#ac6685cf14ca69c7b77160e5031c0a800">dma_channels</a>;</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno"><a class="line" href="structdma__context.html#a5b5776088155c9f19488d479924bec8e">  301</a></span>    atomic_t *<a class="code hl_variable" href="structdma__context.html#a5b5776088155c9f19488d479924bec8e">atomic</a>;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>};</div>
+</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="group__dma__interface.html#gae28ba5114dc2e9ecb89ccf9b623e938f">  305</a></span><span class="preprocessor">#define DMA_MAGIC 0x47494749</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="keyword">typedef</span> int (*dma_api_config)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel,</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>                  <span class="keyword">struct </span><a class="code hl_struct" href="structdma__config.html">dma_config</a> *config);</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="preprocessor">#ifdef CONFIG_DMA_64BIT</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="keyword">typedef</span> int (*dma_api_reload)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel,</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>                  uint64_t src, uint64_t dst, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="keyword">typedef</span> int (*dma_api_reload)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel,</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>                  uint32_t src, uint32_t dst, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="keyword">typedef</span> int (*dma_api_start)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel);</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="keyword">typedef</span> int (*dma_api_stop)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel);</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="keyword">typedef</span> int (*dma_api_suspend)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel);</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span><span class="keyword">typedef</span> int (*dma_api_resume)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel);</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="keyword">typedef</span> int (*dma_api_get_status)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel,</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>                  <span class="keyword">struct </span><a class="code hl_struct" href="structdma__status.html">dma_status</a> *status);</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="keyword">typedef</span> int (*dma_api_get_attribute)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t type, uint32_t *value);</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="keyword">typedef</span> bool (*dma_api_chan_filter)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>                <span class="keywordtype">int</span> channel, <span class="keywordtype">void</span> *filter_param);</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>__subsystem <span class="keyword">struct </span>dma_driver_api {</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    dma_api_config config;</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    dma_api_reload reload;</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    dma_api_start start;</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    dma_api_stop stop;</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    dma_api_suspend suspend;</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    dma_api_resume resume;</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    dma_api_get_status get_status;</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    dma_api_get_attribute get_attribute;</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    dma_api_chan_filter chan_filter;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>};</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code hl_struct" href="structdma__config.html">dma_config</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel,</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structdma__config.html">dma_config</a> *config)</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>{</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>    <span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *api =</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> </div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    <span class="keywordflow">return</span> api-&gt;config(dev, channel, config);</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>}</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span> </div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span><span class="preprocessor">#ifdef CONFIG_DMA_64BIT</span></div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> dma_reload(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel,</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>                 uint64_t src, uint64_t dst, <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> dma_reload(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel,</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>        uint32_t src, uint32_t dst, <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>{</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    <span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *api =</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span> </div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    <span class="keywordflow">if</span> (api-&gt;reload) {</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>        <span class="keywordflow">return</span> api-&gt;reload(dev, channel, src, dst, size);</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>    }</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span> </div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>}</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span> </div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ga3851a6a5dd370f03692b38be15d6a226">  438</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__dma__interface.html#ga3851a6a5dd370f03692b38be15d6a226">dma_start</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel);</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span> </div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_dma_start(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel)</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>{</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>    <span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *api =</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span> </div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>    <span class="keywordflow">return</span> api-&gt;start(dev, channel);</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>}</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span> </div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ga827c7fd0865b79f475333f4c9c755c20">  466</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__dma__interface.html#ga827c7fd0865b79f475333f4c9c755c20">dma_stop</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel);</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span> </div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_dma_stop(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel)</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>{</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>    <span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *api =</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span> </div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>    <span class="keywordflow">return</span> api-&gt;stop(dev, channel);</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>}</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span> </div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span> </div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ga96573453deeef8ae52c711cbbfca70d4">  493</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__dma__interface.html#ga96573453deeef8ae52c711cbbfca70d4">dma_suspend</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel);</div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span> </div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_dma_suspend(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel)</div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>{</div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>    <span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span> </div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>    <span class="keywordflow">if</span> (api-&gt;suspend == NULL) {</div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>    }</div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>    <span class="keywordflow">return</span> api-&gt;suspend(dev, channel);</div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>}</div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span> </div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ga3b884d277266031bba811529bd465ec8">  521</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__dma__interface.html#ga3b884d277266031bba811529bd465ec8">dma_resume</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel);</div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span> </div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_dma_resume(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel)</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>{</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>    <span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span> </div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span>    <span class="keywordflow">if</span> (api-&gt;resume == NULL) {</div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>    }</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>    <span class="keywordflow">return</span> api-&gt;resume(dev, channel);</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>}</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span> </div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno"><a class="line" href="group__dma__interface.html#gaba8df85149592ac6f422e3fc2c6401e3">  547</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__dma__interface.html#gaba8df85149592ac6f422e3fc2c6401e3">dma_request_channel</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>                  <span class="keywordtype">void</span> *filter_param);</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> </div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_dma_request_channel(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>                         <span class="keywordtype">void</span> *filter_param)</div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>{</div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>    <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>    <span class="keywordtype">int</span> channel = -EINVAL;</div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>    <span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *api =</div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>    <span class="comment">/* dma_context shall be the first one in dev data */</span></div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structdma__context.html">dma_context</a> *dma_ctx = (<span class="keyword">struct </span><a class="code hl_struct" href="structdma__context.html">dma_context</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span> </div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>    <span class="keywordflow">if</span> (dma_ctx-&gt;magic != <a class="code hl_define" href="group__dma__interface.html#gae28ba5114dc2e9ecb89ccf9b623e938f">DMA_MAGIC</a>) {</div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span>        <span class="keywordflow">return</span> channel;</div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>    }</div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span> </div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>    <span class="keywordflow">for</span> (i = 0; i &lt; dma_ctx-&gt;dma_channels; i++) {</div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>        <span class="keywordflow">if</span> (!atomic_test_and_set_bit(dma_ctx-&gt;atomic, i)) {</div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>            <span class="keywordflow">if</span> (api-&gt;chan_filter &amp;&amp;</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>                !api-&gt;chan_filter(dev, i, filter_param)) {</div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>                atomic_clear_bit(dma_ctx-&gt;atomic, i);</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>            }</div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>            channel = i;</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>        }</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>    }</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span> </div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>    <span class="keywordflow">return</span> channel;</div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>}</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span> </div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ga697811074ea45ed6f236d4d8869200dd">  590</a></span>__syscall <span class="keywordtype">void</span> <a class="code hl_function" href="group__dma__interface.html#ga697811074ea45ed6f236d4d8869200dd">dma_release_channel</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>                   uint32_t channel);</div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span> </div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> z_impl_dma_release_channel(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span>                          uint32_t channel)</div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>{</div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structdma__context.html">dma_context</a> *dma_ctx = (<span class="keyword">struct </span><a class="code hl_struct" href="structdma__context.html">dma_context</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span> </div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>    <span class="keywordflow">if</span> (dma_ctx-&gt;magic != <a class="code hl_define" href="group__dma__interface.html#gae28ba5114dc2e9ecb89ccf9b623e938f">DMA_MAGIC</a>) {</div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span>    }</div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span> </div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span>    <span class="keywordflow">if</span> ((<span class="keywordtype">int</span>)channel &lt; dma_ctx-&gt;<a class="code hl_variable" href="structdma__context.html#ac6685cf14ca69c7b77160e5031c0a800">dma_channels</a>) {</div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>        atomic_clear_bit(dma_ctx-&gt;atomic, channel);</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span>    }</div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span> </div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>}</div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span> </div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno"><a class="line" href="group__dma__interface.html#gab62ba53a36b6436cb5208ac20e2622bb">  620</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__dma__interface.html#gab62ba53a36b6436cb5208ac20e2622bb">dma_chan_filter</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span>                   <span class="keywordtype">int</span> channel, <span class="keywordtype">void</span> *filter_param);</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span> </div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_dma_chan_filter(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>                          <span class="keywordtype">int</span> channel, <span class="keywordtype">void</span> *filter_param)</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>{</div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span>    <span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *api =</div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span> </div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>    <span class="keywordflow">if</span> (api-&gt;chan_filter) {</div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>        <span class="keywordflow">return</span> api-&gt;chan_filter(dev, channel, filter_param);</div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>    }</div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span> </div>
+<div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span>    <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span>}</div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span> </div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> dma_get_status(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel,</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structdma__status.html">dma_status</a> *<a class="code hl_struct" href="structstat.html">stat</a>)</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>{</div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>    <span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *api =</div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span> </div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span>    <span class="keywordflow">if</span> (api-&gt;get_status) {</div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>        <span class="keywordflow">return</span> api-&gt;get_status(dev, channel, <a class="code hl_struct" href="structstat.html">stat</a>);</div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>    }</div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span> </div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>    <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>}</div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span> </div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> dma_get_attribute(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t type, uint32_t *value)</div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span>{</div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>    <span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>dma_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span> </div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>    <span class="keywordflow">if</span> (api-&gt;get_attribute) {</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>        <span class="keywordflow">return</span> api-&gt;get_attribute(dev, type, value);</div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>    }</div>
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span> </div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span>    <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span>}</div>
+<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span> </div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t dma_width_index(uint32_t size)</div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>{</div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>    <span class="comment">/* Check boundaries (max supported width is 32 Bytes) */</span></div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>    <span class="keywordflow">if</span> (size &lt; 1 || size &gt; 32) {</div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span>        <span class="keywordflow">return</span> 0; <span class="comment">/* Zero is the default (8 Bytes) */</span></div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>    }</div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span> </div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span>    <span class="comment">/* Ensure size is a power of 2 */</span></div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span>    <span class="keywordflow">if</span> (!is_power_of_two(size)) {</div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>        <span class="keywordflow">return</span> 0; <span class="comment">/* Zero is the default (8 Bytes) */</span></div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span>    }</div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span> </div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>    <span class="comment">/* Convert to bit pattern for writing to a register */</span></div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span>    <span class="keywordflow">return</span> find_msb_set(size);</div>
+<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span>}</div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span> </div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t dma_burst_index(uint32_t burst)</div>
+<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>{</div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>    <span class="comment">/* Check boundaries (max supported burst length is 256) */</span></div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span>    <span class="keywordflow">if</span> (burst &lt; 1 || burst &gt; 256) {</div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span>        <span class="keywordflow">return</span> 0; <span class="comment">/* Zero is the default (1 burst length) */</span></div>
+<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>    }</div>
+<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span> </div>
+<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span>    <span class="comment">/* Ensure burst is a power of 2 */</span></div>
+<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span>    <span class="keywordflow">if</span> (!(burst &amp; (burst - 1))) {</div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span>        <span class="keywordflow">return</span> 0; <span class="comment">/* Zero is the default (1 burst length) */</span></div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span>    }</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span> </div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>    <span class="comment">/* Convert to bit pattern for writing to a register */</span></div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>    <span class="keywordflow">return</span> find_msb_set(burst);</div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span>}</div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span> </div>
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ga542e1a0fa0d851a51e4c8abf9a820e0c">  760</a></span><span class="preprocessor">#define DMA_BUF_ADDR_ALIGNMENT(node) DT_PROP(node, dma_buf_addr_alignment)</span></div>
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span> </div>
+<div class="line"><a id="l00771" name="l00771"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ga76dfdfecc732319908f381883c630a2b">  771</a></span><span class="preprocessor">#define DMA_BUF_SIZE_ALIGNMENT(node) DT_PROP(node, dma_buf_size_alignment)</span></div>
+<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span> </div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno"><a class="line" href="group__dma__interface.html#ga083e8b0a863b0833c55158053d286f15">  779</a></span><span class="preprocessor">#define DMA_COPY_ALIGNMENT(node) DT_PROP(node, dma_copy_alignment)</span></div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span> </div>
+<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>}</div>
+<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span> </div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span><span class="preprocessor">#include &lt;syscalls/dma.h&gt;</span></div>
+<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span> </div>
+<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_DMA_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__dma__interface_html_ga08c366c8d47672eeeb37b258af20101b"><div class="ttname"><a href="group__dma__interface.html#ga08c366c8d47672eeeb37b258af20101b">dma_attribute_type</a></div><div class="ttdeci">dma_attribute_type</div><div class="ttdoc">DMA attributes.</div><div class="ttdef"><b>Definição</b> dma.h:90</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ga3851a6a5dd370f03692b38be15d6a226"><div class="ttname"><a href="group__dma__interface.html#ga3851a6a5dd370f03692b38be15d6a226">dma_start</a></div><div class="ttdeci">__syscall int dma_start(const struct device *dev, uint32_t channel)</div><div class="ttdoc">Enables DMA channel and starts the transfer, the channel must be configured beforehand.</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ga3b884d277266031bba811529bd465ec8"><div class="ttname"><a href="group__dma__interface.html#ga3b884d277266031bba811529bd465ec8">dma_resume</a></div><div class="ttdeci">__syscall int dma_resume(const struct device *dev, uint32_t channel)</div><div class="ttdoc">Resume a DMA channel transfer.</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ga697811074ea45ed6f236d4d8869200dd"><div class="ttname"><a href="group__dma__interface.html#ga697811074ea45ed6f236d4d8869200dd">dma_release_channel</a></div><div class="ttdeci">__syscall void dma_release_channel(const struct device *dev, uint32_t channel)</div><div class="ttdoc">release DMA channel.</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ga827c7fd0865b79f475333f4c9c755c20"><div class="ttname"><a href="group__dma__interface.html#ga827c7fd0865b79f475333f4c9c755c20">dma_stop</a></div><div class="ttdeci">__syscall int dma_stop(const struct device *dev, uint32_t channel)</div><div class="ttdoc">Stops the DMA transfer and disables the channel.</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ga96573453deeef8ae52c711cbbfca70d4"><div class="ttname"><a href="group__dma__interface.html#ga96573453deeef8ae52c711cbbfca70d4">dma_suspend</a></div><div class="ttdeci">__syscall int dma_suspend(const struct device *dev, uint32_t channel)</div><div class="ttdoc">Suspend a DMA channel transfer.</div></div>
+<div class="ttc" id="agroup__dma__interface_html_gab62ba53a36b6436cb5208ac20e2622bb"><div class="ttname"><a href="group__dma__interface.html#gab62ba53a36b6436cb5208ac20e2622bb">dma_chan_filter</a></div><div class="ttdeci">__syscall int dma_chan_filter(const struct device *dev, int channel, void *filter_param)</div><div class="ttdoc">DMA channel filter.</div></div>
+<div class="ttc" id="agroup__dma__interface_html_gaba8df85149592ac6f422e3fc2c6401e3"><div class="ttname"><a href="group__dma__interface.html#gaba8df85149592ac6f422e3fc2c6401e3">dma_request_channel</a></div><div class="ttdeci">__syscall int dma_request_channel(const struct device *dev, void *filter_param)</div><div class="ttdoc">request DMA channel.</div></div>
+<div class="ttc" id="agroup__dma__interface_html_gaca9b0a9ed3ffdc84275187e0b05c20d9"><div class="ttname"><a href="group__dma__interface.html#gaca9b0a9ed3ffdc84275187e0b05c20d9">dma_callback_t</a></div><div class="ttdeci">void(* dma_callback_t)(const struct device *dev, void *user_data, uint32_t channel, int status)</div><div class="ttdoc">Callback function for DMA transfer completion.</div><div class="ttdef"><b>Definição</b> dma.h:188</div></div>
+<div class="ttc" id="agroup__dma__interface_html_gade594552920aabbfd2106059a338498b"><div class="ttname"><a href="group__dma__interface.html#gade594552920aabbfd2106059a338498b">dma_channel_filter</a></div><div class="ttdeci">dma_channel_filter</div><div class="ttdoc">DMA channel attributes.</div><div class="ttdef"><b>Definição</b> dma.h:82</div></div>
+<div class="ttc" id="agroup__dma__interface_html_gae28ba5114dc2e9ecb89ccf9b623e938f"><div class="ttname"><a href="group__dma__interface.html#gae28ba5114dc2e9ecb89ccf9b623e938f">DMA_MAGIC</a></div><div class="ttdeci">#define DMA_MAGIC</div><div class="ttdef"><b>Definição</b> dma.h:305</div></div>
+<div class="ttc" id="agroup__dma__interface_html_gae442d8ba73be7e53b68165647b0ea402"><div class="ttname"><a href="group__dma__interface.html#gae442d8ba73be7e53b68165647b0ea402">dma_channel_direction</a></div><div class="ttdeci">dma_channel_direction</div><div class="ttdoc">DMA channel direction.</div><div class="ttdef"><b>Definição</b> dma.h:34</div></div>
+<div class="ttc" id="agroup__dma__interface_html_gafe0877ef4bd7790a4bcd46052088231c"><div class="ttname"><a href="group__dma__interface.html#gafe0877ef4bd7790a4bcd46052088231c">dma_addr_adj</a></div><div class="ttdeci">dma_addr_adj</div><div class="ttdoc">DMA address adjustment.</div><div class="ttdef"><b>Definição</b> dma.h:70</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ggae442d8ba73be7e53b68165647b0ea402a273f9cdcc2af613375cb3e235bfda037"><div class="ttname"><a href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a273f9cdcc2af613375cb3e235bfda037">DMA_CHANNEL_DIRECTION_PRIV_START</a></div><div class="ttdeci">@ DMA_CHANNEL_DIRECTION_PRIV_START</div><div class="ttdef"><b>Definição</b> dma.h:57</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ggae442d8ba73be7e53b68165647b0ea402a4617446ef0e7c2bced585b309011a25a"><div class="ttname"><a href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a4617446ef0e7c2bced585b309011a25a">MEMORY_TO_PERIPHERAL</a></div><div class="ttdeci">@ MEMORY_TO_PERIPHERAL</div><div class="ttdef"><b>Definição</b> dma.h:38</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ggae442d8ba73be7e53b68165647b0ea402a52f28a5eff23fcddd2a138092d9f7cd5"><div class="ttname"><a href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a52f28a5eff23fcddd2a138092d9f7cd5">MEMORY_TO_MEMORY</a></div><div class="ttdeci">@ MEMORY_TO_MEMORY</div><div class="ttdef"><b>Definição</b> dma.h:36</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ggae442d8ba73be7e53b68165647b0ea402a5fbc19c9e12c11973c0cf0a593ccf165"><div class="ttname"><a href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a5fbc19c9e12c11973c0cf0a593ccf165">PERIPHERAL_TO_MEMORY</a></div><div class="ttdeci">@ PERIPHERAL_TO_MEMORY</div><div class="ttdef"><b>Definição</b> dma.h:40</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ggae442d8ba73be7e53b68165647b0ea402a61e65f3065bf7cdb40efc9039debbb60"><div class="ttname"><a href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a61e65f3065bf7cdb40efc9039debbb60">MEMORY_TO_HOST</a></div><div class="ttdeci">@ MEMORY_TO_HOST</div><div class="ttdef"><b>Definição</b> dma.h:46</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ggae442d8ba73be7e53b68165647b0ea402a7e2b4150c28b057598975e95e8b7494c"><div class="ttname"><a href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a7e2b4150c28b057598975e95e8b7494c">HOST_TO_MEMORY</a></div><div class="ttdeci">@ HOST_TO_MEMORY</div><div class="ttdef"><b>Definição</b> dma.h:44</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ggae442d8ba73be7e53b68165647b0ea402a9114b4138c9dfb506b9428a229c55a02"><div class="ttname"><a href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402a9114b4138c9dfb506b9428a229c55a02">DMA_CHANNEL_DIRECTION_MAX</a></div><div class="ttdeci">@ DMA_CHANNEL_DIRECTION_MAX</div><div class="ttdef"><b>Definição</b> dma.h:62</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ggae442d8ba73be7e53b68165647b0ea402ae23cbfefccef9d19dd91f0c746004449"><div class="ttname"><a href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402ae23cbfefccef9d19dd91f0c746004449">PERIPHERAL_TO_PERIPHERAL</a></div><div class="ttdeci">@ PERIPHERAL_TO_PERIPHERAL</div><div class="ttdef"><b>Definição</b> dma.h:42</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ggae442d8ba73be7e53b68165647b0ea402ae7c3dacfd3496576c41f9c663537419a"><div class="ttname"><a href="group__dma__interface.html#ggae442d8ba73be7e53b68165647b0ea402ae7c3dacfd3496576c41f9c663537419a">DMA_CHANNEL_DIRECTION_COMMON_COUNT</a></div><div class="ttdeci">@ DMA_CHANNEL_DIRECTION_COMMON_COUNT</div><div class="ttdef"><b>Definição</b> dma.h:51</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ggafe0877ef4bd7790a4bcd46052088231caacc38507d8ef3eb8021ae85d9b61b717"><div class="ttname"><a href="group__dma__interface.html#ggafe0877ef4bd7790a4bcd46052088231caacc38507d8ef3eb8021ae85d9b61b717">DMA_ADDR_ADJ_DECREMENT</a></div><div class="ttdeci">@ DMA_ADDR_ADJ_DECREMENT</div><div class="ttdef"><b>Definição</b> dma.h:74</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ggafe0877ef4bd7790a4bcd46052088231cac1fe38db8443f6d8e406c66ba6bdd15e"><div class="ttname"><a href="group__dma__interface.html#ggafe0877ef4bd7790a4bcd46052088231cac1fe38db8443f6d8e406c66ba6bdd15e">DMA_ADDR_ADJ_INCREMENT</a></div><div class="ttdeci">@ DMA_ADDR_ADJ_INCREMENT</div><div class="ttdef"><b>Definição</b> dma.h:72</div></div>
+<div class="ttc" id="agroup__dma__interface_html_ggafe0877ef4bd7790a4bcd46052088231cafeb870c1a6f9db8238a97f3ac9c6da4f"><div class="ttname"><a href="group__dma__interface.html#ggafe0877ef4bd7790a4bcd46052088231cafeb870c1a6f9db8238a97f3ac9c6da4f">DMA_ADDR_ADJ_NO_CHANGE</a></div><div class="ttdeci">@ DMA_ADDR_ADJ_NO_CHANGE</div><div class="ttdef"><b>Definição</b> dma.h:76</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a27573cbd10ee145f8bb1396242b27a3e"><div class="ttname"><a href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">device::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definição</b> device.h:395</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructdma__block__config_html"><div class="ttname"><a href="structdma__block__config.html">dma_block_config</a></div><div class="ttdoc">DMA block configuration structure.</div><div class="ttdef"><b>Definição</b> dma.h:104</div></div>
+<div class="ttc" id="astructdma__block__config_html_a18bafb80538bca9c12197955770b6511"><div class="ttname"><a href="structdma__block__config.html#a18bafb80538bca9c12197955770b6511">dma_block_config::dest_scatter_interval</a></div><div class="ttdeci">uint32_t dest_scatter_interval</div><div class="ttdef"><b>Definição</b> dma.h:119</div></div>
+<div class="ttc" id="astructdma__block__config_html_a3180ef98f007ad9be7f6ff363dc125c3"><div class="ttname"><a href="structdma__block__config.html#a3180ef98f007ad9be7f6ff363dc125c3">dma_block_config::source_gather_interval</a></div><div class="ttdeci">uint32_t source_gather_interval</div><div class="ttdef"><b>Definição</b> dma.h:117</div></div>
+<div class="ttc" id="astructdma__block__config_html_a3fdab19df16d5e96054aabffbf27fcc1"><div class="ttname"><a href="structdma__block__config.html#a3fdab19df16d5e96054aabffbf27fcc1">dma_block_config::block_size</a></div><div class="ttdeci">uint32_t block_size</div><div class="ttdef"><b>Definição</b> dma.h:125</div></div>
+<div class="ttc" id="astructdma__block__config_html_a4f8f5b65002f65eaacdd3dde26c47170"><div class="ttname"><a href="structdma__block__config.html#a4f8f5b65002f65eaacdd3dde26c47170">dma_block_config::source_reload_en</a></div><div class="ttdeci">uint16_t source_reload_en</div><div class="ttdef"><b>Definição</b> dma.h:149</div></div>
+<div class="ttc" id="astructdma__block__config_html_a778935d5b806002b902b72304b845ea0"><div class="ttname"><a href="structdma__block__config.html#a778935d5b806002b902b72304b845ea0">dma_block_config::dest_scatter_en</a></div><div class="ttdeci">uint16_t dest_scatter_en</div><div class="ttdef"><b>Definição</b> dma.h:131</div></div>
+<div class="ttc" id="astructdma__block__config_html_a7dedf429f44f3af6fcc0db125d6494c8"><div class="ttname"><a href="structdma__block__config.html#a7dedf429f44f3af6fcc0db125d6494c8">dma_block_config::dest_reload_en</a></div><div class="ttdeci">uint16_t dest_reload_en</div><div class="ttdef"><b>Definição</b> dma.h:151</div></div>
+<div class="ttc" id="astructdma__block__config_html_a877a30b62fd8e0e1773890a10c8a2751"><div class="ttname"><a href="structdma__block__config.html#a877a30b62fd8e0e1773890a10c8a2751">dma_block_config::fifo_mode_control</a></div><div class="ttdeci">uint16_t fifo_mode_control</div><div class="ttdef"><b>Definição</b> dma.h:153</div></div>
+<div class="ttc" id="astructdma__block__config_html_a8ffcde07d02317b3cc1b327bd0b88395"><div class="ttname"><a href="structdma__block__config.html#a8ffcde07d02317b3cc1b327bd0b88395">dma_block_config::source_gather_count</a></div><div class="ttdeci">uint16_t source_gather_count</div><div class="ttdef"><b>Definição</b> dma.h:123</div></div>
+<div class="ttc" id="astructdma__block__config_html_a9110f948520186aa5718f57b4bbbd24a"><div class="ttname"><a href="structdma__block__config.html#a9110f948520186aa5718f57b4bbbd24a">dma_block_config::source_addr_adj</a></div><div class="ttdeci">uint16_t source_addr_adj</div><div class="ttdef"><b>Definição</b> dma.h:139</div></div>
+<div class="ttc" id="astructdma__block__config_html_a937168582c7473fe1b2b696cd1433605"><div class="ttname"><a href="structdma__block__config.html#a937168582c7473fe1b2b696cd1433605">dma_block_config::next_block</a></div><div class="ttdeci">struct dma_block_config * next_block</div><div class="ttdef"><b>Definição</b> dma.h:127</div></div>
+<div class="ttc" id="astructdma__block__config_html_a9a66e0a647c55e94423ababf44c04325"><div class="ttname"><a href="structdma__block__config.html#a9a66e0a647c55e94423ababf44c04325">dma_block_config::dest_address</a></div><div class="ttdeci">uint32_t dest_address</div><div class="ttdef"><b>Definição</b> dma.h:114</div></div>
+<div class="ttc" id="astructdma__block__config_html_a9fbd1deae8936a806ecc79bad3f3b9bb"><div class="ttname"><a href="structdma__block__config.html#a9fbd1deae8936a806ecc79bad3f3b9bb">dma_block_config::source_address</a></div><div class="ttdeci">uint32_t source_address</div><div class="ttdef"><b>Definição</b> dma.h:112</div></div>
+<div class="ttc" id="astructdma__block__config_html_abbac399f6c6e18ad2ed25359ebb799ef"><div class="ttname"><a href="structdma__block__config.html#abbac399f6c6e18ad2ed25359ebb799ef">dma_block_config::source_gather_en</a></div><div class="ttdeci">uint16_t source_gather_en</div><div class="ttdef"><b>Definição</b> dma.h:129</div></div>
+<div class="ttc" id="astructdma__block__config_html_ad69502226d2c60adbdb9fe5e93dc0a05"><div class="ttname"><a href="structdma__block__config.html#ad69502226d2c60adbdb9fe5e93dc0a05">dma_block_config::dest_addr_adj</a></div><div class="ttdeci">uint16_t dest_addr_adj</div><div class="ttdef"><b>Definição</b> dma.h:147</div></div>
+<div class="ttc" id="astructdma__block__config_html_ae38027f6262c34d9f1abe4f923d904b4"><div class="ttname"><a href="structdma__block__config.html#ae38027f6262c34d9f1abe4f923d904b4">dma_block_config::dest_scatter_count</a></div><div class="ttdeci">uint16_t dest_scatter_count</div><div class="ttdef"><b>Definição</b> dma.h:121</div></div>
+<div class="ttc" id="astructdma__block__config_html_aecf6805b898a70922c58d15127bafc92"><div class="ttname"><a href="structdma__block__config.html#aecf6805b898a70922c58d15127bafc92">dma_block_config::flow_control_mode</a></div><div class="ttdeci">uint16_t flow_control_mode</div><div class="ttdef"><b>Definição</b> dma.h:160</div></div>
+<div class="ttc" id="astructdma__config_html"><div class="ttname"><a href="structdma__config.html">dma_config</a></div><div class="ttdoc">DMA configuration structure.</div><div class="ttdef"><b>Definição</b> dma.h:195</div></div>
+<div class="ttc" id="astructdma__config_html_a284d96c59945aaa851d235802aee979a"><div class="ttname"><a href="structdma__config.html#a284d96c59945aaa851d235802aee979a">dma_config::channel_priority</a></div><div class="ttdeci">uint32_t channel_priority</div><div class="ttdef"><b>Definição</b> dma.h:241</div></div>
+<div class="ttc" id="astructdma__config_html_a2927e31730c6ca2f5ac8db38c255d9f7"><div class="ttname"><a href="structdma__config.html#a2927e31730c6ca2f5ac8db38c255d9f7">dma_config::source_handshake</a></div><div class="ttdeci">uint32_t source_handshake</div><div class="ttdef"><b>Definição</b> dma.h:230</div></div>
+<div class="ttc" id="astructdma__config_html_a39526177f03017d245651b4f51820161"><div class="ttname"><a href="structdma__config.html#a39526177f03017d245651b4f51820161">dma_config::complete_callback_en</a></div><div class="ttdeci">uint32_t complete_callback_en</div><div class="ttdef"><b>Definição</b> dma.h:216</div></div>
+<div class="ttc" id="astructdma__config_html_a510eed1cadbf411c9e94e1d1fb43d39d"><div class="ttname"><a href="structdma__config.html#a510eed1cadbf411c9e94e1d1fb43d39d">dma_config::user_data</a></div><div class="ttdeci">void * user_data</div><div class="ttdef"><b>Definição</b> dma.h:265</div></div>
+<div class="ttc" id="astructdma__config_html_a66d7fe742d6e1c1f2e58a49105892961"><div class="ttname"><a href="structdma__config.html#a66d7fe742d6e1c1f2e58a49105892961">dma_config::error_callback_en</a></div><div class="ttdeci">uint32_t error_callback_en</div><div class="ttdef"><b>Definição</b> dma.h:223</div></div>
+<div class="ttc" id="astructdma__config_html_a69110abc43227bd7df217c4e25bb964b"><div class="ttname"><a href="structdma__config.html#a69110abc43227bd7df217c4e25bb964b">dma_config::dma_callback</a></div><div class="ttdeci">dma_callback_t dma_callback</div><div class="ttdef"><b>Definição</b> dma.h:267</div></div>
+<div class="ttc" id="astructdma__config_html_a7c77afc1f546efda6ce22f50560b8840"><div class="ttname"><a href="structdma__config.html#a7c77afc1f546efda6ce22f50560b8840">dma_config::source_chaining_en</a></div><div class="ttdeci">uint32_t source_chaining_en</div><div class="ttdef"><b>Definição</b> dma.h:243</div></div>
+<div class="ttc" id="astructdma__config_html_a8a304fdada9ec7fc87402449e1410486"><div class="ttname"><a href="structdma__config.html#a8a304fdada9ec7fc87402449e1410486">dma_config::dest_chaining_en</a></div><div class="ttdeci">uint32_t dest_chaining_en</div><div class="ttdef"><b>Definição</b> dma.h:245</div></div>
+<div class="ttc" id="astructdma__config_html_a8e6c5cab5ec030066a3e57e0507fbf9f"><div class="ttname"><a href="structdma__config.html#a8e6c5cab5ec030066a3e57e0507fbf9f">dma_config::dma_slot</a></div><div class="ttdeci">uint32_t dma_slot</div><div class="ttdef"><b>Definição</b> dma.h:197</div></div>
+<div class="ttc" id="astructdma__config_html_aaf903b1badff8b0fc4ef18a34c2773d7"><div class="ttname"><a href="structdma__config.html#aaf903b1badff8b0fc4ef18a34c2773d7">dma_config::channel_direction</a></div><div class="ttdeci">uint32_t channel_direction</div><div class="ttdef"><b>Definição</b> dma.h:209</div></div>
+<div class="ttc" id="astructdma__config_html_ac9144783b4843182451b440d97ecd273"><div class="ttname"><a href="structdma__config.html#ac9144783b4843182451b440d97ecd273">dma_config::source_data_size</a></div><div class="ttdeci">uint32_t source_data_size</div><div class="ttdef"><b>Definição</b> dma.h:253</div></div>
+<div class="ttc" id="astructdma__config_html_aca47b00f817e55bf662fdd6767a59ed0"><div class="ttname"><a href="structdma__config.html#aca47b00f817e55bf662fdd6767a59ed0">dma_config::dest_burst_length</a></div><div class="ttdeci">uint32_t dest_burst_length</div><div class="ttdef"><b>Definição</b> dma.h:259</div></div>
+<div class="ttc" id="astructdma__config_html_aca6a1cb9b580a61bf91490fecf10cb16"><div class="ttname"><a href="structdma__config.html#aca6a1cb9b580a61bf91490fecf10cb16">dma_config::head_block</a></div><div class="ttdeci">struct dma_block_config * head_block</div><div class="ttdef"><b>Definição</b> dma.h:263</div></div>
+<div class="ttc" id="astructdma__config_html_ace2dc918fcfea264a579b1084fcb7fe5"><div class="ttname"><a href="structdma__config.html#ace2dc918fcfea264a579b1084fcb7fe5">dma_config::linked_channel</a></div><div class="ttdeci">uint32_t linked_channel</div><div class="ttdef"><b>Definição</b> dma.h:247</div></div>
+<div class="ttc" id="astructdma__config_html_ad750b724bab1503ded7c163d8228aa80"><div class="ttname"><a href="structdma__config.html#ad750b724bab1503ded7c163d8228aa80">dma_config::source_burst_length</a></div><div class="ttdeci">uint32_t source_burst_length</div><div class="ttdef"><b>Definição</b> dma.h:257</div></div>
+<div class="ttc" id="astructdma__config_html_adb776a4940c71b61cab60eb05159b2d4"><div class="ttname"><a href="structdma__config.html#adb776a4940c71b61cab60eb05159b2d4">dma_config::block_count</a></div><div class="ttdeci">uint32_t block_count</div><div class="ttdef"><b>Definição</b> dma.h:261</div></div>
+<div class="ttc" id="astructdma__config_html_adfa9efbfbef3ed41b2f8dd5b9c441e08"><div class="ttname"><a href="structdma__config.html#adfa9efbfbef3ed41b2f8dd5b9c441e08">dma_config::dest_data_size</a></div><div class="ttdeci">uint32_t dest_data_size</div><div class="ttdef"><b>Definição</b> dma.h:255</div></div>
+<div class="ttc" id="astructdma__config_html_af570b4050200ec510df323bd31558233"><div class="ttname"><a href="structdma__config.html#af570b4050200ec510df323bd31558233">dma_config::dest_handshake</a></div><div class="ttdeci">uint32_t dest_handshake</div><div class="ttdef"><b>Definição</b> dma.h:237</div></div>
+<div class="ttc" id="astructdma__config_html_afa70dbf1ee7bb5fb6a771f634783b7a2"><div class="ttname"><a href="structdma__config.html#afa70dbf1ee7bb5fb6a771f634783b7a2">dma_config::cyclic</a></div><div class="ttdeci">uint32_t cyclic</div><div class="ttdef"><b>Definição</b> dma.h:249</div></div>
+<div class="ttc" id="astructdma__context_html"><div class="ttname"><a href="structdma__context.html">dma_context</a></div><div class="ttdef"><b>Definição</b> dma.h:295</div></div>
+<div class="ttc" id="astructdma__context_html_a25355c8cc60df536c9a37cdef52aa653"><div class="ttname"><a href="structdma__context.html#a25355c8cc60df536c9a37cdef52aa653">dma_context::magic</a></div><div class="ttdeci">int32_t magic</div><div class="ttdef"><b>Definição</b> dma.h:297</div></div>
+<div class="ttc" id="astructdma__context_html_a5b5776088155c9f19488d479924bec8e"><div class="ttname"><a href="structdma__context.html#a5b5776088155c9f19488d479924bec8e">dma_context::atomic</a></div><div class="ttdeci">atomic_t * atomic</div><div class="ttdef"><b>Definição</b> dma.h:301</div></div>
+<div class="ttc" id="astructdma__context_html_ac6685cf14ca69c7b77160e5031c0a800"><div class="ttname"><a href="structdma__context.html#ac6685cf14ca69c7b77160e5031c0a800">dma_context::dma_channels</a></div><div class="ttdeci">int dma_channels</div><div class="ttdef"><b>Definição</b> dma.h:299</div></div>
+<div class="ttc" id="astructdma__status_html"><div class="ttname"><a href="structdma__status.html">dma_status</a></div><div class="ttdef"><b>Definição</b> dma.h:273</div></div>
+<div class="ttc" id="astructdma__status_html_a2b481bf13de03e49146eb6a26563776e"><div class="ttname"><a href="structdma__status.html#a2b481bf13de03e49146eb6a26563776e">dma_status::free</a></div><div class="ttdeci">uint32_t free</div><div class="ttdef"><b>Definição</b> dma.h:281</div></div>
+<div class="ttc" id="astructdma__status_html_a3a33f92b1d100f988fca2bea0a6deb24"><div class="ttname"><a href="structdma__status.html#a3a33f92b1d100f988fca2bea0a6deb24">dma_status::pending_length</a></div><div class="ttdeci">uint32_t pending_length</div><div class="ttdef"><b>Definição</b> dma.h:279</div></div>
+<div class="ttc" id="astructdma__status_html_a92ec05d9207caa828064661897f2f31c"><div class="ttname"><a href="structdma__status.html#a92ec05d9207caa828064661897f2f31c">dma_status::busy</a></div><div class="ttdeci">bool busy</div><div class="ttdef"><b>Definição</b> dma.h:275</div></div>
+<div class="ttc" id="astructdma__status_html_a9f743c98e6343d55eccc27e528b79b1a"><div class="ttname"><a href="structdma__status.html#a9f743c98e6343d55eccc27e528b79b1a">dma_status::total_copied</a></div><div class="ttdeci">uint64_t total_copied</div><div class="ttdef"><b>Definição</b> dma.h:287</div></div>
+<div class="ttc" id="astructdma__status_html_aa7288b85f41098e59ad4f96dcea4ccde"><div class="ttname"><a href="structdma__status.html#aa7288b85f41098e59ad4f96dcea4ccde">dma_status::write_position</a></div><div class="ttdeci">uint32_t write_position</div><div class="ttdef"><b>Definição</b> dma.h:283</div></div>
+<div class="ttc" id="astructdma__status_html_aacfe94ad8e60ea77bca2423bd9bf8409"><div class="ttname"><a href="structdma__status.html#aacfe94ad8e60ea77bca2423bd9bf8409">dma_status::dir</a></div><div class="ttdeci">enum dma_channel_direction dir</div><div class="ttdef"><b>Definição</b> dma.h:277</div></div>
+<div class="ttc" id="astructdma__status_html_afa401acfb26cd26b73e4a52066989847"><div class="ttname"><a href="structdma__status.html#afa401acfb26cd26b73e4a52066989847">dma_status::read_position</a></div><div class="ttdeci">uint32_t read_position</div><div class="ttdef"><b>Definição</b> dma.h:285</div></div>
+<div class="ttc" id="astructstat_html"><div class="ttname"><a href="structstat.html">stat</a></div><div class="ttdef"><b>Definição</b> stat.h:92</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

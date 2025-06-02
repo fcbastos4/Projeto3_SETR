@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/regulator.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">regulator.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2019-2020 Peter Bigot Consulting, LLC</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2021 NXP</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * Copyright (c) 2022 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * Copyright (c) 2023 EPAM Systems</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_REGULATOR_H_</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_REGULATOR_H_</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;errno.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;<a class="code" href="devicetree_8h.html">zephyr/devicetree.h</a>&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#ifdef CONFIG_REGULATOR_THREAD_SAFE_REFCNT</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;<a class="code" href="util__macro_8h.html">zephyr/sys/util_macro.h</a>&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="group__regulator__interface.html#ga9a15a21a532e497713724f42052b1dbd">   34</a></span><span class="keyword">typedef</span> uint8_t <a class="code hl_typedef" href="group__regulator__interface.html#ga9a15a21a532e497713724f42052b1dbd">regulator_dvs_state_t</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="group__regulator__interface.html#ga1971bd21b504979a0cecab16048a0d03">   37</a></span><span class="keyword">typedef</span> uint8_t <a class="code hl_typedef" href="group__regulator__interface.html#ga1971bd21b504979a0cecab16048a0d03">regulator_mode_t</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="group__regulator__interface.html#ga31dae130509d28ee41602ab16ab31a90">   40</a></span><span class="keyword">typedef</span> uint8_t <a class="code hl_typedef" href="group__regulator__interface.html#ga31dae130509d28ee41602ab16ab31a90">regulator_error_flags_t</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__regulator__interface.html#ga5e17eb919086ea6e5239a240a6ac5aa1">   49</a></span><span class="preprocessor">#define REGULATOR_ERROR_OVER_VOLTAGE BIT(0)</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="group__regulator__interface.html#ga8705a7a63b8f187d66cda98d66372b5d">   51</a></span><span class="preprocessor">#define REGULATOR_ERROR_OVER_CURRENT BIT(1)</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="group__regulator__interface.html#ga9570dd992355afa6ecef9610c8c45eda">   53</a></span><span class="preprocessor">#define REGULATOR_ERROR_OVER_TEMP    BIT(2)</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">typedef</span> int (*regulator_dvs_state_set_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                     <a class="code hl_typedef" href="group__regulator__interface.html#ga9a15a21a532e497713724f42052b1dbd">regulator_dvs_state_t</a> <a class="code hl_variable" href="structdevice.html#abe18f600adc4ab760963928477cc944e">state</a>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">typedef</span> int (*regulator_ship_mode_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>__subsystem <span class="keyword">struct </span>regulator_parent_driver_api {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    regulator_dvs_state_set_t dvs_state_set;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    regulator_ship_mode_t ship_mode;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>};</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">typedef</span> int (*regulator_enable_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">typedef</span> int (*regulator_disable_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> int (*regulator_count_voltages_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">typedef</span> int (*regulator_list_voltage_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> idx, int32_t *volt_uv);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">typedef</span> int (*regulator_set_voltage_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, int32_t min_uv,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                       int32_t max_uv);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">typedef</span> int (*regulator_get_voltage_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                       int32_t *volt_uv);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> int (*regulator_count_current_limits_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">typedef</span> int (*regulator_list_current_limit_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                          <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> idx, int32_t *current_ua);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">typedef</span> int (*regulator_set_current_limit_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                         int32_t min_ua, int32_t max_ua);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keyword">typedef</span> int (*regulator_get_current_limit_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                         int32_t *curr_ua);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">typedef</span> int (*regulator_set_mode_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                    <a class="code hl_typedef" href="group__regulator__interface.html#ga1971bd21b504979a0cecab16048a0d03">regulator_mode_t</a> mode);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keyword">typedef</span> int (*regulator_get_mode_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                    <a class="code hl_typedef" href="group__regulator__interface.html#ga1971bd21b504979a0cecab16048a0d03">regulator_mode_t</a> *mode);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">typedef</span> int (*regulator_get_error_flags_t)(</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <a class="code hl_typedef" href="group__regulator__interface.html#ga31dae130509d28ee41602ab16ab31a90">regulator_error_flags_t</a> *flags);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>__subsystem <span class="keyword">struct </span>regulator_driver_api {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    regulator_enable_t enable;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    regulator_disable_t disable;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    regulator_count_voltages_t count_voltages;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    regulator_list_voltage_t list_voltage;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    regulator_set_voltage_t set_voltage;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    regulator_get_voltage_t get_voltage;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    regulator_count_current_limits_t count_current_limits;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    regulator_list_current_limit_t list_current_limit;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    regulator_set_current_limit_t set_current_limit;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    regulator_get_current_limit_t get_current_limit;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    regulator_set_mode_t set_mode;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    regulator_get_mode_t get_mode;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    regulator_get_error_flags_t get_error_flags;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>};</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="preprocessor">#define REGULATOR_ALWAYS_ON BIT(0)</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">#define REGULATOR_BOOT_ON   BIT(1)</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#define REGULATOR_INIT_ENABLED  (REGULATOR_ALWAYS_ON | REGULATOR_BOOT_ON)</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#define REGULATOR_INITIAL_MODE_UNKNOWN UINT8_MAX</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="keyword">struct </span>regulator_common_config {</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    int32_t min_uv;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    int32_t max_uv;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    int32_t init_uv;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    int32_t min_ua;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    int32_t max_ua;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    uint32_t startup_delay_us;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    uint32_t off_on_delay_us;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="group__regulator__interface.html#ga1971bd21b504979a0cecab16048a0d03">regulator_mode_t</a> *allowed_modes;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    uint8_t allowed_modes_cnt;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <a class="code hl_typedef" href="group__regulator__interface.html#ga1971bd21b504979a0cecab16048a0d03">regulator_mode_t</a> initial_mode;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    uint8_t flags;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>};</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">#define REGULATOR_DT_COMMON_CONFIG_INIT(node_id)                               \</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">    {                                                                      \</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">        .min_uv = DT_PROP_OR(node_id, regulator_min_microvolt,         \</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="preprocessor">                     INT32_MIN),                               \</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">        .max_uv = DT_PROP_OR(node_id, regulator_max_microvolt,         \</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">                     INT32_MAX),                               \</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">        .init_uv = DT_PROP_OR(node_id, regulator_init_microvolt,       \</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">                      INT32_MIN),                  \</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="preprocessor">        .min_ua = DT_PROP_OR(node_id, regulator_min_microamp,          \</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="preprocessor">                     INT32_MIN),                               \</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="preprocessor">        .max_ua = DT_PROP_OR(node_id, regulator_max_microamp,          \</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="preprocessor">                     INT32_MAX),                               \</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="preprocessor">        .startup_delay_us = DT_PROP_OR(node_id, startup_delay_us, 0),  \</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="preprocessor">        .off_on_delay_us = DT_PROP_OR(node_id, off_on_delay_us, 0),    \</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="preprocessor">        .allowed_modes = (const regulator_mode_t [])                   \</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="preprocessor">            DT_PROP_OR(node_id, regulator_allowed_modes, {}),      \</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="preprocessor">        .allowed_modes_cnt =                                           \</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">            DT_PROP_LEN_OR(node_id, regulator_allowed_modes, 0),   \</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">        .initial_mode = DT_PROP_OR(node_id, regulator_initial_mode,    \</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">                       REGULATOR_INITIAL_MODE_UNKNOWN),    \</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="preprocessor">        .flags = ((DT_PROP_OR(node_id, regulator_always_on, 0U) *      \</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">               REGULATOR_ALWAYS_ON) |                              \</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="preprocessor">              (DT_PROP_OR(node_id, regulator_boot_on, 0U) *        \</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="preprocessor">               REGULATOR_BOOT_ON)),                                \</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">#define REGULATOR_DT_INST_COMMON_CONFIG_INIT(inst)                             \</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">    REGULATOR_DT_COMMON_CONFIG_INIT(DT_DRV_INST(inst))</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="keyword">struct </span>regulator_common_data {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="preprocessor">#if defined(CONFIG_REGULATOR_THREAD_SAFE_REFCNT) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__mutex.html">k_mutex</a> lock;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordtype">int</span> refcnt;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>};</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="keywordtype">void</span> regulator_common_data_init(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="keywordtype">int</span> regulator_common_init(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">bool</span> is_enabled);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> regulator_common_is_init_enabled(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>{</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keyword">const</span> <span class="keyword">struct </span>regulator_common_config *config =</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>regulator_common_config *)dev-&gt;<a class="code hl_variable" href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">config</a>;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="keywordflow">return</span> (config-&gt;flags &amp; REGULATOR_INIT_ENABLED) != 0U;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>}</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> regulator_common_get_min_voltage(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, int32_t *min_uv)</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>{</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keyword">const</span> <span class="keyword">struct </span>regulator_common_config *config =</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>regulator_common_config *)dev-&gt;<a class="code hl_variable" href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">config</a>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="keywordflow">if</span> (config-&gt;min_uv == INT32_MIN) {</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        <span class="keywordflow">return</span> -ENOENT;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    }</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    *min_uv = config-&gt;min_uv;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>}</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> regulator_parent_dvs_state_set(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>                         <a class="code hl_typedef" href="group__regulator__interface.html#ga9a15a21a532e497713724f42052b1dbd">regulator_dvs_state_t</a> state)</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>{</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <span class="keyword">const</span> <span class="keyword">struct </span>regulator_parent_driver_api *api =</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>regulator_parent_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <span class="keywordflow">if</span> (api-&gt;dvs_state_set == NULL) {</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    }</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="keywordflow">return</span> api-&gt;dvs_state_set(dev, state);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>}</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> regulator_parent_ship_mode(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>{</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    <span class="keyword">const</span> <span class="keyword">struct </span>regulator_parent_driver_api *api =</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>regulator_parent_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <span class="keywordflow">if</span> (api-&gt;ship_mode == NULL) {</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    }</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    <span class="keywordflow">return</span> api-&gt;ship_mode(dev);</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>}</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno"><a class="line" href="group__regulator__interface.html#ga06e3109b9607521fe07686c6d601e460">  361</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__regulator__interface.html#ga06e3109b9607521fe07686c6d601e460">regulator_enable</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span> </div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno"><a class="line" href="group__regulator__interface.html#ga28744a6cabadfe5a22bc96792c8ad124">  371</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__regulator__interface.html#ga28744a6cabadfe5a22bc96792c8ad124">regulator_is_enabled</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno"><a class="line" href="group__regulator__interface.html#gaac417fbf6e30bbbfbd5ea5029a8ef298">  389</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__regulator__interface.html#gaac417fbf6e30bbbfbd5ea5029a8ef298">regulator_disable</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> regulator_count_voltages(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>{</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    <span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *api =</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span> </div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>    <span class="keywordflow">if</span> (api-&gt;count_voltages == NULL) {</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>        <span class="keywordflow">return</span> 0U;</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    }</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span> </div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    <span class="keywordflow">return</span> api-&gt;count_voltages(dev);</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>}</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span> </div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> regulator_list_voltage(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>                     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> idx, int32_t *volt_uv)</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>{</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>    <span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *api =</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span> </div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>    <span class="keywordflow">if</span> (api-&gt;list_voltage == NULL) {</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>        <span class="keywordflow">return</span> -EINVAL;</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>    }</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span> </div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>    <span class="keywordflow">return</span> api-&gt;list_voltage(dev, idx, volt_uv);</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>}</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span> </div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno"><a class="line" href="group__regulator__interface.html#ga31b42ddfe94fee47158632f355ad864c">  452</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__regulator__interface.html#ga31b42ddfe94fee47158632f355ad864c">regulator_is_supported_voltage</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, int32_t min_uv,</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>                    int32_t max_uv);</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span> </div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno"><a class="line" href="group__regulator__interface.html#ga2c2b345da9029013edbf59fd8c565d85">  473</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__regulator__interface.html#ga2c2b345da9029013edbf59fd8c565d85">regulator_set_voltage</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, int32_t min_uv,</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>              int32_t max_uv);</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span> </div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> regulator_get_voltage(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>                    int32_t *volt_uv)</div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>{</div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span>    <span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *api =</div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span> </div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span>    <span class="keywordflow">if</span> (api-&gt;get_voltage == NULL) {</div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>    }</div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span> </div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>    <span class="keywordflow">return</span> api-&gt;get_voltage(dev, volt_uv);</div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>}</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span> </div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> regulator_count_current_limits(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>{</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>    <span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *api =</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span> </div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>    <span class="keywordflow">if</span> (api-&gt;count_current_limits == NULL) {</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>        <span class="keywordflow">return</span> 0U;</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>    }</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span> </div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>    <span class="keywordflow">return</span> api-&gt;count_current_limits(dev);</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>}</div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span> </div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> regulator_list_current_limit(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>                           <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> idx, int32_t *current_ua)</div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>{</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>    <span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *api =</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span> </div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>    <span class="keywordflow">if</span> (api-&gt;list_current_limit == NULL) {</div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>        <span class="keywordflow">return</span> -EINVAL;</div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>    }</div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span> </div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>    <span class="keywordflow">return</span> api-&gt;list_current_limit(dev, idx, current_ua);</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>}</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> </div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno"><a class="line" href="group__regulator__interface.html#ga2ccf66175b37754e2c21f341ecb2acbd">  567</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__regulator__interface.html#ga2ccf66175b37754e2c21f341ecb2acbd">regulator_set_current_limit</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, int32_t min_ua,</div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>                int32_t max_ua);</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span> </div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> regulator_get_current_limit(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>                          int32_t *curr_ua)</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>{</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>    <span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *api =</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span> </div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>    <span class="keywordflow">if</span> (api-&gt;get_current_limit == NULL) {</div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>    }</div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span> </div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>    <span class="keywordflow">return</span> api-&gt;get_current_limit(dev, curr_ua);</div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>}</div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span> </div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno"><a class="line" href="group__regulator__interface.html#ga1877bac62c2b81ee37deb86bfae302af">  609</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__regulator__interface.html#ga1877bac62c2b81ee37deb86bfae302af">regulator_set_mode</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <a class="code hl_typedef" href="group__regulator__interface.html#ga1971bd21b504979a0cecab16048a0d03">regulator_mode_t</a> mode);</div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span> </div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> regulator_get_mode(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>                     <a class="code hl_typedef" href="group__regulator__interface.html#ga1971bd21b504979a0cecab16048a0d03">regulator_mode_t</a> *mode)</div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span>{</div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>    <span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *api =</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span> </div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>    <span class="keywordflow">if</span> (api-&gt;get_mode == NULL) {</div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>    }</div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span> </div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>    <span class="keywordflow">return</span> api-&gt;get_mode(dev, mode);</div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>}</div>
+<div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span> </div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> regulator_get_error_flags(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>                        <a class="code hl_typedef" href="group__regulator__interface.html#ga31dae130509d28ee41602ab16ab31a90">regulator_error_flags_t</a> *flags)</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>{</div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>    <span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *api =</div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>regulator_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span> </div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>    <span class="keywordflow">if</span> (api-&gt;get_error_flags == NULL) {</div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>    }</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span> </div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>    <span class="keywordflow">return</span> api-&gt;get_error_flags(dev, flags);</div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>}</div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span> </div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span>}</div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span> </div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_REGULATOR_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adevicetree_8h_html"><div class="ttname"><a href="devicetree_8h.html">devicetree.h</a></div><div class="ttdoc">Devicetree main header.</div></div>
+<div class="ttc" id="agroup__regulator__interface_html_ga06e3109b9607521fe07686c6d601e460"><div class="ttname"><a href="group__regulator__interface.html#ga06e3109b9607521fe07686c6d601e460">regulator_enable</a></div><div class="ttdeci">int regulator_enable(const struct device *dev)</div><div class="ttdoc">Enable a regulator.</div></div>
+<div class="ttc" id="agroup__regulator__interface_html_ga1877bac62c2b81ee37deb86bfae302af"><div class="ttname"><a href="group__regulator__interface.html#ga1877bac62c2b81ee37deb86bfae302af">regulator_set_mode</a></div><div class="ttdeci">int regulator_set_mode(const struct device *dev, regulator_mode_t mode)</div><div class="ttdoc">Set mode.</div></div>
+<div class="ttc" id="agroup__regulator__interface_html_ga1971bd21b504979a0cecab16048a0d03"><div class="ttname"><a href="group__regulator__interface.html#ga1971bd21b504979a0cecab16048a0d03">regulator_mode_t</a></div><div class="ttdeci">uint8_t regulator_mode_t</div><div class="ttdef"><b>Definição</b> regulator.h:37</div></div>
+<div class="ttc" id="agroup__regulator__interface_html_ga28744a6cabadfe5a22bc96792c8ad124"><div class="ttname"><a href="group__regulator__interface.html#ga28744a6cabadfe5a22bc96792c8ad124">regulator_is_enabled</a></div><div class="ttdeci">bool regulator_is_enabled(const struct device *dev)</div><div class="ttdoc">Check if a regulator is enabled.</div></div>
+<div class="ttc" id="agroup__regulator__interface_html_ga2c2b345da9029013edbf59fd8c565d85"><div class="ttname"><a href="group__regulator__interface.html#ga2c2b345da9029013edbf59fd8c565d85">regulator_set_voltage</a></div><div class="ttdeci">int regulator_set_voltage(const struct device *dev, int32_t min_uv, int32_t max_uv)</div><div class="ttdoc">Set the output voltage.</div></div>
+<div class="ttc" id="agroup__regulator__interface_html_ga2ccf66175b37754e2c21f341ecb2acbd"><div class="ttname"><a href="group__regulator__interface.html#ga2ccf66175b37754e2c21f341ecb2acbd">regulator_set_current_limit</a></div><div class="ttdeci">int regulator_set_current_limit(const struct device *dev, int32_t min_ua, int32_t max_ua)</div><div class="ttdoc">Set output current limit.</div></div>
+<div class="ttc" id="agroup__regulator__interface_html_ga31b42ddfe94fee47158632f355ad864c"><div class="ttname"><a href="group__regulator__interface.html#ga31b42ddfe94fee47158632f355ad864c">regulator_is_supported_voltage</a></div><div class="ttdeci">bool regulator_is_supported_voltage(const struct device *dev, int32_t min_uv, int32_t max_uv)</div><div class="ttdoc">Check if a voltage within a window is supported.</div></div>
+<div class="ttc" id="agroup__regulator__interface_html_ga31dae130509d28ee41602ab16ab31a90"><div class="ttname"><a href="group__regulator__interface.html#ga31dae130509d28ee41602ab16ab31a90">regulator_error_flags_t</a></div><div class="ttdeci">uint8_t regulator_error_flags_t</div><div class="ttdef"><b>Definição</b> regulator.h:40</div></div>
+<div class="ttc" id="agroup__regulator__interface_html_ga9a15a21a532e497713724f42052b1dbd"><div class="ttname"><a href="group__regulator__interface.html#ga9a15a21a532e497713724f42052b1dbd">regulator_dvs_state_t</a></div><div class="ttdeci">uint8_t regulator_dvs_state_t</div><div class="ttdef"><b>Definição</b> regulator.h:34</div></div>
+<div class="ttc" id="agroup__regulator__interface_html_gaac417fbf6e30bbbfbd5ea5029a8ef298"><div class="ttname"><a href="group__regulator__interface.html#gaac417fbf6e30bbbfbd5ea5029a8ef298">regulator_disable</a></div><div class="ttdeci">int regulator_disable(const struct device *dev)</div><div class="ttdoc">Disable a regulator.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructdevice_html_abe18f600adc4ab760963928477cc944e"><div class="ttname"><a href="structdevice.html#abe18f600adc4ab760963928477cc944e">device::state</a></div><div class="ttdeci">struct device_state * state</div><div class="ttdef"><b>Definição</b> device.h:393</div></div>
+<div class="ttc" id="astructdevice_html_aca2d801eb15996cf1c74dc65cfa651fc"><div class="ttname"><a href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">device::config</a></div><div class="ttdeci">const void * config</div><div class="ttdef"><b>Definição</b> device.h:389</div></div>
+<div class="ttc" id="astructk__mutex_html"><div class="ttname"><a href="structk__mutex.html">k_mutex</a></div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:31</div></div>
+<div class="ttc" id="autil__macro_8h_html"><div class="ttname"><a href="util__macro_8h.html">util_macro.h</a></div><div class="ttdoc">Macro utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

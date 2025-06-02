@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/ipc/ipc_static_vrings.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_37061a2917679f99fa500ca704bb1799.html">ipc</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ipc_static_vrings.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2021 Carlo Caione &lt;ccaione@baylibre.com&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_IPC_SERVICE_IPC_STATIC_VRINGS_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_IPC_SERVICE_IPC_STATIC_VRINGS_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;zephyr/ipc/ipc_service.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;openamp/open_amp.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;metal/device.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="group__ipc__service__static__vrings__api.html#ga2b05772c325881ba650dc01f3e6e2834">   26</a></span><span class="preprocessor">#define VRING_COUNT (2)</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="group__ipc__service__static__vrings__api.html#ga97343214666ee6dcb18c0bd77b441ea7">   34</a></span><span class="preprocessor">#define MEM_ALIGNMENT   CONFIG_IPC_SERVICE_STATIC_VRINGS_MEM_ALIGNMENT</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__ipc__service__static__vrings__api.html#ga8123d90993a5a089874dbf653f1ebab2">   45</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__ipc__service__static__vrings__api.html#ga8123d90993a5a089874dbf653f1ebab2">ipc_notify_cb</a>)(<span class="keyword">struct </span>virtqueue *vq, <span class="keywordtype">void</span> *priv);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html">   51</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structipc__static__vrings.html">ipc_static_vrings</a> {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#a1676900beba6921f55933dc174adad4d">   53</a></span>    <span class="keyword">struct </span>virtio_device <a class="code hl_variable" href="structipc__static__vrings.html#a1676900beba6921f55933dc174adad4d">vdev</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#ac8c8f9ec4dc0ef630f0b270208ec2674">   56</a></span>    metal_phys_addr_t <a class="code hl_variable" href="structipc__static__vrings.html#ac8c8f9ec4dc0ef630f0b270208ec2674">shm_physmap</a>[1];</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#a25621a534fd37590758f13f96242dc37">   59</a></span>    <span class="keyword">struct </span>metal_device <a class="code hl_variable" href="structipc__static__vrings.html#a25621a534fd37590758f13f96242dc37">shm_device</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#ae4871539972adc756ec57c8c20a7e2eb">   62</a></span>    uintptr_t <a class="code hl_variable" href="structipc__static__vrings.html#ae4871539972adc756ec57c8c20a7e2eb">status_reg_addr</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#a59f39be99885182298f57af36fc874fb">   65</a></span>    uintptr_t <a class="code hl_variable" href="structipc__static__vrings.html#a59f39be99885182298f57af36fc874fb">tx_addr</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#a4eaf0eb4095a58fc6256d74911baa671">   68</a></span>    uintptr_t <a class="code hl_variable" href="structipc__static__vrings.html#a4eaf0eb4095a58fc6256d74911baa671">rx_addr</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#a893bc5387c5b29ecdcfc1abfd57c9caf">   71</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structipc__static__vrings.html#a893bc5387c5b29ecdcfc1abfd57c9caf">vring_size</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#ac68695b382dfe7c282eba3e97ea96022">   74</a></span>    uintptr_t <a class="code hl_variable" href="structipc__static__vrings.html#ac68695b382dfe7c282eba3e97ea96022">shm_addr</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#a6c31f7450f051c1ac4cd3cc56b133a3f">   77</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structipc__static__vrings.html#a6c31f7450f051c1ac4cd3cc56b133a3f">shm_size</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#a29071801929abab9da38c9d806faa89e">   80</a></span>    <span class="keyword">struct </span>metal_io_region *<a class="code hl_variable" href="structipc__static__vrings.html#a29071801929abab9da38c9d806faa89e">shm_io</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#a6c3b177d444c1c485014eae992134ccb">   83</a></span>    <span class="keyword">struct </span>virtio_vring_info <a class="code hl_variable" href="structipc__static__vrings.html#a6c3b177d444c1c485014eae992134ccb">rvrings</a>[<a class="code hl_define" href="group__ipc__service__static__vrings__api.html#ga2b05772c325881ba650dc01f3e6e2834">VRING_COUNT</a>];</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#ac06319fbf803cd04a5ef5daf215b305b">   86</a></span>    <span class="keyword">struct </span>virtqueue *<a class="code hl_variable" href="structipc__static__vrings.html#ac06319fbf803cd04a5ef5daf215b305b">vq</a>[<a class="code hl_define" href="group__ipc__service__static__vrings__api.html#ga2b05772c325881ba650dc01f3e6e2834">VRING_COUNT</a>];</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#a30d2cdf9ee8fb400dac490effc49cce2">   89</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structipc__static__vrings.html#a30d2cdf9ee8fb400dac490effc49cce2">priv</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structipc__static__vrings.html#a16261f77762e5d226ed934d0ad2a51a6">   92</a></span>    <a class="code hl_typedef" href="group__ipc__service__static__vrings__api.html#ga8123d90993a5a089874dbf653f1ebab2">ipc_notify_cb</a> <a class="code hl_variable" href="structipc__static__vrings.html#a16261f77762e5d226ed934d0ad2a51a6">notify_cb</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>};</div>
+</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="group__ipc__service__static__vrings__api.html#ga5cab9a9a9ade1e61eb02592aa23dc0bc">  107</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ipc__service__static__vrings__api.html#ga5cab9a9a9ade1e61eb02592aa23dc0bc">ipc_static_vrings_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structipc__static__vrings.html">ipc_static_vrings</a> *vr, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> role);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="group__ipc__service__static__vrings__api.html#ga90680ce6a8cc4dae9cabba8fad6e939a">  119</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ipc__service__static__vrings__api.html#ga90680ce6a8cc4dae9cabba8fad6e939a">ipc_static_vrings_deinit</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structipc__static__vrings.html">ipc_static_vrings</a> *vr, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> role);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>}</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_IPC_SERVICE_IPC_STATIC_VRINGS_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__ipc__service__static__vrings__api_html_ga2b05772c325881ba650dc01f3e6e2834"><div class="ttname"><a href="group__ipc__service__static__vrings__api.html#ga2b05772c325881ba650dc01f3e6e2834">VRING_COUNT</a></div><div class="ttdeci">#define VRING_COUNT</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:26</div></div>
+<div class="ttc" id="agroup__ipc__service__static__vrings__api_html_ga5cab9a9a9ade1e61eb02592aa23dc0bc"><div class="ttname"><a href="group__ipc__service__static__vrings__api.html#ga5cab9a9a9ade1e61eb02592aa23dc0bc">ipc_static_vrings_init</a></div><div class="ttdeci">int ipc_static_vrings_init(struct ipc_static_vrings *vr, unsigned int role)</div><div class="ttdoc">Init the static VRINGs.</div></div>
+<div class="ttc" id="agroup__ipc__service__static__vrings__api_html_ga8123d90993a5a089874dbf653f1ebab2"><div class="ttname"><a href="group__ipc__service__static__vrings__api.html#ga8123d90993a5a089874dbf653f1ebab2">ipc_notify_cb</a></div><div class="ttdeci">void(* ipc_notify_cb)(struct virtqueue *vq, void *priv)</div><div class="ttdoc">Define the notify callback.</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:45</div></div>
+<div class="ttc" id="agroup__ipc__service__static__vrings__api_html_ga90680ce6a8cc4dae9cabba8fad6e939a"><div class="ttname"><a href="group__ipc__service__static__vrings__api.html#ga90680ce6a8cc4dae9cabba8fad6e939a">ipc_static_vrings_deinit</a></div><div class="ttdeci">int ipc_static_vrings_deinit(struct ipc_static_vrings *vr, unsigned int role)</div><div class="ttdoc">Deinitialise the static VRINGs.</div></div>
+<div class="ttc" id="astructipc__static__vrings_html"><div class="ttname"><a href="structipc__static__vrings.html">ipc_static_vrings</a></div><div class="ttdoc">Static VRINGs structure.</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:51</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_a16261f77762e5d226ed934d0ad2a51a6"><div class="ttname"><a href="structipc__static__vrings.html#a16261f77762e5d226ed934d0ad2a51a6">ipc_static_vrings::notify_cb</a></div><div class="ttdeci">ipc_notify_cb notify_cb</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:92</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_a1676900beba6921f55933dc174adad4d"><div class="ttname"><a href="structipc__static__vrings.html#a1676900beba6921f55933dc174adad4d">ipc_static_vrings::vdev</a></div><div class="ttdeci">struct virtio_device vdev</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:53</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_a25621a534fd37590758f13f96242dc37"><div class="ttname"><a href="structipc__static__vrings.html#a25621a534fd37590758f13f96242dc37">ipc_static_vrings::shm_device</a></div><div class="ttdeci">struct metal_device shm_device</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:59</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_a29071801929abab9da38c9d806faa89e"><div class="ttname"><a href="structipc__static__vrings.html#a29071801929abab9da38c9d806faa89e">ipc_static_vrings::shm_io</a></div><div class="ttdeci">struct metal_io_region * shm_io</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:80</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_a30d2cdf9ee8fb400dac490effc49cce2"><div class="ttname"><a href="structipc__static__vrings.html#a30d2cdf9ee8fb400dac490effc49cce2">ipc_static_vrings::priv</a></div><div class="ttdeci">void * priv</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:89</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_a4eaf0eb4095a58fc6256d74911baa671"><div class="ttname"><a href="structipc__static__vrings.html#a4eaf0eb4095a58fc6256d74911baa671">ipc_static_vrings::rx_addr</a></div><div class="ttdeci">uintptr_t rx_addr</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:68</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_a59f39be99885182298f57af36fc874fb"><div class="ttname"><a href="structipc__static__vrings.html#a59f39be99885182298f57af36fc874fb">ipc_static_vrings::tx_addr</a></div><div class="ttdeci">uintptr_t tx_addr</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:65</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_a6c31f7450f051c1ac4cd3cc56b133a3f"><div class="ttname"><a href="structipc__static__vrings.html#a6c31f7450f051c1ac4cd3cc56b133a3f">ipc_static_vrings::shm_size</a></div><div class="ttdeci">size_t shm_size</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:77</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_a6c3b177d444c1c485014eae992134ccb"><div class="ttname"><a href="structipc__static__vrings.html#a6c3b177d444c1c485014eae992134ccb">ipc_static_vrings::rvrings</a></div><div class="ttdeci">struct virtio_vring_info rvrings[VRING_COUNT]</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:83</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_a893bc5387c5b29ecdcfc1abfd57c9caf"><div class="ttname"><a href="structipc__static__vrings.html#a893bc5387c5b29ecdcfc1abfd57c9caf">ipc_static_vrings::vring_size</a></div><div class="ttdeci">size_t vring_size</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:71</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_ac06319fbf803cd04a5ef5daf215b305b"><div class="ttname"><a href="structipc__static__vrings.html#ac06319fbf803cd04a5ef5daf215b305b">ipc_static_vrings::vq</a></div><div class="ttdeci">struct virtqueue * vq[VRING_COUNT]</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:86</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_ac68695b382dfe7c282eba3e97ea96022"><div class="ttname"><a href="structipc__static__vrings.html#ac68695b382dfe7c282eba3e97ea96022">ipc_static_vrings::shm_addr</a></div><div class="ttdeci">uintptr_t shm_addr</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:74</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_ac8c8f9ec4dc0ef630f0b270208ec2674"><div class="ttname"><a href="structipc__static__vrings.html#ac8c8f9ec4dc0ef630f0b270208ec2674">ipc_static_vrings::shm_physmap</a></div><div class="ttdeci">metal_phys_addr_t shm_physmap[1]</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:56</div></div>
+<div class="ttc" id="astructipc__static__vrings_html_ae4871539972adc756ec57c8c20a7e2eb"><div class="ttname"><a href="structipc__static__vrings.html#ae4871539972adc756ec57c8c20a7e2eb">ipc_static_vrings::status_reg_addr</a></div><div class="ttdeci">uintptr_t status_reg_addr</div><div class="ttdef"><b>Definição</b> ipc_static_vrings.h:62</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

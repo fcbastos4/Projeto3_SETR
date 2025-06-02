@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/multi_heap/shared_multi_heap.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_b21d903d2df6ae0cd471bd5999a2b5f8.html">multi_heap</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">shared_multi_heap.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="shared__multi__heap_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2021 Carlo Caione, &lt;ccaione@baylibre.com&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_MULTI_HEAP_MANAGER_SMH_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define ZEPHYR_INCLUDE_MULTI_HEAP_MANAGER_SMH_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="};">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="group__shared__multi__heap.html#ga11861c5c373f9e5d81496ae1be7df1d4">   69</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__shared__multi__heap.html#ga11861c5c373f9e5d81496ae1be7df1d4">shared_multi_heap_attr</a> {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="group__shared__multi__heap.html#gga11861c5c373f9e5d81496ae1be7df1d4afb2e0bb04859ff231dee953279b8bf3a">   71</a></span>    <a class="code hl_enumvalue" href="group__shared__multi__heap.html#gga11861c5c373f9e5d81496ae1be7df1d4afb2e0bb04859ff231dee953279b8bf3a">SMH_REG_ATTR_CACHEABLE</a>,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="group__shared__multi__heap.html#gga11861c5c373f9e5d81496ae1be7df1d4a2625b9b8aea429ab748f9e39d55f0dff">   74</a></span>    <a class="code hl_enumvalue" href="group__shared__multi__heap.html#gga11861c5c373f9e5d81496ae1be7df1d4a2625b9b8aea429ab748f9e39d55f0dff">SMH_REG_ATTR_NON_CACHEABLE</a>,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="group__shared__multi__heap.html#gga11861c5c373f9e5d81496ae1be7df1d4a0a41317e94fcdf459708be4a78b74c91">   77</a></span>    <a class="code hl_enumvalue" href="group__shared__multi__heap.html#gga11861c5c373f9e5d81496ae1be7df1d4a0a41317e94fcdf459708be4a78b74c91">SMH_REG_ATTR_NUM</a>,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="group__shared__multi__heap.html#gae582ce2dfaaf9554d43aab717c85c17c">   81</a></span><span class="preprocessor">#define MAX_SHARED_MULTI_HEAP_ATTR SMH_REG_ATTR_NUM</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="};">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="structshared__multi__heap__region.html">   89</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structshared__multi__heap__region.html">shared_multi_heap_region</a> {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structshared__multi__heap__region.html#a5fcdce28a57be4b652a9a53a70ae796f">   91</a></span>    uint32_t <a class="code hl_variable" href="structshared__multi__heap__region.html#a5fcdce28a57be4b652a9a53a70ae796f">attr</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="structshared__multi__heap__region.html#a905df61648eaa18cebf53bb10dcde91d">   94</a></span>    uintptr_t <a class="code hl_variable" href="structshared__multi__heap__region.html#a905df61648eaa18cebf53bb10dcde91d">addr</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="structshared__multi__heap__region.html#a3f6565062f70b2c8d25c3a0be579482c">   97</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structshared__multi__heap__region.html#a3f6565062f70b2c8d25c3a0be579482c">size</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>};</div>
+</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="group__shared__multi__heap.html#ga5b7f09666e3eac051b4c4942572f9ca3">  114</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__shared__multi__heap.html#ga5b7f09666e3eac051b4c4942572f9ca3">shared_multi_heap_pool_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="group__shared__multi__heap.html#ga8cd3d321f5ae516cd55812d304289971">  129</a></span><span class="keywordtype">void</span> *<a class="code hl_function" href="group__shared__multi__heap.html#ga8cd3d321f5ae516cd55812d304289971">shared_multi_heap_alloc</a>(<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__shared__multi__heap.html#ga11861c5c373f9e5d81496ae1be7df1d4">shared_multi_heap_attr</a> attr, <span class="keywordtype">size_t</span> bytes);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="group__shared__multi__heap.html#ga328b199253da06ed724e9b0157167ede">  145</a></span><span class="keywordtype">void</span> *<a class="code hl_function" href="group__shared__multi__heap.html#ga328b199253da06ed724e9b0157167ede">shared_multi_heap_aligned_alloc</a>(<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__shared__multi__heap.html#ga11861c5c373f9e5d81496ae1be7df1d4">shared_multi_heap_attr</a> attr,</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                      <span class="keywordtype">size_t</span> align, <span class="keywordtype">size_t</span> bytes);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="group__shared__multi__heap.html#gab968bf26483d22939aaa7c2b1b6743ad">  159</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__shared__multi__heap.html#gab968bf26483d22939aaa7c2b1b6743ad">shared_multi_heap_free</a>(<span class="keywordtype">void</span> *block);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="group__shared__multi__heap.html#ga086362a2a8fce827a246039ef8757cc5">  174</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__shared__multi__heap.html#ga086362a2a8fce827a246039ef8757cc5">shared_multi_heap_add</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structshared__multi__heap__region.html">shared_multi_heap_region</a> *region, <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>}</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_MULTI_HEAP_MANAGER_SMH_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__shared__multi__heap_html_ga086362a2a8fce827a246039ef8757cc5"><div class="ttname"><a href="group__shared__multi__heap.html#ga086362a2a8fce827a246039ef8757cc5">shared_multi_heap_add</a></div><div class="ttdeci">int shared_multi_heap_add(struct shared_multi_heap_region *region, void *user_data)</div><div class="ttdoc">Add an heap region to the shared multi-heap pool.</div></div>
+<div class="ttc" id="agroup__shared__multi__heap_html_ga11861c5c373f9e5d81496ae1be7df1d4"><div class="ttname"><a href="group__shared__multi__heap.html#ga11861c5c373f9e5d81496ae1be7df1d4">shared_multi_heap_attr</a></div><div class="ttdeci">shared_multi_heap_attr</div><div class="ttdoc">SMH region attributes enumeration type.</div><div class="ttdef"><b>Definição</b> shared_multi_heap.h:69</div></div>
+<div class="ttc" id="agroup__shared__multi__heap_html_ga328b199253da06ed724e9b0157167ede"><div class="ttname"><a href="group__shared__multi__heap.html#ga328b199253da06ed724e9b0157167ede">shared_multi_heap_aligned_alloc</a></div><div class="ttdeci">void * shared_multi_heap_aligned_alloc(enum shared_multi_heap_attr attr, size_t align, size_t bytes)</div><div class="ttdoc">Allocate aligned memory from the memory shared multi-heap pool.</div></div>
+<div class="ttc" id="agroup__shared__multi__heap_html_ga5b7f09666e3eac051b4c4942572f9ca3"><div class="ttname"><a href="group__shared__multi__heap.html#ga5b7f09666e3eac051b4c4942572f9ca3">shared_multi_heap_pool_init</a></div><div class="ttdeci">int shared_multi_heap_pool_init(void)</div><div class="ttdoc">Init the pool.</div></div>
+<div class="ttc" id="agroup__shared__multi__heap_html_ga8cd3d321f5ae516cd55812d304289971"><div class="ttname"><a href="group__shared__multi__heap.html#ga8cd3d321f5ae516cd55812d304289971">shared_multi_heap_alloc</a></div><div class="ttdeci">void * shared_multi_heap_alloc(enum shared_multi_heap_attr attr, size_t bytes)</div><div class="ttdoc">Allocate memory from the memory shared multi-heap pool.</div></div>
+<div class="ttc" id="agroup__shared__multi__heap_html_gab968bf26483d22939aaa7c2b1b6743ad"><div class="ttname"><a href="group__shared__multi__heap.html#gab968bf26483d22939aaa7c2b1b6743ad">shared_multi_heap_free</a></div><div class="ttdeci">void shared_multi_heap_free(void *block)</div><div class="ttdoc">Free memory from the shared multi-heap pool.</div></div>
+<div class="ttc" id="agroup__shared__multi__heap_html_gga11861c5c373f9e5d81496ae1be7df1d4a0a41317e94fcdf459708be4a78b74c91"><div class="ttname"><a href="group__shared__multi__heap.html#gga11861c5c373f9e5d81496ae1be7df1d4a0a41317e94fcdf459708be4a78b74c91">SMH_REG_ATTR_NUM</a></div><div class="ttdeci">@ SMH_REG_ATTR_NUM</div><div class="ttdef"><b>Definição</b> shared_multi_heap.h:77</div></div>
+<div class="ttc" id="agroup__shared__multi__heap_html_gga11861c5c373f9e5d81496ae1be7df1d4a2625b9b8aea429ab748f9e39d55f0dff"><div class="ttname"><a href="group__shared__multi__heap.html#gga11861c5c373f9e5d81496ae1be7df1d4a2625b9b8aea429ab748f9e39d55f0dff">SMH_REG_ATTR_NON_CACHEABLE</a></div><div class="ttdeci">@ SMH_REG_ATTR_NON_CACHEABLE</div><div class="ttdef"><b>Definição</b> shared_multi_heap.h:74</div></div>
+<div class="ttc" id="agroup__shared__multi__heap_html_gga11861c5c373f9e5d81496ae1be7df1d4afb2e0bb04859ff231dee953279b8bf3a"><div class="ttname"><a href="group__shared__multi__heap.html#gga11861c5c373f9e5d81496ae1be7df1d4afb2e0bb04859ff231dee953279b8bf3a">SMH_REG_ATTR_CACHEABLE</a></div><div class="ttdeci">@ SMH_REG_ATTR_CACHEABLE</div><div class="ttdef"><b>Definição</b> shared_multi_heap.h:71</div></div>
+<div class="ttc" id="astructshared__multi__heap__region_html"><div class="ttname"><a href="structshared__multi__heap__region.html">shared_multi_heap_region</a></div><div class="ttdoc">SMH region struct.</div><div class="ttdef"><b>Definição</b> shared_multi_heap.h:89</div></div>
+<div class="ttc" id="astructshared__multi__heap__region_html_a3f6565062f70b2c8d25c3a0be579482c"><div class="ttname"><a href="structshared__multi__heap__region.html#a3f6565062f70b2c8d25c3a0be579482c">shared_multi_heap_region::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definição</b> shared_multi_heap.h:97</div></div>
+<div class="ttc" id="astructshared__multi__heap__region_html_a5fcdce28a57be4b652a9a53a70ae796f"><div class="ttname"><a href="structshared__multi__heap__region.html#a5fcdce28a57be4b652a9a53a70ae796f">shared_multi_heap_region::attr</a></div><div class="ttdeci">uint32_t attr</div><div class="ttdef"><b>Definição</b> shared_multi_heap.h:91</div></div>
+<div class="ttc" id="astructshared__multi__heap__region_html_a905df61648eaa18cebf53bb10dcde91d"><div class="ttname"><a href="structshared__multi__heap__region.html#a905df61648eaa18cebf53bb10dcde91d">shared_multi_heap_region::addr</a></div><div class="ttdeci">uintptr_t addr</div><div class="ttdef"><b>Definição</b> shared_multi_heap.h:94</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

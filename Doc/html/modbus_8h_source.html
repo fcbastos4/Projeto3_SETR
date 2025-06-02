@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/modbus/modbus.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_bbf8fce6cb11071ba4ad55c2bd1d4276.html">modbus</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">modbus.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2020 PHYTEC Messtechnik GmbH</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2021 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * Client API in this file is based on mbm_core.c from uC/Modbus Stack.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> *                                uC/Modbus</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> *                         The Embedded Modbus Stack</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> *      Copyright 2003-2020 Silicon Laboratories Inc. www.silabs.com</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> *                   SPDX-License-Identifier: APACHE-2.0</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> * This software is subject to an open source license and is distributed by</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> *  Silicon Laboratories Inc. pursuant to the terms of the Apache License,</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> *      Version 2.0 available at www.apache.org/licenses/LICENSE-2.0.</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_MODBUS_H_</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#define ZEPHYR_INCLUDE_MODBUS_H_</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2uart_8h.html">zephyr/drivers/uart.h</a>&gt;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;<a class="code" href="slist_8h.html">zephyr/sys/slist.h</a>&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="group__modbus.html#ga1015513d4d3b6621fc18dcfda79116a2">   40</a></span><span class="preprocessor">#define MODBUS_MBAP_LENGTH      7</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="group__modbus.html#gae8a6fcfc117e7c4b2ac32aef90155698">   42</a></span><span class="preprocessor">#define MODBUS_MBAP_AND_FC_LENGTH   (MODBUS_MBAP_LENGTH + 1)</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">/* Modbus exception codes */</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#define MODBUS_EXC_NONE             0</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#define MODBUS_EXC_ILLEGAL_FC           1</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#define MODBUS_EXC_ILLEGAL_DATA_ADDR        2</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#define MODBUS_EXC_ILLEGAL_DATA_VAL     3</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#define MODBUS_EXC_SERVER_DEVICE_FAILURE    4</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#define MODBUS_EXC_ACK              5</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#define MODBUS_EXC_SERVER_DEVICE_BUSY       6</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#define MODBUS_EXC_MEM_PARITY_ERROR     8</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define MODBUS_EXC_GW_PATH_UNAVAILABLE      10</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#define MODBUS_EXC_GW_TARGET_FAILED_TO_RESP 11</span></div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structmodbus__adu.html">   63</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmodbus__adu.html">modbus_adu</a> {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structmodbus__adu.html#a04f0aa95985cc491649ba47f8ba064c8">   65</a></span>    uint16_t <a class="code hl_variable" href="structmodbus__adu.html#a04f0aa95985cc491649ba47f8ba064c8">trans_id</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structmodbus__adu.html#ae0422aacfe323ce6ca83069a54315fa0">   67</a></span>    uint16_t <a class="code hl_variable" href="structmodbus__adu.html#ae0422aacfe323ce6ca83069a54315fa0">proto_id</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structmodbus__adu.html#aa33f175677a0100c1f8a84a72c5ca247">   69</a></span>    uint16_t <a class="code hl_variable" href="structmodbus__adu.html#aa33f175677a0100c1f8a84a72c5ca247">length</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structmodbus__adu.html#ab1fc3e76f3f406c8a0715055088d290d">   71</a></span>    uint8_t <a class="code hl_variable" href="structmodbus__adu.html#ab1fc3e76f3f406c8a0715055088d290d">unit_id</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structmodbus__adu.html#a015e7b842349dc5567cc51cbf1f87420">   73</a></span>    uint8_t <a class="code hl_variable" href="structmodbus__adu.html#a015e7b842349dc5567cc51cbf1f87420">fc</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structmodbus__adu.html#a7e94e4a0557717445ab2d791f8a97b7b">   75</a></span>    uint8_t <a class="code hl_variable" href="structmodbus__adu.html#a7e94e4a0557717445ab2d791f8a97b7b">data</a>[CONFIG_MODBUS_BUFFER_SIZE - 4];</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structmodbus__adu.html#a78b8008e05c8d588d0ecba71e432d14e">   77</a></span>    uint16_t <a class="code hl_variable" href="structmodbus__adu.html#a78b8008e05c8d588d0ecba71e432d14e">crc</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="group__modbus.html#ga05b118dc87ebe3739cac4e9572104ffb">  107</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#ga05b118dc87ebe3739cac4e9572104ffb">modbus_read_coils</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface,</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>              <span class="keyword">const</span> uint8_t unit_id,</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>              <span class="keyword">const</span> uint16_t start_addr,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>              uint8_t *<span class="keyword">const</span> coil_tbl,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>              <span class="keyword">const</span> uint16_t num_coils);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="group__modbus.html#ga921fd6036ff1b8a416dc02e30bb6e653">  141</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#ga921fd6036ff1b8a416dc02e30bb6e653">modbus_read_dinputs</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface,</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            <span class="keyword">const</span> uint8_t unit_id,</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>            <span class="keyword">const</span> uint16_t start_addr,</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            uint8_t *<span class="keyword">const</span> di_tbl,</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            <span class="keyword">const</span> uint16_t num_di);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="group__modbus.html#ga7d7221b32fbf2395e69e25ef2dbaa036">  164</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#ga7d7221b32fbf2395e69e25ef2dbaa036">modbus_read_holding_regs</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface,</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>                 <span class="keyword">const</span> uint8_t unit_id,</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>                 <span class="keyword">const</span> uint16_t start_addr,</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>                 uint16_t *<span class="keyword">const</span> reg_buf,</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>                 <span class="keyword">const</span> uint16_t num_regs);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="group__modbus.html#ga5ff31ca21cf2d1b081d172228d6c2154">  187</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#ga5ff31ca21cf2d1b081d172228d6c2154">modbus_read_input_regs</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface,</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>               <span class="keyword">const</span> uint8_t unit_id,</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>               <span class="keyword">const</span> uint16_t start_addr,</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>               uint16_t *<span class="keyword">const</span> reg_buf,</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>               <span class="keyword">const</span> uint16_t num_regs);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="group__modbus.html#gaccac4f72b5d66a5a2e6c444dda251c41">  205</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#gaccac4f72b5d66a5a2e6c444dda251c41">modbus_write_coil</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface,</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>              <span class="keyword">const</span> uint8_t unit_id,</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>              <span class="keyword">const</span> uint16_t coil_addr,</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>              <span class="keyword">const</span> <span class="keywordtype">bool</span> coil_state);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="group__modbus.html#gaf06d2553af8b8e9ab58f54b8b7e2055b">  223</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#gaf06d2553af8b8e9ab58f54b8b7e2055b">modbus_write_holding_reg</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface,</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                 <span class="keyword">const</span> uint8_t unit_id,</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>                 <span class="keyword">const</span> uint16_t start_addr,</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>                 <span class="keyword">const</span> uint16_t reg_val);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="group__modbus.html#gac924251f66ca6f357d8b7d90075df210">  241</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#gac924251f66ca6f357d8b7d90075df210">modbus_request_diagnostic</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface,</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                  <span class="keyword">const</span> uint8_t unit_id,</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>                  <span class="keyword">const</span> uint16_t sfunc,</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                  <span class="keyword">const</span> uint16_t data,</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                  uint16_t *<span class="keyword">const</span> data_out);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno"><a class="line" href="group__modbus.html#gac0fa22cd0d1fa861fdbc04b65ea60d7e">  274</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#gac0fa22cd0d1fa861fdbc04b65ea60d7e">modbus_write_coils</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface,</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>               <span class="keyword">const</span> uint8_t unit_id,</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>               <span class="keyword">const</span> uint16_t start_addr,</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>               uint8_t *<span class="keyword">const</span> coil_tbl,</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>               <span class="keyword">const</span> uint16_t num_coils);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno"><a class="line" href="group__modbus.html#gadc8273292e0efc8c0d65c00eea7a22c5">  297</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#gadc8273292e0efc8c0d65c00eea7a22c5">modbus_write_holding_regs</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface,</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>                  <span class="keyword">const</span> uint8_t unit_id,</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>                  <span class="keyword">const</span> uint16_t start_addr,</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>                  uint16_t *<span class="keyword">const</span> reg_buf,</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>                  <span class="keyword">const</span> uint16_t num_regs);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="group__modbus.html#ga9a8ae6fb4b1aee398f5b19f074d07ea9">  320</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#ga9a8ae6fb4b1aee398f5b19f074d07ea9">modbus_read_holding_regs_fp</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface,</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>                <span class="keyword">const</span> uint8_t unit_id,</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>                <span class="keyword">const</span> uint16_t start_addr,</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>                <span class="keywordtype">float</span> *<span class="keyword">const</span> reg_buf,</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>                <span class="keyword">const</span> uint16_t num_regs);</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno"><a class="line" href="group__modbus.html#ga762da245db3ca4f60fb3aa6c5783c73d">  343</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#ga762da245db3ca4f60fb3aa6c5783c73d">modbus_write_holding_regs_fp</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface,</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>                 <span class="keyword">const</span> uint8_t unit_id,</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>                 <span class="keyword">const</span> uint16_t start_addr,</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>                 <span class="keywordtype">float</span> *<span class="keyword">const</span> reg_buf,</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>                 <span class="keyword">const</span> uint16_t num_regs);</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="foldopen" id="foldopen00350" data-start="{" data-end="};">
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno"><a class="line" href="structmodbus__user__callbacks.html">  350</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmodbus__user__callbacks.html">modbus_user_callbacks</a> {</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno"><a class="line" href="structmodbus__user__callbacks.html#a3353b3aa0ec073fb9031a5c151e9995b">  352</a></span>    int (*<a class="code hl_variable" href="structmodbus__user__callbacks.html#a3353b3aa0ec073fb9031a5c151e9995b">coil_rd</a>)(uint16_t addr, <span class="keywordtype">bool</span> *state);</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno"><a class="line" href="structmodbus__user__callbacks.html#a0dad31490d8b5d454f06a8b7805a09fd">  355</a></span>    int (*<a class="code hl_variable" href="structmodbus__user__callbacks.html#a0dad31490d8b5d454f06a8b7805a09fd">coil_wr</a>)(uint16_t addr, <span class="keywordtype">bool</span> state);</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno"><a class="line" href="structmodbus__user__callbacks.html#aa6fd8fc2663c6a982ec17a162ae56961">  358</a></span>    int (*<a class="code hl_variable" href="structmodbus__user__callbacks.html#aa6fd8fc2663c6a982ec17a162ae56961">discrete_input_rd</a>)(uint16_t addr, <span class="keywordtype">bool</span> *state);</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno"><a class="line" href="structmodbus__user__callbacks.html#a91a9270bd945935b74c6f5e021429d42">  361</a></span>    int (*<a class="code hl_variable" href="structmodbus__user__callbacks.html#a91a9270bd945935b74c6f5e021429d42">input_reg_rd</a>)(uint16_t addr, uint16_t *reg);</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span> </div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno"><a class="line" href="structmodbus__user__callbacks.html#ae315e76c3ceefbd65ef8cea500b43df5">  364</a></span>    int (*<a class="code hl_variable" href="structmodbus__user__callbacks.html#ae315e76c3ceefbd65ef8cea500b43df5">input_reg_rd_fp</a>)(uint16_t addr, <span class="keywordtype">float</span> *reg);</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno"><a class="line" href="structmodbus__user__callbacks.html#acf5fe90fab9765bd83d1ab2075d073a2">  367</a></span>    int (*<a class="code hl_variable" href="structmodbus__user__callbacks.html#acf5fe90fab9765bd83d1ab2075d073a2">holding_reg_rd</a>)(uint16_t addr, uint16_t *reg);</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno"><a class="line" href="structmodbus__user__callbacks.html#a4ca1ed4bfc93b36d939f847d7ac9f8da">  370</a></span>    int (*<a class="code hl_variable" href="structmodbus__user__callbacks.html#a4ca1ed4bfc93b36d939f847d7ac9f8da">holding_reg_wr</a>)(uint16_t addr, uint16_t reg);</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno"><a class="line" href="structmodbus__user__callbacks.html#a821e0aacd7c90eff5e7c0047cc88a855">  373</a></span>    int (*<a class="code hl_variable" href="structmodbus__user__callbacks.html#a821e0aacd7c90eff5e7c0047cc88a855">holding_reg_rd_fp</a>)(uint16_t addr, <span class="keywordtype">float</span> *reg);</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span> </div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno"><a class="line" href="structmodbus__user__callbacks.html#a333b5781c35e781e7021f53d5a357482">  376</a></span>    int (*<a class="code hl_variable" href="structmodbus__user__callbacks.html#a333b5781c35e781e7021f53d5a357482">holding_reg_wr_fp</a>)(uint16_t addr, <span class="keywordtype">float</span> reg);</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>};</div>
+</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno"><a class="line" href="group__modbus.html#gaa17880a268d6b3b9553de835c800af27">  389</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#gaa17880a268d6b3b9553de835c800af27">modbus_iface_get_by_name</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *iface_name);</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno"><a class="line" href="group__modbus.html#ga6d74be1fffb9d5697fe5708827aa7ef1">  400</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__modbus.html#ga6d74be1fffb9d5697fe5708827aa7ef1">modbus_raw_cb_t</a>)(<span class="keyword">const</span> <span class="keywordtype">int</span> iface, <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmodbus__adu.html">modbus_adu</a> *adu,</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>                <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span> </div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno"><a class="line" href="group__modbus.html#ga2a7ba41a2fb7f6bf5194c02dcab07ae3">  424</a></span><span class="keyword">typedef</span> bool (*<a class="code hl_typedef" href="group__modbus.html#ga2a7ba41a2fb7f6bf5194c02dcab07ae3">modbus_custom_cb_t</a>)(<span class="keyword">const</span> <span class="keywordtype">int</span> iface,</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>                <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmodbus__adu.html">modbus_adu</a> *<span class="keyword">const</span> rx_adu,</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>                <span class="keyword">struct </span><a class="code hl_struct" href="structmodbus__adu.html">modbus_adu</a> *<span class="keyword">const</span> tx_adu,</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>                uint8_t *<span class="keyword">const</span> excep_code,</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>                <span class="keywordtype">void</span> *<span class="keyword">const</span> user_data);</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span> </div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span><span class="keyword">struct </span>modbus_custom_fc {</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> node;</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>    <a class="code hl_typedef" href="group__modbus.html#ga2a7ba41a2fb7f6bf5194c02dcab07ae3">modbus_custom_cb_t</a> cb;</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>    <span class="keywordtype">void</span> *user_data;</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>    uint8_t fc;</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>    uint8_t excep_code;</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>};</div>
+<div class="foldopen" id="foldopen00446" data-start="" data-end="">
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno"><a class="line" href="group__modbus.html#gaa0acc60971d0f773719431173632fd30">  446</a></span><span class="preprocessor">#define MODBUS_CUSTOM_FC_DEFINE(name, user_cb, user_fc, userdata)   \</span></div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span><span class="preprocessor">    static struct modbus_custom_fc modbus_cfg_##name = {        \</span></div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span><span class="preprocessor">        .cb = user_cb,                      \</span></div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span><span class="preprocessor">        .user_data = userdata,                  \</span></div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span><span class="preprocessor">        .fc = user_fc,                      \</span></div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span><span class="preprocessor">        .excep_code = MODBUS_EXC_NONE,              \</span></div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span> </div>
+<div class="foldopen" id="foldopen00457" data-start="{" data-end="};">
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno"><a class="line" href="group__modbus.html#ga4bd8913e1c77a1e4b19585caa9f77c2e">  457</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__modbus.html#ga4bd8913e1c77a1e4b19585caa9f77c2e">modbus_mode</a> {</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno"><a class="line" href="group__modbus.html#gga4bd8913e1c77a1e4b19585caa9f77c2ea52033dc2ef37fc286a590b1f97d946ef">  459</a></span>    <a class="code hl_enumvalue" href="group__modbus.html#gga4bd8913e1c77a1e4b19585caa9f77c2ea52033dc2ef37fc286a590b1f97d946ef">MODBUS_MODE_RTU</a>,</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno"><a class="line" href="group__modbus.html#gga4bd8913e1c77a1e4b19585caa9f77c2eafdf029741cc1bdecb2cb9baf4f06732a">  461</a></span>    <a class="code hl_enumvalue" href="group__modbus.html#gga4bd8913e1c77a1e4b19585caa9f77c2eafdf029741cc1bdecb2cb9baf4f06732a">MODBUS_MODE_ASCII</a>,</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno"><a class="line" href="group__modbus.html#gga4bd8913e1c77a1e4b19585caa9f77c2ea4d05b2cfd56ccf15eb1d8c7bb71071ec">  463</a></span>    <a class="code hl_enumvalue" href="group__modbus.html#gga4bd8913e1c77a1e4b19585caa9f77c2ea4d05b2cfd56ccf15eb1d8c7bb71071ec">MODBUS_MODE_RAW</a>,</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>};</div>
+</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span> </div>
+<div class="foldopen" id="foldopen00469" data-start="{" data-end="};">
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno"><a class="line" href="structmodbus__serial__param.html">  469</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmodbus__serial__param.html">modbus_serial_param</a> {</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno"><a class="line" href="structmodbus__serial__param.html#af3989f5e20eb96080d456114ef4d86e5">  471</a></span>    uint32_t <a class="code hl_variable" href="structmodbus__serial__param.html#af3989f5e20eb96080d456114ef4d86e5">baud</a>;</div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno"><a class="line" href="structmodbus__serial__param.html#a337a18f3ad923bf758cb432b9a2d8ada">  477</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__uart__interface.html#gab2ab6aacb6e3c43bb26d4274157e5711">uart_config_parity</a> <a class="code hl_variable" href="structmodbus__serial__param.html#a337a18f3ad923bf758cb432b9a2d8ada">parity</a>;</div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno"><a class="line" href="structmodbus__serial__param.html#a6f5819e3fbaf756f9150fdff431196c4">  484</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__uart__interface.html#gafc1aecb863e2456d73b78a49fcbad72e">uart_config_stop_bits</a> <a class="code hl_variable" href="structmodbus__serial__param.html#a6f5819e3fbaf756f9150fdff431196c4">stop_bits_client</a>;</div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>};</div>
+</div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span> </div>
+<div class="foldopen" id="foldopen00490" data-start="{" data-end="};">
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno"><a class="line" href="structmodbus__server__param.html">  490</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmodbus__server__param.html">modbus_server_param</a> {</div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno"><a class="line" href="structmodbus__server__param.html#ad8f72ea4e7dbbd81e23415e25b7d94be">  492</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structmodbus__user__callbacks.html">modbus_user_callbacks</a> *<a class="code hl_variable" href="structmodbus__server__param.html#ad8f72ea4e7dbbd81e23415e25b7d94be">user_cb</a>;</div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno"><a class="line" href="structmodbus__server__param.html#a323a3a9be08f3c77df9f06b135f7f379">  494</a></span>    uint8_t <a class="code hl_variable" href="structmodbus__server__param.html#a323a3a9be08f3c77df9f06b135f7f379">unit_id</a>;</div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>};</div>
+</div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span> </div>
+<div class="foldopen" id="foldopen00497" data-start="{" data-end="};">
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno"><a class="line" href="structmodbus__raw__cb.html">  497</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmodbus__raw__cb.html">modbus_raw_cb</a> {</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>    <a class="code hl_typedef" href="group__modbus.html#ga6d74be1fffb9d5697fe5708827aa7ef1">modbus_raw_cb_t</a> raw_tx_cb;</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>    <span class="keywordtype">void</span> *user_data;</div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>};</div>
+</div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span> </div>
+<div class="foldopen" id="foldopen00506" data-start="{" data-end="};">
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno"><a class="line" href="structmodbus__iface__param.html">  506</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmodbus__iface__param.html">modbus_iface_param</a> {</div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno"><a class="line" href="structmodbus__iface__param.html#ae73f218d8810afb0c2efbf865ba8b3ba">  508</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__modbus.html#ga4bd8913e1c77a1e4b19585caa9f77c2e">modbus_mode</a> <a class="code hl_variable" href="structmodbus__iface__param.html#ae73f218d8810afb0c2efbf865ba8b3ba">mode</a>;</div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structmodbus__server__param.html">modbus_server_param</a> server;</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno"><a class="line" href="structmodbus__iface__param.html#a7726b39e43e660adb63e24b4cf2e7ab7">  514</a></span>        uint32_t <a class="code hl_variable" href="structmodbus__iface__param.html#a7726b39e43e660adb63e24b4cf2e7ab7">rx_timeout</a>;</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>    };</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno"><a class="line" href="structmodbus__iface__param.html#a77ff747b2e789e96691483994be1d596">  518</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structmodbus__serial__param.html">modbus_serial_param</a> serial;</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno"><a class="line" href="structmodbus__iface__param.html#a6e06fe6fc4ba31b25b5ef461ee0e4f81">  520</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structmodbus__raw__cb.html">modbus_raw_cb</a> rawcb;</div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>    };</div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>};</div>
+</div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span> </div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno"><a class="line" href="group__modbus.html#gae4d34276c467bf54e0849a1098e56f8b">  532</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#gae4d34276c467bf54e0849a1098e56f8b">modbus_init_server</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface, <span class="keyword">struct</span> <a class="code hl_struct" href="structmodbus__iface__param.html">modbus_iface_param</a> param);</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span> </div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno"><a class="line" href="group__modbus.html#ga943eff819ecf1bc268714783047888ef">  542</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#ga943eff819ecf1bc268714783047888ef">modbus_init_client</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface, <span class="keyword">struct</span> <a class="code hl_struct" href="structmodbus__iface__param.html">modbus_iface_param</a> param);</div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span> </div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno"><a class="line" href="group__modbus.html#ga32a6319cc51eb5a98dcb58b3231b9d34">  553</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#ga32a6319cc51eb5a98dcb58b3231b9d34">modbus_disable</a>(<span class="keyword">const</span> uint8_t iface);</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span> </div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno"><a class="line" href="group__modbus.html#ga6d40e9eda6b8ead6d071d4192ffe489b">  563</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#ga6d40e9eda6b8ead6d071d4192ffe489b">modbus_raw_submit_rx</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmodbus__adu.html">modbus_adu</a> *adu);</div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span> </div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno"><a class="line" href="group__modbus.html#ga8fdae6a92e27a845296c9d8ce4b8078e">  572</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__modbus.html#ga8fdae6a92e27a845296c9d8ce4b8078e">modbus_raw_put_header</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmodbus__adu.html">modbus_adu</a> *adu, uint8_t *header);</div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span> </div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno"><a class="line" href="group__modbus.html#ga333072d3536d7b6f0680ceecc2c5bddf">  580</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__modbus.html#ga333072d3536d7b6f0680ceecc2c5bddf">modbus_raw_get_header</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmodbus__adu.html">modbus_adu</a> *adu, <span class="keyword">const</span> uint8_t *header);</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span> </div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno"><a class="line" href="group__modbus.html#gad250c40ba13a7d8c9189de17d1fd31aa">  589</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__modbus.html#gad250c40ba13a7d8c9189de17d1fd31aa">modbus_raw_set_server_failure</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmodbus__adu.html">modbus_adu</a> *adu);</div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span> </div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno"><a class="line" href="group__modbus.html#ga7aa5dfd6e457980e9e9b8a77810ec31e">  603</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#ga7aa5dfd6e457980e9e9b8a77810ec31e">modbus_raw_backend_txn</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface, <span class="keyword">struct</span> <a class="code hl_struct" href="structmodbus__adu.html">modbus_adu</a> *adu);</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span> </div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno"><a class="line" href="group__modbus.html#gacd88a4f35a13cc6864654927296803c4">  621</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__modbus.html#gacd88a4f35a13cc6864654927296803c4">modbus_register_user_fc</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iface, <span class="keyword">struct</span> modbus_custom_fc *custom_fc);</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span> </div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>}</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span> </div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_MODBUS_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__modbus_html_ga05b118dc87ebe3739cac4e9572104ffb"><div class="ttname"><a href="group__modbus.html#ga05b118dc87ebe3739cac4e9572104ffb">modbus_read_coils</a></div><div class="ttdeci">int modbus_read_coils(const int iface, const uint8_t unit_id, const uint16_t start_addr, uint8_t *const coil_tbl, const uint16_t num_coils)</div><div class="ttdoc">Coil read (FC01)</div></div>
+<div class="ttc" id="agroup__modbus_html_ga2a7ba41a2fb7f6bf5194c02dcab07ae3"><div class="ttname"><a href="group__modbus.html#ga2a7ba41a2fb7f6bf5194c02dcab07ae3">modbus_custom_cb_t</a></div><div class="ttdeci">bool(* modbus_custom_cb_t)(const int iface, const struct modbus_adu *const rx_adu, struct modbus_adu *const tx_adu, uint8_t *const excep_code, void *const user_data)</div><div class="ttdoc">Custom function code handler function signature.</div><div class="ttdef"><b>Definição</b> modbus.h:424</div></div>
+<div class="ttc" id="agroup__modbus_html_ga32a6319cc51eb5a98dcb58b3231b9d34"><div class="ttname"><a href="group__modbus.html#ga32a6319cc51eb5a98dcb58b3231b9d34">modbus_disable</a></div><div class="ttdeci">int modbus_disable(const uint8_t iface)</div><div class="ttdoc">Disable Modbus Interface.</div></div>
+<div class="ttc" id="agroup__modbus_html_ga333072d3536d7b6f0680ceecc2c5bddf"><div class="ttname"><a href="group__modbus.html#ga333072d3536d7b6f0680ceecc2c5bddf">modbus_raw_get_header</a></div><div class="ttdeci">void modbus_raw_get_header(struct modbus_adu *adu, const uint8_t *header)</div><div class="ttdoc">Get MBAP header from a buffer.</div></div>
+<div class="ttc" id="agroup__modbus_html_ga4bd8913e1c77a1e4b19585caa9f77c2e"><div class="ttname"><a href="group__modbus.html#ga4bd8913e1c77a1e4b19585caa9f77c2e">modbus_mode</a></div><div class="ttdeci">modbus_mode</div><div class="ttdoc">Modbus interface mode.</div><div class="ttdef"><b>Definição</b> modbus.h:457</div></div>
+<div class="ttc" id="agroup__modbus_html_ga5ff31ca21cf2d1b081d172228d6c2154"><div class="ttname"><a href="group__modbus.html#ga5ff31ca21cf2d1b081d172228d6c2154">modbus_read_input_regs</a></div><div class="ttdeci">int modbus_read_input_regs(const int iface, const uint8_t unit_id, const uint16_t start_addr, uint16_t *const reg_buf, const uint16_t num_regs)</div><div class="ttdoc">Read input registers (FC04)</div></div>
+<div class="ttc" id="agroup__modbus_html_ga6d40e9eda6b8ead6d071d4192ffe489b"><div class="ttname"><a href="group__modbus.html#ga6d40e9eda6b8ead6d071d4192ffe489b">modbus_raw_submit_rx</a></div><div class="ttdeci">int modbus_raw_submit_rx(const int iface, const struct modbus_adu *adu)</div><div class="ttdoc">Submit raw ADU.</div></div>
+<div class="ttc" id="agroup__modbus_html_ga6d74be1fffb9d5697fe5708827aa7ef1"><div class="ttname"><a href="group__modbus.html#ga6d74be1fffb9d5697fe5708827aa7ef1">modbus_raw_cb_t</a></div><div class="ttdeci">int(* modbus_raw_cb_t)(const int iface, const struct modbus_adu *adu, void *user_data)</div><div class="ttdoc">ADU raw callback function signature.</div><div class="ttdef"><b>Definição</b> modbus.h:400</div></div>
+<div class="ttc" id="agroup__modbus_html_ga762da245db3ca4f60fb3aa6c5783c73d"><div class="ttname"><a href="group__modbus.html#ga762da245db3ca4f60fb3aa6c5783c73d">modbus_write_holding_regs_fp</a></div><div class="ttdeci">int modbus_write_holding_regs_fp(const int iface, const uint8_t unit_id, const uint16_t start_addr, float *const reg_buf, const uint16_t num_regs)</div><div class="ttdoc">Write floating-point holding registers (FC16)</div></div>
+<div class="ttc" id="agroup__modbus_html_ga7aa5dfd6e457980e9e9b8a77810ec31e"><div class="ttname"><a href="group__modbus.html#ga7aa5dfd6e457980e9e9b8a77810ec31e">modbus_raw_backend_txn</a></div><div class="ttdeci">int modbus_raw_backend_txn(const int iface, struct modbus_adu *adu)</div><div class="ttdoc">Use interface as backend to send and receive ADU.</div></div>
+<div class="ttc" id="agroup__modbus_html_ga7d7221b32fbf2395e69e25ef2dbaa036"><div class="ttname"><a href="group__modbus.html#ga7d7221b32fbf2395e69e25ef2dbaa036">modbus_read_holding_regs</a></div><div class="ttdeci">int modbus_read_holding_regs(const int iface, const uint8_t unit_id, const uint16_t start_addr, uint16_t *const reg_buf, const uint16_t num_regs)</div><div class="ttdoc">Read holding registers (FC03)</div></div>
+<div class="ttc" id="agroup__modbus_html_ga8fdae6a92e27a845296c9d8ce4b8078e"><div class="ttname"><a href="group__modbus.html#ga8fdae6a92e27a845296c9d8ce4b8078e">modbus_raw_put_header</a></div><div class="ttdeci">void modbus_raw_put_header(const struct modbus_adu *adu, uint8_t *header)</div><div class="ttdoc">Put MBAP header into a buffer.</div></div>
+<div class="ttc" id="agroup__modbus_html_ga921fd6036ff1b8a416dc02e30bb6e653"><div class="ttname"><a href="group__modbus.html#ga921fd6036ff1b8a416dc02e30bb6e653">modbus_read_dinputs</a></div><div class="ttdeci">int modbus_read_dinputs(const int iface, const uint8_t unit_id, const uint16_t start_addr, uint8_t *const di_tbl, const uint16_t num_di)</div><div class="ttdoc">Read discrete inputs (FC02)</div></div>
+<div class="ttc" id="agroup__modbus_html_ga943eff819ecf1bc268714783047888ef"><div class="ttname"><a href="group__modbus.html#ga943eff819ecf1bc268714783047888ef">modbus_init_client</a></div><div class="ttdeci">int modbus_init_client(const int iface, struct modbus_iface_param param)</div><div class="ttdoc">Configure Modbus Interface as raw ADU client.</div></div>
+<div class="ttc" id="agroup__modbus_html_ga9a8ae6fb4b1aee398f5b19f074d07ea9"><div class="ttname"><a href="group__modbus.html#ga9a8ae6fb4b1aee398f5b19f074d07ea9">modbus_read_holding_regs_fp</a></div><div class="ttdeci">int modbus_read_holding_regs_fp(const int iface, const uint8_t unit_id, const uint16_t start_addr, float *const reg_buf, const uint16_t num_regs)</div><div class="ttdoc">Read floating-point holding registers (FC03)</div></div>
+<div class="ttc" id="agroup__modbus_html_gaa17880a268d6b3b9553de835c800af27"><div class="ttname"><a href="group__modbus.html#gaa17880a268d6b3b9553de835c800af27">modbus_iface_get_by_name</a></div><div class="ttdeci">int modbus_iface_get_by_name(const char *iface_name)</div><div class="ttdoc">Get Modbus interface index according to interface name.</div></div>
+<div class="ttc" id="agroup__modbus_html_gac0fa22cd0d1fa861fdbc04b65ea60d7e"><div class="ttname"><a href="group__modbus.html#gac0fa22cd0d1fa861fdbc04b65ea60d7e">modbus_write_coils</a></div><div class="ttdeci">int modbus_write_coils(const int iface, const uint8_t unit_id, const uint16_t start_addr, uint8_t *const coil_tbl, const uint16_t num_coils)</div><div class="ttdoc">Write coils (FC15)</div></div>
+<div class="ttc" id="agroup__modbus_html_gac924251f66ca6f357d8b7d90075df210"><div class="ttname"><a href="group__modbus.html#gac924251f66ca6f357d8b7d90075df210">modbus_request_diagnostic</a></div><div class="ttdeci">int modbus_request_diagnostic(const int iface, const uint8_t unit_id, const uint16_t sfunc, const uint16_t data, uint16_t *const data_out)</div><div class="ttdoc">Read diagnostic (FC08)</div></div>
+<div class="ttc" id="agroup__modbus_html_gaccac4f72b5d66a5a2e6c444dda251c41"><div class="ttname"><a href="group__modbus.html#gaccac4f72b5d66a5a2e6c444dda251c41">modbus_write_coil</a></div><div class="ttdeci">int modbus_write_coil(const int iface, const uint8_t unit_id, const uint16_t coil_addr, const bool coil_state)</div><div class="ttdoc">Write single coil (FC05)</div></div>
+<div class="ttc" id="agroup__modbus_html_gacd88a4f35a13cc6864654927296803c4"><div class="ttname"><a href="group__modbus.html#gacd88a4f35a13cc6864654927296803c4">modbus_register_user_fc</a></div><div class="ttdeci">int modbus_register_user_fc(const int iface, struct modbus_custom_fc *custom_fc)</div><div class="ttdoc">Register a user-defined function code handler.</div></div>
+<div class="ttc" id="agroup__modbus_html_gad250c40ba13a7d8c9189de17d1fd31aa"><div class="ttname"><a href="group__modbus.html#gad250c40ba13a7d8c9189de17d1fd31aa">modbus_raw_set_server_failure</a></div><div class="ttdeci">void modbus_raw_set_server_failure(struct modbus_adu *adu)</div><div class="ttdoc">Set Server Device Failure exception.</div></div>
+<div class="ttc" id="agroup__modbus_html_gadc8273292e0efc8c0d65c00eea7a22c5"><div class="ttname"><a href="group__modbus.html#gadc8273292e0efc8c0d65c00eea7a22c5">modbus_write_holding_regs</a></div><div class="ttdeci">int modbus_write_holding_regs(const int iface, const uint8_t unit_id, const uint16_t start_addr, uint16_t *const reg_buf, const uint16_t num_regs)</div><div class="ttdoc">Write holding registers (FC16)</div></div>
+<div class="ttc" id="agroup__modbus_html_gae4d34276c467bf54e0849a1098e56f8b"><div class="ttname"><a href="group__modbus.html#gae4d34276c467bf54e0849a1098e56f8b">modbus_init_server</a></div><div class="ttdeci">int modbus_init_server(const int iface, struct modbus_iface_param param)</div><div class="ttdoc">Configure Modbus Interface as raw ADU server.</div></div>
+<div class="ttc" id="agroup__modbus_html_gaf06d2553af8b8e9ab58f54b8b7e2055b"><div class="ttname"><a href="group__modbus.html#gaf06d2553af8b8e9ab58f54b8b7e2055b">modbus_write_holding_reg</a></div><div class="ttdeci">int modbus_write_holding_reg(const int iface, const uint8_t unit_id, const uint16_t start_addr, const uint16_t reg_val)</div><div class="ttdoc">Write single holding register (FC06)</div></div>
+<div class="ttc" id="agroup__modbus_html_gga4bd8913e1c77a1e4b19585caa9f77c2ea4d05b2cfd56ccf15eb1d8c7bb71071ec"><div class="ttname"><a href="group__modbus.html#gga4bd8913e1c77a1e4b19585caa9f77c2ea4d05b2cfd56ccf15eb1d8c7bb71071ec">MODBUS_MODE_RAW</a></div><div class="ttdeci">@ MODBUS_MODE_RAW</div><div class="ttdef"><b>Definição</b> modbus.h:463</div></div>
+<div class="ttc" id="agroup__modbus_html_gga4bd8913e1c77a1e4b19585caa9f77c2ea52033dc2ef37fc286a590b1f97d946ef"><div class="ttname"><a href="group__modbus.html#gga4bd8913e1c77a1e4b19585caa9f77c2ea52033dc2ef37fc286a590b1f97d946ef">MODBUS_MODE_RTU</a></div><div class="ttdeci">@ MODBUS_MODE_RTU</div><div class="ttdef"><b>Definição</b> modbus.h:459</div></div>
+<div class="ttc" id="agroup__modbus_html_gga4bd8913e1c77a1e4b19585caa9f77c2eafdf029741cc1bdecb2cb9baf4f06732a"><div class="ttname"><a href="group__modbus.html#gga4bd8913e1c77a1e4b19585caa9f77c2eafdf029741cc1bdecb2cb9baf4f06732a">MODBUS_MODE_ASCII</a></div><div class="ttdeci">@ MODBUS_MODE_ASCII</div><div class="ttdef"><b>Definição</b> modbus.h:461</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="agroup__uart__interface_html_gab2ab6aacb6e3c43bb26d4274157e5711"><div class="ttname"><a href="group__uart__interface.html#gab2ab6aacb6e3c43bb26d4274157e5711">uart_config_parity</a></div><div class="ttdeci">uart_config_parity</div><div class="ttdoc">Parity modes.</div><div class="ttdef"><b>Definição</b> uart.h:77</div></div>
+<div class="ttc" id="agroup__uart__interface_html_gafc1aecb863e2456d73b78a49fcbad72e"><div class="ttname"><a href="group__uart__interface.html#gafc1aecb863e2456d73b78a49fcbad72e">uart_config_stop_bits</a></div><div class="ttdeci">uart_config_stop_bits</div><div class="ttdoc">Number of stop bits.</div><div class="ttdef"><b>Definição</b> uart.h:86</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2uart_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2uart_8h.html">uart.h</a></div><div class="ttdoc">Public APIs for UART drivers.</div></div>
+<div class="ttc" id="aslist_8h_html"><div class="ttname"><a href="slist_8h.html">slist.h</a></div></div>
+<div class="ttc" id="astructmodbus__adu_html"><div class="ttname"><a href="structmodbus__adu.html">modbus_adu</a></div><div class="ttdoc">Frame struct used internally and for raw ADU support.</div><div class="ttdef"><b>Definição</b> modbus.h:63</div></div>
+<div class="ttc" id="astructmodbus__adu_html_a015e7b842349dc5567cc51cbf1f87420"><div class="ttname"><a href="structmodbus__adu.html#a015e7b842349dc5567cc51cbf1f87420">modbus_adu::fc</a></div><div class="ttdeci">uint8_t fc</div><div class="ttdef"><b>Definição</b> modbus.h:73</div></div>
+<div class="ttc" id="astructmodbus__adu_html_a04f0aa95985cc491649ba47f8ba064c8"><div class="ttname"><a href="structmodbus__adu.html#a04f0aa95985cc491649ba47f8ba064c8">modbus_adu::trans_id</a></div><div class="ttdeci">uint16_t trans_id</div><div class="ttdef"><b>Definição</b> modbus.h:65</div></div>
+<div class="ttc" id="astructmodbus__adu_html_a78b8008e05c8d588d0ecba71e432d14e"><div class="ttname"><a href="structmodbus__adu.html#a78b8008e05c8d588d0ecba71e432d14e">modbus_adu::crc</a></div><div class="ttdeci">uint16_t crc</div><div class="ttdef"><b>Definição</b> modbus.h:77</div></div>
+<div class="ttc" id="astructmodbus__adu_html_a7e94e4a0557717445ab2d791f8a97b7b"><div class="ttname"><a href="structmodbus__adu.html#a7e94e4a0557717445ab2d791f8a97b7b">modbus_adu::data</a></div><div class="ttdeci">uint8_t data[CONFIG_MODBUS_BUFFER_SIZE - 4]</div><div class="ttdef"><b>Definição</b> modbus.h:75</div></div>
+<div class="ttc" id="astructmodbus__adu_html_aa33f175677a0100c1f8a84a72c5ca247"><div class="ttname"><a href="structmodbus__adu.html#aa33f175677a0100c1f8a84a72c5ca247">modbus_adu::length</a></div><div class="ttdeci">uint16_t length</div><div class="ttdef"><b>Definição</b> modbus.h:69</div></div>
+<div class="ttc" id="astructmodbus__adu_html_ab1fc3e76f3f406c8a0715055088d290d"><div class="ttname"><a href="structmodbus__adu.html#ab1fc3e76f3f406c8a0715055088d290d">modbus_adu::unit_id</a></div><div class="ttdeci">uint8_t unit_id</div><div class="ttdef"><b>Definição</b> modbus.h:71</div></div>
+<div class="ttc" id="astructmodbus__adu_html_ae0422aacfe323ce6ca83069a54315fa0"><div class="ttname"><a href="structmodbus__adu.html#ae0422aacfe323ce6ca83069a54315fa0">modbus_adu::proto_id</a></div><div class="ttdeci">uint16_t proto_id</div><div class="ttdef"><b>Definição</b> modbus.h:67</div></div>
+<div class="ttc" id="astructmodbus__iface__param_html"><div class="ttname"><a href="structmodbus__iface__param.html">modbus_iface_param</a></div><div class="ttdoc">User parameter structure to configure Modbus interface as client or server.</div><div class="ttdef"><b>Definição</b> modbus.h:506</div></div>
+<div class="ttc" id="astructmodbus__iface__param_html_a7726b39e43e660adb63e24b4cf2e7ab7"><div class="ttname"><a href="structmodbus__iface__param.html#a7726b39e43e660adb63e24b4cf2e7ab7">modbus_iface_param::rx_timeout</a></div><div class="ttdeci">uint32_t rx_timeout</div><div class="ttdef"><b>Definição</b> modbus.h:514</div></div>
+<div class="ttc" id="astructmodbus__iface__param_html_ae73f218d8810afb0c2efbf865ba8b3ba"><div class="ttname"><a href="structmodbus__iface__param.html#ae73f218d8810afb0c2efbf865ba8b3ba">modbus_iface_param::mode</a></div><div class="ttdeci">enum modbus_mode mode</div><div class="ttdef"><b>Definição</b> modbus.h:508</div></div>
+<div class="ttc" id="astructmodbus__raw__cb_html"><div class="ttname"><a href="structmodbus__raw__cb.html">modbus_raw_cb</a></div><div class="ttdef"><b>Definição</b> modbus.h:497</div></div>
+<div class="ttc" id="astructmodbus__serial__param_html"><div class="ttname"><a href="structmodbus__serial__param.html">modbus_serial_param</a></div><div class="ttdoc">Modbus serial line parameter.</div><div class="ttdef"><b>Definição</b> modbus.h:469</div></div>
+<div class="ttc" id="astructmodbus__serial__param_html_a337a18f3ad923bf758cb432b9a2d8ada"><div class="ttname"><a href="structmodbus__serial__param.html#a337a18f3ad923bf758cb432b9a2d8ada">modbus_serial_param::parity</a></div><div class="ttdeci">enum uart_config_parity parity</div><div class="ttdef"><b>Definição</b> modbus.h:477</div></div>
+<div class="ttc" id="astructmodbus__serial__param_html_a6f5819e3fbaf756f9150fdff431196c4"><div class="ttname"><a href="structmodbus__serial__param.html#a6f5819e3fbaf756f9150fdff431196c4">modbus_serial_param::stop_bits_client</a></div><div class="ttdeci">enum uart_config_stop_bits stop_bits_client</div><div class="ttdef"><b>Definição</b> modbus.h:484</div></div>
+<div class="ttc" id="astructmodbus__serial__param_html_af3989f5e20eb96080d456114ef4d86e5"><div class="ttname"><a href="structmodbus__serial__param.html#af3989f5e20eb96080d456114ef4d86e5">modbus_serial_param::baud</a></div><div class="ttdeci">uint32_t baud</div><div class="ttdef"><b>Definição</b> modbus.h:471</div></div>
+<div class="ttc" id="astructmodbus__server__param_html"><div class="ttname"><a href="structmodbus__server__param.html">modbus_server_param</a></div><div class="ttdoc">Modbus server parameter.</div><div class="ttdef"><b>Definição</b> modbus.h:490</div></div>
+<div class="ttc" id="astructmodbus__server__param_html_a323a3a9be08f3c77df9f06b135f7f379"><div class="ttname"><a href="structmodbus__server__param.html#a323a3a9be08f3c77df9f06b135f7f379">modbus_server_param::unit_id</a></div><div class="ttdeci">uint8_t unit_id</div><div class="ttdef"><b>Definição</b> modbus.h:494</div></div>
+<div class="ttc" id="astructmodbus__server__param_html_ad8f72ea4e7dbbd81e23415e25b7d94be"><div class="ttname"><a href="structmodbus__server__param.html#ad8f72ea4e7dbbd81e23415e25b7d94be">modbus_server_param::user_cb</a></div><div class="ttdeci">struct modbus_user_callbacks * user_cb</div><div class="ttdef"><b>Definição</b> modbus.h:492</div></div>
+<div class="ttc" id="astructmodbus__user__callbacks_html"><div class="ttname"><a href="structmodbus__user__callbacks.html">modbus_user_callbacks</a></div><div class="ttdef"><b>Definição</b> modbus.h:350</div></div>
+<div class="ttc" id="astructmodbus__user__callbacks_html_a0dad31490d8b5d454f06a8b7805a09fd"><div class="ttname"><a href="structmodbus__user__callbacks.html#a0dad31490d8b5d454f06a8b7805a09fd">modbus_user_callbacks::coil_wr</a></div><div class="ttdeci">int(* coil_wr)(uint16_t addr, bool state)</div><div class="ttdef"><b>Definição</b> modbus.h:355</div></div>
+<div class="ttc" id="astructmodbus__user__callbacks_html_a333b5781c35e781e7021f53d5a357482"><div class="ttname"><a href="structmodbus__user__callbacks.html#a333b5781c35e781e7021f53d5a357482">modbus_user_callbacks::holding_reg_wr_fp</a></div><div class="ttdeci">int(* holding_reg_wr_fp)(uint16_t addr, float reg)</div><div class="ttdef"><b>Definição</b> modbus.h:376</div></div>
+<div class="ttc" id="astructmodbus__user__callbacks_html_a3353b3aa0ec073fb9031a5c151e9995b"><div class="ttname"><a href="structmodbus__user__callbacks.html#a3353b3aa0ec073fb9031a5c151e9995b">modbus_user_callbacks::coil_rd</a></div><div class="ttdeci">int(* coil_rd)(uint16_t addr, bool *state)</div><div class="ttdef"><b>Definição</b> modbus.h:352</div></div>
+<div class="ttc" id="astructmodbus__user__callbacks_html_a4ca1ed4bfc93b36d939f847d7ac9f8da"><div class="ttname"><a href="structmodbus__user__callbacks.html#a4ca1ed4bfc93b36d939f847d7ac9f8da">modbus_user_callbacks::holding_reg_wr</a></div><div class="ttdeci">int(* holding_reg_wr)(uint16_t addr, uint16_t reg)</div><div class="ttdef"><b>Definição</b> modbus.h:370</div></div>
+<div class="ttc" id="astructmodbus__user__callbacks_html_a821e0aacd7c90eff5e7c0047cc88a855"><div class="ttname"><a href="structmodbus__user__callbacks.html#a821e0aacd7c90eff5e7c0047cc88a855">modbus_user_callbacks::holding_reg_rd_fp</a></div><div class="ttdeci">int(* holding_reg_rd_fp)(uint16_t addr, float *reg)</div><div class="ttdef"><b>Definição</b> modbus.h:373</div></div>
+<div class="ttc" id="astructmodbus__user__callbacks_html_a91a9270bd945935b74c6f5e021429d42"><div class="ttname"><a href="structmodbus__user__callbacks.html#a91a9270bd945935b74c6f5e021429d42">modbus_user_callbacks::input_reg_rd</a></div><div class="ttdeci">int(* input_reg_rd)(uint16_t addr, uint16_t *reg)</div><div class="ttdef"><b>Definição</b> modbus.h:361</div></div>
+<div class="ttc" id="astructmodbus__user__callbacks_html_aa6fd8fc2663c6a982ec17a162ae56961"><div class="ttname"><a href="structmodbus__user__callbacks.html#aa6fd8fc2663c6a982ec17a162ae56961">modbus_user_callbacks::discrete_input_rd</a></div><div class="ttdeci">int(* discrete_input_rd)(uint16_t addr, bool *state)</div><div class="ttdef"><b>Definição</b> modbus.h:358</div></div>
+<div class="ttc" id="astructmodbus__user__callbacks_html_acf5fe90fab9765bd83d1ab2075d073a2"><div class="ttname"><a href="structmodbus__user__callbacks.html#acf5fe90fab9765bd83d1ab2075d073a2">modbus_user_callbacks::holding_reg_rd</a></div><div class="ttdeci">int(* holding_reg_rd)(uint16_t addr, uint16_t *reg)</div><div class="ttdef"><b>Definição</b> modbus.h:367</div></div>
+<div class="ttc" id="astructmodbus__user__callbacks_html_ae315e76c3ceefbd65ef8cea500b43df5"><div class="ttname"><a href="structmodbus__user__callbacks.html#ae315e76c3ceefbd65ef8cea500b43df5">modbus_user_callbacks::input_reg_rd_fp</a></div><div class="ttdeci">int(* input_reg_rd_fp)(uint16_t addr, float *reg)</div><div class="ttdef"><b>Definição</b> modbus.h:364</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

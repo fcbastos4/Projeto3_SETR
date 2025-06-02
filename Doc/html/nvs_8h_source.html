@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/fs/nvs.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_073a8270037451a35a5f51a062cbcd1c.html">fs</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">nvs.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*  NVS: non volatile storage in flash</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2018 Laczen</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_FS_NVS_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_FS_NVS_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="toolchain_8h.html">zephyr/toolchain.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="};">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structnvs__fs.html">   37</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnvs__fs.html">nvs_fs</a> {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structnvs__fs.html#a793b43b069d5e7a42963d84423ab5717">   39</a></span>    off_t <a class="code hl_variable" href="structnvs__fs.html#a793b43b069d5e7a42963d84423ab5717">offset</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structnvs__fs.html#aba5caa7709d58fa018cbb91db085f140">   45</a></span>    uint32_t <a class="code hl_variable" href="structnvs__fs.html#aba5caa7709d58fa018cbb91db085f140">ate_wra</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structnvs__fs.html#ac6bc3719e803f27fc20de5ebc63d7707">   47</a></span>    uint32_t <a class="code hl_variable" href="structnvs__fs.html#ac6bc3719e803f27fc20de5ebc63d7707">data_wra</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structnvs__fs.html#a036af291edc8d389b56fcb532e6738df">   49</a></span>    uint16_t <a class="code hl_variable" href="structnvs__fs.html#a036af291edc8d389b56fcb532e6738df">sector_size</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structnvs__fs.html#abf8ffaea29e3357ca6e897902fd49a63">   51</a></span>    uint16_t <a class="code hl_variable" href="structnvs__fs.html#abf8ffaea29e3357ca6e897902fd49a63">sector_count</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structnvs__fs.html#a2a167bd6a1698d2070dbe65b669ba0f4">   53</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structnvs__fs.html#a2a167bd6a1698d2070dbe65b669ba0f4">ready</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structnvs__fs.html#a6f49bb17819e3b78e0b3c1a1bc578f09">   55</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__mutex.html">k_mutex</a> <a class="code hl_variable" href="structnvs__fs.html#a6f49bb17819e3b78e0b3c1a1bc578f09">nvs_lock</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structnvs__fs.html#a02381974223dfbd22fe50b2cfecb7da2">   57</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_variable" href="structnvs__fs.html#a02381974223dfbd22fe50b2cfecb7da2">flash_device</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structnvs__fs.html#a34f769be6fed7c81254501af207147df">   59</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structflash__parameters.html">flash_parameters</a> *<a class="code hl_variable" href="structnvs__fs.html#a34f769be6fed7c81254501af207147df">flash_parameters</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#if CONFIG_NVS_LOOKUP_CACHE</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    uint32_t lookup_cache[CONFIG_NVS_LOOKUP_CACHE_SIZE];</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>};</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="group__nvs__high__level__api.html#gab932ea2d6e933825c2378bef8c30b065">   83</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__nvs__high__level__api.html#gab932ea2d6e933825c2378bef8c30b065">nvs_mount</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnvs__fs.html">nvs_fs</a> *fs);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="group__nvs__high__level__api.html#ga42ee9fd0d98f89dcabc5888f8b4600f0">   92</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__nvs__high__level__api.html#ga42ee9fd0d98f89dcabc5888f8b4600f0">nvs_clear</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnvs__fs.html">nvs_fs</a> *fs);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="group__nvs__high__level__api.html#ga34d40e9f63ba514d7915b72c4fef0b82">  111</a></span>ssize_t <a class="code hl_function" href="group__nvs__high__level__api.html#ga34d40e9f63ba514d7915b72c4fef0b82">nvs_write</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnvs__fs.html">nvs_fs</a> *fs, uint16_t <span class="keywordtype">id</span>, <span class="keyword">const</span> <span class="keywordtype">void</span> *data, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="group__nvs__high__level__api.html#ga5fd4175a4976e6d3ee8621ed95e0ee9e">  121</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__nvs__high__level__api.html#ga5fd4175a4976e6d3ee8621ed95e0ee9e">nvs_delete</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnvs__fs.html">nvs_fs</a> *fs, uint16_t <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="group__nvs__high__level__api.html#ga341fd2ad029709cbb6eafde1ae88603f">  136</a></span>ssize_t <a class="code hl_function" href="group__nvs__high__level__api.html#ga341fd2ad029709cbb6eafde1ae88603f">nvs_read</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnvs__fs.html">nvs_fs</a> *fs, uint16_t <span class="keywordtype">id</span>, <span class="keywordtype">void</span> *data, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="group__nvs__high__level__api.html#ga8e525038e353045ad6cd90607e887b0d">  152</a></span>ssize_t <a class="code hl_function" href="group__nvs__high__level__api.html#ga8e525038e353045ad6cd90607e887b0d">nvs_read_hist</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnvs__fs.html">nvs_fs</a> *fs, uint16_t <span class="keywordtype">id</span>, <span class="keywordtype">void</span> *data, <span class="keywordtype">size_t</span> len, uint16_t cnt);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="group__nvs__high__level__api.html#ga37e5a55f0b9209c7c0c95db9e1e84715">  163</a></span>ssize_t <a class="code hl_function" href="group__nvs__high__level__api.html#ga37e5a55f0b9209c7c0c95db9e1e84715">nvs_calc_free_space</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnvs__fs.html">nvs_fs</a> *fs);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>}</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_FS_NVS_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__nvs__high__level__api_html_ga341fd2ad029709cbb6eafde1ae88603f"><div class="ttname"><a href="group__nvs__high__level__api.html#ga341fd2ad029709cbb6eafde1ae88603f">nvs_read</a></div><div class="ttdeci">ssize_t nvs_read(struct nvs_fs *fs, uint16_t id, void *data, size_t len)</div><div class="ttdoc">Read an entry from the file system.</div></div>
+<div class="ttc" id="agroup__nvs__high__level__api_html_ga34d40e9f63ba514d7915b72c4fef0b82"><div class="ttname"><a href="group__nvs__high__level__api.html#ga34d40e9f63ba514d7915b72c4fef0b82">nvs_write</a></div><div class="ttdeci">ssize_t nvs_write(struct nvs_fs *fs, uint16_t id, const void *data, size_t len)</div><div class="ttdoc">Write an entry to the file system.</div></div>
+<div class="ttc" id="agroup__nvs__high__level__api_html_ga37e5a55f0b9209c7c0c95db9e1e84715"><div class="ttname"><a href="group__nvs__high__level__api.html#ga37e5a55f0b9209c7c0c95db9e1e84715">nvs_calc_free_space</a></div><div class="ttdeci">ssize_t nvs_calc_free_space(struct nvs_fs *fs)</div><div class="ttdoc">Calculate the available free space in the file system.</div></div>
+<div class="ttc" id="agroup__nvs__high__level__api_html_ga42ee9fd0d98f89dcabc5888f8b4600f0"><div class="ttname"><a href="group__nvs__high__level__api.html#ga42ee9fd0d98f89dcabc5888f8b4600f0">nvs_clear</a></div><div class="ttdeci">int nvs_clear(struct nvs_fs *fs)</div><div class="ttdoc">Clear the NVS file system from flash.</div></div>
+<div class="ttc" id="agroup__nvs__high__level__api_html_ga5fd4175a4976e6d3ee8621ed95e0ee9e"><div class="ttname"><a href="group__nvs__high__level__api.html#ga5fd4175a4976e6d3ee8621ed95e0ee9e">nvs_delete</a></div><div class="ttdeci">int nvs_delete(struct nvs_fs *fs, uint16_t id)</div><div class="ttdoc">Delete an entry from the file system.</div></div>
+<div class="ttc" id="agroup__nvs__high__level__api_html_ga8e525038e353045ad6cd90607e887b0d"><div class="ttname"><a href="group__nvs__high__level__api.html#ga8e525038e353045ad6cd90607e887b0d">nvs_read_hist</a></div><div class="ttdeci">ssize_t nvs_read_hist(struct nvs_fs *fs, uint16_t id, void *data, size_t len, uint16_t cnt)</div><div class="ttdoc">Read a history entry from the file system.</div></div>
+<div class="ttc" id="agroup__nvs__high__level__api_html_gab932ea2d6e933825c2378bef8c30b065"><div class="ttname"><a href="group__nvs__high__level__api.html#gab932ea2d6e933825c2378bef8c30b065">nvs_mount</a></div><div class="ttdeci">int nvs_mount(struct nvs_fs *fs)</div><div class="ttdoc">Mount an NVS file system onto the flash device specified in fs.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructflash__parameters_html"><div class="ttname"><a href="structflash__parameters.html">flash_parameters</a></div><div class="ttdef"><b>Definição</b> flash.h:57</div></div>
+<div class="ttc" id="astructk__mutex_html"><div class="ttname"><a href="structk__mutex.html">k_mutex</a></div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:31</div></div>
+<div class="ttc" id="astructnvs__fs_html"><div class="ttname"><a href="structnvs__fs.html">nvs_fs</a></div><div class="ttdoc">Non-volatile Storage File system structure.</div><div class="ttdef"><b>Definição</b> nvs.h:37</div></div>
+<div class="ttc" id="astructnvs__fs_html_a02381974223dfbd22fe50b2cfecb7da2"><div class="ttname"><a href="structnvs__fs.html#a02381974223dfbd22fe50b2cfecb7da2">nvs_fs::flash_device</a></div><div class="ttdeci">const struct device * flash_device</div><div class="ttdef"><b>Definição</b> nvs.h:57</div></div>
+<div class="ttc" id="astructnvs__fs_html_a036af291edc8d389b56fcb532e6738df"><div class="ttname"><a href="structnvs__fs.html#a036af291edc8d389b56fcb532e6738df">nvs_fs::sector_size</a></div><div class="ttdeci">uint16_t sector_size</div><div class="ttdef"><b>Definição</b> nvs.h:49</div></div>
+<div class="ttc" id="astructnvs__fs_html_a2a167bd6a1698d2070dbe65b669ba0f4"><div class="ttname"><a href="structnvs__fs.html#a2a167bd6a1698d2070dbe65b669ba0f4">nvs_fs::ready</a></div><div class="ttdeci">bool ready</div><div class="ttdef"><b>Definição</b> nvs.h:53</div></div>
+<div class="ttc" id="astructnvs__fs_html_a34f769be6fed7c81254501af207147df"><div class="ttname"><a href="structnvs__fs.html#a34f769be6fed7c81254501af207147df">nvs_fs::flash_parameters</a></div><div class="ttdeci">const struct flash_parameters * flash_parameters</div><div class="ttdef"><b>Definição</b> nvs.h:59</div></div>
+<div class="ttc" id="astructnvs__fs_html_a6f49bb17819e3b78e0b3c1a1bc578f09"><div class="ttname"><a href="structnvs__fs.html#a6f49bb17819e3b78e0b3c1a1bc578f09">nvs_fs::nvs_lock</a></div><div class="ttdeci">struct k_mutex nvs_lock</div><div class="ttdef"><b>Definição</b> nvs.h:55</div></div>
+<div class="ttc" id="astructnvs__fs_html_a793b43b069d5e7a42963d84423ab5717"><div class="ttname"><a href="structnvs__fs.html#a793b43b069d5e7a42963d84423ab5717">nvs_fs::offset</a></div><div class="ttdeci">off_t offset</div><div class="ttdef"><b>Definição</b> nvs.h:39</div></div>
+<div class="ttc" id="astructnvs__fs_html_aba5caa7709d58fa018cbb91db085f140"><div class="ttname"><a href="structnvs__fs.html#aba5caa7709d58fa018cbb91db085f140">nvs_fs::ate_wra</a></div><div class="ttdeci">uint32_t ate_wra</div><div class="ttdef"><b>Definição</b> nvs.h:45</div></div>
+<div class="ttc" id="astructnvs__fs_html_abf8ffaea29e3357ca6e897902fd49a63"><div class="ttname"><a href="structnvs__fs.html#abf8ffaea29e3357ca6e897902fd49a63">nvs_fs::sector_count</a></div><div class="ttdeci">uint16_t sector_count</div><div class="ttdef"><b>Definição</b> nvs.h:51</div></div>
+<div class="ttc" id="astructnvs__fs_html_ac6bc3719e803f27fc20de5ebc63d7707"><div class="ttname"><a href="structnvs__fs.html#ac6bc3719e803f27fc20de5ebc63d7707">nvs_fs::data_wra</a></div><div class="ttdeci">uint32_t data_wra</div><div class="ttdef"><b>Definição</b> nvs.h:47</div></div>
+<div class="ttc" id="atoolchain_8h_html"><div class="ttname"><a href="toolchain_8h.html">toolchain.h</a></div><div class="ttdoc">Macros to abstract toolchain specific capabilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

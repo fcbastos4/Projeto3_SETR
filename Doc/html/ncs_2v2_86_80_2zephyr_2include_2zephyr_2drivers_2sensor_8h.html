@@ -1,0 +1,525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Referência ao ficheiro /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/sensor.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Estruturas de Dados</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Definições de tipos</a> &#124;
+<a href="#enum-members">Enumerações</a> &#124;
+<a href="#func-members">Funções</a> &#124;
+<a href="#var-members">Variáveis</a>  </div>
+  <div class="headertitle"><div class="title">Referência ao ficheiro sensor.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Public APIs for the sensor driver.  
+<a href="#details">Mais...</a></p>
+<div class="textblock"><code>#include &lt;errno.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;zephyr/device.h&gt;</code><br />
+<code>#include &lt;zephyr/drivers/sensor_data_types.h&gt;</code><br />
+<code>#include &lt;zephyr/dsp/types.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2rtio_2rtio_8h_source.html">zephyr/rtio/rtio.h</a>&gt;</code><br />
+<code>#include &lt;zephyr/sys/iterable_sections.h&gt;</code><br />
+<code>#include &lt;zephyr/types.h&gt;</code><br />
+<code>#include &lt;syscalls/sensor.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Diagrama de dependências de inclusão para sensor.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h__incl.png" border="0" usemap="#a_2home_2francisco_2ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h" alt=""/></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Este grafo mostra quais são os ficheiros que incluem directamente ou indirectamente este ficheiro:</div>
+<div class="dyncontent">
+<div class="center"><img src="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h__dep__incl.png" border="0" usemap="#a_2home_2francisco_2ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8hdep" alt=""/></div>
+</div>
+</div>
+<p><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h_source.html">Ir para o código fonte deste ficheiro.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Estruturas de Dados</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__value.html">sensor_value</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Representation of a sensor readout value.  <a href="structsensor__value.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__trigger.html">sensor_trigger</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sensor trigger spec.  <a href="structsensor__trigger.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__decoder__api.html">sensor_decoder_api</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes a single raw data buffer.  <a href="structsensor__decoder__api.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__decode__context.html">sensor_decode_context</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for iterating over the data frames via the <a class="el" href="structsensor__decoder__api.html" title="Decodes a single raw data buffer.">sensor_decoder_api</a>.  <a href="structsensor__decode__context.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__stream__trigger.html">sensor_stream_trigger</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__read__config.html">sensor_read_config</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__driver__api.html">sensor_driver_api</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gac537a3a64a2a67e1ae2bb70ada147b00" id="r_gac537a3a64a2a67e1ae2bb70ada147b00"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#gac537a3a64a2a67e1ae2bb70ada147b00">SENSOR_DECODE_CONTEXT_INIT</a>(decoder_,  buffer_,  channel_,  channel_index_)</td></tr>
+<tr class="memdesc:gac537a3a64a2a67e1ae2bb70ada147b00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a <a class="el" href="structsensor__decode__context.html" title="Used for iterating over the data frames via the sensor_decoder_api.">sensor_decode_context</a>.  <br /></td></tr>
+<tr class="separator:gac537a3a64a2a67e1ae2bb70ada147b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b7b0db322121d220b126d2b5bb7eb73" id="r_ga9b7b0db322121d220b126d2b5bb7eb73"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#ga9b7b0db322121d220b126d2b5bb7eb73">SENSOR_STREAM_TRIGGER_PREP</a>(_trigger,  _opt)</td></tr>
+<tr class="separator:ga9b7b0db322121d220b126d2b5bb7eb73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0cc1ee28114557e9e00257071c7dfa9f" id="r_ga0cc1ee28114557e9e00257071c7dfa9f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#ga0cc1ee28114557e9e00257071c7dfa9f">SENSOR_DT_READ_IODEV</a>(name,  dt_node, ...)</td></tr>
+<tr class="memdesc:ga0cc1ee28114557e9e00257071c7dfa9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a reading instance of a sensor.  <br /></td></tr>
+<tr class="separator:ga0cc1ee28114557e9e00257071c7dfa9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga35211c4d908a26f98b1f8d925a9b1374" id="r_ga35211c4d908a26f98b1f8d925a9b1374"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#ga35211c4d908a26f98b1f8d925a9b1374">SENSOR_DT_STREAM_IODEV</a>(name,  dt_node, ...)</td></tr>
+<tr class="memdesc:ga35211c4d908a26f98b1f8d925a9b1374"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a stream instance of a sensor.  <br /></td></tr>
+<tr class="separator:ga35211c4d908a26f98b1f8d925a9b1374"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0066e049c4f084305ca2b978e5c7454d" id="r_ga0066e049c4f084305ca2b978e5c7454d"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SENSOR_G</b>&#160;&#160;&#160;9806650LL</td></tr>
+<tr class="memdesc:ga0066e049c4f084305ca2b978e5c7454d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of gravitational constant in micro m/s^2. <br /></td></tr>
+<tr class="separator:ga0066e049c4f084305ca2b978e5c7454d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6ebdc2f6942334de3cc248a53db7df33" id="r_ga6ebdc2f6942334de3cc248a53db7df33"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SENSOR_PI</b>&#160;&#160;&#160;3141592LL</td></tr>
+<tr class="memdesc:ga6ebdc2f6942334de3cc248a53db7df33"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of constant PI in micros. <br /></td></tr>
+<tr class="separator:ga6ebdc2f6942334de3cc248a53db7df33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7467206da76c3704d2e491d1b1c0973a" id="r_ga7467206da76c3704d2e491d1b1c0973a"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SENSOR_INFO_DEFINE</b>(name, ...)</td></tr>
+<tr class="separator:ga7467206da76c3704d2e491d1b1c0973a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9e6acbc580e9223bfb86ee8919cdc778" id="r_ga9e6acbc580e9223bfb86ee8919cdc778"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SENSOR_INFO_DT_DEFINE</b>(node_id)</td></tr>
+<tr class="separator:ga9e6acbc580e9223bfb86ee8919cdc778"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa67ca630e3931a0c3821ba438c86690c" id="r_gaa67ca630e3931a0c3821ba438c86690c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#gaa67ca630e3931a0c3821ba438c86690c">SENSOR_DEVICE_DT_DEFINE</a>(node_id,  init_fn,  <a class="el" href="structpm__device.html">pm_device</a>,  data_ptr,  cfg_ptr,  level,  prio,  api_ptr, ...)</td></tr>
+<tr class="memdesc:gaa67ca630e3931a0c3821ba438c86690c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <a class="el" href="group__device__model.html#gac49e26fbe91a14307d5ea08d41561dd1" title="Create a device object from a devicetree node identifier and set it up for boot time initialization.">DEVICE_DT_DEFINE()</a> with sensor specifics.  <br /></td></tr>
+<tr class="separator:gaa67ca630e3931a0c3821ba438c86690c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga284dc3b9018f14161dc0a2b6bed9a37e" id="r_ga284dc3b9018f14161dc0a2b6bed9a37e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#ga284dc3b9018f14161dc0a2b6bed9a37e">SENSOR_DEVICE_DT_INST_DEFINE</a>(inst, ...)&#160;&#160;&#160;	<a class="el" href="group__sensor__interface.html#gaa67ca630e3931a0c3821ba438c86690c">SENSOR_DEVICE_DT_DEFINE</a>(<a class="el" href="group__devicetree-inst.html#ga219f413efba2f4c0151468b9a25a8dc1">DT_DRV_INST</a>(inst), __VA_ARGS__)</td></tr>
+<tr class="memdesc:ga284dc3b9018f14161dc0a2b6bed9a37e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <a class="el" href="group__sensor__interface.html#gaa67ca630e3931a0c3821ba438c86690c" title="Like DEVICE_DT_DEFINE() with sensor specifics.">SENSOR_DEVICE_DT_DEFINE()</a> for an instance of a DT_DRV_COMPAT compatible.  <br /></td></tr>
+<tr class="separator:ga284dc3b9018f14161dc0a2b6bed9a37e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d3434eb5860c2f2e6fe36b4de920c8c" id="r_a8d3434eb5860c2f2e6fe36b4de920c8c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h.html#a8d3434eb5860c2f2e6fe36b4de920c8c">SENSOR_DECODER_NAME</a>()&#160;&#160;&#160;UTIL_CAT(DT_DRV_COMPAT, __decoder_api)</td></tr>
+<tr class="memdesc:a8d3434eb5860c2f2e6fe36b4de920c8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the decoder name for the current driver.  <br /></td></tr>
+<tr class="separator:a8d3434eb5860c2f2e6fe36b4de920c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82da2432981c593ed638a21c51fb0873" id="r_a82da2432981c593ed638a21c51fb0873"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h.html#a82da2432981c593ed638a21c51fb0873">SENSOR_DECODER_DT_GET</a>(node_id)&#160;&#160;&#160;	&amp;UTIL_CAT(<a class="el" href="group__devicetree-generic-prop.html#ga583e5e2e3c897f1095073e6192061d3a">DT_STRING_TOKEN_BY_IDX</a>(node_id, compatible, 0), __decoder_api)</td></tr>
+<tr class="memdesc:a82da2432981c593ed638a21c51fb0873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statically get the decoder for a given node.  <br /></td></tr>
+<tr class="separator:a82da2432981c593ed638a21c51fb0873"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78ad4b76be4a6f5347ba82b7db43b7c2" id="r_a78ad4b76be4a6f5347ba82b7db43b7c2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h.html#a78ad4b76be4a6f5347ba82b7db43b7c2">SENSOR_DECODER_API_DT_DEFINE</a>()</td></tr>
+<tr class="memdesc:a78ad4b76be4a6f5347ba82b7db43b7c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a decoder API.  <br /></td></tr>
+<tr class="separator:a78ad4b76be4a6f5347ba82b7db43b7c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04ed7690e8fe215dc2b6cb75e7064586" id="r_a04ed7690e8fe215dc2b6cb75e7064586"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h.html#a04ed7690e8fe215dc2b6cb75e7064586">Z_MAYBE_SENSOR_DECODER_DECLARE_INTERNAL_IDX</a>(node_id,  prop,  idx)</td></tr>
+<tr class="separator:a04ed7690e8fe215dc2b6cb75e7064586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab44b1b7b7fcadea68f1d36127eb7d46f" id="r_ab44b1b7b7fcadea68f1d36127eb7d46f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h.html#ab44b1b7b7fcadea68f1d36127eb7d46f">Z_MAYBE_SENSOR_DECODER_DECLARE_INTERNAL</a>(node_id)</td></tr>
+<tr class="separator:ab44b1b7b7fcadea68f1d36127eb7d46f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Definições de tipos</h2></td></tr>
+<tr class="memitem:ga66f7113ea7209626e17883e9fcbe72b7" id="r_ga66f7113ea7209626e17883e9fcbe72b7"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#ga66f7113ea7209626e17883e9fcbe72b7">sensor_trigger_handler_t</a>) (const struct <a class="el" href="structdevice.html">device</a> *dev, const struct <a class="el" href="structsensor__trigger.html">sensor_trigger</a> *trigger)</td></tr>
+<tr class="memdesc:ga66f7113ea7209626e17883e9fcbe72b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback API upon firing of a trigger.  <br /></td></tr>
+<tr class="separator:ga66f7113ea7209626e17883e9fcbe72b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0ec8d3268962b051febedf98c4b8f616" id="r_ga0ec8d3268962b051febedf98c4b8f616"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#ga0ec8d3268962b051febedf98c4b8f616">sensor_attr_set_t</a>) (const struct <a class="el" href="structdevice.html">device</a> *dev, enum <a class="el" href="group__sensor__interface.html#gaaa1b502bc029b10d7b23b0a25ef4e934">sensor_channel</a> chan, enum <a class="el" href="group__sensor__interface.html#ga0dcb6842bc969492bd1c9eb49708940b">sensor_attribute</a> attr, const struct <a class="el" href="structsensor__value.html">sensor_value</a> *val)</td></tr>
+<tr class="memdesc:ga0ec8d3268962b051febedf98c4b8f616"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback API upon setting a sensor's attributes.  <br /></td></tr>
+<tr class="separator:ga0ec8d3268962b051febedf98c4b8f616"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4088d038e6dd9d9f41c47e0f5bc720fa" id="r_ga4088d038e6dd9d9f41c47e0f5bc720fa"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#ga4088d038e6dd9d9f41c47e0f5bc720fa">sensor_attr_get_t</a>) (const struct <a class="el" href="structdevice.html">device</a> *dev, enum <a class="el" href="group__sensor__interface.html#gaaa1b502bc029b10d7b23b0a25ef4e934">sensor_channel</a> chan, enum <a class="el" href="group__sensor__interface.html#ga0dcb6842bc969492bd1c9eb49708940b">sensor_attribute</a> attr, struct <a class="el" href="structsensor__value.html">sensor_value</a> *val)</td></tr>
+<tr class="memdesc:ga4088d038e6dd9d9f41c47e0f5bc720fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback API upon getting a sensor's attributes.  <br /></td></tr>
+<tr class="separator:ga4088d038e6dd9d9f41c47e0f5bc720fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabee4f73fdc39b40f6c607e58dcaf2a87" id="r_gabee4f73fdc39b40f6c607e58dcaf2a87"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#gabee4f73fdc39b40f6c607e58dcaf2a87">sensor_trigger_set_t</a>) (const struct <a class="el" href="structdevice.html">device</a> *dev, const struct <a class="el" href="structsensor__trigger.html">sensor_trigger</a> *trig, <a class="el" href="group__sensor__interface.html#ga66f7113ea7209626e17883e9fcbe72b7">sensor_trigger_handler_t</a> handler)</td></tr>
+<tr class="memdesc:gabee4f73fdc39b40f6c607e58dcaf2a87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback API for setting a sensor's trigger and handler.  <br /></td></tr>
+<tr class="separator:gabee4f73fdc39b40f6c607e58dcaf2a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga272df5be62808cf350f3dd25671bd222" id="r_ga272df5be62808cf350f3dd25671bd222"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#ga272df5be62808cf350f3dd25671bd222">sensor_sample_fetch_t</a>) (const struct <a class="el" href="structdevice.html">device</a> *dev, enum <a class="el" href="group__sensor__interface.html#gaaa1b502bc029b10d7b23b0a25ef4e934">sensor_channel</a> chan)</td></tr>
+<tr class="memdesc:ga272df5be62808cf350f3dd25671bd222"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback API for fetching data from a sensor.  <br /></td></tr>
+<tr class="separator:ga272df5be62808cf350f3dd25671bd222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab62a0c4d5cba677d35f7f53a727e6550" id="r_gab62a0c4d5cba677d35f7f53a727e6550"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#gab62a0c4d5cba677d35f7f53a727e6550">sensor_channel_get_t</a>) (const struct <a class="el" href="structdevice.html">device</a> *dev, enum <a class="el" href="group__sensor__interface.html#gaaa1b502bc029b10d7b23b0a25ef4e934">sensor_channel</a> chan, struct <a class="el" href="structsensor__value.html">sensor_value</a> *val)</td></tr>
+<tr class="memdesc:gab62a0c4d5cba677d35f7f53a727e6550"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback API for getting a reading from a sensor.  <br /></td></tr>
+<tr class="separator:gab62a0c4d5cba677d35f7f53a727e6550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaafaf34ee5bc642037bb531db2fa5ed25" id="r_gaafaf34ee5bc642037bb531db2fa5ed25"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#gaafaf34ee5bc642037bb531db2fa5ed25">sensor_get_decoder_t</a>) (const struct <a class="el" href="structdevice.html">device</a> *dev, const struct <a class="el" href="structsensor__decoder__api.html">sensor_decoder_api</a> **api)</td></tr>
+<tr class="memdesc:gaafaf34ee5bc642037bb531db2fa5ed25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the decoder associate with the given device.  <br /></td></tr>
+<tr class="separator:gaafaf34ee5bc642037bb531db2fa5ed25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab8e7a28e19d596ddcbefeb34d84a2b3c" id="r_gab8e7a28e19d596ddcbefeb34d84a2b3c"><td class="memItemLeft" align="right" valign="top">
+typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_submit_t</b>) (const struct <a class="el" href="structdevice.html">device</a> *sensor, struct <a class="el" href="structrtio__iodev__sqe.html">rtio_iodev_sqe</a> *sqe)</td></tr>
+<tr class="separator:gab8e7a28e19d596ddcbefeb34d84a2b3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerações</h2></td></tr>
+<tr class="memitem:gaaa1b502bc029b10d7b23b0a25ef4e934" id="r_gaaa1b502bc029b10d7b23b0a25ef4e934"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#gaaa1b502bc029b10d7b23b0a25ef4e934">sensor_channel</a> { <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934afa9238082f000350530ca77b2f513d4c">SENSOR_CHAN_ACCEL_X</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a61c145468f01916c1a547fb38a1be9a8">SENSOR_CHAN_ACCEL_Y</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a78e06bb48cfe06e42829816ad4cb5a0f">SENSOR_CHAN_ACCEL_Z</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a16c05784ae15a4952ea708c2f11a2ae9">SENSOR_CHAN_ACCEL_XYZ</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934ac5709b77f0eb69972ccc055f927e5015">SENSOR_CHAN_GYRO_X</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a4a9533172105fd2e55d96e0122a48847">SENSOR_CHAN_GYRO_Y</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a9b6b9d13cd8d82449823d65779a87a39">SENSOR_CHAN_GYRO_Z</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a1d36b89ab3761e9bc86effc839f8db0e">SENSOR_CHAN_GYRO_XYZ</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a171f37ba152d34f75ff745cb848b3240">SENSOR_CHAN_MAGN_X</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a2b4f1764f47428c528447347d7730942">SENSOR_CHAN_MAGN_Y</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a2a2115051ded019a57ece5a00f86ea61">SENSOR_CHAN_MAGN_Z</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a5d1f48466f6f600503af18427fa3da32">SENSOR_CHAN_MAGN_XYZ</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a0a8828f51fe15335ad857d136f197ee1">SENSOR_CHAN_DIE_TEMP</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a5bf9c4a677405c4a4df3bc3acd116c7c">SENSOR_CHAN_AMBIENT_TEMP</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a14cd68844542e23d1b641a2bc54132a9">SENSOR_CHAN_PRESS</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934abaec2c1347ef0035221dd4d9c34a4774">SENSOR_CHAN_PROX</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934ad08ddb6c9cd71c853a121f426fcea042">SENSOR_CHAN_HUMIDITY</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a6e91196c11d080c3f5df55fda190e19d">SENSOR_CHAN_LIGHT</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934ad725fe5778f000a17f93f83dab31132c">SENSOR_CHAN_IR</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934af22c8ef66f4871efe5a22863d7f434aa">SENSOR_CHAN_RED</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a216a3b2b77d7a92f94547aeb889ae378">SENSOR_CHAN_GREEN</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a6e66f95d73d05c2b3511e2db506844f5">SENSOR_CHAN_BLUE</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934af5ba63bfef1c64c8a96ae7fba4f35512">SENSOR_CHAN_ALTITUDE</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a08f0c21c33008292b0b58defe5c06815">SENSOR_CHAN_PM_1_0</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a3398fdc51964aa06c9a01096d2fac945">SENSOR_CHAN_PM_2_5</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934aa450541bde278aefcc9b53bd0826e225">SENSOR_CHAN_PM_10</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934ad46d1495990a86fa7e2ab5bbe5338e08">SENSOR_CHAN_DISTANCE</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a7a23e3e869c5e9a39f6a7bfa28737133">SENSOR_CHAN_CO2</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934affee34c60c95398b67ec59644d647f8e">SENSOR_CHAN_VOC</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934acf250a87d2d175f99179a5b54cb7ba01">SENSOR_CHAN_GAS_RES</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a69dd8a737a0cb6f03fa5f60c92840e6d">SENSOR_CHAN_VOLTAGE</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a1ea01c780995ad4539e9ffc2ca6102e9">SENSOR_CHAN_VSHUNT</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a1a001ba3ca5ad37308fb7be81f11c950">SENSOR_CHAN_CURRENT</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a33607371060fca93c3555e8e10d5b177">SENSOR_CHAN_POWER</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a34ba555026ff976881142512cc8a616b">SENSOR_CHAN_RESISTANCE</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a551ffe08a9b1206e3c051f207b92aabf">SENSOR_CHAN_ROTATION</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934aa00b7a857e33c925c910661a91389517">SENSOR_CHAN_POS_DX</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a974327ca88ea6d22731cd03afeacef76">SENSOR_CHAN_POS_DY</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934aeaf49aa075947a160f21ae19cf8c39b9">SENSOR_CHAN_POS_DZ</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a655a576a72cbd6641abc698a3f4304d1">SENSOR_CHAN_RPM</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934ab942649ce1507fb081a77b4bcfc1a57d">SENSOR_CHAN_GAUGE_VOLTAGE</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a4272c1256cde47006d424c5523d26bf8">SENSOR_CHAN_GAUGE_AVG_CURRENT</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a5e6b87cacfe3e4703b963a2177d35cc8">SENSOR_CHAN_GAUGE_STDBY_CURRENT</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a603335f6a91846c5089a2a541d9053cf">SENSOR_CHAN_GAUGE_MAX_LOAD_CURRENT</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a8cac65c812b3a1fcb55a53f18d827214">SENSOR_CHAN_GAUGE_TEMP</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a7d67d6842ee787fcc8a4d9ee2cbea139">SENSOR_CHAN_GAUGE_STATE_OF_CHARGE</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a54a6be68e09b9f8ca4d349e3d1445649">SENSOR_CHAN_GAUGE_FULL_CHARGE_CAPACITY</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934aaaea6433c82f7b563f86fa53c95ad0ad">SENSOR_CHAN_GAUGE_REMAINING_CHARGE_CAPACITY</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934af9b0ac69fd87a68e7e8d97e52b41304a">SENSOR_CHAN_GAUGE_NOM_AVAIL_CAPACITY</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a688287fa1587944424a2eda13b8d98e8">SENSOR_CHAN_GAUGE_FULL_AVAIL_CAPACITY</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934aa24f9e12f20a716dd152cf889cb51228">SENSOR_CHAN_GAUGE_AVG_POWER</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a0613c39397f06d11f4350f8cbcc24cf6">SENSOR_CHAN_GAUGE_STATE_OF_HEALTH</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934aa3755e9fcd8c90fef5185082edb29b65">SENSOR_CHAN_GAUGE_TIME_TO_EMPTY</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a14d4c802805e1e07c9b4e47ccaff0eeb">SENSOR_CHAN_GAUGE_TIME_TO_FULL</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a8834978858c2b62b5e923d06cfcb1a46">SENSOR_CHAN_GAUGE_CYCLE_COUNT</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a6f96ba4db6cf812b223f9a09f2a287d0">SENSOR_CHAN_GAUGE_DESIGN_VOLTAGE</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a2c33a7f11d5b3996e95167698a2056cf">SENSOR_CHAN_GAUGE_DESIRED_VOLTAGE</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934a4aa8bba1b260e1994542383d8e2e908f">SENSOR_CHAN_GAUGE_DESIRED_CHARGING_CURRENT</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934ab275027eb550b2b075c44917634eca2c">SENSOR_CHAN_ALL</a>
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934abb2893ccb71c9e1eeb155d7cbd539303">SENSOR_CHAN_COMMON_COUNT</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934ac1f260296289d93a13c5686ca11bdc12">SENSOR_CHAN_PRIV_START</a> = SENSOR_CHAN_COMMON_COUNT
+, <a class="el" href="group__sensor__interface.html#ggaaa1b502bc029b10d7b23b0a25ef4e934ad842035a01166417d90cd5d7630733b1">SENSOR_CHAN_MAX</a> = INT16_MAX
+<br />
+ }</td></tr>
+<tr class="memdesc:gaaa1b502bc029b10d7b23b0a25ef4e934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sensor channels.  <a href="group__sensor__interface.html#gaaa1b502bc029b10d7b23b0a25ef4e934">Mais...</a><br /></td></tr>
+<tr class="separator:gaaa1b502bc029b10d7b23b0a25ef4e934"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga08215279400e8c9eb05ce4e4f0898ffd" id="r_ga08215279400e8c9eb05ce4e4f0898ffd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#ga08215279400e8c9eb05ce4e4f0898ffd">sensor_trigger_type</a> { <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffdabf92b196394726ec90f1d61586a7f023">SENSOR_TRIG_TIMER</a>
+, <a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffdaf7c161e309c267a7dd6daf2ad176f44f">SENSOR_TRIG_DATA_READY</a>
+, <a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffda3bb90a3334bcf613c9efbdf2ed05f855">SENSOR_TRIG_DELTA</a>
+, <a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffda448226d83b28c2862c353a8cda7be0d5">SENSOR_TRIG_NEAR_FAR</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffda8f875f881b6540eebc28e3d6a7d46606">SENSOR_TRIG_THRESHOLD</a>
+, <a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffdae49a25e6400f0753f6bac8a7d136200d">SENSOR_TRIG_TAP</a>
+, <a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffdab95e52584a6bc3343181f495cd4cb2ef">SENSOR_TRIG_DOUBLE_TAP</a>
+, <a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffda4943ffb4afaf4cbae39e85693bd4374c">SENSOR_TRIG_FREEFALL</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffda7095387831b763b34171287945dae276">SENSOR_TRIG_MOTION</a>
+, <a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffda79e286ffced716e1076f56464ea47f5d">SENSOR_TRIG_STATIONARY</a>
+, <a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffdac5d67fb4fb6206465b1b01dc78245fe4">SENSOR_TRIG_FIFO_WATERMARK</a>
+, <a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffda66f913f8751a77a6c16745e329c7315c">SENSOR_TRIG_FIFO_FULL</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffda8d1f2621fad4fd685d56cca3f9b042f5">SENSOR_TRIG_COMMON_COUNT</a>
+, <a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffda5e1a94f21fee67ee98296153ea640921">SENSOR_TRIG_PRIV_START</a> = SENSOR_TRIG_COMMON_COUNT
+, <a class="el" href="group__sensor__interface.html#gga08215279400e8c9eb05ce4e4f0898ffda9de566f44de519f94c59c58df1efc4c4">SENSOR_TRIG_MAX</a> = INT16_MAX
+<br />
+ }</td></tr>
+<tr class="memdesc:ga08215279400e8c9eb05ce4e4f0898ffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sensor trigger types.  <a href="group__sensor__interface.html#ga08215279400e8c9eb05ce4e4f0898ffd">Mais...</a><br /></td></tr>
+<tr class="separator:ga08215279400e8c9eb05ce4e4f0898ffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0dcb6842bc969492bd1c9eb49708940b" id="r_ga0dcb6842bc969492bd1c9eb49708940b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#ga0dcb6842bc969492bd1c9eb49708940b">sensor_attribute</a> { <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940bacb07e3508ea5503dbcdceee3f17d2291">SENSOR_ATTR_SAMPLING_FREQUENCY</a>
+, <a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940baee644485ab5f64e7c5273bbe562deaaa">SENSOR_ATTR_LOWER_THRESH</a>
+, <a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940ba5af51bd0640a87a94476eee112a4460b">SENSOR_ATTR_UPPER_THRESH</a>
+, <a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940bac4538665a244cb7f18fc053c40134302">SENSOR_ATTR_SLOPE_TH</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940baf510b32b2e2395bbcf1c8fd7159ed2a1">SENSOR_ATTR_SLOPE_DUR</a>
+, <b>SENSOR_ATTR_HYSTERESIS</b>
+, <a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940ba3d32987f75284d80d3f64bf44f5c6ccd">SENSOR_ATTR_OVERSAMPLING</a>
+, <a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940bad30df3100fb6b285a6a786fdc77234d3">SENSOR_ATTR_FULL_SCALE</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940ba332935dcb6f7e228cb9c595a545079fd">SENSOR_ATTR_OFFSET</a>
+, <a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940ba3043381b539610a8b424f12d76474bdf">SENSOR_ATTR_CALIB_TARGET</a>
+, <a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940ba75cd3aca26859fd7c10c83d86e3471e9">SENSOR_ATTR_CONFIGURATION</a>
+, <a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940ba843d1e79573c634987e5e839ba9e965e">SENSOR_ATTR_CALIBRATION</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940ba1f8d2242fa9d63a13c6a48fe3a1cbe52">SENSOR_ATTR_FEATURE_MASK</a>
+, <a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940baaedf76e63224adc3fa266d35666e0a3a">SENSOR_ATTR_ALERT</a>
+, <a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940ba5a62ea6aa7e55efd62ab3f93dcb0593a">SENSOR_ATTR_FF_DUR</a>
+, <a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940ba3b0cf69c77de55c92129e212bf5b8ced">SENSOR_ATTR_BATCH_DURATION</a>
+, <br />
+&#160;&#160;<a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940ba99ceedef81217614ada0c8a469f91eb8">SENSOR_ATTR_COMMON_COUNT</a>
+, <a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940bafb4b5859bc369f817f60eaa161bcefc3">SENSOR_ATTR_PRIV_START</a> = SENSOR_ATTR_COMMON_COUNT
+, <a class="el" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940baf6bd0b33ca2117ef329692c291f6384b">SENSOR_ATTR_MAX</a> = INT16_MAX
+<br />
+ }</td></tr>
+<tr class="memdesc:ga0dcb6842bc969492bd1c9eb49708940b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sensor attribute types.  <a href="group__sensor__interface.html#ga0dcb6842bc969492bd1c9eb49708940b">Mais...</a><br /></td></tr>
+<tr class="separator:ga0dcb6842bc969492bd1c9eb49708940b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8613a20521a37d40fd7371dc63ba2dac" id="r_ga8613a20521a37d40fd7371dc63ba2dac"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#ga8613a20521a37d40fd7371dc63ba2dac">sensor_stream_data_opt</a> { <a class="el" href="group__sensor__interface.html#gga8613a20521a37d40fd7371dc63ba2daca2ba3554a08bf55b64da40900592be315">SENSOR_STREAM_DATA_INCLUDE</a> = 0
+, <a class="el" href="group__sensor__interface.html#gga8613a20521a37d40fd7371dc63ba2daca7e897c6d1428ff50f98140ed4cd4d35d">SENSOR_STREAM_DATA_NOP</a> = 1
+, <a class="el" href="group__sensor__interface.html#gga8613a20521a37d40fd7371dc63ba2dacaa13c6d3bae87c16f9cd89e0fe7144f8e">SENSOR_STREAM_DATA_DROP</a> = 2
+ }</td></tr>
+<tr class="memdesc:ga8613a20521a37d40fd7371dc63ba2dac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Options for what to do with the associated data when a trigger is consumed.  <a href="group__sensor__interface.html#ga8613a20521a37d40fd7371dc63ba2dac">Mais...</a><br /></td></tr>
+<tr class="separator:ga8613a20521a37d40fd7371dc63ba2dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:ga5d905ca03326972f3e08c92939c2a558" id="r_ga5d905ca03326972f3e08c92939c2a558"><td class="memItemLeft" align="right" valign="top">
+int&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_natively_supported_channel_size_info</b> (enum <a class="el" href="group__sensor__interface.html#gaaa1b502bc029b10d7b23b0a25ef4e934">sensor_channel</a> channel, size_t *base_size, size_t *frame_size)</td></tr>
+<tr class="separator:ga5d905ca03326972f3e08c92939c2a558"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf9b4845d12a306b1d0092a0370b9c8c7" id="r_gaf9b4845d12a306b1d0092a0370b9c8c7"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#gaf9b4845d12a306b1d0092a0370b9c8c7">sensor_attr_set</a> (const struct <a class="el" href="structdevice.html">device</a> *dev, enum <a class="el" href="group__sensor__interface.html#gaaa1b502bc029b10d7b23b0a25ef4e934">sensor_channel</a> chan, enum <a class="el" href="group__sensor__interface.html#ga0dcb6842bc969492bd1c9eb49708940b">sensor_attribute</a> attr, const struct <a class="el" href="structsensor__value.html">sensor_value</a> *val)</td></tr>
+<tr class="memdesc:gaf9b4845d12a306b1d0092a0370b9c8c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set an attribute for a sensor.  <br /></td></tr>
+<tr class="separator:gaf9b4845d12a306b1d0092a0370b9c8c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaba159314b0fc3f21688f3b126913ee55" id="r_gaba159314b0fc3f21688f3b126913ee55"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#gaba159314b0fc3f21688f3b126913ee55">sensor_attr_get</a> (const struct <a class="el" href="structdevice.html">device</a> *dev, enum <a class="el" href="group__sensor__interface.html#gaaa1b502bc029b10d7b23b0a25ef4e934">sensor_channel</a> chan, enum <a class="el" href="group__sensor__interface.html#ga0dcb6842bc969492bd1c9eb49708940b">sensor_attribute</a> attr, struct <a class="el" href="structsensor__value.html">sensor_value</a> *val)</td></tr>
+<tr class="memdesc:gaba159314b0fc3f21688f3b126913ee55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an attribute for a sensor.  <br /></td></tr>
+<tr class="separator:gaba159314b0fc3f21688f3b126913ee55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf1b1a234307a0bba1ba84fc139c2fd4c" id="r_gaf1b1a234307a0bba1ba84fc139c2fd4c"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#gaf1b1a234307a0bba1ba84fc139c2fd4c">sensor_sample_fetch</a> (const struct <a class="el" href="structdevice.html">device</a> *dev)</td></tr>
+<tr class="memdesc:gaf1b1a234307a0bba1ba84fc139c2fd4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch a sample from the sensor and store it in an internal driver buffer.  <br /></td></tr>
+<tr class="separator:gaf1b1a234307a0bba1ba84fc139c2fd4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga31b21f0aa0479b239971f1e5a47cd600" id="r_ga31b21f0aa0479b239971f1e5a47cd600"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#ga31b21f0aa0479b239971f1e5a47cd600">sensor_sample_fetch_chan</a> (const struct <a class="el" href="structdevice.html">device</a> *dev, enum <a class="el" href="group__sensor__interface.html#gaaa1b502bc029b10d7b23b0a25ef4e934">sensor_channel</a> type)</td></tr>
+<tr class="memdesc:ga31b21f0aa0479b239971f1e5a47cd600"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch a sample from the sensor and store it in an internal driver buffer.  <br /></td></tr>
+<tr class="separator:ga31b21f0aa0479b239971f1e5a47cd600"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga93a1ca63edda7f030648b3f8d6b7b87c" id="r_ga93a1ca63edda7f030648b3f8d6b7b87c"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sensor__interface.html#ga93a1ca63edda7f030648b3f8d6b7b87c">sensor_channel_get</a> (const struct <a class="el" href="structdevice.html">device</a> *dev, enum <a class="el" href="group__sensor__interface.html#gaaa1b502bc029b10d7b23b0a25ef4e934">sensor_channel</a> chan, struct <a class="el" href="structsensor__value.html">sensor_value</a> *val)</td></tr>
+<tr class="memdesc:ga93a1ca63edda7f030648b3f8d6b7b87c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a reading from a sensor device.  <br /></td></tr>
+<tr class="separator:ga93a1ca63edda7f030648b3f8d6b7b87c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variáveis</h2></td></tr>
+<tr class="memitem:gaca45b4c7123e47154c80058e19e5c097" id="r_gaca45b4c7123e47154c80058e19e5c097"><td class="memItemLeft" align="right" valign="top">
+const struct <a class="el" href="structsensor__decoder__api.html">sensor_decoder_api</a>&#160;</td><td class="memItemRight" valign="bottom"><b>__sensor_default_decoder</b></td></tr>
+<tr class="separator:gaca45b4c7123e47154c80058e19e5c097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8f5459a23481093e791bfe0d5827e4bb" id="r_ga8f5459a23481093e791bfe0d5827e4bb"><td class="memItemLeft" align="right" valign="top">
+const struct <a class="el" href="structrtio__iodev__api.html">rtio_iodev_api</a>&#160;</td><td class="memItemRight" valign="bottom"><b>__sensor_iodev_api</b></td></tr>
+<tr class="separator:ga8f5459a23481093e791bfe0d5827e4bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Public APIs for the sensor driver. </p>
+</div><h2 class="groupheader">Documentação das macros</h2>
+<a id="a78ad4b76be4a6f5347ba82b7db43b7c2" name="a78ad4b76be4a6f5347ba82b7db43b7c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78ad4b76be4a6f5347ba82b7db43b7c2">&#9670;&#160;</a></span>SENSOR_DECODER_API_DT_DEFINE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SENSOR_DECODER_API_DT_DEFINE</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">    <a class="code hl_define" href="group__sys-util.html#ga358bc3e7669c860a98839a51cd526b20">COND_CODE_1</a>(<a class="code hl_define" href="group__devicetree-generic-exist.html#ga916e11b66fdaab46e93c25241b62b52a">DT_HAS_COMPAT_STATUS_OKAY</a>(DT_DRV_COMPAT), (), (<span class="keyword">static</span>))                        \</div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_define" href="group__iterable__section__apis.html#ga9104f42cbe4a67a931bed7f7cc8f600f">STRUCT_SECTION_ITERABLE</a>(<a class="code hl_struct" href="structsensor__decoder__api.html">sensor_decoder_api</a>, <a class="code hl_define" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h.html#a8d3434eb5860c2f2e6fe36b4de920c8c">SENSOR_DECODER_NAME</a>())</div>
+<div class="ttc" id="agroup__devicetree-generic-exist_html_ga916e11b66fdaab46e93c25241b62b52a"><div class="ttname"><a href="group__devicetree-generic-exist.html#ga916e11b66fdaab46e93c25241b62b52a">DT_HAS_COMPAT_STATUS_OKAY</a></div><div class="ttdeci">#define DT_HAS_COMPAT_STATUS_OKAY(compat)</div><div class="ttdoc">Does the devicetree have a status okay node with a compatible?</div><div class="ttdef"><b>Definição</b> devicetree.h:3111</div></div>
+<div class="ttc" id="agroup__iterable__section__apis_html_ga9104f42cbe4a67a931bed7f7cc8f600f"><div class="ttname"><a href="group__iterable__section__apis.html#ga9104f42cbe4a67a931bed7f7cc8f600f">STRUCT_SECTION_ITERABLE</a></div><div class="ttdeci">#define STRUCT_SECTION_ITERABLE(struct_type, varname)</div><div class="ttdoc">Defines a new element for an iterable section.</div><div class="ttdef"><b>Definição</b> iterable_sections.h:216</div></div>
+<div class="ttc" id="agroup__sys-util_html_ga358bc3e7669c860a98839a51cd526b20"><div class="ttname"><a href="group__sys-util.html#ga358bc3e7669c860a98839a51cd526b20">COND_CODE_1</a></div><div class="ttdeci">#define COND_CODE_1(_flag, _if_1_code, _else_code)</div><div class="ttdoc">Insert code depending on whether _flag expands to 1 or not.</div><div class="ttdef"><b>Definição</b> util_macro.h:179</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h_html_a8d3434eb5860c2f2e6fe36b4de920c8c"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h.html#a8d3434eb5860c2f2e6fe36b4de920c8c">SENSOR_DECODER_NAME</a></div><div class="ttdeci">#define SENSOR_DECODER_NAME()</div><div class="ttdoc">Get the decoder name for the current driver.</div><div class="ttdef"><b>Definição</b> sensor.h:1365</div></div>
+<div class="ttc" id="astructsensor__decoder__api_html"><div class="ttname"><a href="structsensor__decoder__api.html">sensor_decoder_api</a></div><div class="ttdoc">Decodes a single raw data buffer.</div><div class="ttdef"><b>Definição</b> sensor.h:423</div></div>
+</div><!-- fragment -->
+<p>Define a decoder API. </p>
+<p>This macro should be created once per compatible string of a sensor and will create a statically referenceable decoder API.</p>
+<div class="fragment"><div class="line"><a class="code hl_define" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h.html#a78ad4b76be4a6f5347ba82b7db43b7c2">SENSOR_DECODER_API_DT_DEFINE</a>() = {</div>
+<div class="line">  .get_frame_count = my_driver_get_frame_count,</div>
+<div class="line">  .get_timestamp = my_driver_get_timestamp,</div>
+<div class="line">  .get_shift = my_driver_get_shift,</div>
+<div class="line">  .decode = my_driver_decode,</div>
+<div class="line">};</div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h_html_a78ad4b76be4a6f5347ba82b7db43b7c2"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h.html#a78ad4b76be4a6f5347ba82b7db43b7c2">SENSOR_DECODER_API_DT_DEFINE</a></div><div class="ttdeci">#define SENSOR_DECODER_API_DT_DEFINE()</div><div class="ttdoc">Define a decoder API.</div><div class="ttdef"><b>Definição</b> sensor.h:1392</div></div>
+</div><!-- fragment --> 
+</div>
+</div>
+<a id="a82da2432981c593ed638a21c51fb0873" name="a82da2432981c593ed638a21c51fb0873"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82da2432981c593ed638a21c51fb0873">&#9670;&#160;</a></span>SENSOR_DECODER_DT_GET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SENSOR_DECODER_DT_GET</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">node_id</td><td>)</td>
+          <td>&#160;&#160;&#160;	&amp;UTIL_CAT(<a class="el" href="group__devicetree-generic-prop.html#ga583e5e2e3c897f1095073e6192061d3a">DT_STRING_TOKEN_BY_IDX</a>(node_id, compatible, 0), __decoder_api)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Statically get the decoder for a given node. </p>
+<div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <a class="code hl_struct" href="structsensor__decoder__api.html">sensor_decoder_api</a> *decoder = <a class="code hl_define" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h.html#a82da2432981c593ed638a21c51fb0873">SENSOR_DECODER_DT_GET</a>(<a class="code hl_define" href="group__devicetree-generic-id.html#gaa49e19bbc39dc0d6f16b78a5d02482c9">DT_ALIAS</a>(accel));</div>
+<div class="ttc" id="agroup__devicetree-generic-id_html_gaa49e19bbc39dc0d6f16b78a5d02482c9"><div class="ttname"><a href="group__devicetree-generic-id.html#gaa49e19bbc39dc0d6f16b78a5d02482c9">DT_ALIAS</a></div><div class="ttdeci">#define DT_ALIAS(alias)</div><div class="ttdoc">Get a node identifier from /aliases.</div><div class="ttdef"><b>Definição</b> devicetree.h:238</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h_html_a82da2432981c593ed638a21c51fb0873"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h.html#a82da2432981c593ed638a21c51fb0873">SENSOR_DECODER_DT_GET</a></div><div class="ttdeci">#define SENSOR_DECODER_DT_GET(node_id)</div><div class="ttdoc">Statically get the decoder for a given node.</div><div class="ttdef"><b>Definição</b> sensor.h:1374</div></div>
+</div><!-- fragment --> 
+</div>
+</div>
+<a id="a8d3434eb5860c2f2e6fe36b4de920c8c" name="a8d3434eb5860c2f2e6fe36b4de920c8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d3434eb5860c2f2e6fe36b4de920c8c">&#9670;&#160;</a></span>SENSOR_DECODER_NAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SENSOR_DECODER_NAME</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;UTIL_CAT(DT_DRV_COMPAT, __decoder_api)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the decoder name for the current driver. </p>
+<p>This function depends on <code>DT_DRV_COMPAT</code> being defined. </p>
+
+</div>
+</div>
+<a id="ab44b1b7b7fcadea68f1d36127eb7d46f" name="ab44b1b7b7fcadea68f1d36127eb7d46f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab44b1b7b7fcadea68f1d36127eb7d46f">&#9670;&#160;</a></span>Z_MAYBE_SENSOR_DECODER_DECLARE_INTERNAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Z_MAYBE_SENSOR_DECODER_DECLARE_INTERNAL</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">node_id</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">    <a class="code hl_define" href="group__sys-util.html#ga358bc3e7669c860a98839a51cd526b20">COND_CODE_1</a>(<a class="code hl_define" href="group__devicetree-generic-exist.html#gacce67bf20541cd2d07d8540058964692">DT_NODE_HAS_PROP</a>(node_id, compatible),                                         \</div>
+<div class="line">            (<a class="code hl_define" href="group__devicetree-generic-foreach.html#ga118a0477ab297a1bda9e16acf556babc">DT_FOREACH_PROP_ELEM</a>(node_id, compatible,                                     \</div>
+<div class="line">                      Z_MAYBE_SENSOR_DECODER_DECLARE_INTERNAL_IDX)),           \</div>
+<div class="line">            ())</div>
+<div class="ttc" id="agroup__devicetree-generic-exist_html_gacce67bf20541cd2d07d8540058964692"><div class="ttname"><a href="group__devicetree-generic-exist.html#gacce67bf20541cd2d07d8540058964692">DT_NODE_HAS_PROP</a></div><div class="ttdeci">#define DT_NODE_HAS_PROP(node_id, prop)</div><div class="ttdoc">Does a devicetree node have a property?</div><div class="ttdef"><b>Definição</b> devicetree.h:3184</div></div>
+<div class="ttc" id="agroup__devicetree-generic-foreach_html_ga118a0477ab297a1bda9e16acf556babc"><div class="ttname"><a href="group__devicetree-generic-foreach.html#ga118a0477ab297a1bda9e16acf556babc">DT_FOREACH_PROP_ELEM</a></div><div class="ttdeci">#define DT_FOREACH_PROP_ELEM(node_id, prop, fn)</div><div class="ttdoc">Invokes fn for each element in the value of property prop.</div><div class="ttdef"><b>Definição</b> devicetree.h:2843</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a04ed7690e8fe215dc2b6cb75e7064586" name="a04ed7690e8fe215dc2b6cb75e7064586"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04ed7690e8fe215dc2b6cb75e7064586">&#9670;&#160;</a></span>Z_MAYBE_SENSOR_DECODER_DECLARE_INTERNAL_IDX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Z_MAYBE_SENSOR_DECODER_DECLARE_INTERNAL_IDX</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">node_id, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">prop, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">idx&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">    <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structsensor__decoder__api.html">sensor_decoder_api</a> UTIL_CAT(                                           \</div>
+<div class="line">        <a class="code hl_define" href="group__devicetree-generic-prop.html#ga583e5e2e3c897f1095073e6192061d3a">DT_STRING_TOKEN_BY_IDX</a>(node_id, prop, idx), __decoder_api);</div>
+<div class="ttc" id="agroup__devicetree-generic-prop_html_ga583e5e2e3c897f1095073e6192061d3a"><div class="ttname"><a href="group__devicetree-generic-prop.html#ga583e5e2e3c897f1095073e6192061d3a">DT_STRING_TOKEN_BY_IDX</a></div><div class="ttdeci">#define DT_STRING_TOKEN_BY_IDX(node_id, prop, idx)</div><div class="ttdoc">Get an element out of a string-array property as a token.</div><div class="ttdef"><b>Definição</b> devicetree.h:1128</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

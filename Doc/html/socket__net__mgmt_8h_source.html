@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/net/socket_net_mgmt.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_e87a4ba8d8d39971580ab67f13eff592.html">net</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">socket_net_mgmt.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="socket__net__mgmt_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Copyright (c) 2019 Intel Corporation</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_NET_SOCKET_NET_MGMT_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define ZEPHYR_INCLUDE_NET_SOCKET_NET_MGMT_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__ip_8h.html">zephyr/net/net_ip.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__if_8h.html">zephyr/net/net_if.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="net__mgmt_8h.html">zephyr/net/net_mgmt.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">/* Protocols of the protocol family PF_NET_MGMT */</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#define NET_MGMT_EVENT_PROTO 0x01</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">/* Socket NET_MGMT options */</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#define SOL_NET_MGMT_BASE 100</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#define SOL_NET_MGMT_RAW (SOL_NET_MGMT_BASE + 1)</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="};">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structsockaddr__nm.html">   57</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structsockaddr__nm.html">sockaddr_nm</a> {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structsockaddr__nm.html#af6d556718e643c9083c790e1e797eedf">   59</a></span>    <a class="code hl_typedef" href="group__ip__4__6.html#ga2d9e094abb99ebd0874373edf1c45eda">sa_family_t</a> <a class="code hl_variable" href="structsockaddr__nm.html#af6d556718e643c9083c790e1e797eedf">nm_family</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structsockaddr__nm.html#a79727f415488b6e548c48a556692a330">   62</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structsockaddr__nm.html#a79727f415488b6e548c48a556692a330">nm_ifindex</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structsockaddr__nm.html#ad3299cf4df378026cc40ee10f5abcba1">   67</a></span>    uintptr_t <a class="code hl_variable" href="structsockaddr__nm.html#ad3299cf4df378026cc40ee10f5abcba1">nm_pid</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structsockaddr__nm.html#ac46ee5b5a9b3a04a53a8ae6e0f640a83">   70</a></span>    uint32_t <a class="code hl_variable" href="structsockaddr__nm.html#ac46ee5b5a9b3a04a53a8ae6e0f640a83">nm_mask</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>};</div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="foldopen" id="foldopen00077" data-start="{" data-end="};">
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structnet__mgmt__msghdr.html">   77</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__mgmt__msghdr.html">net_mgmt_msghdr</a> {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structnet__mgmt__msghdr.html#a6867379b1ab13c504ee9884cc386c05e">   79</a></span>    uint32_t <a class="code hl_variable" href="structnet__mgmt__msghdr.html#a6867379b1ab13c504ee9884cc386c05e">nm_msg_version</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structnet__mgmt__msghdr.html#ad7f4caefa6b3d8d93a480cd8210d7a4d">   82</a></span>    uint32_t <a class="code hl_variable" href="structnet__mgmt__msghdr.html#ad7f4caefa6b3d8d93a480cd8210d7a4d">nm_msg_len</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structnet__mgmt__msghdr.html#a09e1bc6f985b8fcc3397aa447b1d8e94">   85</a></span>    uint8_t <a class="code hl_variable" href="structnet__mgmt__msghdr.html#a09e1bc6f985b8fcc3397aa447b1d8e94">nm_msg</a>[];</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="group__socket__net__mgmt.html#ga8ae9629a7869b3214f8b2f72aef545ee">   97</a></span><span class="preprocessor">#define NET_MGMT_SOCKET_VERSION_1 0x0001</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>}</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_NET_SOCKET_NET_MGMT_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__ip__4__6_html_ga2d9e094abb99ebd0874373edf1c45eda"><div class="ttname"><a href="group__ip__4__6.html#ga2d9e094abb99ebd0874373edf1c45eda">sa_family_t</a></div><div class="ttdeci">unsigned short int sa_family_t</div><div class="ttdef"><b>Definição</b> net_ip.h:164</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__if_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__if_8h.html">net_if.h</a></div><div class="ttdoc">Public API for network interface.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__ip_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__ip_8h.html">net_ip.h</a></div><div class="ttdoc">IPv6 and IPv4 definitions.</div></div>
+<div class="ttc" id="anet__mgmt_8h_html"><div class="ttname"><a href="net__mgmt_8h.html">net_mgmt.h</a></div><div class="ttdoc">Network Management API public header.</div></div>
+<div class="ttc" id="astructnet__mgmt__msghdr_html"><div class="ttname"><a href="structnet__mgmt__msghdr.html">net_mgmt_msghdr</a></div><div class="ttdef"><b>Definição</b> socket_net_mgmt.h:77</div></div>
+<div class="ttc" id="astructnet__mgmt__msghdr_html_a09e1bc6f985b8fcc3397aa447b1d8e94"><div class="ttname"><a href="structnet__mgmt__msghdr.html#a09e1bc6f985b8fcc3397aa447b1d8e94">net_mgmt_msghdr::nm_msg</a></div><div class="ttdeci">uint8_t nm_msg[]</div><div class="ttdef"><b>Definição</b> socket_net_mgmt.h:85</div></div>
+<div class="ttc" id="astructnet__mgmt__msghdr_html_a6867379b1ab13c504ee9884cc386c05e"><div class="ttname"><a href="structnet__mgmt__msghdr.html#a6867379b1ab13c504ee9884cc386c05e">net_mgmt_msghdr::nm_msg_version</a></div><div class="ttdeci">uint32_t nm_msg_version</div><div class="ttdef"><b>Definição</b> socket_net_mgmt.h:79</div></div>
+<div class="ttc" id="astructnet__mgmt__msghdr_html_ad7f4caefa6b3d8d93a480cd8210d7a4d"><div class="ttname"><a href="structnet__mgmt__msghdr.html#ad7f4caefa6b3d8d93a480cd8210d7a4d">net_mgmt_msghdr::nm_msg_len</a></div><div class="ttdeci">uint32_t nm_msg_len</div><div class="ttdef"><b>Definição</b> socket_net_mgmt.h:82</div></div>
+<div class="ttc" id="astructsockaddr__nm_html"><div class="ttname"><a href="structsockaddr__nm.html">sockaddr_nm</a></div><div class="ttdef"><b>Definição</b> socket_net_mgmt.h:57</div></div>
+<div class="ttc" id="astructsockaddr__nm_html_a79727f415488b6e548c48a556692a330"><div class="ttname"><a href="structsockaddr__nm.html#a79727f415488b6e548c48a556692a330">sockaddr_nm::nm_ifindex</a></div><div class="ttdeci">int nm_ifindex</div><div class="ttdef"><b>Definição</b> socket_net_mgmt.h:62</div></div>
+<div class="ttc" id="astructsockaddr__nm_html_ac46ee5b5a9b3a04a53a8ae6e0f640a83"><div class="ttname"><a href="structsockaddr__nm.html#ac46ee5b5a9b3a04a53a8ae6e0f640a83">sockaddr_nm::nm_mask</a></div><div class="ttdeci">uint32_t nm_mask</div><div class="ttdef"><b>Definição</b> socket_net_mgmt.h:70</div></div>
+<div class="ttc" id="astructsockaddr__nm_html_ad3299cf4df378026cc40ee10f5abcba1"><div class="ttname"><a href="structsockaddr__nm.html#ad3299cf4df378026cc40ee10f5abcba1">sockaddr_nm::nm_pid</a></div><div class="ttdeci">uintptr_t nm_pid</div><div class="ttdef"><b>Definição</b> socket_net_mgmt.h:67</div></div>
+<div class="ttc" id="astructsockaddr__nm_html_af6d556718e643c9083c790e1e797eedf"><div class="ttname"><a href="structsockaddr__nm.html#af6d556718e643c9083c790e1e797eedf">sockaddr_nm::nm_family</a></div><div class="ttdeci">sa_family_t nm_family</div><div class="ttdef"><b>Definição</b> socket_net_mgmt.h:59</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

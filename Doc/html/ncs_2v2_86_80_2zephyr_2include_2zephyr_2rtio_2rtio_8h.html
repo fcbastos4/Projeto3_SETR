@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Referência ao ficheiro /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/rtio/rtio.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_c79ace8185f528c97c071f1f63239f77.html">rtio</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Estruturas de Dados</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Definições de tipos</a> &#124;
+<a href="#func-members">Funções</a> &#124;
+<a href="#var-members">Variáveis</a>  </div>
+  <div class="headertitle"><div class="title">Referência ao ficheiro rtio.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Real-Time IO device API for moving bytes with low effort.  
+<a href="#details">Mais...</a></p>
+<div class="textblock"><code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;zephyr/app_memory/app_memdomain.h&gt;</code><br />
+<code>#include &lt;zephyr/device.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_source.html">zephyr/kernel.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="rtio__mpsc_8h_source.html">zephyr/rtio/rtio_mpsc.h</a>&gt;</code><br />
+<code>#include &lt;zephyr/sys/__assert.h&gt;</code><br />
+<code>#include &lt;zephyr/sys/atomic.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="mem__blocks_8h_source.html">zephyr/sys/mem_blocks.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="util_8h_source.html">zephyr/sys/util.h</a>&gt;</code><br />
+<code>#include &lt;zephyr/sys/iterable_sections.h&gt;</code><br />
+<code>#include &lt;syscalls/rtio.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Diagrama de dependências de inclusão para rtio.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="ncs_2v2_86_80_2zephyr_2include_2zephyr_2rtio_2rtio_8h__incl.png" border="0" usemap="#a_2home_2francisco_2ncs_2v2_86_80_2zephyr_2include_2zephyr_2rtio_2rtio_8h" alt=""/></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Este grafo mostra quais são os ficheiros que incluem directamente ou indirectamente este ficheiro:</div>
+<div class="dyncontent">
+<div class="center"><img src="ncs_2v2_86_80_2zephyr_2include_2zephyr_2rtio_2rtio_8h__dep__incl.png" border="0" usemap="#a_2home_2francisco_2ncs_2v2_86_80_2zephyr_2include_2zephyr_2rtio_2rtio_8hdep" alt=""/></div>
+</div>
+</div>
+<p><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2rtio_2rtio_8h_source.html">Ir para o código fonte deste ficheiro.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Estruturas de Dados</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtio__sqe.html">rtio_sqe</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A submission queue event.  <a href="structrtio__sqe.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtio__cqe.html">rtio_cqe</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A completion queue event.  <a href="structrtio__cqe.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtio__sqe__pool.html">rtio_sqe_pool</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtio__cqe__pool.html">rtio_cqe_pool</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtio.html">rtio</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTIO context containing what can be viewed as a pair of queues.  <a href="structrtio.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtio__iodev__sqe.html">rtio_iodev_sqe</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mempool block index for a given pointer.  <a href="structrtio__iodev__sqe.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtio__iodev__api.html">rtio_iodev_api</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">API that an RTIO IO device should implement.  <a href="structrtio__iodev__api.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtio__iodev.html">rtio_iodev</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An IO device with a function table for submitting requests.  <a href="structrtio__iodev.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gabc81232a7d4b7145d9898afd6ff2ae48" id="r_gabc81232a7d4b7145d9898afd6ff2ae48"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RTIO_PRIO_LOW</b>&#160;&#160;&#160;0U</td></tr>
+<tr class="memdesc:gabc81232a7d4b7145d9898afd6ff2ae48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Low priority. <br /></td></tr>
+<tr class="separator:gabc81232a7d4b7145d9898afd6ff2ae48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab02e27e01b7dd4eb3439df557899ce92" id="r_gab02e27e01b7dd4eb3439df557899ce92"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RTIO_PRIO_NORM</b>&#160;&#160;&#160;127U</td></tr>
+<tr class="memdesc:gab02e27e01b7dd4eb3439df557899ce92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normal priority. <br /></td></tr>
+<tr class="separator:gab02e27e01b7dd4eb3439df557899ce92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga220baa9bf2c8ff0cb6f52f0220e72b30" id="r_ga220baa9bf2c8ff0cb6f52f0220e72b30"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RTIO_PRIO_HIGH</b>&#160;&#160;&#160;255U</td></tr>
+<tr class="memdesc:ga220baa9bf2c8ff0cb6f52f0220e72b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">High priority. <br /></td></tr>
+<tr class="separator:ga220baa9bf2c8ff0cb6f52f0220e72b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae9191d521d4ab602b53fefb74020d06b" id="r_gae9191d521d4ab602b53fefb74020d06b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio__sqe__flags.html#gae9191d521d4ab602b53fefb74020d06b">RTIO_SQE_CHAINED</a>&#160;&#160;&#160;<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(0)</td></tr>
+<tr class="memdesc:gae9191d521d4ab602b53fefb74020d06b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The next request in the queue should wait on this one.  <br /></td></tr>
+<tr class="separator:gae9191d521d4ab602b53fefb74020d06b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga07f09cc0c95be6cfdddb23f8acacb1ea" id="r_ga07f09cc0c95be6cfdddb23f8acacb1ea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio__sqe__flags.html#ga07f09cc0c95be6cfdddb23f8acacb1ea">RTIO_SQE_TRANSACTION</a>&#160;&#160;&#160;<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(1)</td></tr>
+<tr class="memdesc:ga07f09cc0c95be6cfdddb23f8acacb1ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">The next request in the queue is part of a transaction.  <br /></td></tr>
+<tr class="separator:ga07f09cc0c95be6cfdddb23f8acacb1ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2802b46584220afffa0e959e149d5a4d" id="r_ga2802b46584220afffa0e959e149d5a4d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio__sqe__flags.html#ga2802b46584220afffa0e959e149d5a4d">RTIO_SQE_MEMPOOL_BUFFER</a>&#160;&#160;&#160;<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(2)</td></tr>
+<tr class="memdesc:ga2802b46584220afffa0e959e149d5a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffer should be allocated by the RTIO mempool.  <br /></td></tr>
+<tr class="separator:ga2802b46584220afffa0e959e149d5a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7f7f9b038ab8409f271b1aebc1b95ee6" id="r_ga7f7f9b038ab8409f271b1aebc1b95ee6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio__sqe__flags.html#ga7f7f9b038ab8409f271b1aebc1b95ee6">RTIO_SQE_CANCELED</a>&#160;&#160;&#160;<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(3)</td></tr>
+<tr class="memdesc:ga7f7f9b038ab8409f271b1aebc1b95ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The SQE should not execute if possible.  <br /></td></tr>
+<tr class="separator:ga7f7f9b038ab8409f271b1aebc1b95ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga00f8ead8f043fe40d49d0bc3325fb299" id="r_ga00f8ead8f043fe40d49d0bc3325fb299"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio__sqe__flags.html#ga00f8ead8f043fe40d49d0bc3325fb299">RTIO_SQE_MULTISHOT</a>&#160;&#160;&#160;<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(4)</td></tr>
+<tr class="memdesc:ga00f8ead8f043fe40d49d0bc3325fb299"><td class="mdescLeft">&#160;</td><td class="mdescRight">The SQE should continue producing CQEs until canceled.  <br /></td></tr>
+<tr class="separator:ga00f8ead8f043fe40d49d0bc3325fb299"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8578ffdb8f53a51b94fa86a6f02d4a11" id="r_ga8578ffdb8f53a51b94fa86a6f02d4a11"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RTIO_SQE_NO_RESPONSE</b>&#160;&#160;&#160;<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(5)</td></tr>
+<tr class="memdesc:ga8578ffdb8f53a51b94fa86a6f02d4a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">The SQE does not produce a CQE. <br /></td></tr>
+<tr class="separator:ga8578ffdb8f53a51b94fa86a6f02d4a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0f212500447a5e37e225a6997953b609" id="r_ga0f212500447a5e37e225a6997953b609"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio__cqe__flags.html#ga0f212500447a5e37e225a6997953b609">RTIO_CQE_FLAG_MEMPOOL_BUFFER</a>&#160;&#160;&#160;<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(0)</td></tr>
+<tr class="memdesc:ga0f212500447a5e37e225a6997953b609"><td class="mdescLeft">&#160;</td><td class="mdescRight">The entry's buffer was allocated from the RTIO's mempool.  <br /></td></tr>
+<tr class="separator:ga0f212500447a5e37e225a6997953b609"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaef64ea020a20ac22a0edcb6eca032efc" id="r_gaef64ea020a20ac22a0edcb6eca032efc"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RTIO_CQE_FLAG_GET</b>(flags)&#160;&#160;&#160;<a class="el" href="group__sys-util.html#gaa49a456f06f7bdbedfcf3517e461947e">FIELD_GET</a>(<a class="el" href="group__sys-util.html#ga58530d20924859d16358c7400c37738d">GENMASK</a>(7, 0), (flags))</td></tr>
+<tr class="separator:gaef64ea020a20ac22a0edcb6eca032efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0b5f3f7e7be472ecf87bd2b08c1888da" id="r_ga0b5f3f7e7be472ecf87bd2b08c1888da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio__cqe__flags.html#ga0b5f3f7e7be472ecf87bd2b08c1888da">RTIO_CQE_FLAG_MEMPOOL_GET_BLK_IDX</a>(flags)&#160;&#160;&#160;<a class="el" href="group__sys-util.html#gaa49a456f06f7bdbedfcf3517e461947e">FIELD_GET</a>(<a class="el" href="group__sys-util.html#ga58530d20924859d16358c7400c37738d">GENMASK</a>(19, 8), (flags))</td></tr>
+<tr class="memdesc:ga0b5f3f7e7be472ecf87bd2b08c1888da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the block index of a mempool flags.  <br /></td></tr>
+<tr class="separator:ga0b5f3f7e7be472ecf87bd2b08c1888da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga087465f866d417d5332602bb582cc1a7" id="r_ga087465f866d417d5332602bb582cc1a7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio__cqe__flags.html#ga087465f866d417d5332602bb582cc1a7">RTIO_CQE_FLAG_MEMPOOL_GET_BLK_CNT</a>(flags)&#160;&#160;&#160;<a class="el" href="group__sys-util.html#gaa49a456f06f7bdbedfcf3517e461947e">FIELD_GET</a>(<a class="el" href="group__sys-util.html#ga58530d20924859d16358c7400c37738d">GENMASK</a>(31, 20), (flags))</td></tr>
+<tr class="memdesc:ga087465f866d417d5332602bb582cc1a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the block count of a mempool flags.  <br /></td></tr>
+<tr class="separator:ga087465f866d417d5332602bb582cc1a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga28b3a5661248b6b3763aab47417114d6" id="r_ga28b3a5661248b6b3763aab47417114d6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio__cqe__flags.html#ga28b3a5661248b6b3763aab47417114d6">RTIO_CQE_FLAG_PREP_MEMPOOL</a>(blk_idx,  blk_cnt)</td></tr>
+<tr class="memdesc:ga28b3a5661248b6b3763aab47417114d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare CQE flags for a mempool read.  <br /></td></tr>
+<tr class="separator:ga28b3a5661248b6b3763aab47417114d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf923e862d2c6a3fbce5eb96781cf86d8" id="r_gaf923e862d2c6a3fbce5eb96781cf86d8"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RTIO_IODEV_I2C_STOP</b>&#160;&#160;&#160;<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(0)</td></tr>
+<tr class="memdesc:gaf923e862d2c6a3fbce5eb96781cf86d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to the I2C_MSG_STOP flag. <br /></td></tr>
+<tr class="separator:gaf923e862d2c6a3fbce5eb96781cf86d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadba1c5eddeecc431000bd92054f55c3a" id="r_gadba1c5eddeecc431000bd92054f55c3a"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RTIO_IODEV_I2C_RESTART</b>&#160;&#160;&#160;<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(1)</td></tr>
+<tr class="memdesc:gadba1c5eddeecc431000bd92054f55c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to the I2C_MSG_RESTART flag. <br /></td></tr>
+<tr class="separator:gadba1c5eddeecc431000bd92054f55c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa0c3b047c7205d12775d8d38907119b9" id="r_gaa0c3b047c7205d12775d8d38907119b9"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RTIO_IODEV_I2C_10_BITS</b>&#160;&#160;&#160;<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(2)</td></tr>
+<tr class="memdesc:gaa0c3b047c7205d12775d8d38907119b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to the I2C_MSG_ADDR_10_BITS. <br /></td></tr>
+<tr class="separator:gaa0c3b047c7205d12775d8d38907119b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad5f073978f641413989d1c6b405d6c36" id="r_gad5f073978f641413989d1c6b405d6c36"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#gad5f073978f641413989d1c6b405d6c36">RTIO_OP_NOP</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:gad5f073978f641413989d1c6b405d6c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafeb05c351207cd1638fa78f6607e1a4a" id="r_gafeb05c351207cd1638fa78f6607e1a4a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#gafeb05c351207cd1638fa78f6607e1a4a">RTIO_OP_RX</a>&#160;&#160;&#160;(<a class="el" href="group__rtio.html#gad5f073978f641413989d1c6b405d6c36">RTIO_OP_NOP</a>+1)</td></tr>
+<tr class="separator:gafeb05c351207cd1638fa78f6607e1a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8dcaef0cda159e16520a95543ff62827" id="r_ga8dcaef0cda159e16520a95543ff62827"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga8dcaef0cda159e16520a95543ff62827">RTIO_OP_TX</a>&#160;&#160;&#160;(<a class="el" href="group__rtio.html#gafeb05c351207cd1638fa78f6607e1a4a">RTIO_OP_RX</a>+1)</td></tr>
+<tr class="separator:ga8dcaef0cda159e16520a95543ff62827"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6f95c0a5fbcc020a0d1102d3b08934bd" id="r_ga6f95c0a5fbcc020a0d1102d3b08934bd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga6f95c0a5fbcc020a0d1102d3b08934bd">RTIO_OP_TINY_TX</a>&#160;&#160;&#160;(<a class="el" href="group__rtio.html#ga8dcaef0cda159e16520a95543ff62827">RTIO_OP_TX</a>+1)</td></tr>
+<tr class="separator:ga6f95c0a5fbcc020a0d1102d3b08934bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga18e0ff7d44e4c33900106aefad0a8508" id="r_ga18e0ff7d44e4c33900106aefad0a8508"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga18e0ff7d44e4c33900106aefad0a8508">RTIO_OP_CALLBACK</a>&#160;&#160;&#160;(<a class="el" href="group__rtio.html#ga6f95c0a5fbcc020a0d1102d3b08934bd">RTIO_OP_TINY_TX</a>+1)</td></tr>
+<tr class="separator:ga18e0ff7d44e4c33900106aefad0a8508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9f0e70f5a28be65a8ed67c0257a72692" id="r_ga9f0e70f5a28be65a8ed67c0257a72692"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga9f0e70f5a28be65a8ed67c0257a72692">RTIO_OP_TXRX</a>&#160;&#160;&#160;(<a class="el" href="group__rtio.html#ga18e0ff7d44e4c33900106aefad0a8508">RTIO_OP_CALLBACK</a>+1)</td></tr>
+<tr class="separator:ga9f0e70f5a28be65a8ed67c0257a72692"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaae51e2a679d37bc1cfba79961688c406" id="r_gaae51e2a679d37bc1cfba79961688c406"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#gaae51e2a679d37bc1cfba79961688c406">RTIO_IODEV_DEFINE</a>(name,  iodev_api,  iodev_data)</td></tr>
+<tr class="memdesc:gaae51e2a679d37bc1cfba79961688c406"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statically define and initialize an RTIO IODev.  <br /></td></tr>
+<tr class="separator:gaae51e2a679d37bc1cfba79961688c406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa6902e637337bb6e4a9e55bb72a1a32d" id="r_gaa6902e637337bb6e4a9e55bb72a1a32d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#gaa6902e637337bb6e4a9e55bb72a1a32d">Z_RTIO_SQE_POOL_DEFINE</a>(name,  sz)</td></tr>
+<tr class="separator:gaa6902e637337bb6e4a9e55bb72a1a32d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga88013330d25c8a745b1c6373cc0ab168" id="r_ga88013330d25c8a745b1c6373cc0ab168"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga88013330d25c8a745b1c6373cc0ab168">Z_RTIO_CQE_POOL_DEFINE</a>(name,  sz)</td></tr>
+<tr class="separator:ga88013330d25c8a745b1c6373cc0ab168"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2437af5061e078950d4a55211d9a902f" id="r_ga2437af5061e078950d4a55211d9a902f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga2437af5061e078950d4a55211d9a902f">RTIO_BMEM</a>&#160;&#160;&#160;<a class="el" href="group__sys-util.html#ga358bc3e7669c860a98839a51cd526b20">COND_CODE_1</a>(CONFIG_USERSPACE, (K_APP_BMEM(<a class="el" href="group__rtio.html#ga86a38086dd85150ab6e479d73db1c6d1">rtio_partition</a>) static), (static))</td></tr>
+<tr class="memdesc:ga2437af5061e078950d4a55211d9a902f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate to bss if available.  <br /></td></tr>
+<tr class="separator:ga2437af5061e078950d4a55211d9a902f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3b569c01b71e126cff852df50e98fd69" id="r_ga3b569c01b71e126cff852df50e98fd69"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga3b569c01b71e126cff852df50e98fd69">RTIO_DMEM</a>&#160;&#160;&#160;<a class="el" href="group__sys-util.html#ga358bc3e7669c860a98839a51cd526b20">COND_CODE_1</a>(CONFIG_USERSPACE, (K_APP_DMEM(<a class="el" href="group__rtio.html#ga86a38086dd85150ab6e479d73db1c6d1">rtio_partition</a>) static), (static))</td></tr>
+<tr class="memdesc:ga3b569c01b71e126cff852df50e98fd69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate as initialized memory if available.  <br /></td></tr>
+<tr class="separator:ga3b569c01b71e126cff852df50e98fd69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga90f7b365d3b2dd7c29e9fbccc599df8a" id="r_ga90f7b365d3b2dd7c29e9fbccc599df8a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga90f7b365d3b2dd7c29e9fbccc599df8a">Z_RTIO_BLOCK_POOL_DEFINE</a>(name,  blk_sz,  blk_cnt,  blk_align)</td></tr>
+<tr class="separator:ga90f7b365d3b2dd7c29e9fbccc599df8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1a71ae9e99d3b03ee0e86cb945bf1afa" id="r_ga1a71ae9e99d3b03ee0e86cb945bf1afa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga1a71ae9e99d3b03ee0e86cb945bf1afa">Z_RTIO_DEFINE</a>(name,  _sqe_pool,  _cqe_pool,  _block_pool)</td></tr>
+<tr class="separator:ga1a71ae9e99d3b03ee0e86cb945bf1afa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga338df088eabf3b8f7fefb4ac517b21d4" id="r_ga338df088eabf3b8f7fefb4ac517b21d4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga338df088eabf3b8f7fefb4ac517b21d4">RTIO_DEFINE</a>(name,  sq_sz,  cq_sz)</td></tr>
+<tr class="memdesc:ga338df088eabf3b8f7fefb4ac517b21d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statically define and initialize an RTIO context.  <br /></td></tr>
+<tr class="separator:ga338df088eabf3b8f7fefb4ac517b21d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae4c2a9384a9ae4ed16dff914b1184ca8" id="r_gae4c2a9384a9ae4ed16dff914b1184ca8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#gae4c2a9384a9ae4ed16dff914b1184ca8">RTIO_DEFINE_WITH_MEMPOOL</a>(name,  sq_sz,  cq_sz,  num_blks,  blk_size,  balign)</td></tr>
+<tr class="memdesc:gae4c2a9384a9ae4ed16dff914b1184ca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statically define and initialize an RTIO context.  <br /></td></tr>
+<tr class="separator:gae4c2a9384a9ae4ed16dff914b1184ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab792634a854b97ee5faf4de70c120fae" id="r_gab792634a854b97ee5faf4de70c120fae"><td class="memItemLeft" align="right" valign="top">
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>__RTIO_MEMPOOL_GET_NUM_BLKS</b>(num_bytes,  blk_size)&#160;&#160;&#160;(((num_bytes) + (blk_size)-1) / (blk_size))</td></tr>
+<tr class="separator:gab792634a854b97ee5faf4de70c120fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Definições de tipos</h2></td></tr>
+<tr class="memitem:gab4393f69a1874fe926cbc50b4c8afbe2" id="r_gab4393f69a1874fe926cbc50b4c8afbe2"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#gab4393f69a1874fe926cbc50b4c8afbe2">rtio_callback_t</a>) (struct <a class="el" href="structrtio.html">rtio</a> *r, const struct <a class="el" href="structrtio__sqe.html">rtio_sqe</a> *sqe, void *arg0)</td></tr>
+<tr class="memdesc:gab4393f69a1874fe926cbc50b4c8afbe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback signature for RTIO_OP_CALLBACK.  <br /></td></tr>
+<tr class="separator:gab4393f69a1874fe926cbc50b4c8afbe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:ga525c36081cc3d4d936051abbdec02d13" id="r_ga525c36081cc3d4d936051abbdec02d13"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga525c36081cc3d4d936051abbdec02d13">rtio_cqe_get_mempool_buffer</a> (const struct <a class="el" href="structrtio.html">rtio</a> *r, struct <a class="el" href="structrtio__cqe.html">rtio_cqe</a> *cqe, uint8_t **buff, uint32_t *buff_len)</td></tr>
+<tr class="memdesc:ga525c36081cc3d4d936051abbdec02d13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the mempool buffer that was allocated for the CQE.  <br /></td></tr>
+<tr class="separator:ga525c36081cc3d4d936051abbdec02d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf191153e83de72ddefb998daad02fa16" id="r_gaf191153e83de72ddefb998daad02fa16"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>rtio_executor_submit</b> (struct <a class="el" href="structrtio.html">rtio</a> *r)</td></tr>
+<tr class="separator:gaf191153e83de72ddefb998daad02fa16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7e2ebd9abaf585207bc5b99c5d815c6a" id="r_ga7e2ebd9abaf585207bc5b99c5d815c6a"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>rtio_executor_ok</b> (struct <a class="el" href="structrtio__iodev__sqe.html">rtio_iodev_sqe</a> *iodev_sqe, int result)</td></tr>
+<tr class="separator:ga7e2ebd9abaf585207bc5b99c5d815c6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga15f4a1a4dfb869ef9e4216dc1c1cdc8a" id="r_ga15f4a1a4dfb869ef9e4216dc1c1cdc8a"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><b>rtio_executor_err</b> (struct <a class="el" href="structrtio__iodev__sqe.html">rtio_iodev_sqe</a> *iodev_sqe, int result)</td></tr>
+<tr class="separator:ga15f4a1a4dfb869ef9e4216dc1c1cdc8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b87b4cc58beb4acf7a6f7e8e6aa1783" id="r_ga8b87b4cc58beb4acf7a6f7e8e6aa1783"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga8b87b4cc58beb4acf7a6f7e8e6aa1783">rtio_release_buffer</a> (struct <a class="el" href="structrtio.html">rtio</a> *r, void *buff, uint32_t buff_len)</td></tr>
+<tr class="memdesc:ga8b87b4cc58beb4acf7a6f7e8e6aa1783"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release memory that was allocated by the RTIO's memory pool.  <br /></td></tr>
+<tr class="separator:ga8b87b4cc58beb4acf7a6f7e8e6aa1783"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae98e3b1becdf6d228aeddb5780702342" id="r_gae98e3b1becdf6d228aeddb5780702342"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#gae98e3b1becdf6d228aeddb5780702342">rtio_sqe_cancel</a> (struct <a class="el" href="structrtio__sqe.html">rtio_sqe</a> *sqe)</td></tr>
+<tr class="memdesc:gae98e3b1becdf6d228aeddb5780702342"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to cancel an SQE.  <br /></td></tr>
+<tr class="separator:gae98e3b1becdf6d228aeddb5780702342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga113ef5ccc97ee656deeda63962c2ebc4" id="r_ga113ef5ccc97ee656deeda63962c2ebc4"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga113ef5ccc97ee656deeda63962c2ebc4">rtio_sqe_copy_in_get_handles</a> (struct <a class="el" href="structrtio.html">rtio</a> *r, const struct <a class="el" href="structrtio__sqe.html">rtio_sqe</a> *sqes, struct <a class="el" href="structrtio__sqe.html">rtio_sqe</a> **handle, size_t sqe_count)</td></tr>
+<tr class="memdesc:ga113ef5ccc97ee656deeda63962c2ebc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy an array of SQEs into the queue and get resulting handles back.  <br /></td></tr>
+<tr class="separator:ga113ef5ccc97ee656deeda63962c2ebc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga562ac73cb1025cd08d350f35c28cb2c9" id="r_ga562ac73cb1025cd08d350f35c28cb2c9"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga562ac73cb1025cd08d350f35c28cb2c9">rtio_cqe_copy_out</a> (struct <a class="el" href="structrtio.html">rtio</a> *r, struct <a class="el" href="structrtio__cqe.html">rtio_cqe</a> *cqes, size_t cqe_count, <a class="el" href="structk__timeout__t.html">k_timeout_t</a> timeout)</td></tr>
+<tr class="memdesc:ga562ac73cb1025cd08d350f35c28cb2c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy an array of CQEs from the queue.  <br /></td></tr>
+<tr class="separator:ga562ac73cb1025cd08d350f35c28cb2c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf0dbf0fa6113a066e4507ca18a85279d" id="r_gaf0dbf0fa6113a066e4507ca18a85279d"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#gaf0dbf0fa6113a066e4507ca18a85279d">rtio_submit</a> (struct <a class="el" href="structrtio.html">rtio</a> *r, uint32_t wait_count)</td></tr>
+<tr class="memdesc:gaf0dbf0fa6113a066e4507ca18a85279d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit I/O requests to the underlying executor.  <br /></td></tr>
+<tr class="separator:gaf0dbf0fa6113a066e4507ca18a85279d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variáveis</h2></td></tr>
+<tr class="memitem:ga86a38086dd85150ab6e479d73db1c6d1" id="r_ga86a38086dd85150ab6e479d73db1c6d1"><td class="memItemLeft" align="right" valign="top">struct k_mem_partition&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rtio.html#ga86a38086dd85150ab6e479d73db1c6d1">rtio_partition</a></td></tr>
+<tr class="separator:ga86a38086dd85150ab6e479d73db1c6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Real-Time IO device API for moving bytes with low effort. </p>
+<p>RTIO is a context for asynchronous batch operations using a submission and completion queue.</p>
+<p>Asynchronous I/O operation are setup in a submission queue. Each entry in the queue describes the operation it wishes to perform with some understood semantics.</p>
+<p>These operations may be chained in a such a way that only when the current operation is complete the next will be executed. If the current operation fails all chained operations will also fail.</p>
+<p>Operations may also be submitted as a transaction where a set of operations are considered to be one operation.</p>
+<p>The completion of these operations typically provide one or more completion queue events. </p>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

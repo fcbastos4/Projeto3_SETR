@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/kernel/obj_core.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_6f05980c622bc1ff1adf85e26a93f6d2.html">kernel</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">obj_core.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2023, Intel Corporation</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef __KERNEL_OBJ_CORE_H__</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define __KERNEL_OBJ_CORE_H__</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="slist_8h.html">zephyr/sys/slist.h</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga2bd0c2c121afc09448926a3648c7d814">   21</a></span><span class="preprocessor">#define K_OBJ_CORE(kobj)  (&amp;((kobj)-&gt;obj_core))</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#gaa02f30cae43a209c0c71a52d52354d3f">   26</a></span><span class="preprocessor">#define K_OBJ_TYPE_ID_GEN(s)     ((s[0] &lt;&lt; 24) | (s[1] &lt;&lt; 16) | (s[2] &lt;&lt; 8) | (s[3]))</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">/* Known kernel object types */</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#gab8d2838ae8064facda465bb9db88e948">   31</a></span><span class="preprocessor">#define K_OBJ_TYPE_CONDVAR_ID    K_OBJ_TYPE_ID_GEN(&quot;COND&quot;)</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga59c569e93e1301903618fa0c53f642ec">   33</a></span><span class="preprocessor">#define K_OBJ_TYPE_CPU_ID        K_OBJ_TYPE_ID_GEN(&quot;CPU_&quot;)</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#gac6fdf29f93b81f4a868ce39f3ae50c8c">   35</a></span><span class="preprocessor">#define K_OBJ_TYPE_EVENT_ID      K_OBJ_TYPE_ID_GEN(&quot;EVNT&quot;)</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga4eadc00416f1da919c5f49fea028b79f">   37</a></span><span class="preprocessor">#define K_OBJ_TYPE_FIFO_ID       K_OBJ_TYPE_ID_GEN(&quot;FIFO&quot;)</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#gad2b7452f304d6e27c612941a578cc651">   39</a></span><span class="preprocessor">#define K_OBJ_TYPE_KERNEL_ID     K_OBJ_TYPE_ID_GEN(&quot;KRNL&quot;)</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga956d61f2af839077adeb67ccd2e15d28">   41</a></span><span class="preprocessor">#define K_OBJ_TYPE_LIFO_ID       K_OBJ_TYPE_ID_GEN(&quot;LIFO&quot;)</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga83a03cfe8485b3e005ea2dc20a291115">   43</a></span><span class="preprocessor">#define K_OBJ_TYPE_MEM_BLOCK_ID  K_OBJ_TYPE_ID_GEN(&quot;MBLK&quot;)</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga6ee0890bc9e22a381440a3e156c54f2e">   45</a></span><span class="preprocessor">#define K_OBJ_TYPE_MBOX_ID       K_OBJ_TYPE_ID_GEN(&quot;MBOX&quot;)</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga0d84b7ac3f48e2e2d0fcd3bfbeed2519">   47</a></span><span class="preprocessor">#define K_OBJ_TYPE_MEM_SLAB_ID   K_OBJ_TYPE_ID_GEN(&quot;SLAB&quot;)</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga8bf245e4f25c61bb4ec8267b15384feb">   49</a></span><span class="preprocessor">#define K_OBJ_TYPE_MSGQ_ID       K_OBJ_TYPE_ID_GEN(&quot;MSGQ&quot;)</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#gab109845d59689ce64523786ccce9b8c6">   51</a></span><span class="preprocessor">#define K_OBJ_TYPE_MUTEX_ID      K_OBJ_TYPE_ID_GEN(&quot;MUTX&quot;)</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga36eb538a1bd7f8454a9da42de170d2a9">   53</a></span><span class="preprocessor">#define K_OBJ_TYPE_PIPE_ID       K_OBJ_TYPE_ID_GEN(&quot;PIPE&quot;)</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#gad08de0f2f76ad2fe368ed82524bd8335">   55</a></span><span class="preprocessor">#define K_OBJ_TYPE_SEM_ID        K_OBJ_TYPE_ID_GEN(&quot;SEM4&quot;)</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#gacb41863cbd89368e1204080e6f7f14c2">   57</a></span><span class="preprocessor">#define K_OBJ_TYPE_STACK_ID      K_OBJ_TYPE_ID_GEN(&quot;STCK&quot;)</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#gaf7adb45984ccfb2bbe64b1f8e559f24b">   59</a></span><span class="preprocessor">#define K_OBJ_TYPE_THREAD_ID     K_OBJ_TYPE_ID_GEN(&quot;THRD&quot;)</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga583ff6ce85756d9aa1b2baf7ac19574f">   61</a></span><span class="preprocessor">#define K_OBJ_TYPE_TIMER_ID      K_OBJ_TYPE_ID_GEN(&quot;TIMR&quot;)</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__type.html">k_obj_type</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#ifdef CONFIG_OBJ_CORE</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">#define K_OBJ_CORE_INIT(_objp, _obj_type)   \</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">    extern struct k_obj_type _obj_type; \</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">    k_obj_core_init(_objp, &amp;_obj_type)</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#define K_OBJ_CORE_LINK(objp) k_obj_core_link(objp)</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#define K_OBJ_CORE_INIT(objp, type)   do { } while (0)</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#define K_OBJ_CORE_LINK(objp)         do { } while (0)</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">extern</span> <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga44658c336b634c03938a251cdc8134f8">sys_slist_t</a> <a class="code hl_variable" href="group__obj__core__apis.html#ga445a6c3ab3e901bbf5a979616d197cee">z_obj_type_list</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="foldopen" id="foldopen00092" data-start="{" data-end="};">
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structk__obj__core__stats__desc.html">   92</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__core__stats__desc.html">k_obj_core_stats_desc</a> {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="structk__obj__core__stats__desc.html#a2e81dccd36b1355f9e685917cbd8eed8">   93</a></span>    <span class="keywordtype">size_t</span>  <a class="code hl_variable" href="structk__obj__core__stats__desc.html#a2e81dccd36b1355f9e685917cbd8eed8">raw_size</a>;   </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="structk__obj__core__stats__desc.html#a9d0757daab439142711e3866e6dabb8d">   94</a></span>    <span class="keywordtype">size_t</span>  <a class="code hl_variable" href="structk__obj__core__stats__desc.html#a9d0757daab439142711e3866e6dabb8d">query_size</a>; </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="structk__obj__core__stats__desc.html#a0b206ae290639095e722c1705a122c2f">   97</a></span>    int (*<a class="code hl_variable" href="structk__obj__core__stats__desc.html#a0b206ae290639095e722c1705a122c2f">raw</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core, <span class="keywordtype">void</span> *stats);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="structk__obj__core__stats__desc.html#a94723e6cd5c03769e9cc1be9f0ec784f">   99</a></span>    int (*<a class="code hl_variable" href="structk__obj__core__stats__desc.html#a94723e6cd5c03769e9cc1be9f0ec784f">query</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core, <span class="keywordtype">void</span> *stats);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="structk__obj__core__stats__desc.html#a2ab464c373aa3830eaf15e46de2e9370">  101</a></span>    int (*<a class="code hl_variable" href="structk__obj__core__stats__desc.html#a2ab464c373aa3830eaf15e46de2e9370">reset</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="structk__obj__core__stats__desc.html#ab2959fb71fc5750d1a2ad71519f354b3">  103</a></span>    int (*<a class="code hl_variable" href="structk__obj__core__stats__desc.html#ab2959fb71fc5750d1a2ad71519f354b3">disable</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="structk__obj__core__stats__desc.html#aabc9df81e93aa0ff0ec84983dd07f58f">  105</a></span>    int (*<a class="code hl_variable" href="structk__obj__core__stats__desc.html#aabc9df81e93aa0ff0ec84983dd07f58f">enable</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>};</div>
+</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="foldopen" id="foldopen00109" data-start="{" data-end="};">
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="structk__obj__type.html">  109</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__type.html">k_obj_type</a> {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structk__obj__type.html#a96995171db1f9e3927058b2f4f22fb41">  110</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a>    <a class="code hl_variable" href="structk__obj__type.html#a96995171db1f9e3927058b2f4f22fb41">node</a>;   </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="structk__obj__type.html#ac00f591b7d19a0e2d43b167793ef0f29">  111</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga44658c336b634c03938a251cdc8134f8">sys_slist_t</a>    <a class="code hl_variable" href="structk__obj__type.html#ac00f591b7d19a0e2d43b167793ef0f29">list</a>;   </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="structk__obj__type.html#acf48ce26b12ef2f1584b4d32f2b2b712">  112</a></span>    uint32_t       <a class="code hl_variable" href="structk__obj__type.html#acf48ce26b12ef2f1584b4d32f2b2b712">id</a>;     </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="structk__obj__type.html#a39824fdc4dd042e1742c4d966b068a61">  113</a></span>    <span class="keywordtype">size_t</span>         <a class="code hl_variable" href="structk__obj__type.html#a39824fdc4dd042e1742c4d966b068a61">obj_core_offset</a>;  </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#ifdef CONFIG_OBJ_CORE_STATS</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__core__stats__desc.html">k_obj_core_stats_desc</a> *stats_desc;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>};</div>
+</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="foldopen" id="foldopen00121" data-start="{" data-end="};">
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="structk__obj__core.html">  121</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="structk__obj__core.html#a3ef8e436efe8b8daefef44c649222407">  122</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a>        <a class="code hl_variable" href="structk__obj__core.html#a3ef8e436efe8b8daefef44c649222407">node</a>;   </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="structk__obj__core.html#ad08bd00d9d7f4d331ed0775514e766b5">  123</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__type.html">k_obj_type</a> *<a class="code hl_variable" href="structk__obj__core.html#ad08bd00d9d7f4d331ed0775514e766b5">type</a>;   </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">#ifdef CONFIG_OBJ_CORE_STATS</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordtype">void</span>  *stats;              </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>};</div>
+</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#gabc092fe6f059835998edf0a38b7db6f6">  141</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__type.html">k_obj_type</a> *<a class="code hl_function" href="group__obj__core__apis.html#gabc092fe6f059835998edf0a38b7db6f6">z_obj_type_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__type.html">k_obj_type</a> *type,</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>                   uint32_t <span class="keywordtype">id</span>, <span class="keywordtype">size_t</span> off);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga325c21774af7d3f092dcab17d8f260fd">  155</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structk__obj__type.html">k_obj_type</a> *<a class="code hl_function" href="group__obj__core__apis.html#ga325c21774af7d3f092dcab17d8f260fd">k_obj_type_find</a>(uint32_t type_id);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga1e9a331ca6f3f7bf1f0e3b144b964b9b">  174</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__obj__core__apis.html#ga1e9a331ca6f3f7bf1f0e3b144b964b9b">k_obj_type_walk_locked</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__type.html">k_obj_type</a> *type,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>               <span class="keywordtype">int</span> (*func)(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *, <span class="keywordtype">void</span> *),</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>                  <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga4d3da7db72063699b66a54e56cf75e2e">  196</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__obj__core__apis.html#ga4d3da7db72063699b66a54e56cf75e2e">k_obj_type_walk_unlocked</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__type.html">k_obj_type</a> *type,</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                 <span class="keywordtype">int</span> (*func)(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *, <span class="keywordtype">void</span> *),</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                 <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#gaf00bc2c3bfa0420f00fe5bf49796b3a0">  209</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__obj__core__apis.html#gaf00bc2c3bfa0420f00fe5bf49796b3a0">k_obj_core_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core, <span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__type.html">k_obj_type</a> *type);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga6b4a21304216582d7cc16088b00e69bf">  221</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__obj__core__apis.html#ga6b4a21304216582d7cc16088b00e69bf">k_obj_core_link</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#gab1563101ae5f163fcbc06dc17660f9bc">  232</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__obj__core__apis.html#gab1563101ae5f163fcbc06dc17660f9bc">k_obj_core_init_and_link</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core,</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                  <span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__type.html">k_obj_type</a> *type);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="group__obj__core__apis.html#ga7cb5b22d776880313c91a14583bb5d62">  244</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__obj__core__apis.html#ga7cb5b22d776880313c91a14583bb5d62">k_obj_core_unlink</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="preprocessor">#ifdef CONFIG_OBJ_CORE_STATS</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> k_obj_type_stats_init(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__type.html">k_obj_type</a> *type,</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                     <span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core__stats__desc.html">k_obj_core_stats_desc</a> *stats_desc)</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>{</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    type-&gt;stats_desc = stats_desc;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>}</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> k_obj_core_stats_init(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core,</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>                     <span class="keywordtype">void</span> *stats)</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>{</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    obj_core-&gt;stats = stats;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>}</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="group__obj__core__stats__apis.html#gae3fda75cf0b9e3c91bfb5ba57239621d">  299</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__obj__core__stats__apis.html#gae3fda75cf0b9e3c91bfb5ba57239621d">k_obj_core_stats_register</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core, <span class="keywordtype">void</span> *stats,</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>                  <span class="keywordtype">size_t</span> stats_len);</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno"><a class="line" href="group__obj__core__stats__apis.html#gab2b23cf62d89e0bc21d89a0b77b01a21">  314</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__obj__core__stats__apis.html#gab2b23cf62d89e0bc21d89a0b77b01a21">k_obj_core_stats_deregister</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core);</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno"><a class="line" href="group__obj__core__stats__apis.html#ga9c5f91bd221b9086ccaea7347ac357ab">  331</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__obj__core__stats__apis.html#ga9c5f91bd221b9086ccaea7347ac357ab">k_obj_core_stats_raw</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core, <span class="keywordtype">void</span> *stats,</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>             <span class="keywordtype">size_t</span> stats_len);</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno"><a class="line" href="group__obj__core__stats__apis.html#ga52afc700fb116acfaa4dd5e1ca49a782">  350</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__obj__core__stats__apis.html#ga52afc700fb116acfaa4dd5e1ca49a782">k_obj_core_stats_query</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core, <span class="keywordtype">void</span> *stats,</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>               <span class="keywordtype">size_t</span> stats_len);</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno"><a class="line" href="group__obj__core__stats__apis.html#ga0b4d2270e968e2c694290c0f90f208c4">  364</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__obj__core__stats__apis.html#ga0b4d2270e968e2c694290c0f90f208c4">k_obj_core_stats_reset</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core);</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno"><a class="line" href="group__obj__core__stats__apis.html#ga547b121e75aeafc2f54dba2d58ca62db">  378</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__obj__core__stats__apis.html#ga547b121e75aeafc2f54dba2d58ca62db">k_obj_core_stats_disable</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core);</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span> </div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno"><a class="line" href="group__obj__core__stats__apis.html#ga079df60c5ba6dd08a2270362490553fa">  391</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__obj__core__stats__apis.html#ga079df60c5ba6dd08a2270362490553fa">k_obj_core_stats_enable</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__obj__core.html">k_obj_core</a> *obj_core);</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span> </div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span><span class="preprocessor">#endif </span><span class="comment">/* __KERNEL_OBJ_CORE_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__obj__core__apis_html_ga1e9a331ca6f3f7bf1f0e3b144b964b9b"><div class="ttname"><a href="group__obj__core__apis.html#ga1e9a331ca6f3f7bf1f0e3b144b964b9b">k_obj_type_walk_locked</a></div><div class="ttdeci">int k_obj_type_walk_locked(struct k_obj_type *type, int(*func)(struct k_obj_core *, void *), void *data)</div><div class="ttdoc">Walk the object type's list of object cores.</div></div>
+<div class="ttc" id="agroup__obj__core__apis_html_ga325c21774af7d3f092dcab17d8f260fd"><div class="ttname"><a href="group__obj__core__apis.html#ga325c21774af7d3f092dcab17d8f260fd">k_obj_type_find</a></div><div class="ttdeci">struct k_obj_type * k_obj_type_find(uint32_t type_id)</div><div class="ttdoc">Find a specific object type by ID.</div></div>
+<div class="ttc" id="agroup__obj__core__apis_html_ga445a6c3ab3e901bbf5a979616d197cee"><div class="ttname"><a href="group__obj__core__apis.html#ga445a6c3ab3e901bbf5a979616d197cee">z_obj_type_list</a></div><div class="ttdeci">sys_slist_t z_obj_type_list</div></div>
+<div class="ttc" id="agroup__obj__core__apis_html_ga4d3da7db72063699b66a54e56cf75e2e"><div class="ttname"><a href="group__obj__core__apis.html#ga4d3da7db72063699b66a54e56cf75e2e">k_obj_type_walk_unlocked</a></div><div class="ttdeci">int k_obj_type_walk_unlocked(struct k_obj_type *type, int(*func)(struct k_obj_core *, void *), void *data)</div><div class="ttdoc">Walk the object type's list of object cores.</div></div>
+<div class="ttc" id="agroup__obj__core__apis_html_ga6b4a21304216582d7cc16088b00e69bf"><div class="ttname"><a href="group__obj__core__apis.html#ga6b4a21304216582d7cc16088b00e69bf">k_obj_core_link</a></div><div class="ttdeci">void k_obj_core_link(struct k_obj_core *obj_core)</div><div class="ttdoc">Link the kernel object to the kernel object type list.</div></div>
+<div class="ttc" id="agroup__obj__core__apis_html_ga7cb5b22d776880313c91a14583bb5d62"><div class="ttname"><a href="group__obj__core__apis.html#ga7cb5b22d776880313c91a14583bb5d62">k_obj_core_unlink</a></div><div class="ttdeci">void k_obj_core_unlink(struct k_obj_core *obj_core)</div><div class="ttdoc">Unlink the kernel object from the kernel object type list.</div></div>
+<div class="ttc" id="agroup__obj__core__apis_html_gab1563101ae5f163fcbc06dc17660f9bc"><div class="ttname"><a href="group__obj__core__apis.html#gab1563101ae5f163fcbc06dc17660f9bc">k_obj_core_init_and_link</a></div><div class="ttdeci">void k_obj_core_init_and_link(struct k_obj_core *obj_core, struct k_obj_type *type)</div><div class="ttdoc">Automatically link the kernel object after initializing it.</div></div>
+<div class="ttc" id="agroup__obj__core__apis_html_gabc092fe6f059835998edf0a38b7db6f6"><div class="ttname"><a href="group__obj__core__apis.html#gabc092fe6f059835998edf0a38b7db6f6">z_obj_type_init</a></div><div class="ttdeci">struct k_obj_type * z_obj_type_init(struct k_obj_type *type, uint32_t id, size_t off)</div><div class="ttdoc">Initialize a specific object type.</div></div>
+<div class="ttc" id="agroup__obj__core__apis_html_gaf00bc2c3bfa0420f00fe5bf49796b3a0"><div class="ttname"><a href="group__obj__core__apis.html#gaf00bc2c3bfa0420f00fe5bf49796b3a0">k_obj_core_init</a></div><div class="ttdeci">void k_obj_core_init(struct k_obj_core *obj_core, struct k_obj_type *type)</div><div class="ttdoc">Initialize the core of the kernel object.</div></div>
+<div class="ttc" id="agroup__obj__core__stats__apis_html_ga079df60c5ba6dd08a2270362490553fa"><div class="ttname"><a href="group__obj__core__stats__apis.html#ga079df60c5ba6dd08a2270362490553fa">k_obj_core_stats_enable</a></div><div class="ttdeci">int k_obj_core_stats_enable(struct k_obj_core *obj_core)</div><div class="ttdoc">Reset the stats associated with the kernel object.</div></div>
+<div class="ttc" id="agroup__obj__core__stats__apis_html_ga0b4d2270e968e2c694290c0f90f208c4"><div class="ttname"><a href="group__obj__core__stats__apis.html#ga0b4d2270e968e2c694290c0f90f208c4">k_obj_core_stats_reset</a></div><div class="ttdeci">int k_obj_core_stats_reset(struct k_obj_core *obj_core)</div><div class="ttdoc">Reset the stats associated with the kernel object.</div></div>
+<div class="ttc" id="agroup__obj__core__stats__apis_html_ga52afc700fb116acfaa4dd5e1ca49a782"><div class="ttname"><a href="group__obj__core__stats__apis.html#ga52afc700fb116acfaa4dd5e1ca49a782">k_obj_core_stats_query</a></div><div class="ttdeci">int k_obj_core_stats_query(struct k_obj_core *obj_core, void *stats, size_t stats_len)</div><div class="ttdoc">Retrieve the statistics associated with the kernel object.</div></div>
+<div class="ttc" id="agroup__obj__core__stats__apis_html_ga547b121e75aeafc2f54dba2d58ca62db"><div class="ttname"><a href="group__obj__core__stats__apis.html#ga547b121e75aeafc2f54dba2d58ca62db">k_obj_core_stats_disable</a></div><div class="ttdeci">int k_obj_core_stats_disable(struct k_obj_core *obj_core)</div><div class="ttdoc">Stop gathering the stats associated with the kernel object.</div></div>
+<div class="ttc" id="agroup__obj__core__stats__apis_html_ga9c5f91bd221b9086ccaea7347ac357ab"><div class="ttname"><a href="group__obj__core__stats__apis.html#ga9c5f91bd221b9086ccaea7347ac357ab">k_obj_core_stats_raw</a></div><div class="ttdeci">int k_obj_core_stats_raw(struct k_obj_core *obj_core, void *stats, size_t stats_len)</div><div class="ttdoc">Retrieve the raw statistics associated with the kernel object.</div></div>
+<div class="ttc" id="agroup__obj__core__stats__apis_html_gab2b23cf62d89e0bc21d89a0b77b01a21"><div class="ttname"><a href="group__obj__core__stats__apis.html#gab2b23cf62d89e0bc21d89a0b77b01a21">k_obj_core_stats_deregister</a></div><div class="ttdeci">int k_obj_core_stats_deregister(struct k_obj_core *obj_core)</div><div class="ttdoc">Deregister kernel object from gathering statistics.</div></div>
+<div class="ttc" id="agroup__obj__core__stats__apis_html_gae3fda75cf0b9e3c91bfb5ba57239621d"><div class="ttname"><a href="group__obj__core__stats__apis.html#gae3fda75cf0b9e3c91bfb5ba57239621d">k_obj_core_stats_register</a></div><div class="ttdeci">int k_obj_core_stats_register(struct k_obj_core *obj_core, void *stats, size_t stats_len)</div><div class="ttdoc">Register kernel object for gathering statistics.</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga44658c336b634c03938a251cdc8134f8"><div class="ttname"><a href="group__single-linked-list__apis.html#ga44658c336b634c03938a251cdc8134f8">sys_slist_t</a></div><div class="ttdeci">struct _slist sys_slist_t</div><div class="ttdef"><b>Definição</b> slist.h:49</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="aslist_8h_html"><div class="ttname"><a href="slist_8h.html">slist.h</a></div></div>
+<div class="ttc" id="astructk__obj__core__stats__desc_html"><div class="ttname"><a href="structk__obj__core__stats__desc.html">k_obj_core_stats_desc</a></div><div class="ttdef"><b>Definição</b> obj_core.h:92</div></div>
+<div class="ttc" id="astructk__obj__core__stats__desc_html_a0b206ae290639095e722c1705a122c2f"><div class="ttname"><a href="structk__obj__core__stats__desc.html#a0b206ae290639095e722c1705a122c2f">k_obj_core_stats_desc::raw</a></div><div class="ttdeci">int(* raw)(struct k_obj_core *obj_core, void *stats)</div><div class="ttdef"><b>Definição</b> obj_core.h:97</div></div>
+<div class="ttc" id="astructk__obj__core__stats__desc_html_a2ab464c373aa3830eaf15e46de2e9370"><div class="ttname"><a href="structk__obj__core__stats__desc.html#a2ab464c373aa3830eaf15e46de2e9370">k_obj_core_stats_desc::reset</a></div><div class="ttdeci">int(* reset)(struct k_obj_core *obj_core)</div><div class="ttdef"><b>Definição</b> obj_core.h:101</div></div>
+<div class="ttc" id="astructk__obj__core__stats__desc_html_a2e81dccd36b1355f9e685917cbd8eed8"><div class="ttname"><a href="structk__obj__core__stats__desc.html#a2e81dccd36b1355f9e685917cbd8eed8">k_obj_core_stats_desc::raw_size</a></div><div class="ttdeci">size_t raw_size</div><div class="ttdef"><b>Definição</b> obj_core.h:93</div></div>
+<div class="ttc" id="astructk__obj__core__stats__desc_html_a94723e6cd5c03769e9cc1be9f0ec784f"><div class="ttname"><a href="structk__obj__core__stats__desc.html#a94723e6cd5c03769e9cc1be9f0ec784f">k_obj_core_stats_desc::query</a></div><div class="ttdeci">int(* query)(struct k_obj_core *obj_core, void *stats)</div><div class="ttdef"><b>Definição</b> obj_core.h:99</div></div>
+<div class="ttc" id="astructk__obj__core__stats__desc_html_a9d0757daab439142711e3866e6dabb8d"><div class="ttname"><a href="structk__obj__core__stats__desc.html#a9d0757daab439142711e3866e6dabb8d">k_obj_core_stats_desc::query_size</a></div><div class="ttdeci">size_t query_size</div><div class="ttdef"><b>Definição</b> obj_core.h:94</div></div>
+<div class="ttc" id="astructk__obj__core__stats__desc_html_aabc9df81e93aa0ff0ec84983dd07f58f"><div class="ttname"><a href="structk__obj__core__stats__desc.html#aabc9df81e93aa0ff0ec84983dd07f58f">k_obj_core_stats_desc::enable</a></div><div class="ttdeci">int(* enable)(struct k_obj_core *obj_core)</div><div class="ttdef"><b>Definição</b> obj_core.h:105</div></div>
+<div class="ttc" id="astructk__obj__core__stats__desc_html_ab2959fb71fc5750d1a2ad71519f354b3"><div class="ttname"><a href="structk__obj__core__stats__desc.html#ab2959fb71fc5750d1a2ad71519f354b3">k_obj_core_stats_desc::disable</a></div><div class="ttdeci">int(* disable)(struct k_obj_core *obj_core)</div><div class="ttdef"><b>Definição</b> obj_core.h:103</div></div>
+<div class="ttc" id="astructk__obj__core_html"><div class="ttname"><a href="structk__obj__core.html">k_obj_core</a></div><div class="ttdef"><b>Definição</b> obj_core.h:121</div></div>
+<div class="ttc" id="astructk__obj__core_html_a3ef8e436efe8b8daefef44c649222407"><div class="ttname"><a href="structk__obj__core.html#a3ef8e436efe8b8daefef44c649222407">k_obj_core::node</a></div><div class="ttdeci">sys_snode_t node</div><div class="ttdef"><b>Definição</b> obj_core.h:122</div></div>
+<div class="ttc" id="astructk__obj__core_html_ad08bd00d9d7f4d331ed0775514e766b5"><div class="ttname"><a href="structk__obj__core.html#ad08bd00d9d7f4d331ed0775514e766b5">k_obj_core::type</a></div><div class="ttdeci">struct k_obj_type * type</div><div class="ttdef"><b>Definição</b> obj_core.h:123</div></div>
+<div class="ttc" id="astructk__obj__type_html"><div class="ttname"><a href="structk__obj__type.html">k_obj_type</a></div><div class="ttdef"><b>Definição</b> obj_core.h:109</div></div>
+<div class="ttc" id="astructk__obj__type_html_a39824fdc4dd042e1742c4d966b068a61"><div class="ttname"><a href="structk__obj__type.html#a39824fdc4dd042e1742c4d966b068a61">k_obj_type::obj_core_offset</a></div><div class="ttdeci">size_t obj_core_offset</div><div class="ttdef"><b>Definição</b> obj_core.h:113</div></div>
+<div class="ttc" id="astructk__obj__type_html_a96995171db1f9e3927058b2f4f22fb41"><div class="ttname"><a href="structk__obj__type.html#a96995171db1f9e3927058b2f4f22fb41">k_obj_type::node</a></div><div class="ttdeci">sys_snode_t node</div><div class="ttdef"><b>Definição</b> obj_core.h:110</div></div>
+<div class="ttc" id="astructk__obj__type_html_ac00f591b7d19a0e2d43b167793ef0f29"><div class="ttname"><a href="structk__obj__type.html#ac00f591b7d19a0e2d43b167793ef0f29">k_obj_type::list</a></div><div class="ttdeci">sys_slist_t list</div><div class="ttdef"><b>Definição</b> obj_core.h:111</div></div>
+<div class="ttc" id="astructk__obj__type_html_acf48ce26b12ef2f1584b4d32f2b2b712"><div class="ttname"><a href="structk__obj__type.html#acf48ce26b12ef2f1584b4d32f2b2b712">k_obj_type::id</a></div><div class="ttdeci">uint32_t id</div><div class="ttdef"><b>Definição</b> obj_core.h:112</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

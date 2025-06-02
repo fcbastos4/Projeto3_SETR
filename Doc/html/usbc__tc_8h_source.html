@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/usb_c/usbc_tc.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_e6354a8b1619aed39b185391c4133628.html">usb_c</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">usbc_tc.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="usbc__tc_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright 2022 The Chromium OS Authors</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_USBC_USBC_TC_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_USBC_USBC_TC_H_</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga025aeca5768435b245ecb9fe8bfa29c8">   34</a></span><span class="preprocessor">#define TC_V_SINK_DISCONNECT_MIN_MV 800</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga151c5852b9d2ad3f6f7f0869505e854b">   40</a></span><span class="preprocessor">#define TC_V_SINK_DISCONNECT_MAX_MV 3670</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gace546c362f92ed1ba0455a5d8006357c">   47</a></span><span class="preprocessor">#define TC_T_VBUS_ON_MAX_MS 275</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga2d6440c7b480ee75ccadf8242e29e7e9">   54</a></span><span class="preprocessor">#define TC_T_VBUS_OFF_MAX_MS 650</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gaf2cbadac415eedae8c4db3dc91f3623b">   60</a></span><span class="preprocessor">#define TC_T_VCONN_ON_MAX_MS 2</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga24837587c589d85bc48bed2a6815798d">   67</a></span><span class="preprocessor">#define TC_T_VCONN_ON_PA_MAX_MS 100</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga2f347359b4ffc4478338cbbc8a62d4d9">   74</a></span><span class="preprocessor">#define TC_T_VCONN_OFF_MAX_MS 35</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gaa1291eb2b50b59a9746ffe0658d60258">   81</a></span><span class="preprocessor">#define TC_T_SINK_ADJ_MAX_MS 60</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gab042a018fbc99a402ab23371c3d6fe47">   87</a></span><span class="preprocessor">#define TC_T_DRP_MIN_MS 50</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gaba34e5687c2e12984629a9297f0e7813">   93</a></span><span class="preprocessor">#define TC_T_DRP_MAX_MS 100</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga6ab07167512c79d9587d547902443049">  100</a></span><span class="preprocessor">#define TC_T_DRP_TRANSITION_MIN_MS 0</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gae1e9780a30b644a1f15463cba216e385">  107</a></span><span class="preprocessor">#define TC_T_DRP_TRANSITION_MAX_MS 1</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga1ee8d43885ebc26a2f4da640d5758188">  113</a></span><span class="preprocessor">#define TC_T_DRP_TRY_MIN_MS 75</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga95cd5ac306f2d27440b980593c759f07">  119</a></span><span class="preprocessor">#define TC_T_DRP_TRY_MAX_MS 150</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gae19a1dc5b950495866359deef2cd6c7c">  125</a></span><span class="preprocessor">#define TC_T_DRP_TRY_WAIT_MIN_MS 400</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga0eb5b996e1678f3830c38584f84a6268">  131</a></span><span class="preprocessor">#define TC_T_DRP_TRY_WAIT_MAX_MS 800</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga45be1dbb0a9ad2e9a9b0549f953cb8c2">  137</a></span><span class="preprocessor">#define TC_T_TRY_TIMEOUT_MIN_MS 550</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gae3e98e8acbfb5fa7f398dea64265cb0a">  143</a></span><span class="preprocessor">#define TC_T_TRY_TIMEOUT_MAX_MS 1100</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga50a154595c40bba3e46751f6f46df848">  150</a></span><span class="preprocessor">#define TC_T_VPD_DETACH_MIN_MS 10</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga33b792a38351081f316e6f854710a96e">  157</a></span><span class="preprocessor">#define TC_T_VPD_DETACH_MAX_MS 20</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gae059acba0f01f24cb682ee2c3ded59d9">  163</a></span><span class="preprocessor">#define TC_T_CC_DEBOUNCE_MIN_MS 100</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gac4eb3955701e40ddabf8b2afae68ea8d">  169</a></span><span class="preprocessor">#define TC_T_CC_DEBOUNCE_MAX_MS 200</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga46e03b71bd69657786755bd716383fe7">  176</a></span><span class="preprocessor">#define TC_T_PD_DEBOUNCE_MIN_MS 10</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga4327b09ebf8f27675ac8fc6125ab6bbc">  183</a></span><span class="preprocessor">#define TC_T_PD_DEBOUNCE_MAX_MS 20</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga21ce86c10d5b0b9e3e7fa08e902d6f77">  190</a></span><span class="preprocessor">#define TC_T_TRY_CC_DEBOUNCE_MIN_MS 10</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga1b736eb0d37209d95f4e305baaefc1f0">  197</a></span><span class="preprocessor">#define TC_T_TRY_CC_DEBOUNCE_MAX_MS 10</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga70a063a53fba92977ed35169743368f0">  203</a></span><span class="preprocessor">#define TC_T_ERROR_RECOVERY_SELF_POWERED_MIN_MS 25</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gaaee37a1ff25fc71a5c66f04b327f9b04">  210</a></span><span class="preprocessor">#define TC_T_ERROR_RECOVERY_SOURCE_MIN_MS 240</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga22273343713c29c84f7ff95fc34e9573">  217</a></span><span class="preprocessor">#define TC_T_RP_VALUE_CHANGE_MIN_MS 10</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gade24fb4955e80390e4f47b86fbce1874">  224</a></span><span class="preprocessor">#define TC_T_RP_VALUE_CHANGE_MAX_MS 20</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga767c754753786419f50faa2888859cdb">  231</a></span><span class="preprocessor">#define TC_T_SRC_DISCONNECT_MIN_MS 0</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga92232c9516031a90da1a6fbd1be03b73">  238</a></span><span class="preprocessor">#define TC_T_SRC_DISCONNECT_MAX_MS 20</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga5ccab8bbe9c386d47f705551c3b5f918">  244</a></span><span class="preprocessor">#define TC_T_NO_TOGGLE_CONNECT_MIN_MS 0</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga7e56e9ff953b5fc425c4304831c19738">  250</a></span><span class="preprocessor">#define TC_T_NO_TOGGLE_CONNECT_MAX_MS 5</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga44d9260612a215407d79415b30e63613">  257</a></span><span class="preprocessor">#define TC_T_ONE_PORT_TOGGLE_CONNECT_MIN_MS 0</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga62662057432f68c48dd59be8b28297d4">  264</a></span><span class="preprocessor">#define TC_T_ONE_PORT_TOGGLE_CONNECT_MAX_MS 80</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga96c2bf7f24deb8e8a0d327536a0a023e">  271</a></span><span class="preprocessor">#define TC_T_TWO_PORT_TOGGLE_CONNECT_MIN_MS 0</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gad911bc40a17b676c8a87d87d51fc0fbf">  278</a></span><span class="preprocessor">#define TC_T_TWO_PORT_TOGGLE_CONNECT_MAX_MS 510</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gae2ebe887ccb4f9549d130e85b999062e">  287</a></span><span class="preprocessor">#define TC_T_VPDCTDD_MIN_US 30</span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga75223d9754d7ce76e302ee2ed40d11ef">  296</a></span><span class="preprocessor">#define TC_T_VPDCTDD_MAX_MS 5</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga56ece8323bd0a8e4ce0755e0e9e06f96">  303</a></span><span class="preprocessor">#define TC_T_VPDDISABLE_MIN_MS 25</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="foldopen" id="foldopen00308" data-start="{" data-end="};">
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga64e32ec2da97f70fd5b96975317cb92c">  308</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__usb__type__c.html#ga64e32ec2da97f70fd5b96975317cb92c">tc_cc_voltage_state</a> {</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca1f4b82ea64d23167df5083fd7550cf05">  310</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca1f4b82ea64d23167df5083fd7550cf05">TC_CC_VOLT_OPEN</a>         = 0,</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca17a8d72f4dc6b29e1d4ad35a4f1531ea">  312</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca17a8d72f4dc6b29e1d4ad35a4f1531ea">TC_CC_VOLT_RA</a>           = 1,</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca2267bbcda871c265e77228a5fe6342a9">  314</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca2267bbcda871c265e77228a5fe6342a9">TC_CC_VOLT_RD</a>           = 2,</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca06bd58eb73aa7f097046e7b88fde0293">  316</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca06bd58eb73aa7f097046e7b88fde0293">TC_CC_VOLT_RP_DEF</a>       = 5,</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="comment">/*8 Port partner is applying Rp (1.5A) */</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    TC_CC_VOLT_RP_1A5       = 6,</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca3965e449dbcc8ca6e87d72cd5a73f0ca">  320</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca3965e449dbcc8ca6e87d72cd5a73f0ca">TC_CC_VOLT_RP_3A0</a>       = 7,</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>};</div>
+</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
+<div class="foldopen" id="foldopen00326" data-start="{" data-end="};">
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga015455a6c5620dfc96cfb713bbb72161">  326</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__usb__type__c.html#ga015455a6c5620dfc96cfb713bbb72161">tc_vbus_level</a> {</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga015455a6c5620dfc96cfb713bbb72161a86bf4c0568d7a7ec89180e8e36c91827">  328</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga015455a6c5620dfc96cfb713bbb72161a86bf4c0568d7a7ec89180e8e36c91827">TC_VBUS_SAFE0V</a>  = 0,</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga015455a6c5620dfc96cfb713bbb72161a33f8f0dac47bfaffe331553cd42495f5">  330</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga015455a6c5620dfc96cfb713bbb72161a33f8f0dac47bfaffe331553cd42495f5">TC_VBUS_PRESENT</a> = 1,</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga015455a6c5620dfc96cfb713bbb72161a84aaa14f5d6dd4b1bf52564af73f24bc">TC_VBUS_REMOVED</a> = 2</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga015455a6c5620dfc96cfb713bbb72161a84aaa14f5d6dd4b1bf52564af73f24bc">  333</a></span>};</div>
+</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
+<div class="foldopen" id="foldopen00338" data-start="{" data-end="};">
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga4e0eec97f7c5c97b87eff9561deea2d5">  338</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__usb__type__c.html#ga4e0eec97f7c5c97b87eff9561deea2d5">tc_rp_value</a> {</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga4e0eec97f7c5c97b87eff9561deea2d5a22d5e50479ca672f0469af9006b4f4bb">  340</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga4e0eec97f7c5c97b87eff9561deea2d5a22d5e50479ca672f0469af9006b4f4bb">TC_RP_USB</a>       = 0,</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga4e0eec97f7c5c97b87eff9561deea2d5a1c74df7e2b6bbe75d8c61ca4a7202a28">  342</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga4e0eec97f7c5c97b87eff9561deea2d5a1c74df7e2b6bbe75d8c61ca4a7202a28">TC_RP_1A5</a>       = 1,</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga4e0eec97f7c5c97b87eff9561deea2d5afa7eda9742f3670a90736a52620cfe3c">  344</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga4e0eec97f7c5c97b87eff9561deea2d5afa7eda9742f3670a90736a52620cfe3c">TC_RP_3A0</a>       = 2,</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga4e0eec97f7c5c97b87eff9561deea2d5a215508ac427e2cc53478e5f096a400d1">TC_RP_RESERVED</a>  = 3</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga4e0eec97f7c5c97b87eff9561deea2d5a215508ac427e2cc53478e5f096a400d1">  347</a></span>};</div>
+</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="foldopen" id="foldopen00352" data-start="{" data-end="};">
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga0200c820510eb786f3ca30a9b5f7aada">  352</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__usb__type__c.html#ga0200c820510eb786f3ca30a9b5f7aada">tc_cc_pull</a> {</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaaf52a9f9d10c81fca5b048ad2230cf1e8">  354</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaaf52a9f9d10c81fca5b048ad2230cf1e8">TC_CC_RA</a>        = 0,</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaa7a0a6a716cb42af3a572f43bedc2a322">  356</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaa7a0a6a716cb42af3a572f43bedc2a322">TC_CC_RP</a>        = 1,</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaa60a4e008afce1c9395a0fb6d34767c6e">  358</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaa60a4e008afce1c9395a0fb6d34767c6e">TC_CC_RD</a>        = 2,</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaa4859548c59439c79e3ad080e1fa07fa8">  360</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaa4859548c59439c79e3ad080e1fa07fa8">TC_CC_OPEN</a>      = 3,</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaa95c81809d680f28281e9dcaef4fff35e">TC_RA_RD</a>        = 4</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaa95c81809d680f28281e9dcaef4fff35e">  363</a></span>};</div>
+</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="foldopen" id="foldopen00369" data-start="{" data-end="};">
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga8707ac194510396d55a40887673b53ca">  369</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__usb__type__c.html#ga8707ac194510396d55a40887673b53ca">tc_cable_plug</a> {</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    <span class="comment">/* Message originated from a DFP or UFP */</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    PD_PLUG_FROM_DFP_UFP = 0,</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    <span class="comment">/* Message originated from a Cable Plug or VPD */</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    PD_PLUG_FROM_CABLE_VPD = 1</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>};</div>
+</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span> </div>
+<div class="foldopen" id="foldopen00379" data-start="{" data-end="};">
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gaa6dda0612045b5f55b9d8ba63d2b9f9d">  379</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__usb__type__c.html#gaa6dda0612045b5f55b9d8ba63d2b9f9d">tc_power_role</a> {</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ggaa6dda0612045b5f55b9d8ba63d2b9f9da0023468cf2e977c8372899e6f1a0aafb">  381</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#ggaa6dda0612045b5f55b9d8ba63d2b9f9da0023468cf2e977c8372899e6f1a0aafb">TC_ROLE_SINK</a>    = 0,</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#ggaa6dda0612045b5f55b9d8ba63d2b9f9da1b8caf27ae76de5ea874b0e52adc4cf1">TC_ROLE_SOURCE</a>  = 1</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ggaa6dda0612045b5f55b9d8ba63d2b9f9da1b8caf27ae76de5ea874b0e52adc4cf1">  384</a></span>};</div>
+</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span> </div>
+<div class="foldopen" id="foldopen00389" data-start="{" data-end="};">
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga6b98bbe238e62cfd5531688494a63de2">  389</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__usb__type__c.html#ga6b98bbe238e62cfd5531688494a63de2">tc_data_role</a> {</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga6b98bbe238e62cfd5531688494a63de2a9472c4319bf0be6937436e1602c7b414">  391</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga6b98bbe238e62cfd5531688494a63de2a9472c4319bf0be6937436e1602c7b414">TC_ROLE_UFP</a>             = 0,</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga6b98bbe238e62cfd5531688494a63de2a812112dccb0c3d8dd555d351a7f5b9e1">  393</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga6b98bbe238e62cfd5531688494a63de2a812112dccb0c3d8dd555d351a7f5b9e1">TC_ROLE_DFP</a>             = 1,</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga6b98bbe238e62cfd5531688494a63de2a155c3d22f151d83899f46e516e88a058">TC_ROLE_DISCONNECTED</a>    = 2</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga6b98bbe238e62cfd5531688494a63de2a155c3d22f151d83899f46e516e88a058">  396</a></span>};</div>
+</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
+<div class="foldopen" id="foldopen00401" data-start="{" data-end="};">
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gac5b4b58840c9b076a869a5816ba100db">  401</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__usb__type__c.html#gac5b4b58840c9b076a869a5816ba100db">tc_cc_polarity</a> {</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ggac5b4b58840c9b076a869a5816ba100dba1ace08cbeb63866305ccfb0c3bf338c2">  403</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#ggac5b4b58840c9b076a869a5816ba100dba1ace08cbeb63866305ccfb0c3bf338c2">TC_POLARITY_CC1</a> = 0,</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#ggac5b4b58840c9b076a869a5816ba100dbae3ad03c80e84e32f8974a14e815ed910">TC_POLARITY_CC2</a> = 1</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ggac5b4b58840c9b076a869a5816ba100dbae3ad03c80e84e32f8974a14e815ed910">  406</a></span>};</div>
+</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> </div>
+<div class="foldopen" id="foldopen00411" data-start="{" data-end="};">
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#ga5bb2cfcf3ab60423048db38103657197">  411</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__usb__type__c.html#ga5bb2cfcf3ab60423048db38103657197">tc_cc_states</a> {</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a21cf3890c4a2fa6ee9f137f2b22e51f0">  413</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a21cf3890c4a2fa6ee9f137f2b22e51f0">TC_CC_NONE</a> = 0,</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a90544a6af90af7722cec8ffe83f752f0">  418</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a90544a6af90af7722cec8ffe83f752f0">TC_CC_UFP_NONE</a>          = 1,</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a4b841a1438a120652ab78fb3ae2c7dea">  420</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a4b841a1438a120652ab78fb3ae2c7dea">TC_CC_UFP_AUDIO_ACC</a>     = 2,</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197aaba130e5d3d999794eb87e2b8a09cf78">  422</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197aaba130e5d3d999794eb87e2b8a09cf78">TC_CC_UFP_DEBUG_ACC</a>     = 3,</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a0cfcabb4325e4b59213002aaeda75524">  424</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a0cfcabb4325e4b59213002aaeda75524">TC_CC_UFP_ATTACHED</a>      = 4,</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a950c6ff65a4af5db2f1fdab3383489ba">  429</a></span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a950c6ff65a4af5db2f1fdab3383489ba">TC_CC_DFP_ATTACHED</a>      = 5,</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>    <a class="code hl_enumvalue" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a8821754209b4cd977b2c97d43957166c">TC_CC_DFP_DEBUG_ACC</a>     = 6</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno"><a class="line" href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a8821754209b4cd977b2c97d43957166c">  432</a></span>};</div>
+</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> </div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>}</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span> </div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_USBC_USBC_TC_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__usb__type__c_html_ga015455a6c5620dfc96cfb713bbb72161"><div class="ttname"><a href="group__usb__type__c.html#ga015455a6c5620dfc96cfb713bbb72161">tc_vbus_level</a></div><div class="ttdeci">tc_vbus_level</div><div class="ttdoc">VBUS level voltages.</div><div class="ttdef"><b>Definição</b> usbc_tc.h:326</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_ga0200c820510eb786f3ca30a9b5f7aada"><div class="ttname"><a href="group__usb__type__c.html#ga0200c820510eb786f3ca30a9b5f7aada">tc_cc_pull</a></div><div class="ttdeci">tc_cc_pull</div><div class="ttdoc">CC pull resistors.</div><div class="ttdef"><b>Definição</b> usbc_tc.h:352</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_ga4e0eec97f7c5c97b87eff9561deea2d5"><div class="ttname"><a href="group__usb__type__c.html#ga4e0eec97f7c5c97b87eff9561deea2d5">tc_rp_value</a></div><div class="ttdeci">tc_rp_value</div><div class="ttdoc">Pull-Up resistor values.</div><div class="ttdef"><b>Definição</b> usbc_tc.h:338</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_ga5bb2cfcf3ab60423048db38103657197"><div class="ttname"><a href="group__usb__type__c.html#ga5bb2cfcf3ab60423048db38103657197">tc_cc_states</a></div><div class="ttdeci">tc_cc_states</div><div class="ttdoc">Possible port partner connections based on CC line states.</div><div class="ttdef"><b>Definição</b> usbc_tc.h:411</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_ga64e32ec2da97f70fd5b96975317cb92c"><div class="ttname"><a href="group__usb__type__c.html#ga64e32ec2da97f70fd5b96975317cb92c">tc_cc_voltage_state</a></div><div class="ttdeci">tc_cc_voltage_state</div><div class="ttdoc">CC Voltage status.</div><div class="ttdef"><b>Definição</b> usbc_tc.h:308</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_ga6b98bbe238e62cfd5531688494a63de2"><div class="ttname"><a href="group__usb__type__c.html#ga6b98bbe238e62cfd5531688494a63de2">tc_data_role</a></div><div class="ttdeci">tc_data_role</div><div class="ttdoc">Power Delivery Data Role.</div><div class="ttdef"><b>Definição</b> usbc_tc.h:389</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_ga8707ac194510396d55a40887673b53ca"><div class="ttname"><a href="group__usb__type__c.html#ga8707ac194510396d55a40887673b53ca">tc_cable_plug</a></div><div class="ttdeci">tc_cable_plug</div><div class="ttdoc">Cable plug. See 6.2.1.1.7 Cable Plug. Only applies to SOP' and SOP&quot;. Replaced by pd_power_role for SO...</div><div class="ttdef"><b>Definição</b> usbc_tc.h:369</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gaa6dda0612045b5f55b9d8ba63d2b9f9d"><div class="ttname"><a href="group__usb__type__c.html#gaa6dda0612045b5f55b9d8ba63d2b9f9d">tc_power_role</a></div><div class="ttdeci">tc_power_role</div><div class="ttdoc">Power Delivery Power Role.</div><div class="ttdef"><b>Definição</b> usbc_tc.h:379</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gac5b4b58840c9b076a869a5816ba100db"><div class="ttname"><a href="group__usb__type__c.html#gac5b4b58840c9b076a869a5816ba100db">tc_cc_polarity</a></div><div class="ttdeci">tc_cc_polarity</div><div class="ttdoc">Polarity of the CC lines.</div><div class="ttdef"><b>Definição</b> usbc_tc.h:401</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga015455a6c5620dfc96cfb713bbb72161a33f8f0dac47bfaffe331553cd42495f5"><div class="ttname"><a href="group__usb__type__c.html#gga015455a6c5620dfc96cfb713bbb72161a33f8f0dac47bfaffe331553cd42495f5">TC_VBUS_PRESENT</a></div><div class="ttdeci">@ TC_VBUS_PRESENT</div><div class="ttdef"><b>Definição</b> usbc_tc.h:330</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga015455a6c5620dfc96cfb713bbb72161a84aaa14f5d6dd4b1bf52564af73f24bc"><div class="ttname"><a href="group__usb__type__c.html#gga015455a6c5620dfc96cfb713bbb72161a84aaa14f5d6dd4b1bf52564af73f24bc">TC_VBUS_REMOVED</a></div><div class="ttdeci">@ TC_VBUS_REMOVED</div><div class="ttdef"><b>Definição</b> usbc_tc.h:332</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga015455a6c5620dfc96cfb713bbb72161a86bf4c0568d7a7ec89180e8e36c91827"><div class="ttname"><a href="group__usb__type__c.html#gga015455a6c5620dfc96cfb713bbb72161a86bf4c0568d7a7ec89180e8e36c91827">TC_VBUS_SAFE0V</a></div><div class="ttdeci">@ TC_VBUS_SAFE0V</div><div class="ttdef"><b>Definição</b> usbc_tc.h:328</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga0200c820510eb786f3ca30a9b5f7aadaa4859548c59439c79e3ad080e1fa07fa8"><div class="ttname"><a href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaa4859548c59439c79e3ad080e1fa07fa8">TC_CC_OPEN</a></div><div class="ttdeci">@ TC_CC_OPEN</div><div class="ttdef"><b>Definição</b> usbc_tc.h:360</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga0200c820510eb786f3ca30a9b5f7aadaa60a4e008afce1c9395a0fb6d34767c6e"><div class="ttname"><a href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaa60a4e008afce1c9395a0fb6d34767c6e">TC_CC_RD</a></div><div class="ttdeci">@ TC_CC_RD</div><div class="ttdef"><b>Definição</b> usbc_tc.h:358</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga0200c820510eb786f3ca30a9b5f7aadaa7a0a6a716cb42af3a572f43bedc2a322"><div class="ttname"><a href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaa7a0a6a716cb42af3a572f43bedc2a322">TC_CC_RP</a></div><div class="ttdeci">@ TC_CC_RP</div><div class="ttdef"><b>Definição</b> usbc_tc.h:356</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga0200c820510eb786f3ca30a9b5f7aadaa95c81809d680f28281e9dcaef4fff35e"><div class="ttname"><a href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaa95c81809d680f28281e9dcaef4fff35e">TC_RA_RD</a></div><div class="ttdeci">@ TC_RA_RD</div><div class="ttdef"><b>Definição</b> usbc_tc.h:362</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga0200c820510eb786f3ca30a9b5f7aadaaf52a9f9d10c81fca5b048ad2230cf1e8"><div class="ttname"><a href="group__usb__type__c.html#gga0200c820510eb786f3ca30a9b5f7aadaaf52a9f9d10c81fca5b048ad2230cf1e8">TC_CC_RA</a></div><div class="ttdeci">@ TC_CC_RA</div><div class="ttdef"><b>Definição</b> usbc_tc.h:354</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga4e0eec97f7c5c97b87eff9561deea2d5a1c74df7e2b6bbe75d8c61ca4a7202a28"><div class="ttname"><a href="group__usb__type__c.html#gga4e0eec97f7c5c97b87eff9561deea2d5a1c74df7e2b6bbe75d8c61ca4a7202a28">TC_RP_1A5</a></div><div class="ttdeci">@ TC_RP_1A5</div><div class="ttdef"><b>Definição</b> usbc_tc.h:342</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga4e0eec97f7c5c97b87eff9561deea2d5a215508ac427e2cc53478e5f096a400d1"><div class="ttname"><a href="group__usb__type__c.html#gga4e0eec97f7c5c97b87eff9561deea2d5a215508ac427e2cc53478e5f096a400d1">TC_RP_RESERVED</a></div><div class="ttdeci">@ TC_RP_RESERVED</div><div class="ttdef"><b>Definição</b> usbc_tc.h:346</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga4e0eec97f7c5c97b87eff9561deea2d5a22d5e50479ca672f0469af9006b4f4bb"><div class="ttname"><a href="group__usb__type__c.html#gga4e0eec97f7c5c97b87eff9561deea2d5a22d5e50479ca672f0469af9006b4f4bb">TC_RP_USB</a></div><div class="ttdeci">@ TC_RP_USB</div><div class="ttdef"><b>Definição</b> usbc_tc.h:340</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga4e0eec97f7c5c97b87eff9561deea2d5afa7eda9742f3670a90736a52620cfe3c"><div class="ttname"><a href="group__usb__type__c.html#gga4e0eec97f7c5c97b87eff9561deea2d5afa7eda9742f3670a90736a52620cfe3c">TC_RP_3A0</a></div><div class="ttdeci">@ TC_RP_3A0</div><div class="ttdef"><b>Definição</b> usbc_tc.h:344</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga5bb2cfcf3ab60423048db38103657197a0cfcabb4325e4b59213002aaeda75524"><div class="ttname"><a href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a0cfcabb4325e4b59213002aaeda75524">TC_CC_UFP_ATTACHED</a></div><div class="ttdeci">@ TC_CC_UFP_ATTACHED</div><div class="ttdef"><b>Definição</b> usbc_tc.h:424</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga5bb2cfcf3ab60423048db38103657197a21cf3890c4a2fa6ee9f137f2b22e51f0"><div class="ttname"><a href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a21cf3890c4a2fa6ee9f137f2b22e51f0">TC_CC_NONE</a></div><div class="ttdeci">@ TC_CC_NONE</div><div class="ttdef"><b>Definição</b> usbc_tc.h:413</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga5bb2cfcf3ab60423048db38103657197a4b841a1438a120652ab78fb3ae2c7dea"><div class="ttname"><a href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a4b841a1438a120652ab78fb3ae2c7dea">TC_CC_UFP_AUDIO_ACC</a></div><div class="ttdeci">@ TC_CC_UFP_AUDIO_ACC</div><div class="ttdef"><b>Definição</b> usbc_tc.h:420</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga5bb2cfcf3ab60423048db38103657197a8821754209b4cd977b2c97d43957166c"><div class="ttname"><a href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a8821754209b4cd977b2c97d43957166c">TC_CC_DFP_DEBUG_ACC</a></div><div class="ttdeci">@ TC_CC_DFP_DEBUG_ACC</div><div class="ttdef"><b>Definição</b> usbc_tc.h:431</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga5bb2cfcf3ab60423048db38103657197a90544a6af90af7722cec8ffe83f752f0"><div class="ttname"><a href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a90544a6af90af7722cec8ffe83f752f0">TC_CC_UFP_NONE</a></div><div class="ttdeci">@ TC_CC_UFP_NONE</div><div class="ttdef"><b>Definição</b> usbc_tc.h:418</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga5bb2cfcf3ab60423048db38103657197a950c6ff65a4af5db2f1fdab3383489ba"><div class="ttname"><a href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197a950c6ff65a4af5db2f1fdab3383489ba">TC_CC_DFP_ATTACHED</a></div><div class="ttdeci">@ TC_CC_DFP_ATTACHED</div><div class="ttdef"><b>Definição</b> usbc_tc.h:429</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga5bb2cfcf3ab60423048db38103657197aaba130e5d3d999794eb87e2b8a09cf78"><div class="ttname"><a href="group__usb__type__c.html#gga5bb2cfcf3ab60423048db38103657197aaba130e5d3d999794eb87e2b8a09cf78">TC_CC_UFP_DEBUG_ACC</a></div><div class="ttdeci">@ TC_CC_UFP_DEBUG_ACC</div><div class="ttdef"><b>Definição</b> usbc_tc.h:422</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga64e32ec2da97f70fd5b96975317cb92ca06bd58eb73aa7f097046e7b88fde0293"><div class="ttname"><a href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca06bd58eb73aa7f097046e7b88fde0293">TC_CC_VOLT_RP_DEF</a></div><div class="ttdeci">@ TC_CC_VOLT_RP_DEF</div><div class="ttdef"><b>Definição</b> usbc_tc.h:316</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga64e32ec2da97f70fd5b96975317cb92ca17a8d72f4dc6b29e1d4ad35a4f1531ea"><div class="ttname"><a href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca17a8d72f4dc6b29e1d4ad35a4f1531ea">TC_CC_VOLT_RA</a></div><div class="ttdeci">@ TC_CC_VOLT_RA</div><div class="ttdef"><b>Definição</b> usbc_tc.h:312</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga64e32ec2da97f70fd5b96975317cb92ca1f4b82ea64d23167df5083fd7550cf05"><div class="ttname"><a href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca1f4b82ea64d23167df5083fd7550cf05">TC_CC_VOLT_OPEN</a></div><div class="ttdeci">@ TC_CC_VOLT_OPEN</div><div class="ttdef"><b>Definição</b> usbc_tc.h:310</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga64e32ec2da97f70fd5b96975317cb92ca2267bbcda871c265e77228a5fe6342a9"><div class="ttname"><a href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca2267bbcda871c265e77228a5fe6342a9">TC_CC_VOLT_RD</a></div><div class="ttdeci">@ TC_CC_VOLT_RD</div><div class="ttdef"><b>Definição</b> usbc_tc.h:314</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga64e32ec2da97f70fd5b96975317cb92ca3965e449dbcc8ca6e87d72cd5a73f0ca"><div class="ttname"><a href="group__usb__type__c.html#gga64e32ec2da97f70fd5b96975317cb92ca3965e449dbcc8ca6e87d72cd5a73f0ca">TC_CC_VOLT_RP_3A0</a></div><div class="ttdeci">@ TC_CC_VOLT_RP_3A0</div><div class="ttdef"><b>Definição</b> usbc_tc.h:320</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga6b98bbe238e62cfd5531688494a63de2a155c3d22f151d83899f46e516e88a058"><div class="ttname"><a href="group__usb__type__c.html#gga6b98bbe238e62cfd5531688494a63de2a155c3d22f151d83899f46e516e88a058">TC_ROLE_DISCONNECTED</a></div><div class="ttdeci">@ TC_ROLE_DISCONNECTED</div><div class="ttdef"><b>Definição</b> usbc_tc.h:395</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga6b98bbe238e62cfd5531688494a63de2a812112dccb0c3d8dd555d351a7f5b9e1"><div class="ttname"><a href="group__usb__type__c.html#gga6b98bbe238e62cfd5531688494a63de2a812112dccb0c3d8dd555d351a7f5b9e1">TC_ROLE_DFP</a></div><div class="ttdeci">@ TC_ROLE_DFP</div><div class="ttdef"><b>Definição</b> usbc_tc.h:393</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_gga6b98bbe238e62cfd5531688494a63de2a9472c4319bf0be6937436e1602c7b414"><div class="ttname"><a href="group__usb__type__c.html#gga6b98bbe238e62cfd5531688494a63de2a9472c4319bf0be6937436e1602c7b414">TC_ROLE_UFP</a></div><div class="ttdeci">@ TC_ROLE_UFP</div><div class="ttdef"><b>Definição</b> usbc_tc.h:391</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_ggaa6dda0612045b5f55b9d8ba63d2b9f9da0023468cf2e977c8372899e6f1a0aafb"><div class="ttname"><a href="group__usb__type__c.html#ggaa6dda0612045b5f55b9d8ba63d2b9f9da0023468cf2e977c8372899e6f1a0aafb">TC_ROLE_SINK</a></div><div class="ttdeci">@ TC_ROLE_SINK</div><div class="ttdef"><b>Definição</b> usbc_tc.h:381</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_ggaa6dda0612045b5f55b9d8ba63d2b9f9da1b8caf27ae76de5ea874b0e52adc4cf1"><div class="ttname"><a href="group__usb__type__c.html#ggaa6dda0612045b5f55b9d8ba63d2b9f9da1b8caf27ae76de5ea874b0e52adc4cf1">TC_ROLE_SOURCE</a></div><div class="ttdeci">@ TC_ROLE_SOURCE</div><div class="ttdef"><b>Definição</b> usbc_tc.h:383</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_ggac5b4b58840c9b076a869a5816ba100dba1ace08cbeb63866305ccfb0c3bf338c2"><div class="ttname"><a href="group__usb__type__c.html#ggac5b4b58840c9b076a869a5816ba100dba1ace08cbeb63866305ccfb0c3bf338c2">TC_POLARITY_CC1</a></div><div class="ttdeci">@ TC_POLARITY_CC1</div><div class="ttdef"><b>Definição</b> usbc_tc.h:403</div></div>
+<div class="ttc" id="agroup__usb__type__c_html_ggac5b4b58840c9b076a869a5816ba100dbae3ad03c80e84e32f8974a14e815ed910"><div class="ttname"><a href="group__usb__type__c.html#ggac5b4b58840c9b076a869a5816ba100dbae3ad03c80e84e32f8974a14e815ed910">TC_POLARITY_CC2</a></div><div class="ttdeci">@ TC_POLARITY_CC2</div><div class="ttdef"><b>Definição</b> usbc_tc.h:405</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

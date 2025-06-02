@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/mgmt/mcumgr/grp/img_mgmt/img_mgmt.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_b22e92e240e215816b4a18258fade257.html">mgmt</a></li><li class="navelem"><a class="el" href="dir_3c972a23a02ad804d76387a7cbd62510.html">mcumgr</a></li><li class="navelem"><a class="el" href="dir_58933326621fc42ee5365f6fa026d4c9.html">grp</a></li><li class="navelem"><a class="el" href="dir_66531fa1b763fcc66891a82738ff68ef.html">img_mgmt</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">img_mgmt.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2018-2021 mcumgr authors</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2022-2023 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef H_IMG_MGMT_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define H_IMG_MGMT_</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;zephyr/mgmt/mcumgr/mgmt/mgmt.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="mgmt_2mcumgr_2smp_2smp_8h.html">zephyr/mgmt/mcumgr/smp/smp.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;bootutil/image.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;zcbor_common.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#define IMG_MGMT_DATA_SHA_LEN   32 </span><span class="comment">/* SHA256 */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#ga459776db5ce7bbfebae5e74aef4067ef">   33</a></span><span class="preprocessor">#define IMG_MGMT_STATE_F_PENDING    0x01</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#define IMG_MGMT_STATE_F_CONFIRMED  0x02</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#define IMG_MGMT_STATE_F_ACTIVE     0x04</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#define IMG_MGMT_STATE_F_PERMANENT  0x08</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">/* 255.255.65535.4294967295\0 */</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#define IMG_MGMT_VER_MAX_STR_LEN    (sizeof(&quot;255.255.65535.4294967295&quot;))</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#ga55e68ef4a5caa3c68987af438ebe8236">   44</a></span><span class="preprocessor">#define IMG_MGMT_SWAP_TYPE_NONE     0</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#define IMG_MGMT_SWAP_TYPE_TEST     1</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define IMG_MGMT_SWAP_TYPE_PERM     2</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#define IMG_MGMT_SWAP_TYPE_REVERT   3</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#define IMG_MGMT_SWAP_TYPE_UNKNOWN  255</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#ga19396c2690a0d40f625792ab644e7d17">   53</a></span><span class="preprocessor">#define IMG_MGMT_ID_STATE   0</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#define IMG_MGMT_ID_UPLOAD  1</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#define IMG_MGMT_ID_FILE    2</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define IMG_MGMT_ID_CORELIST    3</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#define IMG_MGMT_ID_CORELOAD    4</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define IMG_MGMT_ID_ERASE   5</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#ga669286d96816e0e99792f407752c81a5">   63</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__mcumgr__img__mgmt.html#ga669286d96816e0e99792f407752c81a5">img_mgmt_err_code_t</a> {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a7db18fe6cb5913fec882dc515d8bb7a0">   65</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a7db18fe6cb5913fec882dc515d8bb7a0">IMG_MGMT_ERR_OK</a> = 0,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a8f1bd00b3e00f070b07269fdddd2c8fe">   68</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a8f1bd00b3e00f070b07269fdddd2c8fe">IMG_MGMT_ERR_UNKNOWN</a>,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a5b4301665ef0c9818fcd3174908e5063">   71</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a5b4301665ef0c9818fcd3174908e5063">IMG_MGMT_ERR_FLASH_CONFIG_QUERY_FAIL</a>,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a360155fc7e541080a7b80bee6ec9dbb6">   74</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a360155fc7e541080a7b80bee6ec9dbb6">IMG_MGMT_ERR_NO_IMAGE</a>,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a598c03b99a2be60cf4847fa2f32c5d10">   77</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a598c03b99a2be60cf4847fa2f32c5d10">IMG_MGMT_ERR_NO_TLVS</a>,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a4725027793b17187474089fde35730cb">   80</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a4725027793b17187474089fde35730cb">IMG_MGMT_ERR_INVALID_TLV</a>,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5aced7bb74d51b7dd7ff922cf555722276">   83</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5aced7bb74d51b7dd7ff922cf555722276">IMG_MGMT_ERR_TLV_MULTIPLE_HASHES_FOUND</a>,</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a967c4f0b3d33d925e28f076c8cc3ed5c">   86</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a967c4f0b3d33d925e28f076c8cc3ed5c">IMG_MGMT_ERR_TLV_INVALID_SIZE</a>,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a5d89dde479611276e6956706ee357c6e">   89</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a5d89dde479611276e6956706ee357c6e">IMG_MGMT_ERR_HASH_NOT_FOUND</a>,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a0d16138a65766047e4917022068832fa">   92</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a0d16138a65766047e4917022068832fa">IMG_MGMT_ERR_NO_FREE_SLOT</a>,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a8253896c206d8f3ba486466555662071">   95</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a8253896c206d8f3ba486466555662071">IMG_MGMT_ERR_FLASH_OPEN_FAILED</a>,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a9a09d73602a77e112a95fa977e9b0355">   98</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a9a09d73602a77e112a95fa977e9b0355">IMG_MGMT_ERR_FLASH_READ_FAILED</a>,</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5adf54010236b4e6bb4669cdeeb4a6979f">  101</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5adf54010236b4e6bb4669cdeeb4a6979f">IMG_MGMT_ERR_FLASH_WRITE_FAILED</a>,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a869d0aa27c38187fdb73d36397dcef3c">  104</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a869d0aa27c38187fdb73d36397dcef3c">IMG_MGMT_ERR_FLASH_ERASE_FAILED</a>,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a7c0f0cda8165d0acf5fc2a072a5c5cc5">  107</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a7c0f0cda8165d0acf5fc2a072a5c5cc5">IMG_MGMT_ERR_INVALID_SLOT</a>,</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ab75ac303b054a02e99a0ed9726c988de">  110</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ab75ac303b054a02e99a0ed9726c988de">IMG_MGMT_ERR_NO_FREE_MEMORY</a>,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5af1eac867913981a4d8f1f2d64108706e">  113</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5af1eac867913981a4d8f1f2d64108706e">IMG_MGMT_ERR_FLASH_CONTEXT_ALREADY_SET</a>,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a9e4c9f1a79f645130ef9a8aa09b8b544">  116</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a9e4c9f1a79f645130ef9a8aa09b8b544">IMG_MGMT_ERR_FLASH_CONTEXT_NOT_SET</a>,</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a6c1c103d76e1f16fda77525ba136e9b2">  119</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a6c1c103d76e1f16fda77525ba136e9b2">IMG_MGMT_ERR_FLASH_AREA_DEVICE_NULL</a>,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a857b6ecc22e5f54834638aa604cce6bf">  122</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a857b6ecc22e5f54834638aa604cce6bf">IMG_MGMT_ERR_INVALID_PAGE_OFFSET</a>,</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a8a94dfe1aca340c4337fe92554ede4b0">  125</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a8a94dfe1aca340c4337fe92554ede4b0">IMG_MGMT_ERR_INVALID_OFFSET</a>,</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a227b2b3be93cf963ce034b9cb817d0ca">  128</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a227b2b3be93cf963ce034b9cb817d0ca">IMG_MGMT_ERR_INVALID_LENGTH</a>,</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5acfdb28d59643e70db86abfa72c2833b7">  131</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5acfdb28d59643e70db86abfa72c2833b7">IMG_MGMT_ERR_INVALID_IMAGE_HEADER</a>,</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a5606b72a7bf61832b92c77e729e02093">  134</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a5606b72a7bf61832b92c77e729e02093">IMG_MGMT_ERR_INVALID_IMAGE_HEADER_MAGIC</a>,</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a4b2994e51eadae6cb43c3683d6e223b6">  137</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a4b2994e51eadae6cb43c3683d6e223b6">IMG_MGMT_ERR_INVALID_HASH</a>,</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a27502b76efcc09ef01cfbe777a9e8086">  140</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a27502b76efcc09ef01cfbe777a9e8086">IMG_MGMT_ERR_INVALID_FLASH_ADDRESS</a>,</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ae710879342357f27c9705989f572b82f">  143</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ae710879342357f27c9705989f572b82f">IMG_MGMT_ERR_VERSION_GET_FAILED</a>,</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a37ad5efbaacdcb708a65674a4dc83d85">  146</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a37ad5efbaacdcb708a65674a4dc83d85">IMG_MGMT_ERR_CURRENT_VERSION_IS_NEWER</a>,</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5af55239776b4b5a5eead0440fb3b884b3">  149</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5af55239776b4b5a5eead0440fb3b884b3">IMG_MGMT_ERR_IMAGE_ALREADY_PENDING</a>,</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a3a8d3005c72273ee065c34396d3fd2f7">  152</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a3a8d3005c72273ee065c34396d3fd2f7">IMG_MGMT_ERR_INVALID_IMAGE_VECTOR_TABLE</a>,</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ab258cd53a5cc13e2376662690703f54b">  155</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ab258cd53a5cc13e2376662690703f54b">IMG_MGMT_ERR_INVALID_IMAGE_TOO_LARGE</a>,</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a92ab3773cdbd00b42fb59865e958069b">  158</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a92ab3773cdbd00b42fb59865e958069b">IMG_MGMT_ERR_INVALID_IMAGE_DATA_OVERRUN</a>,</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ae2413b0ade3185b91ae085af397adabf">  161</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ae2413b0ade3185b91ae085af397adabf">IMG_MGMT_ERR_IMAGE_CONFIRMATION_DENIED</a>,</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ab195578794ddc6cffa5e056ee34350a8">  164</a></span>    <a class="code hl_enumvalue" href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ab195578794ddc6cffa5e056ee34350a8">IMG_MGMT_ERR_IMAGE_SETTING_TEST_TO_ACTIVE_DENIED</a>,</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>};</div>
+</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="foldopen" id="foldopen00170" data-start="{" data-end="};">
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#ga1d239fef127e65b11b71360eadfa1ede">  170</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__mcumgr__img__mgmt.html#ga1d239fef127e65b11b71360eadfa1ede">img_mgmt_id_upload_t</a> {</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    IMG_MGMT_ID_UPLOAD_STATUS_START     = 0,</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    IMG_MGMT_ID_UPLOAD_STATUS_ONGOING,</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    IMG_MGMT_ID_UPLOAD_STATUS_COMPLETE,</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>};</div>
+</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="keyword">extern</span> <span class="keywordtype">int</span> boot_current_slot;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="keyword">extern</span> <span class="keyword">struct </span><a class="code hl_struct" href="structimg__mgmt__state.html">img_mgmt_state</a> g_img_mgmt_state;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="foldopen" id="foldopen00180" data-start="{" data-end="};">
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="structimg__mgmt__upload__req.html">  180</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structimg__mgmt__upload__req.html">img_mgmt_upload_req</a> {</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    uint32_t image; <span class="comment">/* 0 by default */</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keywordtype">size_t</span> off; <span class="comment">/* SIZE_MAX if unspecified */</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordtype">size_t</span> size;    <span class="comment">/* SIZE_MAX if unspecified */</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="keyword">struct </span>zcbor_string img_data;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keyword">struct </span>zcbor_string data_sha;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordtype">bool</span> upgrade;           <span class="comment">/* Only allow greater version numbers. */</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>};</div>
+</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="foldopen" id="foldopen00190" data-start="{" data-end="};">
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="structimg__mgmt__state.html">  190</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structimg__mgmt__state.html">img_mgmt_state</a> {</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="structimg__mgmt__state.html#a4da29c0c4b525463cce3f0d3ffbed633">  192</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structimg__mgmt__state.html#a4da29c0c4b525463cce3f0d3ffbed633">area_id</a>;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="structimg__mgmt__state.html#a965b6426ea57beac531af3bb9d2f0d0e">  194</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structimg__mgmt__state.html#a965b6426ea57beac531af3bb9d2f0d0e">off</a>;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="structimg__mgmt__state.html#a40619a325f216e1c27e45fd19ccd6db3">  196</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structimg__mgmt__state.html#a40619a325f216e1c27e45fd19ccd6db3">size</a>;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="structimg__mgmt__state.html#a6a3cbeb401f057fb1510e1acbdf7d71c">  198</a></span>    uint8_t <a class="code hl_variable" href="structimg__mgmt__state.html#a6a3cbeb401f057fb1510e1acbdf7d71c">data_sha_len</a>;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    uint8_t data_sha[IMG_MGMT_DATA_SHA_LEN];</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>};</div>
+</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="foldopen" id="foldopen00203" data-start="{" data-end="};">
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="structimg__mgmt__upload__action.html">  203</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structimg__mgmt__upload__action.html">img_mgmt_upload_action</a> {</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="structimg__mgmt__upload__action.html#a4b1d3625ade4e4392094ace41ec4aa01">  205</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="structimg__mgmt__upload__action.html#a4b1d3625ade4e4392094ace41ec4aa01">size</a>;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="structimg__mgmt__upload__action.html#aac493000e6989735531492f15edb6108">  207</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structimg__mgmt__upload__action.html#aac493000e6989735531492f15edb6108">write_bytes</a>;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="structimg__mgmt__upload__action.html#a6c9248e3c21325ed99ff8cf765f3ac82">  209</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structimg__mgmt__upload__action.html#a6c9248e3c21325ed99ff8cf765f3ac82">area_id</a>;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="structimg__mgmt__upload__action.html#a7661db4343ebf6f7d040e3e87d3611aa">  211</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structimg__mgmt__upload__action.html#a7661db4343ebf6f7d040e3e87d3611aa">proceed</a>;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="structimg__mgmt__upload__action.html#abe9c3503c6d58cf3b7ad637cd4fec852">  213</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structimg__mgmt__upload__action.html#abe9c3503c6d58cf3b7ad637cd4fec852">erase</a>;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="preprocessor">#ifdef CONFIG_MCUMGR_GRP_IMG_VERBOSE_ERR</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *rc_rsn;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>};</div>
+</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment"> * @brief Read info of an image at the specified slot number</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment"> * @param image_slot    image slot number</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment"> * @param ver       output buffer for image version</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment"> * @param hash      output buffer for image hash</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment"> * @param flags     output buffer for image flags</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment"> * @return 0 on success, non-zero on failure.</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="keywordtype">int</span> img_mgmt_read_info(<span class="keywordtype">int</span> image_slot, <span class="keyword">struct</span> image_version *ver, uint8_t *hash, uint32_t *flags);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gae9cfa02e5f171d68287cdb0d7d4c0610">  239</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcumgr__img__mgmt.html#gae9cfa02e5f171d68287cdb0d7d4c0610">img_mgmt_my_version</a>(<span class="keyword">struct</span> image_version *ver);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#ga5199849b6d8847c6a1260254940db95b">  249</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcumgr__img__mgmt.html#ga5199849b6d8847c6a1260254940db95b">img_mgmt_ver_str</a>(<span class="keyword">const</span> <span class="keyword">struct</span> image_version *ver, <span class="keywordtype">char</span> *dst);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gab35c8adf2e5e2c941ecbaf3c03101e55">  258</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcumgr__img__mgmt.html#gab35c8adf2e5e2c941ecbaf3c03101e55">img_mgmt_active_slot</a>(<span class="keywordtype">int</span> image);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gab6a92433b859fce18b58e6110fa5f489">  267</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcumgr__img__mgmt.html#gab6a92433b859fce18b58e6110fa5f489">img_mgmt_active_image</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#ga90de2da23bcd650ca59219fdfd4f55a1">  280</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcumgr__img__mgmt.html#ga90de2da23bcd650ca59219fdfd4f55a1">img_mgmt_slot_in_use</a>(<span class="keywordtype">int</span> slot);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#ga3e496199d0ea4aa1b3f51e59bb7473f0">  290</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcumgr__img__mgmt.html#ga3e496199d0ea4aa1b3f51e59bb7473f0">img_mgmt_state_any_pending</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#ga42475389b4e31d5f35ea58873527e948">  307</a></span>uint8_t <a class="code hl_function" href="group__mcumgr__img__mgmt.html#ga42475389b4e31d5f35ea58873527e948">img_mgmt_state_flags</a>(<span class="keywordtype">int</span> query_slot);</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#ga7e529fa76ddb3d3bf4a527cb11fa9c89">  321</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcumgr__img__mgmt.html#ga7e529fa76ddb3d3bf4a527cb11fa9c89">img_mgmt_state_set_pending</a>(<span class="keywordtype">int</span> slot, <span class="keywordtype">int</span> permanent);</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#gaed0b945d2f83daf63d850b232a2cfea8">  331</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcumgr__img__mgmt.html#gaed0b945d2f83daf63d850b232a2cfea8">img_mgmt_state_confirm</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno"><a class="line" href="group__mcumgr__img__mgmt.html#ga6c9124cc59c99769908cdf83f58e1bf1">  343</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcumgr__img__mgmt.html#ga6c9124cc59c99769908cdf83f58e1bf1">img_mgmt_vercmp</a>(<span class="keyword">const</span> <span class="keyword">struct</span> image_version *a, <span class="keyword">const</span> <span class="keyword">struct</span> image_version *b);</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="preprocessor">#if IS_ENABLED(CONFIG_MCUMGR_GRP_IMG_MUTEX)</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="comment"> * @brief   Will reset the image management state back to default (no ongoing upload),</span></div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="comment"> *      requires that CONFIG_MCUMGR_GRP_IMG_MUTEX be enabled to allow for mutex</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="comment"> *      locking of the image management state object.</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="keywordtype">void</span> img_mgmt_reset_upload(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="preprocessor">#ifdef CONFIG_MCUMGR_GRP_IMG_VERBOSE_ERR</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="preprocessor">#define IMG_MGMT_UPLOAD_ACTION_SET_RC_RSN(action, rsn) ((action)-&gt;rc_rsn = (rsn))</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="preprocessor">#define IMG_MGMT_UPLOAD_ACTION_RC_RSN(action) ((action)-&gt;rc_rsn)</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="keywordtype">int</span> img_mgmt_error_rsp(<span class="keyword">struct</span> <a class="code hl_struct" href="structsmp__streamer.html">smp_streamer</a> *ctxt, <span class="keywordtype">int</span> rc, <span class="keyword">const</span> <span class="keywordtype">char</span> *rsn);</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *img_mgmt_err_str_app_reject;</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *img_mgmt_err_str_hdr_malformed;</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *img_mgmt_err_str_magic_mismatch;</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *img_mgmt_err_str_no_slot;</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *img_mgmt_err_str_flash_open_failed;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *img_mgmt_err_str_flash_erase_failed;</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *img_mgmt_err_str_flash_write_failed;</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *img_mgmt_err_str_downgrade;</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *img_mgmt_err_str_image_bad_flash_addr;</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *img_mgmt_err_str_image_too_large;</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *img_mgmt_err_str_data_overrun;</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="preprocessor">#define IMG_MGMT_UPLOAD_ACTION_SET_RC_RSN(action, rsn)</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="preprocessor">#define IMG_MGMT_UPLOAD_ACTION_RC_RSN(action) NULL</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>}</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span> </div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span><span class="preprocessor">#endif </span><span class="comment">/* H_IMG_MGMT_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_ga1d239fef127e65b11b71360eadfa1ede"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#ga1d239fef127e65b11b71360eadfa1ede">img_mgmt_id_upload_t</a></div><div class="ttdeci">img_mgmt_id_upload_t</div><div class="ttdef"><b>Definição</b> img_mgmt.h:170</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_ga3e496199d0ea4aa1b3f51e59bb7473f0"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#ga3e496199d0ea4aa1b3f51e59bb7473f0">img_mgmt_state_any_pending</a></div><div class="ttdeci">int img_mgmt_state_any_pending(void)</div><div class="ttdoc">Check if any slot is in MCUboot pending state.</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_ga42475389b4e31d5f35ea58873527e948"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#ga42475389b4e31d5f35ea58873527e948">img_mgmt_state_flags</a></div><div class="ttdeci">uint8_t img_mgmt_state_flags(int query_slot)</div><div class="ttdoc">Returns state flags set to slot.</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_ga5199849b6d8847c6a1260254940db95b"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#ga5199849b6d8847c6a1260254940db95b">img_mgmt_ver_str</a></div><div class="ttdeci">int img_mgmt_ver_str(const struct image_version *ver, char *dst)</div><div class="ttdoc">Format version string from struct image_version.</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_ga669286d96816e0e99792f407752c81a5"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#ga669286d96816e0e99792f407752c81a5">img_mgmt_err_code_t</a></div><div class="ttdeci">img_mgmt_err_code_t</div><div class="ttdef"><b>Definição</b> img_mgmt.h:63</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_ga6c9124cc59c99769908cdf83f58e1bf1"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#ga6c9124cc59c99769908cdf83f58e1bf1">img_mgmt_vercmp</a></div><div class="ttdeci">int img_mgmt_vercmp(const struct image_version *a, const struct image_version *b)</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_ga7e529fa76ddb3d3bf4a527cb11fa9c89"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#ga7e529fa76ddb3d3bf4a527cb11fa9c89">img_mgmt_state_set_pending</a></div><div class="ttdeci">int img_mgmt_state_set_pending(int slot, int permanent)</div><div class="ttdoc">Sets the pending flag for the specified image slot.</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_ga90de2da23bcd650ca59219fdfd4f55a1"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#ga90de2da23bcd650ca59219fdfd4f55a1">img_mgmt_slot_in_use</a></div><div class="ttdeci">int img_mgmt_slot_in_use(int slot)</div><div class="ttdoc">Check if the image slot is in use.</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gab35c8adf2e5e2c941ecbaf3c03101e55"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gab35c8adf2e5e2c941ecbaf3c03101e55">img_mgmt_active_slot</a></div><div class="ttdeci">int img_mgmt_active_slot(int image)</div><div class="ttdoc">Get active, running application slot number for an image.</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gab6a92433b859fce18b58e6110fa5f489"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gab6a92433b859fce18b58e6110fa5f489">img_mgmt_active_image</a></div><div class="ttdeci">int img_mgmt_active_image(void)</div><div class="ttdoc">Get active image number.</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gae9cfa02e5f171d68287cdb0d7d4c0610"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gae9cfa02e5f171d68287cdb0d7d4c0610">img_mgmt_my_version</a></div><div class="ttdeci">int img_mgmt_my_version(struct image_version *ver)</div><div class="ttdoc">Get the image version of the currently running application.</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gaed0b945d2f83daf63d850b232a2cfea8"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gaed0b945d2f83daf63d850b232a2cfea8">img_mgmt_state_confirm</a></div><div class="ttdeci">int img_mgmt_state_confirm(void)</div><div class="ttdoc">Confirms the current image state.</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a0d16138a65766047e4917022068832fa"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a0d16138a65766047e4917022068832fa">IMG_MGMT_ERR_NO_FREE_SLOT</a></div><div class="ttdeci">@ IMG_MGMT_ERR_NO_FREE_SLOT</div><div class="ttdef"><b>Definição</b> img_mgmt.h:92</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a227b2b3be93cf963ce034b9cb817d0ca"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a227b2b3be93cf963ce034b9cb817d0ca">IMG_MGMT_ERR_INVALID_LENGTH</a></div><div class="ttdeci">@ IMG_MGMT_ERR_INVALID_LENGTH</div><div class="ttdef"><b>Definição</b> img_mgmt.h:128</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a27502b76efcc09ef01cfbe777a9e8086"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a27502b76efcc09ef01cfbe777a9e8086">IMG_MGMT_ERR_INVALID_FLASH_ADDRESS</a></div><div class="ttdeci">@ IMG_MGMT_ERR_INVALID_FLASH_ADDRESS</div><div class="ttdef"><b>Definição</b> img_mgmt.h:140</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a360155fc7e541080a7b80bee6ec9dbb6"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a360155fc7e541080a7b80bee6ec9dbb6">IMG_MGMT_ERR_NO_IMAGE</a></div><div class="ttdeci">@ IMG_MGMT_ERR_NO_IMAGE</div><div class="ttdef"><b>Definição</b> img_mgmt.h:74</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a37ad5efbaacdcb708a65674a4dc83d85"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a37ad5efbaacdcb708a65674a4dc83d85">IMG_MGMT_ERR_CURRENT_VERSION_IS_NEWER</a></div><div class="ttdeci">@ IMG_MGMT_ERR_CURRENT_VERSION_IS_NEWER</div><div class="ttdef"><b>Definição</b> img_mgmt.h:146</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a3a8d3005c72273ee065c34396d3fd2f7"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a3a8d3005c72273ee065c34396d3fd2f7">IMG_MGMT_ERR_INVALID_IMAGE_VECTOR_TABLE</a></div><div class="ttdeci">@ IMG_MGMT_ERR_INVALID_IMAGE_VECTOR_TABLE</div><div class="ttdef"><b>Definição</b> img_mgmt.h:152</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a4725027793b17187474089fde35730cb"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a4725027793b17187474089fde35730cb">IMG_MGMT_ERR_INVALID_TLV</a></div><div class="ttdeci">@ IMG_MGMT_ERR_INVALID_TLV</div><div class="ttdef"><b>Definição</b> img_mgmt.h:80</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a4b2994e51eadae6cb43c3683d6e223b6"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a4b2994e51eadae6cb43c3683d6e223b6">IMG_MGMT_ERR_INVALID_HASH</a></div><div class="ttdeci">@ IMG_MGMT_ERR_INVALID_HASH</div><div class="ttdef"><b>Definição</b> img_mgmt.h:137</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a5606b72a7bf61832b92c77e729e02093"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a5606b72a7bf61832b92c77e729e02093">IMG_MGMT_ERR_INVALID_IMAGE_HEADER_MAGIC</a></div><div class="ttdeci">@ IMG_MGMT_ERR_INVALID_IMAGE_HEADER_MAGIC</div><div class="ttdef"><b>Definição</b> img_mgmt.h:134</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a598c03b99a2be60cf4847fa2f32c5d10"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a598c03b99a2be60cf4847fa2f32c5d10">IMG_MGMT_ERR_NO_TLVS</a></div><div class="ttdeci">@ IMG_MGMT_ERR_NO_TLVS</div><div class="ttdef"><b>Definição</b> img_mgmt.h:77</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a5b4301665ef0c9818fcd3174908e5063"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a5b4301665ef0c9818fcd3174908e5063">IMG_MGMT_ERR_FLASH_CONFIG_QUERY_FAIL</a></div><div class="ttdeci">@ IMG_MGMT_ERR_FLASH_CONFIG_QUERY_FAIL</div><div class="ttdef"><b>Definição</b> img_mgmt.h:71</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a5d89dde479611276e6956706ee357c6e"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a5d89dde479611276e6956706ee357c6e">IMG_MGMT_ERR_HASH_NOT_FOUND</a></div><div class="ttdeci">@ IMG_MGMT_ERR_HASH_NOT_FOUND</div><div class="ttdef"><b>Definição</b> img_mgmt.h:89</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a6c1c103d76e1f16fda77525ba136e9b2"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a6c1c103d76e1f16fda77525ba136e9b2">IMG_MGMT_ERR_FLASH_AREA_DEVICE_NULL</a></div><div class="ttdeci">@ IMG_MGMT_ERR_FLASH_AREA_DEVICE_NULL</div><div class="ttdef"><b>Definição</b> img_mgmt.h:119</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a7c0f0cda8165d0acf5fc2a072a5c5cc5"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a7c0f0cda8165d0acf5fc2a072a5c5cc5">IMG_MGMT_ERR_INVALID_SLOT</a></div><div class="ttdeci">@ IMG_MGMT_ERR_INVALID_SLOT</div><div class="ttdef"><b>Definição</b> img_mgmt.h:107</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a7db18fe6cb5913fec882dc515d8bb7a0"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a7db18fe6cb5913fec882dc515d8bb7a0">IMG_MGMT_ERR_OK</a></div><div class="ttdeci">@ IMG_MGMT_ERR_OK</div><div class="ttdef"><b>Definição</b> img_mgmt.h:65</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a8253896c206d8f3ba486466555662071"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a8253896c206d8f3ba486466555662071">IMG_MGMT_ERR_FLASH_OPEN_FAILED</a></div><div class="ttdeci">@ IMG_MGMT_ERR_FLASH_OPEN_FAILED</div><div class="ttdef"><b>Definição</b> img_mgmt.h:95</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a857b6ecc22e5f54834638aa604cce6bf"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a857b6ecc22e5f54834638aa604cce6bf">IMG_MGMT_ERR_INVALID_PAGE_OFFSET</a></div><div class="ttdeci">@ IMG_MGMT_ERR_INVALID_PAGE_OFFSET</div><div class="ttdef"><b>Definição</b> img_mgmt.h:122</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a869d0aa27c38187fdb73d36397dcef3c"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a869d0aa27c38187fdb73d36397dcef3c">IMG_MGMT_ERR_FLASH_ERASE_FAILED</a></div><div class="ttdeci">@ IMG_MGMT_ERR_FLASH_ERASE_FAILED</div><div class="ttdef"><b>Definição</b> img_mgmt.h:104</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a8a94dfe1aca340c4337fe92554ede4b0"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a8a94dfe1aca340c4337fe92554ede4b0">IMG_MGMT_ERR_INVALID_OFFSET</a></div><div class="ttdeci">@ IMG_MGMT_ERR_INVALID_OFFSET</div><div class="ttdef"><b>Definição</b> img_mgmt.h:125</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a8f1bd00b3e00f070b07269fdddd2c8fe"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a8f1bd00b3e00f070b07269fdddd2c8fe">IMG_MGMT_ERR_UNKNOWN</a></div><div class="ttdeci">@ IMG_MGMT_ERR_UNKNOWN</div><div class="ttdef"><b>Definição</b> img_mgmt.h:68</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a92ab3773cdbd00b42fb59865e958069b"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a92ab3773cdbd00b42fb59865e958069b">IMG_MGMT_ERR_INVALID_IMAGE_DATA_OVERRUN</a></div><div class="ttdeci">@ IMG_MGMT_ERR_INVALID_IMAGE_DATA_OVERRUN</div><div class="ttdef"><b>Definição</b> img_mgmt.h:158</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a967c4f0b3d33d925e28f076c8cc3ed5c"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a967c4f0b3d33d925e28f076c8cc3ed5c">IMG_MGMT_ERR_TLV_INVALID_SIZE</a></div><div class="ttdeci">@ IMG_MGMT_ERR_TLV_INVALID_SIZE</div><div class="ttdef"><b>Definição</b> img_mgmt.h:86</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a9a09d73602a77e112a95fa977e9b0355"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a9a09d73602a77e112a95fa977e9b0355">IMG_MGMT_ERR_FLASH_READ_FAILED</a></div><div class="ttdeci">@ IMG_MGMT_ERR_FLASH_READ_FAILED</div><div class="ttdef"><b>Definição</b> img_mgmt.h:98</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5a9e4c9f1a79f645130ef9a8aa09b8b544"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5a9e4c9f1a79f645130ef9a8aa09b8b544">IMG_MGMT_ERR_FLASH_CONTEXT_NOT_SET</a></div><div class="ttdeci">@ IMG_MGMT_ERR_FLASH_CONTEXT_NOT_SET</div><div class="ttdef"><b>Definição</b> img_mgmt.h:116</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5ab195578794ddc6cffa5e056ee34350a8"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ab195578794ddc6cffa5e056ee34350a8">IMG_MGMT_ERR_IMAGE_SETTING_TEST_TO_ACTIVE_DENIED</a></div><div class="ttdeci">@ IMG_MGMT_ERR_IMAGE_SETTING_TEST_TO_ACTIVE_DENIED</div><div class="ttdef"><b>Definição</b> img_mgmt.h:164</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5ab258cd53a5cc13e2376662690703f54b"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ab258cd53a5cc13e2376662690703f54b">IMG_MGMT_ERR_INVALID_IMAGE_TOO_LARGE</a></div><div class="ttdeci">@ IMG_MGMT_ERR_INVALID_IMAGE_TOO_LARGE</div><div class="ttdef"><b>Definição</b> img_mgmt.h:155</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5ab75ac303b054a02e99a0ed9726c988de"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ab75ac303b054a02e99a0ed9726c988de">IMG_MGMT_ERR_NO_FREE_MEMORY</a></div><div class="ttdeci">@ IMG_MGMT_ERR_NO_FREE_MEMORY</div><div class="ttdef"><b>Definição</b> img_mgmt.h:110</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5aced7bb74d51b7dd7ff922cf555722276"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5aced7bb74d51b7dd7ff922cf555722276">IMG_MGMT_ERR_TLV_MULTIPLE_HASHES_FOUND</a></div><div class="ttdeci">@ IMG_MGMT_ERR_TLV_MULTIPLE_HASHES_FOUND</div><div class="ttdef"><b>Definição</b> img_mgmt.h:83</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5acfdb28d59643e70db86abfa72c2833b7"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5acfdb28d59643e70db86abfa72c2833b7">IMG_MGMT_ERR_INVALID_IMAGE_HEADER</a></div><div class="ttdeci">@ IMG_MGMT_ERR_INVALID_IMAGE_HEADER</div><div class="ttdef"><b>Definição</b> img_mgmt.h:131</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5adf54010236b4e6bb4669cdeeb4a6979f"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5adf54010236b4e6bb4669cdeeb4a6979f">IMG_MGMT_ERR_FLASH_WRITE_FAILED</a></div><div class="ttdeci">@ IMG_MGMT_ERR_FLASH_WRITE_FAILED</div><div class="ttdef"><b>Definição</b> img_mgmt.h:101</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5ae2413b0ade3185b91ae085af397adabf"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ae2413b0ade3185b91ae085af397adabf">IMG_MGMT_ERR_IMAGE_CONFIRMATION_DENIED</a></div><div class="ttdeci">@ IMG_MGMT_ERR_IMAGE_CONFIRMATION_DENIED</div><div class="ttdef"><b>Definição</b> img_mgmt.h:161</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5ae710879342357f27c9705989f572b82f"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5ae710879342357f27c9705989f572b82f">IMG_MGMT_ERR_VERSION_GET_FAILED</a></div><div class="ttdeci">@ IMG_MGMT_ERR_VERSION_GET_FAILED</div><div class="ttdef"><b>Definição</b> img_mgmt.h:143</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5af1eac867913981a4d8f1f2d64108706e"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5af1eac867913981a4d8f1f2d64108706e">IMG_MGMT_ERR_FLASH_CONTEXT_ALREADY_SET</a></div><div class="ttdeci">@ IMG_MGMT_ERR_FLASH_CONTEXT_ALREADY_SET</div><div class="ttdef"><b>Definição</b> img_mgmt.h:113</div></div>
+<div class="ttc" id="agroup__mcumgr__img__mgmt_html_gga669286d96816e0e99792f407752c81a5af55239776b4b5a5eead0440fb3b884b3"><div class="ttname"><a href="group__mcumgr__img__mgmt.html#gga669286d96816e0e99792f407752c81a5af55239776b4b5a5eead0440fb3b884b3">IMG_MGMT_ERR_IMAGE_ALREADY_PENDING</a></div><div class="ttdeci">@ IMG_MGMT_ERR_IMAGE_ALREADY_PENDING</div><div class="ttdef"><b>Definição</b> img_mgmt.h:149</div></div>
+<div class="ttc" id="amgmt_2mcumgr_2smp_2smp_8h_html"><div class="ttname"><a href="mgmt_2mcumgr_2smp_2smp_8h.html">smp.h</a></div><div class="ttdoc">SMP - Simple Management Protocol.</div></div>
+<div class="ttc" id="astructimg__mgmt__state_html"><div class="ttname"><a href="structimg__mgmt__state.html">img_mgmt_state</a></div><div class="ttdef"><b>Definição</b> img_mgmt.h:190</div></div>
+<div class="ttc" id="astructimg__mgmt__state_html_a40619a325f216e1c27e45fd19ccd6db3"><div class="ttname"><a href="structimg__mgmt__state.html#a40619a325f216e1c27e45fd19ccd6db3">img_mgmt_state::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definição</b> img_mgmt.h:196</div></div>
+<div class="ttc" id="astructimg__mgmt__state_html_a4da29c0c4b525463cce3f0d3ffbed633"><div class="ttname"><a href="structimg__mgmt__state.html#a4da29c0c4b525463cce3f0d3ffbed633">img_mgmt_state::area_id</a></div><div class="ttdeci">int area_id</div><div class="ttdef"><b>Definição</b> img_mgmt.h:192</div></div>
+<div class="ttc" id="astructimg__mgmt__state_html_a6a3cbeb401f057fb1510e1acbdf7d71c"><div class="ttname"><a href="structimg__mgmt__state.html#a6a3cbeb401f057fb1510e1acbdf7d71c">img_mgmt_state::data_sha_len</a></div><div class="ttdeci">uint8_t data_sha_len</div><div class="ttdef"><b>Definição</b> img_mgmt.h:198</div></div>
+<div class="ttc" id="astructimg__mgmt__state_html_a965b6426ea57beac531af3bb9d2f0d0e"><div class="ttname"><a href="structimg__mgmt__state.html#a965b6426ea57beac531af3bb9d2f0d0e">img_mgmt_state::off</a></div><div class="ttdeci">size_t off</div><div class="ttdef"><b>Definição</b> img_mgmt.h:194</div></div>
+<div class="ttc" id="astructimg__mgmt__upload__action_html"><div class="ttname"><a href="structimg__mgmt__upload__action.html">img_mgmt_upload_action</a></div><div class="ttdef"><b>Definição</b> img_mgmt.h:203</div></div>
+<div class="ttc" id="astructimg__mgmt__upload__action_html_a4b1d3625ade4e4392094ace41ec4aa01"><div class="ttname"><a href="structimg__mgmt__upload__action.html#a4b1d3625ade4e4392094ace41ec4aa01">img_mgmt_upload_action::size</a></div><div class="ttdeci">unsigned long long size</div><div class="ttdef"><b>Definição</b> img_mgmt.h:205</div></div>
+<div class="ttc" id="astructimg__mgmt__upload__action_html_a6c9248e3c21325ed99ff8cf765f3ac82"><div class="ttname"><a href="structimg__mgmt__upload__action.html#a6c9248e3c21325ed99ff8cf765f3ac82">img_mgmt_upload_action::area_id</a></div><div class="ttdeci">int area_id</div><div class="ttdef"><b>Definição</b> img_mgmt.h:209</div></div>
+<div class="ttc" id="astructimg__mgmt__upload__action_html_a7661db4343ebf6f7d040e3e87d3611aa"><div class="ttname"><a href="structimg__mgmt__upload__action.html#a7661db4343ebf6f7d040e3e87d3611aa">img_mgmt_upload_action::proceed</a></div><div class="ttdeci">bool proceed</div><div class="ttdef"><b>Definição</b> img_mgmt.h:211</div></div>
+<div class="ttc" id="astructimg__mgmt__upload__action_html_aac493000e6989735531492f15edb6108"><div class="ttname"><a href="structimg__mgmt__upload__action.html#aac493000e6989735531492f15edb6108">img_mgmt_upload_action::write_bytes</a></div><div class="ttdeci">int write_bytes</div><div class="ttdef"><b>Definição</b> img_mgmt.h:207</div></div>
+<div class="ttc" id="astructimg__mgmt__upload__action_html_abe9c3503c6d58cf3b7ad637cd4fec852"><div class="ttname"><a href="structimg__mgmt__upload__action.html#abe9c3503c6d58cf3b7ad637cd4fec852">img_mgmt_upload_action::erase</a></div><div class="ttdeci">bool erase</div><div class="ttdef"><b>Definição</b> img_mgmt.h:213</div></div>
+<div class="ttc" id="astructimg__mgmt__upload__req_html"><div class="ttname"><a href="structimg__mgmt__upload__req.html">img_mgmt_upload_req</a></div><div class="ttdef"><b>Definição</b> img_mgmt.h:180</div></div>
+<div class="ttc" id="astructsmp__streamer_html"><div class="ttname"><a href="structsmp__streamer.html">smp_streamer</a></div><div class="ttdoc">Decodes, encodes, and transmits SMP packets.</div><div class="ttdef"><b>Definição</b> smp.h:83</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

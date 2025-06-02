@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/sys/arch_interface.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_791a8e330d3bfcbb2b6e2254610c12ab.html">sys</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">arch_interface.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2019 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_SYS_ARCH_INTERFACE_H_</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#define ZEPHYR_INCLUDE_SYS_ARCH_INTERFACE_H_</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#ifndef _ASMLANGUAGE</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;<a class="code" href="toolchain_8h.html">zephyr/toolchain.h</a>&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;zephyr/arch/cpu.h&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;<a class="code" href="irq__offload_8h.html">zephyr/irq_offload.h</a>&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">/* NOTE: We cannot pull in kernel.h here, need some forward declarations  */</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">struct </span><a class="code hl_struct" href="structk__thread.html">k_thread</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">struct </span>k_mem_domain;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structz__thread__stack__element.html">z_thread_stack_element</a> <a class="code hl_struct" href="structz__thread__stack__element.html">k_thread_stack_t</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">typedef</span> void (*k_thread_entry_t)(<span class="keywordtype">void</span> *p1, <span class="keywordtype">void</span> *p2, <span class="keywordtype">void</span> *p3);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t arch_k_cycle_get_32(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">static</span> <span class="keyword">inline</span> uint64_t arch_k_cycle_get_64(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="group__arch-pm.html#ga6ce051203e6cc091d0fb42a15f662a48">  184</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__arch-pm.html#ga6ce051203e6cc091d0fb42a15f662a48">arch_cpu_idle</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="group__arch-pm.html#ga4d0297717c23a3cc5df434549e26924d">  204</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__arch-pm.html#ga4d0297717c23a3cc5df434549e26924d">arch_cpu_atomic_idle</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> key);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="group__arch-smp.html#gacf11540c44fdc8e74b060007b7e5a456">  219</a></span><span class="keyword">typedef</span> FUNC_NORETURN void (*<a class="code hl_typedef" href="group__arch-smp.html#gacf11540c44fdc8e74b060007b7e5a456">arch_cpustart_t</a>)(<span class="keywordtype">void</span> *data);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="group__arch-smp.html#gad25e65419116c6bb3e6d6362e780fb83">  241</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__arch-smp.html#gad25e65419116c6bb3e6d6362e780fb83">arch_start_cpu</a>(<span class="keywordtype">int</span> cpu_num, <a class="code hl_struct" href="structz__thread__stack__element.html">k_thread_stack_t</a> *stack, <span class="keywordtype">int</span> sz,</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>            <a class="code hl_typedef" href="group__arch-smp.html#gacf11540c44fdc8e74b060007b7e5a456">arch_cpustart_t</a> fn, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="group__arch-smp.html#ga5a7f0198ee061551c300129bffe64717">  249</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__arch-smp.html#ga5a7f0198ee061551c300129bffe64717">arch_cpu_active</a>(<span class="keywordtype">int</span> cpu_num);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> arch_irq_lock(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> arch_irq_unlock(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> key);</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> arch_irq_unlocked(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> key);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno"><a class="line" href="group__arch-irq.html#ga216d692e87bfba955a60f8e570e127df">  296</a></span><span class="keywordtype">void</span> arch_irq_disable(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> irq);</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno"><a class="line" href="group__arch-irq.html#gaa278d630653b33cb339621d725ed295a">  303</a></span><span class="keywordtype">void</span> arch_irq_enable(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> irq);</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno"><a class="line" href="group__arch-irq.html#ga3bd8e963a124421bb372dab4bdc6cd83">  310</a></span><span class="keywordtype">int</span> arch_irq_is_enabled(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> irq);</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno"><a class="line" href="group__arch-irq.html#gaa4d733913e12a12e104dc4781cca7308">  323</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__arch-irq.html#gaa4d733913e12a12e104dc4781cca7308">arch_irq_connect_dynamic</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> irq, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> priority,</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>                 <span class="keywordtype">void</span> (*routine)(<span class="keyword">const</span> <span class="keywordtype">void</span> *parameter),</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>                 <span class="keyword">const</span> <span class="keywordtype">void</span> *parameter, uint32_t flags);</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span> </div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno"><a class="line" href="group__arch-irq.html#ga41483a9fc1090d96d066e107a74ee38c">  341</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__arch-irq.html#ga41483a9fc1090d96d066e107a74ee38c">arch_irq_disconnect_dynamic</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> irq, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> priority,</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>                <span class="keywordtype">void</span> (*routine)(<span class="keyword">const</span> <span class="keywordtype">void</span> *parameter),</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>                <span class="keyword">const</span> <span class="keywordtype">void</span> *parameter, uint32_t flags);</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="preprocessor">#ifdef CONFIG_PCIE</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_PCIE */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="preprocessor">#ifndef CONFIG_PCIE_CONTROLLER</span></div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno"><a class="line" href="group__arch-irq.html#gaac8f60e7dfc5ce3222372798e96316ae">  399</a></span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="group__arch-irq.html#gaac8f60e7dfc5ce3222372798e96316ae">arch_irq_allocate</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span> </div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno"><a class="line" href="group__arch-irq.html#ga5f0942bd035c50c9d2d91ada472f37c4">  409</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__arch-irq.html#ga5f0942bd035c50c9d2d91ada472f37c4">arch_irq_set_used</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> irq);</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span> </div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno"><a class="line" href="group__arch-irq.html#ga5c85d7bf54a83190ed27587dc5a01de5">  418</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__arch-irq.html#ga5c85d7bf54a83190ed27587dc5a01de5">arch_irq_is_used</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> irq);</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span> </div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_PCIE_CONTROLLER */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span> </div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span><span class="preprocessor">#ifdef CONFIG_IRQ_OFFLOAD</span></div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span><span class="keywordtype">void</span> arch_irq_offload(irq_offload_routine_t routine, <span class="keyword">const</span> <span class="keywordtype">void</span> *parameter);</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_IRQ_OFFLOAD */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span> </div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span><span class="preprocessor">#ifdef CONFIG_SMP</span></div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct__cpu.html">_cpu</a> *arch_curr_cpu(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span> </div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span> </div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t arch_proc_id(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span> </div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span><span class="keywordtype">void</span> arch_sched_ipi(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span> </div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span> </div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span><span class="keywordtype">int</span> arch_smp_init(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span> </div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_SMP */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span> </div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> arch_num_cpus(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span> </div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span><span class="preprocessor">#ifdef CONFIG_USERSPACE</span></div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span><span class="keyword">static</span> <span class="keyword">inline</span> uintptr_t arch_syscall_invoke0(uintptr_t call_id);</div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span> </div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span><span class="keyword">static</span> <span class="keyword">inline</span> uintptr_t arch_syscall_invoke1(uintptr_t arg1,</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>                         uintptr_t call_id);</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span> </div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span><span class="keyword">static</span> <span class="keyword">inline</span> uintptr_t arch_syscall_invoke2(uintptr_t arg1, uintptr_t arg2,</div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>                         uintptr_t call_id);</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span> </div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span><span class="keyword">static</span> <span class="keyword">inline</span> uintptr_t arch_syscall_invoke3(uintptr_t arg1, uintptr_t arg2,</div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>                         uintptr_t arg3,</div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>                         uintptr_t call_id);</div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span> </div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span><span class="keyword">static</span> <span class="keyword">inline</span> uintptr_t arch_syscall_invoke4(uintptr_t arg1, uintptr_t arg2,</div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>                         uintptr_t arg3, uintptr_t arg4,</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span>                         uintptr_t call_id);</div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span> </div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span><span class="keyword">static</span> <span class="keyword">inline</span> uintptr_t arch_syscall_invoke5(uintptr_t arg1, uintptr_t arg2,</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span>                         uintptr_t arg3, uintptr_t arg4,</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>                         uintptr_t arg5,</div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span>                         uintptr_t call_id);</div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span> </div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span><span class="keyword">static</span> <span class="keyword">inline</span> uintptr_t arch_syscall_invoke6(uintptr_t arg1, uintptr_t arg2,</div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span>                         uintptr_t arg3, uintptr_t arg4,</div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>                         uintptr_t arg5, uintptr_t arg6,</div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>                         uintptr_t call_id);</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span> </div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> arch_is_user_context(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span> </div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span><span class="keywordtype">int</span> arch_mem_domain_max_partitions_get(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> </div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span><span class="preprocessor">#ifdef CONFIG_ARCH_MEM_DOMAIN_DATA</span></div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span><span class="keywordtype">int</span> arch_mem_domain_init(<span class="keyword">struct</span> k_mem_domain *domain);</div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_ARCH_MEM_DOMAIN_DATA */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span> </div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span><span class="preprocessor">#ifdef CONFIG_ARCH_MEM_DOMAIN_SYNCHRONOUS_API</span></div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span><span class="keywordtype">int</span> arch_mem_domain_thread_add(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__thread.html">k_thread</a> *thread);</div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span> </div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span><span class="keywordtype">int</span> arch_mem_domain_thread_remove(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__thread.html">k_thread</a> *thread);</div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span> </div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span><span class="keywordtype">int</span> arch_mem_domain_partition_remove(<span class="keyword">struct</span> k_mem_domain *domain,</div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span>                     uint32_t partition_id);</div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span> </div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span><span class="keywordtype">int</span> arch_mem_domain_partition_add(<span class="keyword">struct</span> k_mem_domain *domain,</div>
+<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>                  uint32_t partition_id);</div>
+<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_ARCH_MEM_DOMAIN_SYNCHRONOUS_API */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span> </div>
+<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span><span class="keywordtype">int</span> arch_buffer_validate(<span class="keywordtype">void</span> *addr, <span class="keywordtype">size_t</span> size, <span class="keywordtype">int</span> write);</div>
+<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span> </div>
+<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span><span class="keywordtype">size_t</span> arch_virt_region_align(uintptr_t phys, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span> </div>
+<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span>FUNC_NORETURN <span class="keywordtype">void</span> arch_user_mode_enter(k_thread_entry_t user_entry,</div>
+<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span>                    <span class="keywordtype">void</span> *p1, <span class="keywordtype">void</span> *p2, <span class="keywordtype">void</span> *p3);</div>
+<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span> </div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>FUNC_NORETURN <span class="keywordtype">void</span> arch_syscall_oops(<span class="keywordtype">void</span> *ssf);</div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span> </div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span><span class="keywordtype">size_t</span> arch_user_string_nlen(<span class="keyword">const</span> <span class="keywordtype">char</span> *s, <span class="keywordtype">size_t</span> maxsize, <span class="keywordtype">int</span> *err);</div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_USERSPACE */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span> </div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span><span class="preprocessor">#ifndef CONFIG_ARCH_HAS_COHERENCE</span></div>
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> arch_mem_coherent(<span class="keywordtype">void</span> *ptr)</div>
+<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>{</div>
+<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>    ARG_UNUSED(ptr);</div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span>}</div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span> </div>
+<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span><span class="preprocessor">#ifndef CONFIG_KERNEL_COHERENCE</span></div>
+<div class="line"><a id="l00918" name="l00918"></a><span class="lineno">  918</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> arch_cohere_stacks(<span class="keyword">struct</span> <a class="code hl_struct" href="structk__thread.html">k_thread</a> *old_thread,</div>
+<div class="line"><a id="l00919" name="l00919"></a><span class="lineno">  919</span>                      <span class="keywordtype">void</span> *old_switch_handle,</div>
+<div class="line"><a id="l00920" name="l00920"></a><span class="lineno">  920</span>                      <span class="keyword">struct</span> <a class="code hl_struct" href="structk__thread.html">k_thread</a> *new_thread)</div>
+<div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span>{</div>
+<div class="line"><a id="l00922" name="l00922"></a><span class="lineno">  922</span>    ARG_UNUSED(old_thread);</div>
+<div class="line"><a id="l00923" name="l00923"></a><span class="lineno">  923</span>    ARG_UNUSED(old_switch_handle);</div>
+<div class="line"><a id="l00924" name="l00924"></a><span class="lineno">  924</span>    ARG_UNUSED(new_thread);</div>
+<div class="line"><a id="l00925" name="l00925"></a><span class="lineno">  925</span>}</div>
+<div class="line"><a id="l00926" name="l00926"></a><span class="lineno">  926</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00927" name="l00927"></a><span class="lineno">  927</span> </div>
+<div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span><span class="preprocessor">#ifdef CONFIG_GDBSTUB</span></div>
+<div class="line"><a id="l00937" name="l00937"></a><span class="lineno">  937</span><span class="keyword">struct </span><a class="code hl_struct" href="structgdb__ctx.html">gdb_ctx</a>;</div>
+<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span> </div>
+<div class="line"><a id="l00944" name="l00944"></a><span class="lineno">  944</span><span class="keywordtype">void</span> arch_gdb_init(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span> </div>
+<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span><span class="keywordtype">void</span> arch_gdb_continue(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00952" name="l00952"></a><span class="lineno">  952</span> </div>
+<div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span><span class="keywordtype">void</span> arch_gdb_step(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span> </div>
+<div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span><span class="keywordtype">size_t</span> arch_gdb_reg_readall(<span class="keyword">struct</span> <a class="code hl_struct" href="structgdb__ctx.html">gdb_ctx</a> *ctx, uint8_t *buf, <span class="keywordtype">size_t</span> buflen);</div>
+<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span> </div>
+<div class="line"><a id="l00988" name="l00988"></a><span class="lineno">  988</span><span class="keywordtype">size_t</span> arch_gdb_reg_writeall(<span class="keyword">struct</span> <a class="code hl_struct" href="structgdb__ctx.html">gdb_ctx</a> *ctx, uint8_t *hex, <span class="keywordtype">size_t</span> hexlen);</div>
+<div class="line"><a id="l00989" name="l00989"></a><span class="lineno">  989</span> </div>
+<div class="line"><a id="l01004" name="l01004"></a><span class="lineno"> 1004</span><span class="keywordtype">size_t</span> arch_gdb_reg_readone(<span class="keyword">struct</span> <a class="code hl_struct" href="structgdb__ctx.html">gdb_ctx</a> *ctx, uint8_t *buf, <span class="keywordtype">size_t</span> buflen,</div>
+<div class="line"><a id="l01005" name="l01005"></a><span class="lineno"> 1005</span>                uint32_t regno);</div>
+<div class="line"><a id="l01006" name="l01006"></a><span class="lineno"> 1006</span> </div>
+<div class="line"><a id="l01021" name="l01021"></a><span class="lineno"> 1021</span><span class="keywordtype">size_t</span> arch_gdb_reg_writeone(<span class="keyword">struct</span> <a class="code hl_struct" href="structgdb__ctx.html">gdb_ctx</a> *ctx, uint8_t *hex, <span class="keywordtype">size_t</span> hexlen,</div>
+<div class="line"><a id="l01022" name="l01022"></a><span class="lineno"> 1022</span>                 uint32_t regno);</div>
+<div class="line"><a id="l01023" name="l01023"></a><span class="lineno"> 1023</span> </div>
+<div class="line"><a id="l01036" name="l01036"></a><span class="lineno"> 1036</span><span class="keywordtype">int</span> arch_gdb_add_breakpoint(<span class="keyword">struct</span> <a class="code hl_struct" href="structgdb__ctx.html">gdb_ctx</a> *ctx, uint8_t type,</div>
+<div class="line"><a id="l01037" name="l01037"></a><span class="lineno"> 1037</span>                uintptr_t addr, uint32_t kind);</div>
+<div class="line"><a id="l01038" name="l01038"></a><span class="lineno"> 1038</span> </div>
+<div class="line"><a id="l01051" name="l01051"></a><span class="lineno"> 1051</span><span class="keywordtype">int</span> arch_gdb_remove_breakpoint(<span class="keyword">struct</span> <a class="code hl_struct" href="structgdb__ctx.html">gdb_ctx</a> *ctx, uint8_t type,</div>
+<div class="line"><a id="l01052" name="l01052"></a><span class="lineno"> 1052</span>                   uintptr_t addr, uint32_t kind);</div>
+<div class="line"><a id="l01053" name="l01053"></a><span class="lineno"> 1053</span> </div>
+<div class="line"><a id="l01054" name="l01054"></a><span class="lineno"> 1054</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01057" name="l01057"></a><span class="lineno"> 1057</span><span class="preprocessor">#ifdef CONFIG_TIMING_FUNCTIONS</span></div>
+<div class="line"><a id="l01058" name="l01058"></a><span class="lineno"> 1058</span><span class="preprocessor">#include &lt;zephyr/timing/types.h&gt;</span></div>
+<div class="line"><a id="l01059" name="l01059"></a><span class="lineno"> 1059</span> </div>
+<div class="line"><a id="l01072" name="l01072"></a><span class="lineno"> 1072</span><span class="keywordtype">void</span> arch_timing_init(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l01073" name="l01073"></a><span class="lineno"> 1073</span> </div>
+<div class="line"><a id="l01086" name="l01086"></a><span class="lineno"> 1086</span><span class="keywordtype">void</span> arch_timing_start(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l01087" name="l01087"></a><span class="lineno"> 1087</span> </div>
+<div class="line"><a id="l01100" name="l01100"></a><span class="lineno"> 1100</span><span class="keywordtype">void</span> arch_timing_stop(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l01101" name="l01101"></a><span class="lineno"> 1101</span> </div>
+<div class="line"><a id="l01120" name="l01120"></a><span class="lineno"> 1120</span>timing_t arch_timing_counter_get(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l01121" name="l01121"></a><span class="lineno"> 1121</span> </div>
+<div class="line"><a id="l01136" name="l01136"></a><span class="lineno"> 1136</span>uint64_t arch_timing_cycles_get(<span class="keyword">volatile</span> timing_t *<span class="keyword">const</span> start,</div>
+<div class="line"><a id="l01137" name="l01137"></a><span class="lineno"> 1137</span>                <span class="keyword">volatile</span> timing_t *<span class="keyword">const</span> end);</div>
+<div class="line"><a id="l01138" name="l01138"></a><span class="lineno"> 1138</span> </div>
+<div class="line"><a id="l01146" name="l01146"></a><span class="lineno"> 1146</span>uint64_t arch_timing_freq_get(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l01147" name="l01147"></a><span class="lineno"> 1147</span> </div>
+<div class="line"><a id="l01156" name="l01156"></a><span class="lineno"> 1156</span>uint64_t arch_timing_cycles_to_ns(uint64_t cycles);</div>
+<div class="line"><a id="l01157" name="l01157"></a><span class="lineno"> 1157</span> </div>
+<div class="line"><a id="l01167" name="l01167"></a><span class="lineno"> 1167</span>uint64_t arch_timing_cycles_to_ns_avg(uint64_t cycles, uint32_t count);</div>
+<div class="line"><a id="l01168" name="l01168"></a><span class="lineno"> 1168</span> </div>
+<div class="line"><a id="l01176" name="l01176"></a><span class="lineno"> 1176</span>uint32_t arch_timing_freq_get_mhz(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l01177" name="l01177"></a><span class="lineno"> 1177</span> </div>
+<div class="line"><a id="l01180" name="l01180"></a><span class="lineno"> 1180</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_TIMING_FUNCTIONS */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l01181" name="l01181"></a><span class="lineno"> 1181</span> </div>
+<div class="line"><a id="l01182" name="l01182"></a><span class="lineno"> 1182</span><span class="preprocessor">#ifdef CONFIG_PCIE_MSI_MULTI_VECTOR</span></div>
+<div class="line"><a id="l01183" name="l01183"></a><span class="lineno"> 1183</span> </div>
+<div class="line"><a id="l01184" name="l01184"></a><span class="lineno"> 1184</span><span class="keyword">struct </span><a class="code hl_struct" href="structmsi__vector.html">msi_vector</a>;</div>
+<div class="line"><a id="l01185" name="l01185"></a><span class="lineno"> 1185</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmsi__vector.html">msi_vector</a> <a class="code hl_struct" href="structmsi__vector.html">msi_vector_t</a>;</div>
+<div class="line"><a id="l01186" name="l01186"></a><span class="lineno"> 1186</span> </div>
+<div class="line"><a id="l01196" name="l01196"></a><span class="lineno"> 1196</span>uint8_t arch_pcie_msi_vectors_allocate(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> priority,</div>
+<div class="line"><a id="l01197" name="l01197"></a><span class="lineno"> 1197</span>                       <a class="code hl_struct" href="structmsi__vector.html">msi_vector_t</a> *vectors,</div>
+<div class="line"><a id="l01198" name="l01198"></a><span class="lineno"> 1198</span>                       uint8_t n_vector);</div>
+<div class="line"><a id="l01199" name="l01199"></a><span class="lineno"> 1199</span> </div>
+<div class="line"><a id="l01210" name="l01210"></a><span class="lineno"> 1210</span><span class="keywordtype">bool</span> arch_pcie_msi_vector_connect(<a class="code hl_struct" href="structmsi__vector.html">msi_vector_t</a> *vector,</div>
+<div class="line"><a id="l01211" name="l01211"></a><span class="lineno"> 1211</span>                  <span class="keywordtype">void</span> (*routine)(<span class="keyword">const</span> <span class="keywordtype">void</span> *parameter),</div>
+<div class="line"><a id="l01212" name="l01212"></a><span class="lineno"> 1212</span>                  <span class="keyword">const</span> <span class="keywordtype">void</span> *parameter,</div>
+<div class="line"><a id="l01213" name="l01213"></a><span class="lineno"> 1213</span>                  uint32_t flags);</div>
+<div class="line"><a id="l01214" name="l01214"></a><span class="lineno"> 1214</span> </div>
+<div class="line"><a id="l01215" name="l01215"></a><span class="lineno"> 1215</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_PCIE_MSI_MULTI_VECTOR */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l01216" name="l01216"></a><span class="lineno"> 1216</span> </div>
+<div class="line"><a id="l01225" name="l01225"></a><span class="lineno"> 1225</span><span class="keywordtype">void</span> arch_spin_relax(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l01226" name="l01226"></a><span class="lineno"> 1226</span> </div>
+<div class="line"><a id="l01227" name="l01227"></a><span class="lineno"> 1227</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l01228" name="l01228"></a><span class="lineno"> 1228</span>}</div>
+<div class="line"><a id="l01229" name="l01229"></a><span class="lineno"> 1229</span><span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l01230" name="l01230"></a><span class="lineno"> 1230</span> </div>
+<div class="line"><a id="l01231" name="l01231"></a><span class="lineno"> 1231</span><span class="preprocessor">#include &lt;zephyr/arch/arch_inlines.h&gt;</span></div>
+<div class="line"><a id="l01232" name="l01232"></a><span class="lineno"> 1232</span> </div>
+<div class="line"><a id="l01233" name="l01233"></a><span class="lineno"> 1233</span><span class="preprocessor">#endif </span><span class="comment">/* _ASMLANGUAGE */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l01234" name="l01234"></a><span class="lineno"> 1234</span> </div>
+<div class="line"><a id="l01235" name="l01235"></a><span class="lineno"> 1235</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_SYS_ARCH_INTERFACE_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__arch-irq_html_ga41483a9fc1090d96d066e107a74ee38c"><div class="ttname"><a href="group__arch-irq.html#ga41483a9fc1090d96d066e107a74ee38c">arch_irq_disconnect_dynamic</a></div><div class="ttdeci">int arch_irq_disconnect_dynamic(unsigned int irq, unsigned int priority, void(*routine)(const void *parameter), const void *parameter, uint32_t flags)</div></div>
+<div class="ttc" id="agroup__arch-irq_html_ga5c85d7bf54a83190ed27587dc5a01de5"><div class="ttname"><a href="group__arch-irq.html#ga5c85d7bf54a83190ed27587dc5a01de5">arch_irq_is_used</a></div><div class="ttdeci">bool arch_irq_is_used(unsigned int irq)</div><div class="ttdoc">Arch-specific hook for checking if an IRQ is being used already.</div></div>
+<div class="ttc" id="agroup__arch-irq_html_ga5f0942bd035c50c9d2d91ada472f37c4"><div class="ttname"><a href="group__arch-irq.html#ga5f0942bd035c50c9d2d91ada472f37c4">arch_irq_set_used</a></div><div class="ttdeci">void arch_irq_set_used(unsigned int irq)</div><div class="ttdoc">Arch-specific hook for declaring an IRQ being used.</div></div>
+<div class="ttc" id="agroup__arch-irq_html_gaa4d733913e12a12e104dc4781cca7308"><div class="ttname"><a href="group__arch-irq.html#gaa4d733913e12a12e104dc4781cca7308">arch_irq_connect_dynamic</a></div><div class="ttdeci">int arch_irq_connect_dynamic(unsigned int irq, unsigned int priority, void(*routine)(const void *parameter), const void *parameter, uint32_t flags)</div></div>
+<div class="ttc" id="agroup__arch-irq_html_gaac8f60e7dfc5ce3222372798e96316ae"><div class="ttname"><a href="group__arch-irq.html#gaac8f60e7dfc5ce3222372798e96316ae">arch_irq_allocate</a></div><div class="ttdeci">unsigned int arch_irq_allocate(void)</div><div class="ttdoc">Arch-specific hook for allocating IRQs.</div></div>
+<div class="ttc" id="agroup__arch-pm_html_ga4d0297717c23a3cc5df434549e26924d"><div class="ttname"><a href="group__arch-pm.html#ga4d0297717c23a3cc5df434549e26924d">arch_cpu_atomic_idle</a></div><div class="ttdeci">void arch_cpu_atomic_idle(unsigned int key)</div><div class="ttdoc">Atomically re-enable interrupts and enter low power mode.</div></div>
+<div class="ttc" id="agroup__arch-pm_html_ga6ce051203e6cc091d0fb42a15f662a48"><div class="ttname"><a href="group__arch-pm.html#ga6ce051203e6cc091d0fb42a15f662a48">arch_cpu_idle</a></div><div class="ttdeci">void arch_cpu_idle(void)</div><div class="ttdoc">Power save idle routine.</div></div>
+<div class="ttc" id="agroup__arch-smp_html_ga5a7f0198ee061551c300129bffe64717"><div class="ttname"><a href="group__arch-smp.html#ga5a7f0198ee061551c300129bffe64717">arch_cpu_active</a></div><div class="ttdeci">bool arch_cpu_active(int cpu_num)</div><div class="ttdoc">Return CPU power status.</div></div>
+<div class="ttc" id="agroup__arch-smp_html_gacf11540c44fdc8e74b060007b7e5a456"><div class="ttname"><a href="group__arch-smp.html#gacf11540c44fdc8e74b060007b7e5a456">arch_cpustart_t</a></div><div class="ttdeci">FUNC_NORETURN void(* arch_cpustart_t)(void *data)</div><div class="ttdef"><b>Definição</b> arch_interface.h:219</div></div>
+<div class="ttc" id="agroup__arch-smp_html_gad25e65419116c6bb3e6d6362e780fb83"><div class="ttname"><a href="group__arch-smp.html#gad25e65419116c6bb3e6d6362e780fb83">arch_start_cpu</a></div><div class="ttdeci">void arch_start_cpu(int cpu_num, k_thread_stack_t *stack, int sz, arch_cpustart_t fn, void *arg)</div><div class="ttdoc">Start a numbered CPU on a MP-capable system.</div></div>
+<div class="ttc" id="airq__offload_8h_html"><div class="ttname"><a href="irq__offload_8h.html">irq_offload.h</a></div><div class="ttdoc">IRQ Offload interface.</div></div>
+<div class="ttc" id="astruct__cpu_html"><div class="ttname"><a href="struct__cpu.html">_cpu</a></div><div class="ttdef"><b>Definição</b> kernel_structs.h:104</div></div>
+<div class="ttc" id="astructgdb__ctx_html"><div class="ttname"><a href="structgdb__ctx.html">gdb_ctx</a></div><div class="ttdef"><b>Definição</b> gdbstub.h:78</div></div>
+<div class="ttc" id="astructk__thread_html"><div class="ttname"><a href="structk__thread.html">k_thread</a></div><div class="ttdef"><b>Definição</b> thread.h:250</div></div>
+<div class="ttc" id="astructmsi__vector_html"><div class="ttname"><a href="structmsi__vector.html">msi_vector</a></div><div class="ttdef"><b>Definição</b> msi.h:51</div></div>
+<div class="ttc" id="astructz__thread__stack__element_html"><div class="ttname"><a href="structz__thread__stack__element.html">z_thread_stack_element</a></div><div class="ttdef"><b>Definição</b> thread_stack.h:47</div></div>
+<div class="ttc" id="atoolchain_8h_html"><div class="ttname"><a href="toolchain_8h.html">toolchain.h</a></div><div class="ttdoc">Macros to abstract toolchain specific capabilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['dai_5fdir_0',['dai_dir',['../group__dai__interface.html#gafa7b22e4250c6479301fc657fea8a60f',1,'dai.h']]],
+  ['dai_5fstate_1',['dai_state',['../group__dai__interface.html#ga18f708594ea85d6b893906336047c3a5',1,'dai.h']]],
+  ['dai_5ftrigger_5fcmd_2',['dai_trigger_cmd',['../group__dai__interface.html#gaee6445967afb3ecf2c0470ca0c104a1a',1,'dai.h']]],
+  ['dai_5ftype_3',['dai_type',['../group__dai__interface.html#gac95242d83a2c2b477fcb9eb3da420797',1,'dai.h']]],
+  ['dfu_5fstate_4',['dfu_state',['../usb__dfu_8h.html#a3f025bde53c777c5e0493ef54bbeb143',1,'usb_dfu.h']]],
+  ['dfu_5fstatus_5',['dfu_status',['../usb__dfu_8h.html#abcf2757cf1c6281a06a8a6f25ff2aa31',1,'usb_dfu.h']]],
+  ['display_5forientation_6',['display_orientation',['../group__display__interface.html#gac59b091a3ed39431ab97a5f19fdc4855',1,'display.h']]],
+  ['display_5fpixel_5fformat_7',['display_pixel_format',['../group__display__interface.html#gac346bc56771052a8fe919c3ec23d7c9c',1,'display.h']]],
+  ['display_5fscreen_5finfo_8',['display_screen_info',['../group__display__interface.html#ga23030b6c27446c4579103fe38e821341',1,'display.h']]],
+  ['dma_5faddr_5fadj_9',['dma_addr_adj',['../group__dma__interface.html#gafe0877ef4bd7790a4bcd46052088231c',1,'dma.h']]],
+  ['dma_5fattribute_5ftype_10',['dma_attribute_type',['../group__dma__interface.html#ga08c366c8d47672eeeb37b258af20101b',1,'dma.h']]],
+  ['dma_5fchannel_5fdirection_11',['dma_channel_direction',['../group__dma__interface.html#gae442d8ba73be7e53b68165647b0ea402',1,'dma.h']]],
+  ['dma_5fchannel_5ffilter_12',['dma_channel_filter',['../group__dma__interface.html#gade594552920aabbfd2106059a338498b',1,'dma.h']]],
+  ['dmic_5fstate_13',['dmic_state',['../group__audio__dmic__interface.html#gac99a4f579b6aa45bb6cce1f797247a23',1,'dmic.h']]],
+  ['dmic_5ftrigger_14',['dmic_trigger',['../group__audio__dmic__interface.html#ga24aae0a7871b3bd31b130061feeefc14',1,'dmic.h']]],
+  ['dns_5fquery_5ftype_15',['dns_query_type',['../group__dns__resolve.html#ga7169c5a920fb1b0d77910a6ab922e3f0',1,'dns_resolve.h']]],
+  ['dns_5fresolve_5fstatus_16',['dns_resolve_status',['../group__dns__resolve.html#ga5baf1fea0482fb3a940b4f5350a3c58e',1,'dns_resolve.h']]]
+];

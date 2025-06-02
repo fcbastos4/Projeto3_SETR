@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/net/websocket.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_e87a4ba8d8d39971580ab67f13eff592.html">net</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">websocket.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="websocket_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Copyright (c) 2019 Intel Corporation</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_NET_WEBSOCKET_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define ZEPHYR_INCLUDE_NET_WEBSOCKET_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__ip_8h.html">zephyr/net/net_ip.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;zephyr/net/http/parser.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="client_8h.html">zephyr/net/http/client.h</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="group__websocket.html#ga002ade0e3787b6d9da82ab84af1cd354">   34</a></span><span class="preprocessor">#define WEBSOCKET_FLAG_FINAL  0x00000001 </span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="group__websocket.html#ga9405e69474b48472dfe0b10017dfcd75">   35</a></span><span class="preprocessor">#define WEBSOCKET_FLAG_TEXT   0x00000002 </span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="group__websocket.html#ga8616f88cb194d82da9367f2f48832842">   36</a></span><span class="preprocessor">#define WEBSOCKET_FLAG_BINARY 0x00000004 </span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="group__websocket.html#gaab5fa480351106751f6482f5056b4238">   37</a></span><span class="preprocessor">#define WEBSOCKET_FLAG_CLOSE  0x00000008 </span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="group__websocket.html#ga2f2ea01b18c13f38fe834f855ae0da93">   38</a></span><span class="preprocessor">#define WEBSOCKET_FLAG_PING   0x00000010 </span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="group__websocket.html#ga68cdf577c5401440095dacf224541047">   39</a></span><span class="preprocessor">#define WEBSOCKET_FLAG_PONG   0x00000020 </span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">enum</span> websocket_opcode  {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    WEBSOCKET_OPCODE_CONTINUE     = 0x00,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    WEBSOCKET_OPCODE_DATA_TEXT    = 0x01,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    WEBSOCKET_OPCODE_DATA_BINARY  = 0x02,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    WEBSOCKET_OPCODE_CLOSE        = 0x08,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    WEBSOCKET_OPCODE_PING         = 0x09,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    WEBSOCKET_OPCODE_PONG         = 0x0A,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="group__websocket.html#ga4cfa3b60fe810341a1dbc80ecfe49a8e">   60</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__websocket.html#ga4cfa3b60fe810341a1dbc80ecfe49a8e">websocket_connect_cb_t</a>)(<span class="keywordtype">int</span> ws_sock, <span class="keyword">struct </span><a class="code hl_struct" href="structhttp__request.html">http_request</a> *req,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                      <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="};">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structwebsocket__request.html">   67</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structwebsocket__request.html">websocket_request</a> {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structwebsocket__request.html#a8769d50f1a6168dc6518f2dd0c74b62a">   69</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structwebsocket__request.html#a8769d50f1a6168dc6518f2dd0c74b62a">host</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structwebsocket__request.html#a49ef6c2f4201beeb3af8992ded2bd4a3">   72</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structwebsocket__request.html#a49ef6c2f4201beeb3af8992ded2bd4a3">url</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structwebsocket__request.html#ab7a281fff2a27a52f7ec346643f55b71">   80</a></span>    <a class="code hl_typedef" href="group__http__client.html#gad34656b7c3e6c2e77016b0613f1b4661">http_header_cb_t</a> <a class="code hl_variable" href="structwebsocket__request.html#ab7a281fff2a27a52f7ec346643f55b71">optional_headers_cb</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="structwebsocket__request.html#a4cea74d6094325b218b6bbed4005b912">   86</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> **<a class="code hl_variable" href="structwebsocket__request.html#a4cea74d6094325b218b6bbed4005b912">optional_headers</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structwebsocket__request.html#a96936b68fec07f077d9e9569ef1411d1">   91</a></span>    <a class="code hl_typedef" href="group__websocket.html#ga4cfa3b60fe810341a1dbc80ecfe49a8e">websocket_connect_cb_t</a> <a class="code hl_variable" href="structwebsocket__request.html#a96936b68fec07f077d9e9569ef1411d1">cb</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="structwebsocket__request.html#a38315d0c37bdc8cfe22cdbc6d2c8af4a">   99</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structhttp__parser__settings.html">http_parser_settings</a> *<a class="code hl_variable" href="structwebsocket__request.html#a38315d0c37bdc8cfe22cdbc6d2c8af4a">http_cb</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="structwebsocket__request.html#a939ed8e980af4bc98f30d1bad835a2d2">  102</a></span>    uint8_t *<a class="code hl_variable" href="structwebsocket__request.html#a939ed8e980af4bc98f30d1bad835a2d2">tmp_buf</a>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="structwebsocket__request.html#a09bb3c708b51d8f86de244b3fc4a9f57">  105</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structwebsocket__request.html#a09bb3c708b51d8f86de244b3fc4a9f57">tmp_buf_len</a>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>};</div>
+</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="group__websocket.html#ga71a43ec629929d2eb1baba4e3f13a615">  126</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__websocket.html#ga71a43ec629929d2eb1baba4e3f13a615">websocket_connect</a>(<span class="keywordtype">int</span> http_sock, <span class="keyword">struct</span> <a class="code hl_struct" href="structwebsocket__request.html">websocket_request</a> *req,</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>              int32_t timeout, <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="group__websocket.html#gac23c351e5020d0fc9e936933d399b187">  150</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__websocket.html#gac23c351e5020d0fc9e936933d399b187">websocket_send_msg</a>(<span class="keywordtype">int</span> ws_sock, <span class="keyword">const</span> uint8_t *payload, <span class="keywordtype">size_t</span> payload_len,</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>               <span class="keyword">enum</span> websocket_opcode opcode, <span class="keywordtype">bool</span> mask, <span class="keywordtype">bool</span> <span class="keyword">final</span>,</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>               int32_t timeout);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="group__websocket.html#ga0fb118f84b7631d12c1b742b75593ba6">  174</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__websocket.html#ga0fb118f84b7631d12c1b742b75593ba6">websocket_recv_msg</a>(<span class="keywordtype">int</span> ws_sock, uint8_t *buf, <span class="keywordtype">size_t</span> buf_len,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>               uint32_t *message_type, uint64_t *remaining,</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>               int32_t timeout);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="group__websocket.html#gacc2f06e2c361317ff48f171abc3d1209">  186</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__websocket.html#gacc2f06e2c361317ff48f171abc3d1209">websocket_disconnect</a>(<span class="keywordtype">int</span> ws_sock);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">#if defined(CONFIG_WEBSOCKET_CLIENT)</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keywordtype">void</span> websocket_init(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> websocket_init(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>{</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>}</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>}</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_NET_WEBSOCKET_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aclient_8h_html"><div class="ttname"><a href="client_8h.html">client.h</a></div><div class="ttdoc">HTTP client API.</div></div>
+<div class="ttc" id="agroup__http__client_html_gad34656b7c3e6c2e77016b0613f1b4661"><div class="ttname"><a href="group__http__client.html#gad34656b7c3e6c2e77016b0613f1b4661">http_header_cb_t</a></div><div class="ttdeci">int(* http_header_cb_t)(int sock, struct http_request *req, void *user_data)</div><div class="ttdoc">Callback can be used if application wants to construct additional HTTP headers when the HTTP request ...</div><div class="ttdef"><b>Definição</b> client.h:79</div></div>
+<div class="ttc" id="agroup__websocket_html_ga0fb118f84b7631d12c1b742b75593ba6"><div class="ttname"><a href="group__websocket.html#ga0fb118f84b7631d12c1b742b75593ba6">websocket_recv_msg</a></div><div class="ttdeci">int websocket_recv_msg(int ws_sock, uint8_t *buf, size_t buf_len, uint32_t *message_type, uint64_t *remaining, int32_t timeout)</div><div class="ttdoc">Receive websocket msg from peer.</div></div>
+<div class="ttc" id="agroup__websocket_html_ga4cfa3b60fe810341a1dbc80ecfe49a8e"><div class="ttname"><a href="group__websocket.html#ga4cfa3b60fe810341a1dbc80ecfe49a8e">websocket_connect_cb_t</a></div><div class="ttdeci">int(* websocket_connect_cb_t)(int ws_sock, struct http_request *req, void *user_data)</div><div class="ttdoc">Callback called after Websocket connection is established.</div><div class="ttdef"><b>Definição</b> websocket.h:60</div></div>
+<div class="ttc" id="agroup__websocket_html_ga71a43ec629929d2eb1baba4e3f13a615"><div class="ttname"><a href="group__websocket.html#ga71a43ec629929d2eb1baba4e3f13a615">websocket_connect</a></div><div class="ttdeci">int websocket_connect(int http_sock, struct websocket_request *req, int32_t timeout, void *user_data)</div><div class="ttdoc">Connect to a server that provides Websocket service. The callback is called after connection is estab...</div></div>
+<div class="ttc" id="agroup__websocket_html_gac23c351e5020d0fc9e936933d399b187"><div class="ttname"><a href="group__websocket.html#gac23c351e5020d0fc9e936933d399b187">websocket_send_msg</a></div><div class="ttdeci">int websocket_send_msg(int ws_sock, const uint8_t *payload, size_t payload_len, enum websocket_opcode opcode, bool mask, bool final, int32_t timeout)</div><div class="ttdoc">Send websocket msg to peer.</div></div>
+<div class="ttc" id="agroup__websocket_html_gacc2f06e2c361317ff48f171abc3d1209"><div class="ttname"><a href="group__websocket.html#gacc2f06e2c361317ff48f171abc3d1209">websocket_disconnect</a></div><div class="ttdeci">int websocket_disconnect(int ws_sock)</div><div class="ttdoc">Close websocket.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__ip_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__ip_8h.html">net_ip.h</a></div><div class="ttdoc">IPv6 and IPv4 definitions.</div></div>
+<div class="ttc" id="astructhttp__parser__settings_html"><div class="ttname"><a href="structhttp__parser__settings.html">http_parser_settings</a></div><div class="ttdef"><b>Definição</b> parser.h:190</div></div>
+<div class="ttc" id="astructhttp__request_html"><div class="ttname"><a href="structhttp__request.html">http_request</a></div><div class="ttdef"><b>Definição</b> client.h:224</div></div>
+<div class="ttc" id="astructwebsocket__request_html"><div class="ttname"><a href="structwebsocket__request.html">websocket_request</a></div><div class="ttdef"><b>Definição</b> websocket.h:67</div></div>
+<div class="ttc" id="astructwebsocket__request_html_a09bb3c708b51d8f86de244b3fc4a9f57"><div class="ttname"><a href="structwebsocket__request.html#a09bb3c708b51d8f86de244b3fc4a9f57">websocket_request::tmp_buf_len</a></div><div class="ttdeci">size_t tmp_buf_len</div><div class="ttdef"><b>Definição</b> websocket.h:105</div></div>
+<div class="ttc" id="astructwebsocket__request_html_a38315d0c37bdc8cfe22cdbc6d2c8af4a"><div class="ttname"><a href="structwebsocket__request.html#a38315d0c37bdc8cfe22cdbc6d2c8af4a">websocket_request::http_cb</a></div><div class="ttdeci">const struct http_parser_settings * http_cb</div><div class="ttdef"><b>Definição</b> websocket.h:99</div></div>
+<div class="ttc" id="astructwebsocket__request_html_a49ef6c2f4201beeb3af8992ded2bd4a3"><div class="ttname"><a href="structwebsocket__request.html#a49ef6c2f4201beeb3af8992ded2bd4a3">websocket_request::url</a></div><div class="ttdeci">const char * url</div><div class="ttdef"><b>Definição</b> websocket.h:72</div></div>
+<div class="ttc" id="astructwebsocket__request_html_a4cea74d6094325b218b6bbed4005b912"><div class="ttname"><a href="structwebsocket__request.html#a4cea74d6094325b218b6bbed4005b912">websocket_request::optional_headers</a></div><div class="ttdeci">const char ** optional_headers</div><div class="ttdef"><b>Definição</b> websocket.h:86</div></div>
+<div class="ttc" id="astructwebsocket__request_html_a8769d50f1a6168dc6518f2dd0c74b62a"><div class="ttname"><a href="structwebsocket__request.html#a8769d50f1a6168dc6518f2dd0c74b62a">websocket_request::host</a></div><div class="ttdeci">const char * host</div><div class="ttdef"><b>Definição</b> websocket.h:69</div></div>
+<div class="ttc" id="astructwebsocket__request_html_a939ed8e980af4bc98f30d1bad835a2d2"><div class="ttname"><a href="structwebsocket__request.html#a939ed8e980af4bc98f30d1bad835a2d2">websocket_request::tmp_buf</a></div><div class="ttdeci">uint8_t * tmp_buf</div><div class="ttdef"><b>Definição</b> websocket.h:102</div></div>
+<div class="ttc" id="astructwebsocket__request_html_a96936b68fec07f077d9e9569ef1411d1"><div class="ttname"><a href="structwebsocket__request.html#a96936b68fec07f077d9e9569ef1411d1">websocket_request::cb</a></div><div class="ttdeci">websocket_connect_cb_t cb</div><div class="ttdef"><b>Definição</b> websocket.h:91</div></div>
+<div class="ttc" id="astructwebsocket__request_html_ab7a281fff2a27a52f7ec346643f55b71"><div class="ttname"><a href="structwebsocket__request.html#ab7a281fff2a27a52f7ec346643f55b71">websocket_request::optional_headers_cb</a></div><div class="ttdeci">http_header_cb_t optional_headers_cb</div><div class="ttdef"><b>Definição</b> websocket.h:80</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

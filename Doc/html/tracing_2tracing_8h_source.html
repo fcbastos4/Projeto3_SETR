@@ -1,0 +1,684 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/tracing/tracing.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7631059164a108b2a6506d904fc9af4c.html">tracing</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">tracing.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2018 Intel Corporation</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_TRACING_TRACING_H_</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define ZEPHYR_INCLUDE_TRACING_TRACING_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;tracking.h&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#if defined CONFIG_SEGGER_SYSTEMVIEW</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;tracing_sysview.h&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#elif defined CONFIG_TRACING_CTF</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;tracing_ctf.h&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#elif defined CONFIG_TRACING_TEST</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;tracing_test.h&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#elif defined CONFIG_TRACING_USER</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;tracing_user.h&quot;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga05f9560547bb1415c809d718f9bd03c8">   49</a></span><span class="preprocessor">#define sys_port_trace_k_thread_foreach_enter()</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga0848db275a35dd5f840221d2a91d75fb">   54</a></span><span class="preprocessor">#define sys_port_trace_k_thread_foreach_exit()</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gaf1136b18d6408da4fd9b1e8d767e390d">   59</a></span><span class="preprocessor">#define sys_port_trace_k_thread_foreach_unlocked_enter()</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gaa6f8160940e24df5483268949d0ca402">   64</a></span><span class="preprocessor">#define sys_port_trace_k_thread_foreach_unlocked_exit()</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga6140a4ec9c7b31d907b08793deb44ca7">   70</a></span><span class="preprocessor">#define sys_port_trace_k_thread_create(new_thread)</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga4ca28fdba0a95bcceddadba86412f736">   75</a></span><span class="preprocessor">#define sys_port_trace_k_thread_user_mode_enter()</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gabbad785e65db935917e4f1224893c9c1">   82</a></span><span class="preprocessor">#define sys_port_trace_k_thread_join_enter(thread, timeout)</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga057858c554e988474ae0097dc1ccf83f">   89</a></span><span class="preprocessor">#define sys_port_trace_k_thread_join_blocking(thread, timeout)</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gabf77c5d93899ee85b4b4edd0c4c18490">   97</a></span><span class="preprocessor">#define sys_port_trace_k_thread_join_exit(thread, timeout, ret)</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga44cac2602a3b638fbf04eb0322b33736">  103</a></span><span class="preprocessor">#define sys_port_trace_k_thread_sleep_enter(timeout)</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga91f7abaae3dcd7eec7ee001f8653cda6">  110</a></span><span class="preprocessor">#define sys_port_trace_k_thread_sleep_exit(timeout, ret)</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga9bd09050cedc7213b90d486dc672d6d6">  116</a></span><span class="preprocessor">#define sys_port_trace_k_thread_msleep_enter(ms)</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga625bde038098aa8170e80205b4f3a15c">  123</a></span><span class="preprocessor">#define sys_port_trace_k_thread_msleep_exit(ms, ret)</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga55a7f87fac6b2a7eff7f18ba1ffa1559">  129</a></span><span class="preprocessor">#define sys_port_trace_k_thread_usleep_enter(us)</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga41a7e55fa70047d242ebe403d3baa15a">  136</a></span><span class="preprocessor">#define sys_port_trace_k_thread_usleep_exit(us, ret)</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gada94114ae74457c1082f2453d6fd9be5">  142</a></span><span class="preprocessor">#define sys_port_trace_k_thread_busy_wait_enter(usec_to_wait)</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gaf8d4d01e8e662c9255f925ba64cdbd31">  148</a></span><span class="preprocessor">#define sys_port_trace_k_thread_busy_wait_exit(usec_to_wait)</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga24f6d9958154d7e424a1af95e59e797f">  153</a></span><span class="preprocessor">#define sys_port_trace_k_thread_yield()</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga1676b0fe2f2b19bef646e73f129089db">  159</a></span><span class="preprocessor">#define sys_port_trace_k_thread_wakeup(thread)</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga097debbc4ba4f332a2728ad04152df1a">  165</a></span><span class="preprocessor">#define sys_port_trace_k_thread_start(thread)</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gab0b43ffbe1ab9bb1ce962bab6c55c911">  171</a></span><span class="preprocessor">#define sys_port_trace_k_thread_abort(thread)</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga3d147d97bbca426b7f74f1418c6ff16b">  177</a></span><span class="preprocessor">#define sys_port_trace_k_thread_abort_enter(thread)</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga3e7c042978bd25ea41ed48addc3259bf">  183</a></span><span class="preprocessor">#define sys_port_trace_k_thread_abort_exit(thread)</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga09ddf88b7d825dd02db8a1058dda66eb">  189</a></span><span class="preprocessor">#define sys_port_trace_k_thread_priority_set(thread)</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga63bf5f0162d8596beae754cd614e2452">  196</a></span><span class="preprocessor">#define sys_port_trace_k_thread_suspend_enter(thread)</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gaedc07c84df5eb7d4cbdf86560ec72bdd">  203</a></span><span class="preprocessor">#define sys_port_trace_k_thread_suspend_exit(thread)</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gaa04064835552055fc5c0d808a38cdc41">  210</a></span><span class="preprocessor">#define sys_port_trace_k_thread_resume_enter(thread)</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga38841a0e40592e49de6a24690905388e">  217</a></span><span class="preprocessor">#define sys_port_trace_k_thread_resume_exit(thread)</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gadbd1fcca37d68a7a7b4c7061f3583764">  222</a></span><span class="preprocessor">#define sys_port_trace_k_thread_sched_lock()</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga7d5ee7a2fd30678128def82112245741">  227</a></span><span class="preprocessor">#define sys_port_trace_k_thread_sched_unlock()</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga31ef5d08ff84619432b2dda7d239c479">  234</a></span><span class="preprocessor">#define sys_port_trace_k_thread_name_set(thread, ret)</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga61a5063e1543789c16add724fad5aef1">  239</a></span><span class="preprocessor">#define sys_port_trace_k_thread_switched_out()</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga89f53bfff5816ea7a1e4128677254634">  244</a></span><span class="preprocessor">#define sys_port_trace_k_thread_switched_in()</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga6fe6a019530b96e308c751d7c3732d83">  250</a></span><span class="preprocessor">#define sys_port_trace_k_thread_ready(thread)</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga0b19ca107363fd060183cbb7b83927e8">  256</a></span><span class="preprocessor">#define sys_port_trace_k_thread_pend(thread)</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gaffe80c4e32e27089b4ccb99fd11205ea">  262</a></span><span class="preprocessor">#define sys_port_trace_k_thread_info(thread)</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga9f4b710eb3cc5ef0dabfadc9ad1cc448">  268</a></span><span class="preprocessor">#define sys_port_trace_k_thread_sched_wakeup(thread)</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gaa2213012f5c2650301f2467dc0e36e17">  274</a></span><span class="preprocessor">#define sys_port_trace_k_thread_sched_abort(thread)</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga906c658681af75d52d228fef96a39a92">  281</a></span><span class="preprocessor">#define sys_port_trace_k_thread_sched_priority_set(thread, prio)</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga1f5990be25a0c0eb348d788e5aaf04cb">  287</a></span><span class="preprocessor">#define sys_port_trace_k_thread_sched_ready(thread)</span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gae857728d8f72259b6d282cb0b0bdb2ca">  293</a></span><span class="preprocessor">#define sys_port_trace_k_thread_sched_pend(thread)</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#ga81d84b861192fa664be54e7a77f0cea4">  299</a></span><span class="preprocessor">#define sys_port_trace_k_thread_sched_resume(thread)</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__thread.html#gaef5455dbd090fd7cf065d3fd8a8d3d1b">  305</a></span><span class="preprocessor">#define sys_port_trace_k_thread_sched_suspend(thread)</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_thread */</span><div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work.html#gab31f3a43ff4a836a28ba0c21a24370e7">  319</a></span><span class="preprocessor">#define sys_port_trace_k_work_init(work)</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work.html#gac4ec7fb1a85aaf608d0b46734fabc812">  326</a></span><span class="preprocessor">#define sys_port_trace_k_work_submit_to_queue_enter(queue, work)</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work.html#ga8807dc91f2f025f400a4e3a435b13588">  334</a></span><span class="preprocessor">#define sys_port_trace_k_work_submit_to_queue_exit(queue, work, ret)</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work.html#ga597a2efeb4fc680149a51e7abceba2a7">  340</a></span><span class="preprocessor">#define sys_port_trace_k_work_submit_enter(work)</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span> </div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work.html#ga4996ec4ae496a2a55dd756f6e4474107">  347</a></span><span class="preprocessor">#define sys_port_trace_k_work_submit_exit(work, ret)</span></div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work.html#ga20f5d05e4c1be9a21e42072291272fc9">  353</a></span><span class="preprocessor">#define sys_port_trace_k_work_flush_enter(work)</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work.html#gae21005546cf2025ac4eff76e09da4d0e">  360</a></span><span class="preprocessor">#define sys_port_trace_k_work_flush_blocking(work, timeout)</span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> </div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work.html#gaa50f5a34b4cdc0ba46a4d153f0d48b39">  367</a></span><span class="preprocessor">#define sys_port_trace_k_work_flush_exit(work, ret)</span></div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work.html#gaa2ffb1718ddc49a4f3a727e15d3e1f11">  373</a></span><span class="preprocessor">#define sys_port_trace_k_work_cancel_enter(work)</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span> </div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work.html#ga9a2aa3433ec4a0a2fceb8d1c5ce682f3">  380</a></span><span class="preprocessor">#define sys_port_trace_k_work_cancel_exit(work, ret)</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span> </div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work.html#ga8f2b37c2740c6883939a94ae6aa3ea51">  387</a></span><span class="preprocessor">#define sys_port_trace_k_work_cancel_sync_enter(work, sync)</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span> </div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work.html#ga9d05cb22b905b5ae99174fe8523a8033">  394</a></span><span class="preprocessor">#define sys_port_trace_k_work_cancel_sync_blocking(work, sync)</span></div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span> </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work.html#gae59b7476b056d828bbf269c3f60e5687">  402</a></span><span class="preprocessor">#define sys_port_trace_k_work_cancel_sync_exit(work, sync, ret)</span></div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_work */</span><div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__q.html#ga9e25524cb89a9cabd6ad70459e8bd641">  416</a></span><span class="preprocessor">#define sys_port_trace_k_work_queue_init(queue)</span></div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__q.html#ga79eba7247bd2c52480ac09e6ecef8635">  422</a></span><span class="preprocessor">#define sys_port_trace_k_work_queue_start_enter(queue)</span></div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__q.html#gae25756a58b450b2d1e8c3475cbfc1758">  428</a></span><span class="preprocessor">#define sys_port_trace_k_work_queue_start_exit(queue)</span></div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span> </div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__q.html#ga88af757f4867f3c65f2d0eff605e0736">  434</a></span><span class="preprocessor">#define sys_port_trace_k_work_queue_drain_enter(queue)</span></div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__q.html#ga24ca38662182a01185c9815f3cc87385">  441</a></span><span class="preprocessor">#define sys_port_trace_k_work_queue_drain_exit(queue, ret)</span></div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span> </div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__q.html#ga1ca826910efe678127cdc1f9fdae75e7">  447</a></span><span class="preprocessor">#define sys_port_trace_k_work_queue_unplug_enter(queue)</span></div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span> </div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__q.html#gaae2cf0379cbcf040f36fbba39821be2f">  454</a></span><span class="preprocessor">#define sys_port_trace_k_work_queue_unplug_exit(queue, ret)</span></div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_work_q */</span><div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span> </div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#ga2b7d8ad2173665808061ccc1afd52a06">  468</a></span><span class="preprocessor">#define sys_port_trace_k_work_delayable_init(dwork)</span></div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span> </div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#gab71fd0042892d3e6c3e486cee63c9564">  476</a></span><span class="preprocessor">#define sys_port_trace_k_work_schedule_for_queue_enter(queue, dwork, delay)</span></div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span> </div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#ga4d2160569df2886318039bfdae69d979">  485</a></span><span class="preprocessor">#define sys_port_trace_k_work_schedule_for_queue_exit(queue, dwork, delay, ret)</span></div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span> </div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#gacda1641af1768d815d3cc3e83c1e2456">  492</a></span><span class="preprocessor">#define sys_port_trace_k_work_schedule_enter(dwork, delay)</span></div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span> </div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#ga8c5b232168b9bede0cd73f20513e081c">  500</a></span><span class="preprocessor">#define sys_port_trace_k_work_schedule_exit(dwork, delay, ret)</span></div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span> </div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#ga8d6e93ed7d85a17ffdb651e3399b0e16">  508</a></span><span class="preprocessor">#define sys_port_trace_k_work_reschedule_for_queue_enter(queue, dwork, delay)</span></div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span> </div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#ga636e418e8baf90aaffe3e86b86b3b047">  517</a></span><span class="preprocessor">#define sys_port_trace_k_work_reschedule_for_queue_exit(queue, dwork, delay, ret)</span></div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span> </div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#gafe5b13e8aae388e9b855081450a065e1">  524</a></span><span class="preprocessor">#define sys_port_trace_k_work_reschedule_enter(dwork, delay)</span></div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span> </div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#gaf7789cfa1a943b58e6ee93e8ec9dee57">  532</a></span><span class="preprocessor">#define sys_port_trace_k_work_reschedule_exit(dwork, delay, ret)</span></div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span> </div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#ga949c751bc5226d1b46fbf7478c1ee5a3">  539</a></span><span class="preprocessor">#define sys_port_trace_k_work_flush_delayable_enter(dwork, sync)</span></div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span> </div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#gab62f6bce942728370aefa0903a8b79a0">  547</a></span><span class="preprocessor">#define sys_port_trace_k_work_flush_delayable_exit(dwork, sync, ret)</span></div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span> </div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#gae80301ae580a3de83f239d9973b3829d">  553</a></span><span class="preprocessor">#define sys_port_trace_k_work_cancel_delayable_enter(dwork)</span></div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span> </div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#gaef6b739acf79e63e94d172e6667269ce">  560</a></span><span class="preprocessor">#define sys_port_trace_k_work_cancel_delayable_exit(dwork, ret)</span></div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span> </div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#gaaa466d5bd2529b6a8ec5672a0054b8f7">  567</a></span><span class="preprocessor">#define sys_port_trace_k_work_cancel_delayable_sync_enter(dwork, sync)</span></div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span> </div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__delayable.html#ga7f2934c863c45a5bb71d1ba0401a9fe9">  575</a></span><span class="preprocessor">#define sys_port_trace_k_work_cancel_delayable_sync_exit(dwork, sync, ret)</span></div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_work_delayable */</span><div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span> </div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__poll.html#gab720957a26a7e34d06af38200965b809">  589</a></span><span class="preprocessor">#define sys_port_trace_k_work_poll_init_enter(work)</span></div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span> </div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__poll.html#gab3f6f18ab804f82386fbf478e6f1925d">  595</a></span><span class="preprocessor">#define sys_port_trace_k_work_poll_init_exit(work)</span></div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span> </div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__poll.html#gad81098506ed138f835230dec3af15076">  603</a></span><span class="preprocessor">#define sys_port_trace_k_work_poll_submit_to_queue_enter(work_q, work, timeout)</span></div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span> </div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__poll.html#gabfe31b99d03a49d4b2a5cb9e0403fed9">  611</a></span><span class="preprocessor">#define sys_port_trace_k_work_poll_submit_to_queue_blocking(work_q, work, timeout)</span></div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span> </div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__poll.html#ga7605f1925f1f0e86d890c896586d8776">  620</a></span><span class="preprocessor">#define sys_port_trace_k_work_poll_submit_to_queue_exit(work_q, work, timeout, ret)</span></div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span> </div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__poll.html#ga44a78c45b0bae26008d9ae5b410753b7">  627</a></span><span class="preprocessor">#define sys_port_trace_k_work_poll_submit_enter(work, timeout)</span></div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span> </div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__poll.html#ga5917fef8383ffdb6fb3f02a42f940059">  635</a></span><span class="preprocessor">#define sys_port_trace_k_work_poll_submit_exit(work, timeout, ret)</span></div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span> </div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__poll.html#ga57e8e57814797b50e7e87e06503dc1f9">  641</a></span><span class="preprocessor">#define sys_port_trace_k_work_poll_cancel_enter(work)</span></div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span> </div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__work__poll.html#ga3045330b53fa50489a2d3a17b14aa295">  648</a></span><span class="preprocessor">#define sys_port_trace_k_work_poll_cancel_exit(work, ret)</span></div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_work_poll */</span><div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span> </div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__poll.html#ga83053d6bfc7ad8b070741f38d6606bc1">  662</a></span><span class="preprocessor">#define sys_port_trace_k_poll_api_event_init(event)</span></div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span> </div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__poll.html#gac44ecc90dc3b407b09e2d45590496e17">  668</a></span><span class="preprocessor">#define sys_port_trace_k_poll_api_poll_enter(events)</span></div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span> </div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__poll.html#gaf8794133d6ddc29740dfc73b9edbee12">  675</a></span><span class="preprocessor">#define sys_port_trace_k_poll_api_poll_exit(events, ret)</span></div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span> </div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__poll.html#gaab0dc4527d89c0e0b41d21a76ecfb120">  681</a></span><span class="preprocessor">#define sys_port_trace_k_poll_api_signal_init(signal)</span></div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span> </div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__poll.html#ga5addc3fa68d6afe454ad7721c8fa17c4">  687</a></span><span class="preprocessor">#define sys_port_trace_k_poll_api_signal_reset(signal)</span></div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span> </div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__poll.html#ga336dab8d86b07908e641e9845d75be70">  693</a></span><span class="preprocessor">#define sys_port_trace_k_poll_api_signal_check(signal)</span></div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span> </div>
+<div class="line"><a id="l00700" name="l00700"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__poll.html#gaeb1f753becfbe92f089eed23825acb4b">  700</a></span><span class="preprocessor">#define sys_port_trace_k_poll_api_signal_raise(signal, ret)</span></div>
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_poll */</span><div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span> </div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__sem.html#gace327a058d058a940df14c95b031795b">  715</a></span><span class="preprocessor">#define sys_port_trace_k_sem_init(sem, ret)</span></div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span> </div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__sem.html#ga552d549c1e8346dbe1445a93e7fc17e9">  721</a></span><span class="preprocessor">#define sys_port_trace_k_sem_give_enter(sem)</span></div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span> </div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__sem.html#ga70d31e53b6e72d2343aa009fa5a98054">  727</a></span><span class="preprocessor">#define sys_port_trace_k_sem_give_exit(sem)</span></div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span> </div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__sem.html#ga216fe8bc373edbb0b48fc4ca7b1816c9">  734</a></span><span class="preprocessor">#define sys_port_trace_k_sem_take_enter(sem, timeout)</span></div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span> </div>
+<div class="line"><a id="l00741" name="l00741"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__sem.html#gade7546e098a12ce6d935b39f4978ac8d">  741</a></span><span class="preprocessor">#define sys_port_trace_k_sem_take_blocking(sem, timeout)</span></div>
+<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span> </div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__sem.html#ga8085db47b86d539e65c107bb33469ee2">  749</a></span><span class="preprocessor">#define sys_port_trace_k_sem_take_exit(sem, timeout, ret)</span></div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span> </div>
+<div class="line"><a id="l00755" name="l00755"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__sem.html#ga1300af0463f93de0b29751b7a20307cb">  755</a></span><span class="preprocessor">#define sys_port_trace_k_sem_reset(sem)</span></div>
+<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_sem */</span><div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span> </div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mutex.html#gaefe38feb9aa638b35fd4e723afcebf37">  770</a></span><span class="preprocessor">#define sys_port_trace_k_mutex_init(mutex, ret)</span></div>
+<div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span> </div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mutex.html#ga5ed2f76aec9c128f163a2e3159e29c80">  777</a></span><span class="preprocessor">#define sys_port_trace_k_mutex_lock_enter(mutex, timeout)</span></div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span> </div>
+<div class="line"><a id="l00784" name="l00784"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mutex.html#gaae15023daa241367414afaab085acd2c">  784</a></span><span class="preprocessor">#define sys_port_trace_k_mutex_lock_blocking(mutex, timeout)</span></div>
+<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span> </div>
+<div class="line"><a id="l00792" name="l00792"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mutex.html#ga31bdc51723303de3bc93d41b36149e57">  792</a></span><span class="preprocessor">#define sys_port_trace_k_mutex_lock_exit(mutex, timeout, ret)</span></div>
+<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span> </div>
+<div class="line"><a id="l00798" name="l00798"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mutex.html#ga39611be3e36741442a62a98adeef9ee7">  798</a></span><span class="preprocessor">#define sys_port_trace_k_mutex_unlock_enter(mutex)</span></div>
+<div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span> </div>
+<div class="line"><a id="l00803" name="l00803"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mutex.html#ga53c7bd3fc251865ae1a6e79da7a001b1">  803</a></span><span class="preprocessor">#define sys_port_trace_k_mutex_unlock_exit(mutex, ret)</span></div>
+<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_mutex */</span><div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span> </div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__condvar.html#gab9d1ce42bb6e6c2a762ed242ba364fa8">  818</a></span><span class="preprocessor">#define sys_port_trace_k_condvar_init(condvar, ret)</span></div>
+<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span> </div>
+<div class="line"><a id="l00824" name="l00824"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__condvar.html#ga4b0f79f49b710928a38dc10ce22039e5">  824</a></span><span class="preprocessor">#define sys_port_trace_k_condvar_signal_enter(condvar)</span></div>
+<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span> </div>
+<div class="line"><a id="l00831" name="l00831"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__condvar.html#gab946fada5e51a069a13a21736a500669">  831</a></span><span class="preprocessor">#define sys_port_trace_k_condvar_signal_blocking(condvar, timeout)</span></div>
+<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span> </div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__condvar.html#ga3992a8afdc375a4ecaa83cac302c7198">  838</a></span><span class="preprocessor">#define sys_port_trace_k_condvar_signal_exit(condvar, ret)</span></div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span> </div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__condvar.html#gadd5affb8afb73b5f76e24477d3d853bb">  844</a></span><span class="preprocessor">#define sys_port_trace_k_condvar_broadcast_enter(condvar)</span></div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span> </div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__condvar.html#ga9a013d5ab1bdd0752ec9bafb2ef4f370">  851</a></span><span class="preprocessor">#define sys_port_trace_k_condvar_broadcast_exit(condvar, ret)</span></div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span> </div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__condvar.html#ga30572aefa29d161af4e9e1841c59d98c">  857</a></span><span class="preprocessor">#define sys_port_trace_k_condvar_wait_enter(condvar)</span></div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span> </div>
+<div class="line"><a id="l00864" name="l00864"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__condvar.html#ga07e95689443fb483886695a1533a5b08">  864</a></span><span class="preprocessor">#define sys_port_trace_k_condvar_wait_exit(condvar, ret)</span></div>
+<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_condvar */</span><div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span> </div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga40e74ce284e349d9e6fbe948c29d574f">  878</a></span><span class="preprocessor">#define sys_port_trace_k_queue_init(queue)</span></div>
+<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span> </div>
+<div class="line"><a id="l00884" name="l00884"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga8df6412be1cd3350c2b1976c7f7c8f4c">  884</a></span><span class="preprocessor">#define sys_port_trace_k_queue_cancel_wait(queue)</span></div>
+<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span> </div>
+<div class="line"><a id="l00891" name="l00891"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga0e38a81f47c44e1be515b375f384a2d2">  891</a></span><span class="preprocessor">#define sys_port_trace_k_queue_queue_insert_enter(queue, alloc)</span></div>
+<div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span> </div>
+<div class="line"><a id="l00899" name="l00899"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga3e51a4120f2ff7560ad494620c801886">  899</a></span><span class="preprocessor">#define sys_port_trace_k_queue_queue_insert_blocking(queue, alloc, timeout)</span></div>
+<div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span> </div>
+<div class="line"><a id="l00907" name="l00907"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga9fe7ee8315505734bf33d71083190533">  907</a></span><span class="preprocessor">#define sys_port_trace_k_queue_queue_insert_exit(queue, alloc, ret)</span></div>
+<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span> </div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga541411a2d9856fe01ed2e532a7e33db4">  913</a></span><span class="preprocessor">#define sys_port_trace_k_queue_append_enter(queue)</span></div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span> </div>
+<div class="line"><a id="l00919" name="l00919"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga1c1a038ffa1da2efd495f769f12bc685">  919</a></span><span class="preprocessor">#define sys_port_trace_k_queue_append_exit(queue)</span></div>
+<div class="line"><a id="l00920" name="l00920"></a><span class="lineno">  920</span> </div>
+<div class="line"><a id="l00925" name="l00925"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga5ef57f07d5ff8c730893f96b174f967a">  925</a></span><span class="preprocessor">#define sys_port_trace_k_queue_alloc_append_enter(queue)</span></div>
+<div class="line"><a id="l00926" name="l00926"></a><span class="lineno">  926</span> </div>
+<div class="line"><a id="l00932" name="l00932"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga54601544ad750fb6a5afa725a19ce269">  932</a></span><span class="preprocessor">#define sys_port_trace_k_queue_alloc_append_exit(queue, ret)</span></div>
+<div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span> </div>
+<div class="line"><a id="l00938" name="l00938"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga90f15dc66fffd87e2b4fb66fb8bae4b1">  938</a></span><span class="preprocessor">#define sys_port_trace_k_queue_prepend_enter(queue)</span></div>
+<div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span> </div>
+<div class="line"><a id="l00944" name="l00944"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga023a6fee85616ae5f32b5fa4b29d29e5">  944</a></span><span class="preprocessor">#define sys_port_trace_k_queue_prepend_exit(queue)</span></div>
+<div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span> </div>
+<div class="line"><a id="l00950" name="l00950"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#gaae4196d40be1a74439a1b7010626da17">  950</a></span><span class="preprocessor">#define sys_port_trace_k_queue_alloc_prepend_enter(queue)</span></div>
+<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span> </div>
+<div class="line"><a id="l00957" name="l00957"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga2d7ff756f5c017d7b3f10787716b5684">  957</a></span><span class="preprocessor">#define sys_port_trace_k_queue_alloc_prepend_exit(queue, ret)</span></div>
+<div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span> </div>
+<div class="line"><a id="l00963" name="l00963"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga4e78ca5d7d927b912e09829b51e7330c">  963</a></span><span class="preprocessor">#define sys_port_trace_k_queue_insert_enter(queue)</span></div>
+<div class="line"><a id="l00964" name="l00964"></a><span class="lineno">  964</span> </div>
+<div class="line"><a id="l00970" name="l00970"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#gaad04f21122c554c33ef0cb394abf6df1">  970</a></span><span class="preprocessor">#define sys_port_trace_k_queue_insert_blocking(queue, timeout)</span></div>
+<div class="line"><a id="l00971" name="l00971"></a><span class="lineno">  971</span> </div>
+<div class="line"><a id="l00976" name="l00976"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga69ca963f74777d9d351c9d20fe9dff62">  976</a></span><span class="preprocessor">#define sys_port_trace_k_queue_insert_exit(queue)</span></div>
+<div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span> </div>
+<div class="line"><a id="l00982" name="l00982"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga777cfd6ee6ad016c2bbc519a490c0672">  982</a></span><span class="preprocessor">#define sys_port_trace_k_queue_append_list_enter(queue)</span></div>
+<div class="line"><a id="l00983" name="l00983"></a><span class="lineno">  983</span> </div>
+<div class="line"><a id="l00989" name="l00989"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga215aca3523a17e31d4d36d3d95f28544">  989</a></span><span class="preprocessor">#define sys_port_trace_k_queue_append_list_exit(queue, ret)</span></div>
+<div class="line"><a id="l00990" name="l00990"></a><span class="lineno">  990</span> </div>
+<div class="line"><a id="l00995" name="l00995"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga888a4a39d0c33fab4243c64e42011856">  995</a></span><span class="preprocessor">#define sys_port_trace_k_queue_merge_slist_enter(queue)</span></div>
+<div class="line"><a id="l00996" name="l00996"></a><span class="lineno">  996</span> </div>
+<div class="line"><a id="l01002" name="l01002"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga87336faf8e19c64bcbf188452e336639"> 1002</a></span><span class="preprocessor">#define sys_port_trace_k_queue_merge_slist_exit(queue, ret)</span></div>
+<div class="line"><a id="l01003" name="l01003"></a><span class="lineno"> 1003</span> </div>
+<div class="line"><a id="l01009" name="l01009"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga59c1bac1a34c950c7ca324fc8d853acb"> 1009</a></span><span class="preprocessor">#define sys_port_trace_k_queue_get_enter(queue, timeout)</span></div>
+<div class="line"><a id="l01010" name="l01010"></a><span class="lineno"> 1010</span> </div>
+<div class="line"><a id="l01016" name="l01016"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#gad83deb664f66df825b290b17f97156c7"> 1016</a></span><span class="preprocessor">#define sys_port_trace_k_queue_get_blocking(queue, timeout)</span></div>
+<div class="line"><a id="l01017" name="l01017"></a><span class="lineno"> 1017</span> </div>
+<div class="line"><a id="l01024" name="l01024"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga8afd074bab6b31d60169a72db51ef76c"> 1024</a></span><span class="preprocessor">#define sys_port_trace_k_queue_get_exit(queue, timeout, ret)</span></div>
+<div class="line"><a id="l01025" name="l01025"></a><span class="lineno"> 1025</span> </div>
+<div class="line"><a id="l01030" name="l01030"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#gacc2e453e717c654318dfd02e09288636"> 1030</a></span><span class="preprocessor">#define sys_port_trace_k_queue_remove_enter(queue)</span></div>
+<div class="line"><a id="l01031" name="l01031"></a><span class="lineno"> 1031</span> </div>
+<div class="line"><a id="l01037" name="l01037"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga1df298e35d176ca79924a9b534bb115c"> 1037</a></span><span class="preprocessor">#define sys_port_trace_k_queue_remove_exit(queue, ret)</span></div>
+<div class="line"><a id="l01038" name="l01038"></a><span class="lineno"> 1038</span> </div>
+<div class="line"><a id="l01043" name="l01043"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga2842e4d5e778016ea70d5b860f217421"> 1043</a></span><span class="preprocessor">#define sys_port_trace_k_queue_unique_append_enter(queue)</span></div>
+<div class="line"><a id="l01044" name="l01044"></a><span class="lineno"> 1044</span> </div>
+<div class="line"><a id="l01051" name="l01051"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga830dfc12a35c0c001abfe2cbf89387aa"> 1051</a></span><span class="preprocessor">#define sys_port_trace_k_queue_unique_append_exit(queue, ret)</span></div>
+<div class="line"><a id="l01052" name="l01052"></a><span class="lineno"> 1052</span> </div>
+<div class="line"><a id="l01058" name="l01058"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#ga1cb5384c1eccc5d40c3e748dd1990cce"> 1058</a></span><span class="preprocessor">#define sys_port_trace_k_queue_peek_head(queue, ret)</span></div>
+<div class="line"><a id="l01059" name="l01059"></a><span class="lineno"> 1059</span> </div>
+<div class="line"><a id="l01065" name="l01065"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__queue.html#gac28c33f0457d7e8f99e20d0fc55427ee"> 1065</a></span><span class="preprocessor">#define sys_port_trace_k_queue_peek_tail(queue, ret)</span></div>
+<div class="line"><a id="l01066" name="l01066"></a><span class="lineno"> 1066</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_queue */</span><div class="line"><a id="l01068" name="l01068"></a><span class="lineno"> 1068</span> </div>
+<div class="line"><a id="l01079" name="l01079"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#gac0da5eca137a970c67b7b94a568c93e6"> 1079</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_init_enter(fifo)</span></div>
+<div class="line"><a id="l01080" name="l01080"></a><span class="lineno"> 1080</span> </div>
+<div class="line"><a id="l01085" name="l01085"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#gaaf6c7c710377f449d52c5d6f5f7103c8"> 1085</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_init_exit(fifo)</span></div>
+<div class="line"><a id="l01086" name="l01086"></a><span class="lineno"> 1086</span> </div>
+<div class="line"><a id="l01091" name="l01091"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#ga81e706aff605468683a96b14940745e7"> 1091</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_cancel_wait_enter(fifo)</span></div>
+<div class="line"><a id="l01092" name="l01092"></a><span class="lineno"> 1092</span> </div>
+<div class="line"><a id="l01097" name="l01097"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#ga03ccb2bb3141c2842959ba77e4cd7337"> 1097</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_cancel_wait_exit(fifo)</span></div>
+<div class="line"><a id="l01098" name="l01098"></a><span class="lineno"> 1098</span> </div>
+<div class="line"><a id="l01104" name="l01104"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#gaac5f6b9e77dad9de4652d24502ab46d0"> 1104</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_put_enter(fifo, data)</span></div>
+<div class="line"><a id="l01105" name="l01105"></a><span class="lineno"> 1105</span> </div>
+<div class="line"><a id="l01111" name="l01111"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#ga7a1d15a538f23d2b7f290435803cd73e"> 1111</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_put_exit(fifo, data)</span></div>
+<div class="line"><a id="l01112" name="l01112"></a><span class="lineno"> 1112</span> </div>
+<div class="line"><a id="l01118" name="l01118"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#ga9c433ad8dc99ac38b8d5b4755da05c67"> 1118</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_alloc_put_enter(fifo, data)</span></div>
+<div class="line"><a id="l01119" name="l01119"></a><span class="lineno"> 1119</span> </div>
+<div class="line"><a id="l01126" name="l01126"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#gad9871fb1487a387a4f73e94bccb99a6d"> 1126</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_alloc_put_exit(fifo, data, ret)</span></div>
+<div class="line"><a id="l01127" name="l01127"></a><span class="lineno"> 1127</span> </div>
+<div class="line"><a id="l01134" name="l01134"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#gace20fdce59a99b92c8ac3711c4085b28"> 1134</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_put_list_enter(fifo, head, tail)</span></div>
+<div class="line"><a id="l01135" name="l01135"></a><span class="lineno"> 1135</span> </div>
+<div class="line"><a id="l01142" name="l01142"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#ga739360e2cefa158f22ce20a1e9369aea"> 1142</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_put_list_exit(fifo, head, tail)</span></div>
+<div class="line"><a id="l01143" name="l01143"></a><span class="lineno"> 1143</span> </div>
+<div class="line"><a id="l01149" name="l01149"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#gaf975d817bdefc64b9329330f6cd88d21"> 1149</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_alloc_put_slist_enter(fifo, list)</span></div>
+<div class="line"><a id="l01150" name="l01150"></a><span class="lineno"> 1150</span> </div>
+<div class="line"><a id="l01156" name="l01156"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#gae1c620ec17a1f7a899a1e5cba996644e"> 1156</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_alloc_put_slist_exit(fifo, list)</span></div>
+<div class="line"><a id="l01157" name="l01157"></a><span class="lineno"> 1157</span> </div>
+<div class="line"><a id="l01163" name="l01163"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#gaa3539eea74888c6257c5f5d456748155"> 1163</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_get_enter(fifo, timeout)</span></div>
+<div class="line"><a id="l01164" name="l01164"></a><span class="lineno"> 1164</span> </div>
+<div class="line"><a id="l01171" name="l01171"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#gae6f06386f224063ee756e8ff0000dfe4"> 1171</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_get_exit(fifo, timeout, ret)</span></div>
+<div class="line"><a id="l01172" name="l01172"></a><span class="lineno"> 1172</span> </div>
+<div class="line"><a id="l01177" name="l01177"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#gab0fea5751e0296e623606e54efe5687b"> 1177</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_peek_head_enter(fifo)</span></div>
+<div class="line"><a id="l01178" name="l01178"></a><span class="lineno"> 1178</span> </div>
+<div class="line"><a id="l01184" name="l01184"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#ga06b74415be416b137092cb72187c1fb6"> 1184</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_peek_head_exit(fifo, ret)</span></div>
+<div class="line"><a id="l01185" name="l01185"></a><span class="lineno"> 1185</span> </div>
+<div class="line"><a id="l01190" name="l01190"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#gad9f9b3193ed2c7270030036aef8d343d"> 1190</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_peek_tail_enter(fifo)</span></div>
+<div class="line"><a id="l01191" name="l01191"></a><span class="lineno"> 1191</span> </div>
+<div class="line"><a id="l01197" name="l01197"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__fifo.html#gae33baafbaac06ada7d6b53026a973d81"> 1197</a></span><span class="preprocessor">#define sys_port_trace_k_fifo_peek_tail_exit(fifo, ret)</span></div>
+<div class="line"><a id="l01198" name="l01198"></a><span class="lineno"> 1198</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_fifo */</span><div class="line"><a id="l01200" name="l01200"></a><span class="lineno"> 1200</span> </div>
+<div class="line"><a id="l01211" name="l01211"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__lifo.html#gaad81b60363467b56d887baee8c8b5bf2"> 1211</a></span><span class="preprocessor">#define sys_port_trace_k_lifo_init_enter(lifo)</span></div>
+<div class="line"><a id="l01212" name="l01212"></a><span class="lineno"> 1212</span> </div>
+<div class="line"><a id="l01217" name="l01217"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__lifo.html#ga4f08168ded97456265abb3a903585ecf"> 1217</a></span><span class="preprocessor">#define sys_port_trace_k_lifo_init_exit(lifo)</span></div>
+<div class="line"><a id="l01218" name="l01218"></a><span class="lineno"> 1218</span> </div>
+<div class="line"><a id="l01224" name="l01224"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__lifo.html#gafd9c45a171a2fb146defa356ff0bc0f5"> 1224</a></span><span class="preprocessor">#define sys_port_trace_k_lifo_put_enter(lifo, data)</span></div>
+<div class="line"><a id="l01225" name="l01225"></a><span class="lineno"> 1225</span> </div>
+<div class="line"><a id="l01231" name="l01231"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__lifo.html#ga0e5372c37bdd3a47adf11ab9d3a5e22d"> 1231</a></span><span class="preprocessor">#define sys_port_trace_k_lifo_put_exit(lifo, data)</span></div>
+<div class="line"><a id="l01232" name="l01232"></a><span class="lineno"> 1232</span> </div>
+<div class="line"><a id="l01238" name="l01238"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__lifo.html#ga0d9717f4b43e344518cc451a2fe9d224"> 1238</a></span><span class="preprocessor">#define sys_port_trace_k_lifo_alloc_put_enter(lifo, data)</span></div>
+<div class="line"><a id="l01239" name="l01239"></a><span class="lineno"> 1239</span> </div>
+<div class="line"><a id="l01246" name="l01246"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__lifo.html#ga19bb748367aba8f576e72cdc30834ab1"> 1246</a></span><span class="preprocessor">#define sys_port_trace_k_lifo_alloc_put_exit(lifo, data, ret)</span></div>
+<div class="line"><a id="l01247" name="l01247"></a><span class="lineno"> 1247</span> </div>
+<div class="line"><a id="l01253" name="l01253"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__lifo.html#ga61556928453492dc6ed4efc999668f01"> 1253</a></span><span class="preprocessor">#define sys_port_trace_k_lifo_get_enter(lifo, timeout)</span></div>
+<div class="line"><a id="l01254" name="l01254"></a><span class="lineno"> 1254</span> </div>
+<div class="line"><a id="l01261" name="l01261"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__lifo.html#ga2f7e8e680cac03844ca5dbab0438a754"> 1261</a></span><span class="preprocessor">#define sys_port_trace_k_lifo_get_exit(lifo, timeout, ret)</span></div>
+<div class="line"><a id="l01262" name="l01262"></a><span class="lineno"> 1262</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_lifo */</span><div class="line"><a id="l01264" name="l01264"></a><span class="lineno"> 1264</span> </div>
+<div class="line"><a id="l01275" name="l01275"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__stack.html#ga5bb95f74d8bc3eed2525be20c444824f"> 1275</a></span><span class="preprocessor">#define sys_port_trace_k_stack_init(stack)</span></div>
+<div class="line"><a id="l01276" name="l01276"></a><span class="lineno"> 1276</span> </div>
+<div class="line"><a id="l01281" name="l01281"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__stack.html#gaa10d6cb275914bb25ad6ffad12807480"> 1281</a></span><span class="preprocessor">#define sys_port_trace_k_stack_alloc_init_enter(stack)</span></div>
+<div class="line"><a id="l01282" name="l01282"></a><span class="lineno"> 1282</span> </div>
+<div class="line"><a id="l01288" name="l01288"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__stack.html#gabaabe367b83b39248112eadb07bdf714"> 1288</a></span><span class="preprocessor">#define sys_port_trace_k_stack_alloc_init_exit(stack, ret)</span></div>
+<div class="line"><a id="l01289" name="l01289"></a><span class="lineno"> 1289</span> </div>
+<div class="line"><a id="l01294" name="l01294"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__stack.html#gaf8357d3d9a2cb8de7ba0b3473c5b063c"> 1294</a></span><span class="preprocessor">#define sys_port_trace_k_stack_cleanup_enter(stack)</span></div>
+<div class="line"><a id="l01295" name="l01295"></a><span class="lineno"> 1295</span> </div>
+<div class="line"><a id="l01301" name="l01301"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__stack.html#ga2225cab95abdd8188087e6a98641ec0c"> 1301</a></span><span class="preprocessor">#define sys_port_trace_k_stack_cleanup_exit(stack, ret)</span></div>
+<div class="line"><a id="l01302" name="l01302"></a><span class="lineno"> 1302</span> </div>
+<div class="line"><a id="l01307" name="l01307"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__stack.html#gad6a42d93265b53540baab5c59f55fbf6"> 1307</a></span><span class="preprocessor">#define sys_port_trace_k_stack_push_enter(stack)</span></div>
+<div class="line"><a id="l01308" name="l01308"></a><span class="lineno"> 1308</span> </div>
+<div class="line"><a id="l01314" name="l01314"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__stack.html#ga203d32ef138d041aa0c20db8a75ccd6a"> 1314</a></span><span class="preprocessor">#define sys_port_trace_k_stack_push_exit(stack, ret)</span></div>
+<div class="line"><a id="l01315" name="l01315"></a><span class="lineno"> 1315</span> </div>
+<div class="line"><a id="l01321" name="l01321"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__stack.html#gaaf9ac378b0bbf09af91c1987dc5b777e"> 1321</a></span><span class="preprocessor">#define sys_port_trace_k_stack_pop_enter(stack, timeout)</span></div>
+<div class="line"><a id="l01322" name="l01322"></a><span class="lineno"> 1322</span> </div>
+<div class="line"><a id="l01328" name="l01328"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__stack.html#gacbdaf326a104d3bdcd4ceb5ec72c9b4f"> 1328</a></span><span class="preprocessor">#define sys_port_trace_k_stack_pop_blocking(stack, timeout)</span></div>
+<div class="line"><a id="l01329" name="l01329"></a><span class="lineno"> 1329</span> </div>
+<div class="line"><a id="l01336" name="l01336"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__stack.html#ga11280d48a97cca4b65210791f9d8c591"> 1336</a></span><span class="preprocessor">#define sys_port_trace_k_stack_pop_exit(stack, timeout, ret)</span></div>
+<div class="line"><a id="l01337" name="l01337"></a><span class="lineno"> 1337</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_stack */</span><div class="line"><a id="l01339" name="l01339"></a><span class="lineno"> 1339</span> </div>
+<div class="line"><a id="l01350" name="l01350"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__msgq.html#ga94eae512e590d61c1c74f5d7eb552d50"> 1350</a></span><span class="preprocessor">#define sys_port_trace_k_msgq_init(msgq)</span></div>
+<div class="line"><a id="l01351" name="l01351"></a><span class="lineno"> 1351</span> </div>
+<div class="line"><a id="l01356" name="l01356"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__msgq.html#ga392ac9fe978d78ee1ca23c27f93e5053"> 1356</a></span><span class="preprocessor">#define sys_port_trace_k_msgq_alloc_init_enter(msgq)</span></div>
+<div class="line"><a id="l01357" name="l01357"></a><span class="lineno"> 1357</span> </div>
+<div class="line"><a id="l01363" name="l01363"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__msgq.html#ga60973fcaae9be0a6b292bf2a5dfb4fb2"> 1363</a></span><span class="preprocessor">#define sys_port_trace_k_msgq_alloc_init_exit(msgq, ret)</span></div>
+<div class="line"><a id="l01364" name="l01364"></a><span class="lineno"> 1364</span> </div>
+<div class="line"><a id="l01369" name="l01369"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__msgq.html#ga370c16cd808037db5dc605e91d3c21b8"> 1369</a></span><span class="preprocessor">#define sys_port_trace_k_msgq_cleanup_enter(msgq)</span></div>
+<div class="line"><a id="l01370" name="l01370"></a><span class="lineno"> 1370</span> </div>
+<div class="line"><a id="l01376" name="l01376"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__msgq.html#gaff32cb729fd32c7b008191cac1e2c881"> 1376</a></span><span class="preprocessor">#define sys_port_trace_k_msgq_cleanup_exit(msgq, ret)</span></div>
+<div class="line"><a id="l01377" name="l01377"></a><span class="lineno"> 1377</span> </div>
+<div class="line"><a id="l01383" name="l01383"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__msgq.html#ga829e2b0d3420079777362f0b78f28d50"> 1383</a></span><span class="preprocessor">#define sys_port_trace_k_msgq_put_enter(msgq, timeout)</span></div>
+<div class="line"><a id="l01384" name="l01384"></a><span class="lineno"> 1384</span> </div>
+<div class="line"><a id="l01390" name="l01390"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__msgq.html#gaead1e1b345e029017b1951a3d112554f"> 1390</a></span><span class="preprocessor">#define sys_port_trace_k_msgq_put_blocking(msgq, timeout)</span></div>
+<div class="line"><a id="l01391" name="l01391"></a><span class="lineno"> 1391</span> </div>
+<div class="line"><a id="l01398" name="l01398"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__msgq.html#gab4794be3e4a68af3ada3667d98286747"> 1398</a></span><span class="preprocessor">#define sys_port_trace_k_msgq_put_exit(msgq, timeout, ret)</span></div>
+<div class="line"><a id="l01399" name="l01399"></a><span class="lineno"> 1399</span> </div>
+<div class="line"><a id="l01405" name="l01405"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__msgq.html#ga1d79dbc50b8ddd0d3db803b7c747ede5"> 1405</a></span><span class="preprocessor">#define sys_port_trace_k_msgq_get_enter(msgq, timeout)</span></div>
+<div class="line"><a id="l01406" name="l01406"></a><span class="lineno"> 1406</span> </div>
+<div class="line"><a id="l01412" name="l01412"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__msgq.html#ga448baf7df9ec1abc4ec3a12609400b68"> 1412</a></span><span class="preprocessor">#define sys_port_trace_k_msgq_get_blocking(msgq, timeout)</span></div>
+<div class="line"><a id="l01413" name="l01413"></a><span class="lineno"> 1413</span> </div>
+<div class="line"><a id="l01420" name="l01420"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__msgq.html#ga2a549f567cda0646b853a9cb0b7e1eb2"> 1420</a></span><span class="preprocessor">#define sys_port_trace_k_msgq_get_exit(msgq, timeout, ret)</span></div>
+<div class="line"><a id="l01421" name="l01421"></a><span class="lineno"> 1421</span> </div>
+<div class="line"><a id="l01427" name="l01427"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__msgq.html#gad11e9f22177bf004f95d23750a2046a3"> 1427</a></span><span class="preprocessor">#define sys_port_trace_k_msgq_peek(msgq, ret)</span></div>
+<div class="line"><a id="l01428" name="l01428"></a><span class="lineno"> 1428</span> </div>
+<div class="line"><a id="l01433" name="l01433"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__msgq.html#ga91530d1c6d10ce72cc5c9319c28b5e32"> 1433</a></span><span class="preprocessor">#define sys_port_trace_k_msgq_purge(msgq)</span></div>
+<div class="line"><a id="l01434" name="l01434"></a><span class="lineno"> 1434</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_msgq */</span><div class="line"><a id="l01436" name="l01436"></a><span class="lineno"> 1436</span> </div>
+<div class="line"><a id="l01447" name="l01447"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mbox.html#ga67187d636152a34614c4213c47ea7509"> 1447</a></span><span class="preprocessor">#define sys_port_trace_k_mbox_init(mbox)</span></div>
+<div class="line"><a id="l01448" name="l01448"></a><span class="lineno"> 1448</span> </div>
+<div class="line"><a id="l01454" name="l01454"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mbox.html#gac7b683e1e33c42e3e04f84a2c2b19811"> 1454</a></span><span class="preprocessor">#define sys_port_trace_k_mbox_message_put_enter(mbox, timeout)</span></div>
+<div class="line"><a id="l01455" name="l01455"></a><span class="lineno"> 1455</span> </div>
+<div class="line"><a id="l01461" name="l01461"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mbox.html#ga6a04c6ea1072d7c858a23c845e76565d"> 1461</a></span><span class="preprocessor">#define sys_port_trace_k_mbox_message_put_blocking(mbox, timeout)</span></div>
+<div class="line"><a id="l01462" name="l01462"></a><span class="lineno"> 1462</span> </div>
+<div class="line"><a id="l01469" name="l01469"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mbox.html#ga2ab3697623a198ea15ad644ce19335fb"> 1469</a></span><span class="preprocessor">#define sys_port_trace_k_mbox_message_put_exit(mbox, timeout, ret)</span></div>
+<div class="line"><a id="l01470" name="l01470"></a><span class="lineno"> 1470</span> </div>
+<div class="line"><a id="l01476" name="l01476"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mbox.html#gaba437af59b1a8c663fa7d39eafa78ee6"> 1476</a></span><span class="preprocessor">#define sys_port_trace_k_mbox_put_enter(mbox, timeout)</span></div>
+<div class="line"><a id="l01477" name="l01477"></a><span class="lineno"> 1477</span> </div>
+<div class="line"><a id="l01484" name="l01484"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mbox.html#ga07148a910c33c881d531ed495b23c081"> 1484</a></span><span class="preprocessor">#define sys_port_trace_k_mbox_put_exit(mbox, timeout, ret)</span></div>
+<div class="line"><a id="l01485" name="l01485"></a><span class="lineno"> 1485</span> </div>
+<div class="line"><a id="l01491" name="l01491"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mbox.html#ga7dd281ffa54a3d32c7380e294e18ef5d"> 1491</a></span><span class="preprocessor">#define sys_port_trace_k_mbox_async_put_enter(mbox, sem)</span></div>
+<div class="line"><a id="l01492" name="l01492"></a><span class="lineno"> 1492</span> </div>
+<div class="line"><a id="l01498" name="l01498"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mbox.html#gab39d7bfdfc0c5ed394e7819a3048741e"> 1498</a></span><span class="preprocessor">#define sys_port_trace_k_mbox_async_put_exit(mbox, sem)</span></div>
+<div class="line"><a id="l01499" name="l01499"></a><span class="lineno"> 1499</span> </div>
+<div class="line"><a id="l01505" name="l01505"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mbox.html#ga30ad94a6f1267931ff8d401fb4a75be3"> 1505</a></span><span class="preprocessor">#define sys_port_trace_k_mbox_get_enter(mbox, timeout)</span></div>
+<div class="line"><a id="l01506" name="l01506"></a><span class="lineno"> 1506</span> </div>
+<div class="line"><a id="l01512" name="l01512"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mbox.html#ga4977171638fed999e4485cc035016c10"> 1512</a></span><span class="preprocessor">#define sys_port_trace_k_mbox_get_blocking(mbox, timeout)</span></div>
+<div class="line"><a id="l01513" name="l01513"></a><span class="lineno"> 1513</span> </div>
+<div class="line"><a id="l01520" name="l01520"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mbox.html#gaaa8261b9fa07c97308b46a9b7100aee6"> 1520</a></span><span class="preprocessor">#define sys_port_trace_k_mbox_get_exit(mbox, timeout, ret)</span></div>
+<div class="line"><a id="l01521" name="l01521"></a><span class="lineno"> 1521</span> </div>
+<div class="line"><a id="l01526" name="l01526"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mbox.html#gacef2016dc5620371401e55e7005a18c3"> 1526</a></span><span class="preprocessor">#define sys_port_trace_k_mbox_data_get(rx_msg)</span></div>
+<div class="line"><a id="l01527" name="l01527"></a><span class="lineno"> 1527</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_mbox */</span><div class="line"><a id="l01529" name="l01529"></a><span class="lineno"> 1529</span> </div>
+<div class="line"><a id="l01540" name="l01540"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#ga1d51dc4110aba7c23de9b8f47e7ad5a8"> 1540</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_init(pipe)</span></div>
+<div class="line"><a id="l01541" name="l01541"></a><span class="lineno"> 1541</span> </div>
+<div class="line"><a id="l01546" name="l01546"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#ga63bc37ca2dbcf84fc87e13fdb2f21834"> 1546</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_cleanup_enter(pipe)</span></div>
+<div class="line"><a id="l01547" name="l01547"></a><span class="lineno"> 1547</span> </div>
+<div class="line"><a id="l01553" name="l01553"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#gaa367f4e1019380dde77ee881f22ab278"> 1553</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_cleanup_exit(pipe, ret)</span></div>
+<div class="line"><a id="l01554" name="l01554"></a><span class="lineno"> 1554</span> </div>
+<div class="line"><a id="l01559" name="l01559"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#ga6fdcad7deb3be98acd88cd8febd39247"> 1559</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_alloc_init_enter(pipe)</span></div>
+<div class="line"><a id="l01560" name="l01560"></a><span class="lineno"> 1560</span> </div>
+<div class="line"><a id="l01566" name="l01566"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#ga011af7de686c1b360f0696a7dd1b173f"> 1566</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_alloc_init_exit(pipe, ret)</span></div>
+<div class="line"><a id="l01567" name="l01567"></a><span class="lineno"> 1567</span> </div>
+<div class="line"><a id="l01572" name="l01572"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#ga9e3f6058f2370488cfb4d57676c3d5cd"> 1572</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_flush_enter(pipe)</span></div>
+<div class="line"><a id="l01573" name="l01573"></a><span class="lineno"> 1573</span> </div>
+<div class="line"><a id="l01578" name="l01578"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#gafdba63af20781901576344ef198da8a4"> 1578</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_flush_exit(pipe)</span></div>
+<div class="line"><a id="l01579" name="l01579"></a><span class="lineno"> 1579</span> </div>
+<div class="line"><a id="l01584" name="l01584"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#gaa81b667947689ac7edb866cb7c5beb81"> 1584</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_buffer_flush_enter(pipe)</span></div>
+<div class="line"><a id="l01585" name="l01585"></a><span class="lineno"> 1585</span> </div>
+<div class="line"><a id="l01590" name="l01590"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#ga47d9a997d8daff89a1c4a41ac4bb327e"> 1590</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_buffer_flush_exit(pipe)</span></div>
+<div class="line"><a id="l01591" name="l01591"></a><span class="lineno"> 1591</span> </div>
+<div class="line"><a id="l01597" name="l01597"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#gad16f0673669f9700ebd3e4fc0b1466d8"> 1597</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_put_enter(pipe, timeout)</span></div>
+<div class="line"><a id="l01598" name="l01598"></a><span class="lineno"> 1598</span> </div>
+<div class="line"><a id="l01604" name="l01604"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#ga314cffd927b410d3670f39a774a42206"> 1604</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_put_blocking(pipe, timeout)</span></div>
+<div class="line"><a id="l01605" name="l01605"></a><span class="lineno"> 1605</span> </div>
+<div class="line"><a id="l01612" name="l01612"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#ga20a131258373e32379273dd0ff08a672"> 1612</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_put_exit(pipe, timeout, ret)</span></div>
+<div class="line"><a id="l01613" name="l01613"></a><span class="lineno"> 1613</span> </div>
+<div class="line"><a id="l01619" name="l01619"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#gaafa10362c5042f0f2e02b40b79768dbb"> 1619</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_get_enter(pipe, timeout)</span></div>
+<div class="line"><a id="l01620" name="l01620"></a><span class="lineno"> 1620</span> </div>
+<div class="line"><a id="l01626" name="l01626"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#ga2dfb7cfd0b08beac72d254ac3063d42c"> 1626</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_get_blocking(pipe, timeout)</span></div>
+<div class="line"><a id="l01627" name="l01627"></a><span class="lineno"> 1627</span> </div>
+<div class="line"><a id="l01634" name="l01634"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pipe.html#ga192cb7bafd2d04898b13e30aa96d483d"> 1634</a></span><span class="preprocessor">#define sys_port_trace_k_pipe_get_exit(pipe, timeout, ret)</span></div>
+<div class="line"><a id="l01635" name="l01635"></a><span class="lineno"> 1635</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_pipe */</span><div class="line"><a id="l01637" name="l01637"></a><span class="lineno"> 1637</span> </div>
+<div class="line"><a id="l01648" name="l01648"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#gaa9eb0a2ff9da8a892ab62e45fe4e4ddb"> 1648</a></span><span class="preprocessor">#define sys_port_trace_k_heap_init(h)</span></div>
+<div class="line"><a id="l01649" name="l01649"></a><span class="lineno"> 1649</span> </div>
+<div class="line"><a id="l01655" name="l01655"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#gaa49162a735def3b0389cc30bd4654533"> 1655</a></span><span class="preprocessor">#define sys_port_trace_k_heap_aligned_alloc_enter(h, timeout)</span></div>
+<div class="line"><a id="l01656" name="l01656"></a><span class="lineno"> 1656</span> </div>
+<div class="line"><a id="l01662" name="l01662"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#gada1001c802bcc55437ffd8f4e2f23bef"> 1662</a></span><span class="preprocessor">#define sys_port_trace_k_heap_aligned_alloc_blocking(h, timeout)</span></div>
+<div class="line"><a id="l01663" name="l01663"></a><span class="lineno"> 1663</span> </div>
+<div class="line"><a id="l01670" name="l01670"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#ga3833f13065d967acafd50e3089556944"> 1670</a></span><span class="preprocessor">#define sys_port_trace_k_heap_aligned_alloc_exit(h, timeout, ret)</span></div>
+<div class="line"><a id="l01671" name="l01671"></a><span class="lineno"> 1671</span> </div>
+<div class="line"><a id="l01677" name="l01677"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#gadf8441b3c430499c8444a7c73bae1931"> 1677</a></span><span class="preprocessor">#define sys_port_trace_k_heap_alloc_enter(h, timeout)</span></div>
+<div class="line"><a id="l01678" name="l01678"></a><span class="lineno"> 1678</span> </div>
+<div class="line"><a id="l01685" name="l01685"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#gad696bba7ffe71beb01520ab27b483307"> 1685</a></span><span class="preprocessor">#define sys_port_trace_k_heap_alloc_exit(h, timeout, ret)</span></div>
+<div class="line"><a id="l01686" name="l01686"></a><span class="lineno"> 1686</span> </div>
+<div class="line"><a id="l01691" name="l01691"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#ga6f9c92a02d32af203752c59615e34096"> 1691</a></span><span class="preprocessor">#define sys_port_trace_k_heap_free(h)</span></div>
+<div class="line"><a id="l01692" name="l01692"></a><span class="lineno"> 1692</span> </div>
+<div class="line"><a id="l01697" name="l01697"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#ga12de856dc1fc2cb261497b3ef8b09e9e"> 1697</a></span><span class="preprocessor">#define sys_port_trace_k_heap_sys_k_aligned_alloc_enter(heap)</span></div>
+<div class="line"><a id="l01698" name="l01698"></a><span class="lineno"> 1698</span> </div>
+<div class="line"><a id="l01704" name="l01704"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#ga6d7a77c282f8229e0b366d57ba33ed04"> 1704</a></span><span class="preprocessor">#define sys_port_trace_k_heap_sys_k_aligned_alloc_exit(heap, ret)</span></div>
+<div class="line"><a id="l01705" name="l01705"></a><span class="lineno"> 1705</span> </div>
+<div class="line"><a id="l01710" name="l01710"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#ga478745a9e6cbc1a7b6bc9a2fc1763ca5"> 1710</a></span><span class="preprocessor">#define sys_port_trace_k_heap_sys_k_malloc_enter(heap)</span></div>
+<div class="line"><a id="l01711" name="l01711"></a><span class="lineno"> 1711</span> </div>
+<div class="line"><a id="l01717" name="l01717"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#ga4d612b7ec5d992c6e8170f35a1ce6c03"> 1717</a></span><span class="preprocessor">#define sys_port_trace_k_heap_sys_k_malloc_exit(heap, ret)</span></div>
+<div class="line"><a id="l01718" name="l01718"></a><span class="lineno"> 1718</span> </div>
+<div class="line"><a id="l01724" name="l01724"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#gaf4dd86f13041c12cf18696fcff2ba9aa"> 1724</a></span><span class="preprocessor">#define sys_port_trace_k_heap_sys_k_free_enter(heap, heap_ref)</span></div>
+<div class="line"><a id="l01725" name="l01725"></a><span class="lineno"> 1725</span> </div>
+<div class="line"><a id="l01731" name="l01731"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#gaf2865a12ffee2135e2d798bdf5fa9c98"> 1731</a></span><span class="preprocessor">#define sys_port_trace_k_heap_sys_k_free_exit(heap, heap_ref)</span></div>
+<div class="line"><a id="l01732" name="l01732"></a><span class="lineno"> 1732</span> </div>
+<div class="line"><a id="l01737" name="l01737"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#ga60e3dd5434ba9c912a4f2332f579318f"> 1737</a></span><span class="preprocessor">#define sys_port_trace_k_heap_sys_k_calloc_enter(heap)</span></div>
+<div class="line"><a id="l01738" name="l01738"></a><span class="lineno"> 1738</span> </div>
+<div class="line"><a id="l01744" name="l01744"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__heap.html#ga6be2fe00eabc9bffaf635cfb14714e4a"> 1744</a></span><span class="preprocessor">#define sys_port_trace_k_heap_sys_k_calloc_exit(heap, ret)</span></div>
+<div class="line"><a id="l01745" name="l01745"></a><span class="lineno"> 1745</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_heap */</span><div class="line"><a id="l01747" name="l01747"></a><span class="lineno"> 1747</span> </div>
+<div class="line"><a id="l01759" name="l01759"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mslab.html#ga5a769fffc7611a57c8490b3f5c6047a5"> 1759</a></span><span class="preprocessor">#define sys_port_trace_k_mem_slab_init(slab, rc)</span></div>
+<div class="line"><a id="l01760" name="l01760"></a><span class="lineno"> 1760</span> </div>
+<div class="line"><a id="l01766" name="l01766"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mslab.html#gac1ac5f1393b87ea84c2d53f08c251ff2"> 1766</a></span><span class="preprocessor">#define sys_port_trace_k_mem_slab_alloc_enter(slab, timeout)</span></div>
+<div class="line"><a id="l01767" name="l01767"></a><span class="lineno"> 1767</span> </div>
+<div class="line"><a id="l01773" name="l01773"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mslab.html#gaea77ffa2dbbfad9ff2fec0041b0dbc59"> 1773</a></span><span class="preprocessor">#define sys_port_trace_k_mem_slab_alloc_blocking(slab, timeout)</span></div>
+<div class="line"><a id="l01774" name="l01774"></a><span class="lineno"> 1774</span> </div>
+<div class="line"><a id="l01781" name="l01781"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mslab.html#ga237bb89733ca9c483ef6b9ab6dd920a4"> 1781</a></span><span class="preprocessor">#define sys_port_trace_k_mem_slab_alloc_exit(slab, timeout, ret)</span></div>
+<div class="line"><a id="l01782" name="l01782"></a><span class="lineno"> 1782</span> </div>
+<div class="line"><a id="l01787" name="l01787"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mslab.html#ga22fc4609185f6ddffd0abc85f3976914"> 1787</a></span><span class="preprocessor">#define sys_port_trace_k_mem_slab_free_enter(slab)</span></div>
+<div class="line"><a id="l01788" name="l01788"></a><span class="lineno"> 1788</span> </div>
+<div class="line"><a id="l01793" name="l01793"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__mslab.html#ga81dd030d4052e3092479e19616b4baec"> 1793</a></span><span class="preprocessor">#define sys_port_trace_k_mem_slab_free_exit(slab)</span></div>
+<div class="line"><a id="l01794" name="l01794"></a><span class="lineno"> 1794</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_mslab */</span><div class="line"><a id="l01796" name="l01796"></a><span class="lineno"> 1796</span> </div>
+<div class="line"><a id="l01807" name="l01807"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__timer.html#ga03a70d84ea0227829fb9528b0156c147"> 1807</a></span><span class="preprocessor">#define sys_port_trace_k_timer_init(timer)</span></div>
+<div class="line"><a id="l01808" name="l01808"></a><span class="lineno"> 1808</span> </div>
+<div class="line"><a id="l01815" name="l01815"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__timer.html#ga95b998ea6bf00692cb654a18787ab185"> 1815</a></span><span class="preprocessor">#define sys_port_trace_k_timer_start(timer, duration, period)</span></div>
+<div class="line"><a id="l01816" name="l01816"></a><span class="lineno"> 1816</span> </div>
+<div class="line"><a id="l01821" name="l01821"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__timer.html#ga81b6cba81190cc61cdd33f4ddb6f4550"> 1821</a></span><span class="preprocessor">#define sys_port_trace_k_timer_stop(timer)</span></div>
+<div class="line"><a id="l01822" name="l01822"></a><span class="lineno"> 1822</span> </div>
+<div class="line"><a id="l01827" name="l01827"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__timer.html#ga0adf7e6ca5bdd89b7676836101ef37df"> 1827</a></span><span class="preprocessor">#define sys_port_trace_k_timer_status_sync_enter(timer)</span></div>
+<div class="line"><a id="l01828" name="l01828"></a><span class="lineno"> 1828</span> </div>
+<div class="line"><a id="l01834" name="l01834"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__timer.html#gaa3cd4ca118fd987560ae1855c904e1aa"> 1834</a></span><span class="preprocessor">#define sys_port_trace_k_timer_status_sync_blocking(timer, timeout)</span></div>
+<div class="line"><a id="l01835" name="l01835"></a><span class="lineno"> 1835</span> </div>
+<div class="line"><a id="l01841" name="l01841"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__timer.html#gab51aa6682136eb86a4fd141f61ece779"> 1841</a></span><span class="preprocessor">#define sys_port_trace_k_timer_status_sync_exit(timer, result)</span></div>
+<div class="line"><a id="l01842" name="l01842"></a><span class="lineno"> 1842</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_timer */</span><div class="line"><a id="l01844" name="l01844"></a><span class="lineno"> 1844</span> </div>
+<div class="line"><a id="l01855" name="l01855"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__event.html#gae212c1b330d476613629501d62be0994"> 1855</a></span><span class="preprocessor">#define sys_port_trace_k_event_init(event)</span></div>
+<div class="line"><a id="l01856" name="l01856"></a><span class="lineno"> 1856</span> </div>
+<div class="line"><a id="l01863" name="l01863"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__event.html#ga20092082696c6c9fe3b8870bd3523b52"> 1863</a></span><span class="preprocessor">#define sys_port_trace_k_event_post_enter(event, events, events_mask)</span></div>
+<div class="line"><a id="l01864" name="l01864"></a><span class="lineno"> 1864</span> </div>
+<div class="line"><a id="l01871" name="l01871"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__event.html#gac58a047db800cca608087d6b2cec37f9"> 1871</a></span><span class="preprocessor">#define sys_port_trace_k_event_post_exit(event, events, events_mask)</span></div>
+<div class="line"><a id="l01872" name="l01872"></a><span class="lineno"> 1872</span> </div>
+<div class="line"><a id="l01880" name="l01880"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__event.html#ga6b01461ff2fa0cf2c3c19dbed2f8c4c3"> 1880</a></span><span class="preprocessor">#define sys_port_trace_k_event_wait_enter(event, events, options, timeout)</span></div>
+<div class="line"><a id="l01881" name="l01881"></a><span class="lineno"> 1881</span> </div>
+<div class="line"><a id="l01889" name="l01889"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__event.html#ga008a96d80f3f90dcffbc74f43d66b9be"> 1889</a></span><span class="preprocessor">#define sys_port_trace_k_event_wait_blocking(event, events, options, timeout)</span></div>
+<div class="line"><a id="l01890" name="l01890"></a><span class="lineno"> 1890</span> </div>
+<div class="line"><a id="l01897" name="l01897"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__event.html#ga874698f8eff5237fefacc1be761b2661"> 1897</a></span><span class="preprocessor">#define sys_port_trace_k_event_wait_exit(event, events, ret)</span></div>
+<div class="line"><a id="l01898" name="l01898"></a><span class="lineno"> 1898</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_event */</span><div class="line"><a id="l01900" name="l01900"></a><span class="lineno"> 1900</span> </div>
+<div class="line"><a id="l01911" name="l01911"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pm__system.html#ga1d8c01fe22ef0f7ac8fdfb47de55f58e"> 1911</a></span><span class="preprocessor">#define sys_port_trace_pm_system_suspend_enter(ticks)</span></div>
+<div class="line"><a id="l01912" name="l01912"></a><span class="lineno"> 1912</span> </div>
+<div class="line"><a id="l01918" name="l01918"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pm__system.html#gaabc547256f20c5da3b25a14dbd047014"> 1918</a></span><span class="preprocessor">#define sys_port_trace_pm_system_suspend_exit(ticks, state)</span></div>
+<div class="line"><a id="l01919" name="l01919"></a><span class="lineno"> 1919</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_pm_system */</span><div class="line"><a id="l01921" name="l01921"></a><span class="lineno"> 1921</span> </div>
+<div class="line"><a id="l01932" name="l01932"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pm__device__runtime.html#ga31c463cfc6794a9d454adbe19c0eff96"> 1932</a></span><span class="preprocessor">#define sys_port_trace_pm_device_runtime_get_enter(dev)</span></div>
+<div class="line"><a id="l01933" name="l01933"></a><span class="lineno"> 1933</span> </div>
+<div class="line"><a id="l01939" name="l01939"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pm__device__runtime.html#ga6f9dfe29417ecc3c80b457b3b1ca5ad2"> 1939</a></span><span class="preprocessor">#define sys_port_trace_pm_device_runtime_get_exit(dev, ret)</span></div>
+<div class="line"><a id="l01940" name="l01940"></a><span class="lineno"> 1940</span> </div>
+<div class="line"><a id="l01945" name="l01945"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pm__device__runtime.html#gae077ffd9acdc7f4a9b8eff7edca7c5fe"> 1945</a></span><span class="preprocessor">#define sys_port_trace_pm_device_runtime_put_enter(dev)</span></div>
+<div class="line"><a id="l01946" name="l01946"></a><span class="lineno"> 1946</span> </div>
+<div class="line"><a id="l01952" name="l01952"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pm__device__runtime.html#ga5670d2d13a291224a8600de54ca475dd"> 1952</a></span><span class="preprocessor">#define sys_port_trace_pm_device_runtime_put_exit(dev, ret)</span></div>
+<div class="line"><a id="l01953" name="l01953"></a><span class="lineno"> 1953</span> </div>
+<div class="line"><a id="l01958" name="l01958"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pm__device__runtime.html#ga9ee29a89721da1fe2e6d7aa9f8acd5bd"> 1958</a></span><span class="preprocessor">#define sys_port_trace_pm_device_runtime_put_async_enter(dev)</span></div>
+<div class="line"><a id="l01959" name="l01959"></a><span class="lineno"> 1959</span> </div>
+<div class="line"><a id="l01965" name="l01965"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pm__device__runtime.html#gac38341abedca5bade526bfef8a1670db"> 1965</a></span><span class="preprocessor">#define sys_port_trace_pm_device_runtime_put_async_exit(dev, ret)</span></div>
+<div class="line"><a id="l01966" name="l01966"></a><span class="lineno"> 1966</span> </div>
+<div class="line"><a id="l01971" name="l01971"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pm__device__runtime.html#ga6653c737e964963541a60aec29120ac0"> 1971</a></span><span class="preprocessor">#define sys_port_trace_pm_device_runtime_enable_enter(dev)</span></div>
+<div class="line"><a id="l01972" name="l01972"></a><span class="lineno"> 1972</span> </div>
+<div class="line"><a id="l01978" name="l01978"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pm__device__runtime.html#ga0ade92830387457ccc60661325d3f426"> 1978</a></span><span class="preprocessor">#define sys_port_trace_pm_device_runtime_enable_exit(dev, ret)</span></div>
+<div class="line"><a id="l01979" name="l01979"></a><span class="lineno"> 1979</span> </div>
+<div class="line"><a id="l01984" name="l01984"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pm__device__runtime.html#gaeb479059715af42498f1b1936561f207"> 1984</a></span><span class="preprocessor">#define sys_port_trace_pm_device_runtime_disable_enter(dev)</span></div>
+<div class="line"><a id="l01985" name="l01985"></a><span class="lineno"> 1985</span> </div>
+<div class="line"><a id="l01991" name="l01991"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis__pm__device__runtime.html#ga88606e2073fb35283b06500743ebfeb0"> 1991</a></span><span class="preprocessor">#define sys_port_trace_pm_device_runtime_disable_exit(dev, ret)</span></div>
+<div class="line"><a id="l01992" name="l01992"></a><span class="lineno"> 1992</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis_pm_device_runtime */</span><div class="line"><a id="l01994" name="l01994"></a><span class="lineno"> 1994</span> </div>
+<div class="line"><a id="l01995" name="l01995"></a><span class="lineno"> 1995</span><span class="preprocessor">#if defined(CONFIG_PERCEPIO_TRACERECORDER)</span></div>
+<div class="line"><a id="l01996" name="l01996"></a><span class="lineno"> 1996</span><span class="preprocessor">#include &quot;tracing_tracerecorder.h&quot;</span></div>
+<div class="line"><a id="l01997" name="l01997"></a><span class="lineno"> 1997</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l02001" name="l02001"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis.html#ga37f43a02961a847af3b7de6c474a8da4"> 2001</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__subsys__tracing__apis.html#ga37f43a02961a847af3b7de6c474a8da4">sys_trace_isr_enter</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l02002" name="l02002"></a><span class="lineno"> 2002</span> </div>
+<div class="line"><a id="l02006" name="l02006"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis.html#ga7113e2760b1a7ffb1bfa108ad9bfb4be"> 2006</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__subsys__tracing__apis.html#ga7113e2760b1a7ffb1bfa108ad9bfb4be">sys_trace_isr_exit</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l02007" name="l02007"></a><span class="lineno"> 2007</span> </div>
+<div class="line"><a id="l02011" name="l02011"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis.html#ga303fe60fd4de8ddcc02c6920656e326d"> 2011</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__subsys__tracing__apis.html#ga303fe60fd4de8ddcc02c6920656e326d">sys_trace_isr_exit_to_scheduler</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l02012" name="l02012"></a><span class="lineno"> 2012</span> </div>
+<div class="line"><a id="l02016" name="l02016"></a><span class="lineno"><a class="line" href="group__subsys__tracing__apis.html#gac9b542f78ed796b4b572de19d295c824"> 2016</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__subsys__tracing__apis.html#gac9b542f78ed796b4b572de19d295c824">sys_trace_idle</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l02017" name="l02017"></a><span class="lineno"> 2017</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_PERCEPIO_TRACERECORDER */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l02018" name="l02018"></a><span class="lineno"> 2018</span> </div>
+ <span class="comment">/* end of subsys_tracing_apis */</span><div class="line"><a id="l02020" name="l02020"></a><span class="lineno"> 2020</span> </div>
+ <span class="comment">/* end of subsys_tracing */</span><div class="line"><a id="l02022" name="l02022"></a><span class="lineno"> 2022</span> </div>
+<div class="line"><a id="l02023" name="l02023"></a><span class="lineno"> 2023</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l02024" name="l02024"></a><span class="lineno"> 2024</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_TRACING_TRACING_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__subsys__tracing__apis_html_ga303fe60fd4de8ddcc02c6920656e326d"><div class="ttname"><a href="group__subsys__tracing__apis.html#ga303fe60fd4de8ddcc02c6920656e326d">sys_trace_isr_exit_to_scheduler</a></div><div class="ttdeci">void sys_trace_isr_exit_to_scheduler(void)</div><div class="ttdoc">Called when exiting an ISR and switching to scheduler.</div></div>
+<div class="ttc" id="agroup__subsys__tracing__apis_html_ga37f43a02961a847af3b7de6c474a8da4"><div class="ttname"><a href="group__subsys__tracing__apis.html#ga37f43a02961a847af3b7de6c474a8da4">sys_trace_isr_enter</a></div><div class="ttdeci">void sys_trace_isr_enter(void)</div><div class="ttdoc">Called when entering an ISR.</div></div>
+<div class="ttc" id="agroup__subsys__tracing__apis_html_ga7113e2760b1a7ffb1bfa108ad9bfb4be"><div class="ttname"><a href="group__subsys__tracing__apis.html#ga7113e2760b1a7ffb1bfa108ad9bfb4be">sys_trace_isr_exit</a></div><div class="ttdeci">void sys_trace_isr_exit(void)</div><div class="ttdoc">Called when exiting an ISR.</div></div>
+<div class="ttc" id="agroup__subsys__tracing__apis_html_gac9b542f78ed796b4b572de19d295c824"><div class="ttname"><a href="group__subsys__tracing__apis.html#gac9b542f78ed796b4b572de19d295c824">sys_trace_idle</a></div><div class="ttdeci">void sys_trace_idle(void)</div><div class="ttdoc">Called when the cpu enters the idle state.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

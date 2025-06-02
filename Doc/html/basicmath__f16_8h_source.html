@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/dsp/basicmath_f16.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_63fd0d93afd1560de1b34ec12ba27d2d.html">dsp</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">basicmath_f16.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="basicmath__f16_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#ifndef INCLUDE_ZEPHYR_DSP_BASICMATH_F16_H_</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define INCLUDE_ZEPHYR_DSP_BASICMATH_F16_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifndef CONFIG_FP16</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#error &quot;Cannot use float16 DSP functionality without CONFIG_FP16 enabled&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_FP16 */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="dsp_8h.html">zephyr/dsp/dsp.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="group__math__dsp__basic__mult.html#ga795bc69852005a0e547c3f2794c5397a">   32</a></span>DSP_FUNC_SCOPE <span class="keywordtype">void</span> <a class="code hl_function" href="group__math__dsp__basic__mult.html#ga795bc69852005a0e547c3f2794c5397a">zdsp_mult_f16</a>(<span class="keyword">const</span> float16_t *src_a, <span class="keyword">const</span> float16_t *src_b, float16_t *dst,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                  uint32_t block_size);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="group__math__dsp__basic__add.html#ga3ad2849433440c2d1175cd6f18e6eade">   43</a></span>DSP_FUNC_SCOPE <span class="keywordtype">void</span> <a class="code hl_function" href="group__math__dsp__basic__add.html#ga3ad2849433440c2d1175cd6f18e6eade">zdsp_add_f16</a>(<span class="keyword">const</span> float16_t *src_a, <span class="keyword">const</span> float16_t *src_b, float16_t *dst,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                 uint32_t block_size);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="group__math__dsp__basic__sub.html#ga500f6403d4382bc797231d7962275230">   54</a></span>DSP_FUNC_SCOPE <span class="keywordtype">void</span> <a class="code hl_function" href="group__math__dsp__basic__sub.html#ga500f6403d4382bc797231d7962275230">zdsp_sub_f16</a>(<span class="keyword">const</span> float16_t *src_a, <span class="keyword">const</span> float16_t *src_b, float16_t *dst,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                 uint32_t block_size);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="group__math__dsp__basic__scale.html#ga26c461531e82511c18902ba908f36230">   65</a></span>DSP_FUNC_SCOPE <span class="keywordtype">void</span> <a class="code hl_function" href="group__math__dsp__basic__scale.html#ga26c461531e82511c18902ba908f36230">zdsp_scale_f16</a>(<span class="keyword">const</span> float16_t *src, float16_t scale, float16_t *dst,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                   uint32_t block_size);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="group__math__dsp__basic__abs.html#gaf178acd8862a2928a65e98f4fef1380b">   75</a></span>DSP_FUNC_SCOPE <span class="keywordtype">void</span> <a class="code hl_function" href="group__math__dsp__basic__abs.html#gaf178acd8862a2928a65e98f4fef1380b">zdsp_abs_f16</a>(<span class="keyword">const</span> float16_t *src, float16_t *dst, uint32_t block_size);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="group__math__dsp__basic__dot.html#ga11af65d379fa201a04408544ddca8354">   85</a></span>DSP_FUNC_SCOPE <span class="keywordtype">void</span> <a class="code hl_function" href="group__math__dsp__basic__dot.html#ga11af65d379fa201a04408544ddca8354">zdsp_dot_prod_f16</a>(<span class="keyword">const</span> float16_t *src_a, <span class="keyword">const</span> float16_t *src_b,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                      uint32_t block_size, float16_t *result);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="group__math__dsp__basic__offset.html#ga60d4ef0543308773e651a0f40b3b0fe1">   96</a></span>DSP_FUNC_SCOPE <span class="keywordtype">void</span> <a class="code hl_function" href="group__math__dsp__basic__offset.html#ga60d4ef0543308773e651a0f40b3b0fe1">zdsp_offset_f16</a>(<span class="keyword">const</span> float16_t *src, float16_t offset, float16_t *dst,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                    uint32_t block_size);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="group__math__dsp__basic__negate.html#ga7aacb425c3dfb2c5d8664a7cf4031c3b">  106</a></span>DSP_FUNC_SCOPE <span class="keywordtype">void</span> <a class="code hl_function" href="group__math__dsp__basic__negate.html#ga7aacb425c3dfb2c5d8664a7cf4031c3b">zdsp_negate_f16</a>(<span class="keyword">const</span> float16_t *src, float16_t *dst, uint32_t block_size);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="group__math__dsp__basic__clip.html#ga4edd7ba5b9c3791d7857a2c7d1541cab">  117</a></span>DSP_FUNC_SCOPE <span class="keywordtype">void</span> <a class="code hl_function" href="group__math__dsp__basic__clip.html#ga4edd7ba5b9c3791d7857a2c7d1541cab">zdsp_clip_f16</a>(<span class="keyword">const</span> float16_t *src, float16_t *dst, float16_t low,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                  float16_t high, uint32_t num_samples);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>}</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">#endif </span><span class="comment">/* INCLUDE_ZEPHYR_DSP_BASICMATH_F16_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adsp_8h_html"><div class="ttname"><a href="dsp_8h.html">dsp.h</a></div><div class="ttdoc">Public APIs for Digital Signal Processing (DSP) math.</div></div>
+<div class="ttc" id="agroup__math__dsp__basic__abs_html_gaf178acd8862a2928a65e98f4fef1380b"><div class="ttname"><a href="group__math__dsp__basic__abs.html#gaf178acd8862a2928a65e98f4fef1380b">zdsp_abs_f16</a></div><div class="ttdeci">DSP_FUNC_SCOPE void zdsp_abs_f16(const float16_t *src, float16_t *dst, uint32_t block_size)</div><div class="ttdoc">Floating-point vector absolute value.</div></div>
+<div class="ttc" id="agroup__math__dsp__basic__add_html_ga3ad2849433440c2d1175cd6f18e6eade"><div class="ttname"><a href="group__math__dsp__basic__add.html#ga3ad2849433440c2d1175cd6f18e6eade">zdsp_add_f16</a></div><div class="ttdeci">DSP_FUNC_SCOPE void zdsp_add_f16(const float16_t *src_a, const float16_t *src_b, float16_t *dst, uint32_t block_size)</div><div class="ttdoc">Floating-point vector addition.</div></div>
+<div class="ttc" id="agroup__math__dsp__basic__clip_html_ga4edd7ba5b9c3791d7857a2c7d1541cab"><div class="ttname"><a href="group__math__dsp__basic__clip.html#ga4edd7ba5b9c3791d7857a2c7d1541cab">zdsp_clip_f16</a></div><div class="ttdeci">DSP_FUNC_SCOPE void zdsp_clip_f16(const float16_t *src, float16_t *dst, float16_t low, float16_t high, uint32_t num_samples)</div><div class="ttdoc">Elementwise floating-point clipping.</div></div>
+<div class="ttc" id="agroup__math__dsp__basic__dot_html_ga11af65d379fa201a04408544ddca8354"><div class="ttname"><a href="group__math__dsp__basic__dot.html#ga11af65d379fa201a04408544ddca8354">zdsp_dot_prod_f16</a></div><div class="ttdeci">DSP_FUNC_SCOPE void zdsp_dot_prod_f16(const float16_t *src_a, const float16_t *src_b, uint32_t block_size, float16_t *result)</div><div class="ttdoc">Dot product of floating-point vectors.</div></div>
+<div class="ttc" id="agroup__math__dsp__basic__mult_html_ga795bc69852005a0e547c3f2794c5397a"><div class="ttname"><a href="group__math__dsp__basic__mult.html#ga795bc69852005a0e547c3f2794c5397a">zdsp_mult_f16</a></div><div class="ttdeci">DSP_FUNC_SCOPE void zdsp_mult_f16(const float16_t *src_a, const float16_t *src_b, float16_t *dst, uint32_t block_size)</div><div class="ttdoc">Floating-point vector multiplication.</div></div>
+<div class="ttc" id="agroup__math__dsp__basic__negate_html_ga7aacb425c3dfb2c5d8664a7cf4031c3b"><div class="ttname"><a href="group__math__dsp__basic__negate.html#ga7aacb425c3dfb2c5d8664a7cf4031c3b">zdsp_negate_f16</a></div><div class="ttdeci">DSP_FUNC_SCOPE void zdsp_negate_f16(const float16_t *src, float16_t *dst, uint32_t block_size)</div><div class="ttdoc">Negates the elements of a floating-point vector.</div></div>
+<div class="ttc" id="agroup__math__dsp__basic__offset_html_ga60d4ef0543308773e651a0f40b3b0fe1"><div class="ttname"><a href="group__math__dsp__basic__offset.html#ga60d4ef0543308773e651a0f40b3b0fe1">zdsp_offset_f16</a></div><div class="ttdeci">DSP_FUNC_SCOPE void zdsp_offset_f16(const float16_t *src, float16_t offset, float16_t *dst, uint32_t block_size)</div><div class="ttdoc">Adds a constant offset to a floating-point vector.</div></div>
+<div class="ttc" id="agroup__math__dsp__basic__scale_html_ga26c461531e82511c18902ba908f36230"><div class="ttname"><a href="group__math__dsp__basic__scale.html#ga26c461531e82511c18902ba908f36230">zdsp_scale_f16</a></div><div class="ttdeci">DSP_FUNC_SCOPE void zdsp_scale_f16(const float16_t *src, float16_t scale, float16_t *dst, uint32_t block_size)</div><div class="ttdoc">Multiplies a floating-point vector by a scalar.</div></div>
+<div class="ttc" id="agroup__math__dsp__basic__sub_html_ga500f6403d4382bc797231d7962275230"><div class="ttname"><a href="group__math__dsp__basic__sub.html#ga500f6403d4382bc797231d7962275230">zdsp_sub_f16</a></div><div class="ttdeci">DSP_FUNC_SCOPE void zdsp_sub_f16(const float16_t *src_a, const float16_t *src_b, float16_t *dst, uint32_t block_size)</div><div class="ttdoc">Floating-point vector subtraction.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

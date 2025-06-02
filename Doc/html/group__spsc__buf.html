@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: SPSC (Single producer, single consumer) packet buffer API</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#groups">Módulos</a> &#124;
+<a href="#nested-classes">Estruturas de Dados</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle"><div class="title">SPSC (Single producer, single consumer) packet buffer API</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Single producer, single consumer packet buffer API.  
+<a href="#details">Mais...</a></p>
+<div class="dynheader">
+Diagrama de colaboração para SPSC (Single producer, single consumer) packet buffer API:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__spsc__buf.png" border="0" usemap="#agroup____spsc____buf" alt=""/></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
+Módulos</h2></td></tr>
+<tr class="memitem:group__SPSC__PBUF__FLAGS" id="r_group__SPSC__PBUF__FLAGS"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SPSC__PBUF__FLAGS.html">SPSC packet buffer flags</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Estruturas de Dados</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structspsc__pbuf__common.html">spsc_pbuf_common</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">First part of packet buffer control block.  <a href="structspsc__pbuf__common.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structspsc__pbuf__ext__cache.html">spsc_pbuf_ext_cache</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remaining part of a packet buffer when cache is used.  <a href="structspsc__pbuf__ext__cache.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structspsc__pbuf__ext__nocache.html">spsc_pbuf_ext_nocache</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remaining part of a packet buffer when cache is not used.  <a href="structspsc__pbuf__ext__nocache.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structspsc__pbuf.html">spsc_pbuf</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Single producer, single consumer packet buffer.  <a href="structspsc__pbuf.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gaae08b38755e86c0c209511d1ccff627e" id="r_gaae08b38755e86c0c209511d1ccff627e"><td class="memItemLeft" align="right" valign="top"><a id="gaae08b38755e86c0c209511d1ccff627e" name="gaae08b38755e86c0c209511d1ccff627e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>Z_SPSC_PBUF_LOCAL_DCACHE_LINE</b>&#160;&#160;&#160;<a class="el" href="group__devicetree-generic-prop.html#ga5e5bfc9b1a6627b3f73014329e96340f">DT_PROP_OR</a>(CPU, d_cache_line_size, 0)</td></tr>
+<tr class="separator:gaae08b38755e86c0c209511d1ccff627e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga01f1a8120df7afe197f5ed9d1c667370" id="r_ga01f1a8120df7afe197f5ed9d1c667370"><td class="memItemLeft" align="right" valign="top"><a id="ga01f1a8120df7afe197f5ed9d1c667370" name="ga01f1a8120df7afe197f5ed9d1c667370"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONFIG_SPSC_PBUF_REMOTE_DCACHE_LINE</b>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:ga01f1a8120df7afe197f5ed9d1c667370"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabff5835a08b124d36f7f0f3eba603183" id="r_gabff5835a08b124d36f7f0f3eba603183"><td class="memItemLeft" align="right" valign="top"><a id="gabff5835a08b124d36f7f0f3eba603183" name="gabff5835a08b124d36f7f0f3eba603183"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>Z_SPSC_PBUF_DCACHE_LINE</b>&#160;&#160;&#160;	<a class="el" href="group__sys-util.html#gafa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a>(CONFIG_SPSC_PBUF_REMOTE_DCACHE_LINE, Z_SPSC_PBUF_LOCAL_DCACHE_LINE)</td></tr>
+<tr class="separator:gabff5835a08b124d36f7f0f3eba603183"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaec777dd30be52c1773dcf9e9ec1f6f9d" id="r_gaec777dd30be52c1773dcf9e9ec1f6f9d"><td class="memItemLeft" align="right" valign="top"><a id="gaec777dd30be52c1773dcf9e9ec1f6f9d" name="gaec777dd30be52c1773dcf9e9ec1f6f9d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SPSC_PBUF_MAX_LEN</b>&#160;&#160;&#160;0xFF00</td></tr>
+<tr class="memdesc:gaec777dd30be52c1773dcf9e9ec1f6f9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum packet length. <br /></td></tr>
+<tr class="separator:gaec777dd30be52c1773dcf9e9ec1f6f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0441788b7ea734084a3f83d9fc922f64" id="r_ga0441788b7ea734084a3f83d9fc922f64"><td class="memItemLeft" align="right" valign="top"><a id="ga0441788b7ea734084a3f83d9fc922f64" name="ga0441788b7ea734084a3f83d9fc922f64"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>Z_SPSC_PBUF_PADDING</b>&#160;&#160;&#160;	<a class="el" href="group__sys-util.html#gafa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a>(0, Z_SPSC_PBUF_DCACHE_LINE - (int)sizeof(struct <a class="el" href="structspsc__pbuf__common.html">spsc_pbuf_common</a>))</td></tr>
+<tr class="separator:ga0441788b7ea734084a3f83d9fc922f64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:ga6db38d6a0200a2468db02815cfe3bb6e" id="r_ga6db38d6a0200a2468db02815cfe3bb6e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spsc__buf.html#ga6db38d6a0200a2468db02815cfe3bb6e">spsc_pbuf_init</a> (void *buf, size_t blen, uint32_t flags)</td></tr>
+<tr class="memdesc:ga6db38d6a0200a2468db02815cfe3bb6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the packet buffer.  <br /></td></tr>
+<tr class="separator:ga6db38d6a0200a2468db02815cfe3bb6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga492c895f1723567445ce23c73ed3d0ef" id="r_ga492c895f1723567445ce23c73ed3d0ef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spsc__buf.html#ga492c895f1723567445ce23c73ed3d0ef">spsc_pbuf_write</a> (struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *pb, const char *buf, uint16_t len)</td></tr>
+<tr class="memdesc:ga492c895f1723567445ce23c73ed3d0ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write specified amount of data to the packet buffer.  <br /></td></tr>
+<tr class="separator:ga492c895f1723567445ce23c73ed3d0ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga44485fd6756810f56c6bf7d41b3b447c" id="r_ga44485fd6756810f56c6bf7d41b3b447c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spsc__buf.html#ga44485fd6756810f56c6bf7d41b3b447c">spsc_pbuf_alloc</a> (struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *pb, uint16_t len, char **buf)</td></tr>
+<tr class="memdesc:ga44485fd6756810f56c6bf7d41b3b447c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate space in the packet buffer.  <br /></td></tr>
+<tr class="separator:ga44485fd6756810f56c6bf7d41b3b447c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga664da6f26fd99e7f1ce76828273408a0" id="r_ga664da6f26fd99e7f1ce76828273408a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spsc__buf.html#ga664da6f26fd99e7f1ce76828273408a0">spsc_pbuf_commit</a> (struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *pb, uint16_t len)</td></tr>
+<tr class="memdesc:ga664da6f26fd99e7f1ce76828273408a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commit packet to the buffer.  <br /></td></tr>
+<tr class="separator:ga664da6f26fd99e7f1ce76828273408a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga24d4cc2a41fd2c42c6085e106bf71c0c" id="r_ga24d4cc2a41fd2c42c6085e106bf71c0c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spsc__buf.html#ga24d4cc2a41fd2c42c6085e106bf71c0c">spsc_pbuf_read</a> (struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *pb, char *buf, uint16_t len)</td></tr>
+<tr class="memdesc:ga24d4cc2a41fd2c42c6085e106bf71c0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read specified amount of data from the packet buffer.  <br /></td></tr>
+<tr class="separator:ga24d4cc2a41fd2c42c6085e106bf71c0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6727d38e40a780f9116d5d7b1c0ae8c4" id="r_ga6727d38e40a780f9116d5d7b1c0ae8c4"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spsc__buf.html#ga6727d38e40a780f9116d5d7b1c0ae8c4">spsc_pbuf_claim</a> (struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *pb, char **buf)</td></tr>
+<tr class="memdesc:ga6727d38e40a780f9116d5d7b1c0ae8c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Claim packet from the buffer.  <br /></td></tr>
+<tr class="separator:ga6727d38e40a780f9116d5d7b1c0ae8c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga28ea4f10fcab4d04f9e831f2057822ca" id="r_ga28ea4f10fcab4d04f9e831f2057822ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spsc__buf.html#ga28ea4f10fcab4d04f9e831f2057822ca">spsc_pbuf_free</a> (struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *pb, uint16_t len)</td></tr>
+<tr class="memdesc:ga28ea4f10fcab4d04f9e831f2057822ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the packet to the buffer.  <br /></td></tr>
+<tr class="separator:ga28ea4f10fcab4d04f9e831f2057822ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae3f455db53147709d40a7a86406a9311" id="r_gae3f455db53147709d40a7a86406a9311"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__spsc__buf.html#gae3f455db53147709d40a7a86406a9311">spsc_pbuf_get_utilization</a> (struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *pb)</td></tr>
+<tr class="memdesc:gae3f455db53147709d40a7a86406a9311"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get maximum utilization of the packet buffer.  <br /></td></tr>
+<tr class="separator:gae3f455db53147709d40a7a86406a9311"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<p>Single producer, single consumer packet buffer API. </p>
+<h2 class="groupheader">Documentação das funções</h2>
+<a id="ga44485fd6756810f56c6bf7d41b3b447c" name="ga44485fd6756810f56c6bf7d41b3b447c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga44485fd6756810f56c6bf7d41b3b447c">&#9670;&#160;</a></span>spsc_pbuf_alloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spsc_pbuf_alloc </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *&#160;</td>
+          <td class="paramname"><em>pb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>buf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Allocate space in the packet buffer. </p>
+<p>This function attempts to allocate <code>len</code> bytes of continuous memory within the packet buffer. An internal padding is added at the end of the buffer, if wrapping occurred during allocation. Apart from padding, allocation does not change the state of the buffer so if after allocation packet is not needed a commit is not needed.</p>
+<p>Allocated buffer must be committed (<a class="el" href="group__spsc__buf.html#ga664da6f26fd99e7f1ce76828273408a0">spsc_pbuf_commit</a>) to make the packet available for reading.</p>
+<p>Packet buffer ensures that allocated buffers are 32 bit word aligned.</p>
+<dl class="section note"><dt>Nota</dt><dd>If data cache is used, it is the user responsibility to write back the new data.</dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pb</td><td>A buffer to which to write. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>Allocation length. Must be positive. If less than <a class="el" href="group__spsc__buf.html#gaec777dd30be52c1773dcf9e9ec1f6f9d">SPSC_PBUF_MAX_LEN</a> then if requested length cannot be allocated, an attempt to allocate largest possible is performed (which may include adding wrap padding). If <a class="el" href="group__spsc__buf.html#gaec777dd30be52c1773dcf9e9ec1f6f9d">SPSC_PBUF_MAX_LEN</a> is used then an attempt to allocate largest buffer without applying wrap padding is performed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">buf</td><td>Location where buffer address is written on successful allocation.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">non-negative</td><td>Amount of space that got allocated. Can be equal or smaller than p len. </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>if <code>len</code> is forbidden. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga6727d38e40a780f9116d5d7b1c0ae8c4" name="ga6727d38e40a780f9116d5d7b1c0ae8c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6727d38e40a780f9116d5d7b1c0ae8c4">&#9670;&#160;</a></span>spsc_pbuf_claim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t spsc_pbuf_claim </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *&#160;</td>
+          <td class="paramname"><em>pb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>buf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Claim packet from the buffer. </p>
+<p>It claims a single packet from the buffer in the order of the commitment by the <a class="el" href="group__spsc__buf.html#ga664da6f26fd99e7f1ce76828273408a0">spsc_pbuf_commit</a> function. The first committed packet will be claimed first. The returned buffer is 32 bit word aligned and points to the continuous memory. Claimed packet must be freed using the <a class="el" href="group__spsc__buf.html#ga28ea4f10fcab4d04f9e831f2057822ca">spsc_pbuf_free</a> function.</p>
+<dl class="section note"><dt>Nota</dt><dd>If data cache is used, cache is invalidate on the packet.</dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pb</td><td>A buffer from which packet will be claimed. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">buf</td><td>A location where claimed packet address is written. It is 32 bit word aligned and points to the continuous memory.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>No packets in the buffer. </td></tr>
+    <tr><td class="paramname">positive</td><td>packet length. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga664da6f26fd99e7f1ce76828273408a0" name="ga664da6f26fd99e7f1ce76828273408a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga664da6f26fd99e7f1ce76828273408a0">&#9670;&#160;</a></span>spsc_pbuf_commit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spsc_pbuf_commit </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *&#160;</td>
+          <td class="paramname"><em>pb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Commit packet to the buffer. </p>
+<p>Commit a packet which was previously allocated (<a class="el" href="group__spsc__buf.html#ga44485fd6756810f56c6bf7d41b3b447c">spsc_pbuf_alloc</a>). If cache is used, cache writeback is performed on the written data.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pb</td><td>A buffer to which to write. </td></tr>
+    <tr><td class="paramname">len</td><td>Packet length. Must be equal or less than the length used for allocation. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga28ea4f10fcab4d04f9e831f2057822ca" name="ga28ea4f10fcab4d04f9e831f2057822ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga28ea4f10fcab4d04f9e831f2057822ca">&#9670;&#160;</a></span>spsc_pbuf_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void spsc_pbuf_free </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *&#160;</td>
+          <td class="paramname"><em>pb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Free the packet to the buffer. </p>
+<p>Packet must be claimed (<a class="el" href="group__spsc__buf.html#ga6727d38e40a780f9116d5d7b1c0ae8c4">spsc_pbuf_claim</a>) before it can be freed.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pb</td><td>A packet buffer from which packet was claimed. </td></tr>
+    <tr><td class="paramname">len</td><td>Claimed packet length. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gae3f455db53147709d40a7a86406a9311" name="gae3f455db53147709d40a7a86406a9311"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae3f455db53147709d40a7a86406a9311">&#9670;&#160;</a></span>spsc_pbuf_get_utilization()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spsc_pbuf_get_utilization </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *&#160;</td>
+          <td class="paramname"><em>pb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get maximum utilization of the packet buffer. </p>
+<p>Function can be used to tune the buffer size. Feature is enabled by CONFIG_SPSC_PBUF_UTILIZATION. Utilization is updated by the consumer.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pb</td><td>A packet buffer.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">-ENOTSUP</td><td>Feature not enabled. </td></tr>
+    <tr><td class="paramname">non-negative</td><td>Maximum utilization. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga6db38d6a0200a2468db02815cfe3bb6e" name="ga6db38d6a0200a2468db02815cfe3bb6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6db38d6a0200a2468db02815cfe3bb6e">&#9670;&#160;</a></span>spsc_pbuf_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> * spsc_pbuf_init </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>blen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the packet buffer. </p>
+<p>This function initializes the packet buffer on top of a dedicated memory region.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buf</td><td>Pointer to a memory region on which buffer is created. When cache is used it must be aligned to Z_SPSC_PBUF_DCACHE_LINE, otherwise it must be 32 bit word aligned. </td></tr>
+    <tr><td class="paramname">blen</td><td>Length of the buffer. Must be large enough to contain the internal structure and at least two bytes of data (one is reserved for written messages length). </td></tr>
+    <tr><td class="paramname">flags</td><td>Option flags. See <a class="el" href="group__SPSC__PBUF__FLAGS.html">SPSC packet buffer flags</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">struct</td><td>spsc_pbuf* Pointer to the created buffer. The pointer points to the same address as buf. </td></tr>
+    <tr><td class="paramname">NULL</td><td>Invalid buffer alignment. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga24d4cc2a41fd2c42c6085e106bf71c0c" name="ga24d4cc2a41fd2c42c6085e106bf71c0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga24d4cc2a41fd2c42c6085e106bf71c0c">&#9670;&#160;</a></span>spsc_pbuf_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spsc_pbuf_read </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *&#160;</td>
+          <td class="paramname"><em>pb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read specified amount of data from the packet buffer. </p>
+<p>Single read allows to read the message send by the single write. The provided p buf must be big enough to store the whole message.</p>
+<p>It combines <a class="el" href="group__spsc__buf.html#ga6727d38e40a780f9116d5d7b1c0ae8c4">spsc_pbuf_claim</a> and <a class="el" href="group__spsc__buf.html#ga28ea4f10fcab4d04f9e831f2057822ca">spsc_pbuf_free</a> into a single call.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pb</td><td>A buffer from which data will be read. </td></tr>
+    <tr><td class="paramname">buf</td><td>Data pointer to which read data will be written. If NULL, len of stored message is returned. </td></tr>
+    <tr><td class="paramname">len</td><td>Number of bytes to be read from the buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">int</td><td>Bytes read, negative error code on fail. Bytes to be read, if buf == NULL. -ENOMEM, if message can not fit in provided buf. -EAGAIN, if not whole message is ready yet. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga492c895f1723567445ce23c73ed3d0ef" name="ga492c895f1723567445ce23c73ed3d0ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga492c895f1723567445ce23c73ed3d0ef">&#9670;&#160;</a></span>spsc_pbuf_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int spsc_pbuf_write </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structspsc__pbuf.html">spsc_pbuf</a> *&#160;</td>
+          <td class="paramname"><em>pb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Write specified amount of data to the packet buffer. </p>
+<p>It combines <a class="el" href="group__spsc__buf.html#ga44485fd6756810f56c6bf7d41b3b447c">spsc_pbuf_alloc</a> and <a class="el" href="group__spsc__buf.html#ga664da6f26fd99e7f1ce76828273408a0">spsc_pbuf_commit</a> into a single call.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pb</td><td>A buffer to which to write. </td></tr>
+    <tr><td class="paramname">buf</td><td>Pointer to the data to be written to the buffer. </td></tr>
+    <tr><td class="paramname">len</td><td>Number of bytes to be written to the buffer. Must be positive but less than <a class="el" href="group__spsc__buf.html#gaec777dd30be52c1773dcf9e9ec1f6f9d">SPSC_PBUF_MAX_LEN</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">int</td><td>Number of bytes written, negative error code on fail. -EINVAL, if len == 0. -ENOMEM, if len is bigger than the buffer can fit. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

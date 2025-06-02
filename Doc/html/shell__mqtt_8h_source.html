@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/shell/shell_mqtt.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_c0b63281e132a21c8d95feffde9845e0.html">shell</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">shell_mqtt.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2022 G-Technologies Sdn. Bhd.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef SHELL_MQTT_H__</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define SHELL_MQTT_H__</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;zephyr/shell/shell.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2socket_8h.html">zephyr/net/socket.h</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="net__mgmt_8h.html">zephyr/net/net_mgmt.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="net__event_8h.html">zephyr/net/net_event.h</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;zephyr/net/conn_mgr_monitor.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="mqtt_8h.html">zephyr/net/mqtt.h</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="ring__buffer_8h.html">zephyr/sys/ring_buffer.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define RX_RB_SIZE CONFIG_SHELL_MQTT_RX_BUF_SIZE</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#define TX_BUF_SIZE CONFIG_SHELL_MQTT_TX_BUF_SIZE</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#define SH_MQTT_BUFFER_SIZE 64</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define DEVICE_ID_BIN_MAX_SIZE 3</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#define DEVICE_ID_HEX_MAX_SIZE ((DEVICE_ID_BIN_MAX_SIZE * 2) + 1)</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#define SH_MQTT_TOPIC_MAX_SIZE DEVICE_ID_HEX_MAX_SIZE + 3</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structshell__transport__api.html">shell_transport_api</a> shell_mqtt_transport_api;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structshell__mqtt__tx__buf.html">   32</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structshell__mqtt__tx__buf.html">shell_mqtt_tx_buf</a> {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structshell__mqtt__tx__buf.html#adfb2ba87c02e54e1e418a2cd8292f4e8">   34</a></span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="structshell__mqtt__tx__buf.html#adfb2ba87c02e54e1e418a2cd8292f4e8">buf</a>[TX_BUF_SIZE];</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structshell__mqtt__tx__buf.html#a7559f53de11c3f211ce05d08615617da">   37</a></span>    uint16_t <a class="code hl_variable" href="structshell__mqtt__tx__buf.html#a7559f53de11c3f211ce05d08615617da">len</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
+</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structshell__mqtt.html">   41</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structshell__mqtt.html">shell_mqtt</a> {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">char</span> device_id[DEVICE_ID_HEX_MAX_SIZE];</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">char</span> sub_topic[SH_MQTT_TOPIC_MAX_SIZE];</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">char</span> pub_topic[SH_MQTT_TOPIC_MAX_SIZE];</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structshell__mqtt.html#a5887fbed18fce4b9f4fc43ad46ed21d4">   47</a></span>    shell_transport_handler_t <a class="code hl_variable" href="structshell__mqtt.html#a5887fbed18fce4b9f4fc43ad46ed21d4">shell_handler</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structring__buf.html">ring_buf</a> rx_rb;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    uint8_t rx_rb_buf[RX_RB_SIZE];</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    uint8_t *rx_rb_ptr;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structshell__mqtt__tx__buf.html">shell_mqtt_tx_buf</a> tx_buf;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structshell__mqtt.html#a20bd84677bfe92acc1f3d49acdbe5a8a">   56</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structshell__mqtt.html#a20bd84677bfe92acc1f3d49acdbe5a8a">shell_context</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structshell__mqtt.html#a74bd401d7ecaf5a31cd28e84a008c042">   59</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structmqtt__client.html">mqtt_client</a> <a class="code hl_variable" href="structshell__mqtt.html#a74bd401d7ecaf5a31cd28e84a008c042">mqtt_cli</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">/* Buffers for MQTT client. */</span></div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="};">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structshell__mqtt_1_1buffer.html">   62</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structshell__mqtt_1_1buffer.html">buffer</a> {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        uint8_t rx[SH_MQTT_BUFFER_SIZE];</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        uint8_t tx[SH_MQTT_BUFFER_SIZE];</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    } buf;</div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__mutex.html">k_mutex</a> lock;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structshell__mqtt.html#ab874f817ad4424fb1fd8f2ad193c0949">   70</a></span>    <span class="keyword">struct </span>sockaddr_storage <a class="code hl_variable" href="structshell__mqtt.html#ab874f817ad4424fb1fd8f2ad193c0949">broker</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structzsock__addrinfo.html">zsock_addrinfo</a> *haddr;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structzsock__pollfd.html">zsock_pollfd</a> fds[1];</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">int</span> nfds;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structmqtt__publish__param.html">mqtt_publish_param</a> pub_data;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__mgmt__event__callback.html">net_mgmt_event_callback</a> <a class="code hl_typedef" href="group__mcumgr__callback__api.html#gac1512613c382de3b97c86781a48cfa29">mgmt_cb</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structshell__mqtt.html#af08ea1a0bbea6cbc64d91a6ccaf6e44c">   81</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__q.html">k_work_q</a> <a class="code hl_variable" href="structshell__mqtt.html#af08ea1a0bbea6cbc64d91a6ccaf6e44c">workq</a>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work.html">k_work</a> net_disconnected_work;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a> connect_dwork;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a> subscribe_dwork;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a> process_dwork;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a> publish_dwork;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="};">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="structshell__mqtt.html#ae8805bd53bffb3c001b0be13e9da68a2">   89</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="structshell__mqtt.html#ae8805bd53bffb3c001b0be13e9da68a2">sh_mqtt_transport_state</a> {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        SHELL_MQTT_TRANSPORT_DISCONNECTED,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        SHELL_MQTT_TRANSPORT_CONNECTED,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    } transport_state;</div>
+</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="foldopen" id="foldopen00095" data-start="{" data-end="};">
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="structshell__mqtt.html#adea25e747457658ebf35665951949466">   95</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="structshell__mqtt.html#adea25e747457658ebf35665951949466">sh_mqtt_subscribe_state</a> {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        SHELL_MQTT_NOT_SUBSCRIBED,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        SHELL_MQTT_SUBSCRIBED,</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    } subscribe_state;</div>
+</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="foldopen" id="foldopen00101" data-start="{" data-end="};">
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="structshell__mqtt.html#a71d26e0999b931528af231243f70ad13">  101</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="structshell__mqtt.html#a71d26e0999b931528af231243f70ad13">sh_mqtt_network_state</a> {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        SHELL_MQTT_NETWORK_DISCONNECTED,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        SHELL_MQTT_NETWORK_CONNECTED,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    } network_state;</div>
+</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>};</div>
+</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#define SHELL_MQTT_DEFINE(_name)                                                                   \</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">    static struct shell_mqtt _name##_shell_mqtt;                                               \</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="preprocessor">    struct shell_transport _name = { .api = &amp;shell_mqtt_transport_api,                         \</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">                     .ctx = (struct shell_mqtt *)&amp;_name##_shell_mqtt }</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structshell.html">shell</a> *shell_backend_mqtt_get_ptr(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keywordtype">bool</span> shell_mqtt_get_devid(<span class="keywordtype">char</span> *<span class="keywordtype">id</span>, <span class="keywordtype">int</span> id_max_len);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>}</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="preprocessor">#endif </span><span class="comment">/* SHELL_MQTT_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__mcumgr__callback__api_html_gac1512613c382de3b97c86781a48cfa29"><div class="ttname"><a href="group__mcumgr__callback__api.html#gac1512613c382de3b97c86781a48cfa29">mgmt_cb</a></div><div class="ttdeci">enum mgmt_cb_return(* mgmt_cb)(uint32_t event, enum mgmt_cb_return prev_status, int32_t *rc, uint16_t *group, bool *abort_more, void *data, size_t data_size)</div><div class="ttdoc">Function to be called on MGMT notification/event.</div><div class="ttdef"><b>Definição</b> callbacks.h:107</div></div>
+<div class="ttc" id="amqtt_8h_html"><div class="ttname"><a href="mqtt_8h.html">mqtt.h</a></div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2net_2socket_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2socket_8h.html">socket.h</a></div><div class="ttdoc">BSD Sockets compatible API definitions.</div></div>
+<div class="ttc" id="anet__event_8h_html"><div class="ttname"><a href="net__event_8h.html">net_event.h</a></div><div class="ttdoc">Network Events code public header.</div></div>
+<div class="ttc" id="anet__mgmt_8h_html"><div class="ttname"><a href="net__mgmt_8h.html">net_mgmt.h</a></div><div class="ttdoc">Network Management API public header.</div></div>
+<div class="ttc" id="aring__buffer_8h_html"><div class="ttname"><a href="ring__buffer_8h.html">ring_buffer.h</a></div></div>
+<div class="ttc" id="astructk__mutex_html"><div class="ttname"><a href="structk__mutex.html">k_mutex</a></div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:31</div></div>
+<div class="ttc" id="astructk__work__delayable_html"><div class="ttname"><a href="structk__work__delayable.html">k_work_delayable</a></div><div class="ttdoc">A structure used to submit work after a delay.</div><div class="ttdef"><b>Definição</b> kernel.h:3894</div></div>
+<div class="ttc" id="astructk__work__q_html"><div class="ttname"><a href="structk__work__q.html">k_work_q</a></div><div class="ttdoc">A structure used to hold work until it can be processed.</div><div class="ttdef"><b>Definição</b> kernel.h:4013</div></div>
+<div class="ttc" id="astructk__work_html"><div class="ttname"><a href="structk__work.html">k_work</a></div><div class="ttdoc">A structure used to submit work.</div><div class="ttdef"><b>Definição</b> kernel.h:3866</div></div>
+<div class="ttc" id="astructmqtt__client_html"><div class="ttname"><a href="structmqtt__client.html">mqtt_client</a></div><div class="ttdoc">MQTT Client definition to maintain information relevant to the client.</div><div class="ttdef"><b>Definição</b> mqtt.h:483</div></div>
+<div class="ttc" id="astructmqtt__publish__param_html"><div class="ttname"><a href="structmqtt__publish__param.html">mqtt_publish_param</a></div><div class="ttdoc">Parameters for a publish message (PUBLISH).</div><div class="ttdef"><b>Definição</b> mqtt.h:246</div></div>
+<div class="ttc" id="astructnet__mgmt__event__callback_html"><div class="ttname"><a href="structnet__mgmt__event__callback.html">net_mgmt_event_callback</a></div><div class="ttdoc">Network Management event callback structure Used to register a callback into the network management e...</div><div class="ttdef"><b>Definição</b> net_mgmt.h:123</div></div>
+<div class="ttc" id="astructring__buf_html"><div class="ttname"><a href="structring__buf.html">ring_buf</a></div><div class="ttdoc">A structure to represent a ring buffer.</div><div class="ttdef"><b>Definição</b> ring_buffer.h:41</div></div>
+<div class="ttc" id="astructshell__mqtt_1_1buffer_html"><div class="ttname"><a href="structshell__mqtt_1_1buffer.html">shell_mqtt::buffer</a></div><div class="ttdef"><b>Definição</b> shell_mqtt.h:62</div></div>
+<div class="ttc" id="astructshell__mqtt__tx__buf_html"><div class="ttname"><a href="structshell__mqtt__tx__buf.html">shell_mqtt_tx_buf</a></div><div class="ttdef"><b>Definição</b> shell_mqtt.h:32</div></div>
+<div class="ttc" id="astructshell__mqtt__tx__buf_html_a7559f53de11c3f211ce05d08615617da"><div class="ttname"><a href="structshell__mqtt__tx__buf.html#a7559f53de11c3f211ce05d08615617da">shell_mqtt_tx_buf::len</a></div><div class="ttdeci">uint16_t len</div><div class="ttdef"><b>Definição</b> shell_mqtt.h:37</div></div>
+<div class="ttc" id="astructshell__mqtt__tx__buf_html_adfb2ba87c02e54e1e418a2cd8292f4e8"><div class="ttname"><a href="structshell__mqtt__tx__buf.html#adfb2ba87c02e54e1e418a2cd8292f4e8">shell_mqtt_tx_buf::buf</a></div><div class="ttdeci">char buf[TX_BUF_SIZE]</div><div class="ttdef"><b>Definição</b> shell_mqtt.h:34</div></div>
+<div class="ttc" id="astructshell__mqtt_html"><div class="ttname"><a href="structshell__mqtt.html">shell_mqtt</a></div><div class="ttdef"><b>Definição</b> shell_mqtt.h:41</div></div>
+<div class="ttc" id="astructshell__mqtt_html_a20bd84677bfe92acc1f3d49acdbe5a8a"><div class="ttname"><a href="structshell__mqtt.html#a20bd84677bfe92acc1f3d49acdbe5a8a">shell_mqtt::shell_context</a></div><div class="ttdeci">void * shell_context</div><div class="ttdef"><b>Definição</b> shell_mqtt.h:56</div></div>
+<div class="ttc" id="astructshell__mqtt_html_a5887fbed18fce4b9f4fc43ad46ed21d4"><div class="ttname"><a href="structshell__mqtt.html#a5887fbed18fce4b9f4fc43ad46ed21d4">shell_mqtt::shell_handler</a></div><div class="ttdeci">shell_transport_handler_t shell_handler</div><div class="ttdef"><b>Definição</b> shell_mqtt.h:47</div></div>
+<div class="ttc" id="astructshell__mqtt_html_a71d26e0999b931528af231243f70ad13"><div class="ttname"><a href="structshell__mqtt.html#a71d26e0999b931528af231243f70ad13">shell_mqtt::sh_mqtt_network_state</a></div><div class="ttdeci">sh_mqtt_network_state</div><div class="ttdef"><b>Definição</b> shell_mqtt.h:101</div></div>
+<div class="ttc" id="astructshell__mqtt_html_a74bd401d7ecaf5a31cd28e84a008c042"><div class="ttname"><a href="structshell__mqtt.html#a74bd401d7ecaf5a31cd28e84a008c042">shell_mqtt::mqtt_cli</a></div><div class="ttdeci">struct mqtt_client mqtt_cli</div><div class="ttdef"><b>Definição</b> shell_mqtt.h:59</div></div>
+<div class="ttc" id="astructshell__mqtt_html_ab874f817ad4424fb1fd8f2ad193c0949"><div class="ttname"><a href="structshell__mqtt.html#ab874f817ad4424fb1fd8f2ad193c0949">shell_mqtt::broker</a></div><div class="ttdeci">struct sockaddr_storage broker</div><div class="ttdef"><b>Definição</b> shell_mqtt.h:70</div></div>
+<div class="ttc" id="astructshell__mqtt_html_adea25e747457658ebf35665951949466"><div class="ttname"><a href="structshell__mqtt.html#adea25e747457658ebf35665951949466">shell_mqtt::sh_mqtt_subscribe_state</a></div><div class="ttdeci">sh_mqtt_subscribe_state</div><div class="ttdef"><b>Definição</b> shell_mqtt.h:95</div></div>
+<div class="ttc" id="astructshell__mqtt_html_ae8805bd53bffb3c001b0be13e9da68a2"><div class="ttname"><a href="structshell__mqtt.html#ae8805bd53bffb3c001b0be13e9da68a2">shell_mqtt::sh_mqtt_transport_state</a></div><div class="ttdeci">sh_mqtt_transport_state</div><div class="ttdef"><b>Definição</b> shell_mqtt.h:89</div></div>
+<div class="ttc" id="astructshell__mqtt_html_af08ea1a0bbea6cbc64d91a6ccaf6e44c"><div class="ttname"><a href="structshell__mqtt.html#af08ea1a0bbea6cbc64d91a6ccaf6e44c">shell_mqtt::workq</a></div><div class="ttdeci">struct k_work_q workq</div><div class="ttdef"><b>Definição</b> shell_mqtt.h:81</div></div>
+<div class="ttc" id="astructshell__transport__api_html"><div class="ttname"><a href="structshell__transport__api.html">shell_transport_api</a></div><div class="ttdoc">Unified shell transport interface.</div><div class="ttdef"><b>Definição</b> shell.h:612</div></div>
+<div class="ttc" id="astructshell_html"><div class="ttname"><a href="structshell.html">shell</a></div><div class="ttdoc">Shell instance internals.</div><div class="ttdef"><b>Definição</b> shell.h:848</div></div>
+<div class="ttc" id="astructzsock__addrinfo_html"><div class="ttname"><a href="structzsock__addrinfo.html">zsock_addrinfo</a></div><div class="ttdef"><b>Definição</b> socket.h:234</div></div>
+<div class="ttc" id="astructzsock__pollfd_html"><div class="ttname"><a href="structzsock__pollfd.html">zsock_pollfd</a></div><div class="ttdef"><b>Definição</b> socket.h:39</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

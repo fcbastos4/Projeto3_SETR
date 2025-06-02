@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Interrupt-driven UART API</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#typedef-members">Definições de tipos</a> &#124;
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle"><div class="title">Interrupt-driven UART API<div class="ingroups"><a class="el" href="group__uart__interface.html">UART Interface</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Diagrama de colaboração para Interrupt-driven UART API:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart__interrupt.png" border="0" usemap="#agroup____uart____interrupt" alt=""/></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Definições de tipos</h2></td></tr>
+<tr class="memitem:gad7a26b1a1d6212d7d39c05c8ad4ec926" id="r_gad7a26b1a1d6212d7d39c05c8ad4ec926"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__interrupt.html#gad7a26b1a1d6212d7d39c05c8ad4ec926">uart_irq_callback_user_data_t</a>) (const struct <a class="el" href="structdevice.html">device</a> *dev, void *user_data)</td></tr>
+<tr class="memdesc:gad7a26b1a1d6212d7d39c05c8ad4ec926"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the application callback function signature for uart_irq_callback_user_data_set() function.  <br /></td></tr>
+<tr class="separator:gad7a26b1a1d6212d7d39c05c8ad4ec926"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6750414923953c84fb1e19177ec74ae0" id="r_ga6750414923953c84fb1e19177ec74ae0"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__interrupt.html#ga6750414923953c84fb1e19177ec74ae0">uart_irq_config_func_t</a>) (const struct <a class="el" href="structdevice.html">device</a> *dev)</td></tr>
+<tr class="memdesc:ga6750414923953c84fb1e19177ec74ae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">For configuring IRQ on each individual UART device.  <br /></td></tr>
+<tr class="separator:ga6750414923953c84fb1e19177ec74ae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:ga278fde2cdc0a67373c1b5fb0413494e8" id="r_ga278fde2cdc0a67373c1b5fb0413494e8"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__interrupt.html#ga278fde2cdc0a67373c1b5fb0413494e8">uart_irq_tx_enable</a> (const struct <a class="el" href="structdevice.html">device</a> *dev)</td></tr>
+<tr class="memdesc:ga278fde2cdc0a67373c1b5fb0413494e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable TX interrupt in IER.  <br /></td></tr>
+<tr class="separator:ga278fde2cdc0a67373c1b5fb0413494e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga277dcf577007170d88c3a82c5d6ced71" id="r_ga277dcf577007170d88c3a82c5d6ced71"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__interrupt.html#ga277dcf577007170d88c3a82c5d6ced71">uart_irq_tx_disable</a> (const struct <a class="el" href="structdevice.html">device</a> *dev)</td></tr>
+<tr class="memdesc:ga277dcf577007170d88c3a82c5d6ced71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable TX interrupt in IER.  <br /></td></tr>
+<tr class="separator:ga277dcf577007170d88c3a82c5d6ced71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga14027dd555891c5f4f79b0ecc5d0ac0a" id="r_ga14027dd555891c5f4f79b0ecc5d0ac0a"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__interrupt.html#ga14027dd555891c5f4f79b0ecc5d0ac0a">uart_irq_rx_enable</a> (const struct <a class="el" href="structdevice.html">device</a> *dev)</td></tr>
+<tr class="memdesc:ga14027dd555891c5f4f79b0ecc5d0ac0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable RX interrupt.  <br /></td></tr>
+<tr class="separator:ga14027dd555891c5f4f79b0ecc5d0ac0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5e8bc76fb5b82874d30c2e3985741c0b" id="r_ga5e8bc76fb5b82874d30c2e3985741c0b"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__interrupt.html#ga5e8bc76fb5b82874d30c2e3985741c0b">uart_irq_rx_disable</a> (const struct <a class="el" href="structdevice.html">device</a> *dev)</td></tr>
+<tr class="memdesc:ga5e8bc76fb5b82874d30c2e3985741c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable RX interrupt.  <br /></td></tr>
+<tr class="separator:ga5e8bc76fb5b82874d30c2e3985741c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae4dfea43676ff1708699f9b817a71f46" id="r_gae4dfea43676ff1708699f9b817a71f46"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__interrupt.html#gae4dfea43676ff1708699f9b817a71f46">uart_irq_err_enable</a> (const struct <a class="el" href="structdevice.html">device</a> *dev)</td></tr>
+<tr class="memdesc:gae4dfea43676ff1708699f9b817a71f46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable error interrupt.  <br /></td></tr>
+<tr class="separator:gae4dfea43676ff1708699f9b817a71f46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaca3a0490263dc5e20405759d602f1ad1" id="r_gaca3a0490263dc5e20405759d602f1ad1"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__interrupt.html#gaca3a0490263dc5e20405759d602f1ad1">uart_irq_err_disable</a> (const struct <a class="el" href="structdevice.html">device</a> *dev)</td></tr>
+<tr class="memdesc:gaca3a0490263dc5e20405759d602f1ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable error interrupt.  <br /></td></tr>
+<tr class="separator:gaca3a0490263dc5e20405759d602f1ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5b8bc62facc7cb2843293409d1f6eaeb" id="r_ga5b8bc62facc7cb2843293409d1f6eaeb"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__interrupt.html#ga5b8bc62facc7cb2843293409d1f6eaeb">uart_irq_is_pending</a> (const struct <a class="el" href="structdevice.html">device</a> *dev)</td></tr>
+<tr class="memdesc:ga5b8bc62facc7cb2843293409d1f6eaeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if any IRQs is pending.  <br /></td></tr>
+<tr class="separator:ga5b8bc62facc7cb2843293409d1f6eaeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa41f91dcfd53a934f35293e92335e400" id="r_gaa41f91dcfd53a934f35293e92335e400"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__interrupt.html#gaa41f91dcfd53a934f35293e92335e400">uart_irq_update</a> (const struct <a class="el" href="structdevice.html">device</a> *dev)</td></tr>
+<tr class="memdesc:gaa41f91dcfd53a934f35293e92335e400"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start processing interrupts in ISR.  <br /></td></tr>
+<tr class="separator:gaa41f91dcfd53a934f35293e92335e400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<h2 class="groupheader">Documentação dos tipos</h2>
+<a id="gad7a26b1a1d6212d7d39c05c8ad4ec926" name="gad7a26b1a1d6212d7d39c05c8ad4ec926"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad7a26b1a1d6212d7d39c05c8ad4ec926">&#9670;&#160;</a></span>uart_irq_callback_user_data_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* uart_irq_callback_user_data_t) (const struct <a class="el" href="structdevice.html">device</a> *dev, void *user_data)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define the application callback function signature for uart_irq_callback_user_data_set() function. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance. </td></tr>
+    <tr><td class="paramname">user_data</td><td>Arbitrary user data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga6750414923953c84fb1e19177ec74ae0" name="ga6750414923953c84fb1e19177ec74ae0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6750414923953c84fb1e19177ec74ae0">&#9670;&#160;</a></span>uart_irq_config_func_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* uart_irq_config_func_t) (const struct <a class="el" href="structdevice.html">device</a> *dev)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>For configuring IRQ on each individual UART device. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação das funções</h2>
+<a id="gaca3a0490263dc5e20405759d602f1ad1" name="gaca3a0490263dc5e20405759d602f1ad1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaca3a0490263dc5e20405759d602f1ad1">&#9670;&#160;</a></span>uart_irq_err_disable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void uart_irq_err_disable </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disable error interrupt. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gae4dfea43676ff1708699f9b817a71f46" name="gae4dfea43676ff1708699f9b817a71f46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae4dfea43676ff1708699f9b817a71f46">&#9670;&#160;</a></span>uart_irq_err_enable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void uart_irq_err_enable </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable error interrupt. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga5b8bc62facc7cb2843293409d1f6eaeb" name="ga5b8bc62facc7cb2843293409d1f6eaeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5b8bc62facc7cb2843293409d1f6eaeb">&#9670;&#160;</a></span>uart_irq_is_pending()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int uart_irq_is_pending </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if any IRQs is pending. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">1</td><td>If an IRQ is pending. </td></tr>
+    <tr><td class="paramname">0</td><td>If an IRQ is not pending. </td></tr>
+    <tr><td class="paramname">-ENOSYS</td><td>If this function is not implemented. </td></tr>
+    <tr><td class="paramname">-ENOTSUP</td><td>If API is not enabled. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga5e8bc76fb5b82874d30c2e3985741c0b" name="ga5e8bc76fb5b82874d30c2e3985741c0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5e8bc76fb5b82874d30c2e3985741c0b">&#9670;&#160;</a></span>uart_irq_rx_disable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void uart_irq_rx_disable </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disable RX interrupt. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga14027dd555891c5f4f79b0ecc5d0ac0a" name="ga14027dd555891c5f4f79b0ecc5d0ac0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga14027dd555891c5f4f79b0ecc5d0ac0a">&#9670;&#160;</a></span>uart_irq_rx_enable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void uart_irq_rx_enable </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable RX interrupt. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga277dcf577007170d88c3a82c5d6ced71" name="ga277dcf577007170d88c3a82c5d6ced71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga277dcf577007170d88c3a82c5d6ced71">&#9670;&#160;</a></span>uart_irq_tx_disable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void uart_irq_tx_disable </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disable TX interrupt in IER. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga278fde2cdc0a67373c1b5fb0413494e8" name="ga278fde2cdc0a67373c1b5fb0413494e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga278fde2cdc0a67373c1b5fb0413494e8">&#9670;&#160;</a></span>uart_irq_tx_enable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void uart_irq_tx_enable </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable TX interrupt in IER. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaa41f91dcfd53a934f35293e92335e400" name="gaa41f91dcfd53a934f35293e92335e400"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa41f91dcfd53a934f35293e92335e400">&#9670;&#160;</a></span>uart_irq_update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int uart_irq_update </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start processing interrupts in ISR. </p>
+<p>This function should be called the first thing in the ISR. Calling uart_irq_rx_ready(), uart_irq_tx_ready(), uart_irq_tx_complete() allowed only after this.</p>
+<p>The purpose of this function is:</p>
+<ul>
+<li>For devices with auto-acknowledge of interrupt status on register read to cache the value of this register (rx_ready, etc. then use this case).</li>
+<li>For devices with explicit acknowledgment of interrupts, to ack any pending interrupts and likewise to cache the original value.</li>
+<li>For devices with implicit acknowledgment, this function will be empty. But the ISR must perform the actions needs to ack the interrupts (usually, call uart_fifo_read() on rx_ready, and uart_fifo_fill() on tx_ready).</li>
+</ul>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">1</td><td>On success. </td></tr>
+    <tr><td class="paramname">-ENOSYS</td><td>If this function is not implemented. </td></tr>
+    <tr><td class="paramname">-ENOTSUP</td><td>If API is not enabled. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

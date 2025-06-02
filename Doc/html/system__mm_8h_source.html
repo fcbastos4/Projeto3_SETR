@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/mm/system_mm.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_edba359e2d6a6488950e7b110b687bc0.html">mm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">system_mm.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="system__mm_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2021 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_SYSTEM_MM_H_</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_SYSTEM_MM_H_</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef _ASMLANGUAGE</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gafe1b7f8b4075da1b461f2a74d3142e49">   46</a></span><span class="preprocessor">#define SYS_MM_MEM_CACHE_NONE       2</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gaed12cd6841eb0fd0af1cefe1d7a6b5aa">   49</a></span><span class="preprocessor">#define SYS_MM_MEM_CACHE_WT     1</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gad0859fb79c8da1d1af0f38ea63064b8c">   52</a></span><span class="preprocessor">#define SYS_MM_MEM_CACHE_WB     0</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#ga43050af5740a0449da7998b48f540817">   55</a></span><span class="preprocessor">#define SYS_MM_MEM_CACHE_MASK       (BIT(3) - 1)</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#ga8547ea32c40b038daa34ee76cbaee275">   70</a></span><span class="preprocessor">#define SYS_MM_MEM_PERM_RW      BIT(3)</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gac564b8d2148bd7c0ac07313f0fa9861c">   73</a></span><span class="preprocessor">#define SYS_MM_MEM_PERM_EXEC        BIT(4)</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gad86f6d8cbb3102ad3e8375d10cb4551c">   76</a></span><span class="preprocessor">#define SYS_MM_MEM_PERM_USER        BIT(5)</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#ga7097d4d8880cb0c3d5db7623ffc11b26">  110</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mm__drv__apis.html#ga7097d4d8880cb0c3d5db7623ffc11b26">sys_mm_drv_map_page</a>(<span class="keywordtype">void</span> *virt, uintptr_t phys, uint32_t flags);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#ga1186a31d55b24791d800e8f0aef311da">  133</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mm__drv__apis.html#ga1186a31d55b24791d800e8f0aef311da">sys_mm_drv_map_region</a>(<span class="keywordtype">void</span> *virt, uintptr_t phys,</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>              <span class="keywordtype">size_t</span> size, uint32_t flags);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gab36baa1ed134e5a69ea16451991b920e">  157</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mm__drv__apis.html#gab36baa1ed134e5a69ea16451991b920e">sys_mm_drv_map_array</a>(<span class="keywordtype">void</span> *virt, uintptr_t *phys,</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>             <span class="keywordtype">size_t</span> cnt, uint32_t flags);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gab78668dd05ab1d4d17ca5bbe3182b0eb">  181</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mm__drv__apis.html#gab78668dd05ab1d4d17ca5bbe3182b0eb">sys_mm_drv_unmap_page</a>(<span class="keywordtype">void</span> *virt);</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gadc3ed78e29aef49b7578b9090dcaacbc">  205</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mm__drv__apis.html#gadc3ed78e29aef49b7578b9090dcaacbc">sys_mm_drv_unmap_region</a>(<span class="keywordtype">void</span> *virt, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gae46a4189560e314e96f8bee80b55b40b">  234</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mm__drv__apis.html#gae46a4189560e314e96f8bee80b55b40b">sys_mm_drv_remap_region</a>(<span class="keywordtype">void</span> *virt_old, <span class="keywordtype">size_t</span> size, <span class="keywordtype">void</span> *virt_new);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#ga3b2e4b2b359d4fcba104e43866d30d14">  279</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mm__drv__apis.html#ga3b2e4b2b359d4fcba104e43866d30d14">sys_mm_drv_move_region</a>(<span class="keywordtype">void</span> *virt_old, <span class="keywordtype">size_t</span> size, <span class="keywordtype">void</span> *virt_new,</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>               uintptr_t phys_new);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gab172793104608d2a5acae0eb40c50177">  314</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mm__drv__apis.html#gab172793104608d2a5acae0eb40c50177">sys_mm_drv_move_array</a>(<span class="keywordtype">void</span> *virt_old, <span class="keywordtype">size_t</span> size, <span class="keywordtype">void</span> *virt_new,</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>              uintptr_t *phys_new, <span class="keywordtype">size_t</span> phys_cnt);</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#ga188aebe0dcb10e8a4d620cf0bf9a0444">  349</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mm__drv__apis.html#ga188aebe0dcb10e8a4d620cf0bf9a0444">sys_mm_drv_update_page_flags</a>(<span class="keywordtype">void</span> *virt, uint32_t flags);</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#ga60a9aa179216ed7ac5179c3a7eeb97d3">  372</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mm__drv__apis.html#ga60a9aa179216ed7ac5179c3a7eeb97d3">sys_mm_drv_update_region_flags</a>(<span class="keywordtype">void</span> *virt, <span class="keywordtype">size_t</span> size, uint32_t flags);</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gaabbc2184a44f8c5c8cd98bf09a2cdc0f">  403</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mm__drv__apis.html#gaabbc2184a44f8c5c8cd98bf09a2cdc0f">sys_mm_drv_page_phys_get</a>(<span class="keywordtype">void</span> *virt, uintptr_t *phys);</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span> </div>
+<div class="foldopen" id="foldopen00411" data-start="{" data-end="};">
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno"><a class="line" href="structsys__mm__drv__region.html">  411</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structsys__mm__drv__region.html">sys_mm_drv_region</a> {</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno"><a class="line" href="structsys__mm__drv__region.html#a8dfa465f83cf5f6115094b6b5727f418">  412</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structsys__mm__drv__region.html#a8dfa465f83cf5f6115094b6b5727f418">addr</a>; </div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno"><a class="line" href="structsys__mm__drv__region.html#a5b48a908a5393fec377edcd3760c18ad">  413</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structsys__mm__drv__region.html#a5b48a908a5393fec377edcd3760c18ad">size</a>; </div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno"><a class="line" href="structsys__mm__drv__region.html#a6838fe4bd4daab440152c4d666a4597d">  414</a></span>    uint32_t <a class="code hl_variable" href="structsys__mm__drv__region.html#a6838fe4bd4daab440152c4d666a4597d">attr</a>; </div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>};</div>
+</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span> </div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span><span class="comment">/* TODO is it safe to assume no valid region has size == 0? */</span></div>
+<div class="foldopen" id="foldopen00424" data-start="" data-end="">
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gabd2c5de68d1976e4d0a8086523d66e7a">  424</a></span><span class="preprocessor">#define SYS_MM_DRV_MEMORY_REGION_FOREACH(regions, iter) \</span></div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span><span class="preprocessor">    for (iter = regions; iter-&gt;size; iter++)</span></div>
+</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span> </div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gaf2c06488bd4ff3ecd1285ce7d70321c9">  438</a></span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structsys__mm__drv__region.html">sys_mm_drv_region</a> *<a class="code hl_function" href="group__mm__drv__apis.html#gaf2c06488bd4ff3ecd1285ce7d70321c9">sys_mm_drv_query_memory_regions</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span> </div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno"><a class="line" href="group__mm__drv__apis.html#gab8d3585ffe98796a5c74d0bb9fc634d1">  450</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__mm__drv__apis.html#gab8d3585ffe98796a5c74d0bb9fc634d1">sys_mm_drv_query_memory_regions_free</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsys__mm__drv__region.html">sys_mm_drv_region</a> *regions);</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span> </div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>}</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span> </div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span><span class="preprocessor">#endif </span><span class="comment">/* _ASMLANGUAGE */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span> </div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_SYSTEM_MM_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__mm__drv__apis_html_ga1186a31d55b24791d800e8f0aef311da"><div class="ttname"><a href="group__mm__drv__apis.html#ga1186a31d55b24791d800e8f0aef311da">sys_mm_drv_map_region</a></div><div class="ttdeci">int sys_mm_drv_map_region(void *virt, uintptr_t phys, size_t size, uint32_t flags)</div><div class="ttdoc">Map a region of physical memory into the virtual address space.</div></div>
+<div class="ttc" id="agroup__mm__drv__apis_html_ga188aebe0dcb10e8a4d620cf0bf9a0444"><div class="ttname"><a href="group__mm__drv__apis.html#ga188aebe0dcb10e8a4d620cf0bf9a0444">sys_mm_drv_update_page_flags</a></div><div class="ttdeci">int sys_mm_drv_update_page_flags(void *virt, uint32_t flags)</div><div class="ttdoc">Update memory page flags.</div></div>
+<div class="ttc" id="agroup__mm__drv__apis_html_ga3b2e4b2b359d4fcba104e43866d30d14"><div class="ttname"><a href="group__mm__drv__apis.html#ga3b2e4b2b359d4fcba104e43866d30d14">sys_mm_drv_move_region</a></div><div class="ttdeci">int sys_mm_drv_move_region(void *virt_old, size_t size, void *virt_new, uintptr_t phys_new)</div><div class="ttdoc">Physically move memory, with copy.</div></div>
+<div class="ttc" id="agroup__mm__drv__apis_html_ga60a9aa179216ed7ac5179c3a7eeb97d3"><div class="ttname"><a href="group__mm__drv__apis.html#ga60a9aa179216ed7ac5179c3a7eeb97d3">sys_mm_drv_update_region_flags</a></div><div class="ttdeci">int sys_mm_drv_update_region_flags(void *virt, size_t size, uint32_t flags)</div><div class="ttdoc">Update memory region flags.</div></div>
+<div class="ttc" id="agroup__mm__drv__apis_html_ga7097d4d8880cb0c3d5db7623ffc11b26"><div class="ttname"><a href="group__mm__drv__apis.html#ga7097d4d8880cb0c3d5db7623ffc11b26">sys_mm_drv_map_page</a></div><div class="ttdeci">int sys_mm_drv_map_page(void *virt, uintptr_t phys, uint32_t flags)</div><div class="ttdoc">Map one physical page into the virtual address space.</div></div>
+<div class="ttc" id="agroup__mm__drv__apis_html_gaabbc2184a44f8c5c8cd98bf09a2cdc0f"><div class="ttname"><a href="group__mm__drv__apis.html#gaabbc2184a44f8c5c8cd98bf09a2cdc0f">sys_mm_drv_page_phys_get</a></div><div class="ttdeci">int sys_mm_drv_page_phys_get(void *virt, uintptr_t *phys)</div><div class="ttdoc">Get the mapped physical memory address from virtual address.</div></div>
+<div class="ttc" id="agroup__mm__drv__apis_html_gab172793104608d2a5acae0eb40c50177"><div class="ttname"><a href="group__mm__drv__apis.html#gab172793104608d2a5acae0eb40c50177">sys_mm_drv_move_array</a></div><div class="ttdeci">int sys_mm_drv_move_array(void *virt_old, size_t size, void *virt_new, uintptr_t *phys_new, size_t phys_cnt)</div><div class="ttdoc">Physically move memory, with copy.</div></div>
+<div class="ttc" id="agroup__mm__drv__apis_html_gab36baa1ed134e5a69ea16451991b920e"><div class="ttname"><a href="group__mm__drv__apis.html#gab36baa1ed134e5a69ea16451991b920e">sys_mm_drv_map_array</a></div><div class="ttdeci">int sys_mm_drv_map_array(void *virt, uintptr_t *phys, size_t cnt, uint32_t flags)</div><div class="ttdoc">Map an array of physical memory into the virtual address space.</div></div>
+<div class="ttc" id="agroup__mm__drv__apis_html_gab78668dd05ab1d4d17ca5bbe3182b0eb"><div class="ttname"><a href="group__mm__drv__apis.html#gab78668dd05ab1d4d17ca5bbe3182b0eb">sys_mm_drv_unmap_page</a></div><div class="ttdeci">int sys_mm_drv_unmap_page(void *virt)</div><div class="ttdoc">Remove mapping for one page of the provided virtual address.</div></div>
+<div class="ttc" id="agroup__mm__drv__apis_html_gab8d3585ffe98796a5c74d0bb9fc634d1"><div class="ttname"><a href="group__mm__drv__apis.html#gab8d3585ffe98796a5c74d0bb9fc634d1">sys_mm_drv_query_memory_regions_free</a></div><div class="ttdeci">void sys_mm_drv_query_memory_regions_free(const struct sys_mm_drv_region *regions)</div><div class="ttdoc">Free the memory array returned by sys_mm_drv_query_memory_regions.</div></div>
+<div class="ttc" id="agroup__mm__drv__apis_html_gadc3ed78e29aef49b7578b9090dcaacbc"><div class="ttname"><a href="group__mm__drv__apis.html#gadc3ed78e29aef49b7578b9090dcaacbc">sys_mm_drv_unmap_region</a></div><div class="ttdeci">int sys_mm_drv_unmap_region(void *virt, size_t size)</div><div class="ttdoc">Remove mappings for a provided virtual address range.</div></div>
+<div class="ttc" id="agroup__mm__drv__apis_html_gae46a4189560e314e96f8bee80b55b40b"><div class="ttname"><a href="group__mm__drv__apis.html#gae46a4189560e314e96f8bee80b55b40b">sys_mm_drv_remap_region</a></div><div class="ttdeci">int sys_mm_drv_remap_region(void *virt_old, size_t size, void *virt_new)</div><div class="ttdoc">Remap virtual pages into new address.</div></div>
+<div class="ttc" id="agroup__mm__drv__apis_html_gaf2c06488bd4ff3ecd1285ce7d70321c9"><div class="ttname"><a href="group__mm__drv__apis.html#gaf2c06488bd4ff3ecd1285ce7d70321c9">sys_mm_drv_query_memory_regions</a></div><div class="ttdeci">const struct sys_mm_drv_region * sys_mm_drv_query_memory_regions(void)</div><div class="ttdoc">Query available memory regions.</div></div>
+<div class="ttc" id="astructsys__mm__drv__region_html"><div class="ttname"><a href="structsys__mm__drv__region.html">sys_mm_drv_region</a></div><div class="ttdoc">Represents an available memory region.</div><div class="ttdef"><b>Definição</b> system_mm.h:411</div></div>
+<div class="ttc" id="astructsys__mm__drv__region_html_a5b48a908a5393fec377edcd3760c18ad"><div class="ttname"><a href="structsys__mm__drv__region.html#a5b48a908a5393fec377edcd3760c18ad">sys_mm_drv_region::size</a></div><div class="ttdeci">size_t size</div><div class="ttdoc">Size of the memory region.</div><div class="ttdef"><b>Definição</b> system_mm.h:413</div></div>
+<div class="ttc" id="astructsys__mm__drv__region_html_a6838fe4bd4daab440152c4d666a4597d"><div class="ttname"><a href="structsys__mm__drv__region.html#a6838fe4bd4daab440152c4d666a4597d">sys_mm_drv_region::attr</a></div><div class="ttdeci">uint32_t attr</div><div class="ttdoc">Driver defined attributes of the memory region.</div><div class="ttdef"><b>Definição</b> system_mm.h:414</div></div>
+<div class="ttc" id="astructsys__mm__drv__region_html_a8dfa465f83cf5f6115094b6b5727f418"><div class="ttname"><a href="structsys__mm__drv__region.html#a8dfa465f83cf5f6115094b6b5727f418">sys_mm_drv_region::addr</a></div><div class="ttdeci">void * addr</div><div class="ttdoc">Address of the memory region.</div><div class="ttdef"><b>Definição</b> system_mm.h:412</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

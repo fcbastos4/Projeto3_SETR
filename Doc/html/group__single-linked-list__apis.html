@@ -1,0 +1,590 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Single-linked list</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Definições de tipos</a>  </div>
+  <div class="headertitle"><div class="title">Single-linked list</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Single-linked list implementation.  
+<a href="#details">Mais...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gaf32ac0f222186e497d3f6180b6c26352" id="r_gaf32ac0f222186e497d3f6180b6c26352"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__single-linked-list__apis.html#gaf32ac0f222186e497d3f6180b6c26352">SYS_SLIST_FOR_EACH_NODE</a>(__sl,  __sn)&#160;&#160;&#160;	Z_GENLIST_FOR_EACH_NODE(slist, __sl, __sn)</td></tr>
+<tr class="memdesc:gaf32ac0f222186e497d3f6180b6c26352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide the primitive to iterate on a list Note: the loop is unsafe and thus __sn should not be removed.  <br /></td></tr>
+<tr class="separator:gaf32ac0f222186e497d3f6180b6c26352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1740075b07ec67635c1934dcbe1b5cee" id="r_ga1740075b07ec67635c1934dcbe1b5cee"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__single-linked-list__apis.html#ga1740075b07ec67635c1934dcbe1b5cee">SYS_SLIST_ITERATE_FROM_NODE</a>(__sl,  __sn)&#160;&#160;&#160;	Z_GENLIST_ITERATE_FROM_NODE(slist, __sl, __sn)</td></tr>
+<tr class="memdesc:ga1740075b07ec67635c1934dcbe1b5cee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide the primitive to iterate on a list, from a node in the list Note: the loop is unsafe and thus __sn should not be removed.  <br /></td></tr>
+<tr class="separator:ga1740075b07ec67635c1934dcbe1b5cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad6f1014e26d6cf9925d00b4f53076116" id="r_gad6f1014e26d6cf9925d00b4f53076116"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__single-linked-list__apis.html#gad6f1014e26d6cf9925d00b4f53076116">SYS_SLIST_FOR_EACH_NODE_SAFE</a>(__sl,  __sn,  __sns)&#160;&#160;&#160;	Z_GENLIST_FOR_EACH_NODE_SAFE(slist, __sl, __sn, __sns)</td></tr>
+<tr class="memdesc:gad6f1014e26d6cf9925d00b4f53076116"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide the primitive to safely iterate on a list Note: __sn can be removed, it will not break the loop.  <br /></td></tr>
+<tr class="separator:gad6f1014e26d6cf9925d00b4f53076116"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga07e4257835751e18a6c06bfa5f9c25e8" id="r_ga07e4257835751e18a6c06bfa5f9c25e8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__single-linked-list__apis.html#ga07e4257835751e18a6c06bfa5f9c25e8">SYS_SLIST_CONTAINER</a>(__ln,  __cn,  __n)&#160;&#160;&#160;	Z_GENLIST_CONTAINER(__ln, __cn, __n)</td></tr>
+<tr class="memdesc:ga07e4257835751e18a6c06bfa5f9c25e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide the primitive to resolve the container of a list node Note: it is safe to use with NULL pointer nodes.  <br /></td></tr>
+<tr class="separator:ga07e4257835751e18a6c06bfa5f9c25e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8fdb1e6baa7ba061dc1bd35f73a2fff1" id="r_ga8fdb1e6baa7ba061dc1bd35f73a2fff1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__single-linked-list__apis.html#ga8fdb1e6baa7ba061dc1bd35f73a2fff1">SYS_SLIST_PEEK_HEAD_CONTAINER</a>(__sl,  __cn,  __n)&#160;&#160;&#160;	Z_GENLIST_PEEK_HEAD_CONTAINER(slist, __sl, __cn, __n)</td></tr>
+<tr class="memdesc:ga8fdb1e6baa7ba061dc1bd35f73a2fff1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide the primitive to peek container of the list head.  <br /></td></tr>
+<tr class="separator:ga8fdb1e6baa7ba061dc1bd35f73a2fff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga709c87e180d48c782c1583d7fb7629b3" id="r_ga709c87e180d48c782c1583d7fb7629b3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__single-linked-list__apis.html#ga709c87e180d48c782c1583d7fb7629b3">SYS_SLIST_PEEK_TAIL_CONTAINER</a>(__sl,  __cn,  __n)&#160;&#160;&#160;	Z_GENLIST_PEEK_TAIL_CONTAINER(slist, __sl, __cn, __n)</td></tr>
+<tr class="memdesc:ga709c87e180d48c782c1583d7fb7629b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide the primitive to peek container of the list tail.  <br /></td></tr>
+<tr class="separator:ga709c87e180d48c782c1583d7fb7629b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5d1c9ee21f75da485ba12aa56471e699" id="r_ga5d1c9ee21f75da485ba12aa56471e699"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__single-linked-list__apis.html#ga5d1c9ee21f75da485ba12aa56471e699">SYS_SLIST_PEEK_NEXT_CONTAINER</a>(__cn,  __n)&#160;&#160;&#160;	Z_GENLIST_PEEK_NEXT_CONTAINER(slist, __cn, __n)</td></tr>
+<tr class="memdesc:ga5d1c9ee21f75da485ba12aa56471e699"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide the primitive to peek the next container.  <br /></td></tr>
+<tr class="separator:ga5d1c9ee21f75da485ba12aa56471e699"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacd97d2f1044c0560d96c9f9a6f26d2f6" id="r_gacd97d2f1044c0560d96c9f9a6f26d2f6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__single-linked-list__apis.html#gacd97d2f1044c0560d96c9f9a6f26d2f6">SYS_SLIST_FOR_EACH_CONTAINER</a>(__sl,  __cn,  __n)&#160;&#160;&#160;	Z_GENLIST_FOR_EACH_CONTAINER(slist, __sl, __cn, __n)</td></tr>
+<tr class="memdesc:gacd97d2f1044c0560d96c9f9a6f26d2f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide the primitive to iterate on a list under a container Note: the loop is unsafe and thus __cn should not be detached.  <br /></td></tr>
+<tr class="separator:gacd97d2f1044c0560d96c9f9a6f26d2f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacf3aaf32a6a3389229b548588c6d655e" id="r_gacf3aaf32a6a3389229b548588c6d655e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__single-linked-list__apis.html#gacf3aaf32a6a3389229b548588c6d655e">SYS_SLIST_FOR_EACH_CONTAINER_SAFE</a>(__sl,  __cn,  __cns,  __n)&#160;&#160;&#160;	Z_GENLIST_FOR_EACH_CONTAINER_SAFE(slist, __sl, __cn, __cns, __n)</td></tr>
+<tr class="memdesc:gacf3aaf32a6a3389229b548588c6d655e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide the primitive to safely iterate on a list under a container Note: __cn can be detached, it will not break the loop.  <br /></td></tr>
+<tr class="separator:gacf3aaf32a6a3389229b548588c6d655e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7f4710125f45643b7acdaa58dbfff225" id="r_ga7f4710125f45643b7acdaa58dbfff225"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__single-linked-list__apis.html#ga7f4710125f45643b7acdaa58dbfff225">SYS_SLIST_STATIC_INIT</a>(ptr_to_list)&#160;&#160;&#160;{NULL, NULL}</td></tr>
+<tr class="memdesc:ga7f4710125f45643b7acdaa58dbfff225"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statically initialize a single-linked list.  <br /></td></tr>
+<tr class="separator:ga7f4710125f45643b7acdaa58dbfff225"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Definições de tipos</h2></td></tr>
+<tr class="memitem:ga69bf43aad81e3ee2d55250c59b857493" id="r_ga69bf43aad81e3ee2d55250c59b857493"><td class="memItemLeft" align="right" valign="top">typedef struct _snode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></td></tr>
+<tr class="separator:ga69bf43aad81e3ee2d55250c59b857493"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga44658c336b634c03938a251cdc8134f8" id="r_ga44658c336b634c03938a251cdc8134f8"><td class="memItemLeft" align="right" valign="top">typedef struct _slist&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__single-linked-list__apis.html#ga44658c336b634c03938a251cdc8134f8">sys_slist_t</a></td></tr>
+<tr class="separator:ga44658c336b634c03938a251cdc8134f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<p>Single-linked list implementation. </p>
+<p>Single-linked list implementation using inline macros/functions. This API is not thread safe, and thus if a list is used across threads, calls to functions must be protected with synchronization primitives. </p>
+<h2 class="groupheader">Documentação das macros</h2>
+<a id="ga07e4257835751e18a6c06bfa5f9c25e8" name="ga07e4257835751e18a6c06bfa5f9c25e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga07e4257835751e18a6c06bfa5f9c25e8">&#9670;&#160;</a></span>SYS_SLIST_CONTAINER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYS_SLIST_CONTAINER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__ln, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__cn, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__n&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;	Z_GENLIST_CONTAINER(__ln, __cn, __n)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provide the primitive to resolve the container of a list node Note: it is safe to use with NULL pointer nodes. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__ln</td><td>A pointer on a sys_node_t to get its container </td></tr>
+    <tr><td class="paramname">__cn</td><td>Container struct type pointer </td></tr>
+    <tr><td class="paramname">__n</td><td>The field name of sys_node_t within the container struct </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gacd97d2f1044c0560d96c9f9a6f26d2f6" name="gacd97d2f1044c0560d96c9f9a6f26d2f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacd97d2f1044c0560d96c9f9a6f26d2f6">&#9670;&#160;</a></span>SYS_SLIST_FOR_EACH_CONTAINER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYS_SLIST_FOR_EACH_CONTAINER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__sl, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__cn, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__n&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;	Z_GENLIST_FOR_EACH_CONTAINER(slist, __sl, __cn, __n)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provide the primitive to iterate on a list under a container Note: the loop is unsafe and thus __cn should not be detached. </p>
+<p>User <em>MUST</em> add the loop statement curly braces enclosing its own code: </p><pre class="fragment">SYS_SLIST_FOR_EACH_CONTAINER(l, c, n) {
+    &lt;user code&gt;
+}
+</pre> <dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__sl</td><td>A pointer on a sys_slist_t to iterate on </td></tr>
+    <tr><td class="paramname">__cn</td><td>A pointer to peek each entry of the list </td></tr>
+    <tr><td class="paramname">__n</td><td>The field name of sys_node_t within the container struct </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gacf3aaf32a6a3389229b548588c6d655e" name="gacf3aaf32a6a3389229b548588c6d655e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacf3aaf32a6a3389229b548588c6d655e">&#9670;&#160;</a></span>SYS_SLIST_FOR_EACH_CONTAINER_SAFE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYS_SLIST_FOR_EACH_CONTAINER_SAFE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__sl, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__cn, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__cns, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__n&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;	Z_GENLIST_FOR_EACH_CONTAINER_SAFE(slist, __sl, __cn, __cns, __n)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provide the primitive to safely iterate on a list under a container Note: __cn can be detached, it will not break the loop. </p>
+<p>User <em>MUST</em> add the loop statement curly braces enclosing its own code: </p><pre class="fragment">SYS_SLIST_FOR_EACH_NODE_SAFE(l, c, cn, n) {
+    &lt;user code&gt;
+}
+</pre> <dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__sl</td><td>A pointer on a sys_slist_t to iterate on </td></tr>
+    <tr><td class="paramname">__cn</td><td>A pointer to peek each entry of the list </td></tr>
+    <tr><td class="paramname">__cns</td><td>A pointer for the loop to run safely </td></tr>
+    <tr><td class="paramname">__n</td><td>The field name of sys_node_t within the container struct </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaf32ac0f222186e497d3f6180b6c26352" name="gaf32ac0f222186e497d3f6180b6c26352"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf32ac0f222186e497d3f6180b6c26352">&#9670;&#160;</a></span>SYS_SLIST_FOR_EACH_NODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYS_SLIST_FOR_EACH_NODE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__sl, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__sn&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;	Z_GENLIST_FOR_EACH_NODE(slist, __sl, __sn)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provide the primitive to iterate on a list Note: the loop is unsafe and thus __sn should not be removed. </p>
+<p>User <em>MUST</em> add the loop statement curly braces enclosing its own code: </p><pre class="fragment">SYS_SLIST_FOR_EACH_NODE(l, n) {
+    &lt;user code&gt;
+}
+</pre><p> This and other SYS_SLIST_*() macros are not thread safe.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__sl</td><td>A pointer on a sys_slist_t to iterate on </td></tr>
+    <tr><td class="paramname">__sn</td><td>A sys_snode_t pointer to peek each node of the list </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gad6f1014e26d6cf9925d00b4f53076116" name="gad6f1014e26d6cf9925d00b4f53076116"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad6f1014e26d6cf9925d00b4f53076116">&#9670;&#160;</a></span>SYS_SLIST_FOR_EACH_NODE_SAFE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYS_SLIST_FOR_EACH_NODE_SAFE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__sl, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__sn, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__sns&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;	Z_GENLIST_FOR_EACH_NODE_SAFE(slist, __sl, __sn, __sns)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provide the primitive to safely iterate on a list Note: __sn can be removed, it will not break the loop. </p>
+<p>User <em>MUST</em> add the loop statement curly braces enclosing its own code: </p><pre class="fragment">SYS_SLIST_FOR_EACH_NODE_SAFE(l, n, s) {
+    &lt;user code&gt;
+}
+</pre><p> This and other SYS_SLIST_*() macros are not thread safe.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__sl</td><td>A pointer on a sys_slist_t to iterate on </td></tr>
+    <tr><td class="paramname">__sn</td><td>A sys_snode_t pointer to peek each node of the list </td></tr>
+    <tr><td class="paramname">__sns</td><td>A sys_snode_t pointer for the loop to run safely </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga1740075b07ec67635c1934dcbe1b5cee" name="ga1740075b07ec67635c1934dcbe1b5cee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1740075b07ec67635c1934dcbe1b5cee">&#9670;&#160;</a></span>SYS_SLIST_ITERATE_FROM_NODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYS_SLIST_ITERATE_FROM_NODE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__sl, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__sn&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;	Z_GENLIST_ITERATE_FROM_NODE(slist, __sl, __sn)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provide the primitive to iterate on a list, from a node in the list Note: the loop is unsafe and thus __sn should not be removed. </p>
+<p>User <em>MUST</em> add the loop statement curly braces enclosing its own code: </p><pre class="fragment">SYS_SLIST_ITERATE_FROM_NODE(l, n) {
+    &lt;user code&gt;
+}
+</pre><p> Like <a class="el" href="group__single-linked-list__apis.html#gaf32ac0f222186e497d3f6180b6c26352" title="Provide the primitive to iterate on a list Note: the loop is unsafe and thus __sn should not be remov...">SYS_SLIST_FOR_EACH_NODE()</a>, but __dn already contains a node in the list where to start searching for the next entry from. If NULL, it starts from the head.</p>
+<p>This and other SYS_SLIST_*() macros are not thread safe.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__sl</td><td>A pointer on a sys_slist_t to iterate on </td></tr>
+    <tr><td class="paramname">__sn</td><td>A sys_snode_t pointer to peek each node of the list it contains the starting node, or NULL to start from the head </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga8fdb1e6baa7ba061dc1bd35f73a2fff1" name="ga8fdb1e6baa7ba061dc1bd35f73a2fff1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8fdb1e6baa7ba061dc1bd35f73a2fff1">&#9670;&#160;</a></span>SYS_SLIST_PEEK_HEAD_CONTAINER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYS_SLIST_PEEK_HEAD_CONTAINER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__sl, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__cn, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__n&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;	Z_GENLIST_PEEK_HEAD_CONTAINER(slist, __sl, __cn, __n)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provide the primitive to peek container of the list head. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__sl</td><td>A pointer on a sys_slist_t to peek </td></tr>
+    <tr><td class="paramname">__cn</td><td>Container struct type pointer </td></tr>
+    <tr><td class="paramname">__n</td><td>The field name of sys_node_t within the container struct </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga5d1c9ee21f75da485ba12aa56471e699" name="ga5d1c9ee21f75da485ba12aa56471e699"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5d1c9ee21f75da485ba12aa56471e699">&#9670;&#160;</a></span>SYS_SLIST_PEEK_NEXT_CONTAINER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYS_SLIST_PEEK_NEXT_CONTAINER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__cn, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__n&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;	Z_GENLIST_PEEK_NEXT_CONTAINER(slist, __cn, __n)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provide the primitive to peek the next container. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__cn</td><td>Container struct type pointer </td></tr>
+    <tr><td class="paramname">__n</td><td>The field name of sys_node_t within the container struct </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga709c87e180d48c782c1583d7fb7629b3" name="ga709c87e180d48c782c1583d7fb7629b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga709c87e180d48c782c1583d7fb7629b3">&#9670;&#160;</a></span>SYS_SLIST_PEEK_TAIL_CONTAINER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYS_SLIST_PEEK_TAIL_CONTAINER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__sl, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__cn, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">__n&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;	Z_GENLIST_PEEK_TAIL_CONTAINER(slist, __sl, __cn, __n)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provide the primitive to peek container of the list tail. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__sl</td><td>A pointer on a sys_slist_t to peek </td></tr>
+    <tr><td class="paramname">__cn</td><td>Container struct type pointer </td></tr>
+    <tr><td class="paramname">__n</td><td>The field name of sys_node_t within the container struct </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga7f4710125f45643b7acdaa58dbfff225" name="ga7f4710125f45643b7acdaa58dbfff225"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7f4710125f45643b7acdaa58dbfff225">&#9670;&#160;</a></span>SYS_SLIST_STATIC_INIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SYS_SLIST_STATIC_INIT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">ptr_to_list</td><td>)</td>
+          <td>&#160;&#160;&#160;{NULL, NULL}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Statically initialize a single-linked list. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ptr_to_list</td><td>A pointer on the list to initialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação dos tipos</h2>
+<a id="ga44658c336b634c03938a251cdc8134f8" name="ga44658c336b634c03938a251cdc8134f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga44658c336b634c03938a251cdc8134f8">&#9670;&#160;</a></span>sys_slist_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct _slist <a class="el" href="group__single-linked-list__apis.html#ga44658c336b634c03938a251cdc8134f8">sys_slist_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Single-linked list structure. </p>
+
+</div>
+</div>
+<a id="ga69bf43aad81e3ee2d55250c59b857493" name="ga69bf43aad81e3ee2d55250c59b857493"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga69bf43aad81e3ee2d55250c59b857493">&#9670;&#160;</a></span>sys_snode_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct _snode <a class="el" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Single-linked list node structure. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/storage/flash_map.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7af5f256457bbbf4ca8f6927e1939ee4.html">storage</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">flash_map.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="flash__map_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2017 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2015 Runtime Inc</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * Copyright (c) 2023 Sensorfy B.V.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_STORAGE_FLASH_MAP_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define ZEPHYR_INCLUDE_STORAGE_FLASH_MAP_H_</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"> * This API makes it possible to operate on flash areas easily and</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment"> * effectively.</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"> * The system contains global data about flash areas. Every area</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"> * contains an ID number, offset, and length.</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;<a class="code" href="devicetree_8h.html">zephyr/devicetree.h</a>&gt;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#ga3435d1517409d28c06f3bb11be4aea4c">   47</a></span><span class="preprocessor">#define SOC_FLASH_0_ID 0</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#ga8317a2991704a09e43b17189769ac8da">   49</a></span><span class="preprocessor">#define SPI_FLASH_0_ID 1</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="};">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structflash__area.html">   57</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structflash__area.html">flash_area</a> {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structflash__area.html#acfe73a1f4f00fdf58129b21e5b71f5d4">   59</a></span>    uint8_t <a class="code hl_variable" href="structflash__area.html#acfe73a1f4f00fdf58129b21e5b71f5d4">fa_id</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    uint16_t pad16;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structflash__area.html#a3a362ad9aa44725a0b0188042a2ee257">   62</a></span>    off_t <a class="code hl_variable" href="structflash__area.html#a3a362ad9aa44725a0b0188042a2ee257">fa_off</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structflash__area.html#a6c3c23c4c628f48c92505dddf4b24edf">   64</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structflash__area.html#a6c3c23c4c628f48c92505dddf4b24edf">fa_size</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structflash__area.html#a941637492ab4e321e3b08de19cd769d2">   66</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_variable" href="structflash__area.html#a941637492ab4e321e3b08de19cd769d2">fa_dev</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#if CONFIG_FLASH_MAP_LABELS</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *fa_label;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>};</div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="foldopen" id="foldopen00079" data-start="{" data-end="};">
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structflash__sector.html">   79</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structflash__sector.html">flash_sector</a> {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structflash__sector.html#a2e9899681d4ec66fac277a7a52e1830b">   81</a></span>    off_t <a class="code hl_variable" href="structflash__sector.html#a2e9899681d4ec66fac277a7a52e1830b">fs_off</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structflash__sector.html#ab1fef4b1b6978d25b5f809d778888f75">   83</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structflash__sector.html#ab1fef4b1b6978d25b5f809d778888f75">fs_size</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>};</div>
+</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#if defined(CONFIG_FLASH_AREA_CHECK_INTEGRITY)</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">struct </span>flash_area_check {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">const</span> uint8_t *match;       </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">size_t</span> clen;            </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">size_t</span> off;         </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    uint8_t *rbuf;          </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">size_t</span> rblen;           </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>};</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keywordtype">int</span> flash_area_check_int_sha256(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__area.html">flash_area</a> *fa,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                <span class="keyword">const</span> <span class="keyword">struct</span> flash_area_check *fac);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#ga6fe2593210688eb85e03bea5f96ea2f7">  127</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__flash__area__api.html#ga6fe2593210688eb85e03bea5f96ea2f7">flash_area_open</a>(uint8_t <span class="keywordtype">id</span>, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__area.html">flash_area</a> **fa);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#gaff2ae50bb961846f5d5362c90e0c7a39">  137</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__flash__area__api.html#gaff2ae50bb961846f5d5362c90e0c7a39">flash_area_close</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__area.html">flash_area</a> *fa);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#ga7c55704b0c0061a4715470676114b127">  153</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__flash__area__api.html#ga7c55704b0c0061a4715470676114b127">flash_area_read</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__area.html">flash_area</a> *fa, off_t off, <span class="keywordtype">void</span> *dst,</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#gaa56052f8d6bf4f6966752bc21f5cceb8">  170</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__flash__area__api.html#gaa56052f8d6bf4f6966752bc21f5cceb8">flash_area_write</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__area.html">flash_area</a> *fa, off_t off, <span class="keyword">const</span> <span class="keywordtype">void</span> *src,</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>             <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#gacc5cbff19d23773115f3334f862814d2">  186</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__flash__area__api.html#gacc5cbff19d23773115f3334f862814d2">flash_area_erase</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__area.html">flash_area</a> *fa, off_t off, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#ga13b7294e84544373e97b8c0274859f6e">  198</a></span>uint32_t <a class="code hl_function" href="group__flash__area__api.html#ga13b7294e84544373e97b8c0274859f6e">flash_area_align</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__area.html">flash_area</a> *fa);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#ga5c89e0be6c41058beb1c3f87a0c9c94f">  212</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__flash__area__api.html#ga5c89e0be6c41058beb1c3f87a0c9c94f">flash_area_get_sectors</a>(<span class="keywordtype">int</span> fa_id, uint32_t *count,</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>               <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__sector.html">flash_sector</a> *sectors);</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#gab9d0b43faefa1f25805e7def82819f2c">  222</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__flash__area__api.html#gab9d0b43faefa1f25805e7def82819f2c">flash_area_cb_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structflash__area.html">flash_area</a> *fa,</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>                <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#ga34e74955153f8576acdbff1a524f2d37">  231</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__flash__area__api.html#ga34e74955153f8576acdbff1a524f2d37">flash_area_foreach</a>(<a class="code hl_typedef" href="group__flash__area__api.html#gab9d0b43faefa1f25805e7def82819f2c">flash_area_cb_t</a> user_cb, <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#ga557d5fd981b0d52d0eb483ab218c497c">  241</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__flash__area__api.html#ga557d5fd981b0d52d0eb483ab218c497c">flash_area_has_driver</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__area.html">flash_area</a> *fa);</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#gaed7d16e272d7644f556d2edaa942b308">  250</a></span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_function" href="group__flash__area__api.html#gaed7d16e272d7644f556d2edaa942b308">flash_area_get_device</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__area.html">flash_area</a> *fa);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="preprocessor">#if CONFIG_FLASH_MAP_LABELS</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="keyword">const</span> <span class="keywordtype">char</span> *flash_area_label(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__area.html">flash_area</a> *fa);</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#ga1f16d59cecb25c5143c6a923b3b2f466">  272</a></span>uint8_t <a class="code hl_function" href="group__flash__area__api.html#ga1f16d59cecb25c5143c6a923b3b2f466">flash_area_erased_val</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__area.html">flash_area</a> *fa);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="preprocessor">#if USE_PARTITION_MANAGER</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="preprocessor">#include &lt;flash_map_pm.h&gt;</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="preprocessor">#define FLASH_AREA_LABEL_EXISTS(label) __DEPRECATED_MACRO \</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="preprocessor">    DT_HAS_FIXED_PARTITION_LABEL(label)</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="preprocessor">#define FLASH_AREA_LABEL_STR(lbl) __DEPRECATED_MACRO \</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="preprocessor">    DT_PROP(DT_NODE_BY_FIXED_PARTITION_LABEL(lbl), label)</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="preprocessor">#define FLASH_AREA_ID(label) __DEPRECATED_MACRO \</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="preprocessor">    DT_FIXED_PARTITION_ID(DT_NODE_BY_FIXED_PARTITION_LABEL(label))</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="preprocessor">#define FLASH_AREA_OFFSET(label) __DEPRECATED_MACRO \</span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="preprocessor">    DT_REG_ADDR(DT_NODE_BY_FIXED_PARTITION_LABEL(label))</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="preprocessor">#define FLASH_AREA_SIZE(label) __DEPRECATED_MACRO \</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="preprocessor">    DT_REG_SIZE(DT_NODE_BY_FIXED_PARTITION_LABEL(label))</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#gabb94759e5717302724f08f90f941a945">  301</a></span><span class="preprocessor">#define FIXED_PARTITION_EXISTS(label) DT_FIXED_PARTITION_EXISTS(DT_NODELABEL(label))</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#ga60d5298007e2ee261b915a110389e76a">  310</a></span><span class="preprocessor">#define FIXED_PARTITION_ID(label) DT_FIXED_PARTITION_ID(DT_NODELABEL(label))</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#ga9229bc06458c19baf093ced063a9494b">  319</a></span><span class="preprocessor">#define FIXED_PARTITION_OFFSET(label) DT_REG_ADDR(DT_NODELABEL(label))</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#ga2dbc50d9f80d7f7c597c75cbd536cd50">  328</a></span><span class="preprocessor">#define FIXED_PARTITION_SIZE(label) DT_REG_SIZE(DT_NODELABEL(label))</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
+<div class="foldopen" id="foldopen00337" data-start="" data-end="">
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#gacca3f32100a4e46cb7da21ea8bf0782c">  337</a></span><span class="preprocessor">#define FLASH_AREA_DEVICE(label) \</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="preprocessor">    DEVICE_DT_GET(DT_MTD_FROM_FIXED_PARTITION(DT_NODE_BY_FIXED_PARTITION_LABEL(label)))</span></div>
+</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="foldopen" id="foldopen00347" data-start="" data-end="">
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="group__flash__area__api.html#ga3c92b6797feb183da38b8b57e77f2d17">  347</a></span><span class="preprocessor">#define FIXED_PARTITION_DEVICE(label) \</span></div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="preprocessor">    DEVICE_DT_GET(DT_MTD_FROM_FIXED_PARTITION(DT_NODELABEL(label)))</span></div>
+</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="preprocessor">#endif </span><span class="comment">/* USE_PARTITION_MANAGER */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span> </div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>}</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_STORAGE_FLASH_MAP_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adevicetree_8h_html"><div class="ttname"><a href="devicetree_8h.html">devicetree.h</a></div><div class="ttdoc">Devicetree main header.</div></div>
+<div class="ttc" id="agroup__flash__area__api_html_ga13b7294e84544373e97b8c0274859f6e"><div class="ttname"><a href="group__flash__area__api.html#ga13b7294e84544373e97b8c0274859f6e">flash_area_align</a></div><div class="ttdeci">uint32_t flash_area_align(const struct flash_area *fa)</div><div class="ttdoc">Get write block size of the flash area.</div></div>
+<div class="ttc" id="agroup__flash__area__api_html_ga1f16d59cecb25c5143c6a923b3b2f466"><div class="ttname"><a href="group__flash__area__api.html#ga1f16d59cecb25c5143c6a923b3b2f466">flash_area_erased_val</a></div><div class="ttdeci">uint8_t flash_area_erased_val(const struct flash_area *fa)</div></div>
+<div class="ttc" id="agroup__flash__area__api_html_ga34e74955153f8576acdbff1a524f2d37"><div class="ttname"><a href="group__flash__area__api.html#ga34e74955153f8576acdbff1a524f2d37">flash_area_foreach</a></div><div class="ttdeci">void flash_area_foreach(flash_area_cb_t user_cb, void *user_data)</div></div>
+<div class="ttc" id="agroup__flash__area__api_html_ga557d5fd981b0d52d0eb483ab218c497c"><div class="ttname"><a href="group__flash__area__api.html#ga557d5fd981b0d52d0eb483ab218c497c">flash_area_has_driver</a></div><div class="ttdeci">int flash_area_has_driver(const struct flash_area *fa)</div></div>
+<div class="ttc" id="agroup__flash__area__api_html_ga5c89e0be6c41058beb1c3f87a0c9c94f"><div class="ttname"><a href="group__flash__area__api.html#ga5c89e0be6c41058beb1c3f87a0c9c94f">flash_area_get_sectors</a></div><div class="ttdeci">int flash_area_get_sectors(int fa_id, uint32_t *count, struct flash_sector *sectors)</div></div>
+<div class="ttc" id="agroup__flash__area__api_html_ga6fe2593210688eb85e03bea5f96ea2f7"><div class="ttname"><a href="group__flash__area__api.html#ga6fe2593210688eb85e03bea5f96ea2f7">flash_area_open</a></div><div class="ttdeci">int flash_area_open(uint8_t id, const struct flash_area **fa)</div><div class="ttdoc">Retrieve partitions flash area from the flash_map.</div></div>
+<div class="ttc" id="agroup__flash__area__api_html_ga7c55704b0c0061a4715470676114b127"><div class="ttname"><a href="group__flash__area__api.html#ga7c55704b0c0061a4715470676114b127">flash_area_read</a></div><div class="ttdeci">int flash_area_read(const struct flash_area *fa, off_t off, void *dst, size_t len)</div><div class="ttdoc">Read flash area data.</div></div>
+<div class="ttc" id="agroup__flash__area__api_html_gaa56052f8d6bf4f6966752bc21f5cceb8"><div class="ttname"><a href="group__flash__area__api.html#gaa56052f8d6bf4f6966752bc21f5cceb8">flash_area_write</a></div><div class="ttdeci">int flash_area_write(const struct flash_area *fa, off_t off, const void *src, size_t len)</div><div class="ttdoc">Write data to flash area.</div></div>
+<div class="ttc" id="agroup__flash__area__api_html_gab9d0b43faefa1f25805e7def82819f2c"><div class="ttname"><a href="group__flash__area__api.html#gab9d0b43faefa1f25805e7def82819f2c">flash_area_cb_t</a></div><div class="ttdeci">void(* flash_area_cb_t)(const struct flash_area *fa, void *user_data)</div><div class="ttdef"><b>Definição</b> flash_map.h:222</div></div>
+<div class="ttc" id="agroup__flash__area__api_html_gacc5cbff19d23773115f3334f862814d2"><div class="ttname"><a href="group__flash__area__api.html#gacc5cbff19d23773115f3334f862814d2">flash_area_erase</a></div><div class="ttdeci">int flash_area_erase(const struct flash_area *fa, off_t off, size_t len)</div><div class="ttdoc">Erase flash area.</div></div>
+<div class="ttc" id="agroup__flash__area__api_html_gaed7d16e272d7644f556d2edaa942b308"><div class="ttname"><a href="group__flash__area__api.html#gaed7d16e272d7644f556d2edaa942b308">flash_area_get_device</a></div><div class="ttdeci">const struct device * flash_area_get_device(const struct flash_area *fa)</div></div>
+<div class="ttc" id="agroup__flash__area__api_html_gaff2ae50bb961846f5d5362c90e0c7a39"><div class="ttname"><a href="group__flash__area__api.html#gaff2ae50bb961846f5d5362c90e0c7a39">flash_area_close</a></div><div class="ttdeci">void flash_area_close(const struct flash_area *fa)</div><div class="ttdoc">Close flash_area.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructflash__area_html"><div class="ttname"><a href="structflash__area.html">flash_area</a></div><div class="ttdoc">Flash partition.</div><div class="ttdef"><b>Definição</b> flash_map.h:57</div></div>
+<div class="ttc" id="astructflash__area_html_a3a362ad9aa44725a0b0188042a2ee257"><div class="ttname"><a href="structflash__area.html#a3a362ad9aa44725a0b0188042a2ee257">flash_area::fa_off</a></div><div class="ttdeci">off_t fa_off</div><div class="ttdef"><b>Definição</b> flash_map.h:62</div></div>
+<div class="ttc" id="astructflash__area_html_a6c3c23c4c628f48c92505dddf4b24edf"><div class="ttname"><a href="structflash__area.html#a6c3c23c4c628f48c92505dddf4b24edf">flash_area::fa_size</a></div><div class="ttdeci">size_t fa_size</div><div class="ttdef"><b>Definição</b> flash_map.h:64</div></div>
+<div class="ttc" id="astructflash__area_html_a941637492ab4e321e3b08de19cd769d2"><div class="ttname"><a href="structflash__area.html#a941637492ab4e321e3b08de19cd769d2">flash_area::fa_dev</a></div><div class="ttdeci">const struct device * fa_dev</div><div class="ttdef"><b>Definição</b> flash_map.h:66</div></div>
+<div class="ttc" id="astructflash__area_html_acfe73a1f4f00fdf58129b21e5b71f5d4"><div class="ttname"><a href="structflash__area.html#acfe73a1f4f00fdf58129b21e5b71f5d4">flash_area::fa_id</a></div><div class="ttdeci">uint8_t fa_id</div><div class="ttdef"><b>Definição</b> flash_map.h:59</div></div>
+<div class="ttc" id="astructflash__sector_html"><div class="ttname"><a href="structflash__sector.html">flash_sector</a></div><div class="ttdoc">Structure for transfer flash sector boundaries.</div><div class="ttdef"><b>Definição</b> flash_map.h:79</div></div>
+<div class="ttc" id="astructflash__sector_html_a2e9899681d4ec66fac277a7a52e1830b"><div class="ttname"><a href="structflash__sector.html#a2e9899681d4ec66fac277a7a52e1830b">flash_sector::fs_off</a></div><div class="ttdeci">off_t fs_off</div><div class="ttdef"><b>Definição</b> flash_map.h:81</div></div>
+<div class="ttc" id="astructflash__sector_html_ab1fef4b1b6978d25b5f809d778888f75"><div class="ttname"><a href="structflash__sector.html#ab1fef4b1b6978d25b5f809d778888f75">flash_sector::fs_size</a></div><div class="ttdeci">size_t fs_size</div><div class="ttdef"><b>Definição</b> flash_map.h:83</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

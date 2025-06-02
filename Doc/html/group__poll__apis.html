@@ -1,0 +1,532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Async polling APIs</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Estruturas de Dados</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerações</a> &#124;
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle"><div class="title">Async polling APIs<div class="ingroups"><a class="el" href="group__kernel__apis.html">Kernel APIs</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Diagrama de colaboração para Async polling APIs:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__poll__apis.png" border="0" usemap="#agroup____poll____apis" alt=""/></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Estruturas de Dados</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structk__poll__signal.html">k_poll_signal</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structk__poll__event.html">k_poll_event</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Poll Event.  <a href="structk__poll__event.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gafd5d801eb9e9cf6097b2c08b4933998e" id="r_gafd5d801eb9e9cf6097b2c08b4933998e"><td class="memItemLeft" align="right" valign="top"><a id="gafd5d801eb9e9cf6097b2c08b4933998e" name="gafd5d801eb9e9cf6097b2c08b4933998e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_TYPE_IGNORE</b>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:gafd5d801eb9e9cf6097b2c08b4933998e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga144d8eb34d85f6053e454410a10bf56a" id="r_ga144d8eb34d85f6053e454410a10bf56a"><td class="memItemLeft" align="right" valign="top"><a id="ga144d8eb34d85f6053e454410a10bf56a" name="ga144d8eb34d85f6053e454410a10bf56a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_TYPE_SIGNAL</b>&#160;&#160;&#160;Z_POLL_TYPE_BIT(_POLL_TYPE_SIGNAL)</td></tr>
+<tr class="separator:ga144d8eb34d85f6053e454410a10bf56a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0fd7605bdffd43dff7480a90a603ffde" id="r_ga0fd7605bdffd43dff7480a90a603ffde"><td class="memItemLeft" align="right" valign="top"><a id="ga0fd7605bdffd43dff7480a90a603ffde" name="ga0fd7605bdffd43dff7480a90a603ffde"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_TYPE_SEM_AVAILABLE</b>&#160;&#160;&#160;Z_POLL_TYPE_BIT(_POLL_TYPE_SEM_AVAILABLE)</td></tr>
+<tr class="separator:ga0fd7605bdffd43dff7480a90a603ffde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga58d656f73f031a39b8a936133fe5504f" id="r_ga58d656f73f031a39b8a936133fe5504f"><td class="memItemLeft" align="right" valign="top"><a id="ga58d656f73f031a39b8a936133fe5504f" name="ga58d656f73f031a39b8a936133fe5504f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_TYPE_DATA_AVAILABLE</b>&#160;&#160;&#160;Z_POLL_TYPE_BIT(_POLL_TYPE_DATA_AVAILABLE)</td></tr>
+<tr class="separator:ga58d656f73f031a39b8a936133fe5504f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga71734fee18c523cf70276260118afb91" id="r_ga71734fee18c523cf70276260118afb91"><td class="memItemLeft" align="right" valign="top"><a id="ga71734fee18c523cf70276260118afb91" name="ga71734fee18c523cf70276260118afb91"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_TYPE_FIFO_DATA_AVAILABLE</b>&#160;&#160;&#160;K_POLL_TYPE_DATA_AVAILABLE</td></tr>
+<tr class="separator:ga71734fee18c523cf70276260118afb91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa83509b54175fb6c98324422a928d5e1" id="r_gaa83509b54175fb6c98324422a928d5e1"><td class="memItemLeft" align="right" valign="top"><a id="gaa83509b54175fb6c98324422a928d5e1" name="gaa83509b54175fb6c98324422a928d5e1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_TYPE_MSGQ_DATA_AVAILABLE</b>&#160;&#160;&#160;Z_POLL_TYPE_BIT(_POLL_TYPE_MSGQ_DATA_AVAILABLE)</td></tr>
+<tr class="separator:gaa83509b54175fb6c98324422a928d5e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga14e113201a3b3ad768c6a5ce917d1912" id="r_ga14e113201a3b3ad768c6a5ce917d1912"><td class="memItemLeft" align="right" valign="top"><a id="ga14e113201a3b3ad768c6a5ce917d1912" name="ga14e113201a3b3ad768c6a5ce917d1912"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_TYPE_PIPE_DATA_AVAILABLE</b>&#160;&#160;&#160;Z_POLL_TYPE_BIT(_POLL_TYPE_PIPE_DATA_AVAILABLE)</td></tr>
+<tr class="separator:ga14e113201a3b3ad768c6a5ce917d1912"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga522822c5e06a89b22ce4dcefd10c66aa" id="r_ga522822c5e06a89b22ce4dcefd10c66aa"><td class="memItemLeft" align="right" valign="top"><a id="ga522822c5e06a89b22ce4dcefd10c66aa" name="ga522822c5e06a89b22ce4dcefd10c66aa"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_STATE_NOT_READY</b>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:ga522822c5e06a89b22ce4dcefd10c66aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga478aae7fe4fb5c7b7c76ed216c22a7f1" id="r_ga478aae7fe4fb5c7b7c76ed216c22a7f1"><td class="memItemLeft" align="right" valign="top"><a id="ga478aae7fe4fb5c7b7c76ed216c22a7f1" name="ga478aae7fe4fb5c7b7c76ed216c22a7f1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_STATE_SIGNALED</b>&#160;&#160;&#160;Z_POLL_STATE_BIT(_POLL_STATE_SIGNALED)</td></tr>
+<tr class="separator:ga478aae7fe4fb5c7b7c76ed216c22a7f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae9e3eefd5a29a538d22f53592578bb37" id="r_gae9e3eefd5a29a538d22f53592578bb37"><td class="memItemLeft" align="right" valign="top"><a id="gae9e3eefd5a29a538d22f53592578bb37" name="gae9e3eefd5a29a538d22f53592578bb37"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_STATE_SEM_AVAILABLE</b>&#160;&#160;&#160;Z_POLL_STATE_BIT(_POLL_STATE_SEM_AVAILABLE)</td></tr>
+<tr class="separator:gae9e3eefd5a29a538d22f53592578bb37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac166d9919d591bace163c5211e7b41f4" id="r_gac166d9919d591bace163c5211e7b41f4"><td class="memItemLeft" align="right" valign="top"><a id="gac166d9919d591bace163c5211e7b41f4" name="gac166d9919d591bace163c5211e7b41f4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_STATE_DATA_AVAILABLE</b>&#160;&#160;&#160;Z_POLL_STATE_BIT(_POLL_STATE_DATA_AVAILABLE)</td></tr>
+<tr class="separator:gac166d9919d591bace163c5211e7b41f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd5ac3341698534f39ded718079d6168" id="r_gabd5ac3341698534f39ded718079d6168"><td class="memItemLeft" align="right" valign="top"><a id="gabd5ac3341698534f39ded718079d6168" name="gabd5ac3341698534f39ded718079d6168"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_STATE_FIFO_DATA_AVAILABLE</b>&#160;&#160;&#160;K_POLL_STATE_DATA_AVAILABLE</td></tr>
+<tr class="separator:gabd5ac3341698534f39ded718079d6168"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac236074cd43f59f28b803fe2c4a4f6f7" id="r_gac236074cd43f59f28b803fe2c4a4f6f7"><td class="memItemLeft" align="right" valign="top"><a id="gac236074cd43f59f28b803fe2c4a4f6f7" name="gac236074cd43f59f28b803fe2c4a4f6f7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_STATE_MSGQ_DATA_AVAILABLE</b>&#160;&#160;&#160;Z_POLL_STATE_BIT(_POLL_STATE_MSGQ_DATA_AVAILABLE)</td></tr>
+<tr class="separator:gac236074cd43f59f28b803fe2c4a4f6f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9028d6868ee964ca25931ed9170068dd" id="r_ga9028d6868ee964ca25931ed9170068dd"><td class="memItemLeft" align="right" valign="top"><a id="ga9028d6868ee964ca25931ed9170068dd" name="ga9028d6868ee964ca25931ed9170068dd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_STATE_PIPE_DATA_AVAILABLE</b>&#160;&#160;&#160;Z_POLL_STATE_BIT(_POLL_STATE_PIPE_DATA_AVAILABLE)</td></tr>
+<tr class="separator:ga9028d6868ee964ca25931ed9170068dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadaf4b4c8e13afb54114af72d133e1fdb" id="r_gadaf4b4c8e13afb54114af72d133e1fdb"><td class="memItemLeft" align="right" valign="top"><a id="gadaf4b4c8e13afb54114af72d133e1fdb" name="gadaf4b4c8e13afb54114af72d133e1fdb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_POLL_STATE_CANCELLED</b>&#160;&#160;&#160;Z_POLL_STATE_BIT(_POLL_STATE_CANCELLED)</td></tr>
+<tr class="separator:gadaf4b4c8e13afb54114af72d133e1fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6d6321e189afca73a276cd671ec531ae" id="r_ga6d6321e189afca73a276cd671ec531ae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__poll__apis.html#ga6d6321e189afca73a276cd671ec531ae">K_POLL_SIGNAL_INITIALIZER</a>(obj)</td></tr>
+<tr class="separator:ga6d6321e189afca73a276cd671ec531ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8e3889f2bac281a6e65e31068e58047e" id="r_ga8e3889f2bac281a6e65e31068e58047e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__poll__apis.html#ga8e3889f2bac281a6e65e31068e58047e">K_POLL_EVENT_INITIALIZER</a>(_event_type,  _event_mode,  _event_obj)</td></tr>
+<tr class="separator:ga8e3889f2bac281a6e65e31068e58047e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gada2366896d913dc916b3c28642648b63" id="r_gada2366896d913dc916b3c28642648b63"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__poll__apis.html#gada2366896d913dc916b3c28642648b63">K_POLL_EVENT_STATIC_INITIALIZER</a>(_event_type,  _event_mode,  _event_obj,  event_tag)</td></tr>
+<tr class="separator:gada2366896d913dc916b3c28642648b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerações</h2></td></tr>
+<tr class="memitem:ga36d7978872a83191dd3cc16d62165add" id="r_ga36d7978872a83191dd3cc16d62165add"><td class="memItemLeft" align="right" valign="top"><a id="ga36d7978872a83191dd3cc16d62165add" name="ga36d7978872a83191dd3cc16d62165add"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>k_poll_modes</b> { <b>K_POLL_MODE_NOTIFY_ONLY</b> = 0
+, <b>K_POLL_NUM_MODES</b>
+ }</td></tr>
+<tr class="separator:ga36d7978872a83191dd3cc16d62165add"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:gaa06bddd93a024fc5326d93187d80eb03" id="r_gaa06bddd93a024fc5326d93187d80eb03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__poll__apis.html#gaa06bddd93a024fc5326d93187d80eb03">k_poll_event_init</a> (struct <a class="el" href="structk__poll__event.html">k_poll_event</a> *event, uint32_t type, int mode, void *obj)</td></tr>
+<tr class="memdesc:gaa06bddd93a024fc5326d93187d80eb03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize one struct <a class="el" href="structk__poll__event.html" title="Poll Event.">k_poll_event</a> instance.  <br /></td></tr>
+<tr class="separator:gaa06bddd93a024fc5326d93187d80eb03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b40345f9e481c8d5de579a6a561f7a9" id="r_ga4b40345f9e481c8d5de579a6a561f7a9"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__poll__apis.html#ga4b40345f9e481c8d5de579a6a561f7a9">k_poll</a> (struct <a class="el" href="structk__poll__event.html">k_poll_event</a> *events, int num_events, <a class="el" href="structk__timeout__t.html">k_timeout_t</a> timeout)</td></tr>
+<tr class="memdesc:ga4b40345f9e481c8d5de579a6a561f7a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for one or many of multiple poll events to occur.  <br /></td></tr>
+<tr class="separator:ga4b40345f9e481c8d5de579a6a561f7a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9580b917cb5c5a9bbd2c75e0c697ea4e" id="r_ga9580b917cb5c5a9bbd2c75e0c697ea4e"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__poll__apis.html#ga9580b917cb5c5a9bbd2c75e0c697ea4e">k_poll_signal_init</a> (struct <a class="el" href="structk__poll__signal.html">k_poll_signal</a> *sig)</td></tr>
+<tr class="memdesc:ga9580b917cb5c5a9bbd2c75e0c697ea4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a poll signal object.  <br /></td></tr>
+<tr class="separator:ga9580b917cb5c5a9bbd2c75e0c697ea4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab3db4f2c35fcde56bf24a4f99deb596e" id="r_gab3db4f2c35fcde56bf24a4f99deb596e"><td class="memItemLeft" align="right" valign="top"><a id="gab3db4f2c35fcde56bf24a4f99deb596e" name="gab3db4f2c35fcde56bf24a4f99deb596e"></a>
+__syscall void&#160;</td><td class="memItemRight" valign="bottom"><b>k_poll_signal_reset</b> (struct <a class="el" href="structk__poll__signal.html">k_poll_signal</a> *sig)</td></tr>
+<tr class="separator:gab3db4f2c35fcde56bf24a4f99deb596e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0eeefa172fe4e18b01d97fe094c792d9" id="r_ga0eeefa172fe4e18b01d97fe094c792d9"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__poll__apis.html#ga0eeefa172fe4e18b01d97fe094c792d9">k_poll_signal_check</a> (struct <a class="el" href="structk__poll__signal.html">k_poll_signal</a> *sig, unsigned int *signaled, int *result)</td></tr>
+<tr class="memdesc:ga0eeefa172fe4e18b01d97fe094c792d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch the signaled state and result value of a poll signal.  <br /></td></tr>
+<tr class="separator:ga0eeefa172fe4e18b01d97fe094c792d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad3ea1a03892e8d9a101a64d87caef8bd" id="r_gad3ea1a03892e8d9a101a64d87caef8bd"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__poll__apis.html#gad3ea1a03892e8d9a101a64d87caef8bd">k_poll_signal_raise</a> (struct <a class="el" href="structk__poll__signal.html">k_poll_signal</a> *sig, int result)</td></tr>
+<tr class="memdesc:gad3ea1a03892e8d9a101a64d87caef8bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal a poll signal object.  <br /></td></tr>
+<tr class="separator:gad3ea1a03892e8d9a101a64d87caef8bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<h2 class="groupheader">Documentação das macros</h2>
+<a id="ga8e3889f2bac281a6e65e31068e58047e" name="ga8e3889f2bac281a6e65e31068e58047e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8e3889f2bac281a6e65e31068e58047e">&#9670;&#160;</a></span>K_POLL_EVENT_INITIALIZER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define K_POLL_EVENT_INITIALIZER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_event_type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_event_mode, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_event_obj&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">    { \</div>
+<div class="line">    .poller = NULL, \</div>
+<div class="line">    .type = _event_type, \</div>
+<div class="line">    .state = K_POLL_STATE_NOT_READY, \</div>
+<div class="line">    .mode = _event_mode, \</div>
+<div class="line">    .unused = 0, \</div>
+<div class="line">    { \</div>
+<div class="line">        .obj = _event_obj, \</div>
+<div class="line">    }, \</div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gada2366896d913dc916b3c28642648b63" name="gada2366896d913dc916b3c28642648b63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gada2366896d913dc916b3c28642648b63">&#9670;&#160;</a></span>K_POLL_EVENT_STATIC_INITIALIZER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define K_POLL_EVENT_STATIC_INITIALIZER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_event_type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_event_mode, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_event_obj, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">event_tag&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">    { \</div>
+<div class="line">    .tag = event_tag, \</div>
+<div class="line">    .type = _event_type, \</div>
+<div class="line">    .state = K_POLL_STATE_NOT_READY, \</div>
+<div class="line">    .mode = _event_mode, \</div>
+<div class="line">    .unused = 0, \</div>
+<div class="line">    { \</div>
+<div class="line">        .obj = _event_obj, \</div>
+<div class="line">    }, \</div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga6d6321e189afca73a276cd671ec531ae" name="ga6d6321e189afca73a276cd671ec531ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6d6321e189afca73a276cd671ec531ae">&#9670;&#160;</a></span>K_POLL_SIGNAL_INITIALIZER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define K_POLL_SIGNAL_INITIALIZER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">obj</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">    { \</div>
+<div class="line">    .poll_events = <a class="code hl_define" href="group__doubly-linked-list__apis.html#ga3681d4600f9cbd9237ea9ce6f67e508d">SYS_DLIST_STATIC_INIT</a>(&amp;obj.poll_events), \</div>
+<div class="line">    .signaled = 0, \</div>
+<div class="line">    .result = 0, \</div>
+<div class="line">    }</div>
+<div class="ttc" id="agroup__doubly-linked-list__apis_html_ga3681d4600f9cbd9237ea9ce6f67e508d"><div class="ttname"><a href="group__doubly-linked-list__apis.html#ga3681d4600f9cbd9237ea9ce6f67e508d">SYS_DLIST_STATIC_INIT</a></div><div class="ttdeci">#define SYS_DLIST_STATIC_INIT(ptr_to_list)</div><div class="ttdoc">Static initializer for a doubly-linked list.</div><div class="ttdef"><b>Definição</b> dlist.h:212</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentação das funções</h2>
+<a id="ga4b40345f9e481c8d5de579a6a561f7a9" name="ga4b40345f9e481c8d5de579a6a561f7a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4b40345f9e481c8d5de579a6a561f7a9">&#9670;&#160;</a></span>k_poll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int k_poll </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__poll__event.html">k_poll_event</a> *&#160;</td>
+          <td class="paramname"><em>events</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num_events</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structk__timeout__t.html">k_timeout_t</a>&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wait for one or many of multiple poll events to occur. </p>
+<p>This routine allows a thread to wait concurrently for one or many of multiple poll events to have occurred. Such events can be a kernel object being available, like a semaphore, or a poll signal event.</p>
+<p>When an event notifies that a kernel object is available, the kernel object is not "given" to the thread calling k_poll(): it merely signals the fact that the object was available when the k_poll() call was in effect. Also, all threads trying to acquire an object the regular way, i.e. by pending on the object, have precedence over the thread polling on the object. This means that the polling thread will never get the poll event on an object until the object becomes available and its pend queue is empty. For this reason, the k_poll() call is more effective when the objects being polled only have one thread, the polling thread, trying to acquire them.</p>
+<p>When k_poll() returns 0, the caller should loop on all the events that were passed to k_poll() and check the state field for the values that were expected and take the associated actions.</p>
+<p>Before being reused for another call to k_poll(), the user has to reset the state field to K_POLL_STATE_NOT_READY.</p>
+<p>When called from user mode, a temporary memory allocation is required from the caller's resource pool.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">events</td><td>An array of events to be polled for. </td></tr>
+    <tr><td class="paramname">num_events</td><td>The number of events in the array. </td></tr>
+    <tr><td class="paramname">timeout</td><td>Waiting period for an event to be ready, or one of the special values K_NO_WAIT and K_FOREVER.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>One or more events are ready. </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>Waiting period timed out. </td></tr>
+    <tr><td class="paramname">-EINTR</td><td>Polling has been interrupted, e.g. with k_queue_cancel_wait(). All output events are still set and valid, cancelled event(s) will be set to K_POLL_STATE_CANCELLED. In other words, -EINTR status means that at least one of output events is K_POLL_STATE_CANCELLED. </td></tr>
+    <tr><td class="paramname">-ENOMEM</td><td>Thread resource pool insufficient memory (user mode only) </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>Bad parameters (user mode only) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaa06bddd93a024fc5326d93187d80eb03" name="gaa06bddd93a024fc5326d93187d80eb03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa06bddd93a024fc5326d93187d80eb03">&#9670;&#160;</a></span>k_poll_event_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void k_poll_event_init </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__poll__event.html">k_poll_event</a> *&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>obj</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize one struct <a class="el" href="structk__poll__event.html" title="Poll Event.">k_poll_event</a> instance. </p>
+<p>After this routine is called on a poll event, the event it ready to be placed in an event array to be passed to k_poll().</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>The event to initialize. </td></tr>
+    <tr><td class="paramname">type</td><td>A bitfield of the types of event, from the K_POLL_TYPE_xxx values. Only values that apply to the same object being polled can be used together. Choosing K_POLL_TYPE_IGNORE disables the event. </td></tr>
+    <tr><td class="paramname">mode</td><td>Future. Use K_POLL_MODE_NOTIFY_ONLY. </td></tr>
+    <tr><td class="paramname">obj</td><td>Kernel object or poll signal. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0eeefa172fe4e18b01d97fe094c792d9" name="ga0eeefa172fe4e18b01d97fe094c792d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0eeefa172fe4e18b01d97fe094c792d9">&#9670;&#160;</a></span>k_poll_signal_check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void k_poll_signal_check </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__poll__signal.html">k_poll_signal</a> *&#160;</td>
+          <td class="paramname"><em>sig</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int *&#160;</td>
+          <td class="paramname"><em>signaled</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fetch the signaled state and result value of a poll signal. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>A poll signal object </td></tr>
+    <tr><td class="paramname">signaled</td><td>An integer buffer which will be written nonzero if the object was signaled </td></tr>
+    <tr><td class="paramname">result</td><td>An integer destination buffer which will be written with the result value if the object was signaled, or an undefined value if it was not. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga9580b917cb5c5a9bbd2c75e0c697ea4e" name="ga9580b917cb5c5a9bbd2c75e0c697ea4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9580b917cb5c5a9bbd2c75e0c697ea4e">&#9670;&#160;</a></span>k_poll_signal_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void k_poll_signal_init </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__poll__signal.html">k_poll_signal</a> *&#160;</td>
+          <td class="paramname"><em>sig</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize a poll signal object. </p>
+<p>Ready a poll signal object to be signaled via k_poll_signal_raise().</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>A poll signal. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gad3ea1a03892e8d9a101a64d87caef8bd" name="gad3ea1a03892e8d9a101a64d87caef8bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad3ea1a03892e8d9a101a64d87caef8bd">&#9670;&#160;</a></span>k_poll_signal_raise()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int k_poll_signal_raise </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__poll__signal.html">k_poll_signal</a> *&#160;</td>
+          <td class="paramname"><em>sig</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Signal a poll signal object. </p>
+<p>This routine makes ready a poll signal, which is basically a poll event of type K_POLL_TYPE_SIGNAL. If a thread was polling on that event, it will be made ready to run. A <em>result</em> value can be specified.</p>
+<p>The poll signal contains a 'signaled' field that, when set by k_poll_signal_raise(), stays set until the user sets it back to 0 with k_poll_signal_reset(). It thus has to be reset by the user before being passed again to k_poll() or k_poll() will consider it being signaled, and will return immediately.</p>
+<dl class="section note"><dt>Nota</dt><dd>The result is stored and the 'signaled' field is set even if this function returns an error indicating that an expiring poll was not notified. The next k_poll() will detect the missed raise.</dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>A poll signal. </td></tr>
+    <tr><td class="paramname">result</td><td>The value to store in the result field of the signal.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>The signal was delivered successfully. </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>The polling thread's timeout is in the process of expiring. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

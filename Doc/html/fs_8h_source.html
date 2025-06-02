@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/fs/fs.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_073a8270037451a35a5f51a062cbcd1c.html">fs</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">fs.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2016 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2020-2021 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_FS_FS_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define ZEPHYR_INCLUDE_FS_FS_H_</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="dlist_8h.html">zephyr/sys/dlist.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;zephyr/fs/fs_interface.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">struct </span><a class="code hl_struct" href="structfs__file__system__t.html">fs_file_system_t</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga79f37397a1590284fae2c4b456f26afb">   31</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__file__system__api.html#ga79f37397a1590284fae2c4b456f26afb">fs_dir_entry_type</a> {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gga79f37397a1590284fae2c4b456f26afbae84f63edd56b9a797a219b5382f85e3b">   33</a></span>    <a class="code hl_enumvalue" href="group__file__system__api.html#gga79f37397a1590284fae2c4b456f26afbae84f63edd56b9a797a219b5382f85e3b">FS_DIR_ENTRY_FILE</a> = 0,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_enumvalue" href="group__file__system__api.html#gga79f37397a1590284fae2c4b456f26afba443eeda19fcb1164475c2ffd8276e937">FS_DIR_ENTRY_DIR</a></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gga79f37397a1590284fae2c4b456f26afba443eeda19fcb1164475c2ffd8276e937">   36</a></span>};</div>
+</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gga421f1923368b3e67d5e38f7e1100884fa7f8f37a9e6506d6a2432391aee0fde40">   54</a></span>    <a class="code hl_enumvalue" href="group__file__system__api.html#gga421f1923368b3e67d5e38f7e1100884fa7f8f37a9e6506d6a2432391aee0fde40">FS_FATFS</a> = 0,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gga421f1923368b3e67d5e38f7e1100884fa18e15403ed6ec492c565e00d86c4a33f">   57</a></span>    <a class="code hl_enumvalue" href="group__file__system__api.html#gga421f1923368b3e67d5e38f7e1100884fa18e15403ed6ec492c565e00d86c4a33f">FS_LITTLEFS</a>,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gga421f1923368b3e67d5e38f7e1100884fa0f30e2d86ecb55874ff5c6430634bb11">   60</a></span>    <a class="code hl_enumvalue" href="group__file__system__api.html#gga421f1923368b3e67d5e38f7e1100884fa0f30e2d86ecb55874ff5c6430634bb11">FS_EXT2</a>,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gga421f1923368b3e67d5e38f7e1100884fa37c6c9e64a57fee8c51884e18facf25f">   63</a></span>    <a class="code hl_enumvalue" href="group__file__system__api.html#gga421f1923368b3e67d5e38f7e1100884fa37c6c9e64a57fee8c51884e18facf25f">FS_TYPE_EXTERNAL_BASE</a>,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>};</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga37b6ee15dc50499516fc51e9cb6287d5">   67</a></span><span class="preprocessor">#define FS_MOUNT_FLAG_NO_FORMAT BIT(0)</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga789e7f0fbbbb1c751f9dee9d9ca9693d">   69</a></span><span class="preprocessor">#define FS_MOUNT_FLAG_READ_ONLY BIT(1)</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gac11f7ecef01b7758b6f8f70fdcd7089d">   75</a></span><span class="preprocessor">#define FS_MOUNT_FLAG_AUTOMOUNT BIT(2)</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gadb6c0761d7d537f73b23b1056d12686e">   84</a></span><span class="preprocessor">#define FS_MOUNT_FLAG_USE_DISK_ACCESS BIT(3)</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="};">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="structfs__mount__t.html">   89</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structfs__mount__t.html">fs_mount_t</a> {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structfs__mount__t.html#aef11f6864a114ce5a0ebdf5c8f367c65">   91</a></span>    <a class="code hl_struct" href="struct__dnode.html">sys_dnode_t</a> <a class="code hl_variable" href="structfs__mount__t.html#aef11f6864a114ce5a0ebdf5c8f367c65">node</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="structfs__mount__t.html#a6cd46d4e3106c7d8cfbab00fef54580f">   93</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structfs__mount__t.html#a6cd46d4e3106c7d8cfbab00fef54580f">type</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="structfs__mount__t.html#a30e9d3bcfb3b08b051dbbdbd52ae0fdf">   95</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structfs__mount__t.html#a30e9d3bcfb3b08b051dbbdbd52ae0fdf">mnt_point</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="structfs__mount__t.html#a5c2e3e4fa34e5396b6e37fa0b09d5554">   97</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structfs__mount__t.html#a5c2e3e4fa34e5396b6e37fa0b09d5554">fs_data</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="structfs__mount__t.html#a3e4c227d5a3c837f21bedff1ada91261">   99</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structfs__mount__t.html#a3e4c227d5a3c837f21bedff1ada91261">storage_dev</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">/* The following fields are filled by file system core */</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="structfs__mount__t.html#a9b9bdef7b6a7185167ba51bc7a9848b6">  102</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structfs__mount__t.html#a9b9bdef7b6a7185167ba51bc7a9848b6">mountp_len</a>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="structfs__mount__t.html#a2c70ac7f92ef5ae7d387a8db38a49983">  104</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structfs__file__system__t.html">fs_file_system_t</a> *<a class="code hl_variable" href="structfs__mount__t.html#a2c70ac7f92ef5ae7d387a8db38a49983">fs</a>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="structfs__mount__t.html#ac5bd11869b64cfe1794b446d388c7116">  106</a></span>    uint8_t <a class="code hl_variable" href="structfs__mount__t.html#ac5bd11869b64cfe1794b446d388c7116">flags</a>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>};</div>
+</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="foldopen" id="foldopen00115" data-start="{" data-end="};">
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="structfs__dirent.html">  115</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structfs__dirent.html">fs_dirent</a> {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="structfs__dirent.html#ac3dcca17b8b22401913e5b3215d4be11">  119</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__file__system__api.html#ga79f37397a1590284fae2c4b456f26afb">fs_dir_entry_type</a> <a class="code hl_variable" href="structfs__dirent.html#ac3dcca17b8b22401913e5b3215d4be11">type</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="structfs__dirent.html#af9c22b97ead96be25fb3edf0df98a769">  121</a></span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="structfs__dirent.html#af9c22b97ead96be25fb3edf0df98a769">name</a>[MAX_FILE_NAME + 1];</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="structfs__dirent.html#ac94ea69af234587aae3cea5cbd98d533">  123</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structfs__dirent.html#ac94ea69af234587aae3cea5cbd98d533">size</a>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>};</div>
+</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="foldopen" id="foldopen00132" data-start="{" data-end="};">
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="structfs__statvfs.html">  132</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structfs__statvfs.html">fs_statvfs</a> {</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="structfs__statvfs.html#a52680f515f68ec36ce6a459f35cb2fa0">  134</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="structfs__statvfs.html#a52680f515f68ec36ce6a459f35cb2fa0">f_bsize</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="structfs__statvfs.html#a575b703b19d5ac15624075d64fa4bfdc">  136</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="structfs__statvfs.html#a575b703b19d5ac15624075d64fa4bfdc">f_frsize</a>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="structfs__statvfs.html#a6a6d04bdeae1976a80e51c8f679e216d">  138</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="structfs__statvfs.html#a6a6d04bdeae1976a80e51c8f679e216d">f_blocks</a>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="structfs__statvfs.html#abd27b93cd5ce72d63c1b4e982cb399a6">  140</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="structfs__statvfs.html#abd27b93cd5ce72d63c1b4e982cb399a6">f_bfree</a>;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>};</div>
+</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gafd1228407bcf929a175cc18802cda4b2">  149</a></span><span class="preprocessor">#define FS_O_READ       0x01</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga0e86c5413b46133e824deaa89b16ee8d">  151</a></span><span class="preprocessor">#define FS_O_WRITE      0x02</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga24ebd0220844552dd044bc2f16de4bef">  153</a></span><span class="preprocessor">#define FS_O_RDWR       (FS_O_READ | FS_O_WRITE)</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga728a9885ecf444cec4a1610671cc68bf">  155</a></span><span class="preprocessor">#define FS_O_MODE_MASK  0x03</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gaa0965d6d26ece16ee1300f815d31b4e8">  158</a></span><span class="preprocessor">#define FS_O_CREATE     0x10</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga51d5d3c5df852cbb3699b3a7357dbcb3">  160</a></span><span class="preprocessor">#define FS_O_APPEND     0x20</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gabe568c7cd0aef699b0c19385e33266d4">  162</a></span><span class="preprocessor">#define FS_O_FLAGS_MASK 0x30</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gafa921cd65710cfa28f3b7a519a1f6142">  165</a></span><span class="preprocessor">#define FS_O_MASK       (FS_O_MODE_MASK | FS_O_FLAGS_MASK)</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="preprocessor">#ifndef FS_SEEK_SET</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga5b33d405a458db1db212d345b21454f8">  176</a></span><span class="preprocessor">#define FS_SEEK_SET 0</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="preprocessor">#ifndef FS_SEEK_CUR</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gacf310c560f9076b5b4b6ab4192147211">  180</a></span><span class="preprocessor">#define FS_SEEK_CUR 1</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="preprocessor">#ifndef FS_SEEK_END</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gaea9734cc236a73aefd3b35444d08d39d">  184</a></span><span class="preprocessor">#define FS_SEEK_END 2</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="preprocessor">#endif</span></div>
+<div class="foldopen" id="foldopen00198" data-start="" data-end="">
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga479d34077e909fccbb40f53616499f19">  198</a></span><span class="preprocessor">#define FSTAB_ENTRY_DT_MOUNT_FLAGS(node_id)             \</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">    ((DT_PROP(node_id, automount) ? FS_MOUNT_FLAG_AUTOMOUNT : 0)    \</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">     | (DT_PROP(node_id, read_only) ? FS_MOUNT_FLAG_READ_ONLY : 0)  \</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="preprocessor">     | (DT_PROP(node_id, no_format) ? FS_MOUNT_FLAG_NO_FORMAT : 0)  \</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="preprocessor">     | (DT_PROP(node_id, disk_access) ? FS_MOUNT_FLAG_USE_DISK_ACCESS : 0))</span></div>
+</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga1f50cda8a852400e063ab5b0db94e3fe">  210</a></span><span class="preprocessor">#define FS_FSTAB_ENTRY(node_id) _CONCAT(z_fsmp_, node_id)</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="foldopen" id="foldopen00220" data-start="" data-end="">
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga1a9f475a065f3e77b035b0daf1511387">  220</a></span><span class="preprocessor">#define FS_FSTAB_DECLARE_ENTRY(node_id)     \</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="preprocessor">    extern struct fs_mount_t FS_FSTAB_ENTRY(node_id)</span></div>
+</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> fs_file_t_init(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__file__t.html">fs_file_t</a> *zfp)</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>{</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    *zfp = (<span class="keyword">struct </span><a class="code hl_struct" href="structfs__file__t.html">fs_file_t</a>){ 0 };</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>}</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> fs_dir_t_init(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__dir__t.html">fs_dir_t</a> *zdp)</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>{</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    *zdp = (<span class="keyword">struct </span><a class="code hl_struct" href="structfs__dir__t.html">fs_dir_t</a>){ 0 };</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>}</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga9c90031ba3e5a10da8e00e81d53ef63b">  282</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#ga9c90031ba3e5a10da8e00e81d53ef63b">fs_open</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__file__t.html">fs_file_t</a> *zfp, <span class="keyword">const</span> <span class="keywordtype">char</span> *file_name, fs_mode_t flags);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga4811679c25021e9f763824e06292e043">  295</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#ga4811679c25021e9f763824e06292e043">fs_close</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__file__t.html">fs_file_t</a> *zfp);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gab979f963a8372f98080f66e0f32c8df6">  311</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#gab979f963a8372f98080f66e0f32c8df6">fs_unlink</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *path);</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga28bb828c6e59bf7e1f0e3edc56a15575">  338</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#ga28bb828c6e59bf7e1f0e3edc56a15575">fs_rename</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *from, <span class="keyword">const</span> <span class="keywordtype">char</span> *to);</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gaba7e07127777187eedcd6976d352ab76">  356</a></span>ssize_t <a class="code hl_function" href="group__file__system__api.html#gaba7e07127777187eedcd6976d352ab76">fs_read</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__file__t.html">fs_file_t</a> *zfp, <span class="keywordtype">void</span> *ptr, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga9e0dccc0d4235ff8bc4a745bc697e808">  377</a></span>ssize_t <a class="code hl_function" href="group__file__system__api.html#ga9e0dccc0d4235ff8bc4a745bc697e808">fs_write</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__file__t.html">fs_file_t</a> *zfp, <span class="keyword">const</span> <span class="keywordtype">void</span> *ptr, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga81fc26a759e82d7da7531f9687c1ea50">  397</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#ga81fc26a759e82d7da7531f9687c1ea50">fs_seek</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__file__t.html">fs_file_t</a> *zfp, off_t offset, <span class="keywordtype">int</span> whence);</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> </div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga5e97d124edf3ad98c0e2057999745d88">  413</a></span>off_t <a class="code hl_function" href="group__file__system__api.html#ga5e97d124edf3ad98c0e2057999745d88">fs_tell</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__file__t.html">fs_file_t</a> *zfp);</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gae525d9d95f4286f1c6eb0d2ded7febfa">  435</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#gae525d9d95f4286f1c6eb0d2ded7febfa">fs_truncate</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__file__t.html">fs_file_t</a> *zfp, off_t length);</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span> </div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gabf1951701521cf8d47a29129ec8462dd">  453</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#gabf1951701521cf8d47a29129ec8462dd">fs_sync</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__file__t.html">fs_file_t</a> *zfp);</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span> </div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga235cef7d5c4df385a40a0f0293574b0c">  469</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#ga235cef7d5c4df385a40a0f0293574b0c">fs_mkdir</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *path);</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span> </div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga00c042be81b3785d868c0c7a680a2fcd">  485</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#ga00c042be81b3785d868c0c7a680a2fcd">fs_opendir</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__dir__t.html">fs_dir_t</a> *zdp, <span class="keyword">const</span> <span class="keywordtype">char</span> *path);</div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span> </div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gab17be11c60221cf65aaf5f70f373a68f">  506</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#gab17be11c60221cf65aaf5f70f373a68f">fs_readdir</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__dir__t.html">fs_dir_t</a> *zdp, <span class="keyword">struct</span> <a class="code hl_struct" href="structfs__dirent.html">fs_dirent</a> *entry);</div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span> </div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gaa2bf80a27f8a142ea1d553631d43b77e">  519</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#gaa2bf80a27f8a142ea1d553631d43b77e">fs_closedir</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__dir__t.html">fs_dir_t</a> *zdp);</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span> </div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga46d59d84a1da3ce1d90478397826d793">  548</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#ga46d59d84a1da3ce1d90478397826d793">fs_mount</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__mount__t.html">fs_mount_t</a> *mp);</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> </div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gabc20c3ce66340c4c207aba3c88448fbf">  564</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#gabc20c3ce66340c4c207aba3c88448fbf">fs_unmount</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfs__mount__t.html">fs_mount_t</a> *mp);</div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span> </div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno"><a class="line" href="group__file__system__api.html#gab10d479fc27aa73aab2f08342387fc98">  581</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#gab10d479fc27aa73aab2f08342387fc98">fs_readmount</a>(<span class="keywordtype">int</span> *index, <span class="keyword">const</span> <span class="keywordtype">char</span> **name);</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span> </div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga890681c0d324b2d184da7b1577ed571e">  599</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#ga890681c0d324b2d184da7b1577ed571e">fs_stat</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *path, <span class="keyword">struct</span> <a class="code hl_struct" href="structfs__dirent.html">fs_dirent</a> *entry);</div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span> </div>
+<div class="line"><a id="l00615" name="l00615"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga12fc010a1b146e694f121a3a41e85430">  615</a></span><span class="keywordtype">int</span> <a class="code hl_struct" href="structfs__statvfs.html">fs_statvfs</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *path, <span class="keyword">struct</span> <a class="code hl_struct" href="structfs__statvfs.html">fs_statvfs</a> *<a class="code hl_struct" href="structstat.html">stat</a>);</div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span> </div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga81f820cf8658d3686b1ed38ad1320c38">  628</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#ga81f820cf8658d3686b1ed38ad1320c38">fs_mkfs</a>(<span class="keywordtype">int</span> fs_type, uintptr_t dev_id, <span class="keywordtype">void</span> *cfg, <span class="keywordtype">int</span> flags);</div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span> </div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga97f4c377097c96320b32419011eebc5d">  645</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#ga97f4c377097c96320b32419011eebc5d">fs_register</a>(<span class="keywordtype">int</span> type, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structfs__file__system__t.html">fs_file_system_t</a> *fs);</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span> </div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno"><a class="line" href="group__file__system__api.html#ga098db65c6b327182ecbf0bdf44ec9c5b">  658</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__file__system__api.html#ga098db65c6b327182ecbf0bdf44ec9c5b">fs_unregister</a>(<span class="keywordtype">int</span> type, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structfs__file__system__t.html">fs_file_system_t</a> *fs);</div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span> </div>
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>}</div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span> </div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_FS_FS_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adlist_8h_html"><div class="ttname"><a href="dlist_8h.html">dlist.h</a></div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga00c042be81b3785d868c0c7a680a2fcd"><div class="ttname"><a href="group__file__system__api.html#ga00c042be81b3785d868c0c7a680a2fcd">fs_opendir</a></div><div class="ttdeci">int fs_opendir(struct fs_dir_t *zdp, const char *path)</div><div class="ttdoc">Directory open.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga098db65c6b327182ecbf0bdf44ec9c5b"><div class="ttname"><a href="group__file__system__api.html#ga098db65c6b327182ecbf0bdf44ec9c5b">fs_unregister</a></div><div class="ttdeci">int fs_unregister(int type, const struct fs_file_system_t *fs)</div><div class="ttdoc">Unregister a file system.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga235cef7d5c4df385a40a0f0293574b0c"><div class="ttname"><a href="group__file__system__api.html#ga235cef7d5c4df385a40a0f0293574b0c">fs_mkdir</a></div><div class="ttdeci">int fs_mkdir(const char *path)</div><div class="ttdoc">Directory create.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga28bb828c6e59bf7e1f0e3edc56a15575"><div class="ttname"><a href="group__file__system__api.html#ga28bb828c6e59bf7e1f0e3edc56a15575">fs_rename</a></div><div class="ttdeci">int fs_rename(const char *from, const char *to)</div><div class="ttdoc">Rename file or directory.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga46d59d84a1da3ce1d90478397826d793"><div class="ttname"><a href="group__file__system__api.html#ga46d59d84a1da3ce1d90478397826d793">fs_mount</a></div><div class="ttdeci">int fs_mount(struct fs_mount_t *mp)</div><div class="ttdoc">Mount filesystem.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga4811679c25021e9f763824e06292e043"><div class="ttname"><a href="group__file__system__api.html#ga4811679c25021e9f763824e06292e043">fs_close</a></div><div class="ttdeci">int fs_close(struct fs_file_t *zfp)</div><div class="ttdoc">Close file.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga5e97d124edf3ad98c0e2057999745d88"><div class="ttname"><a href="group__file__system__api.html#ga5e97d124edf3ad98c0e2057999745d88">fs_tell</a></div><div class="ttdeci">off_t fs_tell(struct fs_file_t *zfp)</div><div class="ttdoc">Get current file position.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga79f37397a1590284fae2c4b456f26afb"><div class="ttname"><a href="group__file__system__api.html#ga79f37397a1590284fae2c4b456f26afb">fs_dir_entry_type</a></div><div class="ttdeci">fs_dir_entry_type</div><div class="ttdoc">Enumeration for directory entry types.</div><div class="ttdef"><b>Definição</b> fs.h:31</div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga81f820cf8658d3686b1ed38ad1320c38"><div class="ttname"><a href="group__file__system__api.html#ga81f820cf8658d3686b1ed38ad1320c38">fs_mkfs</a></div><div class="ttdeci">int fs_mkfs(int fs_type, uintptr_t dev_id, void *cfg, int flags)</div><div class="ttdoc">Create fresh file system.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga81fc26a759e82d7da7531f9687c1ea50"><div class="ttname"><a href="group__file__system__api.html#ga81fc26a759e82d7da7531f9687c1ea50">fs_seek</a></div><div class="ttdeci">int fs_seek(struct fs_file_t *zfp, off_t offset, int whence)</div><div class="ttdoc">Seek file.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga890681c0d324b2d184da7b1577ed571e"><div class="ttname"><a href="group__file__system__api.html#ga890681c0d324b2d184da7b1577ed571e">fs_stat</a></div><div class="ttdeci">int fs_stat(const char *path, struct fs_dirent *entry)</div><div class="ttdoc">File or directory status.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga97f4c377097c96320b32419011eebc5d"><div class="ttname"><a href="group__file__system__api.html#ga97f4c377097c96320b32419011eebc5d">fs_register</a></div><div class="ttdeci">int fs_register(int type, const struct fs_file_system_t *fs)</div><div class="ttdoc">Register a file system.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga9c90031ba3e5a10da8e00e81d53ef63b"><div class="ttname"><a href="group__file__system__api.html#ga9c90031ba3e5a10da8e00e81d53ef63b">fs_open</a></div><div class="ttdeci">int fs_open(struct fs_file_t *zfp, const char *file_name, fs_mode_t flags)</div><div class="ttdoc">Open or create file.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_ga9e0dccc0d4235ff8bc4a745bc697e808"><div class="ttname"><a href="group__file__system__api.html#ga9e0dccc0d4235ff8bc4a745bc697e808">fs_write</a></div><div class="ttdeci">ssize_t fs_write(struct fs_file_t *zfp, const void *ptr, size_t size)</div><div class="ttdoc">Write file.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gaa2bf80a27f8a142ea1d553631d43b77e"><div class="ttname"><a href="group__file__system__api.html#gaa2bf80a27f8a142ea1d553631d43b77e">fs_closedir</a></div><div class="ttdeci">int fs_closedir(struct fs_dir_t *zdp)</div><div class="ttdoc">Directory close.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gab10d479fc27aa73aab2f08342387fc98"><div class="ttname"><a href="group__file__system__api.html#gab10d479fc27aa73aab2f08342387fc98">fs_readmount</a></div><div class="ttdeci">int fs_readmount(int *index, const char **name)</div><div class="ttdoc">Get path of mount point at index.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gab17be11c60221cf65aaf5f70f373a68f"><div class="ttname"><a href="group__file__system__api.html#gab17be11c60221cf65aaf5f70f373a68f">fs_readdir</a></div><div class="ttdeci">int fs_readdir(struct fs_dir_t *zdp, struct fs_dirent *entry)</div><div class="ttdoc">Directory read entry.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gab979f963a8372f98080f66e0f32c8df6"><div class="ttname"><a href="group__file__system__api.html#gab979f963a8372f98080f66e0f32c8df6">fs_unlink</a></div><div class="ttdeci">int fs_unlink(const char *path)</div><div class="ttdoc">Unlink file.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gaba7e07127777187eedcd6976d352ab76"><div class="ttname"><a href="group__file__system__api.html#gaba7e07127777187eedcd6976d352ab76">fs_read</a></div><div class="ttdeci">ssize_t fs_read(struct fs_file_t *zfp, void *ptr, size_t size)</div><div class="ttdoc">Read file.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gabc20c3ce66340c4c207aba3c88448fbf"><div class="ttname"><a href="group__file__system__api.html#gabc20c3ce66340c4c207aba3c88448fbf">fs_unmount</a></div><div class="ttdeci">int fs_unmount(struct fs_mount_t *mp)</div><div class="ttdoc">Unmount filesystem.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gabf1951701521cf8d47a29129ec8462dd"><div class="ttname"><a href="group__file__system__api.html#gabf1951701521cf8d47a29129ec8462dd">fs_sync</a></div><div class="ttdeci">int fs_sync(struct fs_file_t *zfp)</div><div class="ttdoc">Flush cached write data buffers of an open file.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gae525d9d95f4286f1c6eb0d2ded7febfa"><div class="ttname"><a href="group__file__system__api.html#gae525d9d95f4286f1c6eb0d2ded7febfa">fs_truncate</a></div><div class="ttdeci">int fs_truncate(struct fs_file_t *zfp, off_t length)</div><div class="ttdoc">Truncate or extend an open file to a given size.</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gga421f1923368b3e67d5e38f7e1100884fa0f30e2d86ecb55874ff5c6430634bb11"><div class="ttname"><a href="group__file__system__api.html#gga421f1923368b3e67d5e38f7e1100884fa0f30e2d86ecb55874ff5c6430634bb11">FS_EXT2</a></div><div class="ttdeci">@ FS_EXT2</div><div class="ttdef"><b>Definição</b> fs.h:60</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gga421f1923368b3e67d5e38f7e1100884fa18e15403ed6ec492c565e00d86c4a33f"><div class="ttname"><a href="group__file__system__api.html#gga421f1923368b3e67d5e38f7e1100884fa18e15403ed6ec492c565e00d86c4a33f">FS_LITTLEFS</a></div><div class="ttdeci">@ FS_LITTLEFS</div><div class="ttdef"><b>Definição</b> fs.h:57</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gga421f1923368b3e67d5e38f7e1100884fa37c6c9e64a57fee8c51884e18facf25f"><div class="ttname"><a href="group__file__system__api.html#gga421f1923368b3e67d5e38f7e1100884fa37c6c9e64a57fee8c51884e18facf25f">FS_TYPE_EXTERNAL_BASE</a></div><div class="ttdeci">@ FS_TYPE_EXTERNAL_BASE</div><div class="ttdef"><b>Definição</b> fs.h:63</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gga421f1923368b3e67d5e38f7e1100884fa7f8f37a9e6506d6a2432391aee0fde40"><div class="ttname"><a href="group__file__system__api.html#gga421f1923368b3e67d5e38f7e1100884fa7f8f37a9e6506d6a2432391aee0fde40">FS_FATFS</a></div><div class="ttdeci">@ FS_FATFS</div><div class="ttdef"><b>Definição</b> fs.h:54</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gga79f37397a1590284fae2c4b456f26afba443eeda19fcb1164475c2ffd8276e937"><div class="ttname"><a href="group__file__system__api.html#gga79f37397a1590284fae2c4b456f26afba443eeda19fcb1164475c2ffd8276e937">FS_DIR_ENTRY_DIR</a></div><div class="ttdeci">@ FS_DIR_ENTRY_DIR</div><div class="ttdef"><b>Definição</b> fs.h:35</div></div>
+<div class="ttc" id="agroup__file__system__api_html_gga79f37397a1590284fae2c4b456f26afbae84f63edd56b9a797a219b5382f85e3b"><div class="ttname"><a href="group__file__system__api.html#gga79f37397a1590284fae2c4b456f26afbae84f63edd56b9a797a219b5382f85e3b">FS_DIR_ENTRY_FILE</a></div><div class="ttdeci">@ FS_DIR_ENTRY_FILE</div><div class="ttdef"><b>Definição</b> fs.h:33</div></div>
+<div class="ttc" id="astruct__dnode_html"><div class="ttname"><a href="struct__dnode.html">_dnode</a></div><div class="ttdef"><b>Definição</b> dlist.h:37</div></div>
+<div class="ttc" id="astructfs__dir__t_html"><div class="ttname"><a href="structfs__dir__t.html">fs_dir_t</a></div><div class="ttdoc">Directory object representing an open directory.</div><div class="ttdef"><b>Definição</b> fs_interface.h:77</div></div>
+<div class="ttc" id="astructfs__dirent_html"><div class="ttname"><a href="structfs__dirent.html">fs_dirent</a></div><div class="ttdoc">Structure to receive file or directory information.</div><div class="ttdef"><b>Definição</b> fs.h:115</div></div>
+<div class="ttc" id="astructfs__dirent_html_ac3dcca17b8b22401913e5b3215d4be11"><div class="ttname"><a href="structfs__dirent.html#ac3dcca17b8b22401913e5b3215d4be11">fs_dirent::type</a></div><div class="ttdeci">enum fs_dir_entry_type type</div><div class="ttdef"><b>Definição</b> fs.h:119</div></div>
+<div class="ttc" id="astructfs__dirent_html_ac94ea69af234587aae3cea5cbd98d533"><div class="ttname"><a href="structfs__dirent.html#ac94ea69af234587aae3cea5cbd98d533">fs_dirent::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definição</b> fs.h:123</div></div>
+<div class="ttc" id="astructfs__dirent_html_af9c22b97ead96be25fb3edf0df98a769"><div class="ttname"><a href="structfs__dirent.html#af9c22b97ead96be25fb3edf0df98a769">fs_dirent::name</a></div><div class="ttdeci">char name[MAX_FILE_NAME+1]</div><div class="ttdef"><b>Definição</b> fs.h:121</div></div>
+<div class="ttc" id="astructfs__file__system__t_html"><div class="ttname"><a href="structfs__file__system__t.html">fs_file_system_t</a></div><div class="ttdoc">File System interface structure.</div><div class="ttdef"><b>Definição</b> fs_sys.h:22</div></div>
+<div class="ttc" id="astructfs__file__t_html"><div class="ttname"><a href="structfs__file__t.html">fs_file_t</a></div><div class="ttdoc">File object representing an open file.</div><div class="ttdef"><b>Definição</b> fs_interface.h:63</div></div>
+<div class="ttc" id="astructfs__mount__t_html"><div class="ttname"><a href="structfs__mount__t.html">fs_mount_t</a></div><div class="ttdoc">File system mount info structure.</div><div class="ttdef"><b>Definição</b> fs.h:89</div></div>
+<div class="ttc" id="astructfs__mount__t_html_a2c70ac7f92ef5ae7d387a8db38a49983"><div class="ttname"><a href="structfs__mount__t.html#a2c70ac7f92ef5ae7d387a8db38a49983">fs_mount_t::fs</a></div><div class="ttdeci">const struct fs_file_system_t * fs</div><div class="ttdef"><b>Definição</b> fs.h:104</div></div>
+<div class="ttc" id="astructfs__mount__t_html_a30e9d3bcfb3b08b051dbbdbd52ae0fdf"><div class="ttname"><a href="structfs__mount__t.html#a30e9d3bcfb3b08b051dbbdbd52ae0fdf">fs_mount_t::mnt_point</a></div><div class="ttdeci">const char * mnt_point</div><div class="ttdef"><b>Definição</b> fs.h:95</div></div>
+<div class="ttc" id="astructfs__mount__t_html_a3e4c227d5a3c837f21bedff1ada91261"><div class="ttname"><a href="structfs__mount__t.html#a3e4c227d5a3c837f21bedff1ada91261">fs_mount_t::storage_dev</a></div><div class="ttdeci">void * storage_dev</div><div class="ttdef"><b>Definição</b> fs.h:99</div></div>
+<div class="ttc" id="astructfs__mount__t_html_a5c2e3e4fa34e5396b6e37fa0b09d5554"><div class="ttname"><a href="structfs__mount__t.html#a5c2e3e4fa34e5396b6e37fa0b09d5554">fs_mount_t::fs_data</a></div><div class="ttdeci">void * fs_data</div><div class="ttdef"><b>Definição</b> fs.h:97</div></div>
+<div class="ttc" id="astructfs__mount__t_html_a6cd46d4e3106c7d8cfbab00fef54580f"><div class="ttname"><a href="structfs__mount__t.html#a6cd46d4e3106c7d8cfbab00fef54580f">fs_mount_t::type</a></div><div class="ttdeci">int type</div><div class="ttdef"><b>Definição</b> fs.h:93</div></div>
+<div class="ttc" id="astructfs__mount__t_html_a9b9bdef7b6a7185167ba51bc7a9848b6"><div class="ttname"><a href="structfs__mount__t.html#a9b9bdef7b6a7185167ba51bc7a9848b6">fs_mount_t::mountp_len</a></div><div class="ttdeci">size_t mountp_len</div><div class="ttdef"><b>Definição</b> fs.h:102</div></div>
+<div class="ttc" id="astructfs__mount__t_html_ac5bd11869b64cfe1794b446d388c7116"><div class="ttname"><a href="structfs__mount__t.html#ac5bd11869b64cfe1794b446d388c7116">fs_mount_t::flags</a></div><div class="ttdeci">uint8_t flags</div><div class="ttdef"><b>Definição</b> fs.h:106</div></div>
+<div class="ttc" id="astructfs__mount__t_html_aef11f6864a114ce5a0ebdf5c8f367c65"><div class="ttname"><a href="structfs__mount__t.html#aef11f6864a114ce5a0ebdf5c8f367c65">fs_mount_t::node</a></div><div class="ttdeci">sys_dnode_t node</div><div class="ttdef"><b>Definição</b> fs.h:91</div></div>
+<div class="ttc" id="astructfs__statvfs_html"><div class="ttname"><a href="structfs__statvfs.html">fs_statvfs</a></div><div class="ttdoc">Structure to receive volume statistics.</div><div class="ttdef"><b>Definição</b> fs.h:132</div></div>
+<div class="ttc" id="astructfs__statvfs_html_a52680f515f68ec36ce6a459f35cb2fa0"><div class="ttname"><a href="structfs__statvfs.html#a52680f515f68ec36ce6a459f35cb2fa0">fs_statvfs::f_bsize</a></div><div class="ttdeci">unsigned long f_bsize</div><div class="ttdef"><b>Definição</b> fs.h:134</div></div>
+<div class="ttc" id="astructfs__statvfs_html_a575b703b19d5ac15624075d64fa4bfdc"><div class="ttname"><a href="structfs__statvfs.html#a575b703b19d5ac15624075d64fa4bfdc">fs_statvfs::f_frsize</a></div><div class="ttdeci">unsigned long f_frsize</div><div class="ttdef"><b>Definição</b> fs.h:136</div></div>
+<div class="ttc" id="astructfs__statvfs_html_a6a6d04bdeae1976a80e51c8f679e216d"><div class="ttname"><a href="structfs__statvfs.html#a6a6d04bdeae1976a80e51c8f679e216d">fs_statvfs::f_blocks</a></div><div class="ttdeci">unsigned long f_blocks</div><div class="ttdef"><b>Definição</b> fs.h:138</div></div>
+<div class="ttc" id="astructfs__statvfs_html_abd27b93cd5ce72d63c1b4e982cb399a6"><div class="ttname"><a href="structfs__statvfs.html#abd27b93cd5ce72d63c1b4e982cb399a6">fs_statvfs::f_bfree</a></div><div class="ttdeci">unsigned long f_bfree</div><div class="ttdef"><b>Definição</b> fs.h:140</div></div>
+<div class="ttc" id="astructstat_html"><div class="ttname"><a href="structstat.html">stat</a></div><div class="ttdef"><b>Definição</b> stat.h:92</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

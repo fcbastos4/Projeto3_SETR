@@ -1,0 +1,1013 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/net/ethernet.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_e87a4ba8d8d39971580ab67f13eff592.html">net</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ethernet.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2ethernet_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Copyright (c) 2016 Intel Corporation</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_NET_ETHERNET_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define ZEPHYR_INCLUDE_NET_ETHERNET_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;zephyr/sys/atomic.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__ip_8h.html">zephyr/net/net_ip.h</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;<a class="code" href="net__pkt_8h.html">zephyr/net/net_pkt.h</a>&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#if defined(CONFIG_NET_LLDP)</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;<a class="code" href="lldp_8h.html">zephyr/net/lldp.h</a>&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">zephyr/sys/util.h</a>&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__if_8h.html">zephyr/net/net_if.h</a>&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;<a class="code" href="ethernet__vlan_8h.html">zephyr/net/ethernet_vlan.h</a>&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;<a class="code" href="ptp__time_8h.html">zephyr/net/ptp_time.h</a>&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#if defined(CONFIG_NET_DSA)</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;<a class="code" href="dsa_8h.html">zephyr/net/dsa.h</a>&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#if defined(CONFIG_NET_ETHERNET_BRIDGE)</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;<a class="code" href="ethernet__bridge_8h.html">zephyr/net/ethernet_bridge.h</a>&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">struct </span>net_eth_addr {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    uint8_t addr[6];</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define NET_ETH_HDR(pkt) ((struct net_eth_hdr *)net_pkt_data(pkt))</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#define NET_ETH_PTYPE_ARP       0x0806</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#define NET_ETH_PTYPE_IP        0x0800</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#define NET_ETH_PTYPE_TSN       0x22f0 </span><span class="comment">/* TSN (IEEE 1722) packet */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#define NET_ETH_PTYPE_IPV6      0x86dd</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#define NET_ETH_PTYPE_VLAN      0x8100</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#define NET_ETH_PTYPE_PTP       0x88f7</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#define NET_ETH_PTYPE_LLDP      0x88cc</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#define NET_ETH_PTYPE_ALL               0x0003 </span><span class="comment">/* from linux/if_ether.h */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#define NET_ETH_PTYPE_ECAT      0x88a4</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#define NET_ETH_PTYPE_EAPOL     0x888e</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#define NET_ETH_PTYPE_IEEE802154    0x00F6 </span><span class="comment">/* from linux/if_ether.h: IEEE802.15.4 frame */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#if !defined(ETH_P_ALL)</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#define ETH_P_ALL   NET_ETH_PTYPE_ALL</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#if !defined(ETH_P_IP)</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#define ETH_P_IP    NET_ETH_PTYPE_IP</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#if !defined(ETH_P_ARP)</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">#define ETH_P_ARP   NET_ETH_PTYPE_ARP</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#if !defined(ETH_P_IPV6)</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#define ETH_P_IPV6  NET_ETH_PTYPE_IPV6</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#if !defined(ETH_P_8021Q)</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">#define ETH_P_8021Q NET_ETH_PTYPE_VLAN</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="preprocessor">#if !defined(ETH_P_TSN)</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#define ETH_P_TSN   NET_ETH_PTYPE_TSN</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#if !defined(ETH_P_ECAT)</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#define  ETH_P_ECAT NET_ETH_PTYPE_ECAT</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#if !defined(ETH_P_IEEE802154)</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#define  ETH_P_IEEE802154 NET_ETH_PTYPE_IEEE802154</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="preprocessor">#define NET_ETH_MINIMAL_FRAME_SIZE  60</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">#define NET_ETH_MTU         1500</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="preprocessor">#if defined(CONFIG_NET_VLAN)</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">#define _NET_ETH_MAX_HDR_SIZE       (sizeof(struct net_eth_vlan_hdr))</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">#define _NET_ETH_MAX_HDR_SIZE       (sizeof(struct net_eth_hdr))</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">#define _NET_ETH_MAX_FRAME_SIZE (NET_ETH_MTU + _NET_ETH_MAX_HDR_SIZE)</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment"> * Extend the max frame size for DSA (KSZ8794) by one byte (to 1519) to</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment"> * store tail tag.</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#if defined(CONFIG_NET_DSA)</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">#define NET_ETH_MAX_FRAME_SIZE (_NET_ETH_MAX_FRAME_SIZE + DSA_TAG_SIZE)</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#define NET_ETH_MAX_HDR_SIZE (_NET_ETH_MAX_HDR_SIZE + DSA_TAG_SIZE)</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="preprocessor">#define NET_ETH_MAX_FRAME_SIZE (_NET_ETH_MAX_FRAME_SIZE)</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="preprocessor">#define NET_ETH_MAX_HDR_SIZE (_NET_ETH_MAX_HDR_SIZE)</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#define NET_ETH_VLAN_HDR_SIZE   4</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="foldopen" id="foldopen00124" data-start="{" data-end="};">
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="group__ethernet.html#ga9162ff11d626813fc840df0b67820ac5">  124</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ethernet.html#ga9162ff11d626813fc840df0b67820ac5">ethernet_hw_caps</a> {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5aefaa7e72a676d6b1ad570a96be1a3861">  126</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5aefaa7e72a676d6b1ad570a96be1a3861">ETHERNET_HW_TX_CHKSUM_OFFLOAD</a>   = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(0),</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a8341893ee775dca3609ce1316d948e33">  129</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a8341893ee775dca3609ce1316d948e33">ETHERNET_HW_RX_CHKSUM_OFFLOAD</a>   = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(1),</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a0bdf56b7f06fa68125bce800f9adfb95">  132</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a0bdf56b7f06fa68125bce800f9adfb95">ETHERNET_HW_VLAN</a>        = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(2),</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a93c074b73420abed7d1f59f231da990a">  135</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a93c074b73420abed7d1f59f231da990a">ETHERNET_AUTO_NEGOTIATION_SET</a>   = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(3),</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a26084acbb9f8c65fdb427c7d8b9b4fb6">  138</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a26084acbb9f8c65fdb427c7d8b9b4fb6">ETHERNET_LINK_10BASE_T</a>      = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(4),</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a6fc62894c7ebe8697f1c45f4fc54ed3e">  141</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a6fc62894c7ebe8697f1c45f4fc54ed3e">ETHERNET_LINK_100BASE_T</a>     = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(5),</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a885ef0a35e462efa43e59c2f625964b8">  144</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a885ef0a35e462efa43e59c2f625964b8">ETHERNET_LINK_1000BASE_T</a>    = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(6),</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a1e37eeba16e05b12580e5eacd36a25cc">  147</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a1e37eeba16e05b12580e5eacd36a25cc">ETHERNET_DUPLEX_SET</a>     = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(7),</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a604198d571bf2c4e7227bdeaefc2868a">  150</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a604198d571bf2c4e7227bdeaefc2868a">ETHERNET_PTP</a>            = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(8),</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a7ec920ceb8cfba6424040079d6eeef42">  153</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a7ec920ceb8cfba6424040079d6eeef42">ETHERNET_QAV</a>            = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(9),</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5ad040f4a5749f66a377b840a4da8fb64d">  156</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5ad040f4a5749f66a377b840a4da8fb64d">ETHERNET_PROMISC_MODE</a>       = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(10),</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a1e32518640964a73d4154ed8bc527475">  159</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a1e32518640964a73d4154ed8bc527475">ETHERNET_PRIORITY_QUEUES</a>    = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(11),</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a50d1e4418926b586f6b50acd828f57fe">  162</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a50d1e4418926b586f6b50acd828f57fe">ETHERNET_HW_FILTERING</a>       = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(12),</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a8da4ebc3e888ac358f88aa9671e732c2">  165</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a8da4ebc3e888ac358f88aa9671e732c2">ETHERNET_LLDP</a>           = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(13),</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a1f33c56862228a647b583ae7e0605ac5">  168</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a1f33c56862228a647b583ae7e0605ac5">ETHERNET_HW_VLAN_TAG_STRIP</a>  = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(14),</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a77fe3d1049f9295102f3f2863df84dd7">  171</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a77fe3d1049f9295102f3f2863df84dd7">ETHERNET_DSA_SLAVE_PORT</a> = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(15),</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    ETHERNET_DSA_MASTER_PORT    = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(16),</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5acf17cbf803c3a0fe858ef939ccfe3b85">  175</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5acf17cbf803c3a0fe858ef939ccfe3b85">ETHERNET_QBV</a>            = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(17),</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a68e30ff24a3eb75def8e154ac00dea08">  178</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a68e30ff24a3eb75def8e154ac00dea08">ETHERNET_QBU</a>            = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(18),</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5ac72ff66c3172da29ec9fefad7593ffd2">  181</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5ac72ff66c3172da29ec9fefad7593ffd2">ETHERNET_TXTIME</a>         = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(19),</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a785ca3331fc7e92526d7c0faef34bd8b">  184</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a785ca3331fc7e92526d7c0faef34bd8b">ETHERNET_TXINJECTION_MODE</a>   = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(20),</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>};</div>
+</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keyword">enum</span> ethernet_config_type {</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    ETHERNET_CONFIG_TYPE_AUTO_NEG,</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    ETHERNET_CONFIG_TYPE_LINK,</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    ETHERNET_CONFIG_TYPE_DUPLEX,</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    ETHERNET_CONFIG_TYPE_MAC_ADDRESS,</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    ETHERNET_CONFIG_TYPE_QAV_PARAM,</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    ETHERNET_CONFIG_TYPE_QBV_PARAM,</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    ETHERNET_CONFIG_TYPE_QBU_PARAM,</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    ETHERNET_CONFIG_TYPE_TXTIME_PARAM,</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    ETHERNET_CONFIG_TYPE_PROMISC_MODE,</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    ETHERNET_CONFIG_TYPE_PRIORITY_QUEUES_NUM,</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    ETHERNET_CONFIG_TYPE_FILTER,</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    ETHERNET_CONFIG_TYPE_PORTS_NUM,</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    ETHERNET_CONFIG_TYPE_T1S_PARAM,</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    ETHERNET_CONFIG_TYPE_TXINJECTION_MODE,</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>};</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="keyword">enum</span> ethernet_qav_param_type {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    ETHERNET_QAV_PARAM_TYPE_DELTA_BANDWIDTH,</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    ETHERNET_QAV_PARAM_TYPE_IDLE_SLOPE,</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    ETHERNET_QAV_PARAM_TYPE_OPER_IDLE_SLOPE,</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    ETHERNET_QAV_PARAM_TYPE_TRAFFIC_CLASS,</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    ETHERNET_QAV_PARAM_TYPE_STATUS,</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>};</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="keyword">enum</span> ethernet_t1s_param_type {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    ETHERNET_T1S_PARAM_TYPE_PLCA_CONFIG,</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>};</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="foldopen" id="foldopen00219" data-start="{" data-end="};">
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="structethernet__t1s__param.html">  219</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structethernet__t1s__param.html">ethernet_t1s_param</a> {</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="structethernet__t1s__param.html#a85ed896b8d1c02dbb13fe666cc232c58">  221</a></span>    <span class="keyword">enum</span> ethernet_t1s_param_type <a class="code hl_variable" href="structethernet__t1s__param.html#a85ed896b8d1c02dbb13fe666cc232c58">type</a>;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        <span class="comment">/* PLCA is the Physical Layer (PHY) Collision</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment">         * Avoidance technique employed with multidrop</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment">         * 10Base-T1S standard.</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment">         *</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment">         * The PLCA parameters are described in standard [1]</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment">         * as registers in memory map 4 (MMS = 4) (point 9.6).</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment">         *</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment">         * IDVER    (PLCA ID Version)</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="comment">         * CTRL0    (PLCA Control 0)</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment">         * CTRL1    (PLCA Control 1)</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment">         * STATUS   (PLCA Status)</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment">         * TOTMR    (PLCA TO Control)</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment">         * BURST    (PLCA Burst Control)</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment">         *</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="comment">         * Those registers are implemented by each OA TC6</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="comment">         * compliant vendor (like for e.g. LAN865x - e.g. [2]).</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment">         *</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="comment">         * Documents:</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="comment">         * [1] - &quot;OPEN Alliance 10BASE-T1x MAC-PHY Serial</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment">         *       Interface&quot; (ver. 1.1)</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment">         * [2] - &quot;DS60001734C&quot; - LAN865x data sheet</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="structethernet__t1s__param.html#add2f6115780c775a41da034443878955">  247</a></span>            <span class="keywordtype">bool</span> <a class="code hl_variable" href="structethernet__t1s__param.html#add2f6115780c775a41da034443878955">enable</a>;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="structethernet__t1s__param.html#a74d407f31c1a37a73e406c89a97725b9">  249</a></span>            uint8_t <a class="code hl_variable" href="structethernet__t1s__param.html#a74d407f31c1a37a73e406c89a97725b9">node_id</a>;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="structethernet__t1s__param.html#a40b3411132868970c4600bbe4a047d9d">  251</a></span>            uint8_t <a class="code hl_variable" href="structethernet__t1s__param.html#a40b3411132868970c4600bbe4a047d9d">node_count</a>;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="structethernet__t1s__param.html#a081fb97c8fd027a5b6bba95f3b6d5acd">  253</a></span>            uint8_t <a class="code hl_variable" href="structethernet__t1s__param.html#a081fb97c8fd027a5b6bba95f3b6d5acd">burst_count</a>;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno"><a class="line" href="structethernet__t1s__param.html#a67fba4b2ffe9affaf1cc4f6059c47e71">  255</a></span>            uint8_t <a class="code hl_variable" href="structethernet__t1s__param.html#a67fba4b2ffe9affaf1cc4f6059c47e71">burst_timer</a>;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="structethernet__t1s__param.html#a449472362f5bfeb2ef2ef722030416a8">  257</a></span>            uint8_t <a class="code hl_variable" href="structethernet__t1s__param.html#a449472362f5bfeb2ef2ef722030416a8">to_timer</a>;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        } plca;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    };</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>};</div>
+</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="foldopen" id="foldopen00262" data-start="{" data-end="};">
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="structethernet__qav__param.html">  262</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structethernet__qav__param.html">ethernet_qav_param</a> {</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="structethernet__qav__param.html#a4e2d2967669b758422c166140af0c1ba">  264</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structethernet__qav__param.html#a4e2d2967669b758422c166140af0c1ba">queue_id</a>;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno"><a class="line" href="structethernet__qav__param.html#a38861d9f790a61aa88801cb1373077a8">  266</a></span>    <span class="keyword">enum</span> ethernet_qav_param_type <a class="code hl_variable" href="structethernet__qav__param.html#a38861d9f790a61aa88801cb1373077a8">type</a>;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="structethernet__qav__param.html#a031d3896b14eb8b32c3c050738421b85">  269</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="structethernet__qav__param.html#a031d3896b14eb8b32c3c050738421b85">enabled</a>;</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="structethernet__qav__param.html#a6fde906da905c0598aaa2056c330b6f4">  271</a></span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structethernet__qav__param.html#a6fde906da905c0598aaa2056c330b6f4">delta_bandwidth</a>;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="structethernet__qav__param.html#a6d43b199549cade0a07dc10adac85bff">  273</a></span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structethernet__qav__param.html#a6d43b199549cade0a07dc10adac85bff">idle_slope</a>;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="structethernet__qav__param.html#a0691f10a338d3c49a58d94a1adced477">  275</a></span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structethernet__qav__param.html#a0691f10a338d3c49a58d94a1adced477">oper_idle_slope</a>;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="structethernet__qav__param.html#a4a795e4a0c7d5bcbe8212d79f772dc6f">  277</a></span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structethernet__qav__param.html#a4a795e4a0c7d5bcbe8212d79f772dc6f">traffic_class</a>;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    };</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>};</div>
+</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="keyword">enum</span> ethernet_qbv_param_type {</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    ETHERNET_QBV_PARAM_TYPE_STATUS,</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    ETHERNET_QBV_PARAM_TYPE_GATE_CONTROL_LIST,</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    ETHERNET_QBV_PARAM_TYPE_GATE_CONTROL_LIST_LEN,</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    ETHERNET_QBV_PARAM_TYPE_TIME,</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>};</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="keyword">enum</span> ethernet_qbv_state_type {</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    ETHERNET_QBV_STATE_TYPE_ADMIN,</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    ETHERNET_QBV_STATE_TYPE_OPER,</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>};</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="keyword">enum</span> ethernet_gate_state_operation {</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    ETHERNET_SET_GATE_STATE,</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    ETHERNET_SET_AND_HOLD_MAC_STATE,</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    ETHERNET_SET_AND_RELEASE_MAC_STATE,</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>};</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="foldopen" id="foldopen00303" data-start="{" data-end="};">
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno"><a class="line" href="structethernet__qbv__param.html">  303</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structethernet__qbv__param.html">ethernet_qbv_param</a> {</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="structethernet__qbv__param.html#a037492458f47905b894a2269ff7365cd">  305</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structethernet__qbv__param.html#a037492458f47905b894a2269ff7365cd">port_id</a>;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="structethernet__qbv__param.html#a2184250d397bd749764adc52ec3a1621">  307</a></span>    <span class="keyword">enum</span> ethernet_qbv_param_type <a class="code hl_variable" href="structethernet__qbv__param.html#a2184250d397bd749764adc52ec3a1621">type</a>;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno"><a class="line" href="structethernet__qbv__param.html#a36702c57bea42c37c1341e144ced4f7d">  309</a></span>    <span class="keyword">enum</span> ethernet_qbv_state_type <a class="code hl_variable" href="structethernet__qbv__param.html#a36702c57bea42c37c1341e144ced4f7d">state</a>;</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno"><a class="line" href="structethernet__qbv__param.html#a0742dbe52f01addbb319e2fcb354d064">  312</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="structethernet__qbv__param.html#a0742dbe52f01addbb319e2fcb354d064">enabled</a>;</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>        <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno"><a class="line" href="structethernet__qbv__param.html#a44b6ce52faeae761c5ebe49fad5338cd">  316</a></span>            <span class="keywordtype">bool</span> <a class="code hl_variable" href="structethernet__qbv__param.html#a44b6ce52faeae761c5ebe49fad5338cd">gate_status</a>[NET_TC_TX_COUNT];</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="structethernet__qbv__param.html#a8471f7eb20a72bb16fe7abb0b2bb24f7">  319</a></span>            <span class="keyword">enum</span> ethernet_gate_state_operation <a class="code hl_variable" href="structethernet__qbv__param.html#a8471f7eb20a72bb16fe7abb0b2bb24f7">operation</a>;</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno"><a class="line" href="structethernet__qbv__param.html#aa6b2be0014988752e326bdc1fe6ef161">  322</a></span>            uint32_t <a class="code hl_variable" href="structethernet__qbv__param.html#aa6b2be0014988752e326bdc1fe6ef161">time_interval</a>;</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="structethernet__qbv__param.html#a2c256aa3f65dfa75434752903daa809c">  325</a></span>            uint16_t <a class="code hl_variable" href="structethernet__qbv__param.html#a2c256aa3f65dfa75434752903daa809c">row</a>;</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        } gate_control;</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno"><a class="line" href="structethernet__qbv__param.html#afc0c26fcdeee1a921a2f549de4d1c33e">  329</a></span>        uint32_t <a class="code hl_variable" href="structethernet__qbv__param.html#afc0c26fcdeee1a921a2f549de4d1c33e">gate_control_list_len</a>;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>        <span class="comment">/* The time values are set in one go when type is set to</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="comment">         * ETHERNET_QBV_PARAM_TYPE_TIME</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>        <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno"><a class="line" href="structethernet__qbv__param.html#a53646a44e8b0e1f6588c357d49d97693">  336</a></span>            <span class="keyword">struct </span><a class="code hl_struct" href="structnet__ptp__extended__time.html">net_ptp_extended_time</a> <a class="code hl_variable" href="structethernet__qbv__param.html#a53646a44e8b0e1f6588c357d49d97693">base_time</a>;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno"><a class="line" href="structethernet__qbv__param.html#ad07589ae6802a9c3c4c3f809427129be">  339</a></span>            <span class="keyword">struct </span><a class="code hl_struct" href="structnet__ptp__time.html">net_ptp_time</a> <a class="code hl_variable" href="structethernet__qbv__param.html#ad07589ae6802a9c3c4c3f809427129be">cycle_time</a>;</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno"><a class="line" href="structethernet__qbv__param.html#a76220e58aa31ae6cfd92268277716c7a">  342</a></span>            uint32_t <a class="code hl_variable" href="structethernet__qbv__param.html#a76220e58aa31ae6cfd92268277716c7a">extension_time</a>;</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>        };</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    };</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>};</div>
+</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="keyword">enum</span> ethernet_qbu_param_type {</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    ETHERNET_QBU_PARAM_TYPE_STATUS,</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    ETHERNET_QBU_PARAM_TYPE_RELEASE_ADVANCE,</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    ETHERNET_QBU_PARAM_TYPE_HOLD_ADVANCE,</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>    ETHERNET_QBU_PARAM_TYPE_PREEMPTION_STATUS_TABLE,</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    <span class="comment">/* Some preemption settings are from Qbr spec. */</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    ETHERNET_QBR_PARAM_TYPE_LINK_PARTNER_STATUS,</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    ETHERNET_QBR_PARAM_TYPE_ADDITIONAL_FRAGMENT_SIZE,</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>};</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="keyword">enum</span> ethernet_qbu_preempt_status {</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    ETHERNET_QBU_STATUS_EXPRESS,</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    ETHERNET_QBU_STATUS_PREEMPTABLE</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="foldopen" id="foldopen00367" data-start="{" data-end="};">
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno"><a class="line" href="structethernet__qbu__param.html">  367</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structethernet__qbu__param.html">ethernet_qbu_param</a> {</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno"><a class="line" href="structethernet__qbu__param.html#ae6d61f0c9d2f2e56eb494db953a5e846">  369</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structethernet__qbu__param.html#ae6d61f0c9d2f2e56eb494db953a5e846">port_id</a>;</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno"><a class="line" href="structethernet__qbu__param.html#a4a8a3d26a12a06a787ae6b35ea40c37a">  371</a></span>    <span class="keyword">enum</span> ethernet_qbu_param_type <a class="code hl_variable" href="structethernet__qbu__param.html#a4a8a3d26a12a06a787ae6b35ea40c37a">type</a>;</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno"><a class="line" href="structethernet__qbu__param.html#a8ffde09a540817b7a68c7180c327196f">  374</a></span>        uint32_t <a class="code hl_variable" href="structethernet__qbu__param.html#a8ffde09a540817b7a68c7180c327196f">hold_advance</a>;</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span> </div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno"><a class="line" href="structethernet__qbu__param.html#a3f62d0462376225c8609c7e26ebd314b">  377</a></span>        uint32_t <a class="code hl_variable" href="structethernet__qbu__param.html#a3f62d0462376225c8609c7e26ebd314b">release_advance</a>;</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>        <span class="keyword">enum</span> ethernet_qbu_preempt_status</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno"><a class="line" href="structethernet__qbu__param.html#a3f5dfd9cfbc1ec86896eaf517bdc5c88">  382</a></span>                <a class="code hl_variable" href="structethernet__qbu__param.html#a3f5dfd9cfbc1ec86896eaf517bdc5c88">frame_preempt_statuses</a>[NET_TC_TX_COUNT];</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span> </div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno"><a class="line" href="structethernet__qbu__param.html#a9717dd68adde62a454593d72fdbc43a5">  385</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="structethernet__qbu__param.html#a9717dd68adde62a454593d72fdbc43a5">enabled</a>;</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span> </div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno"><a class="line" href="structethernet__qbu__param.html#ad8c92a7f7b4aa124adaa62dd4e65b5ca">  388</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="structethernet__qbu__param.html#ad8c92a7f7b4aa124adaa62dd4e65b5ca">link_partner_status</a>;</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span> </div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno"><a class="line" href="structethernet__qbu__param.html#afb455507b29d84de42638e47ecacadeb">  393</a></span>        uint8_t <a class="code hl_variable" href="structethernet__qbu__param.html#afb455507b29d84de42638e47ecacadeb">additional_fragment_size</a> : 2;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    };</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>};</div>
+</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span> </div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="keyword">enum</span> ethernet_filter_type {</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>    ETHERNET_FILTER_TYPE_SRC_MAC_ADDRESS,</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    ETHERNET_FILTER_TYPE_DST_MAC_ADDRESS,</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>};</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span> </div>
+<div class="foldopen" id="foldopen00408" data-start="{" data-end="};">
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno"><a class="line" href="group__ethernet.html#ga139cc696837611a522b289f2ea7bf6fc">  408</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ethernet.html#ga139cc696837611a522b289f2ea7bf6fc">ethernet_if_types</a> {</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga139cc696837611a522b289f2ea7bf6fca25c90e15f09a19a8ca7d0ea9d1836530">  410</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga139cc696837611a522b289f2ea7bf6fca25c90e15f09a19a8ca7d0ea9d1836530">L2_ETH_IF_TYPE_ETHERNET</a>,</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span> </div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno"><a class="line" href="group__ethernet.html#gga139cc696837611a522b289f2ea7bf6fca32862b06ca0a77a8cf66d167c4496671">  413</a></span>    <a class="code hl_enumvalue" href="group__ethernet.html#gga139cc696837611a522b289f2ea7bf6fca32862b06ca0a77a8cf66d167c4496671">L2_ETH_IF_TYPE_WIFI</a>,</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span> </div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span> </div>
+<div class="foldopen" id="foldopen00417" data-start="{" data-end="};">
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno"><a class="line" href="structethernet__filter.html">  417</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structethernet__filter.html">ethernet_filter</a> {</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno"><a class="line" href="structethernet__filter.html#aec00b1ecd6af658a5164d375bccdaa10">  419</a></span>    <span class="keyword">enum</span> ethernet_filter_type <a class="code hl_variable" href="structethernet__filter.html#aec00b1ecd6af658a5164d375bccdaa10">type</a>;</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno"><a class="line" href="structethernet__filter.html#aaacda9b89d6b21934654e0f2b19624e0">  421</a></span>    <span class="keyword">struct </span>net_eth_addr <a class="code hl_variable" href="structethernet__filter.html#aaacda9b89d6b21934654e0f2b19624e0">mac_address</a>;</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno"><a class="line" href="structethernet__filter.html#ad83053c859c65e0c0432fe3f59671335">  423</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structethernet__filter.html#ad83053c859c65e0c0432fe3f59671335">set</a>;</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>};</div>
+</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span><span class="keyword">enum</span> ethernet_txtime_param_type {</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    ETHERNET_TXTIME_PARAM_TYPE_ENABLE_QUEUES,</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>};</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span> </div>
+<div class="foldopen" id="foldopen00434" data-start="{" data-end="};">
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno"><a class="line" href="structethernet__txtime__param.html">  434</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structethernet__txtime__param.html">ethernet_txtime_param</a> {</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno"><a class="line" href="structethernet__txtime__param.html#ab4a709e6907e76f9cf23c085f5be5d99">  436</a></span>    <span class="keyword">enum</span> ethernet_txtime_param_type <a class="code hl_variable" href="structethernet__txtime__param.html#ab4a709e6907e76f9cf23c085f5be5d99">type</a>;</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno"><a class="line" href="structethernet__txtime__param.html#aa4a46b7153b2a69ca0134f4e10bc7165">  438</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structethernet__txtime__param.html#aa4a46b7153b2a69ca0134f4e10bc7165">queue_id</a>;</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno"><a class="line" href="structethernet__txtime__param.html#a74b1e05cf0fac8aa435ba966e110ae27">  440</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structethernet__txtime__param.html#a74b1e05cf0fac8aa435ba966e110ae27">enable_txtime</a>;</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>};</div>
+</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span> </div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span><span class="keyword">struct </span>ethernet_config {</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>        <span class="keywordtype">bool</span> auto_negotiation;</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>        <span class="keywordtype">bool</span> full_duplex;</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>        <span class="keywordtype">bool</span> promisc_mode;</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>        <span class="keywordtype">bool</span> txinjection_mode;</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span> </div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>        <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>            <span class="keywordtype">bool</span> link_10bt;</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>            <span class="keywordtype">bool</span> link_100bt;</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>            <span class="keywordtype">bool</span> link_1000bt;</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>        } l;</div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span> </div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>        <span class="keyword">struct </span>net_eth_addr mac_address;</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span> </div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structethernet__t1s__param.html">ethernet_t1s_param</a> t1s_param;</div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structethernet__qav__param.html">ethernet_qav_param</a> qav_param;</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structethernet__qbv__param.html">ethernet_qbv_param</a> qbv_param;</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structethernet__qbu__param.html">ethernet_qbu_param</a> qbu_param;</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structethernet__txtime__param.html">ethernet_txtime_param</a> txtime_param;</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span> </div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>        <span class="keywordtype">int</span> priority_queues_num;</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>        <span class="keywordtype">int</span> ports_num;</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span> </div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structethernet__filter.html">ethernet_filter</a> filter;</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>    };</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>};</div>
+<div class="foldopen" id="foldopen00473" data-start="{" data-end="};">
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno"><a class="line" href="structethernet__api.html">  473</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structethernet__api.html">ethernet_api</a> {</div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno"><a class="line" href="structethernet__api.html#a03dfbaed9cdf2bdd17b0bfd28d5a1056">  478</a></span>    <span class="keyword">struct </span>net_if_api <a class="code hl_variable" href="structethernet__api.html#a03dfbaed9cdf2bdd17b0bfd28d5a1056">iface_api</a>;</div>
+<div class="line"><a id="l00479" name="l00479"></a><span class="lineno">  479</span> </div>
+<div class="line"><a id="l00480" name="l00480"></a><span class="lineno">  480</span><span class="preprocessor">#if defined(CONFIG_NET_STATISTICS_ETHERNET)</span></div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__stats__eth.html">net_stats_eth</a> *(*get_stats)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span> </div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno"><a class="line" href="structethernet__api.html#a2abe87be47f265a6d5b3e7b598682da1">  489</a></span>    int (*<a class="code hl_variable" href="structethernet__api.html#a2abe87be47f265a6d5b3e7b598682da1">start</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span> </div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno"><a class="line" href="structethernet__api.html#a8731846f9bd07398b2f5c154c6ec0fe3">  492</a></span>    int (*<a class="code hl_variable" href="structethernet__api.html#a819599fe26b90860147ccfa86f337f84">stop</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span> </div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ethernet.html#ga9162ff11d626813fc840df0b67820ac5">ethernet_hw_caps</a> (*<a class="code hl_variable" href="structethernet__api.html#a8731846f9bd07398b2f5c154c6ec0fe3">get_capabilities</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span> </div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno"><a class="line" href="structethernet__api.html#ae204fdf7e8c72fdea3dee67a7068afe1">  498</a></span>    int (*<a class="code hl_variable" href="structethernet__api.html#ae204fdf7e8c72fdea3dee67a7068afe1">set_config</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>              <span class="keyword">enum</span> ethernet_config_type type,</div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>              <span class="keyword">const</span> <span class="keyword">struct </span>ethernet_config *config);</div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span> </div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno"><a class="line" href="structethernet__api.html#a3f71e6bf922b91289efa3ac97df70e81">  503</a></span>    int (*<a class="code hl_variable" href="structethernet__api.html#a3f71e6bf922b91289efa3ac97df70e81">get_config</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>              <span class="keyword">enum</span> ethernet_config_type type,</div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>              <span class="keyword">struct </span>ethernet_config *config);</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span> </div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span><span class="preprocessor">#if defined(CONFIG_NET_VLAN)</span></div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>    int (*vlan_setup)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct </span><a class="code hl_struct" href="structnet__if.html">net_if</a> *iface,</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>              uint16_t tag, <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_VLAN */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span> </div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span><span class="preprocessor">#if defined(CONFIG_PTP_CLOCK)</span></div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *(*get_ptp_clock)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_PTP_CLOCK */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span> </div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno"><a class="line" href="structethernet__api.html#a8f6fd0d640b5a883c9f5150d9ed71241">  523</a></span>    int (*<a class="code hl_variable" href="structethernet__api.html#a8f6fd0d640b5a883c9f5150d9ed71241">send</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct </span><a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt);</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>};</div>
+</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span> </div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span><span class="comment">/* Make sure that the network interface API is properly setup inside</span></div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span><span class="comment"> * Ethernet API struct (it is the first one).</span></div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>BUILD_ASSERT(offsetof(<span class="keyword">struct</span> <a class="code hl_struct" href="structethernet__api.html">ethernet_api</a>, iface_api) == 0);</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span> </div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span><span class="keyword">struct </span>net_eth_hdr {</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>    <span class="keyword">struct </span>net_eth_addr dst;</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>    <span class="keyword">struct </span>net_eth_addr src;</div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>    uint16_t type;</div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span> </div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span><span class="keyword">struct </span>ethernet_vlan {</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__if.html">net_if</a> *iface;</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span> </div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>    uint16_t tag;</div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>};</div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span> </div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span><span class="preprocessor">#if defined(CONFIG_NET_VLAN_COUNT)</span></div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span><span class="preprocessor">#define NET_VLAN_MAX_COUNT CONFIG_NET_VLAN_COUNT</span></div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span><span class="comment">/* Even thou there are no VLAN support, the minimum count must be set to 1.</span></div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span><span class="preprocessor">#define NET_VLAN_MAX_COUNT 1</span></div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span> </div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span><span class="preprocessor">#if defined(CONFIG_NET_LLDP)</span></div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span><span class="keyword">struct </span>ethernet_lldp {</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> node;</div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span> </div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structnet__lldpdu.html">net_lldpdu</a> *lldpdu;</div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span> </div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>    <span class="keyword">const</span> uint8_t *optional_du;</div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span> </div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>    <span class="keywordtype">size_t</span> optional_len;</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span> </div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__if.html">net_if</a> *iface;</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span> </div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>    int64_t tx_timer_start;</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span> </div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>    uint32_t tx_timer_timeout;</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span> </div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>    <a class="code hl_typedef" href="group__lldp.html#ga1e9fb662d7cdfc3c4c68cfd0312987cf">net_lldp_recv_cb_t</a> cb;</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>};</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_LLDP */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span> </div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span><span class="keyword">enum</span> ethernet_flags {</div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>    ETH_CARRIER_UP,</div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>};</div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span> </div>
+<div class="foldopen" id="foldopen00589" data-start="{" data-end="};">
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno"><a class="line" href="structethernet__context.html">  589</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structethernet__context.html">ethernet_context</a> {</div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno"><a class="line" href="structethernet__context.html#a800f7b276341771addd3f1f1ffb5329b">  593</a></span>    atomic_t <a class="code hl_variable" href="structethernet__context.html#a800f7b276341771addd3f1f1ffb5329b">flags</a>;</div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span> </div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span><span class="preprocessor">#if defined(CONFIG_NET_VLAN)</span></div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>    <span class="keyword">struct </span>ethernet_vlan vlan[NET_VLAN_MAX_COUNT];</div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span> </div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>    <a class="code hl_define" href="group__atomic__apis.html#ga249c575db9764486197709b327f7370e">ATOMIC_DEFINE</a>(interfaces, NET_VLAN_MAX_COUNT);</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span> </div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span><span class="preprocessor">#if defined(CONFIG_NET_ETHERNET_BRIDGE)</span></div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structeth__bridge__iface__context.html">eth_bridge_iface_context</a> bridge;</div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span> </div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno"><a class="line" href="structethernet__context.html#a4c152bdc054a3e86a5baedcf4e8eed1d">  616</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work.html">k_work</a> <a class="code hl_variable" href="structethernet__context.html#a4c152bdc054a3e86a5baedcf4e8eed1d">carrier_work</a>;</div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span> </div>
+<div class="line"><a id="l00619" name="l00619"></a><span class="lineno"><a class="line" href="structethernet__context.html#a2358d48d02192220f2621dd96e353f37">  619</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__if.html">net_if</a> *<a class="code hl_variable" href="structethernet__context.html#a2358d48d02192220f2621dd96e353f37">iface</a>;</div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span> </div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span><span class="preprocessor">#if defined(CONFIG_NET_LLDP)</span></div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>    <span class="keyword">struct </span>ethernet_lldp lldp[NET_VLAN_MAX_COUNT];</div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span> </div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno"><a class="line" href="structethernet__context.html#a49f0358828531ab6e3cc398ebaf6f6f9">  628</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__net__l2.html#gac7db0cc6c56d371a5803873074ec2516">net_l2_flags</a> <a class="code hl_variable" href="structethernet__context.html#a49f0358828531ab6e3cc398ebaf6f6f9">ethernet_l2_flags</a>;</div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span> </div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span><span class="preprocessor">#if defined(CONFIG_NET_L2_PTP)</span></div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span>    <span class="keywordtype">int</span> port;</div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span> </div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span><span class="preprocessor">#if defined(CONFIG_NET_DSA)</span></div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>    <a class="code hl_typedef" href="group__DSA.html#ga6c40af9c2caefa7f855d225a41b43faa">dsa_net_recv_cb_t</a> dsa_recv_cb;</div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span> </div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>    uint8_t dsa_port_idx;</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span> </div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>    <span class="keyword">struct </span>dsa_context *dsa_ctx;</div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span> </div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>    <a class="code hl_typedef" href="group__DSA.html#gad9a6e0ad0e100914f6b932843908d42b">dsa_send_t</a> dsa_send;</div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span> </div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span><span class="preprocessor">#if defined(CONFIG_NET_VLAN)</span></div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>    int8_t vlan_enabled;</div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span> </div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno"><a class="line" href="structethernet__context.html#a483abbb2e14fea59b01d6ee74466c702">  663</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structethernet__context.html#a483abbb2e14fea59b01d6ee74466c702">is_net_carrier_up</a> : 1;</div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span> </div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno"><a class="line" href="structethernet__context.html#ab7ea3afc9bd0ac19893d4a7edf2be057">  666</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structethernet__context.html#ab7ea3afc9bd0ac19893d4a7edf2be057">is_init</a> : 1;</div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span> </div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno"><a class="line" href="structethernet__context.html#a81e35df9b1648c1e2dc6234bb2eb2d76">  669</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ethernet.html#ga139cc696837611a522b289f2ea7bf6fc">ethernet_if_types</a> <a class="code hl_variable" href="structethernet__context.html#a81e35df9b1648c1e2dc6234bb2eb2d76">eth_if_type</a>;</div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>};</div>
+</div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span> </div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno"><a class="line" href="group__ethernet.html#gacd67360df806183cbc15159b0480bfa0">  677</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__ethernet.html#gacd67360df806183cbc15159b0480bfa0">ethernet_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface);</div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span> </div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span><span class="preprocessor">#define ETHERNET_L2_CTX_TYPE    struct ethernet_context</span></div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span> </div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span><span class="comment">/* Separate header for VLAN as some of device interfaces might not</span></div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span><span class="comment"> * support VLAN.</span></div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span><span class="keyword">struct </span>net_eth_vlan_hdr {</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>    <span class="keyword">struct </span>net_eth_addr dst;</div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>    <span class="keyword">struct </span>net_eth_addr src;</div>
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span>        uint16_t tpid; <span class="comment">/* tag protocol id  */</span></div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span>        uint16_t tci;  <span class="comment">/* tag control info */</span></div>
+<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span>    } vlan;</div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span>    uint16_t type;</div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span> </div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span> </div>
+<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_eth_is_addr_broadcast(<span class="keyword">struct</span> net_eth_addr *addr)</div>
+<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span>{</div>
+<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span>    <span class="keywordflow">if</span> (addr-&gt;addr[0] == 0xff &amp;&amp;</div>
+<div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span>        addr-&gt;addr[1] == 0xff &amp;&amp;</div>
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span>        addr-&gt;addr[2] == 0xff &amp;&amp;</div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span>        addr-&gt;addr[3] == 0xff &amp;&amp;</div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span>        addr-&gt;addr[4] == 0xff &amp;&amp;</div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span>        addr-&gt;addr[5] == 0xff) {</div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span>    }</div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span> </div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>}</div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span> </div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_eth_is_addr_unspecified(<span class="keyword">struct</span> net_eth_addr *addr)</div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>{</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span>    <span class="keywordflow">if</span> (addr-&gt;addr[0] == 0x00 &amp;&amp;</div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span>        addr-&gt;addr[1] == 0x00 &amp;&amp;</div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>        addr-&gt;addr[2] == 0x00 &amp;&amp;</div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span>        addr-&gt;addr[3] == 0x00 &amp;&amp;</div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>        addr-&gt;addr[4] == 0x00 &amp;&amp;</div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>        addr-&gt;addr[5] == 0x00) {</div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span>    }</div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span> </div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>}</div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span> </div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_eth_is_addr_multicast(<span class="keyword">struct</span> net_eth_addr *addr)</div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span>{</div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span><span class="preprocessor">#if defined(CONFIG_NET_IPV6)</span></div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span>    <span class="keywordflow">if</span> (addr-&gt;addr[0] == 0x33 &amp;&amp;</div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>        addr-&gt;addr[1] == 0x33) {</div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>    }</div>
+<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span> </div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span><span class="preprocessor">#if defined(CONFIG_NET_IPV4)</span></div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>    <span class="keywordflow">if</span> (addr-&gt;addr[0] == 0x01 &amp;&amp;</div>
+<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>        addr-&gt;addr[1] == 0x00 &amp;&amp;</div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>        addr-&gt;addr[2] == 0x5e) {</div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span>    }</div>
+<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span> </div>
+<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span>}</div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span> </div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_eth_is_addr_group(<span class="keyword">struct</span> net_eth_addr *addr)</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>{</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>    <span class="keywordflow">return</span> addr-&gt;addr[0] &amp; 0x01;</div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>}</div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span> </div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_eth_is_addr_valid(<span class="keyword">struct</span> net_eth_addr *addr)</div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>{</div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>    <span class="keywordflow">return</span> !net_eth_is_addr_unspecified(addr) &amp;&amp; !net_eth_is_addr_group(addr);</div>
+<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>}</div>
+<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span> </div>
+<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_eth_is_addr_lldp_multicast(<span class="keyword">struct</span> net_eth_addr *addr)</div>
+<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>{</div>
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span><span class="preprocessor">#if defined(CONFIG_NET_GPTP) || defined(CONFIG_NET_LLDP)</span></div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>    <span class="keywordflow">if</span> (addr-&gt;addr[0] == 0x01 &amp;&amp;</div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>        addr-&gt;addr[1] == 0x80 &amp;&amp;</div>
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span>        addr-&gt;addr[2] == 0xc2 &amp;&amp;</div>
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span>        addr-&gt;addr[3] == 0x00 &amp;&amp;</div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span>        addr-&gt;addr[4] == 0x00 &amp;&amp;</div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span>        addr-&gt;addr[5] == 0x0e) {</div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span>    }</div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span> </div>
+<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span>}</div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span> </div>
+<div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_eth_is_addr_ptp_multicast(<span class="keyword">struct</span> net_eth_addr *addr)</div>
+<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span>{</div>
+<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span><span class="preprocessor">#if defined(CONFIG_NET_GPTP)</span></div>
+<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>    <span class="keywordflow">if</span> (addr-&gt;addr[0] == 0x01 &amp;&amp;</div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span>        addr-&gt;addr[1] == 0x1b &amp;&amp;</div>
+<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span>        addr-&gt;addr[2] == 0x19 &amp;&amp;</div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span>        addr-&gt;addr[3] == 0x00 &amp;&amp;</div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span>        addr-&gt;addr[4] == 0x00 &amp;&amp;</div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span>        addr-&gt;addr[5] == 0x00) {</div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span>    }</div>
+<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00783" name="l00783"></a><span class="lineno">  783</span> </div>
+<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span>}</div>
+<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span> </div>
+<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span><span class="keyword">const</span> <span class="keyword">struct </span>net_eth_addr *net_eth_broadcast_addr(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span> </div>
+<div class="line"><a id="l00797" name="l00797"></a><span class="lineno"><a class="line" href="group__ethernet.html#gae3ce2bd669391071635f5709d1c3cd8e">  797</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__ethernet.html#gae3ce2bd669391071635f5709d1c3cd8e">net_eth_ipv4_mcast_to_mac_addr</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structin__addr.html">in_addr</a> *ipv4_addr,</div>
+<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span>                    <span class="keyword">struct</span> net_eth_addr *mac_addr);</div>
+<div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span> </div>
+<div class="line"><a id="l00806" name="l00806"></a><span class="lineno"><a class="line" href="group__ethernet.html#gaa08d5237c26e8c05748d58eb65b15c2f">  806</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__ethernet.html#gaa08d5237c26e8c05748d58eb65b15c2f">net_eth_ipv6_mcast_to_mac_addr</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structin6__addr.html">in6_addr</a> *ipv6_addr,</div>
+<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>                    <span class="keyword">struct</span> net_eth_addr *mac_addr);</div>
+<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span> </div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span><span class="keyword">static</span> <span class="keyword">inline</span></div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ethernet.html#ga9162ff11d626813fc840df0b67820ac5">ethernet_hw_caps</a> net_eth_get_hw_capabilities(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface)</div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>{</div>
+<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structethernet__api.html">ethernet_api</a> *eth =</div>
+<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span>        (<span class="keyword">struct </span><a class="code hl_struct" href="structethernet__api.html">ethernet_api</a> *)net_if_get_device(iface)-&gt;api;</div>
+<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span> </div>
+<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span>    <span class="keywordflow">if</span> (!eth-&gt;<a class="code hl_variable" href="structethernet__api.html#a8731846f9bd07398b2f5c154c6ec0fe3">get_capabilities</a>) {</div>
+<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span>        <span class="keywordflow">return</span> (<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ethernet.html#ga9162ff11d626813fc840df0b67820ac5">ethernet_hw_caps</a>)0;</div>
+<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span>    }</div>
+<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span> </div>
+<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span>    <span class="keywordflow">return</span> eth-&gt;<a class="code hl_variable" href="structethernet__api.html#a8731846f9bd07398b2f5c154c6ec0fe3">get_capabilities</a>(net_if_get_device(iface));</div>
+<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span>}</div>
+<div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span> </div>
+<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span><span class="preprocessor">#if defined(CONFIG_NET_VLAN)</span></div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span><span class="keywordtype">int</span> net_eth_vlan_enable(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface, uint16_t tag);</div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> net_eth_vlan_enable(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface, uint16_t tag)</div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span>{</div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>    <span class="keywordflow">return</span> -EINVAL;</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>}</div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span> </div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span><span class="preprocessor">#if defined(CONFIG_NET_VLAN)</span></div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span><span class="keywordtype">int</span> net_eth_vlan_disable(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface, uint16_t tag);</div>
+<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> net_eth_vlan_disable(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface, uint16_t tag)</div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span>{</div>
+<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span>    <span class="keywordflow">return</span> -EINVAL;</div>
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>}</div>
+<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span> </div>
+<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span><span class="preprocessor">#if defined(CONFIG_NET_VLAN)</span></div>
+<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>uint16_t net_eth_get_vlan_tag(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface);</div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span><span class="keyword">static</span> <span class="keyword">inline</span> uint16_t net_eth_get_vlan_tag(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface)</div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span>{</div>
+<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="group__vlan__api.html#ga665458f4b8f9c83ea0c1609207d3dd70">NET_VLAN_TAG_UNSPEC</a>;</div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span>}</div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span> </div>
+<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span><span class="preprocessor">#if defined(CONFIG_NET_VLAN)</span></div>
+<div class="line"><a id="l00891" name="l00891"></a><span class="lineno">  891</span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__if.html">net_if</a> *net_eth_get_vlan_iface(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface, uint16_t tag);</div>
+<div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span><span class="keyword">static</span> <span class="keyword">inline</span></div>
+<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__if.html">net_if</a> *net_eth_get_vlan_iface(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface, uint16_t tag)</div>
+<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span>{</div>
+<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span>}</div>
+<div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span> </div>
+<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span><span class="preprocessor">#if defined(CONFIG_NET_VLAN)</span></div>
+<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span><span class="keywordtype">bool</span> net_eth_is_vlan_enabled(<span class="keyword">struct</span> <a class="code hl_struct" href="structethernet__context.html">ethernet_context</a> *ctx,</div>
+<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface);</div>
+<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_eth_is_vlan_enabled(<span class="keyword">struct</span> <a class="code hl_struct" href="structethernet__context.html">ethernet_context</a> *ctx,</div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span>                       <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface)</div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span>{</div>
+<div class="line"><a id="l00915" name="l00915"></a><span class="lineno">  915</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00916" name="l00916"></a><span class="lineno">  916</span>}</div>
+<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00918" name="l00918"></a><span class="lineno">  918</span> </div>
+<div class="line"><a id="l00926" name="l00926"></a><span class="lineno">  926</span><span class="preprocessor">#if defined(CONFIG_NET_VLAN)</span></div>
+<div class="line"><a id="l00927" name="l00927"></a><span class="lineno">  927</span><span class="keywordtype">bool</span> net_eth_get_vlan_status(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface);</div>
+<div class="line"><a id="l00928" name="l00928"></a><span class="lineno">  928</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00929" name="l00929"></a><span class="lineno">  929</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_eth_get_vlan_status(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface)</div>
+<div class="line"><a id="l00930" name="l00930"></a><span class="lineno">  930</span>{</div>
+<div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span>}</div>
+<div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span> </div>
+<div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span><span class="preprocessor">#if defined(CONFIG_NET_VLAN)</span></div>
+<div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span><span class="preprocessor">#define Z_ETH_NET_DEVICE_INIT(node_id, dev_id, name, init_fn, pm, data, \</span></div>
+<div class="line"><a id="l00937" name="l00937"></a><span class="lineno">  937</span><span class="preprocessor">                  config, prio, api, mtu)           \</span></div>
+<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span><span class="preprocessor">    Z_DEVICE_STATE_DEFINE(dev_id);                  \</span></div>
+<div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span><span class="preprocessor">    Z_DEVICE_DEFINE(node_id, dev_id, name, init_fn, pm, data,   \</span></div>
+<div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span><span class="preprocessor">            config, POST_KERNEL, prio, api,         \</span></div>
+<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span><span class="preprocessor">            &amp;Z_DEVICE_STATE_NAME(dev_id));          \</span></div>
+<div class="line"><a id="l00942" name="l00942"></a><span class="lineno">  942</span><span class="preprocessor">    NET_L2_DATA_INIT(dev_id, 0, NET_L2_GET_CTX_TYPE(ETHERNET_L2));  \</span></div>
+<div class="line"><a id="l00943" name="l00943"></a><span class="lineno">  943</span><span class="preprocessor">    NET_IF_INIT(dev_id, 0, ETHERNET_L2, mtu, NET_VLAN_MAX_COUNT)</span></div>
+<div class="line"><a id="l00944" name="l00944"></a><span class="lineno">  944</span> </div>
+<div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span><span class="preprocessor">#else </span><span class="comment">/* CONFIG_NET_VLAN */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span> </div>
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span><span class="preprocessor">#define Z_ETH_NET_DEVICE_INIT(node_id, dev_id, name, init_fn, pm, data, \</span></div>
+<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span><span class="preprocessor">                  config, prio, api, mtu)           \</span></div>
+<div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span><span class="preprocessor">    Z_NET_DEVICE_INIT(node_id, dev_id, name, init_fn, pm, data, \</span></div>
+<div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span><span class="preprocessor">              config, prio, api, ETHERNET_L2,       \</span></div>
+<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span><span class="preprocessor">              NET_L2_GET_CTX_TYPE(ETHERNET_L2), mtu)</span></div>
+<div class="line"><a id="l00952" name="l00952"></a><span class="lineno">  952</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_VLAN */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span> </div>
+<div class="foldopen" id="foldopen00971" data-start="" data-end="">
+<div class="line"><a id="l00971" name="l00971"></a><span class="lineno"><a class="line" href="group__ethernet.html#ga197e02748be8eaf410f7deb57c984642">  971</a></span><span class="preprocessor">#define ETH_NET_DEVICE_INIT(dev_id, name, init_fn, pm, data, config,    \</span></div>
+<div class="line"><a id="l00972" name="l00972"></a><span class="lineno">  972</span><span class="preprocessor">                prio, api, mtu)             \</span></div>
+<div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span><span class="preprocessor">    Z_ETH_NET_DEVICE_INIT(DT_INVALID_NODE, dev_id, name, init_fn,   \</span></div>
+<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span><span class="preprocessor">                  pm, data, config, prio, api, mtu)</span></div>
+</div>
+<div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span> </div>
+<div class="foldopen" id="foldopen00992" data-start="" data-end="">
+<div class="line"><a id="l00992" name="l00992"></a><span class="lineno"><a class="line" href="group__ethernet.html#ga9f67fee695953f24b1e5d9e49041aa99">  992</a></span><span class="preprocessor">#define ETH_NET_DEVICE_DT_DEFINE(node_id, init_fn, pm, data, config,    \</span></div>
+<div class="line"><a id="l00993" name="l00993"></a><span class="lineno">  993</span><span class="preprocessor">                 prio, api, mtu)            \</span></div>
+<div class="line"><a id="l00994" name="l00994"></a><span class="lineno">  994</span><span class="preprocessor">    Z_ETH_NET_DEVICE_INIT(node_id, Z_DEVICE_DT_DEV_ID(node_id), \</span></div>
+<div class="line"><a id="l00995" name="l00995"></a><span class="lineno">  995</span><span class="preprocessor">                  DEVICE_DT_NAME(node_id), init_fn, pm, \</span></div>
+<div class="line"><a id="l00996" name="l00996"></a><span class="lineno">  996</span><span class="preprocessor">                  data, config, prio, api, mtu)</span></div>
+</div>
+<div class="line"><a id="l00997" name="l00997"></a><span class="lineno">  997</span> </div>
+<div class="foldopen" id="foldopen01007" data-start="" data-end="">
+<div class="line"><a id="l01007" name="l01007"></a><span class="lineno"><a class="line" href="group__ethernet.html#gaecf9f102108836ed9cf7e2cdb3c90579"> 1007</a></span><span class="preprocessor">#define ETH_NET_DEVICE_DT_INST_DEFINE(inst, ...) \</span></div>
+<div class="line"><a id="l01008" name="l01008"></a><span class="lineno"> 1008</span><span class="preprocessor">    ETH_NET_DEVICE_DT_DEFINE(DT_DRV_INST(inst), __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l01009" name="l01009"></a><span class="lineno"> 1009</span> </div>
+<div class="line"><a id="l01016" name="l01016"></a><span class="lineno"><a class="line" href="group__ethernet.html#gabeb21cb06b18674b73fbd0f42ee726f0"> 1016</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__ethernet.html#gabeb21cb06b18674b73fbd0f42ee726f0">net_eth_carrier_on</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface);</div>
+<div class="line"><a id="l01017" name="l01017"></a><span class="lineno"> 1017</span> </div>
+<div class="line"><a id="l01024" name="l01024"></a><span class="lineno"><a class="line" href="group__ethernet.html#ga4dcf5047108b509e349b02fe35c10d75"> 1024</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__ethernet.html#ga4dcf5047108b509e349b02fe35c10d75">net_eth_carrier_off</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface);</div>
+<div class="line"><a id="l01025" name="l01025"></a><span class="lineno"> 1025</span> </div>
+<div class="line"><a id="l01035" name="l01035"></a><span class="lineno"><a class="line" href="group__ethernet.html#ga42a3c6b04ef8827e3443c5aebe5541b9"> 1035</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ethernet.html#ga42a3c6b04ef8827e3443c5aebe5541b9">net_eth_promisc_mode</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface, <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l01036" name="l01036"></a><span class="lineno"> 1036</span> </div>
+<div class="line"><a id="l01046" name="l01046"></a><span class="lineno"><a class="line" href="group__ethernet.html#gafbb76d53f9f80628d18d39368a28f984"> 1046</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ethernet.html#gafbb76d53f9f80628d18d39368a28f984">net_eth_txinjection_mode</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface, <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l01047" name="l01047"></a><span class="lineno"> 1047</span> </div>
+<div class="line"><a id="l01056" name="l01056"></a><span class="lineno"> 1056</span><span class="preprocessor">#if defined(CONFIG_PTP_CLOCK)</span></div>
+<div class="line"><a id="l01057" name="l01057"></a><span class="lineno"> 1057</span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *net_eth_get_ptp_clock(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface);</div>
+<div class="line"><a id="l01058" name="l01058"></a><span class="lineno"> 1058</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l01059" name="l01059"></a><span class="lineno"> 1059</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *net_eth_get_ptp_clock(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface)</div>
+<div class="line"><a id="l01060" name="l01060"></a><span class="lineno"> 1060</span>{</div>
+<div class="line"><a id="l01061" name="l01061"></a><span class="lineno"> 1061</span>    ARG_UNUSED(iface);</div>
+<div class="line"><a id="l01062" name="l01062"></a><span class="lineno"> 1062</span> </div>
+<div class="line"><a id="l01063" name="l01063"></a><span class="lineno"> 1063</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l01064" name="l01064"></a><span class="lineno"> 1064</span>}</div>
+<div class="line"><a id="l01065" name="l01065"></a><span class="lineno"> 1065</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01066" name="l01066"></a><span class="lineno"> 1066</span> </div>
+<div class="line"><a id="l01076" name="l01076"></a><span class="lineno"><a class="line" href="group__ethernet.html#ga4a942b2ce5123424478f44274e227df5"> 1076</a></span>__syscall <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_function" href="group__ethernet.html#ga4a942b2ce5123424478f44274e227df5">net_eth_get_ptp_clock_by_index</a>(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a id="l01077" name="l01077"></a><span class="lineno"> 1077</span> </div>
+<div class="line"><a id="l01085" name="l01085"></a><span class="lineno"> 1085</span><span class="preprocessor">#if defined(CONFIG_NET_L2_PTP)</span></div>
+<div class="line"><a id="l01086" name="l01086"></a><span class="lineno"> 1086</span><span class="keywordtype">int</span> net_eth_get_ptp_port(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface);</div>
+<div class="line"><a id="l01087" name="l01087"></a><span class="lineno"> 1087</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l01088" name="l01088"></a><span class="lineno"> 1088</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> net_eth_get_ptp_port(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface)</div>
+<div class="line"><a id="l01089" name="l01089"></a><span class="lineno"> 1089</span>{</div>
+<div class="line"><a id="l01090" name="l01090"></a><span class="lineno"> 1090</span>    ARG_UNUSED(iface);</div>
+<div class="line"><a id="l01091" name="l01091"></a><span class="lineno"> 1091</span> </div>
+<div class="line"><a id="l01092" name="l01092"></a><span class="lineno"> 1092</span>    <span class="keywordflow">return</span> -ENODEV;</div>
+<div class="line"><a id="l01093" name="l01093"></a><span class="lineno"> 1093</span>}</div>
+<div class="line"><a id="l01094" name="l01094"></a><span class="lineno"> 1094</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_L2_PTP */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l01095" name="l01095"></a><span class="lineno"> 1095</span> </div>
+<div class="line"><a id="l01102" name="l01102"></a><span class="lineno"> 1102</span><span class="preprocessor">#if defined(CONFIG_NET_L2_PTP)</span></div>
+<div class="line"><a id="l01103" name="l01103"></a><span class="lineno"> 1103</span><span class="keywordtype">void</span> net_eth_set_ptp_port(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface, <span class="keywordtype">int</span> port);</div>
+<div class="line"><a id="l01104" name="l01104"></a><span class="lineno"> 1104</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l01105" name="l01105"></a><span class="lineno"> 1105</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_eth_set_ptp_port(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface, <span class="keywordtype">int</span> port)</div>
+<div class="line"><a id="l01106" name="l01106"></a><span class="lineno"> 1106</span>{</div>
+<div class="line"><a id="l01107" name="l01107"></a><span class="lineno"> 1107</span>    ARG_UNUSED(iface);</div>
+<div class="line"><a id="l01108" name="l01108"></a><span class="lineno"> 1108</span>    ARG_UNUSED(port);</div>
+<div class="line"><a id="l01109" name="l01109"></a><span class="lineno"> 1109</span>}</div>
+<div class="line"><a id="l01110" name="l01110"></a><span class="lineno"> 1110</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_L2_PTP */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l01111" name="l01111"></a><span class="lineno"> 1111</span> </div>
+<div class="line"><a id="l01119" name="l01119"></a><span class="lineno"> 1119</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_eth_type_is_wifi(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface)</div>
+<div class="line"><a id="l01120" name="l01120"></a><span class="lineno"> 1120</span>{</div>
+<div class="line"><a id="l01121" name="l01121"></a><span class="lineno"> 1121</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structethernet__context.html">ethernet_context</a> *ctx = (<span class="keyword">struct </span><a class="code hl_struct" href="structethernet__context.html">ethernet_context</a> *)</div>
+<div class="line"><a id="l01122" name="l01122"></a><span class="lineno"> 1122</span>        net_if_l2_data(<a class="code hl_variable" href="structethernet__context.html#a2358d48d02192220f2621dd96e353f37">iface</a>);</div>
+<div class="line"><a id="l01123" name="l01123"></a><span class="lineno"> 1123</span> </div>
+<div class="line"><a id="l01124" name="l01124"></a><span class="lineno"> 1124</span>    <span class="keywordflow">return</span> ctx-&gt;eth_if_type == <a class="code hl_enumvalue" href="group__ethernet.html#gga139cc696837611a522b289f2ea7bf6fca32862b06ca0a77a8cf66d167c4496671">L2_ETH_IF_TYPE_WIFI</a>;</div>
+<div class="line"><a id="l01125" name="l01125"></a><span class="lineno"> 1125</span>}</div>
+<div class="line"><a id="l01126" name="l01126"></a><span class="lineno"> 1126</span> </div>
+<div class="line"><a id="l01131" name="l01131"></a><span class="lineno"> 1131</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l01132" name="l01132"></a><span class="lineno"> 1132</span>}</div>
+<div class="line"><a id="l01133" name="l01133"></a><span class="lineno"> 1133</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01134" name="l01134"></a><span class="lineno"> 1134</span> </div>
+<div class="line"><a id="l01135" name="l01135"></a><span class="lineno"> 1135</span><span class="preprocessor">#include &lt;syscalls/ethernet.h&gt;</span></div>
+<div class="line"><a id="l01136" name="l01136"></a><span class="lineno"> 1136</span> </div>
+<div class="line"><a id="l01137" name="l01137"></a><span class="lineno"> 1137</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_NET_ETHERNET_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adsa_8h_html"><div class="ttname"><a href="dsa_8h.html">dsa.h</a></div><div class="ttdoc">DSA definitions and handlers.</div></div>
+<div class="ttc" id="aethernet__bridge_8h_html"><div class="ttname"><a href="ethernet__bridge_8h.html">ethernet_bridge.h</a></div><div class="ttdoc">Ethernet Bridge public header file.</div></div>
+<div class="ttc" id="aethernet__vlan_8h_html"><div class="ttname"><a href="ethernet__vlan_8h.html">ethernet_vlan.h</a></div><div class="ttdoc">VLAN specific definitions.</div></div>
+<div class="ttc" id="agroup__DSA_html_ga6c40af9c2caefa7f855d225a41b43faa"><div class="ttname"><a href="group__DSA.html#ga6c40af9c2caefa7f855d225a41b43faa">dsa_net_recv_cb_t</a></div><div class="ttdeci">enum net_verdict(* dsa_net_recv_cb_t)(struct net_if *iface, struct net_pkt *pkt)</div><div class="ttdoc">DSA (MGMT) Receive packet callback.</div><div class="ttdef"><b>Definição</b> dsa.h:68</div></div>
+<div class="ttc" id="agroup__DSA_html_gad9a6e0ad0e100914f6b932843908d42b"><div class="ttname"><a href="group__DSA.html#gad9a6e0ad0e100914f6b932843908d42b">dsa_send_t</a></div><div class="ttdeci">int(* dsa_send_t)(const struct device *dev, struct net_pkt *pkt)</div><div class="ttdoc">Pointer to master interface send function.</div><div class="ttdef"><b>Definição</b> dsa.h:94</div></div>
+<div class="ttc" id="agroup__atomic__apis_html_ga249c575db9764486197709b327f7370e"><div class="ttname"><a href="group__atomic__apis.html#ga249c575db9764486197709b327f7370e">ATOMIC_DEFINE</a></div><div class="ttdeci">#define ATOMIC_DEFINE(name, num_bits)</div><div class="ttdoc">Define an array of atomic variables.</div><div class="ttdef"><b>Definição</b> atomic.h:114</div></div>
+<div class="ttc" id="agroup__bt__conn_html_gab3cdadb15ef89cfe197d88b4d3fdb596"><div class="ttname"><a href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a></div><div class="ttdeci">__packed</div><div class="ttdef"><b>Definição</b> conn.h:352</div></div>
+<div class="ttc" id="agroup__ethernet_html_ga139cc696837611a522b289f2ea7bf6fc"><div class="ttname"><a href="group__ethernet.html#ga139cc696837611a522b289f2ea7bf6fc">ethernet_if_types</a></div><div class="ttdeci">ethernet_if_types</div><div class="ttdef"><b>Definição</b> ethernet.h:408</div></div>
+<div class="ttc" id="agroup__ethernet_html_ga42a3c6b04ef8827e3443c5aebe5541b9"><div class="ttname"><a href="group__ethernet.html#ga42a3c6b04ef8827e3443c5aebe5541b9">net_eth_promisc_mode</a></div><div class="ttdeci">int net_eth_promisc_mode(struct net_if *iface, bool enable)</div><div class="ttdoc">Set promiscuous mode either ON or OFF.</div></div>
+<div class="ttc" id="agroup__ethernet_html_ga4a942b2ce5123424478f44274e227df5"><div class="ttname"><a href="group__ethernet.html#ga4a942b2ce5123424478f44274e227df5">net_eth_get_ptp_clock_by_index</a></div><div class="ttdeci">__syscall const struct device * net_eth_get_ptp_clock_by_index(int index)</div><div class="ttdoc">Return PTP clock that is tied to this ethernet network interface index.</div></div>
+<div class="ttc" id="agroup__ethernet_html_ga4dcf5047108b509e349b02fe35c10d75"><div class="ttname"><a href="group__ethernet.html#ga4dcf5047108b509e349b02fe35c10d75">net_eth_carrier_off</a></div><div class="ttdeci">void net_eth_carrier_off(struct net_if *iface)</div><div class="ttdoc">Inform ethernet L2 driver that ethernet carrier was lost. This happens when cable is disconnected.</div></div>
+<div class="ttc" id="agroup__ethernet_html_ga9162ff11d626813fc840df0b67820ac5"><div class="ttname"><a href="group__ethernet.html#ga9162ff11d626813fc840df0b67820ac5">ethernet_hw_caps</a></div><div class="ttdeci">ethernet_hw_caps</div><div class="ttdef"><b>Definição</b> ethernet.h:124</div></div>
+<div class="ttc" id="agroup__ethernet_html_gaa08d5237c26e8c05748d58eb65b15c2f"><div class="ttname"><a href="group__ethernet.html#gaa08d5237c26e8c05748d58eb65b15c2f">net_eth_ipv6_mcast_to_mac_addr</a></div><div class="ttdeci">void net_eth_ipv6_mcast_to_mac_addr(const struct in6_addr *ipv6_addr, struct net_eth_addr *mac_addr)</div><div class="ttdoc">Convert IPv6 multicast address to Ethernet address.</div></div>
+<div class="ttc" id="agroup__ethernet_html_gabeb21cb06b18674b73fbd0f42ee726f0"><div class="ttname"><a href="group__ethernet.html#gabeb21cb06b18674b73fbd0f42ee726f0">net_eth_carrier_on</a></div><div class="ttdeci">void net_eth_carrier_on(struct net_if *iface)</div><div class="ttdoc">Inform ethernet L2 driver that ethernet carrier is detected. This happens when cable is connected.</div></div>
+<div class="ttc" id="agroup__ethernet_html_gacd67360df806183cbc15159b0480bfa0"><div class="ttname"><a href="group__ethernet.html#gacd67360df806183cbc15159b0480bfa0">ethernet_init</a></div><div class="ttdeci">void ethernet_init(struct net_if *iface)</div><div class="ttdoc">Initialize Ethernet L2 stack for a given interface.</div></div>
+<div class="ttc" id="agroup__ethernet_html_gae3ce2bd669391071635f5709d1c3cd8e"><div class="ttname"><a href="group__ethernet.html#gae3ce2bd669391071635f5709d1c3cd8e">net_eth_ipv4_mcast_to_mac_addr</a></div><div class="ttdeci">void net_eth_ipv4_mcast_to_mac_addr(const struct in_addr *ipv4_addr, struct net_eth_addr *mac_addr)</div><div class="ttdoc">Convert IPv4 multicast address to Ethernet address.</div></div>
+<div class="ttc" id="agroup__ethernet_html_gafbb76d53f9f80628d18d39368a28f984"><div class="ttname"><a href="group__ethernet.html#gafbb76d53f9f80628d18d39368a28f984">net_eth_txinjection_mode</a></div><div class="ttdeci">int net_eth_txinjection_mode(struct net_if *iface, bool enable)</div><div class="ttdoc">Set TX-Injection mode either ON or OFF.</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga139cc696837611a522b289f2ea7bf6fca25c90e15f09a19a8ca7d0ea9d1836530"><div class="ttname"><a href="group__ethernet.html#gga139cc696837611a522b289f2ea7bf6fca25c90e15f09a19a8ca7d0ea9d1836530">L2_ETH_IF_TYPE_ETHERNET</a></div><div class="ttdeci">@ L2_ETH_IF_TYPE_ETHERNET</div><div class="ttdef"><b>Definição</b> ethernet.h:410</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga139cc696837611a522b289f2ea7bf6fca32862b06ca0a77a8cf66d167c4496671"><div class="ttname"><a href="group__ethernet.html#gga139cc696837611a522b289f2ea7bf6fca32862b06ca0a77a8cf66d167c4496671">L2_ETH_IF_TYPE_WIFI</a></div><div class="ttdeci">@ L2_ETH_IF_TYPE_WIFI</div><div class="ttdef"><b>Definição</b> ethernet.h:413</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a0bdf56b7f06fa68125bce800f9adfb95"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a0bdf56b7f06fa68125bce800f9adfb95">ETHERNET_HW_VLAN</a></div><div class="ttdeci">@ ETHERNET_HW_VLAN</div><div class="ttdef"><b>Definição</b> ethernet.h:132</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a1e32518640964a73d4154ed8bc527475"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a1e32518640964a73d4154ed8bc527475">ETHERNET_PRIORITY_QUEUES</a></div><div class="ttdeci">@ ETHERNET_PRIORITY_QUEUES</div><div class="ttdef"><b>Definição</b> ethernet.h:159</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a1e37eeba16e05b12580e5eacd36a25cc"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a1e37eeba16e05b12580e5eacd36a25cc">ETHERNET_DUPLEX_SET</a></div><div class="ttdeci">@ ETHERNET_DUPLEX_SET</div><div class="ttdef"><b>Definição</b> ethernet.h:147</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a1f33c56862228a647b583ae7e0605ac5"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a1f33c56862228a647b583ae7e0605ac5">ETHERNET_HW_VLAN_TAG_STRIP</a></div><div class="ttdeci">@ ETHERNET_HW_VLAN_TAG_STRIP</div><div class="ttdef"><b>Definição</b> ethernet.h:168</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a26084acbb9f8c65fdb427c7d8b9b4fb6"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a26084acbb9f8c65fdb427c7d8b9b4fb6">ETHERNET_LINK_10BASE_T</a></div><div class="ttdeci">@ ETHERNET_LINK_10BASE_T</div><div class="ttdef"><b>Definição</b> ethernet.h:138</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a50d1e4418926b586f6b50acd828f57fe"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a50d1e4418926b586f6b50acd828f57fe">ETHERNET_HW_FILTERING</a></div><div class="ttdeci">@ ETHERNET_HW_FILTERING</div><div class="ttdef"><b>Definição</b> ethernet.h:162</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a604198d571bf2c4e7227bdeaefc2868a"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a604198d571bf2c4e7227bdeaefc2868a">ETHERNET_PTP</a></div><div class="ttdeci">@ ETHERNET_PTP</div><div class="ttdef"><b>Definição</b> ethernet.h:150</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a68e30ff24a3eb75def8e154ac00dea08"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a68e30ff24a3eb75def8e154ac00dea08">ETHERNET_QBU</a></div><div class="ttdeci">@ ETHERNET_QBU</div><div class="ttdef"><b>Definição</b> ethernet.h:178</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a6fc62894c7ebe8697f1c45f4fc54ed3e"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a6fc62894c7ebe8697f1c45f4fc54ed3e">ETHERNET_LINK_100BASE_T</a></div><div class="ttdeci">@ ETHERNET_LINK_100BASE_T</div><div class="ttdef"><b>Definição</b> ethernet.h:141</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a77fe3d1049f9295102f3f2863df84dd7"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a77fe3d1049f9295102f3f2863df84dd7">ETHERNET_DSA_SLAVE_PORT</a></div><div class="ttdeci">@ ETHERNET_DSA_SLAVE_PORT</div><div class="ttdef"><b>Definição</b> ethernet.h:171</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a785ca3331fc7e92526d7c0faef34bd8b"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a785ca3331fc7e92526d7c0faef34bd8b">ETHERNET_TXINJECTION_MODE</a></div><div class="ttdeci">@ ETHERNET_TXINJECTION_MODE</div><div class="ttdef"><b>Definição</b> ethernet.h:184</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a7ec920ceb8cfba6424040079d6eeef42"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a7ec920ceb8cfba6424040079d6eeef42">ETHERNET_QAV</a></div><div class="ttdeci">@ ETHERNET_QAV</div><div class="ttdef"><b>Definição</b> ethernet.h:153</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a8341893ee775dca3609ce1316d948e33"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a8341893ee775dca3609ce1316d948e33">ETHERNET_HW_RX_CHKSUM_OFFLOAD</a></div><div class="ttdeci">@ ETHERNET_HW_RX_CHKSUM_OFFLOAD</div><div class="ttdef"><b>Definição</b> ethernet.h:129</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a885ef0a35e462efa43e59c2f625964b8"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a885ef0a35e462efa43e59c2f625964b8">ETHERNET_LINK_1000BASE_T</a></div><div class="ttdeci">@ ETHERNET_LINK_1000BASE_T</div><div class="ttdef"><b>Definição</b> ethernet.h:144</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a8da4ebc3e888ac358f88aa9671e732c2"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a8da4ebc3e888ac358f88aa9671e732c2">ETHERNET_LLDP</a></div><div class="ttdeci">@ ETHERNET_LLDP</div><div class="ttdef"><b>Definição</b> ethernet.h:165</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5a93c074b73420abed7d1f59f231da990a"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5a93c074b73420abed7d1f59f231da990a">ETHERNET_AUTO_NEGOTIATION_SET</a></div><div class="ttdeci">@ ETHERNET_AUTO_NEGOTIATION_SET</div><div class="ttdef"><b>Definição</b> ethernet.h:135</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5ac72ff66c3172da29ec9fefad7593ffd2"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5ac72ff66c3172da29ec9fefad7593ffd2">ETHERNET_TXTIME</a></div><div class="ttdeci">@ ETHERNET_TXTIME</div><div class="ttdef"><b>Definição</b> ethernet.h:181</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5acf17cbf803c3a0fe858ef939ccfe3b85"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5acf17cbf803c3a0fe858ef939ccfe3b85">ETHERNET_QBV</a></div><div class="ttdeci">@ ETHERNET_QBV</div><div class="ttdef"><b>Definição</b> ethernet.h:175</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5ad040f4a5749f66a377b840a4da8fb64d"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5ad040f4a5749f66a377b840a4da8fb64d">ETHERNET_PROMISC_MODE</a></div><div class="ttdeci">@ ETHERNET_PROMISC_MODE</div><div class="ttdef"><b>Definição</b> ethernet.h:156</div></div>
+<div class="ttc" id="agroup__ethernet_html_gga9162ff11d626813fc840df0b67820ac5aefaa7e72a676d6b1ad570a96be1a3861"><div class="ttname"><a href="group__ethernet.html#gga9162ff11d626813fc840df0b67820ac5aefaa7e72a676d6b1ad570a96be1a3861">ETHERNET_HW_TX_CHKSUM_OFFLOAD</a></div><div class="ttdeci">@ ETHERNET_HW_TX_CHKSUM_OFFLOAD</div><div class="ttdef"><b>Definição</b> ethernet.h:126</div></div>
+<div class="ttc" id="agroup__lldp_html_ga1e9fb662d7cdfc3c4c68cfd0312987cf"><div class="ttname"><a href="group__lldp.html#ga1e9fb662d7cdfc3c4c68cfd0312987cf">net_lldp_recv_cb_t</a></div><div class="ttdeci">enum net_verdict(* net_lldp_recv_cb_t)(struct net_if *iface, struct net_pkt *pkt)</div><div class="ttdoc">LLDP Receive packet callback.</div><div class="ttdef"><b>Definição</b> lldp.h:213</div></div>
+<div class="ttc" id="agroup__net__l2_html_gac7db0cc6c56d371a5803873074ec2516"><div class="ttname"><a href="group__net__l2.html#gac7db0cc6c56d371a5803873074ec2516">net_l2_flags</a></div><div class="ttdeci">net_l2_flags</div><div class="ttdef"><b>Definição</b> net_l2.h:34</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="agroup__sys-util_html_ga3a8ea58898cb58fc96013383d39f482c"><div class="ttname"><a href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a></div><div class="ttdeci">#define BIT(n)</div><div class="ttdoc">Unsigned integer with bit position n set (signed in assembly language).</div><div class="ttdef"><b>Definição</b> util_macro.h:44</div></div>
+<div class="ttc" id="agroup__vlan__api_html_ga665458f4b8f9c83ea0c1609207d3dd70"><div class="ttname"><a href="group__vlan__api.html#ga665458f4b8f9c83ea0c1609207d3dd70">NET_VLAN_TAG_UNSPEC</a></div><div class="ttdeci">#define NET_VLAN_TAG_UNSPEC</div><div class="ttdef"><b>Definição</b> ethernet_vlan.h:30</div></div>
+<div class="ttc" id="alldp_8h_html"><div class="ttname"><a href="lldp_8h.html">lldp.h</a></div><div class="ttdoc">LLDP definitions and handler.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__if_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__if_8h.html">net_if.h</a></div><div class="ttdoc">Public API for network interface.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__ip_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__ip_8h.html">net_ip.h</a></div><div class="ttdoc">IPv6 and IPv4 definitions.</div></div>
+<div class="ttc" id="anet__pkt_8h_html"><div class="ttname"><a href="net__pkt_8h.html">net_pkt.h</a></div><div class="ttdoc">Network packet buffer descriptor API.</div></div>
+<div class="ttc" id="aptp__time_8h_html"><div class="ttname"><a href="ptp__time_8h.html">ptp_time.h</a></div><div class="ttdoc">Public functions for the Precision Time Protocol time specification.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructeth__bridge__iface__context_html"><div class="ttname"><a href="structeth__bridge__iface__context.html">eth_bridge_iface_context</a></div><div class="ttdef"><b>Definição</b> ethernet_bridge.h:59</div></div>
+<div class="ttc" id="astructethernet__api_html"><div class="ttname"><a href="structethernet__api.html">ethernet_api</a></div><div class="ttdef"><b>Definição</b> ethernet.h:473</div></div>
+<div class="ttc" id="astructethernet__api_html_a03dfbaed9cdf2bdd17b0bfd28d5a1056"><div class="ttname"><a href="structethernet__api.html#a03dfbaed9cdf2bdd17b0bfd28d5a1056">ethernet_api::iface_api</a></div><div class="ttdeci">struct net_if_api iface_api</div><div class="ttdef"><b>Definição</b> ethernet.h:478</div></div>
+<div class="ttc" id="astructethernet__api_html_a2abe87be47f265a6d5b3e7b598682da1"><div class="ttname"><a href="structethernet__api.html#a2abe87be47f265a6d5b3e7b598682da1">ethernet_api::start</a></div><div class="ttdeci">int(* start)(const struct device *dev)</div><div class="ttdef"><b>Definição</b> ethernet.h:489</div></div>
+<div class="ttc" id="astructethernet__api_html_a3f71e6bf922b91289efa3ac97df70e81"><div class="ttname"><a href="structethernet__api.html#a3f71e6bf922b91289efa3ac97df70e81">ethernet_api::get_config</a></div><div class="ttdeci">int(* get_config)(const struct device *dev, enum ethernet_config_type type, struct ethernet_config *config)</div><div class="ttdef"><b>Definição</b> ethernet.h:503</div></div>
+<div class="ttc" id="astructethernet__api_html_a819599fe26b90860147ccfa86f337f84"><div class="ttname"><a href="structethernet__api.html#a819599fe26b90860147ccfa86f337f84">ethernet_api::stop</a></div><div class="ttdeci">int(* stop)(const struct device *dev)</div><div class="ttdef"><b>Definição</b> ethernet.h:492</div></div>
+<div class="ttc" id="astructethernet__api_html_a8731846f9bd07398b2f5c154c6ec0fe3"><div class="ttname"><a href="structethernet__api.html#a8731846f9bd07398b2f5c154c6ec0fe3">ethernet_api::get_capabilities</a></div><div class="ttdeci">enum ethernet_hw_caps(* get_capabilities)(const struct device *dev)</div><div class="ttdef"><b>Definição</b> ethernet.h:495</div></div>
+<div class="ttc" id="astructethernet__api_html_a8f6fd0d640b5a883c9f5150d9ed71241"><div class="ttname"><a href="structethernet__api.html#a8f6fd0d640b5a883c9f5150d9ed71241">ethernet_api::send</a></div><div class="ttdeci">int(* send)(const struct device *dev, struct net_pkt *pkt)</div><div class="ttdef"><b>Definição</b> ethernet.h:523</div></div>
+<div class="ttc" id="astructethernet__api_html_ae204fdf7e8c72fdea3dee67a7068afe1"><div class="ttname"><a href="structethernet__api.html#ae204fdf7e8c72fdea3dee67a7068afe1">ethernet_api::set_config</a></div><div class="ttdeci">int(* set_config)(const struct device *dev, enum ethernet_config_type type, const struct ethernet_config *config)</div><div class="ttdef"><b>Definição</b> ethernet.h:498</div></div>
+<div class="ttc" id="astructethernet__context_html"><div class="ttname"><a href="structethernet__context.html">ethernet_context</a></div><div class="ttdef"><b>Definição</b> ethernet.h:589</div></div>
+<div class="ttc" id="astructethernet__context_html_a2358d48d02192220f2621dd96e353f37"><div class="ttname"><a href="structethernet__context.html#a2358d48d02192220f2621dd96e353f37">ethernet_context::iface</a></div><div class="ttdeci">struct net_if * iface</div><div class="ttdef"><b>Definição</b> ethernet.h:619</div></div>
+<div class="ttc" id="astructethernet__context_html_a483abbb2e14fea59b01d6ee74466c702"><div class="ttname"><a href="structethernet__context.html#a483abbb2e14fea59b01d6ee74466c702">ethernet_context::is_net_carrier_up</a></div><div class="ttdeci">bool is_net_carrier_up</div><div class="ttdef"><b>Definição</b> ethernet.h:663</div></div>
+<div class="ttc" id="astructethernet__context_html_a49f0358828531ab6e3cc398ebaf6f6f9"><div class="ttname"><a href="structethernet__context.html#a49f0358828531ab6e3cc398ebaf6f6f9">ethernet_context::ethernet_l2_flags</a></div><div class="ttdeci">enum net_l2_flags ethernet_l2_flags</div><div class="ttdef"><b>Definição</b> ethernet.h:628</div></div>
+<div class="ttc" id="astructethernet__context_html_a4c152bdc054a3e86a5baedcf4e8eed1d"><div class="ttname"><a href="structethernet__context.html#a4c152bdc054a3e86a5baedcf4e8eed1d">ethernet_context::carrier_work</a></div><div class="ttdeci">struct k_work carrier_work</div><div class="ttdef"><b>Definição</b> ethernet.h:616</div></div>
+<div class="ttc" id="astructethernet__context_html_a800f7b276341771addd3f1f1ffb5329b"><div class="ttname"><a href="structethernet__context.html#a800f7b276341771addd3f1f1ffb5329b">ethernet_context::flags</a></div><div class="ttdeci">atomic_t flags</div><div class="ttdef"><b>Definição</b> ethernet.h:593</div></div>
+<div class="ttc" id="astructethernet__context_html_a81e35df9b1648c1e2dc6234bb2eb2d76"><div class="ttname"><a href="structethernet__context.html#a81e35df9b1648c1e2dc6234bb2eb2d76">ethernet_context::eth_if_type</a></div><div class="ttdeci">enum ethernet_if_types eth_if_type</div><div class="ttdef"><b>Definição</b> ethernet.h:669</div></div>
+<div class="ttc" id="astructethernet__context_html_ab7ea3afc9bd0ac19893d4a7edf2be057"><div class="ttname"><a href="structethernet__context.html#ab7ea3afc9bd0ac19893d4a7edf2be057">ethernet_context::is_init</a></div><div class="ttdeci">bool is_init</div><div class="ttdef"><b>Definição</b> ethernet.h:666</div></div>
+<div class="ttc" id="astructethernet__filter_html"><div class="ttname"><a href="structethernet__filter.html">ethernet_filter</a></div><div class="ttdef"><b>Definição</b> ethernet.h:417</div></div>
+<div class="ttc" id="astructethernet__filter_html_aaacda9b89d6b21934654e0f2b19624e0"><div class="ttname"><a href="structethernet__filter.html#aaacda9b89d6b21934654e0f2b19624e0">ethernet_filter::mac_address</a></div><div class="ttdeci">struct net_eth_addr mac_address</div><div class="ttdef"><b>Definição</b> ethernet.h:421</div></div>
+<div class="ttc" id="astructethernet__filter_html_ad83053c859c65e0c0432fe3f59671335"><div class="ttname"><a href="structethernet__filter.html#ad83053c859c65e0c0432fe3f59671335">ethernet_filter::set</a></div><div class="ttdeci">bool set</div><div class="ttdef"><b>Definição</b> ethernet.h:423</div></div>
+<div class="ttc" id="astructethernet__filter_html_aec00b1ecd6af658a5164d375bccdaa10"><div class="ttname"><a href="structethernet__filter.html#aec00b1ecd6af658a5164d375bccdaa10">ethernet_filter::type</a></div><div class="ttdeci">enum ethernet_filter_type type</div><div class="ttdef"><b>Definição</b> ethernet.h:419</div></div>
+<div class="ttc" id="astructethernet__qav__param_html"><div class="ttname"><a href="structethernet__qav__param.html">ethernet_qav_param</a></div><div class="ttdef"><b>Definição</b> ethernet.h:262</div></div>
+<div class="ttc" id="astructethernet__qav__param_html_a031d3896b14eb8b32c3c050738421b85"><div class="ttname"><a href="structethernet__qav__param.html#a031d3896b14eb8b32c3c050738421b85">ethernet_qav_param::enabled</a></div><div class="ttdeci">bool enabled</div><div class="ttdef"><b>Definição</b> ethernet.h:269</div></div>
+<div class="ttc" id="astructethernet__qav__param_html_a0691f10a338d3c49a58d94a1adced477"><div class="ttname"><a href="structethernet__qav__param.html#a0691f10a338d3c49a58d94a1adced477">ethernet_qav_param::oper_idle_slope</a></div><div class="ttdeci">unsigned int oper_idle_slope</div><div class="ttdef"><b>Definição</b> ethernet.h:275</div></div>
+<div class="ttc" id="astructethernet__qav__param_html_a38861d9f790a61aa88801cb1373077a8"><div class="ttname"><a href="structethernet__qav__param.html#a38861d9f790a61aa88801cb1373077a8">ethernet_qav_param::type</a></div><div class="ttdeci">enum ethernet_qav_param_type type</div><div class="ttdef"><b>Definição</b> ethernet.h:266</div></div>
+<div class="ttc" id="astructethernet__qav__param_html_a4a795e4a0c7d5bcbe8212d79f772dc6f"><div class="ttname"><a href="structethernet__qav__param.html#a4a795e4a0c7d5bcbe8212d79f772dc6f">ethernet_qav_param::traffic_class</a></div><div class="ttdeci">unsigned int traffic_class</div><div class="ttdef"><b>Definição</b> ethernet.h:277</div></div>
+<div class="ttc" id="astructethernet__qav__param_html_a4e2d2967669b758422c166140af0c1ba"><div class="ttname"><a href="structethernet__qav__param.html#a4e2d2967669b758422c166140af0c1ba">ethernet_qav_param::queue_id</a></div><div class="ttdeci">int queue_id</div><div class="ttdef"><b>Definição</b> ethernet.h:264</div></div>
+<div class="ttc" id="astructethernet__qav__param_html_a6d43b199549cade0a07dc10adac85bff"><div class="ttname"><a href="structethernet__qav__param.html#a6d43b199549cade0a07dc10adac85bff">ethernet_qav_param::idle_slope</a></div><div class="ttdeci">unsigned int idle_slope</div><div class="ttdef"><b>Definição</b> ethernet.h:273</div></div>
+<div class="ttc" id="astructethernet__qav__param_html_a6fde906da905c0598aaa2056c330b6f4"><div class="ttname"><a href="structethernet__qav__param.html#a6fde906da905c0598aaa2056c330b6f4">ethernet_qav_param::delta_bandwidth</a></div><div class="ttdeci">unsigned int delta_bandwidth</div><div class="ttdef"><b>Definição</b> ethernet.h:271</div></div>
+<div class="ttc" id="astructethernet__qbu__param_html"><div class="ttname"><a href="structethernet__qbu__param.html">ethernet_qbu_param</a></div><div class="ttdef"><b>Definição</b> ethernet.h:367</div></div>
+<div class="ttc" id="astructethernet__qbu__param_html_a3f5dfd9cfbc1ec86896eaf517bdc5c88"><div class="ttname"><a href="structethernet__qbu__param.html#a3f5dfd9cfbc1ec86896eaf517bdc5c88">ethernet_qbu_param::frame_preempt_statuses</a></div><div class="ttdeci">enum ethernet_qbu_preempt_status frame_preempt_statuses[NET_TC_TX_COUNT]</div><div class="ttdef"><b>Definição</b> ethernet.h:381</div></div>
+<div class="ttc" id="astructethernet__qbu__param_html_a3f62d0462376225c8609c7e26ebd314b"><div class="ttname"><a href="structethernet__qbu__param.html#a3f62d0462376225c8609c7e26ebd314b">ethernet_qbu_param::release_advance</a></div><div class="ttdeci">uint32_t release_advance</div><div class="ttdef"><b>Definição</b> ethernet.h:377</div></div>
+<div class="ttc" id="astructethernet__qbu__param_html_a4a8a3d26a12a06a787ae6b35ea40c37a"><div class="ttname"><a href="structethernet__qbu__param.html#a4a8a3d26a12a06a787ae6b35ea40c37a">ethernet_qbu_param::type</a></div><div class="ttdeci">enum ethernet_qbu_param_type type</div><div class="ttdef"><b>Definição</b> ethernet.h:371</div></div>
+<div class="ttc" id="astructethernet__qbu__param_html_a8ffde09a540817b7a68c7180c327196f"><div class="ttname"><a href="structethernet__qbu__param.html#a8ffde09a540817b7a68c7180c327196f">ethernet_qbu_param::hold_advance</a></div><div class="ttdeci">uint32_t hold_advance</div><div class="ttdef"><b>Definição</b> ethernet.h:374</div></div>
+<div class="ttc" id="astructethernet__qbu__param_html_a9717dd68adde62a454593d72fdbc43a5"><div class="ttname"><a href="structethernet__qbu__param.html#a9717dd68adde62a454593d72fdbc43a5">ethernet_qbu_param::enabled</a></div><div class="ttdeci">bool enabled</div><div class="ttdef"><b>Definição</b> ethernet.h:385</div></div>
+<div class="ttc" id="astructethernet__qbu__param_html_ad8c92a7f7b4aa124adaa62dd4e65b5ca"><div class="ttname"><a href="structethernet__qbu__param.html#ad8c92a7f7b4aa124adaa62dd4e65b5ca">ethernet_qbu_param::link_partner_status</a></div><div class="ttdeci">bool link_partner_status</div><div class="ttdef"><b>Definição</b> ethernet.h:388</div></div>
+<div class="ttc" id="astructethernet__qbu__param_html_ae6d61f0c9d2f2e56eb494db953a5e846"><div class="ttname"><a href="structethernet__qbu__param.html#ae6d61f0c9d2f2e56eb494db953a5e846">ethernet_qbu_param::port_id</a></div><div class="ttdeci">int port_id</div><div class="ttdef"><b>Definição</b> ethernet.h:369</div></div>
+<div class="ttc" id="astructethernet__qbu__param_html_afb455507b29d84de42638e47ecacadeb"><div class="ttname"><a href="structethernet__qbu__param.html#afb455507b29d84de42638e47ecacadeb">ethernet_qbu_param::additional_fragment_size</a></div><div class="ttdeci">uint8_t additional_fragment_size</div><div class="ttdef"><b>Definição</b> ethernet.h:393</div></div>
+<div class="ttc" id="astructethernet__qbv__param_html"><div class="ttname"><a href="structethernet__qbv__param.html">ethernet_qbv_param</a></div><div class="ttdef"><b>Definição</b> ethernet.h:303</div></div>
+<div class="ttc" id="astructethernet__qbv__param_html_a037492458f47905b894a2269ff7365cd"><div class="ttname"><a href="structethernet__qbv__param.html#a037492458f47905b894a2269ff7365cd">ethernet_qbv_param::port_id</a></div><div class="ttdeci">int port_id</div><div class="ttdef"><b>Definição</b> ethernet.h:305</div></div>
+<div class="ttc" id="astructethernet__qbv__param_html_a0742dbe52f01addbb319e2fcb354d064"><div class="ttname"><a href="structethernet__qbv__param.html#a0742dbe52f01addbb319e2fcb354d064">ethernet_qbv_param::enabled</a></div><div class="ttdeci">bool enabled</div><div class="ttdef"><b>Definição</b> ethernet.h:312</div></div>
+<div class="ttc" id="astructethernet__qbv__param_html_a2184250d397bd749764adc52ec3a1621"><div class="ttname"><a href="structethernet__qbv__param.html#a2184250d397bd749764adc52ec3a1621">ethernet_qbv_param::type</a></div><div class="ttdeci">enum ethernet_qbv_param_type type</div><div class="ttdef"><b>Definição</b> ethernet.h:307</div></div>
+<div class="ttc" id="astructethernet__qbv__param_html_a2c256aa3f65dfa75434752903daa809c"><div class="ttname"><a href="structethernet__qbv__param.html#a2c256aa3f65dfa75434752903daa809c">ethernet_qbv_param::row</a></div><div class="ttdeci">uint16_t row</div><div class="ttdef"><b>Definição</b> ethernet.h:325</div></div>
+<div class="ttc" id="astructethernet__qbv__param_html_a36702c57bea42c37c1341e144ced4f7d"><div class="ttname"><a href="structethernet__qbv__param.html#a36702c57bea42c37c1341e144ced4f7d">ethernet_qbv_param::state</a></div><div class="ttdeci">enum ethernet_qbv_state_type state</div><div class="ttdef"><b>Definição</b> ethernet.h:309</div></div>
+<div class="ttc" id="astructethernet__qbv__param_html_a44b6ce52faeae761c5ebe49fad5338cd"><div class="ttname"><a href="structethernet__qbv__param.html#a44b6ce52faeae761c5ebe49fad5338cd">ethernet_qbv_param::gate_status</a></div><div class="ttdeci">bool gate_status[NET_TC_TX_COUNT]</div><div class="ttdef"><b>Definição</b> ethernet.h:316</div></div>
+<div class="ttc" id="astructethernet__qbv__param_html_a53646a44e8b0e1f6588c357d49d97693"><div class="ttname"><a href="structethernet__qbv__param.html#a53646a44e8b0e1f6588c357d49d97693">ethernet_qbv_param::base_time</a></div><div class="ttdeci">struct net_ptp_extended_time base_time</div><div class="ttdef"><b>Definição</b> ethernet.h:336</div></div>
+<div class="ttc" id="astructethernet__qbv__param_html_a76220e58aa31ae6cfd92268277716c7a"><div class="ttname"><a href="structethernet__qbv__param.html#a76220e58aa31ae6cfd92268277716c7a">ethernet_qbv_param::extension_time</a></div><div class="ttdeci">uint32_t extension_time</div><div class="ttdef"><b>Definição</b> ethernet.h:342</div></div>
+<div class="ttc" id="astructethernet__qbv__param_html_a8471f7eb20a72bb16fe7abb0b2bb24f7"><div class="ttname"><a href="structethernet__qbv__param.html#a8471f7eb20a72bb16fe7abb0b2bb24f7">ethernet_qbv_param::operation</a></div><div class="ttdeci">enum ethernet_gate_state_operation operation</div><div class="ttdef"><b>Definição</b> ethernet.h:319</div></div>
+<div class="ttc" id="astructethernet__qbv__param_html_aa6b2be0014988752e326bdc1fe6ef161"><div class="ttname"><a href="structethernet__qbv__param.html#aa6b2be0014988752e326bdc1fe6ef161">ethernet_qbv_param::time_interval</a></div><div class="ttdeci">uint32_t time_interval</div><div class="ttdef"><b>Definição</b> ethernet.h:322</div></div>
+<div class="ttc" id="astructethernet__qbv__param_html_ad07589ae6802a9c3c4c3f809427129be"><div class="ttname"><a href="structethernet__qbv__param.html#ad07589ae6802a9c3c4c3f809427129be">ethernet_qbv_param::cycle_time</a></div><div class="ttdeci">struct net_ptp_time cycle_time</div><div class="ttdef"><b>Definição</b> ethernet.h:339</div></div>
+<div class="ttc" id="astructethernet__qbv__param_html_afc0c26fcdeee1a921a2f549de4d1c33e"><div class="ttname"><a href="structethernet__qbv__param.html#afc0c26fcdeee1a921a2f549de4d1c33e">ethernet_qbv_param::gate_control_list_len</a></div><div class="ttdeci">uint32_t gate_control_list_len</div><div class="ttdef"><b>Definição</b> ethernet.h:329</div></div>
+<div class="ttc" id="astructethernet__t1s__param_html"><div class="ttname"><a href="structethernet__t1s__param.html">ethernet_t1s_param</a></div><div class="ttdef"><b>Definição</b> ethernet.h:219</div></div>
+<div class="ttc" id="astructethernet__t1s__param_html_a081fb97c8fd027a5b6bba95f3b6d5acd"><div class="ttname"><a href="structethernet__t1s__param.html#a081fb97c8fd027a5b6bba95f3b6d5acd">ethernet_t1s_param::burst_count</a></div><div class="ttdeci">uint8_t burst_count</div><div class="ttdef"><b>Definição</b> ethernet.h:253</div></div>
+<div class="ttc" id="astructethernet__t1s__param_html_a40b3411132868970c4600bbe4a047d9d"><div class="ttname"><a href="structethernet__t1s__param.html#a40b3411132868970c4600bbe4a047d9d">ethernet_t1s_param::node_count</a></div><div class="ttdeci">uint8_t node_count</div><div class="ttdef"><b>Definição</b> ethernet.h:251</div></div>
+<div class="ttc" id="astructethernet__t1s__param_html_a449472362f5bfeb2ef2ef722030416a8"><div class="ttname"><a href="structethernet__t1s__param.html#a449472362f5bfeb2ef2ef722030416a8">ethernet_t1s_param::to_timer</a></div><div class="ttdeci">uint8_t to_timer</div><div class="ttdef"><b>Definição</b> ethernet.h:257</div></div>
+<div class="ttc" id="astructethernet__t1s__param_html_a67fba4b2ffe9affaf1cc4f6059c47e71"><div class="ttname"><a href="structethernet__t1s__param.html#a67fba4b2ffe9affaf1cc4f6059c47e71">ethernet_t1s_param::burst_timer</a></div><div class="ttdeci">uint8_t burst_timer</div><div class="ttdef"><b>Definição</b> ethernet.h:255</div></div>
+<div class="ttc" id="astructethernet__t1s__param_html_a74d407f31c1a37a73e406c89a97725b9"><div class="ttname"><a href="structethernet__t1s__param.html#a74d407f31c1a37a73e406c89a97725b9">ethernet_t1s_param::node_id</a></div><div class="ttdeci">uint8_t node_id</div><div class="ttdef"><b>Definição</b> ethernet.h:249</div></div>
+<div class="ttc" id="astructethernet__t1s__param_html_a85ed896b8d1c02dbb13fe666cc232c58"><div class="ttname"><a href="structethernet__t1s__param.html#a85ed896b8d1c02dbb13fe666cc232c58">ethernet_t1s_param::type</a></div><div class="ttdeci">enum ethernet_t1s_param_type type</div><div class="ttdef"><b>Definição</b> ethernet.h:221</div></div>
+<div class="ttc" id="astructethernet__t1s__param_html_add2f6115780c775a41da034443878955"><div class="ttname"><a href="structethernet__t1s__param.html#add2f6115780c775a41da034443878955">ethernet_t1s_param::enable</a></div><div class="ttdeci">bool enable</div><div class="ttdef"><b>Definição</b> ethernet.h:247</div></div>
+<div class="ttc" id="astructethernet__txtime__param_html"><div class="ttname"><a href="structethernet__txtime__param.html">ethernet_txtime_param</a></div><div class="ttdef"><b>Definição</b> ethernet.h:434</div></div>
+<div class="ttc" id="astructethernet__txtime__param_html_a74b1e05cf0fac8aa435ba966e110ae27"><div class="ttname"><a href="structethernet__txtime__param.html#a74b1e05cf0fac8aa435ba966e110ae27">ethernet_txtime_param::enable_txtime</a></div><div class="ttdeci">bool enable_txtime</div><div class="ttdef"><b>Definição</b> ethernet.h:440</div></div>
+<div class="ttc" id="astructethernet__txtime__param_html_aa4a46b7153b2a69ca0134f4e10bc7165"><div class="ttname"><a href="structethernet__txtime__param.html#aa4a46b7153b2a69ca0134f4e10bc7165">ethernet_txtime_param::queue_id</a></div><div class="ttdeci">int queue_id</div><div class="ttdef"><b>Definição</b> ethernet.h:438</div></div>
+<div class="ttc" id="astructethernet__txtime__param_html_ab4a709e6907e76f9cf23c085f5be5d99"><div class="ttname"><a href="structethernet__txtime__param.html#ab4a709e6907e76f9cf23c085f5be5d99">ethernet_txtime_param::type</a></div><div class="ttdeci">enum ethernet_txtime_param_type type</div><div class="ttdef"><b>Definição</b> ethernet.h:436</div></div>
+<div class="ttc" id="astructin6__addr_html"><div class="ttname"><a href="structin6__addr.html">in6_addr</a></div><div class="ttdef"><b>Definição</b> net_ip.h:139</div></div>
+<div class="ttc" id="astructin__addr_html"><div class="ttname"><a href="structin__addr.html">in_addr</a></div><div class="ttdef"><b>Definição</b> net_ip.h:151</div></div>
+<div class="ttc" id="astructk__work_html"><div class="ttname"><a href="structk__work.html">k_work</a></div><div class="ttdoc">A structure used to submit work.</div><div class="ttdef"><b>Definição</b> kernel.h:3866</div></div>
+<div class="ttc" id="astructnet__if_html"><div class="ttname"><a href="structnet__if.html">net_if</a></div><div class="ttdoc">Network Interface structure.</div><div class="ttdef"><b>Definição</b> net_if.h:598</div></div>
+<div class="ttc" id="astructnet__lldpdu_html"><div class="ttname"><a href="structnet__lldpdu.html">net_lldpdu</a></div><div class="ttdef"><b>Definição</b> lldp.h:167</div></div>
+<div class="ttc" id="astructnet__pkt_html"><div class="ttname"><a href="structnet__pkt.html">net_pkt</a></div><div class="ttdoc">Network packet.</div><div class="ttdef"><b>Definição</b> net_pkt.h:63</div></div>
+<div class="ttc" id="astructnet__ptp__extended__time_html"><div class="ttname"><a href="structnet__ptp__extended__time.html">net_ptp_extended_time</a></div><div class="ttdoc">Generalized Precision Time Protocol Extended Timestamp format.</div><div class="ttdef"><b>Definição</b> ptp_time.h:147</div></div>
+<div class="ttc" id="astructnet__ptp__time_html"><div class="ttname"><a href="structnet__ptp__time.html">net_ptp_time</a></div><div class="ttdoc">(Generalized) Precision Time Protocol Timestamp format.</div><div class="ttdef"><b>Definição</b> ptp_time.h:109</div></div>
+<div class="ttc" id="astructnet__stats__eth_html"><div class="ttname"><a href="structnet__stats__eth.html">net_stats_eth</a></div><div class="ttdoc">All Ethernet specific statistics.</div><div class="ttdef"><b>Definição</b> net_stats.h:441</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Misc utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

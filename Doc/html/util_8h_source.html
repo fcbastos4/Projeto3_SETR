@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/sys/util.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_791a8e330d3bfcbb2b6e2254610c12ab.html">sys</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">util.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="util_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2011-2014, Wind River Systems, Inc.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_SYS_UTIL_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define ZEPHYR_INCLUDE_SYS_UTIL_H_</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="util__macro_8h.html">zephyr/sys/util_macro.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="toolchain_8h.html">zephyr/toolchain.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">/* needs to be outside _ASMLANGUAGE so &#39;true&#39; and &#39;false&#39; can turn</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> * into &#39;1&#39; and &#39;0&#39; for asm or linker scripts</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#ifndef _ASMLANGUAGE</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="util_8h.html#afa27c06d0ad6b949289431ad75f104ab">   32</a></span><span class="preprocessor">#define NUM_BITS(t) (sizeof(t) * 8)</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__sys-util.html#gae4ed3d05bcfbe9c8f4a5d81d8c969f19">   45</a></span><span class="preprocessor">#define POINTER_TO_UINT(x) ((uintptr_t) (x))</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="group__sys-util.html#gab74ce0513c348e0b257d38473e77e1a1">   47</a></span><span class="preprocessor">#define UINT_TO_POINTER(x) ((void *) (uintptr_t) (x))</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga6e5ec9c46d0140315a7c1d80d1cc3c38">   49</a></span><span class="preprocessor">#define POINTER_TO_INT(x)  ((intptr_t) (x))</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="group__sys-util.html#gae236ed18fe2ff18ab47c15d2e7eeb417">   51</a></span><span class="preprocessor">#define INT_TO_POINTER(x)  ((void *) (intptr_t) (x))</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#if !(defined(__CHAR_BIT__) &amp;&amp; defined(__SIZEOF_LONG__) &amp;&amp; defined(__SIZEOF_LONG_LONG__))</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#   error Missing required predefined macros for BITS_PER_LONG calculation</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga2f660aa23a5dbc0f4b8df48b4302b8c3">   58</a></span><span class="preprocessor">#define BITS_PER_LONG   (__CHAR_BIT__ * __SIZEOF_LONG__)</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="group__sys-util.html#gaeb3fa0f8ac477da6575363a158f36891">   61</a></span><span class="preprocessor">#define BITS_PER_LONG_LONG  (__CHAR_BIT__ * __SIZEOF_LONG_LONG__)</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="foldopen" id="foldopen00067" data-start="" data-end="">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga58530d20924859d16358c7400c37738d">   67</a></span><span class="preprocessor">#define GENMASK(h, l) \</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">    (((~0UL) - (1UL &lt;&lt; (l)) + 1) &amp; (~0UL &gt;&gt; (BITS_PER_LONG - 1 - (h))))</span></div>
+</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="foldopen" id="foldopen00074" data-start="" data-end="">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="group__sys-util.html#gab631f8a0ecb6fde5b22df40607868f04">   74</a></span><span class="preprocessor">#define GENMASK64(h, l) \</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">    (((~0ULL) - (1ULL &lt;&lt; (l)) + 1) &amp; (~0ULL &gt;&gt; (BITS_PER_LONG_LONG - 1 - (h))))</span></div>
+</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga92235ab2e350fbdc01ddf0f894e5e4c0">   78</a></span><span class="preprocessor">#define LSB_GET(value) ((value) &amp; -(value))</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="group__sys-util.html#gaa49a456f06f7bdbedfcf3517e461947e">   84</a></span><span class="preprocessor">#define FIELD_GET(mask, value)  (((value) &amp; (mask)) / LSB_GET(mask))</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="group__sys-util.html#gaa03c8b31bf67a097dd9f8153a04ef86b">   91</a></span><span class="preprocessor">#define FIELD_PREP(mask, value) (((value) * LSB_GET(mask)) &amp; (mask))</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga831cb8468911b8ebdb9b42682778e53d">   94</a></span><span class="preprocessor">#define ZERO_OR_COMPILE_ERROR(cond) ((int) sizeof(char[1 - 2 * !(cond)]) - 1)</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">#if defined(__cplusplus)</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">/* The built-in function used below for type checking in C is not</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment"> * supported by GNU C++.</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">#define ARRAY_SIZE(array) (sizeof(array) / sizeof((array)[0]))</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">#else </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="foldopen" id="foldopen00110" data-start="" data-end="">
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="group__sys-util.html#gaa0be479debd8300ab6b43f4d028ab5da">  110</a></span><span class="preprocessor">#define IS_ARRAY(array) \</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">    ZERO_OR_COMPILE_ERROR( \</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">        !__builtin_types_compatible_p(__typeof__(array), \</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">                          __typeof__(&amp;(array)[0])))</span></div>
+</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="foldopen" id="foldopen00124" data-start="" data-end="">
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga70c57aae3eb654e205459b4362c8089a">  124</a></span><span class="preprocessor">#define ARRAY_SIZE(array) \</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">    ((size_t) (IS_ARRAY(array) + (sizeof(array) / sizeof((array)[0]))))</span></div>
+</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="foldopen" id="foldopen00143" data-start="" data-end="">
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="group__sys-util.html#gad403257ac6868c8bf3415ae771ce0a04">  143</a></span><span class="preprocessor">#define IS_ARRAY_ELEMENT(array, ptr)                                                               \</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="preprocessor">    ((ptr) &amp;&amp; POINTER_TO_UINT(array) &lt;= POINTER_TO_UINT(ptr) &amp;&amp;                          \</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="preprocessor">     POINTER_TO_UINT(ptr) &lt; POINTER_TO_UINT(&amp;(array)[ARRAY_SIZE(array)]) &amp;&amp;                    \</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">     (POINTER_TO_UINT(ptr) - POINTER_TO_UINT(array)) % sizeof((array)[0]) == 0)</span></div>
+</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="foldopen" id="foldopen00162" data-start="" data-end="">
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga27c31909224761e41d77118b41212d6b">  162</a></span><span class="preprocessor">#define ARRAY_INDEX(array, ptr)                                                                    \</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">    ({                                                                                         \</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">        __ASSERT_NO_MSG(IS_ARRAY_ELEMENT(array, ptr));                                     \</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="preprocessor">        (__typeof__((array)[0]) *)(ptr) - (array);                                         \</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">    })</span></div>
+</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="foldopen" id="foldopen00178" data-start="" data-end="">
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga4fbecf59c021cb60fa1267b7818f90ef">  178</a></span><span class="preprocessor">#define PART_OF_ARRAY(array, ptr)                                                                  \</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">    ((ptr) &amp;&amp; POINTER_TO_UINT(array) &lt;= POINTER_TO_UINT(ptr) &amp;&amp;                                \</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">     POINTER_TO_UINT(ptr) &lt; POINTER_TO_UINT(&amp;(array)[ARRAY_SIZE(array)]))</span></div>
+</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="foldopen" id="foldopen00199" data-start="" data-end="">
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="group__sys-util.html#gae0516bf7a39795bcc6f0dfbf3a180c05">  199</a></span><span class="preprocessor">#define ARRAY_INDEX_FLOOR(array, ptr)                                                              \</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">    ({                                                                                         \</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="preprocessor">        __ASSERT_NO_MSG(PART_OF_ARRAY(array, ptr));                                        \</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="preprocessor">        (POINTER_TO_UINT(ptr) - POINTER_TO_UINT(array)) / sizeof((array)[0]);              \</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="preprocessor">    })</span></div>
+</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga78e587047fe4af679141595363c07179">  212</a></span><span class="preprocessor">#define SAME_TYPE(a, b) __builtin_types_compatible_p(__typeof__(a), __typeof__(b))</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="preprocessor">#ifndef __cplusplus</span></div>
+<div class="foldopen" id="foldopen00218" data-start="" data-end="">
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="group__sys-util.html#gaf2279c11f90f7461a417f9646af7dc5c">  218</a></span><span class="preprocessor">#define CONTAINER_OF_VALIDATE(ptr, type, field)               \</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="preprocessor">    BUILD_ASSERT(SAME_TYPE(*(ptr), ((type *)0)-&gt;field) || \</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="preprocessor">             SAME_TYPE(*(ptr), void),                 \</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="preprocessor">             &quot;pointer type mismatch in CONTAINER_OF&quot;);</span></div>
+</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="preprocessor">#define CONTAINER_OF_VALIDATE(ptr, type, field)</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="foldopen" id="foldopen00247" data-start="" data-end="">
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="group__sys-util.html#gac5bc561d1bfd1bf68877fe577779bd2f">  247</a></span><span class="preprocessor">#define CONTAINER_OF(ptr, type, field)                               \</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="preprocessor">    ({                                                           \</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="preprocessor">        CONTAINER_OF_VALIDATE(ptr, type, field)              \</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="preprocessor">        ((type *)(((char *)(ptr)) - offsetof(type, field))); \</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="preprocessor">    })</span></div>
+</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga2f18db18bca26cafa95e9719de4a41ef">  260</a></span><span class="preprocessor">#define CONCAT(x, y) _DO_CONCAT(x, y)</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="foldopen" id="foldopen00265" data-start="" data-end="">
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="group__sys-util.html#gaada5610108b15d85c65d863b0c646ef3">  265</a></span><span class="preprocessor">#define ROUND_UP(x, align)                                   \</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="preprocessor">    ((((unsigned long)(x) + ((unsigned long)(align) - 1)) / \</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="preprocessor">      (unsigned long)(align)) * (unsigned long)(align))</span></div>
+</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="foldopen" id="foldopen00272" data-start="" data-end="">
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="group__sys-util.html#gad8d2389dbe7ea135eccf237dbafb76dd">  272</a></span><span class="preprocessor">#define ROUND_DOWN(x, align)                                 \</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="preprocessor">    (((unsigned long)(x) / (unsigned long)(align)) * (unsigned long)(align))</span></div>
+</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga8b16b3a76faa15ea544e4b0edb3e62c7">  276</a></span><span class="preprocessor">#define WB_UP(x) ROUND_UP(x, sizeof(void *))</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="group__sys-util.html#gadbc789ee99633a92584387ba2a4f7052">  279</a></span><span class="preprocessor">#define WB_DN(x) ROUND_DOWN(x, sizeof(void *))</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="group__sys-util.html#gae664e7492e37d324831caf2321ddda37">  295</a></span><span class="preprocessor">#define DIV_ROUND_UP(n, d) (((n) + (d) - 1) / (d))</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="foldopen" id="foldopen00312" data-start="" data-end="">
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga57fc13eb777500b3e22d3ff457cfd0d7">  312</a></span><span class="preprocessor">#define DIV_ROUND_CLOSEST(n, d) \</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="preprocessor">    ((((n) &lt; 0) ^ ((d) &lt; 0)) ? ((n) - ((d) / 2)) / (d) : \</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="preprocessor">    ((n) + ((d) / 2)) / (d))</span></div>
+</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="foldopen" id="foldopen00320" data-start="" data-end="">
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="group__sys-util.html#gaad408461e7ab356650bcd5c83bc0ed39">  320</a></span><span class="preprocessor">#define ceiling_fraction(numerator, divider) __DEPRECATED_MACRO \</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="preprocessor">    DIV_ROUND_UP(numerator, divider)</span></div>
+</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="preprocessor">#ifndef MAX</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="group__sys-util.html#gafa99ec4acc4ecb2dc3c2d05da15d0e3f">  335</a></span><span class="preprocessor">#define MAX(a, b) (((a) &gt; (b)) ? (a) : (b))</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="preprocessor">#ifndef MIN</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga3acffbd305ee72dcd4593c0d8af64a4f">  350</a></span><span class="preprocessor">#define MIN(a, b) (((a) &lt; (b)) ? (a) : (b))</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="preprocessor">#ifndef CLAMP</span></div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno"><a class="line" href="group__sys-util.html#gad6e7d4f6ba5a77f9ee3c04026f1c2b67">  366</a></span><span class="preprocessor">#define CLAMP(val, low, high) (((val) &lt;= (low)) ? (low) : MIN(val, high))</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno"><a class="line" href="group__sys-util.html#gaea00fb0c11b73f77da8884374e2121b4">  381</a></span><span class="preprocessor">#define IN_RANGE(val, min, max) ((val) &gt;= (min) &amp;&amp; (val) &lt;= (max))</span></div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> is_power_of_two(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x)</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>{</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>    <span class="keywordflow">return</span> <a class="code hl_define" href="group__sys-util.html#ga52d277cbf33f76350b2fcb21c24640ee">IS_POWER_OF_TWO</a>(x);</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>}</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span> </div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="keyword">static</span> <span class="keyword">inline</span> int64_t arithmetic_shift_right(int64_t value, uint8_t shift)</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>{</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    int64_t sign_ext;</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    <span class="keywordflow">if</span> (shift == 0U) {</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>        <span class="keywordflow">return</span> value;</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    }</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> </div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>    <span class="comment">/* extract sign bit */</span></div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    sign_ext = (value &gt;&gt; 63) &amp; 1;</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span> </div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    <span class="comment">/* make all bits of sign_ext be the same as the value&#39;s sign bit */</span></div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    sign_ext = -sign_ext;</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span> </div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>    <span class="comment">/* shift value and fill opened bit positions with sign bit */</span></div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    <span class="keywordflow">return</span> (value &gt;&gt; shift) | (sign_ext &lt;&lt; (64 - shift));</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>}</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> bytecpy(<span class="keywordtype">void</span> *dst, <span class="keyword">const</span> <span class="keywordtype">void</span> *src, <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>{</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    <span class="keywordtype">size_t</span> i;</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span> </div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>    <span class="keywordflow">for</span> (i = 0; i &lt; size; ++i) {</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>        ((<span class="keyword">volatile</span> uint8_t *)dst)[i] = ((<span class="keyword">volatile</span> <span class="keyword">const</span> uint8_t *)src)[i];</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>    }</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>}</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> byteswp(<span class="keywordtype">void</span> *a, <span class="keywordtype">void</span> *b, <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>{</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>    uint8_t t;</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>    uint8_t *aa = (uint8_t *)a;</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>    uint8_t *bb = (uint8_t *)b;</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span> </div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>    <span class="keywordflow">for</span> (; size &gt; 0; --size) {</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>        t = *aa;</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>        *aa++ = *bb;</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>        *bb++ = t;</div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>    }</div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>}</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span> </div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno"><a class="line" href="group__sys-util.html#gaaf91757f6fe86ab417536d5066ce14e6">  467</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__sys-util.html#gaaf91757f6fe86ab417536d5066ce14e6">char2hex</a>(<span class="keywordtype">char</span> c, uint8_t *x);</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span> </div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga9ed3bd04d5c0797aebf333733913028c">  477</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__sys-util.html#ga9ed3bd04d5c0797aebf333733913028c">hex2char</a>(uint8_t x, <span class="keywordtype">char</span> *c);</div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span> </div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno"><a class="line" href="group__sys-util.html#gaf8f2ab98cc3f045ba834dbbb13a5dfd7">  489</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="group__sys-util.html#gaf8f2ab98cc3f045ba834dbbb13a5dfd7">bin2hex</a>(<span class="keyword">const</span> uint8_t *buf, <span class="keywordtype">size_t</span> buflen, <span class="keywordtype">char</span> *hex, <span class="keywordtype">size_t</span> hexlen);</div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span> </div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga269a01ffa3f1a3485b79d8a54a78a3f1">  501</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="group__sys-util.html#ga269a01ffa3f1a3485b79d8a54a78a3f1">hex2bin</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *hex, <span class="keywordtype">size_t</span> hexlen, uint8_t *buf, <span class="keywordtype">size_t</span> buflen);</div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span> </div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t bcd2bin(uint8_t bcd)</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>{</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>    <span class="keywordflow">return</span> ((10 * (bcd &gt;&gt; 4)) + (bcd &amp; 0x0F));</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>}</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span> </div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t bin2bcd(uint8_t bin)</div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>{</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>    <span class="keywordflow">return</span> (((bin / 10) &lt;&lt; 4) | (bin % 10));</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>}</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span> </div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno"><a class="line" href="group__sys-util.html#gabd42323692821c970e1038879f8f2f33">  540</a></span>uint8_t <a class="code hl_function" href="group__sys-util.html#gabd42323692821c970e1038879f8f2f33">u8_to_dec</a>(<span class="keywordtype">char</span> *buf, uint8_t buflen, uint8_t value);</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span> </div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga1bbcfa5d7bfe757afab489d2ce41e30a">  566</a></span><span class="keywordtype">char</span> *<a class="code hl_function" href="group__sys-util.html#ga1bbcfa5d7bfe757afab489d2ce41e30a">utf8_trunc</a>(<span class="keywordtype">char</span> *utf8_str);</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span> </div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga376935d7e6eece7dbdd382de057ec2f9">  582</a></span><span class="keywordtype">char</span> *<a class="code hl_function" href="group__sys-util.html#ga376935d7e6eece7dbdd382de057ec2f9">utf8_lcpy</a>(<span class="keywordtype">char</span> *dst, <span class="keyword">const</span> <span class="keywordtype">char</span> *src, <span class="keywordtype">size_t</span> n);</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span> </div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span><span class="preprocessor">#define __z_log2d(x) (32 - __builtin_clz(x) - 1)</span></div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span><span class="preprocessor">#define __z_log2q(x) (64 - __builtin_clzll(x) - 1)</span></div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span><span class="preprocessor">#define __z_log2(x) (sizeof(__typeof__(x)) &gt; 4 ? __z_log2q(x) : __z_log2d(x))</span></div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span> </div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga40805b5dd56ee36df59a7bbe403ddf33">  598</a></span><span class="preprocessor">#define LOG2(x) ((x) &lt; 1 ? -1 : __z_log2(x))</span></div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span> </div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno"><a class="line" href="group__sys-util.html#gada629edfcec9fa2fc3dc5d7af70abb03">  610</a></span><span class="preprocessor">#define LOG2CEIL(x) ((x) &lt; 1 ?  0 : __z_log2((x)-1) + 1)</span></div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span> </div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga2ab444fed50a82cc1fe0e952fd03127d">  624</a></span><span class="preprocessor">#define NHPOT(x) ((x) &lt; 1 ? 1 : ((x) &gt; (1ULL&lt;&lt;63) ? 0 : 1ULL &lt;&lt; LOG2CEIL(x)))</span></div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span> </div>
+<div class="foldopen" id="foldopen00638" data-start="" data-end="">
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno"><a class="line" href="group__sys-util.html#gab94b04f0d37f54a106d8d09701ade6f7">  638</a></span><span class="preprocessor">#define Z_DETECT_POINTER_OVERFLOW(addr, buflen)  \</span></div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span><span class="preprocessor">    (((buflen) != 0) &amp;&amp;                        \</span></div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span><span class="preprocessor">    ((UINTPTR_MAX - (uintptr_t)(addr)) &lt;= ((uintptr_t)((buflen) - 1))))</span></div>
+</div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span> </div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>}</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span> </div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span><span class="comment">/* This file must be included at the end of the !_ASMLANGUAGE guard.</span></div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span><span class="comment"> * It depends on macros defined in this file above which cannot be forward declared.</span></div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2sys_2time__units_8h.html">zephyr/sys/time_units.h</a>&gt;</span></div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span> </div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span><span class="preprocessor">#endif </span><span class="comment">/* !_ASMLANGUAGE */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span> </div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span><span class="preprocessor">#ifdef _LINKER</span></div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span><span class="comment">/* This is used in linker scripts so need to avoid type casting there */</span></div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span><span class="preprocessor">#define KB(x) ((x) &lt;&lt; 10)</span></div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga5c723c0cc71b83224ead557db3ab74dd">  658</a></span><span class="preprocessor">#define KB(x) (((size_t)x) &lt;&lt; 10)</span></div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga44d2b171cc92225ec0a76ef70fc9b531">  661</a></span><span class="preprocessor">#define MB(x) (KB(x) &lt;&lt; 10)</span></div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno"><a class="line" href="group__sys-util.html#gaf207e8203eedc05adcf341a24bfa6cbb">  663</a></span><span class="preprocessor">#define GB(x) (MB(x) &lt;&lt; 10)</span></div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span> </div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno"><a class="line" href="group__sys-util.html#gaee55275295c076c6d23c994777623253">  666</a></span><span class="preprocessor">#define KHZ(x) ((x) * 1000)</span></div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno"><a class="line" href="group__sys-util.html#gab7b18750ddf0850461f926ae151ca7fa">  668</a></span><span class="preprocessor">#define MHZ(x) (KHZ(x) * 1000)</span></div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span> </div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span><span class="preprocessor">#if defined(CONFIG_ARCH_POSIX)</span></div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span><span class="preprocessor">#define Z_SPIN_DELAY(t) k_busy_wait(t)</span></div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno"><a class="line" href="group__sys-util.html#gafe5c4475044c69682f8a0cf4dc1a4bdb">  685</a></span><span class="preprocessor">#define Z_SPIN_DELAY(t)</span></div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span> </div>
+<div class="foldopen" id="foldopen00703" data-start="" data-end="">
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno"><a class="line" href="group__sys-util.html#ga68eb35df6b4715714312df90209accee">  703</a></span><span class="preprocessor">#define WAIT_FOR(expr, timeout, delay_stmt)                                                        \</span></div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span><span class="preprocessor">    ({                                                                                         \</span></div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span><span class="preprocessor">        uint32_t _wf_cycle_count = k_us_to_cyc_ceil32(timeout);                            \</span></div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span><span class="preprocessor">        uint32_t _wf_start = k_cycle_get_32();                                             \</span></div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span><span class="preprocessor">        while (!(expr) &amp;&amp; (_wf_cycle_count &gt; (k_cycle_get_32() - _wf_start))) {            \</span></div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span><span class="preprocessor">            delay_stmt;                                                                \</span></div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span><span class="preprocessor">            Z_SPIN_DELAY(10);                                                          \</span></div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span><span class="preprocessor">        }                                                                                  \</span></div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span><span class="preprocessor">        (expr);                                                                            \</span></div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span><span class="preprocessor">    })</span></div>
+</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span> </div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_SYS_UTIL_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__sys-util_html_ga1bbcfa5d7bfe757afab489d2ce41e30a"><div class="ttname"><a href="group__sys-util.html#ga1bbcfa5d7bfe757afab489d2ce41e30a">utf8_trunc</a></div><div class="ttdeci">char * utf8_trunc(char *utf8_str)</div><div class="ttdoc">Properly truncate a NULL-terminated UTF-8 string.</div></div>
+<div class="ttc" id="agroup__sys-util_html_ga269a01ffa3f1a3485b79d8a54a78a3f1"><div class="ttname"><a href="group__sys-util.html#ga269a01ffa3f1a3485b79d8a54a78a3f1">hex2bin</a></div><div class="ttdeci">size_t hex2bin(const char *hex, size_t hexlen, uint8_t *buf, size_t buflen)</div><div class="ttdoc">Convert a hexadecimal string into a binary array.</div></div>
+<div class="ttc" id="agroup__sys-util_html_ga376935d7e6eece7dbdd382de057ec2f9"><div class="ttname"><a href="group__sys-util.html#ga376935d7e6eece7dbdd382de057ec2f9">utf8_lcpy</a></div><div class="ttdeci">char * utf8_lcpy(char *dst, const char *src, size_t n)</div><div class="ttdoc">Copies a UTF-8 encoded string from src to dst.</div></div>
+<div class="ttc" id="agroup__sys-util_html_ga52d277cbf33f76350b2fcb21c24640ee"><div class="ttname"><a href="group__sys-util.html#ga52d277cbf33f76350b2fcb21c24640ee">IS_POWER_OF_TWO</a></div><div class="ttdeci">#define IS_POWER_OF_TWO(x)</div><div class="ttdoc">Check if a x is a power of two.</div><div class="ttdef"><b>Definição</b> util_macro.h:77</div></div>
+<div class="ttc" id="agroup__sys-util_html_ga9ed3bd04d5c0797aebf333733913028c"><div class="ttname"><a href="group__sys-util.html#ga9ed3bd04d5c0797aebf333733913028c">hex2char</a></div><div class="ttdeci">int hex2char(uint8_t x, char *c)</div><div class="ttdoc">Convert a single hexadecimal nibble into a character.</div></div>
+<div class="ttc" id="agroup__sys-util_html_gaaf91757f6fe86ab417536d5066ce14e6"><div class="ttname"><a href="group__sys-util.html#gaaf91757f6fe86ab417536d5066ce14e6">char2hex</a></div><div class="ttdeci">int char2hex(char c, uint8_t *x)</div><div class="ttdoc">Convert a single character into a hexadecimal nibble.</div></div>
+<div class="ttc" id="agroup__sys-util_html_gabd42323692821c970e1038879f8f2f33"><div class="ttname"><a href="group__sys-util.html#gabd42323692821c970e1038879f8f2f33">u8_to_dec</a></div><div class="ttdeci">uint8_t u8_to_dec(char *buf, uint8_t buflen, uint8_t value)</div><div class="ttdoc">Convert a uint8_t into a decimal string representation.</div></div>
+<div class="ttc" id="agroup__sys-util_html_gaf8f2ab98cc3f045ba834dbbb13a5dfd7"><div class="ttname"><a href="group__sys-util.html#gaf8f2ab98cc3f045ba834dbbb13a5dfd7">bin2hex</a></div><div class="ttdeci">size_t bin2hex(const uint8_t *buf, size_t buflen, char *hex, size_t hexlen)</div><div class="ttdoc">Convert a binary array into string representation.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2sys_2time__units_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2sys_2time__units_8h.html">time_units.h</a></div></div>
+<div class="ttc" id="atoolchain_8h_html"><div class="ttname"><a href="toolchain_8h.html">toolchain.h</a></div><div class="ttdoc">Macros to abstract toolchain specific capabilities.</div></div>
+<div class="ttc" id="autil__macro_8h_html"><div class="ttname"><a href="util__macro_8h.html">util_macro.h</a></div><div class="ttdoc">Macro utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

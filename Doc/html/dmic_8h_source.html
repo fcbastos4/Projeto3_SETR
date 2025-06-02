@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/audio/dmic.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_b8c773d5c3b83011832eb53fb4523d75.html">audio</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">dmic.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="dmic_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2018, Intel Corporation</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * Author:  Seppo Ingalsuo &lt;seppo.ingalsuo@linux.intel.com&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *      Sathish Kuttan &lt;sathish.k.kuttan@intel.com&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_AUDIO_DMIC_H_</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#define ZEPHYR_INCLUDE_AUDIO_DMIC_H_</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="};">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#gac99a4f579b6aa45bb6cce1f797247a23">   45</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__audio__dmic__interface.html#gac99a4f579b6aa45bb6cce1f797247a23">dmic_state</a> {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23a45b37076808ed30994ed02ca0581b1be">   46</a></span>    <a class="code hl_enumvalue" href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23a45b37076808ed30994ed02ca0581b1be">DMIC_STATE_UNINIT</a>,  </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23a733caa2b8a49d4b2f78698b810cbdbc1">   47</a></span>    <a class="code hl_enumvalue" href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23a733caa2b8a49d4b2f78698b810cbdbc1">DMIC_STATE_INITIALIZED</a>, </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23a70d47513a9c0ff07cdf4d814ac78a826">   48</a></span>    <a class="code hl_enumvalue" href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23a70d47513a9c0ff07cdf4d814ac78a826">DMIC_STATE_CONFIGURED</a>,  </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23ae3f1d62885d522598ced88089f4ae8b4">   49</a></span>    <a class="code hl_enumvalue" href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23ae3f1d62885d522598ced88089f4ae8b4">DMIC_STATE_ACTIVE</a>,  </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23a14306a41b9a832343c8b6e1fcb971c81">   50</a></span>    <a class="code hl_enumvalue" href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23a14306a41b9a832343c8b6e1fcb971c81">DMIC_STATE_PAUSED</a>,  </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
+</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="};">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#ga24aae0a7871b3bd31b130061feeefc14">   56</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__audio__dmic__interface.html#ga24aae0a7871b3bd31b130061feeefc14">dmic_trigger</a> {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14ab3f5cdba100516563098e659adee2e23">   57</a></span>    <a class="code hl_enumvalue" href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14ab3f5cdba100516563098e659adee2e23">DMIC_TRIGGER_STOP</a>,  </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14a031d6c7646642d4858a22c853d6d6eaa">   58</a></span>    <a class="code hl_enumvalue" href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14a031d6c7646642d4858a22c853d6d6eaa">DMIC_TRIGGER_START</a>, </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14a6077bf984fd654947ff36e1bc66e98e5">   59</a></span>    <a class="code hl_enumvalue" href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14a6077bf984fd654947ff36e1bc66e98e5">DMIC_TRIGGER_PAUSE</a>, </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14a69b5be548e54589e03645baf2ab80804">   60</a></span>    <a class="code hl_enumvalue" href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14a69b5be548e54589e03645baf2ab80804">DMIC_TRIGGER_RELEASE</a>,   </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14aa6dca65941d65845383209c081173a79">   61</a></span>    <a class="code hl_enumvalue" href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14aa6dca65941d65845383209c081173a79">DMIC_TRIGGER_RESET</a>, </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="};">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#ga7c2067bbb1e07fa8afe315f91a127991">   67</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__audio__dmic__interface.html#ga7c2067bbb1e07fa8afe315f91a127991">pdm_lr</a> {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#gga7c2067bbb1e07fa8afe315f91a127991acca80c04de225e35ae2bdfafcca6e345">   68</a></span>    <a class="code hl_enumvalue" href="group__audio__dmic__interface.html#gga7c2067bbb1e07fa8afe315f91a127991acca80c04de225e35ae2bdfafcca6e345">PDM_CHAN_LEFT</a>,  </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="group__audio__dmic__interface.html#gga7c2067bbb1e07fa8afe315f91a127991a0c746475a2b5873aa863058358d8e7d0">   69</a></span>    <a class="code hl_enumvalue" href="group__audio__dmic__interface.html#gga7c2067bbb1e07fa8afe315f91a127991a0c746475a2b5873aa863058358d8e7d0">PDM_CHAN_RIGHT</a>, </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
+</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="foldopen" id="foldopen00075" data-start="{" data-end="};">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structpdm__io__cfg.html">   75</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structpdm__io__cfg.html">pdm_io_cfg</a> {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structpdm__io__cfg.html#ae308635d30eaee617cb62c03c0255f37">   81</a></span>    uint32_t    <a class="code hl_variable" href="structpdm__io__cfg.html#ae308635d30eaee617cb62c03c0255f37">min_pdm_clk_freq</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structpdm__io__cfg.html#a4f07b2239435b0ac21e1049413d1a03a">   83</a></span>    uint32_t    <a class="code hl_variable" href="structpdm__io__cfg.html#a4f07b2239435b0ac21e1049413d1a03a">max_pdm_clk_freq</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structpdm__io__cfg.html#a14d6d390746f7731c4ff203a4beec5fe">   85</a></span>    uint8_t <a class="code hl_variable" href="structpdm__io__cfg.html#a14d6d390746f7731c4ff203a4beec5fe">min_pdm_clk_dc</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structpdm__io__cfg.html#aa03fbcc1f17fb2597bfa8c1898b74455">   87</a></span>    uint8_t <a class="code hl_variable" href="structpdm__io__cfg.html#aa03fbcc1f17fb2597bfa8c1898b74455">max_pdm_clk_dc</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="structpdm__io__cfg.html#a4a12d293f2c8edae3e7e5b71646ee55e">   97</a></span>    uint8_t <a class="code hl_variable" href="structpdm__io__cfg.html#a4a12d293f2c8edae3e7e5b71646ee55e">pdm_clk_pol</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="structpdm__io__cfg.html#aa242b3383b20e0673ed47eea8450e9a7">   99</a></span>    uint8_t <a class="code hl_variable" href="structpdm__io__cfg.html#aa242b3383b20e0673ed47eea8450e9a7">pdm_data_pol</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="structpdm__io__cfg.html#a692d7e838db86ca84558eb3e3170551a">  101</a></span>    uint32_t    <a class="code hl_variable" href="structpdm__io__cfg.html#a692d7e838db86ca84558eb3e3170551a">pdm_clk_skew</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>};</div>
+</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="foldopen" id="foldopen00113" data-start="{" data-end="};">
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="structpcm__stream__cfg.html">  113</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structpcm__stream__cfg.html">pcm_stream_cfg</a> {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="structpcm__stream__cfg.html#ae6e3790576f910943b0383f4731a5545">  115</a></span>    uint32_t            <a class="code hl_variable" href="structpcm__stream__cfg.html#ae6e3790576f910943b0383f4731a5545">pcm_rate</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="structpcm__stream__cfg.html#a7d9fd0039bc25de292f35f60c99c6615">  117</a></span>    uint8_t         <a class="code hl_variable" href="structpcm__stream__cfg.html#a7d9fd0039bc25de292f35f60c99c6615">pcm_width</a>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="structpcm__stream__cfg.html#a3c224ba6f6c6fa7a128a739b6f1c36bf">  119</a></span>    uint16_t            <a class="code hl_variable" href="structpcm__stream__cfg.html#a3c224ba6f6c6fa7a128a739b6f1c36bf">block_size</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="structpcm__stream__cfg.html#ade324dcfe8604fcb94400544ddb4517e">  121</a></span>    <span class="keyword">struct </span>k_mem_slab   *<a class="code hl_variable" href="structpcm__stream__cfg.html#ade324dcfe8604fcb94400544ddb4517e">mem_slab</a>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>};</div>
+</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="foldopen" id="foldopen00145" data-start="{" data-end="};">
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="structpdm__chan__cfg.html">  145</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structpdm__chan__cfg.html">pdm_chan_cfg</a> {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="structpdm__chan__cfg.html#a028c8cd3dfcf0bfce618ef8937a7b211">  150</a></span>    uint32_t    <a class="code hl_variable" href="structpdm__chan__cfg.html#a028c8cd3dfcf0bfce618ef8937a7b211">req_chan_map_lo</a>;    </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="structpdm__chan__cfg.html#a11a258f6b21126e1d50c5a3f46b2cad7">  151</a></span>    uint32_t    <a class="code hl_variable" href="structpdm__chan__cfg.html#a11a258f6b21126e1d50c5a3f46b2cad7">req_chan_map_hi</a>;    </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="structpdm__chan__cfg.html#a34d2e2d03df48e26245835d4df88b60b">  158</a></span>    uint32_t    <a class="code hl_variable" href="structpdm__chan__cfg.html#a34d2e2d03df48e26245835d4df88b60b">act_chan_map_lo</a>;    </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="structpdm__chan__cfg.html#a9a91e9341f4c033243effbebd5ffa194">  159</a></span>    uint32_t    <a class="code hl_variable" href="structpdm__chan__cfg.html#a9a91e9341f4c033243effbebd5ffa194">act_chan_map_hi</a>;    </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="structpdm__chan__cfg.html#aa2518c6f577c3fd92ec009fa134a6185">  163</a></span>    uint8_t <a class="code hl_variable" href="structpdm__chan__cfg.html#aa2518c6f577c3fd92ec009fa134a6185">req_num_chan</a>;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="structpdm__chan__cfg.html#a3268169aaee14827cb15778fbc44ceb1">  165</a></span>    uint8_t <a class="code hl_variable" href="structpdm__chan__cfg.html#a3268169aaee14827cb15778fbc44ceb1">act_num_chan</a>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="structpdm__chan__cfg.html#ae1398759382606cc60cf8944a1b9e5f6">  167</a></span>    uint8_t <a class="code hl_variable" href="structpdm__chan__cfg.html#ae1398759382606cc60cf8944a1b9e5f6">req_num_streams</a>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="structpdm__chan__cfg.html#a7614fefd7976ba7b195afb4e81f7100e">  169</a></span>    uint8_t <a class="code hl_variable" href="structpdm__chan__cfg.html#a7614fefd7976ba7b195afb4e81f7100e">act_num_streams</a>;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>};</div>
+</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="foldopen" id="foldopen00175" data-start="{" data-end="};">
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="structdmic__cfg.html">  175</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structdmic__cfg.html">dmic_cfg</a> {</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structpdm__io__cfg.html">pdm_io_cfg</a> io;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="structdmic__cfg.html#a90f08070236a8e2c07c30edc54c687a5">  181</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structpcm__stream__cfg.html">pcm_stream_cfg</a> *<a class="code hl_variable" href="structdmic__cfg.html#a90f08070236a8e2c07c30edc54c687a5">streams</a>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structpdm__chan__cfg.html">pdm_chan_cfg</a> channel;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>};</div>
+</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="foldopen" id="foldopen00188" data-start="{" data-end="};">
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="struct__dmic__ops.html">  188</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct__dmic__ops.html">_dmic_ops</a> {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    int (*configure)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct </span><a class="code hl_struct" href="structdmic__cfg.html">dmic_cfg</a> *config);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    int (*trigger)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__audio__dmic__interface.html#ga24aae0a7871b3bd31b130061feeefc14">dmic_trigger</a> cmd);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    int (*read)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t stream, <span class="keywordtype">void</span> **buffer,</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>            <span class="keywordtype">size_t</span> *size, int32_t timeout);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>};</div>
+</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t dmic_build_channel_map(uint8_t channel, uint8_t pdm,</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__audio__dmic__interface.html#ga7c2067bbb1e07fa8afe315f91a127991">pdm_lr</a> lr)</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>{</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordflow">return</span> ((((pdm &amp; BIT_MASK(3)) &lt;&lt; 1) | lr) &lt;&lt;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>            ((channel &amp; BIT_MASK(3)) * 4U));</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>}</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> dmic_parse_channel_map(uint32_t channel_map_lo,</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        uint32_t channel_map_hi, uint8_t channel, uint8_t *pdm, <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__audio__dmic__interface.html#ga7c2067bbb1e07fa8afe315f91a127991">pdm_lr</a> *lr)</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>{</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    uint32_t channel_map;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    channel_map = (channel &lt; 8) ? channel_map_lo : channel_map_hi;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    channel_map &gt;&gt;= ((channel &amp; BIT_MASK(3)) * 4U);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    *pdm = (channel &gt;&gt; 1) &amp; BIT_MASK(3);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    *lr = (<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__audio__dmic__interface.html#ga7c2067bbb1e07fa8afe315f91a127991">pdm_lr</a>) (channel &amp; <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(0));</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>}</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t dmic_build_clk_skew_map(uint8_t pdm, uint8_t skew)</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>{</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keywordflow">return</span> ((skew &amp; BIT_MASK(4)) &lt;&lt; ((pdm &amp; BIT_MASK(3)) * 4U));</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>}</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> dmic_configure(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structdmic__cfg.html">dmic_cfg</a> *cfg)</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>{</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct__dmic__ops.html">_dmic_ops</a> *api =</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct__dmic__ops.html">_dmic_ops</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="keywordflow">return</span> api-&gt;configure(dev, cfg);</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>}</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code hl_enumeration" href="group__audio__dmic__interface.html#ga24aae0a7871b3bd31b130061feeefc14">dmic_trigger</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>                   <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__audio__dmic__interface.html#ga24aae0a7871b3bd31b130061feeefc14">dmic_trigger</a> cmd)</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>{</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct__dmic__ops.html">_dmic_ops</a> *api =</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct__dmic__ops.html">_dmic_ops</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keywordflow">return</span> api-&gt;trigger(dev, cmd);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>}</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> dmic_read(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t stream,</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>                <span class="keywordtype">void</span> **buffer,</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>                <span class="keywordtype">size_t</span> *size, int32_t timeout)</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>{</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct__dmic__ops.html">_dmic_ops</a> *api =</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct__dmic__ops.html">_dmic_ops</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="keywordflow">return</span> api-&gt;read(dev, stream, buffer, size, timeout);</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>}</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>}</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_AUDIO_DMIC_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_ga24aae0a7871b3bd31b130061feeefc14"><div class="ttname"><a href="group__audio__dmic__interface.html#ga24aae0a7871b3bd31b130061feeefc14">dmic_trigger</a></div><div class="ttdeci">dmic_trigger</div><div class="ttdef"><b>Definição</b> dmic.h:56</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_ga7c2067bbb1e07fa8afe315f91a127991"><div class="ttname"><a href="group__audio__dmic__interface.html#ga7c2067bbb1e07fa8afe315f91a127991">pdm_lr</a></div><div class="ttdeci">pdm_lr</div><div class="ttdef"><b>Definição</b> dmic.h:67</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_gac99a4f579b6aa45bb6cce1f797247a23"><div class="ttname"><a href="group__audio__dmic__interface.html#gac99a4f579b6aa45bb6cce1f797247a23">dmic_state</a></div><div class="ttdeci">dmic_state</div><div class="ttdef"><b>Definição</b> dmic.h:45</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_gga24aae0a7871b3bd31b130061feeefc14a031d6c7646642d4858a22c853d6d6eaa"><div class="ttname"><a href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14a031d6c7646642d4858a22c853d6d6eaa">DMIC_TRIGGER_START</a></div><div class="ttdeci">@ DMIC_TRIGGER_START</div><div class="ttdef"><b>Definição</b> dmic.h:58</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_gga24aae0a7871b3bd31b130061feeefc14a6077bf984fd654947ff36e1bc66e98e5"><div class="ttname"><a href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14a6077bf984fd654947ff36e1bc66e98e5">DMIC_TRIGGER_PAUSE</a></div><div class="ttdeci">@ DMIC_TRIGGER_PAUSE</div><div class="ttdef"><b>Definição</b> dmic.h:59</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_gga24aae0a7871b3bd31b130061feeefc14a69b5be548e54589e03645baf2ab80804"><div class="ttname"><a href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14a69b5be548e54589e03645baf2ab80804">DMIC_TRIGGER_RELEASE</a></div><div class="ttdeci">@ DMIC_TRIGGER_RELEASE</div><div class="ttdef"><b>Definição</b> dmic.h:60</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_gga24aae0a7871b3bd31b130061feeefc14aa6dca65941d65845383209c081173a79"><div class="ttname"><a href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14aa6dca65941d65845383209c081173a79">DMIC_TRIGGER_RESET</a></div><div class="ttdeci">@ DMIC_TRIGGER_RESET</div><div class="ttdef"><b>Definição</b> dmic.h:61</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_gga24aae0a7871b3bd31b130061feeefc14ab3f5cdba100516563098e659adee2e23"><div class="ttname"><a href="group__audio__dmic__interface.html#gga24aae0a7871b3bd31b130061feeefc14ab3f5cdba100516563098e659adee2e23">DMIC_TRIGGER_STOP</a></div><div class="ttdeci">@ DMIC_TRIGGER_STOP</div><div class="ttdef"><b>Definição</b> dmic.h:57</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_gga7c2067bbb1e07fa8afe315f91a127991a0c746475a2b5873aa863058358d8e7d0"><div class="ttname"><a href="group__audio__dmic__interface.html#gga7c2067bbb1e07fa8afe315f91a127991a0c746475a2b5873aa863058358d8e7d0">PDM_CHAN_RIGHT</a></div><div class="ttdeci">@ PDM_CHAN_RIGHT</div><div class="ttdef"><b>Definição</b> dmic.h:69</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_gga7c2067bbb1e07fa8afe315f91a127991acca80c04de225e35ae2bdfafcca6e345"><div class="ttname"><a href="group__audio__dmic__interface.html#gga7c2067bbb1e07fa8afe315f91a127991acca80c04de225e35ae2bdfafcca6e345">PDM_CHAN_LEFT</a></div><div class="ttdeci">@ PDM_CHAN_LEFT</div><div class="ttdef"><b>Definição</b> dmic.h:68</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_ggac99a4f579b6aa45bb6cce1f797247a23a14306a41b9a832343c8b6e1fcb971c81"><div class="ttname"><a href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23a14306a41b9a832343c8b6e1fcb971c81">DMIC_STATE_PAUSED</a></div><div class="ttdeci">@ DMIC_STATE_PAUSED</div><div class="ttdef"><b>Definição</b> dmic.h:50</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_ggac99a4f579b6aa45bb6cce1f797247a23a45b37076808ed30994ed02ca0581b1be"><div class="ttname"><a href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23a45b37076808ed30994ed02ca0581b1be">DMIC_STATE_UNINIT</a></div><div class="ttdeci">@ DMIC_STATE_UNINIT</div><div class="ttdef"><b>Definição</b> dmic.h:46</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_ggac99a4f579b6aa45bb6cce1f797247a23a70d47513a9c0ff07cdf4d814ac78a826"><div class="ttname"><a href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23a70d47513a9c0ff07cdf4d814ac78a826">DMIC_STATE_CONFIGURED</a></div><div class="ttdeci">@ DMIC_STATE_CONFIGURED</div><div class="ttdef"><b>Definição</b> dmic.h:48</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_ggac99a4f579b6aa45bb6cce1f797247a23a733caa2b8a49d4b2f78698b810cbdbc1"><div class="ttname"><a href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23a733caa2b8a49d4b2f78698b810cbdbc1">DMIC_STATE_INITIALIZED</a></div><div class="ttdeci">@ DMIC_STATE_INITIALIZED</div><div class="ttdef"><b>Definição</b> dmic.h:47</div></div>
+<div class="ttc" id="agroup__audio__dmic__interface_html_ggac99a4f579b6aa45bb6cce1f797247a23ae3f1d62885d522598ced88089f4ae8b4"><div class="ttname"><a href="group__audio__dmic__interface.html#ggac99a4f579b6aa45bb6cce1f797247a23ae3f1d62885d522598ced88089f4ae8b4">DMIC_STATE_ACTIVE</a></div><div class="ttdeci">@ DMIC_STATE_ACTIVE</div><div class="ttdef"><b>Definição</b> dmic.h:49</div></div>
+<div class="ttc" id="agroup__sys-util_html_ga3a8ea58898cb58fc96013383d39f482c"><div class="ttname"><a href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a></div><div class="ttdeci">#define BIT(n)</div><div class="ttdoc">Unsigned integer with bit position n set (signed in assembly language).</div><div class="ttdef"><b>Definição</b> util_macro.h:44</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astruct__dmic__ops_html"><div class="ttname"><a href="struct__dmic__ops.html">_dmic_ops</a></div><div class="ttdef"><b>Definição</b> dmic.h:188</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructdmic__cfg_html"><div class="ttname"><a href="structdmic__cfg.html">dmic_cfg</a></div><div class="ttdef"><b>Definição</b> dmic.h:175</div></div>
+<div class="ttc" id="astructdmic__cfg_html_a90f08070236a8e2c07c30edc54c687a5"><div class="ttname"><a href="structdmic__cfg.html#a90f08070236a8e2c07c30edc54c687a5">dmic_cfg::streams</a></div><div class="ttdeci">struct pcm_stream_cfg * streams</div><div class="ttdef"><b>Definição</b> dmic.h:181</div></div>
+<div class="ttc" id="astructpcm__stream__cfg_html"><div class="ttname"><a href="structpcm__stream__cfg.html">pcm_stream_cfg</a></div><div class="ttdef"><b>Definição</b> dmic.h:113</div></div>
+<div class="ttc" id="astructpcm__stream__cfg_html_a3c224ba6f6c6fa7a128a739b6f1c36bf"><div class="ttname"><a href="structpcm__stream__cfg.html#a3c224ba6f6c6fa7a128a739b6f1c36bf">pcm_stream_cfg::block_size</a></div><div class="ttdeci">uint16_t block_size</div><div class="ttdef"><b>Definição</b> dmic.h:119</div></div>
+<div class="ttc" id="astructpcm__stream__cfg_html_a7d9fd0039bc25de292f35f60c99c6615"><div class="ttname"><a href="structpcm__stream__cfg.html#a7d9fd0039bc25de292f35f60c99c6615">pcm_stream_cfg::pcm_width</a></div><div class="ttdeci">uint8_t pcm_width</div><div class="ttdef"><b>Definição</b> dmic.h:117</div></div>
+<div class="ttc" id="astructpcm__stream__cfg_html_ade324dcfe8604fcb94400544ddb4517e"><div class="ttname"><a href="structpcm__stream__cfg.html#ade324dcfe8604fcb94400544ddb4517e">pcm_stream_cfg::mem_slab</a></div><div class="ttdeci">struct k_mem_slab * mem_slab</div><div class="ttdef"><b>Definição</b> dmic.h:121</div></div>
+<div class="ttc" id="astructpcm__stream__cfg_html_ae6e3790576f910943b0383f4731a5545"><div class="ttname"><a href="structpcm__stream__cfg.html#ae6e3790576f910943b0383f4731a5545">pcm_stream_cfg::pcm_rate</a></div><div class="ttdeci">uint32_t pcm_rate</div><div class="ttdef"><b>Definição</b> dmic.h:115</div></div>
+<div class="ttc" id="astructpdm__chan__cfg_html"><div class="ttname"><a href="structpdm__chan__cfg.html">pdm_chan_cfg</a></div><div class="ttdef"><b>Definição</b> dmic.h:145</div></div>
+<div class="ttc" id="astructpdm__chan__cfg_html_a028c8cd3dfcf0bfce618ef8937a7b211"><div class="ttname"><a href="structpdm__chan__cfg.html#a028c8cd3dfcf0bfce618ef8937a7b211">pdm_chan_cfg::req_chan_map_lo</a></div><div class="ttdeci">uint32_t req_chan_map_lo</div><div class="ttdef"><b>Definição</b> dmic.h:150</div></div>
+<div class="ttc" id="astructpdm__chan__cfg_html_a11a258f6b21126e1d50c5a3f46b2cad7"><div class="ttname"><a href="structpdm__chan__cfg.html#a11a258f6b21126e1d50c5a3f46b2cad7">pdm_chan_cfg::req_chan_map_hi</a></div><div class="ttdeci">uint32_t req_chan_map_hi</div><div class="ttdef"><b>Definição</b> dmic.h:151</div></div>
+<div class="ttc" id="astructpdm__chan__cfg_html_a3268169aaee14827cb15778fbc44ceb1"><div class="ttname"><a href="structpdm__chan__cfg.html#a3268169aaee14827cb15778fbc44ceb1">pdm_chan_cfg::act_num_chan</a></div><div class="ttdeci">uint8_t act_num_chan</div><div class="ttdef"><b>Definição</b> dmic.h:165</div></div>
+<div class="ttc" id="astructpdm__chan__cfg_html_a34d2e2d03df48e26245835d4df88b60b"><div class="ttname"><a href="structpdm__chan__cfg.html#a34d2e2d03df48e26245835d4df88b60b">pdm_chan_cfg::act_chan_map_lo</a></div><div class="ttdeci">uint32_t act_chan_map_lo</div><div class="ttdef"><b>Definição</b> dmic.h:158</div></div>
+<div class="ttc" id="astructpdm__chan__cfg_html_a7614fefd7976ba7b195afb4e81f7100e"><div class="ttname"><a href="structpdm__chan__cfg.html#a7614fefd7976ba7b195afb4e81f7100e">pdm_chan_cfg::act_num_streams</a></div><div class="ttdeci">uint8_t act_num_streams</div><div class="ttdef"><b>Definição</b> dmic.h:169</div></div>
+<div class="ttc" id="astructpdm__chan__cfg_html_a9a91e9341f4c033243effbebd5ffa194"><div class="ttname"><a href="structpdm__chan__cfg.html#a9a91e9341f4c033243effbebd5ffa194">pdm_chan_cfg::act_chan_map_hi</a></div><div class="ttdeci">uint32_t act_chan_map_hi</div><div class="ttdef"><b>Definição</b> dmic.h:159</div></div>
+<div class="ttc" id="astructpdm__chan__cfg_html_aa2518c6f577c3fd92ec009fa134a6185"><div class="ttname"><a href="structpdm__chan__cfg.html#aa2518c6f577c3fd92ec009fa134a6185">pdm_chan_cfg::req_num_chan</a></div><div class="ttdeci">uint8_t req_num_chan</div><div class="ttdef"><b>Definição</b> dmic.h:163</div></div>
+<div class="ttc" id="astructpdm__chan__cfg_html_ae1398759382606cc60cf8944a1b9e5f6"><div class="ttname"><a href="structpdm__chan__cfg.html#ae1398759382606cc60cf8944a1b9e5f6">pdm_chan_cfg::req_num_streams</a></div><div class="ttdeci">uint8_t req_num_streams</div><div class="ttdef"><b>Definição</b> dmic.h:167</div></div>
+<div class="ttc" id="astructpdm__io__cfg_html"><div class="ttname"><a href="structpdm__io__cfg.html">pdm_io_cfg</a></div><div class="ttdef"><b>Definição</b> dmic.h:75</div></div>
+<div class="ttc" id="astructpdm__io__cfg_html_a14d6d390746f7731c4ff203a4beec5fe"><div class="ttname"><a href="structpdm__io__cfg.html#a14d6d390746f7731c4ff203a4beec5fe">pdm_io_cfg::min_pdm_clk_dc</a></div><div class="ttdeci">uint8_t min_pdm_clk_dc</div><div class="ttdef"><b>Definição</b> dmic.h:85</div></div>
+<div class="ttc" id="astructpdm__io__cfg_html_a4a12d293f2c8edae3e7e5b71646ee55e"><div class="ttname"><a href="structpdm__io__cfg.html#a4a12d293f2c8edae3e7e5b71646ee55e">pdm_io_cfg::pdm_clk_pol</a></div><div class="ttdeci">uint8_t pdm_clk_pol</div><div class="ttdef"><b>Definição</b> dmic.h:97</div></div>
+<div class="ttc" id="astructpdm__io__cfg_html_a4f07b2239435b0ac21e1049413d1a03a"><div class="ttname"><a href="structpdm__io__cfg.html#a4f07b2239435b0ac21e1049413d1a03a">pdm_io_cfg::max_pdm_clk_freq</a></div><div class="ttdeci">uint32_t max_pdm_clk_freq</div><div class="ttdef"><b>Definição</b> dmic.h:83</div></div>
+<div class="ttc" id="astructpdm__io__cfg_html_a692d7e838db86ca84558eb3e3170551a"><div class="ttname"><a href="structpdm__io__cfg.html#a692d7e838db86ca84558eb3e3170551a">pdm_io_cfg::pdm_clk_skew</a></div><div class="ttdeci">uint32_t pdm_clk_skew</div><div class="ttdef"><b>Definição</b> dmic.h:101</div></div>
+<div class="ttc" id="astructpdm__io__cfg_html_aa03fbcc1f17fb2597bfa8c1898b74455"><div class="ttname"><a href="structpdm__io__cfg.html#aa03fbcc1f17fb2597bfa8c1898b74455">pdm_io_cfg::max_pdm_clk_dc</a></div><div class="ttdeci">uint8_t max_pdm_clk_dc</div><div class="ttdef"><b>Definição</b> dmic.h:87</div></div>
+<div class="ttc" id="astructpdm__io__cfg_html_aa242b3383b20e0673ed47eea8450e9a7"><div class="ttname"><a href="structpdm__io__cfg.html#aa242b3383b20e0673ed47eea8450e9a7">pdm_io_cfg::pdm_data_pol</a></div><div class="ttdeci">uint8_t pdm_data_pol</div><div class="ttdef"><b>Definição</b> dmic.h:99</div></div>
+<div class="ttc" id="astructpdm__io__cfg_html_ae308635d30eaee617cb62c03c0255f37"><div class="ttname"><a href="structpdm__io__cfg.html#ae308635d30eaee617cb62c03c0255f37">pdm_io_cfg::min_pdm_clk_freq</a></div><div class="ttdeci">uint32_t min_pdm_clk_freq</div><div class="ttdef"><b>Definição</b> dmic.h:81</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

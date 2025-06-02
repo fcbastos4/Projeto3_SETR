@@ -1,0 +1,445 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/pm/device.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_8dae9eb5cfbef028313d11c9f7892c94.html">pm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">device.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2015 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_PM_DEVICE_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_PM_DEVICE_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;zephyr/sys/atomic.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;zephyr/sys/iterable_sections.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">enum</span> pm_device_flag {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    PM_DEVICE_FLAG_BUSY,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    PM_DEVICE_FLAG_TURN_ON_FAILED,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    PM_DEVICE_FLAG_PD_CLAIMED,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    PM_DEVICE_FLAG_WS_CAPABLE,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    PM_DEVICE_FLAG_WS_ENABLED,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    PM_DEVICE_FLAG_RUNTIME_ENABLED,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    PM_DEVICE_FLAG_STATE_LOCKED,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    PM_DEVICE_FLAG_PD,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    PM_DEVICE_FLAG_RUNTIME_AUTO,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="foldopen" id="foldopen00058" data-start="{" data-end="};">
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#ga561c0789071e3c3963f21f4c4a1bb2c6">   58</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__subsys__pm__device.html#ga561c0789071e3c3963f21f4c4a1bb2c6">pm_device_state</a> {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a54b207e01b4dfc5e1ff56149817120c7">   60</a></span>    <a class="code hl_enumvalue" href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a54b207e01b4dfc5e1ff56149817120c7">PM_DEVICE_STATE_ACTIVE</a>,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a03f61cb7cd5e4820c1c731500fd053b5">   67</a></span>    <a class="code hl_enumvalue" href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a03f61cb7cd5e4820c1c731500fd053b5">PM_DEVICE_STATE_SUSPENDED</a>,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a51a5904aff980deff73d29568b6f7deb">   69</a></span>    <a class="code hl_enumvalue" href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a51a5904aff980deff73d29568b6f7deb">PM_DEVICE_STATE_SUSPENDING</a>,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <a class="code hl_enumvalue" href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a2456389354b744d4e96847e38f8b61c2">PM_DEVICE_STATE_OFF</a></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a2456389354b744d4e96847e38f8b61c2">   77</a></span>};</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="foldopen" id="foldopen00080" data-start="{" data-end="};">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#gaee5546eacb9be7caa9d59ab63926cc4c">   80</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__subsys__pm__device.html#gaee5546eacb9be7caa9d59ab63926cc4c">pm_device_action</a> {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4ca5b7ae11deaee85eb0b8452bc89383790">   82</a></span>    <a class="code hl_enumvalue" href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4ca5b7ae11deaee85eb0b8452bc89383790">PM_DEVICE_ACTION_SUSPEND</a>,</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4ca757c6ab81eeac0d6afae479d6a0ac564">   84</a></span>    <a class="code hl_enumvalue" href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4ca757c6ab81eeac0d6afae479d6a0ac564">PM_DEVICE_ACTION_RESUME</a>,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4ca2bcd7dee3a85b27157bbc465bacf521e">   90</a></span>    <a class="code hl_enumvalue" href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4ca2bcd7dee3a85b27157bbc465bacf521e">PM_DEVICE_ACTION_TURN_OFF</a>,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4cac7690e0ffd27742acf58fdbdb7b89544">   96</a></span>    <a class="code hl_enumvalue" href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4cac7690e0ffd27742acf58fdbdb7b89544">PM_DEVICE_ACTION_TURN_ON</a>,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>};</div>
+</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#ga81d4ee32f5bbb1b343234b9b3afc0179">  109</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__subsys__pm__device.html#ga81d4ee32f5bbb1b343234b9b3afc0179">pm_device_action_cb_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                     <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__subsys__pm__device.html#gaee5546eacb9be7caa9d59ab63926cc4c">pm_device_action</a> action);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#ga9cfb6437873089714635d2b26aafefac">  120</a></span><span class="keyword">typedef</span> bool (*<a class="code hl_typedef" href="group__subsys__pm__device.html#ga9cfb6437873089714635d2b26aafefac">pm_device_action_failed_cb_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                     <span class="keywordtype">int</span> err);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="foldopen" id="foldopen00126" data-start="{" data-end="};">
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structpm__device.html">  126</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structpm__device.html">pm_device</a> {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#if defined(CONFIG_PM_DEVICE_RUNTIME) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keyword">struct </span>k_sem lock;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__event.html">k_event</a> event;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    uint32_t usage;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a> work;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_PM_DEVICE_RUNTIME */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">#ifdef CONFIG_PM_DEVICE_POWER_DOMAIN</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *domain;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_PM_DEVICE_POWER_DOMAIN */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="comment">/* Device PM status flags. */</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    atomic_t flags;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="structpm__device.html#a46157841a8a7998f0ccde111f26429b5">  146</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__subsys__pm__device.html#ga561c0789071e3c3963f21f4c4a1bb2c6">pm_device_state</a> <a class="code hl_variable" href="structpm__device.html#a46157841a8a7998f0ccde111f26429b5">state</a>;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="structpm__device.html#a5711c3e168e307d9e36d3c6a806ccaeb">  148</a></span>    <a class="code hl_typedef" href="group__subsys__pm__device.html#ga81d4ee32f5bbb1b343234b9b3afc0179">pm_device_action_cb_t</a> <a class="code hl_variable" href="structpm__device.html#a5711c3e168e307d9e36d3c6a806ccaeb">action_cb</a>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>};</div>
+</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">#ifdef CONFIG_PM_DEVICE_RUNTIME</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor">#define Z_PM_DEVICE_RUNTIME_INIT(obj)           \</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">    .lock = Z_SEM_INITIALIZER(obj.lock, 1, 1),  \</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">    .event = Z_EVENT_INITIALIZER(obj.event),</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">#define Z_PM_DEVICE_RUNTIME_INIT(obj)</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_PM_DEVICE_RUNTIME */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="preprocessor">#ifdef CONFIG_PM_DEVICE_POWER_DOMAIN</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">#define Z_PM_DEVICE_POWER_DOMAIN_INIT(_node_id)         \</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">    .domain = DEVICE_DT_GET_OR_NULL(DT_PHANDLE(_node_id,    \</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">                   power_domain)),</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">#define Z_PM_DEVICE_POWER_DOMAIN_INIT(obj)</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_PM_DEVICE_POWER_DOMAIN */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="preprocessor">#define Z_PM_DEVICE_FLAGS(node_id)                   \</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="preprocessor">    (COND_CODE_1(                            \</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="preprocessor">         DT_NODE_EXISTS(node_id),                \</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="preprocessor">         ((DT_PROP_OR(node_id, wakeup_source, 0)         \</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="preprocessor">             &lt;&lt; PM_DEVICE_FLAG_WS_CAPABLE) |         \</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">          (DT_PROP_OR(node_id, zephyr_pm_device_runtime_auto, 0) \</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">             &lt;&lt; PM_DEVICE_FLAG_RUNTIME_AUTO) |       \</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">          (DT_NODE_HAS_COMPAT(node_id, power_domain) &lt;&lt;      \</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="preprocessor">             PM_DEVICE_FLAG_PD)),                \</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">         (0)))</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="preprocessor">#define Z_PM_DEVICE_INIT(obj, node_id, pm_action_cb)          \</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">    {                             \</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="preprocessor">        Z_PM_DEVICE_RUNTIME_INIT(obj)             \</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">        .action_cb = pm_action_cb,            \</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">        .state = PM_DEVICE_STATE_ACTIVE,          \</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">        .flags = ATOMIC_INIT(Z_PM_DEVICE_FLAGS(node_id)), \</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="preprocessor">        Z_PM_DEVICE_POWER_DOMAIN_INIT(node_id)        \</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="preprocessor">#define Z_PM_DEVICE_NAME(dev_id) _CONCAT(__pm_device_, dev_id)</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="preprocessor">#define Z_PM_DEVICE_DEFINE_SLOT(dev_id)                 \</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="preprocessor">    static const STRUCT_SECTION_ITERABLE_ALTERNATE(pm_device_slots, device, \</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="preprocessor">            _CONCAT(__pm_slot_, dev_id))</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="preprocessor">#ifdef CONFIG_PM_DEVICE</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="preprocessor">#define Z_PM_DEVICE_DEFINE(node_id, dev_id, pm_action_cb)       \</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="preprocessor">    Z_PM_DEVICE_DEFINE_SLOT(dev_id);                \</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="preprocessor">    static struct pm_device Z_PM_DEVICE_NAME(dev_id) =      \</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="preprocessor">    Z_PM_DEVICE_INIT(Z_PM_DEVICE_NAME(dev_id), node_id,     \</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="preprocessor">             pm_action_cb)</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="preprocessor">#define Z_PM_DEVICE_GET(dev_id) (&amp;Z_PM_DEVICE_NAME(dev_id))</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="preprocessor">#define Z_PM_DEVICE_DEFINE(node_id, dev_id, pm_action_cb)</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="preprocessor">#define Z_PM_DEVICE_GET(dev_id) NULL</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_PM_DEVICE */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="foldopen" id="foldopen00264" data-start="" data-end="">
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#ga1159ed2884c789b0ab436347671cf9d2">  264</a></span><span class="preprocessor">#define PM_DEVICE_DEFINE(dev_id, pm_action_cb) \</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="preprocessor">    Z_PM_DEVICE_DEFINE(DT_INVALID_NODE, dev_id, pm_action_cb)</span></div>
+</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
+<div class="foldopen" id="foldopen00277" data-start="" data-end="">
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#gaf625e31cd9c3f992c826872ac3b93554">  277</a></span><span class="preprocessor">#define PM_DEVICE_DT_DEFINE(node_id, pm_action_cb)          \</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="preprocessor">    Z_PM_DEVICE_DEFINE(node_id, Z_DEVICE_DT_DEV_ID(node_id),    \</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="preprocessor">               pm_action_cb)</span></div>
+</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="foldopen" id="foldopen00291" data-start="" data-end="">
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#ga0fbb1dca1f65934b20970076a4bcaf88">  291</a></span><span class="preprocessor">#define PM_DEVICE_DT_INST_DEFINE(idx, pm_action_cb)         \</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="preprocessor">    Z_PM_DEVICE_DEFINE(DT_DRV_INST(idx),                \</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="preprocessor">               Z_DEVICE_DT_DEV_ID(DT_DRV_INST(idx)),    \</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="preprocessor">               pm_action_cb)</span></div>
+</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="foldopen" id="foldopen00304" data-start="" data-end="">
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#gaa94d19d0590659b7aba83566de9bd0c5">  304</a></span><span class="preprocessor">#define PM_DEVICE_GET(dev_id) \</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="preprocessor">    Z_PM_DEVICE_GET(dev_id)</span></div>
+</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="foldopen" id="foldopen00315" data-start="" data-end="">
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#gad244d742bc6b9874bfb90a2c3c87c4e8">  315</a></span><span class="preprocessor">#define PM_DEVICE_DT_GET(node_id) \</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="preprocessor">    PM_DEVICE_GET(Z_DEVICE_DT_DEV_ID(node_id))</span></div>
+</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
+<div class="foldopen" id="foldopen00326" data-start="" data-end="">
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#ga52892f2c34f6ccc9598002625baf12ce">  326</a></span><span class="preprocessor">#define PM_DEVICE_DT_INST_GET(idx) \</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span><span class="preprocessor">    PM_DEVICE_DT_GET(DT_DRV_INST(idx))</span></div>
+</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#gad109511e4314fa6145ee97dd655ec7bb">  334</a></span><span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="group__subsys__pm__device.html#gad109511e4314fa6145ee97dd655ec7bb">pm_device_state_str</a>(<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__subsys__pm__device.html#ga561c0789071e3c3963f21f4c4a1bb2c6">pm_device_state</a> state);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#ga3840d6e7832a00b93763247a5951bfde">  353</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__subsys__pm__device.html#ga3840d6e7832a00b93763247a5951bfde">pm_device_action_run</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>        <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__subsys__pm__device.html#gaee5546eacb9be7caa9d59ab63926cc4c">pm_device_action</a> action);</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno"><a class="line" href="group__subsys__pm__device.html#ga765a5412f66070ccefd8e80ed9f62b1b">  366</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__subsys__pm__device.html#ga765a5412f66070ccefd8e80ed9f62b1b">pm_device_children_action_run</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>        <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__subsys__pm__device.html#gaee5546eacb9be7caa9d59ab63926cc4c">pm_device_action</a> action,</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>        <a class="code hl_typedef" href="group__subsys__pm__device.html#ga9cfb6437873089714635d2b26aafefac">pm_device_action_failed_cb_t</a> failure_cb);</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="preprocessor">#if defined(CONFIG_PM_DEVICE) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span><span class="keywordtype">int</span> pm_device_state_get(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>            <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__subsys__pm__device.html#ga561c0789071e3c3963f21f4c4a1bb2c6">pm_device_state</a> *state);</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> pm_device_init_suspended(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>{</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structpm__device.html">pm_device</a> *pm = dev-&gt;pm;</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    pm-&gt;<a class="code hl_variable" href="structpm__device.html#a46157841a8a7998f0ccde111f26429b5">state</a> = <a class="code hl_enumvalue" href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a03f61cb7cd5e4820c1c731500fd053b5">PM_DEVICE_STATE_SUSPENDED</a>;</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>}</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span> </div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> pm_device_init_off(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>{</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structpm__device.html">pm_device</a> *pm = dev-&gt;pm;</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>    pm-&gt;<a class="code hl_variable" href="structpm__device.html#a46157841a8a7998f0ccde111f26429b5">state</a> = <a class="code hl_enumvalue" href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a2456389354b744d4e96847e38f8b61c2">PM_DEVICE_STATE_OFF</a>;</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>}</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span> </div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span><span class="keywordtype">void</span> pm_device_busy_set(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> </div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span><span class="keywordtype">void</span> pm_device_busy_clear(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span> </div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span><span class="keywordtype">bool</span> pm_device_is_any_busy(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span> </div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span><span class="keywordtype">bool</span> pm_device_is_busy(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span> </div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span><span class="keywordtype">bool</span> pm_device_wakeup_enable(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span> </div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span><span class="keywordtype">bool</span> pm_device_wakeup_is_enabled(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span> </div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span><span class="keywordtype">bool</span> pm_device_wakeup_is_capable(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span> </div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span><span class="keywordtype">void</span> pm_device_state_lock(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span> </div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span><span class="keywordtype">void</span> pm_device_state_unlock(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span> </div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span><span class="keywordtype">bool</span> pm_device_state_is_locked(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span> </div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span><span class="keywordtype">bool</span> pm_device_on_power_domain(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span> </div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span><span class="keywordtype">int</span> pm_device_power_domain_add(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>                   <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *domain);</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span> </div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span><span class="keywordtype">int</span> pm_device_power_domain_remove(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>                  <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *domain);</div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span> </div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span><span class="keywordtype">bool</span> pm_device_is_powered(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span> </div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span><span class="keywordtype">int</span> pm_device_driver_init(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <a class="code hl_typedef" href="group__subsys__pm__device.html#ga81d4ee32f5bbb1b343234b9b3afc0179">pm_device_action_cb_t</a> <a class="code hl_variable" href="structpm__device.html#a5711c3e168e307d9e36d3c6a806ccaeb">action_cb</a>);</div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span> </div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> pm_device_state_get(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span>                      <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__subsys__pm__device.html#ga561c0789071e3c3963f21f4c4a1bb2c6">pm_device_state</a> *state)</div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>{</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span> </div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>    *state = <a class="code hl_enumvalue" href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a54b207e01b4dfc5e1ff56149817120c7">PM_DEVICE_STATE_ACTIVE</a>;</div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span> </div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>}</div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span> </div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> pm_device_init_suspended(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span>{</div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span>}</div>
+<div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> pm_device_init_off(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span>{</div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span>}</div>
+<div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> pm_device_busy_set(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span>{</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>}</div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> pm_device_busy_clear(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>{</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span>}</div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> pm_device_is_any_busy(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> pm_device_is_busy(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>{</div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>}</div>
+<div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> pm_device_wakeup_enable(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span>                       <span class="keywordtype">bool</span> enable)</div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span>{</div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span>    ARG_UNUSED(enable);</div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span>}</div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> pm_device_wakeup_is_enabled(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span>{</div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>}</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> pm_device_wakeup_is_capable(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>{</div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>}</div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> pm_device_state_lock(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>{</div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>}</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> pm_device_state_unlock(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>{</div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>}</div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> pm_device_state_is_locked(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>{</div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>}</div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> pm_device_on_power_domain(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>{</div>
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>}</div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span> </div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> pm_device_power_domain_add(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>                         <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *domain)</div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span>{</div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>    ARG_UNUSED(domain);</div>
+<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span>    <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span>}</div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span> </div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> pm_device_power_domain_remove(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>                        <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *domain)</div>
+<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>{</div>
+<div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span>    ARG_UNUSED(domain);</div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span>    <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span>}</div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span> </div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> pm_device_is_powered(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>{</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span>}</div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span> </div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> pm_device_driver_init(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <a class="code hl_typedef" href="group__subsys__pm__device.html#ga81d4ee32f5bbb1b343234b9b3afc0179">pm_device_action_cb_t</a> <a class="code hl_variable" href="structpm__device.html#a5711c3e168e307d9e36d3c6a806ccaeb">action_cb</a>)</div>
+<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span>{</div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span>    <span class="keywordtype">int</span> rc;</div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span> </div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>    <span class="comment">/* When power management is not enabled, all drivers should initialise to active state */</span></div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span>    rc = <a class="code hl_variable" href="structpm__device.html#a5711c3e168e307d9e36d3c6a806ccaeb">action_cb</a>(dev, <a class="code hl_enumvalue" href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4cac7690e0ffd27742acf58fdbdb7b89544">PM_DEVICE_ACTION_TURN_ON</a>);</div>
+<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span>    <span class="keywordflow">if</span> (rc == 0) {</div>
+<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span>        rc = <a class="code hl_variable" href="structpm__device.html#a5711c3e168e307d9e36d3c6a806ccaeb">action_cb</a>(dev, <a class="code hl_enumvalue" href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4ca757c6ab81eeac0d6afae479d6a0ac564">PM_DEVICE_ACTION_RESUME</a>);</div>
+<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span>    }</div>
+<div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span>    <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span>}</div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span> </div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_PM_DEVICE */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span> </div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>}</div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span> </div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_ga3840d6e7832a00b93763247a5951bfde"><div class="ttname"><a href="group__subsys__pm__device.html#ga3840d6e7832a00b93763247a5951bfde">pm_device_action_run</a></div><div class="ttdeci">int pm_device_action_run(const struct device *dev, enum pm_device_action action)</div><div class="ttdoc">Run a pm action on a device.</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_ga561c0789071e3c3963f21f4c4a1bb2c6"><div class="ttname"><a href="group__subsys__pm__device.html#ga561c0789071e3c3963f21f4c4a1bb2c6">pm_device_state</a></div><div class="ttdeci">pm_device_state</div><div class="ttdoc">Device power states.</div><div class="ttdef"><b>Definição</b> device.h:58</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_ga765a5412f66070ccefd8e80ed9f62b1b"><div class="ttname"><a href="group__subsys__pm__device.html#ga765a5412f66070ccefd8e80ed9f62b1b">pm_device_children_action_run</a></div><div class="ttdeci">void pm_device_children_action_run(const struct device *dev, enum pm_device_action action, pm_device_action_failed_cb_t failure_cb)</div><div class="ttdoc">Run a pm action on all children of a device.</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_ga81d4ee32f5bbb1b343234b9b3afc0179"><div class="ttname"><a href="group__subsys__pm__device.html#ga81d4ee32f5bbb1b343234b9b3afc0179">pm_device_action_cb_t</a></div><div class="ttdeci">int(* pm_device_action_cb_t)(const struct device *dev, enum pm_device_action action)</div><div class="ttdoc">Device PM action callback.</div><div class="ttdef"><b>Definição</b> device.h:109</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_ga9cfb6437873089714635d2b26aafefac"><div class="ttname"><a href="group__subsys__pm__device.html#ga9cfb6437873089714635d2b26aafefac">pm_device_action_failed_cb_t</a></div><div class="ttdeci">bool(* pm_device_action_failed_cb_t)(const struct device *dev, int err)</div><div class="ttdoc">Device PM action failed callback.</div><div class="ttdef"><b>Definição</b> device.h:120</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_gad109511e4314fa6145ee97dd655ec7bb"><div class="ttname"><a href="group__subsys__pm__device.html#gad109511e4314fa6145ee97dd655ec7bb">pm_device_state_str</a></div><div class="ttdeci">const char * pm_device_state_str(enum pm_device_state state)</div><div class="ttdoc">Get name of device PM state.</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_gaee5546eacb9be7caa9d59ab63926cc4c"><div class="ttname"><a href="group__subsys__pm__device.html#gaee5546eacb9be7caa9d59ab63926cc4c">pm_device_action</a></div><div class="ttdeci">pm_device_action</div><div class="ttdoc">Device PM actions.</div><div class="ttdef"><b>Definição</b> device.h:80</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_gga561c0789071e3c3963f21f4c4a1bb2c6a03f61cb7cd5e4820c1c731500fd053b5"><div class="ttname"><a href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a03f61cb7cd5e4820c1c731500fd053b5">PM_DEVICE_STATE_SUSPENDED</a></div><div class="ttdeci">@ PM_DEVICE_STATE_SUSPENDED</div><div class="ttdef"><b>Definição</b> device.h:67</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_gga561c0789071e3c3963f21f4c4a1bb2c6a2456389354b744d4e96847e38f8b61c2"><div class="ttname"><a href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a2456389354b744d4e96847e38f8b61c2">PM_DEVICE_STATE_OFF</a></div><div class="ttdeci">@ PM_DEVICE_STATE_OFF</div><div class="ttdef"><b>Definição</b> device.h:76</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_gga561c0789071e3c3963f21f4c4a1bb2c6a51a5904aff980deff73d29568b6f7deb"><div class="ttname"><a href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a51a5904aff980deff73d29568b6f7deb">PM_DEVICE_STATE_SUSPENDING</a></div><div class="ttdeci">@ PM_DEVICE_STATE_SUSPENDING</div><div class="ttdef"><b>Definição</b> device.h:69</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_gga561c0789071e3c3963f21f4c4a1bb2c6a54b207e01b4dfc5e1ff56149817120c7"><div class="ttname"><a href="group__subsys__pm__device.html#gga561c0789071e3c3963f21f4c4a1bb2c6a54b207e01b4dfc5e1ff56149817120c7">PM_DEVICE_STATE_ACTIVE</a></div><div class="ttdeci">@ PM_DEVICE_STATE_ACTIVE</div><div class="ttdef"><b>Definição</b> device.h:60</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_ggaee5546eacb9be7caa9d59ab63926cc4ca2bcd7dee3a85b27157bbc465bacf521e"><div class="ttname"><a href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4ca2bcd7dee3a85b27157bbc465bacf521e">PM_DEVICE_ACTION_TURN_OFF</a></div><div class="ttdeci">@ PM_DEVICE_ACTION_TURN_OFF</div><div class="ttdef"><b>Definição</b> device.h:90</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_ggaee5546eacb9be7caa9d59ab63926cc4ca5b7ae11deaee85eb0b8452bc89383790"><div class="ttname"><a href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4ca5b7ae11deaee85eb0b8452bc89383790">PM_DEVICE_ACTION_SUSPEND</a></div><div class="ttdeci">@ PM_DEVICE_ACTION_SUSPEND</div><div class="ttdef"><b>Definição</b> device.h:82</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_ggaee5546eacb9be7caa9d59ab63926cc4ca757c6ab81eeac0d6afae479d6a0ac564"><div class="ttname"><a href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4ca757c6ab81eeac0d6afae479d6a0ac564">PM_DEVICE_ACTION_RESUME</a></div><div class="ttdeci">@ PM_DEVICE_ACTION_RESUME</div><div class="ttdef"><b>Definição</b> device.h:84</div></div>
+<div class="ttc" id="agroup__subsys__pm__device_html_ggaee5546eacb9be7caa9d59ab63926cc4cac7690e0ffd27742acf58fdbdb7b89544"><div class="ttname"><a href="group__subsys__pm__device.html#ggaee5546eacb9be7caa9d59ab63926cc4cac7690e0ffd27742acf58fdbdb7b89544">PM_DEVICE_ACTION_TURN_ON</a></div><div class="ttdeci">@ PM_DEVICE_ACTION_TURN_ON</div><div class="ttdef"><b>Definição</b> device.h:96</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructk__event_html"><div class="ttname"><a href="structk__event.html">k_event</a></div><div class="ttdef"><b>Definição</b> kernel.h:2219</div></div>
+<div class="ttc" id="astructk__work__delayable_html"><div class="ttname"><a href="structk__work__delayable.html">k_work_delayable</a></div><div class="ttdoc">A structure used to submit work after a delay.</div><div class="ttdef"><b>Definição</b> kernel.h:3894</div></div>
+<div class="ttc" id="astructpm__device_html"><div class="ttname"><a href="structpm__device.html">pm_device</a></div><div class="ttdoc">Device PM info.</div><div class="ttdef"><b>Definição</b> device.h:126</div></div>
+<div class="ttc" id="astructpm__device_html_a46157841a8a7998f0ccde111f26429b5"><div class="ttname"><a href="structpm__device.html#a46157841a8a7998f0ccde111f26429b5">pm_device::state</a></div><div class="ttdeci">enum pm_device_state state</div><div class="ttdef"><b>Definição</b> device.h:146</div></div>
+<div class="ttc" id="astructpm__device_html_a5711c3e168e307d9e36d3c6a806ccaeb"><div class="ttname"><a href="structpm__device.html#a5711c3e168e307d9e36d3c6a806ccaeb">pm_device::action_cb</a></div><div class="ttdeci">pm_device_action_cb_t action_cb</div><div class="ttdef"><b>Definição</b> device.h:148</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

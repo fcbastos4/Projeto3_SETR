@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['object_20core_20apis_0',['Object Core APIs',['../group__obj__core__apis.html',1,'']]],
+  ['object_20core_20statistics_20apis_1',['Object Core Statistics APIs',['../group__obj__core__stats__apis.html',1,'']]],
+  ['object_20transfer_20service_20ots_2',['Object Transfer Service (OTS)',['../group__bt__ots.html',1,'']]],
+  ['off_3',['System power off',['../group__sys__poweroff.html',1,'']]],
+  ['off_20service_20apis_4',['On-Off Service APIs',['../group__resource__mgmt__onoff__apis.html',1,'']]],
+  ['offloaded_20net_20devices_5',['Offloaded Net Devices',['../group__offloaded__netdev.html',1,'']]],
+  ['offloading_20interface_6',['Network Offloading Interface',['../group__net__offload.html',1,'']]],
+  ['offset_7',['Vector Offset',['../group__math__dsp__basic__offset.html',1,'']]],
+  ['offset_20control_20service_20vocs_8',['Volume Offset Control Service (VOCS)',['../group__bt__gatt__vocs.html',1,'']]],
+  ['on_20demand_20private_20gatt_20proxy_20client_9',['Bluetooth Mesh On-Demand Private GATT Proxy Client',['../group__bt__mesh__od__priv__proxy__cli.html',1,'']]],
+  ['on_20demand_20private_20gatt_20proxy_20server_10',['Bluetooth Mesh On-Demand Private GATT Proxy Server',['../group__bt__mesh__od__priv__proxy__srv.html',1,'']]],
+  ['on_20off_20service_20apis_11',['On-Off Service APIs',['../group__resource__mgmt__onoff__apis.html',1,'']]],
+  ['opcodes_20aggregator_20client_20model_12',['Opcodes Aggregator Client model',['../group__bt__mesh__op__agg__cli.html',1,'']]],
+  ['opcodes_20aggregator_20server_20model_13',['Opcodes Aggregator Server model',['../group__bt__mesh__op__agg__srv.html',1,'']]],
+  ['openthread_20l2_20abstraction_20layer_14',['OpenThread L2 abstraction layer',['../group__openthread.html',1,'']]],
+  ['options_20for_20tls_15',['Socket options for TLS',['../group__secure__sockets__options.html',1,'']]],
+  ['or_16',['Vector bitwise OR',['../group__math__dsp__basic__or.html',1,'']]],
+  ['or_20ipv6_20icmp_20echo_20request_20messages_17',['Send and receive IPv4 or IPv6 ICMP Echo Request messages.',['../group__icmp.html',1,'']]],
+  ['os_5fmgmt_20callback_20api_18',['MCUmgr os_mgmt callback API',['../group__mcumgr__callback__api__os__mgmt.html',1,'']]],
+  ['os_5fmgmt_5fclient_20api_19',['MCUmgr os_mgmt_client API',['../group__mcumgr__os__mgmt__client.html',1,'']]],
+  ['ots_20',['Object Transfer Service (OTS)',['../group__bt__ots.html',1,'']]],
+  ['output_20api_21',['Log output API',['../group__log__output.html',1,'']]],
+  ['output_20apis_22',['Formatted Output APIs',['../group__cbprintf__apis.html',1,'']]],
+  ['output_20formatting_20flags_23',['Log output formatting flags.',['../group__LOG__OUTPUT__FLAGS.html',1,'']]],
+  ['over_20the_20air_24',['over the air',['../group__hawkbit.html',1,'hawkBit Firmware Over-the-Air'],['../group__updatehub.html',1,'UpdateHub Firmware Over-the-Air']]]
+];

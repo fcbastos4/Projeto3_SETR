@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Devmux Driver APIs</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle"><div class="title">Devmux Driver APIs</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Devmux Driver APIs.  
+<a href="#details">Mais...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:ga80f5e6527c9436d95ff47de95f254632" id="r_ga80f5e6527c9436d95ff47de95f254632"><td class="memItemLeft" align="right" valign="top">__syscall ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__demux__interface.html#ga80f5e6527c9436d95ff47de95f254632">devmux_select_get</a> (const struct <a class="el" href="structdevice.html">device</a> *dev)</td></tr>
+<tr class="memdesc:ga80f5e6527c9436d95ff47de95f254632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current selection of a devmux device.  <br /></td></tr>
+<tr class="separator:ga80f5e6527c9436d95ff47de95f254632"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5dde4a5ae9e29fb2ad0c983164fdddbe" id="r_ga5dde4a5ae9e29fb2ad0c983164fdddbe"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__demux__interface.html#ga5dde4a5ae9e29fb2ad0c983164fdddbe">devmux_select_set</a> (struct <a class="el" href="structdevice.html">device</a> *dev, size_t index)</td></tr>
+<tr class="memdesc:ga5dde4a5ae9e29fb2ad0c983164fdddbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the selection of a devmux device.  <br /></td></tr>
+<tr class="separator:ga5dde4a5ae9e29fb2ad0c983164fdddbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<p>Devmux Driver APIs. </p>
+<p>Devmux operates as a device multiplexer, forwarding the characteristics of the selected device.</p>
+<div class="fragment"><div class="line">           +----------+                            +----------+</div>
+<div class="line">           |  devmux  |                            |  devmux  |</div>
+<div class="line">           |          |                            |          |</div>
+<div class="line">dev0       |          |                 dev0       |          |</div>
+<div class="line">+----------&gt;   \      |                 +----------&gt;          |</div>
+<div class="line">           |    \     |                            |          |</div>
+<div class="line">dev1       |     \    |       dev0      dev1       |          |       dev2</div>
+<div class="line">+----------&gt;      O   +----------&gt;      +----------&gt;      O   +----------&gt;</div>
+<div class="line">           |          |                            |     /    |</div>
+<div class="line">dev2       |          |                 dev2       |    /     |</div>
+<div class="line">+----------&gt;          |                 +----------&gt;   /      |</div>
+<div class="line">           |          |                            |          |</div>
+<div class="line">           |          |                            |          |</div>
+<div class="line">           |          |                            |          |</div>
+<div class="line">           +-----^----+                            +-----^----+</div>
+<div class="line">                 |                                       |</div>
+<div class="line">  select == 0    |                       select == 2     |</div>
+<div class="line">  +--------------+                       +---------------+</div>
+</div><!-- fragment --> <h2 class="groupheader">Documentação das funções</h2>
+<a id="ga80f5e6527c9436d95ff47de95f254632" name="ga80f5e6527c9436d95ff47de95f254632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga80f5e6527c9436d95ff47de95f254632">&#9670;&#160;</a></span>devmux_select_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall ssize_t devmux_select_get </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the current selection of a devmux device. </p>
+<p>Return the index of the currently selected device.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>the devmux device </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>The index (&gt;= 0) of the currently active multiplexed device on success </dd></dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">-EINVAL</td><td>If <code>dev</code> is invalid </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga5dde4a5ae9e29fb2ad0c983164fdddbe" name="ga5dde4a5ae9e29fb2ad0c983164fdddbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5dde4a5ae9e29fb2ad0c983164fdddbe">&#9670;&#160;</a></span>devmux_select_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int devmux_select_set </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the selection of a devmux device. </p>
+<p>Select the device at <code>index</code>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dev</td><td>the devmux device </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">index</td><td>the index representing the desired selection </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>On success </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>If <code>dev</code> is invalid </td></tr>
+    <tr><td class="paramname">-ENODEV</td><td>If the multiplexed device at <code>index</code> is not ready </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

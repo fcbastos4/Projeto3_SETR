@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/pm/pm.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_8dae9eb5cfbef028313d11c9f7892c94.html">pm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">pm.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2012-2014 Wind River Systems, Inc.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_PM_PM_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_PM_PM_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="slist_8h.html">zephyr/sys/slist.h</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;zephyr/pm/state.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="toolchain_8h.html">zephyr/toolchain.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;errno.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="};">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structpm__notifier.html">   54</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structpm__notifier.html">pm_notifier</a> {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> _node;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="group__subsys__pm__sys.html#gab84353bcc32f4262ea1a34f316d21278">   60</a></span>    void (*<a class="code hl_variable" href="group__subsys__pm__sys.html#gab84353bcc32f4262ea1a34f316d21278">state_entry</a>)(<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__subsys__pm__states.html#ga20e2f5ea9027a3653e5b9cc5aa1e21d5">pm_state</a> state);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="group__subsys__pm__sys.html#gaeb6bcf67d2d4c5342d8d81cea3728ec5">   65</a></span>    void (*<a class="code hl_variable" href="group__subsys__pm__sys.html#gaeb6bcf67d2d4c5342d8d81cea3728ec5">state_exit</a>)(<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__subsys__pm__states.html#ga20e2f5ea9027a3653e5b9cc5aa1e21d5">pm_state</a> state);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>};</div>
+</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#if defined(CONFIG_PM) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keywordtype">bool</span> pm_state_force(uint8_t cpu, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structpm__state__info.html">pm_state_info</a> *info);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keywordtype">void</span> pm_notifier_register(<span class="keyword">struct</span> <a class="code hl_struct" href="structpm__notifier.html">pm_notifier</a> *notifier);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keywordtype">int</span> pm_notifier_unregister(<span class="keyword">struct</span> <a class="code hl_struct" href="structpm__notifier.html">pm_notifier</a> *notifier);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpm__state__info.html">pm_state_info</a> *pm_state_next_get(uint8_t cpu);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="keywordtype">void</span> pm_state_set(<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__subsys__pm__states.html#ga20e2f5ea9027a3653e5b9cc5aa1e21d5">pm_state</a> state, uint8_t <a class="code hl_variable" href="group__subsys__pm__states.html#ga422bc0c9aedc107dbfa57c3ac8eb2445">substate_id</a>);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="keywordtype">void</span> pm_state_exit_post_ops(<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__subsys__pm__states.html#ga20e2f5ea9027a3653e5b9cc5aa1e21d5">pm_state</a> state, uint8_t <a class="code hl_variable" href="group__subsys__pm__states.html#ga422bc0c9aedc107dbfa57c3ac8eb2445">substate_id</a>);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">#else  </span><span class="comment">/* CONFIG_PM */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> pm_notifier_register(<span class="keyword">struct</span> <a class="code hl_struct" href="structpm__notifier.html">pm_notifier</a> *notifier)</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>{</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    ARG_UNUSED(notifier);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>}</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> pm_notifier_unregister(<span class="keyword">struct</span> <a class="code hl_struct" href="structpm__notifier.html">pm_notifier</a> *notifier)</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>{</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    ARG_UNUSED(notifier);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>}</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpm__state__info.html">pm_state_info</a> *pm_state_next_get(uint8_t cpu)</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>{</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    ARG_UNUSED(cpu);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>}</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_PM */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="keywordtype">void</span> z_pm_save_idle_exit(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>}</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_PM_PM_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="agroup__subsys__pm__states_html_ga20e2f5ea9027a3653e5b9cc5aa1e21d5"><div class="ttname"><a href="group__subsys__pm__states.html#ga20e2f5ea9027a3653e5b9cc5aa1e21d5">pm_state</a></div><div class="ttdeci">pm_state</div><div class="ttdef"><b>Definição</b> state.h:27</div></div>
+<div class="ttc" id="agroup__subsys__pm__states_html_ga422bc0c9aedc107dbfa57c3ac8eb2445"><div class="ttname"><a href="group__subsys__pm__states.html#ga422bc0c9aedc107dbfa57c3ac8eb2445">pm_state_info::substate_id</a></div><div class="ttdeci">uint8_t substate_id</div><div class="ttdef"><b>Definição</b> state.h:141</div></div>
+<div class="ttc" id="agroup__subsys__pm__sys_html_gab84353bcc32f4262ea1a34f316d21278"><div class="ttname"><a href="group__subsys__pm__sys.html#gab84353bcc32f4262ea1a34f316d21278">pm_notifier::state_entry</a></div><div class="ttdeci">void(* state_entry)(enum pm_state state)</div><div class="ttdef"><b>Definição</b> pm.h:60</div></div>
+<div class="ttc" id="agroup__subsys__pm__sys_html_gaeb6bcf67d2d4c5342d8d81cea3728ec5"><div class="ttname"><a href="group__subsys__pm__sys.html#gaeb6bcf67d2d4c5342d8d81cea3728ec5">pm_notifier::state_exit</a></div><div class="ttdeci">void(* state_exit)(enum pm_state state)</div><div class="ttdef"><b>Definição</b> pm.h:65</div></div>
+<div class="ttc" id="aslist_8h_html"><div class="ttname"><a href="slist_8h.html">slist.h</a></div></div>
+<div class="ttc" id="astructpm__notifier_html"><div class="ttname"><a href="structpm__notifier.html">pm_notifier</a></div><div class="ttdef"><b>Definição</b> pm.h:54</div></div>
+<div class="ttc" id="astructpm__state__info_html"><div class="ttname"><a href="structpm__state__info.html">pm_state_info</a></div><div class="ttdef"><b>Definição</b> state.h:114</div></div>
+<div class="ttc" id="atoolchain_8h_html"><div class="ttname"><a href="toolchain_8h.html">toolchain.h</a></div><div class="ttdoc">Macros to abstract toolchain specific capabilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

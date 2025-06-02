@@ -1,0 +1,681 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/net/ppp.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_e87a4ba8d8d39971580ab67f13eff592.html">net</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ppp.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2019 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_NET_PPP_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define ZEPHYR_INCLUDE_NET_PPP_H_</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__if_8h.html">zephyr/net/net_if.h</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="net__pkt_8h.html">zephyr/net/net_pkt.h</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="net__stats_8h.html">zephyr/net/net_stats.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="net__mgmt_8h.html">zephyr/net/net_mgmt.h</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="group__ppp.html#gaec050624f0693600196068d8f5413e6f">   28</a></span><span class="preprocessor">#define PPP_MRU CONFIG_NET_PPP_MTU_MRU</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="group__ppp.html#gacc51e91347721a8255ae891ddc43636b">   31</a></span><span class="preprocessor">#define PPP_MTU PPP_MRU</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="group__ppp.html#ga2e5d0ae66bf076123cb29effc0a8e894">   34</a></span><span class="preprocessor">#define PPP_MAX_TERMINATE_REASON_LEN 32</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="group__ppp.html#gaad7380b3a502f4b649348b733124f21a">   37</a></span><span class="preprocessor">#define PPP_INTERFACE_IDENTIFIER_LEN 8</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="};">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structppp__api.html">   40</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structppp__api.html">ppp_api</a> {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structppp__api.html#acc4e82fbaa8b933040b0a77da8a3cae0">   45</a></span>    <span class="keyword">struct </span>net_if_api <a class="code hl_variable" href="structppp__api.html#acc4e82fbaa8b933040b0a77da8a3cae0">iface_api</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structppp__api.html#ab85010475c4f03a48ad7629ed4947626">   48</a></span>    int (*<a class="code hl_variable" href="structppp__api.html#ab85010475c4f03a48ad7629ed4947626">start</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structppp__api.html#a42576f1d58920f48a0d0adf888f99006">   51</a></span>    int (*<a class="code hl_variable" href="structppp__api.html#a42576f1d58920f48a0d0adf888f99006">stop</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structppp__api.html#aa0ec35e57f22674ef06f8cc3bc09987f">   54</a></span>    int (*<a class="code hl_variable" href="structppp__api.html#aa0ec35e57f22674ef06f8cc3bc09987f">send</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct </span><a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#if defined(CONFIG_NET_STATISTICS_PPP)</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__stats__ppp.html">net_stats_ppp</a> *(*get_stats)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>};</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">/* Make sure that the network interface API is properly setup inside</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment"> * PPP API struct (it is the first one).</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>BUILD_ASSERT(offsetof(<span class="keyword">struct</span> <a class="code hl_struct" href="structppp__api.html">ppp_api</a>, iface_api) == 0);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="foldopen" id="foldopen00075" data-start="{" data-end="};">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="group__ppp.html#ga8ad7cc0d142a6e7ea82c45bec2cc3670">   75</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ppp.html#ga8ad7cc0d142a6e7ea82c45bec2cc3670">ppp_protocol_type</a> {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a0b974fd7b99c28a8d06f096be1ed9cc6">   76</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a0b974fd7b99c28a8d06f096be1ed9cc6">PPP_IP</a>     = 0x0021, </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a0a9da56ae134b701f5a8b31c3f1c9bfe">   77</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a0a9da56ae134b701f5a8b31c3f1c9bfe">PPP_IPV6</a>   = 0x0057, </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a25f326220ab531e93140b7c6bddd0d21">   78</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a25f326220ab531e93140b7c6bddd0d21">PPP_IPCP</a>   = 0x8021, </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a40b5032dabf9c697e761aa2cff0b2e44">   79</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a40b5032dabf9c697e761aa2cff0b2e44">PPP_ECP</a>    = 0x8053, </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670ab17a70f864ac04b8b52f8ca1edc4d2e0">   80</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670ab17a70f864ac04b8b52f8ca1edc4d2e0">PPP_IPV6CP</a> = 0x8057, </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a4cdde6fe10fcfa862742751e1152887b">   81</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a4cdde6fe10fcfa862742751e1152887b">PPP_CCP</a>    = 0x80FD, </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a22dae8ee345f9664042eef54086f4de9">   82</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a22dae8ee345f9664042eef54086f4de9">PPP_LCP</a>    = 0xc021, </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670ac66b190ff6dd0884dfba62da40ee2206">   83</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670ac66b190ff6dd0884dfba62da40ee2206">PPP_PAP</a>    = 0xc023, </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a1b311302ecabb507c34b1f77cba36f25">   84</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a1b311302ecabb507c34b1f77cba36f25">PPP_CHAP</a>   = 0xc223, </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a7a51ef2d8d979ded98e0aad680f1b6e2">   85</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a7a51ef2d8d979ded98e0aad680f1b6e2">PPP_EAP</a>    = 0xc227, </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="foldopen" id="foldopen00091" data-start="{" data-end="};">
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="group__ppp.html#ga284e237a6323f2daffc444a73a4b8b6b">   91</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ppp.html#ga284e237a6323f2daffc444a73a4b8b6b">ppp_phase</a> {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6babdff682a09630e713867c3241d56954d">   93</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6babdff682a09630e713867c3241d56954d">PPP_DEAD</a>,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6ba647d283023ee50299c1d9ca376cce4f4">   95</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6ba647d283023ee50299c1d9ca376cce4f4">PPP_ESTABLISH</a>,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6ba0492bfbaebc3f126327c74dbe56ce76a">   97</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6ba0492bfbaebc3f126327c74dbe56ce76a">PPP_AUTH</a>,</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6ba621902d0a6ca3efa0aa20c43c32164af">   99</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6ba621902d0a6ca3efa0aa20c43c32164af">PPP_NETWORK</a>,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6ba51a5c6e5d16fbb607597f0d2f6a12af7">  101</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6ba51a5c6e5d16fbb607597f0d2f6a12af7">PPP_RUNNING</a>,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6bac1f10a2aa5edcb826621304de596a5b7">  103</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6bac1f10a2aa5edcb826621304de596a5b7">PPP_TERMINATE</a>,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>};</div>
+</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="foldopen" id="foldopen00109" data-start="{" data-end="};">
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="group__ppp.html#ga6d4283a0ae63a227933d12d42318cf7c">  109</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ppp.html#ga6d4283a0ae63a227933d12d42318cf7c">ppp_state</a> {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    PPP_INITIAL,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    PPP_STARTING,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    PPP_CLOSED,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    PPP_STOPPED,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    PPP_CLOSING,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    PPP_STOPPING,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    PPP_REQUEST_SENT,</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    PPP_ACK_RECEIVED,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    PPP_ACK_SENT,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    PPP_OPENED</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>};</div>
+</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="foldopen" id="foldopen00125" data-start="{" data-end="};">
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="group__ppp.html#ga305eaed8ab120c7821de1618e10728cf">  125</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ppp.html#ga305eaed8ab120c7821de1618e10728cf">ppp_packet_type</a> {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    PPP_CONFIGURE_REQ  = 1,</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    PPP_CONFIGURE_ACK  = 2,</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    PPP_CONFIGURE_NACK = 3,</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    PPP_CONFIGURE_REJ  = 4,</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    PPP_TERMINATE_REQ  = 5,</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    PPP_TERMINATE_ACK  = 6,</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    PPP_CODE_REJ       = 7,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    PPP_PROTOCOL_REJ   = 8,</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    PPP_ECHO_REQ       = 9,</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    PPP_ECHO_REPLY     = 10,</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    PPP_DISCARD_REQ    = 11</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>};</div>
+</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="foldopen" id="foldopen00142" data-start="{" data-end="};">
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="group__ppp.html#gac8f3d915c930d61831bcb13d6201b15c">  142</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ppp.html#gac8f3d915c930d61831bcb13d6201b15c">lcp_option_type</a> {</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    LCP_OPTION_RESERVED = 0,</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15cabedb2479b9edd3fcefe7a84d2deb41fe">  146</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15cabedb2479b9edd3fcefe7a84d2deb41fe">LCP_OPTION_MRU</a> = 1,</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15ca01e51712c002e5ce746d93376b4f2cef">  149</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15ca01e51712c002e5ce746d93376b4f2cef">LCP_OPTION_ASYNC_CTRL_CHAR_MAP</a> = 2,</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15cae36a806e93ebdacd7c3ad3f536c03743">  152</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15cae36a806e93ebdacd7c3ad3f536c03743">LCP_OPTION_AUTH_PROTO</a> = 3,</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15ca3ed6d42c4b65271955a308c4e7a437a9">  155</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15ca3ed6d42c4b65271955a308c4e7a437a9">LCP_OPTION_QUALITY_PROTO</a> = 4,</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15ca59c791ebec909b03a42659d08be2bcf8">  158</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15ca59c791ebec909b03a42659d08be2bcf8">LCP_OPTION_MAGIC_NUMBER</a> = 5,</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15cab135e1ef16bb071e1490d77b51de3bd4">  161</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15cab135e1ef16bb071e1490d77b51de3bd4">LCP_OPTION_PROTO_COMPRESS</a> = 7,</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <a class="code hl_enumvalue" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15ca3c37fd8819b98caa7f9b3b94aff53524">LCP_OPTION_ADDR_CTRL_COMPRESS</a> = 8</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15ca3c37fd8819b98caa7f9b3b94aff53524">  165</a></span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="foldopen" id="foldopen00170" data-start="{" data-end="};">
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="group__ppp.html#ga1064e3d8c6aa3d3161e399d6937162b6">  170</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ppp.html#ga1064e3d8c6aa3d3161e399d6937162b6">ipcp_option_type</a> {</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    IPCP_OPTION_RESERVED = 0,</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a80771bc5d12ab8dcf78f87c872b0f41b">  174</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a80771bc5d12ab8dcf78f87c872b0f41b">IPCP_OPTION_IP_ADDRESSES</a> = 1,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a3913e2668196db10d17f8d7ffa86c6a6">  177</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a3913e2668196db10d17f8d7ffa86c6a6">IPCP_OPTION_IP_COMP_PROTO</a> = 2,</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a124bafb002549c2de4cb293f5e158fd9">  180</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a124bafb002549c2de4cb293f5e158fd9">IPCP_OPTION_IP_ADDRESS</a> = 3,</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="comment">/* RFC 1877 */</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6af156d53ee18de3907210c910667e8931">  185</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6af156d53ee18de3907210c910667e8931">IPCP_OPTION_DNS1</a> = 129,</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a7d154ff3643ba4de8cf358bd81361552">  188</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a7d154ff3643ba4de8cf358bd81361552">IPCP_OPTION_NBNS1</a> = 130,</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a176055a8c0483c7c8b6b0d416b676964">  191</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a176055a8c0483c7c8b6b0d416b676964">IPCP_OPTION_DNS2</a> = 131,</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a3b315dc4f10305923bba2bfbe2fa05ad">  194</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a3b315dc4f10305923bba2bfbe2fa05ad">IPCP_OPTION_NBNS2</a> = 132,</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="foldopen" id="foldopen00200" data-start="{" data-end="};">
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="group__ppp.html#gaf30172a9fead40463d129a5afeaf1ac3">  200</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ppp.html#gaf30172a9fead40463d129a5afeaf1ac3">ipv6cp_option_type</a> {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    IPV6CP_OPTION_RESERVED = 0,</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="group__ppp.html#ggaf30172a9fead40463d129a5afeaf1ac3a0448dc4b9a89736d6878a4e99e6e61b7">  204</a></span>    <a class="code hl_enumvalue" href="group__ppp.html#ggaf30172a9fead40463d129a5afeaf1ac3a0448dc4b9a89736d6878a4e99e6e61b7">IPV6CP_OPTION_INTERFACE_IDENTIFIER</a> = 1,</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="group__ppp.html#ga1ffff54da5bf3eb358e909e0962f1b05">  215</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__ppp.html#ga1ffff54da5bf3eb358e909e0962f1b05">net_ppp_lcp_echo_reply_cb_t</a>)(<span class="keywordtype">void</span> *user_data,</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>                        <span class="keywordtype">size_t</span> user_data_len);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="keyword">struct </span><a class="code hl_struct" href="structppp__my__option__data.html">ppp_my_option_data</a>;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="keyword">struct </span>ppp_my_option_info;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="foldopen" id="foldopen00224" data-start="{" data-end="};">
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="structppp__fsm.html">  224</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> {</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="structppp__fsm.html#ae033ee41d66ec568dc4244115730114a">  226</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a> <a class="code hl_variable" href="structppp__fsm.html#ae033ee41d66ec568dc4244115730114a">timer</a>;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a42bb4a40d88893d461d93202c4ad8e2a">  230</a></span>        int (*config_info_ack)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm,</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                       <span class="keyword">struct </span><a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt,</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>                       uint16_t length);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *(*config_info_add)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a099cc834fc5e2d062ee4410a1de729c2">  238</a></span>        int  (*config_info_len)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm);</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="structppp__fsm.html#ad0967edee7fee72368732876ca6bc5e7">  241</a></span>        int (*config_info_nack)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm,</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt,</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>                    uint16_t length,</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                    <span class="keywordtype">bool</span> rejected);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="structppp__fsm.html#ab430e0240f35718f6eaf8f9052a4edde">  247</a></span>        int (*config_info_req)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm,</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                       <span class="keyword">struct </span><a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt,</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                       uint16_t length,</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                       <span class="keyword">struct </span><a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *ret_pkt);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a90dad2f780b4573559c76e6a67e44f4c">  253</a></span>        int (*config_info_rej)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm,</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                       <span class="keyword">struct </span><a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt,</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                       uint16_t length);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="structppp__fsm.html#afb0296b0d8e9b60594781cfd5f8acee3">  258</a></span>        void (*config_info_reset)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="structppp__fsm.html#aa1ca37605ab7934c16a5260d531efa00">  261</a></span>        void (*up)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm);</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a2ba52396156dd1ec63d67dc6ae0a2d5a">  264</a></span>        void (*down)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="structppp__fsm.html#ad7f2d5d09acb298d29ebc60b4f748478">  267</a></span>        void (*starting)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="structppp__fsm.html#aecdcdfa2f7264c7b1b2202a23327fa3b">  270</a></span>        void (*finished)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="structppp__fsm.html#ae4f68c11709ab03445b853c12c11c787">  273</a></span>        void (*proto_reject)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno"><a class="line" href="structppp__fsm.html#aa302cfe79c73fe081d2642cf54d1d3cf">  276</a></span>        void (*retransmit)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__net__core.html#ga8e5393f3bdd85491f221324e637c3896">net_verdict</a> (*proto_extension)(<span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> *fsm,</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>                            <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ppp.html#ga305eaed8ab120c7821de1618e10728cf">ppp_packet_type</a> code,</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                            uint8_t id,</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>                            <span class="keyword">struct </span><a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    } cb;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a117a5df8fed62b57a59580a2513fc1c3">  289</a></span>        <span class="keyword">const</span> <span class="keyword">struct </span>ppp_my_option_info *<a class="code hl_variable" href="structppp__fsm.html#a117a5df8fed62b57a59580a2513fc1c3">info</a>;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a64330e89597eac2b8b841d0f95389473">  292</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structppp__my__option__data.html">ppp_my_option_data</a> *<a class="code hl_variable" href="structppp__fsm.html#a64330e89597eac2b8b841d0f95389473">data</a>;</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a7e125f9011a9377d18dc523b1f84964f">  295</a></span>        <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structppp__fsm.html#a7e125f9011a9377d18dc523b1f84964f">count</a>;</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    } my_options;</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a489c2d992e03e126ba2d1bbfe7a71b85">  299</a></span>    uint32_t <a class="code hl_variable" href="structppp__fsm.html#a489c2d992e03e126ba2d1bbfe7a71b85">flags</a>;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+;<div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a31d84f3fa6246bd70d664dbae6845c4b">  302</a></span>    uint32_t <a class="code hl_variable" href="structppp__fsm.html#a31d84f3fa6246bd70d664dbae6845c4b">retransmits</a>;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a0a0523fe16fe45a756615b62e8673828">  305</a></span>    uint32_t <a class="code hl_variable" href="structppp__fsm.html#a0a0523fe16fe45a756615b62e8673828">nack_loops</a>;</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a55c0fe60eb84f33386ec90691ee0f707">  308</a></span>    uint32_t <a class="code hl_variable" href="structppp__fsm.html#a55c0fe60eb84f33386ec90691ee0f707">recv_nack_loops</a>;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a4d41b43a85d7eeedc17e0cb59daea0cd">  311</a></span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="structppp__fsm.html#a4d41b43a85d7eeedc17e0cb59daea0cd">terminate_reason</a>[<a class="code hl_define" href="group__ppp.html#ga2e5d0ae66bf076123cb29effc0a8e894">PPP_MAX_TERMINATE_REASON_LEN</a>];</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a2032a922d2e356155c5a4c86cf48ff3d">  314</a></span>    uint16_t <a class="code hl_variable" href="structppp__fsm.html#a2032a922d2e356155c5a4c86cf48ff3d">protocol</a>;</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno"><a class="line" href="structppp__fsm.html#ab955d11b75231e94ec1613d5c8c027e1">  317</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ppp.html#ga6d4283a0ae63a227933d12d42318cf7c">ppp_state</a> <a class="code hl_variable" href="structppp__fsm.html#ab955d11b75231e94ec1613d5c8c027e1">state</a>;</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a9192c71ef82436c519ac3b8ccd38a089">  320</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structppp__fsm.html#a9192c71ef82436c519ac3b8ccd38a089">name</a>;</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a844c8747b299d3614e5ccff892b45d5c">  323</a></span>    uint8_t <a class="code hl_variable" href="structppp__fsm.html#a844c8747b299d3614e5ccff892b45d5c">id</a>;</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a8fe52ffe2a17c03ff0432e36c9d43578">  326</a></span>    uint8_t <a class="code hl_variable" href="structppp__fsm.html#a8fe52ffe2a17c03ff0432e36c9d43578">req_id</a>;</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno"><a class="line" href="structppp__fsm.html#a42777bc7c5f904cbac6bb0b16615fb02">  329</a></span>    uint8_t <a class="code hl_variable" href="structppp__fsm.html#a42777bc7c5f904cbac6bb0b16615fb02">ack_received</a> : 1;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>};</div>
+</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="preprocessor">#define PPP_MY_OPTION_ACKED BIT(0)</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="preprocessor">#define PPP_MY_OPTION_REJECTED  BIT(1)</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
+<div class="foldopen" id="foldopen00335" data-start="{" data-end="};">
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="structppp__my__option__data.html">  335</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structppp__my__option__data.html">ppp_my_option_data</a> {</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    uint32_t flags;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>};</div>
+</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
+<div class="foldopen" id="foldopen00339" data-start="{" data-end="};">
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno"><a class="line" href="structlcp__options.html">  339</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structlcp__options.html">lcp_options</a> {</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno"><a class="line" href="structlcp__options.html#a68d9f004596bfac6dea9b14bd22e9dda">  341</a></span>    uint32_t <a class="code hl_variable" href="structlcp__options.html#a68d9f004596bfac6dea9b14bd22e9dda">magic</a>;</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno"><a class="line" href="structlcp__options.html#a2672e1374c25aac1571adccadda5283e">  344</a></span>    uint32_t <a class="code hl_variable" href="structlcp__options.html#a2672e1374c25aac1571adccadda5283e">async_map</a>;</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="structlcp__options.html#a028da648c4b8cdd9330d9195a161e847">  347</a></span>    uint16_t <a class="code hl_variable" href="structlcp__options.html#a028da648c4b8cdd9330d9195a161e847">mru</a>;</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno"><a class="line" href="structlcp__options.html#a560d009cb642fff99ef83a9e6c056c6b">  350</a></span>    uint16_t <a class="code hl_variable" href="structlcp__options.html#a560d009cb642fff99ef83a9e6c056c6b">auth_proto</a>;</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>};</div>
+</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="preprocessor">#if defined(CONFIG_NET_L2_PPP_OPTION_MRU)</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="preprocessor">#define LCP_NUM_MY_OPTIONS  1</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
+<div class="foldopen" id="foldopen00357" data-start="{" data-end="};">
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno"><a class="line" href="structipcp__options.html">  357</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structipcp__options.html">ipcp_options</a> {</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno"><a class="line" href="structipcp__options.html#a2d4a41b74c4a319551c003210c1e6f3d">  359</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structin__addr.html">in_addr</a> <a class="code hl_variable" href="structipcp__options.html#a2d4a41b74c4a319551c003210c1e6f3d">address</a>;</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structin__addr.html">in_addr</a> dns1_address;</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structin__addr.html">in_addr</a> dns2_address;</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>};</div>
+</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span> </div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="preprocessor">#define IPCP_NUM_MY_OPTIONS 3</span></div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
+<div class="foldopen" id="foldopen00366" data-start="{" data-end="};">
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno"><a class="line" href="structipv6cp__options.html">  366</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structipv6cp__options.html">ipv6cp_options</a> {</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="structipv6cp__options.html#a2613529ccc40f9f2ac807c887dfc68b6">  368</a></span>    uint8_t <a class="code hl_variable" href="structipv6cp__options.html#a2613529ccc40f9f2ac807c887dfc68b6">iid</a>[<a class="code hl_define" href="group__ppp.html#gaad7380b3a502f4b649348b733124f21a">PPP_INTERFACE_IDENTIFIER_LEN</a>];</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>};</div>
+</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span> </div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="preprocessor">#define IPV6CP_NUM_MY_OPTIONS   1</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="keyword">enum</span> ppp_flags {</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>    PPP_CARRIER_UP,</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>};</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span> </div>
+<div class="foldopen" id="foldopen00378" data-start="{" data-end="};">
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno"><a class="line" href="structppp__context.html">  378</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structppp__context.html">ppp_context</a> {</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno"><a class="line" href="structppp__context.html#a6b327cafe07a0807163589471a9bdae8">  382</a></span>    atomic_t <a class="code hl_variable" href="structppp__context.html#a6b327cafe07a0807163589471a9bdae8">flags</a>;</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span> </div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno"><a class="line" href="structppp__context.html#a5671d7ba465c424004f0460e5ed0d3ba">  385</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a> <a class="code hl_variable" href="structppp__context.html#a5671d7ba465c424004f0460e5ed0d3ba">startup</a>;</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span> </div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno"><a class="line" href="structppp__context.html#ac555024228a1e1d830c915a098428bc5">  389</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> fsm;</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno"><a class="line" href="structppp__context.html#a37f609192ee6b739d7018d5a07ce179f">  392</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structlcp__options.html">lcp_options</a> my_options;</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span> </div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno"><a class="line" href="structppp__context.html#a80fffd30b145b0842e36299ac78d5da8">  395</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structlcp__options.html">lcp_options</a> peer_options;</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span> </div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno"><a class="line" href="structppp__context.html#a4d91bf9e6e36415b13be02ccf03d3e40">  398</a></span>        uint32_t <a class="code hl_variable" href="structppp__context.html#a4d91bf9e6e36415b13be02ccf03d3e40">magic</a>;</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span><span class="preprocessor">#if defined(CONFIG_NET_L2_PPP_OPTION_MRU)</span></div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structppp__my__option__data.html">ppp_my_option_data</a> my_options_data[LCP_NUM_MY_OPTIONS];</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    } lcp;</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span><span class="preprocessor">#if defined(CONFIG_NET_IPV4)</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> fsm;</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span> </div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structipcp__options.html">ipcp_options</a> my_options;</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span> </div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structipcp__options.html">ipcp_options</a> peer_options;</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structppp__my__option__data.html">ppp_my_option_data</a> my_options_data[IPCP_NUM_MY_OPTIONS];</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>    } ipcp;</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span> </div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span><span class="preprocessor">#if defined(CONFIG_NET_IPV6)</span></div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> fsm;</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span> </div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structipv6cp__options.html">ipv6cp_options</a> my_options;</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span> </div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structipv6cp__options.html">ipv6cp_options</a> peer_options;</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span> </div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structppp__my__option__data.html">ppp_my_option_data</a> my_options_data[IPV6CP_NUM_MY_OPTIONS];</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>    } ipv6cp;</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span><span class="preprocessor">#if defined(CONFIG_NET_L2_PPP_PAP)</span></div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structppp__fsm.html">ppp_fsm</a> fsm;</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>    } pap;</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span> </div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span><span class="preprocessor">#if defined(CONFIG_NET_SHELL)</span></div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>        <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>            <a class="code hl_typedef" href="group__ppp.html#ga1ffff54da5bf3eb358e909e0962f1b05">net_ppp_lcp_echo_reply_cb_t</a> cb;</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span> </div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>            <span class="keywordtype">void</span> *user_data;</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span> </div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>            <span class="keywordtype">size_t</span> user_data_len;</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>        } echo_reply;</div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span> </div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>        <span class="keyword">struct </span>k_sem wait_echo_reply;</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span> </div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>        uint32_t echo_req_data;</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span> </div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>        uint32_t echo_reply_data;</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>    } <a class="code hl_struct" href="structshell.html">shell</a>;</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span> </div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno"><a class="line" href="structppp__context.html#a3b0bfb9c3ceece34565b282efa74390e">  469</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__if.html">net_if</a> *<a class="code hl_variable" href="structppp__context.html#a3b0bfb9c3ceece34565b282efa74390e">iface</a>;</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span> </div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno"><a class="line" href="structppp__context.html#a141cb0b4f4b99313de63a5bff2b7cafc">  472</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__mgmt__event__callback.html">net_mgmt_event_callback</a> <a class="code hl_variable" href="structppp__context.html#a141cb0b4f4b99313de63a5bff2b7cafc">mgmt_evt_cb</a>;</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span> </div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno"><a class="line" href="structppp__context.html#a6afb964ef87696fdadb5cb0c714bd841">  475</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ppp.html#ga284e237a6323f2daffc444a73a4b8b6b">ppp_phase</a> <a class="code hl_variable" href="structppp__context.html#a6afb964ef87696fdadb5cb0c714bd841">phase</a>;</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span> </div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno"><a class="line" href="structppp__context.html#a1c6674bad19047abcc3097bf5ff5f31d">  478</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__net__l2.html#gac7db0cc6c56d371a5803873074ec2516">net_l2_flags</a> <a class="code hl_variable" href="structppp__context.html#a1c6674bad19047abcc3097bf5ff5f31d">ppp_l2_flags</a>;</div>
+<div class="line"><a id="l00479" name="l00479"></a><span class="lineno">  479</span> </div>
+<div class="line"><a id="l00481" name="l00481"></a><span class="lineno"><a class="line" href="structppp__context.html#a2e04c6e411fe5b07d9d2cda1a61db57f">  481</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structppp__context.html#a2e04c6e411fe5b07d9d2cda1a61db57f">network_protos_open</a>;</div>
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span> </div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno"><a class="line" href="structppp__context.html#a9dd6e156897c53d488344bbbe05d4ae1">  484</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structppp__context.html#a9dd6e156897c53d488344bbbe05d4ae1">network_protos_up</a>;</div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span> </div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno"><a class="line" href="structppp__context.html#a3d97c93b183ca455daf0e3bc2b9c25e1">  487</a></span>    uint16_t <a class="code hl_variable" href="structppp__context.html#a3d97c93b183ca455daf0e3bc2b9c25e1">is_ready_to_serve</a> : 1;</div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span> </div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno"><a class="line" href="structppp__context.html#a7f103857c7412a6ee9471b6c67baea71">  490</a></span>    uint16_t <a class="code hl_variable" href="structppp__context.html#a7f103857c7412a6ee9471b6c67baea71">is_enabled</a> : 1;</div>
+<div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span> </div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno"><a class="line" href="structppp__context.html#acdee16f229cb6aa0672630de1d3ee39b">  493</a></span>    uint16_t <a class="code hl_variable" href="structppp__context.html#acdee16f229cb6aa0672630de1d3ee39b">is_enable_done</a> : 1;</div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span> </div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno"><a class="line" href="structppp__context.html#a861216f943c5af5d5db58f10ba4263ac">  496</a></span>    uint16_t <a class="code hl_variable" href="structppp__context.html#a861216f943c5af5d5db58f10ba4263ac">is_ipcp_up</a> : 1;</div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span> </div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno"><a class="line" href="structppp__context.html#a7ef9ac6bb1f86ea417032fe93fc7e8a0">  499</a></span>    uint16_t <a class="code hl_variable" href="structppp__context.html#a7ef9ac6bb1f86ea417032fe93fc7e8a0">is_ipcp_open</a> : 1;</div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span> </div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno"><a class="line" href="structppp__context.html#a7b4ee6988626cb69c012a0b58c27bef5">  502</a></span>    uint16_t <a class="code hl_variable" href="structppp__context.html#a7b4ee6988626cb69c012a0b58c27bef5">is_ipv6cp_up</a> : 1;</div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span> </div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno"><a class="line" href="structppp__context.html#ab139c8d6f1d16c702cb9ca92a7f82178">  505</a></span>    uint16_t <a class="code hl_variable" href="structppp__context.html#ab139c8d6f1d16c702cb9ca92a7f82178">is_ipv6cp_open</a> : 1;</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span> </div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno"><a class="line" href="structppp__context.html#a52227a05ce8a63f3a4f7535e60fdf979">  508</a></span>    uint16_t <a class="code hl_variable" href="structppp__context.html#a52227a05ce8a63f3a4f7535e60fdf979">is_pap_up</a> : 1;</div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span> </div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno"><a class="line" href="structppp__context.html#a80c2c3248c47fac7fce8d463cfbc0c9f">  511</a></span>    uint16_t <a class="code hl_variable" href="structppp__context.html#a80c2c3248c47fac7fce8d463cfbc0c9f">is_pap_open</a> : 1;</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>};</div>
+</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span> </div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno"><a class="line" href="group__ppp.html#gaabf883cfefc9910b9b9d8931e68b320c">  519</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__ppp.html#gaabf883cfefc9910b9b9d8931e68b320c">net_ppp_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface);</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span> </div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span><span class="comment">/* Management API for PPP */</span></div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span> </div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span><span class="preprocessor">#define PPP_L2_CTX_TYPE struct ppp_context</span></div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span> </div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span><span class="preprocessor">#define _NET_PPP_LAYER  NET_MGMT_LAYER_L2</span></div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span><span class="preprocessor">#define _NET_PPP_CODE   0x209</span></div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span><span class="preprocessor">#define _NET_PPP_BASE   (NET_MGMT_IFACE_BIT |               \</span></div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span><span class="preprocessor">             NET_MGMT_LAYER(_NET_PPP_LAYER) |       \</span></div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span><span class="preprocessor">             NET_MGMT_LAYER_CODE(_NET_PPP_CODE))</span></div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span><span class="preprocessor">#define _NET_PPP_EVENT  (_NET_PPP_BASE | NET_MGMT_EVENT_BIT)</span></div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span> </div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span><span class="keyword">enum</span> net_event_ppp_cmd {</div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>    NET_EVENT_PPP_CMD_CARRIER_ON = 1,</div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>    NET_EVENT_PPP_CMD_CARRIER_OFF,</div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>    NET_EVENT_PPP_CMD_PHASE_RUNNING,</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>    NET_EVENT_PPP_CMD_PHASE_DEAD,</div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>};</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span> </div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span><span class="preprocessor">#define NET_EVENT_PPP_CARRIER_ON                    \</span></div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span><span class="preprocessor">    (_NET_PPP_EVENT | NET_EVENT_PPP_CMD_CARRIER_ON)</span></div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span> </div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span><span class="preprocessor">#define NET_EVENT_PPP_CARRIER_OFF                   \</span></div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span><span class="preprocessor">    (_NET_PPP_EVENT | NET_EVENT_PPP_CMD_CARRIER_OFF)</span></div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span> </div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span><span class="preprocessor">#define NET_EVENT_PPP_PHASE_RUNNING                 \</span></div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span><span class="preprocessor">    (_NET_PPP_EVENT | NET_EVENT_PPP_CMD_PHASE_RUNNING)</span></div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> </div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span><span class="preprocessor">#define NET_EVENT_PPP_PHASE_DEAD                    \</span></div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span><span class="preprocessor">    (_NET_PPP_EVENT | NET_EVENT_PPP_CMD_PHASE_DEAD)</span></div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span> </div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__if.html">net_if</a>;</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span> </div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span><span class="preprocessor">#if defined(CONFIG_NET_L2_PPP_MGMT)</span></div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span><span class="keywordtype">void</span> ppp_mgmt_raise_carrier_on_event(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface);</div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> ppp_mgmt_raise_carrier_on_event(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface)</div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>{</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>    ARG_UNUSED(iface);</div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>}</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span> </div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span><span class="preprocessor">#if defined(CONFIG_NET_L2_PPP_MGMT)</span></div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span><span class="keywordtype">void</span> ppp_mgmt_raise_carrier_off_event(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface);</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> ppp_mgmt_raise_carrier_off_event(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface)</div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>{</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>    ARG_UNUSED(iface);</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>}</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span> </div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span><span class="preprocessor">#if defined(CONFIG_NET_L2_PPP_MGMT)</span></div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span><span class="keywordtype">void</span> ppp_mgmt_raise_phase_running_event(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface);</div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> ppp_mgmt_raise_phase_running_event(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface)</div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span>{</div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>    ARG_UNUSED(iface);</div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>}</div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span> </div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span><span class="preprocessor">#if defined(CONFIG_NET_L2_PPP_MGMT)</span></div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span><span class="keywordtype">void</span> ppp_mgmt_raise_phase_dead_event(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface);</div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> ppp_mgmt_raise_phase_dead_event(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface)</div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>{</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>    ARG_UNUSED(iface);</div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span>}</div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span> </div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span><span class="preprocessor">#if defined(CONFIG_NET_L2_PPP)</span></div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span><span class="keywordtype">int</span> net_ppp_ping(<span class="keywordtype">int</span> idx, int32_t timeout);</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> net_ppp_ping(<span class="keywordtype">int</span> idx, int32_t timeout)</div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>{</div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>    ARG_UNUSED(idx);</div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>    ARG_UNUSED(timeout);</div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span> </div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>    <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>}</div>
+<div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span> </div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span><span class="preprocessor">#if defined(CONFIG_NET_L2_PPP) &amp;&amp; defined(CONFIG_NET_SHELL)</span></div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span><span class="keyword">struct </span><a class="code hl_struct" href="structppp__context.html">ppp_context</a> *net_ppp_context_get(<span class="keywordtype">int</span> idx);</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">struct </span><a class="code hl_struct" href="structppp__context.html">ppp_context</a> *net_ppp_context_get(<span class="keywordtype">int</span> idx)</div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>{</div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>    ARG_UNUSED(idx);</div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span> </div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>}</div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span> </div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>}</div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span> </div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_NET_PPP_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__bt__conn_html_gab3cdadb15ef89cfe197d88b4d3fdb596"><div class="ttname"><a href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a></div><div class="ttdeci">__packed</div><div class="ttdef"><b>Definição</b> conn.h:352</div></div>
+<div class="ttc" id="agroup__net__core_html_ga8e5393f3bdd85491f221324e637c3896"><div class="ttname"><a href="group__net__core.html#ga8e5393f3bdd85491f221324e637c3896">net_verdict</a></div><div class="ttdeci">net_verdict</div><div class="ttdoc">Net Verdict.</div><div class="ttdef"><b>Definição</b> net_core.h:98</div></div>
+<div class="ttc" id="agroup__net__l2_html_gac7db0cc6c56d371a5803873074ec2516"><div class="ttname"><a href="group__net__l2.html#gac7db0cc6c56d371a5803873074ec2516">net_l2_flags</a></div><div class="ttdeci">net_l2_flags</div><div class="ttdef"><b>Definição</b> net_l2.h:34</div></div>
+<div class="ttc" id="agroup__ppp_html_ga1064e3d8c6aa3d3161e399d6937162b6"><div class="ttname"><a href="group__ppp.html#ga1064e3d8c6aa3d3161e399d6937162b6">ipcp_option_type</a></div><div class="ttdeci">ipcp_option_type</div><div class="ttdef"><b>Definição</b> ppp.h:170</div></div>
+<div class="ttc" id="agroup__ppp_html_ga1ffff54da5bf3eb358e909e0962f1b05"><div class="ttname"><a href="group__ppp.html#ga1ffff54da5bf3eb358e909e0962f1b05">net_ppp_lcp_echo_reply_cb_t</a></div><div class="ttdeci">void(* net_ppp_lcp_echo_reply_cb_t)(void *user_data, size_t user_data_len)</div><div class="ttdoc">A callback function that can be called if a Echo-Reply needs to be received.</div><div class="ttdef"><b>Definição</b> ppp.h:215</div></div>
+<div class="ttc" id="agroup__ppp_html_ga284e237a6323f2daffc444a73a4b8b6b"><div class="ttname"><a href="group__ppp.html#ga284e237a6323f2daffc444a73a4b8b6b">ppp_phase</a></div><div class="ttdeci">ppp_phase</div><div class="ttdef"><b>Definição</b> ppp.h:91</div></div>
+<div class="ttc" id="agroup__ppp_html_ga2e5d0ae66bf076123cb29effc0a8e894"><div class="ttname"><a href="group__ppp.html#ga2e5d0ae66bf076123cb29effc0a8e894">PPP_MAX_TERMINATE_REASON_LEN</a></div><div class="ttdeci">#define PPP_MAX_TERMINATE_REASON_LEN</div><div class="ttdef"><b>Definição</b> ppp.h:34</div></div>
+<div class="ttc" id="agroup__ppp_html_ga305eaed8ab120c7821de1618e10728cf"><div class="ttname"><a href="group__ppp.html#ga305eaed8ab120c7821de1618e10728cf">ppp_packet_type</a></div><div class="ttdeci">ppp_packet_type</div><div class="ttdef"><b>Definição</b> ppp.h:125</div></div>
+<div class="ttc" id="agroup__ppp_html_ga6d4283a0ae63a227933d12d42318cf7c"><div class="ttname"><a href="group__ppp.html#ga6d4283a0ae63a227933d12d42318cf7c">ppp_state</a></div><div class="ttdeci">ppp_state</div><div class="ttdef"><b>Definição</b> ppp.h:109</div></div>
+<div class="ttc" id="agroup__ppp_html_ga8ad7cc0d142a6e7ea82c45bec2cc3670"><div class="ttname"><a href="group__ppp.html#ga8ad7cc0d142a6e7ea82c45bec2cc3670">ppp_protocol_type</a></div><div class="ttdeci">ppp_protocol_type</div><div class="ttdef"><b>Definição</b> ppp.h:75</div></div>
+<div class="ttc" id="agroup__ppp_html_gaabf883cfefc9910b9b9d8931e68b320c"><div class="ttname"><a href="group__ppp.html#gaabf883cfefc9910b9b9d8931e68b320c">net_ppp_init</a></div><div class="ttdeci">void net_ppp_init(struct net_if *iface)</div><div class="ttdoc">Initialize PPP L2 stack for a given interface.</div></div>
+<div class="ttc" id="agroup__ppp_html_gaad7380b3a502f4b649348b733124f21a"><div class="ttname"><a href="group__ppp.html#gaad7380b3a502f4b649348b733124f21a">PPP_INTERFACE_IDENTIFIER_LEN</a></div><div class="ttdeci">#define PPP_INTERFACE_IDENTIFIER_LEN</div><div class="ttdef"><b>Definição</b> ppp.h:37</div></div>
+<div class="ttc" id="agroup__ppp_html_gac8f3d915c930d61831bcb13d6201b15c"><div class="ttname"><a href="group__ppp.html#gac8f3d915c930d61831bcb13d6201b15c">lcp_option_type</a></div><div class="ttdeci">lcp_option_type</div><div class="ttdef"><b>Definição</b> ppp.h:142</div></div>
+<div class="ttc" id="agroup__ppp_html_gaf30172a9fead40463d129a5afeaf1ac3"><div class="ttname"><a href="group__ppp.html#gaf30172a9fead40463d129a5afeaf1ac3">ipv6cp_option_type</a></div><div class="ttdeci">ipv6cp_option_type</div><div class="ttdef"><b>Definição</b> ppp.h:200</div></div>
+<div class="ttc" id="agroup__ppp_html_gga1064e3d8c6aa3d3161e399d6937162b6a124bafb002549c2de4cb293f5e158fd9"><div class="ttname"><a href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a124bafb002549c2de4cb293f5e158fd9">IPCP_OPTION_IP_ADDRESS</a></div><div class="ttdeci">@ IPCP_OPTION_IP_ADDRESS</div><div class="ttdef"><b>Definição</b> ppp.h:180</div></div>
+<div class="ttc" id="agroup__ppp_html_gga1064e3d8c6aa3d3161e399d6937162b6a176055a8c0483c7c8b6b0d416b676964"><div class="ttname"><a href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a176055a8c0483c7c8b6b0d416b676964">IPCP_OPTION_DNS2</a></div><div class="ttdeci">@ IPCP_OPTION_DNS2</div><div class="ttdef"><b>Definição</b> ppp.h:191</div></div>
+<div class="ttc" id="agroup__ppp_html_gga1064e3d8c6aa3d3161e399d6937162b6a3913e2668196db10d17f8d7ffa86c6a6"><div class="ttname"><a href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a3913e2668196db10d17f8d7ffa86c6a6">IPCP_OPTION_IP_COMP_PROTO</a></div><div class="ttdeci">@ IPCP_OPTION_IP_COMP_PROTO</div><div class="ttdef"><b>Definição</b> ppp.h:177</div></div>
+<div class="ttc" id="agroup__ppp_html_gga1064e3d8c6aa3d3161e399d6937162b6a3b315dc4f10305923bba2bfbe2fa05ad"><div class="ttname"><a href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a3b315dc4f10305923bba2bfbe2fa05ad">IPCP_OPTION_NBNS2</a></div><div class="ttdeci">@ IPCP_OPTION_NBNS2</div><div class="ttdef"><b>Definição</b> ppp.h:194</div></div>
+<div class="ttc" id="agroup__ppp_html_gga1064e3d8c6aa3d3161e399d6937162b6a7d154ff3643ba4de8cf358bd81361552"><div class="ttname"><a href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a7d154ff3643ba4de8cf358bd81361552">IPCP_OPTION_NBNS1</a></div><div class="ttdeci">@ IPCP_OPTION_NBNS1</div><div class="ttdef"><b>Definição</b> ppp.h:188</div></div>
+<div class="ttc" id="agroup__ppp_html_gga1064e3d8c6aa3d3161e399d6937162b6a80771bc5d12ab8dcf78f87c872b0f41b"><div class="ttname"><a href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6a80771bc5d12ab8dcf78f87c872b0f41b">IPCP_OPTION_IP_ADDRESSES</a></div><div class="ttdeci">@ IPCP_OPTION_IP_ADDRESSES</div><div class="ttdef"><b>Definição</b> ppp.h:174</div></div>
+<div class="ttc" id="agroup__ppp_html_gga1064e3d8c6aa3d3161e399d6937162b6af156d53ee18de3907210c910667e8931"><div class="ttname"><a href="group__ppp.html#gga1064e3d8c6aa3d3161e399d6937162b6af156d53ee18de3907210c910667e8931">IPCP_OPTION_DNS1</a></div><div class="ttdeci">@ IPCP_OPTION_DNS1</div><div class="ttdef"><b>Definição</b> ppp.h:185</div></div>
+<div class="ttc" id="agroup__ppp_html_gga284e237a6323f2daffc444a73a4b8b6ba0492bfbaebc3f126327c74dbe56ce76a"><div class="ttname"><a href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6ba0492bfbaebc3f126327c74dbe56ce76a">PPP_AUTH</a></div><div class="ttdeci">@ PPP_AUTH</div><div class="ttdef"><b>Definição</b> ppp.h:97</div></div>
+<div class="ttc" id="agroup__ppp_html_gga284e237a6323f2daffc444a73a4b8b6ba51a5c6e5d16fbb607597f0d2f6a12af7"><div class="ttname"><a href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6ba51a5c6e5d16fbb607597f0d2f6a12af7">PPP_RUNNING</a></div><div class="ttdeci">@ PPP_RUNNING</div><div class="ttdef"><b>Definição</b> ppp.h:101</div></div>
+<div class="ttc" id="agroup__ppp_html_gga284e237a6323f2daffc444a73a4b8b6ba621902d0a6ca3efa0aa20c43c32164af"><div class="ttname"><a href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6ba621902d0a6ca3efa0aa20c43c32164af">PPP_NETWORK</a></div><div class="ttdeci">@ PPP_NETWORK</div><div class="ttdef"><b>Definição</b> ppp.h:99</div></div>
+<div class="ttc" id="agroup__ppp_html_gga284e237a6323f2daffc444a73a4b8b6ba647d283023ee50299c1d9ca376cce4f4"><div class="ttname"><a href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6ba647d283023ee50299c1d9ca376cce4f4">PPP_ESTABLISH</a></div><div class="ttdeci">@ PPP_ESTABLISH</div><div class="ttdef"><b>Definição</b> ppp.h:95</div></div>
+<div class="ttc" id="agroup__ppp_html_gga284e237a6323f2daffc444a73a4b8b6babdff682a09630e713867c3241d56954d"><div class="ttname"><a href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6babdff682a09630e713867c3241d56954d">PPP_DEAD</a></div><div class="ttdeci">@ PPP_DEAD</div><div class="ttdef"><b>Definição</b> ppp.h:93</div></div>
+<div class="ttc" id="agroup__ppp_html_gga284e237a6323f2daffc444a73a4b8b6bac1f10a2aa5edcb826621304de596a5b7"><div class="ttname"><a href="group__ppp.html#gga284e237a6323f2daffc444a73a4b8b6bac1f10a2aa5edcb826621304de596a5b7">PPP_TERMINATE</a></div><div class="ttdeci">@ PPP_TERMINATE</div><div class="ttdef"><b>Definição</b> ppp.h:103</div></div>
+<div class="ttc" id="agroup__ppp_html_gga8ad7cc0d142a6e7ea82c45bec2cc3670a0a9da56ae134b701f5a8b31c3f1c9bfe"><div class="ttname"><a href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a0a9da56ae134b701f5a8b31c3f1c9bfe">PPP_IPV6</a></div><div class="ttdeci">@ PPP_IPV6</div><div class="ttdef"><b>Definição</b> ppp.h:77</div></div>
+<div class="ttc" id="agroup__ppp_html_gga8ad7cc0d142a6e7ea82c45bec2cc3670a0b974fd7b99c28a8d06f096be1ed9cc6"><div class="ttname"><a href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a0b974fd7b99c28a8d06f096be1ed9cc6">PPP_IP</a></div><div class="ttdeci">@ PPP_IP</div><div class="ttdef"><b>Definição</b> ppp.h:76</div></div>
+<div class="ttc" id="agroup__ppp_html_gga8ad7cc0d142a6e7ea82c45bec2cc3670a1b311302ecabb507c34b1f77cba36f25"><div class="ttname"><a href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a1b311302ecabb507c34b1f77cba36f25">PPP_CHAP</a></div><div class="ttdeci">@ PPP_CHAP</div><div class="ttdef"><b>Definição</b> ppp.h:84</div></div>
+<div class="ttc" id="agroup__ppp_html_gga8ad7cc0d142a6e7ea82c45bec2cc3670a22dae8ee345f9664042eef54086f4de9"><div class="ttname"><a href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a22dae8ee345f9664042eef54086f4de9">PPP_LCP</a></div><div class="ttdeci">@ PPP_LCP</div><div class="ttdef"><b>Definição</b> ppp.h:82</div></div>
+<div class="ttc" id="agroup__ppp_html_gga8ad7cc0d142a6e7ea82c45bec2cc3670a25f326220ab531e93140b7c6bddd0d21"><div class="ttname"><a href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a25f326220ab531e93140b7c6bddd0d21">PPP_IPCP</a></div><div class="ttdeci">@ PPP_IPCP</div><div class="ttdef"><b>Definição</b> ppp.h:78</div></div>
+<div class="ttc" id="agroup__ppp_html_gga8ad7cc0d142a6e7ea82c45bec2cc3670a40b5032dabf9c697e761aa2cff0b2e44"><div class="ttname"><a href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a40b5032dabf9c697e761aa2cff0b2e44">PPP_ECP</a></div><div class="ttdeci">@ PPP_ECP</div><div class="ttdef"><b>Definição</b> ppp.h:79</div></div>
+<div class="ttc" id="agroup__ppp_html_gga8ad7cc0d142a6e7ea82c45bec2cc3670a4cdde6fe10fcfa862742751e1152887b"><div class="ttname"><a href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a4cdde6fe10fcfa862742751e1152887b">PPP_CCP</a></div><div class="ttdeci">@ PPP_CCP</div><div class="ttdef"><b>Definição</b> ppp.h:81</div></div>
+<div class="ttc" id="agroup__ppp_html_gga8ad7cc0d142a6e7ea82c45bec2cc3670a7a51ef2d8d979ded98e0aad680f1b6e2"><div class="ttname"><a href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670a7a51ef2d8d979ded98e0aad680f1b6e2">PPP_EAP</a></div><div class="ttdeci">@ PPP_EAP</div><div class="ttdef"><b>Definição</b> ppp.h:85</div></div>
+<div class="ttc" id="agroup__ppp_html_gga8ad7cc0d142a6e7ea82c45bec2cc3670ab17a70f864ac04b8b52f8ca1edc4d2e0"><div class="ttname"><a href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670ab17a70f864ac04b8b52f8ca1edc4d2e0">PPP_IPV6CP</a></div><div class="ttdeci">@ PPP_IPV6CP</div><div class="ttdef"><b>Definição</b> ppp.h:80</div></div>
+<div class="ttc" id="agroup__ppp_html_gga8ad7cc0d142a6e7ea82c45bec2cc3670ac66b190ff6dd0884dfba62da40ee2206"><div class="ttname"><a href="group__ppp.html#gga8ad7cc0d142a6e7ea82c45bec2cc3670ac66b190ff6dd0884dfba62da40ee2206">PPP_PAP</a></div><div class="ttdeci">@ PPP_PAP</div><div class="ttdef"><b>Definição</b> ppp.h:83</div></div>
+<div class="ttc" id="agroup__ppp_html_ggac8f3d915c930d61831bcb13d6201b15ca01e51712c002e5ce746d93376b4f2cef"><div class="ttname"><a href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15ca01e51712c002e5ce746d93376b4f2cef">LCP_OPTION_ASYNC_CTRL_CHAR_MAP</a></div><div class="ttdeci">@ LCP_OPTION_ASYNC_CTRL_CHAR_MAP</div><div class="ttdef"><b>Definição</b> ppp.h:149</div></div>
+<div class="ttc" id="agroup__ppp_html_ggac8f3d915c930d61831bcb13d6201b15ca3c37fd8819b98caa7f9b3b94aff53524"><div class="ttname"><a href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15ca3c37fd8819b98caa7f9b3b94aff53524">LCP_OPTION_ADDR_CTRL_COMPRESS</a></div><div class="ttdeci">@ LCP_OPTION_ADDR_CTRL_COMPRESS</div><div class="ttdef"><b>Definição</b> ppp.h:164</div></div>
+<div class="ttc" id="agroup__ppp_html_ggac8f3d915c930d61831bcb13d6201b15ca3ed6d42c4b65271955a308c4e7a437a9"><div class="ttname"><a href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15ca3ed6d42c4b65271955a308c4e7a437a9">LCP_OPTION_QUALITY_PROTO</a></div><div class="ttdeci">@ LCP_OPTION_QUALITY_PROTO</div><div class="ttdef"><b>Definição</b> ppp.h:155</div></div>
+<div class="ttc" id="agroup__ppp_html_ggac8f3d915c930d61831bcb13d6201b15ca59c791ebec909b03a42659d08be2bcf8"><div class="ttname"><a href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15ca59c791ebec909b03a42659d08be2bcf8">LCP_OPTION_MAGIC_NUMBER</a></div><div class="ttdeci">@ LCP_OPTION_MAGIC_NUMBER</div><div class="ttdef"><b>Definição</b> ppp.h:158</div></div>
+<div class="ttc" id="agroup__ppp_html_ggac8f3d915c930d61831bcb13d6201b15cab135e1ef16bb071e1490d77b51de3bd4"><div class="ttname"><a href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15cab135e1ef16bb071e1490d77b51de3bd4">LCP_OPTION_PROTO_COMPRESS</a></div><div class="ttdeci">@ LCP_OPTION_PROTO_COMPRESS</div><div class="ttdef"><b>Definição</b> ppp.h:161</div></div>
+<div class="ttc" id="agroup__ppp_html_ggac8f3d915c930d61831bcb13d6201b15cabedb2479b9edd3fcefe7a84d2deb41fe"><div class="ttname"><a href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15cabedb2479b9edd3fcefe7a84d2deb41fe">LCP_OPTION_MRU</a></div><div class="ttdeci">@ LCP_OPTION_MRU</div><div class="ttdef"><b>Definição</b> ppp.h:146</div></div>
+<div class="ttc" id="agroup__ppp_html_ggac8f3d915c930d61831bcb13d6201b15cae36a806e93ebdacd7c3ad3f536c03743"><div class="ttname"><a href="group__ppp.html#ggac8f3d915c930d61831bcb13d6201b15cae36a806e93ebdacd7c3ad3f536c03743">LCP_OPTION_AUTH_PROTO</a></div><div class="ttdeci">@ LCP_OPTION_AUTH_PROTO</div><div class="ttdef"><b>Definição</b> ppp.h:152</div></div>
+<div class="ttc" id="agroup__ppp_html_ggaf30172a9fead40463d129a5afeaf1ac3a0448dc4b9a89736d6878a4e99e6e61b7"><div class="ttname"><a href="group__ppp.html#ggaf30172a9fead40463d129a5afeaf1ac3a0448dc4b9a89736d6878a4e99e6e61b7">IPV6CP_OPTION_INTERFACE_IDENTIFIER</a></div><div class="ttdeci">@ IPV6CP_OPTION_INTERFACE_IDENTIFIER</div><div class="ttdef"><b>Definição</b> ppp.h:204</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__if_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__if_8h.html">net_if.h</a></div><div class="ttdoc">Public API for network interface.</div></div>
+<div class="ttc" id="anet__mgmt_8h_html"><div class="ttname"><a href="net__mgmt_8h.html">net_mgmt.h</a></div><div class="ttdoc">Network Management API public header.</div></div>
+<div class="ttc" id="anet__pkt_8h_html"><div class="ttname"><a href="net__pkt_8h.html">net_pkt.h</a></div><div class="ttdoc">Network packet buffer descriptor API.</div></div>
+<div class="ttc" id="anet__stats_8h_html"><div class="ttname"><a href="net__stats_8h.html">net_stats.h</a></div><div class="ttdoc">Network statistics.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructin__addr_html"><div class="ttname"><a href="structin__addr.html">in_addr</a></div><div class="ttdef"><b>Definição</b> net_ip.h:151</div></div>
+<div class="ttc" id="astructipcp__options_html"><div class="ttname"><a href="structipcp__options.html">ipcp_options</a></div><div class="ttdef"><b>Definição</b> ppp.h:357</div></div>
+<div class="ttc" id="astructipcp__options_html_a2d4a41b74c4a319551c003210c1e6f3d"><div class="ttname"><a href="structipcp__options.html#a2d4a41b74c4a319551c003210c1e6f3d">ipcp_options::address</a></div><div class="ttdeci">struct in_addr address</div><div class="ttdef"><b>Definição</b> ppp.h:359</div></div>
+<div class="ttc" id="astructipv6cp__options_html"><div class="ttname"><a href="structipv6cp__options.html">ipv6cp_options</a></div><div class="ttdef"><b>Definição</b> ppp.h:366</div></div>
+<div class="ttc" id="astructipv6cp__options_html_a2613529ccc40f9f2ac807c887dfc68b6"><div class="ttname"><a href="structipv6cp__options.html#a2613529ccc40f9f2ac807c887dfc68b6">ipv6cp_options::iid</a></div><div class="ttdeci">uint8_t iid[PPP_INTERFACE_IDENTIFIER_LEN]</div><div class="ttdef"><b>Definição</b> ppp.h:368</div></div>
+<div class="ttc" id="astructk__work__delayable_html"><div class="ttname"><a href="structk__work__delayable.html">k_work_delayable</a></div><div class="ttdoc">A structure used to submit work after a delay.</div><div class="ttdef"><b>Definição</b> kernel.h:3894</div></div>
+<div class="ttc" id="astructlcp__options_html"><div class="ttname"><a href="structlcp__options.html">lcp_options</a></div><div class="ttdef"><b>Definição</b> ppp.h:339</div></div>
+<div class="ttc" id="astructlcp__options_html_a028da648c4b8cdd9330d9195a161e847"><div class="ttname"><a href="structlcp__options.html#a028da648c4b8cdd9330d9195a161e847">lcp_options::mru</a></div><div class="ttdeci">uint16_t mru</div><div class="ttdef"><b>Definição</b> ppp.h:347</div></div>
+<div class="ttc" id="astructlcp__options_html_a2672e1374c25aac1571adccadda5283e"><div class="ttname"><a href="structlcp__options.html#a2672e1374c25aac1571adccadda5283e">lcp_options::async_map</a></div><div class="ttdeci">uint32_t async_map</div><div class="ttdef"><b>Definição</b> ppp.h:344</div></div>
+<div class="ttc" id="astructlcp__options_html_a560d009cb642fff99ef83a9e6c056c6b"><div class="ttname"><a href="structlcp__options.html#a560d009cb642fff99ef83a9e6c056c6b">lcp_options::auth_proto</a></div><div class="ttdeci">uint16_t auth_proto</div><div class="ttdef"><b>Definição</b> ppp.h:350</div></div>
+<div class="ttc" id="astructlcp__options_html_a68d9f004596bfac6dea9b14bd22e9dda"><div class="ttname"><a href="structlcp__options.html#a68d9f004596bfac6dea9b14bd22e9dda">lcp_options::magic</a></div><div class="ttdeci">uint32_t magic</div><div class="ttdef"><b>Definição</b> ppp.h:341</div></div>
+<div class="ttc" id="astructnet__if_html"><div class="ttname"><a href="structnet__if.html">net_if</a></div><div class="ttdoc">Network Interface structure.</div><div class="ttdef"><b>Definição</b> net_if.h:598</div></div>
+<div class="ttc" id="astructnet__mgmt__event__callback_html"><div class="ttname"><a href="structnet__mgmt__event__callback.html">net_mgmt_event_callback</a></div><div class="ttdoc">Network Management event callback structure Used to register a callback into the network management e...</div><div class="ttdef"><b>Definição</b> net_mgmt.h:123</div></div>
+<div class="ttc" id="astructnet__pkt_html"><div class="ttname"><a href="structnet__pkt.html">net_pkt</a></div><div class="ttdoc">Network packet.</div><div class="ttdef"><b>Definição</b> net_pkt.h:63</div></div>
+<div class="ttc" id="astructnet__stats__ppp_html"><div class="ttname"><a href="structnet__stats__ppp.html">net_stats_ppp</a></div><div class="ttdoc">All PPP specific statistics.</div><div class="ttdef"><b>Definição</b> net_stats.h:465</div></div>
+<div class="ttc" id="astructppp__api_html"><div class="ttname"><a href="structppp__api.html">ppp_api</a></div><div class="ttdef"><b>Definição</b> ppp.h:40</div></div>
+<div class="ttc" id="astructppp__api_html_a42576f1d58920f48a0d0adf888f99006"><div class="ttname"><a href="structppp__api.html#a42576f1d58920f48a0d0adf888f99006">ppp_api::stop</a></div><div class="ttdeci">int(* stop)(const struct device *dev)</div><div class="ttdef"><b>Definição</b> ppp.h:51</div></div>
+<div class="ttc" id="astructppp__api_html_aa0ec35e57f22674ef06f8cc3bc09987f"><div class="ttname"><a href="structppp__api.html#aa0ec35e57f22674ef06f8cc3bc09987f">ppp_api::send</a></div><div class="ttdeci">int(* send)(const struct device *dev, struct net_pkt *pkt)</div><div class="ttdef"><b>Definição</b> ppp.h:54</div></div>
+<div class="ttc" id="astructppp__api_html_ab85010475c4f03a48ad7629ed4947626"><div class="ttname"><a href="structppp__api.html#ab85010475c4f03a48ad7629ed4947626">ppp_api::start</a></div><div class="ttdeci">int(* start)(const struct device *dev)</div><div class="ttdef"><b>Definição</b> ppp.h:48</div></div>
+<div class="ttc" id="astructppp__api_html_acc4e82fbaa8b933040b0a77da8a3cae0"><div class="ttname"><a href="structppp__api.html#acc4e82fbaa8b933040b0a77da8a3cae0">ppp_api::iface_api</a></div><div class="ttdeci">struct net_if_api iface_api</div><div class="ttdef"><b>Definição</b> ppp.h:45</div></div>
+<div class="ttc" id="astructppp__context_html"><div class="ttname"><a href="structppp__context.html">ppp_context</a></div><div class="ttdef"><b>Definição</b> ppp.h:378</div></div>
+<div class="ttc" id="astructppp__context_html_a141cb0b4f4b99313de63a5bff2b7cafc"><div class="ttname"><a href="structppp__context.html#a141cb0b4f4b99313de63a5bff2b7cafc">ppp_context::mgmt_evt_cb</a></div><div class="ttdeci">struct net_mgmt_event_callback mgmt_evt_cb</div><div class="ttdef"><b>Definição</b> ppp.h:472</div></div>
+<div class="ttc" id="astructppp__context_html_a1c6674bad19047abcc3097bf5ff5f31d"><div class="ttname"><a href="structppp__context.html#a1c6674bad19047abcc3097bf5ff5f31d">ppp_context::ppp_l2_flags</a></div><div class="ttdeci">enum net_l2_flags ppp_l2_flags</div><div class="ttdef"><b>Definição</b> ppp.h:478</div></div>
+<div class="ttc" id="astructppp__context_html_a2e04c6e411fe5b07d9d2cda1a61db57f"><div class="ttname"><a href="structppp__context.html#a2e04c6e411fe5b07d9d2cda1a61db57f">ppp_context::network_protos_open</a></div><div class="ttdeci">int network_protos_open</div><div class="ttdef"><b>Definição</b> ppp.h:481</div></div>
+<div class="ttc" id="astructppp__context_html_a3b0bfb9c3ceece34565b282efa74390e"><div class="ttname"><a href="structppp__context.html#a3b0bfb9c3ceece34565b282efa74390e">ppp_context::iface</a></div><div class="ttdeci">struct net_if * iface</div><div class="ttdef"><b>Definição</b> ppp.h:469</div></div>
+<div class="ttc" id="astructppp__context_html_a3d97c93b183ca455daf0e3bc2b9c25e1"><div class="ttname"><a href="structppp__context.html#a3d97c93b183ca455daf0e3bc2b9c25e1">ppp_context::is_ready_to_serve</a></div><div class="ttdeci">uint16_t is_ready_to_serve</div><div class="ttdef"><b>Definição</b> ppp.h:487</div></div>
+<div class="ttc" id="astructppp__context_html_a4d91bf9e6e36415b13be02ccf03d3e40"><div class="ttname"><a href="structppp__context.html#a4d91bf9e6e36415b13be02ccf03d3e40">ppp_context::magic</a></div><div class="ttdeci">uint32_t magic</div><div class="ttdef"><b>Definição</b> ppp.h:398</div></div>
+<div class="ttc" id="astructppp__context_html_a52227a05ce8a63f3a4f7535e60fdf979"><div class="ttname"><a href="structppp__context.html#a52227a05ce8a63f3a4f7535e60fdf979">ppp_context::is_pap_up</a></div><div class="ttdeci">uint16_t is_pap_up</div><div class="ttdef"><b>Definição</b> ppp.h:508</div></div>
+<div class="ttc" id="astructppp__context_html_a5671d7ba465c424004f0460e5ed0d3ba"><div class="ttname"><a href="structppp__context.html#a5671d7ba465c424004f0460e5ed0d3ba">ppp_context::startup</a></div><div class="ttdeci">struct k_work_delayable startup</div><div class="ttdef"><b>Definição</b> ppp.h:385</div></div>
+<div class="ttc" id="astructppp__context_html_a6afb964ef87696fdadb5cb0c714bd841"><div class="ttname"><a href="structppp__context.html#a6afb964ef87696fdadb5cb0c714bd841">ppp_context::phase</a></div><div class="ttdeci">enum ppp_phase phase</div><div class="ttdef"><b>Definição</b> ppp.h:475</div></div>
+<div class="ttc" id="astructppp__context_html_a6b327cafe07a0807163589471a9bdae8"><div class="ttname"><a href="structppp__context.html#a6b327cafe07a0807163589471a9bdae8">ppp_context::flags</a></div><div class="ttdeci">atomic_t flags</div><div class="ttdef"><b>Definição</b> ppp.h:382</div></div>
+<div class="ttc" id="astructppp__context_html_a7b4ee6988626cb69c012a0b58c27bef5"><div class="ttname"><a href="structppp__context.html#a7b4ee6988626cb69c012a0b58c27bef5">ppp_context::is_ipv6cp_up</a></div><div class="ttdeci">uint16_t is_ipv6cp_up</div><div class="ttdef"><b>Definição</b> ppp.h:502</div></div>
+<div class="ttc" id="astructppp__context_html_a7ef9ac6bb1f86ea417032fe93fc7e8a0"><div class="ttname"><a href="structppp__context.html#a7ef9ac6bb1f86ea417032fe93fc7e8a0">ppp_context::is_ipcp_open</a></div><div class="ttdeci">uint16_t is_ipcp_open</div><div class="ttdef"><b>Definição</b> ppp.h:499</div></div>
+<div class="ttc" id="astructppp__context_html_a7f103857c7412a6ee9471b6c67baea71"><div class="ttname"><a href="structppp__context.html#a7f103857c7412a6ee9471b6c67baea71">ppp_context::is_enabled</a></div><div class="ttdeci">uint16_t is_enabled</div><div class="ttdef"><b>Definição</b> ppp.h:490</div></div>
+<div class="ttc" id="astructppp__context_html_a80c2c3248c47fac7fce8d463cfbc0c9f"><div class="ttname"><a href="structppp__context.html#a80c2c3248c47fac7fce8d463cfbc0c9f">ppp_context::is_pap_open</a></div><div class="ttdeci">uint16_t is_pap_open</div><div class="ttdef"><b>Definição</b> ppp.h:511</div></div>
+<div class="ttc" id="astructppp__context_html_a861216f943c5af5d5db58f10ba4263ac"><div class="ttname"><a href="structppp__context.html#a861216f943c5af5d5db58f10ba4263ac">ppp_context::is_ipcp_up</a></div><div class="ttdeci">uint16_t is_ipcp_up</div><div class="ttdef"><b>Definição</b> ppp.h:496</div></div>
+<div class="ttc" id="astructppp__context_html_a9dd6e156897c53d488344bbbe05d4ae1"><div class="ttname"><a href="structppp__context.html#a9dd6e156897c53d488344bbbe05d4ae1">ppp_context::network_protos_up</a></div><div class="ttdeci">int network_protos_up</div><div class="ttdef"><b>Definição</b> ppp.h:484</div></div>
+<div class="ttc" id="astructppp__context_html_ab139c8d6f1d16c702cb9ca92a7f82178"><div class="ttname"><a href="structppp__context.html#ab139c8d6f1d16c702cb9ca92a7f82178">ppp_context::is_ipv6cp_open</a></div><div class="ttdeci">uint16_t is_ipv6cp_open</div><div class="ttdef"><b>Definição</b> ppp.h:505</div></div>
+<div class="ttc" id="astructppp__context_html_acdee16f229cb6aa0672630de1d3ee39b"><div class="ttname"><a href="structppp__context.html#acdee16f229cb6aa0672630de1d3ee39b">ppp_context::is_enable_done</a></div><div class="ttdeci">uint16_t is_enable_done</div><div class="ttdef"><b>Definição</b> ppp.h:493</div></div>
+<div class="ttc" id="astructppp__fsm_html"><div class="ttname"><a href="structppp__fsm.html">ppp_fsm</a></div><div class="ttdef"><b>Definição</b> ppp.h:224</div></div>
+<div class="ttc" id="astructppp__fsm_html_a0a0523fe16fe45a756615b62e8673828"><div class="ttname"><a href="structppp__fsm.html#a0a0523fe16fe45a756615b62e8673828">ppp_fsm::nack_loops</a></div><div class="ttdeci">uint32_t nack_loops</div><div class="ttdef"><b>Definição</b> ppp.h:305</div></div>
+<div class="ttc" id="astructppp__fsm_html_a117a5df8fed62b57a59580a2513fc1c3"><div class="ttname"><a href="structppp__fsm.html#a117a5df8fed62b57a59580a2513fc1c3">ppp_fsm::info</a></div><div class="ttdeci">const struct ppp_my_option_info * info</div><div class="ttdef"><b>Definição</b> ppp.h:289</div></div>
+<div class="ttc" id="astructppp__fsm_html_a2032a922d2e356155c5a4c86cf48ff3d"><div class="ttname"><a href="structppp__fsm.html#a2032a922d2e356155c5a4c86cf48ff3d">ppp_fsm::protocol</a></div><div class="ttdeci">uint16_t protocol</div><div class="ttdef"><b>Definição</b> ppp.h:314</div></div>
+<div class="ttc" id="astructppp__fsm_html_a31d84f3fa6246bd70d664dbae6845c4b"><div class="ttname"><a href="structppp__fsm.html#a31d84f3fa6246bd70d664dbae6845c4b">ppp_fsm::retransmits</a></div><div class="ttdeci">uint32_t retransmits</div><div class="ttdef"><b>Definição</b> ppp.h:302</div></div>
+<div class="ttc" id="astructppp__fsm_html_a42777bc7c5f904cbac6bb0b16615fb02"><div class="ttname"><a href="structppp__fsm.html#a42777bc7c5f904cbac6bb0b16615fb02">ppp_fsm::ack_received</a></div><div class="ttdeci">uint8_t ack_received</div><div class="ttdef"><b>Definição</b> ppp.h:329</div></div>
+<div class="ttc" id="astructppp__fsm_html_a489c2d992e03e126ba2d1bbfe7a71b85"><div class="ttname"><a href="structppp__fsm.html#a489c2d992e03e126ba2d1bbfe7a71b85">ppp_fsm::flags</a></div><div class="ttdeci">uint32_t flags</div><div class="ttdef"><b>Definição</b> ppp.h:299</div></div>
+<div class="ttc" id="astructppp__fsm_html_a4d41b43a85d7eeedc17e0cb59daea0cd"><div class="ttname"><a href="structppp__fsm.html#a4d41b43a85d7eeedc17e0cb59daea0cd">ppp_fsm::terminate_reason</a></div><div class="ttdeci">char terminate_reason[PPP_MAX_TERMINATE_REASON_LEN]</div><div class="ttdef"><b>Definição</b> ppp.h:311</div></div>
+<div class="ttc" id="astructppp__fsm_html_a55c0fe60eb84f33386ec90691ee0f707"><div class="ttname"><a href="structppp__fsm.html#a55c0fe60eb84f33386ec90691ee0f707">ppp_fsm::recv_nack_loops</a></div><div class="ttdeci">uint32_t recv_nack_loops</div><div class="ttdef"><b>Definição</b> ppp.h:308</div></div>
+<div class="ttc" id="astructppp__fsm_html_a64330e89597eac2b8b841d0f95389473"><div class="ttname"><a href="structppp__fsm.html#a64330e89597eac2b8b841d0f95389473">ppp_fsm::data</a></div><div class="ttdeci">struct ppp_my_option_data * data</div><div class="ttdef"><b>Definição</b> ppp.h:292</div></div>
+<div class="ttc" id="astructppp__fsm_html_a7e125f9011a9377d18dc523b1f84964f"><div class="ttname"><a href="structppp__fsm.html#a7e125f9011a9377d18dc523b1f84964f">ppp_fsm::count</a></div><div class="ttdeci">size_t count</div><div class="ttdef"><b>Definição</b> ppp.h:295</div></div>
+<div class="ttc" id="astructppp__fsm_html_a844c8747b299d3614e5ccff892b45d5c"><div class="ttname"><a href="structppp__fsm.html#a844c8747b299d3614e5ccff892b45d5c">ppp_fsm::id</a></div><div class="ttdeci">uint8_t id</div><div class="ttdef"><b>Definição</b> ppp.h:323</div></div>
+<div class="ttc" id="astructppp__fsm_html_a8fe52ffe2a17c03ff0432e36c9d43578"><div class="ttname"><a href="structppp__fsm.html#a8fe52ffe2a17c03ff0432e36c9d43578">ppp_fsm::req_id</a></div><div class="ttdeci">uint8_t req_id</div><div class="ttdef"><b>Definição</b> ppp.h:326</div></div>
+<div class="ttc" id="astructppp__fsm_html_a9192c71ef82436c519ac3b8ccd38a089"><div class="ttname"><a href="structppp__fsm.html#a9192c71ef82436c519ac3b8ccd38a089">ppp_fsm::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definição</b> ppp.h:320</div></div>
+<div class="ttc" id="astructppp__fsm_html_ab955d11b75231e94ec1613d5c8c027e1"><div class="ttname"><a href="structppp__fsm.html#ab955d11b75231e94ec1613d5c8c027e1">ppp_fsm::state</a></div><div class="ttdeci">enum ppp_state state</div><div class="ttdef"><b>Definição</b> ppp.h:317</div></div>
+<div class="ttc" id="astructppp__fsm_html_ae033ee41d66ec568dc4244115730114a"><div class="ttname"><a href="structppp__fsm.html#ae033ee41d66ec568dc4244115730114a">ppp_fsm::timer</a></div><div class="ttdeci">struct k_work_delayable timer</div><div class="ttdef"><b>Definição</b> ppp.h:226</div></div>
+<div class="ttc" id="astructppp__my__option__data_html"><div class="ttname"><a href="structppp__my__option__data.html">ppp_my_option_data</a></div><div class="ttdef"><b>Definição</b> ppp.h:335</div></div>
+<div class="ttc" id="astructshell_html"><div class="ttname"><a href="structshell.html">shell</a></div><div class="ttdoc">Shell instance internals.</div><div class="ttdef"><b>Definição</b> shell.h:848</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

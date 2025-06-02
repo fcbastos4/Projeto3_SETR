@@ -1,0 +1,803 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/spi.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">spi.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2spi_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2015 Intel Corporation</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_SPI_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_SPI_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;zephyr/dt-bindings/spi/spi.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2gpio_8h.html">zephyr/drivers/gpio.h</a>&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;zephyr/sys/__assert.h&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2rtio_2rtio_8h.html">zephyr/rtio/rtio.h</a>&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;<a class="code" href="stats_2stats_8h.html">zephyr/stats/stats.h</a>&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#define SPI_OP_MODE_MASTER  0U</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#define SPI_OP_MODE_SLAVE   BIT(0)</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define SPI_OP_MODE_MASK    0x1U</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#define SPI_OP_MODE_GET(_operation_) ((_operation_) &amp; SPI_OP_MODE_MASK)</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="group__spi__interface.html#ga5a2be1003873beaa0ade10e7218d67d5">   56</a></span><span class="preprocessor">#define SPI_MODE_CPOL       BIT(1)</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="group__spi__interface.html#ga35e98b37e3ec4889a90100abe884590f">   65</a></span><span class="preprocessor">#define SPI_MODE_CPHA       BIT(2)</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="group__spi__interface.html#ga8619b297de563eca6852af34c79daa62">   72</a></span><span class="preprocessor">#define SPI_MODE_LOOP       BIT(3)</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#define SPI_MODE_MASK       (0xEU)</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#define SPI_MODE_GET(_mode_)            \</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">    ((_mode_) &amp; SPI_MODE_MASK)</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#define SPI_TRANSFER_MSB    (0U)</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">#define SPI_TRANSFER_LSB    BIT(4)</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#define SPI_WORD_SIZE_SHIFT (5U)</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#define SPI_WORD_SIZE_MASK  (0x3FU &lt;&lt; SPI_WORD_SIZE_SHIFT)</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#define SPI_WORD_SIZE_GET(_operation_)                  \</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">    (((_operation_) &amp; SPI_WORD_SIZE_MASK) &gt;&gt; SPI_WORD_SIZE_SHIFT)</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="preprocessor">#define SPI_WORD_SET(_word_size_)       \</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">    ((_word_size_) &lt;&lt; SPI_WORD_SIZE_SHIFT)</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">/* Requests - if possible - to keep CS asserted after the transaction */</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">#define SPI_HOLD_ON_CS      BIT(12)</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">/* Keep the device locked after the transaction for the current config.</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment"> * Use this with extreme caution (see spi_release() below) as it will</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment"> * prevent other callers to access the SPI device until spi_release() is</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="comment"> * properly called.</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">#define SPI_LOCK_ON     BIT(13)</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment">/* Active high logic on CS - Usually, and by default, CS logic is active</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment"> * low. However, some devices may require the reverse logic: active high.</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment"> * This bit will request the controller to use that logic. Note that not</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment"> * all controllers are able to handle that natively. In this case deferring</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment"> * the CS control to a gpio line through struct spi_cs_control would be</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment"> * the solution.</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="preprocessor">#define SPI_CS_ACTIVE_HIGH  BIT(14)</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">#define SPI_LINES_SINGLE    (0U &lt;&lt; 16)</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">#define SPI_LINES_DUAL      (1U &lt;&lt; 16)</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">#define SPI_LINES_QUAD      (2U &lt;&lt; 16)</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">#define SPI_LINES_OCTAL     (3U &lt;&lt; 16)</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#define SPI_LINES_MASK      (0x3U &lt;&lt; 16)</span></div>
+<div class="foldopen" id="foldopen00148" data-start="{" data-end="};">
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="structspi__cs__control.html">  148</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspi__cs__control.html">spi_cs_control</a> {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="structspi__cs__control.html#a8ad907e168666c2ddca77e89f9b9f47f">  156</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__dt__spec.html">gpio_dt_spec</a> <a class="code hl_variable" href="structspi__cs__control.html#a8ad907e168666c2ddca77e89f9b9f47f">gpio</a>;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="structspi__cs__control.html#a04569d78ac7d6022ffee0c28f5d3b629">  161</a></span>    uint32_t <a class="code hl_variable" href="structspi__cs__control.html#a04569d78ac7d6022ffee0c28f5d3b629">delay</a>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>};</div>
+</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="foldopen" id="foldopen00201" data-start="" data-end="">
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="group__spi__interface.html#ga48aa19f45413d56b03596d10b72c732e">  201</a></span><span class="preprocessor">#define SPI_CS_GPIOS_DT_SPEC_GET(spi_dev)           \</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="preprocessor">    GPIO_DT_SPEC_GET_BY_IDX_OR(DT_BUS(spi_dev), cs_gpios,   \</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="preprocessor">                   DT_REG_ADDR(spi_dev), {})</span></div>
+</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="foldopen" id="foldopen00214" data-start="" data-end="">
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="group__spi__interface.html#ga88fefbfadb8184806123e1f935a4ff7c">  214</a></span><span class="preprocessor">#define SPI_CS_GPIOS_DT_SPEC_INST_GET(inst) \</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="preprocessor">    SPI_CS_GPIOS_DT_SPEC_GET(DT_DRV_INST(inst))</span></div>
+</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="foldopen" id="foldopen00249" data-start="" data-end="">
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="group__spi__interface.html#ga4a2bce02956d8121da7b6099f6c097b9">  249</a></span><span class="preprocessor">#define SPI_CS_CONTROL_INIT(node_id, delay_)              \</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="preprocessor">    {                             \</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="preprocessor">        .gpio = SPI_CS_GPIOS_DT_SPEC_GET(node_id),    \</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="preprocessor">        .delay = (delay_),                \</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="foldopen" id="foldopen00268" data-start="" data-end="">
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="group__spi__interface.html#ga239bda66980ed0a349b7177100f7752c">  268</a></span><span class="preprocessor">#define SPI_CS_CONTROL_INIT_INST(inst, delay_)      \</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="preprocessor">    SPI_CS_CONTROL_INIT(DT_DRV_INST(inst), delay_)</span></div>
+</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="preprocessor">#if defined(CONFIG_SPI_EXTENDED_MODES)</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="keyword">typedef</span> uint32_t <a class="code hl_typedef" href="group__spi__interface.html#ga043fee67d9dcede8d710cb29e83a6c75">spi_operation_t</a>;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="group__spi__interface.html#ga043fee67d9dcede8d710cb29e83a6c75">  278</a></span><span class="keyword">typedef</span> uint16_t <a class="code hl_typedef" href="group__spi__interface.html#ga043fee67d9dcede8d710cb29e83a6c75">spi_operation_t</a>;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="foldopen" id="foldopen00284" data-start="{" data-end="};">
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno"><a class="line" href="structspi__config.html">  284</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspi__config.html">spi_config</a> {</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno"><a class="line" href="structspi__config.html#aa1ec6933fe66f91653c5be488e4c9b2a">  286</a></span>    uint32_t <a class="code hl_variable" href="structspi__config.html#aa1ec6933fe66f91653c5be488e4c9b2a">frequency</a>;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="structspi__config.html#a71a02ea548e187e6511abf10fdfa4829">  307</a></span>    <a class="code hl_typedef" href="group__spi__interface.html#ga043fee67d9dcede8d710cb29e83a6c75">spi_operation_t</a> <a class="code hl_variable" href="structspi__config.html#a71a02ea548e187e6511abf10fdfa4829">operation</a>;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno"><a class="line" href="structspi__config.html#a020ca853537483b9641c37be70ab6ca0">  309</a></span>    uint16_t <a class="code hl_variable" href="structspi__config.html#a020ca853537483b9641c37be70ab6ca0">slave</a>;</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno"><a class="line" href="structspi__config.html#a537dbfe323fafedaa219de1be2097dde">  314</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structspi__cs__control.html">spi_cs_control</a> <a class="code hl_variable" href="structspi__config.html#a537dbfe323fafedaa219de1be2097dde">cs</a>;</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>};</div>
+</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
+<div class="foldopen" id="foldopen00330" data-start="" data-end="">
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno"><a class="line" href="group__spi__interface.html#ga822af066ee0829aee405c034bb967463">  330</a></span><span class="preprocessor">#define SPI_CONFIG_DT(node_id, operation_, delay_)          \</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="preprocessor">    {                               \</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="preprocessor">        .frequency = DT_PROP(node_id, spi_max_frequency),   \</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="preprocessor">        .operation = (operation_) |             \</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="preprocessor">            DT_PROP(node_id, duplex) |          \</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="preprocessor">            DT_PROP(node_id, frame_format) |            \</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="preprocessor">            COND_CODE_1(DT_PROP(node_id, spi_cpol), SPI_MODE_CPOL, (0)) |   \</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="preprocessor">            COND_CODE_1(DT_PROP(node_id, spi_cpha), SPI_MODE_CPHA, (0)) |   \</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="preprocessor">            COND_CODE_1(DT_PROP(node_id, spi_hold_cs), SPI_HOLD_ON_CS, (0)),    \</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="preprocessor">        .slave = DT_REG_ADDR(node_id),              \</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="preprocessor">        .cs = SPI_CS_CONTROL_INIT(node_id, delay_),     \</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
+<div class="foldopen" id="foldopen00354" data-start="" data-end="">
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno"><a class="line" href="group__spi__interface.html#gadc1e7de7925603adfedbac35fdabc78a">  354</a></span><span class="preprocessor">#define SPI_CONFIG_DT_INST(inst, operation_, delay_)    \</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="preprocessor">    SPI_CONFIG_DT(DT_DRV_INST(inst), operation_, delay_)</span></div>
+</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
+<div class="foldopen" id="foldopen00363" data-start="{" data-end="};">
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno"><a class="line" href="structspi__dt__spec.html">  363</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspi__dt__spec.html">spi_dt_spec</a> {</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *bus;</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structspi__config.html">spi_config</a> config;</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>};</div>
+</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> </div>
+<div class="foldopen" id="foldopen00386" data-start="" data-end="">
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno"><a class="line" href="group__spi__interface.html#gaec6a8fde1c3ec6349a601a2d5f7af785">  386</a></span><span class="preprocessor">#define SPI_DT_SPEC_GET(node_id, operation_, delay_)             \</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span><span class="preprocessor">    {                                \</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="preprocessor">        .bus = DEVICE_DT_GET(DT_BUS(node_id)),           \</span></div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="preprocessor">        .config = SPI_CONFIG_DT(node_id, operation_, delay_) \</span></div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span> </div>
+<div class="foldopen" id="foldopen00403" data-start="" data-end="">
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno"><a class="line" href="group__spi__interface.html#ga91c595b7567af23b447c755d898608f3">  403</a></span><span class="preprocessor">#define SPI_DT_SPEC_INST_GET(inst, operation_, delay_) \</span></div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span><span class="preprocessor">    SPI_DT_SPEC_GET(DT_DRV_INST(inst), operation_, delay_)</span></div>
+</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
+<div class="foldopen" id="foldopen00414" data-start="{" data-end="};">
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno"><a class="line" href="structspi__buf.html">  414</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspi__buf.html">spi_buf</a> {</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    <span class="keywordtype">void</span> *buf;</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    <span class="keywordtype">size_t</span> len;</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>};</div>
+</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span> </div>
+<div class="foldopen" id="foldopen00425" data-start="{" data-end="};">
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno"><a class="line" href="structspi__buf__set.html">  425</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> {</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__buf.html">spi_buf</a> *buffers;</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    <span class="keywordtype">size_t</span> count;</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>};</div>
+</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span> </div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span><span class="preprocessor">#if defined(CONFIG_SPI_STATS)</span></div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>STATS_SECT_START(spi)</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>STATS_SECT_ENTRY32(rx_bytes)</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>STATS_SECT_ENTRY32(tx_bytes)</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>STATS_SECT_ENTRY32(transfer_error)</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span><a class="code hl_define" href="stats_2stats_8h.html#a4124f8c0a9ffb78d8be608a780676785">STATS_SECT_END</a>;</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span> </div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>STATS_NAME_START(spi)</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>STATS_NAME(spi, rx_bytes)</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>STATS_NAME(spi, tx_bytes)</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>STATS_NAME(spi, transfer_error)</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>STATS_NAME_END(spi);</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span> </div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span><span class="keyword">struct </span>spi_device_state {</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structdevice__state.html">device_state</a> devstate;</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>    <span class="keyword">struct </span>stats_spi stats;</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>};</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span> </div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span><span class="preprocessor">#define Z_SPI_GET_STATS(dev_)               \</span></div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span><span class="preprocessor">    CONTAINER_OF(dev_-&gt;state, struct spi_device_state, devstate)-&gt;stats</span></div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span> </div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span><span class="preprocessor">#define SPI_STATS_RX_BYTES_INCN(dev_, n)            \</span></div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span><span class="preprocessor">    STATS_INCN(Z_SPI_GET_STATS(dev_), rx_bytes, n)</span></div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span> </div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span><span class="preprocessor">#define SPI_STATS_TX_BYTES_INCN(dev_, n)            \</span></div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span><span class="preprocessor">    STATS_INCN(Z_SPI_GET_STATS(dev_), tx_bytes, n)</span></div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span> </div>
+<div class="line"><a id="l00480" name="l00480"></a><span class="lineno">  480</span><span class="preprocessor">#define SPI_STATS_TRANSFER_ERROR_INC(dev_)          \</span></div>
+<div class="line"><a id="l00481" name="l00481"></a><span class="lineno">  481</span><span class="preprocessor">    STATS_INC(Z_SPI_GET_STATS(dev_), transfer_error)</span></div>
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span> </div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span><span class="preprocessor">#define Z_SPI_DEVICE_STATE_DEFINE(dev_id)   \</span></div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span><span class="preprocessor">    static struct spi_device_state Z_DEVICE_STATE_NAME(dev_id)  \</span></div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span><span class="preprocessor">    __attribute__((__section__(&quot;.z_devstate&quot;)));</span></div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span> </div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span><span class="preprocessor">#define Z_SPI_INIT_FN(dev_id, init_fn)                  \</span></div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span><span class="preprocessor">    static inline int UTIL_CAT(dev_id, _init)(const struct device *dev) \</span></div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span><span class="preprocessor">    {                               \</span></div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span><span class="preprocessor">        struct spi_device_state *state =            \</span></div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span><span class="preprocessor">            CONTAINER_OF(dev-&gt;state, struct spi_device_state, devstate); \</span></div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span><span class="preprocessor">        stats_init(&amp;state-&gt;stats.s_hdr, STATS_SIZE_32, 3,   \</span></div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span><span class="preprocessor">               STATS_NAME_INIT_PARMS(spi));         \</span></div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span><span class="preprocessor">        stats_register(dev-&gt;name, &amp;(state-&gt;stats.s_hdr));   \</span></div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span><span class="preprocessor">        return init_fn(dev);                    \</span></div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span> </div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span><span class="preprocessor">#define SPI_DEVICE_DT_DEFINE(node_id, init_fn, pm_device,       \</span></div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span><span class="preprocessor">                 data_ptr, cfg_ptr, level, prio,        \</span></div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span><span class="preprocessor">                 api_ptr, ...)              \</span></div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span><span class="preprocessor">    Z_SPI_DEVICE_STATE_DEFINE(Z_DEVICE_DT_DEV_ID(node_id));     \</span></div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span><span class="preprocessor">    Z_SPI_INIT_FN(Z_DEVICE_DT_DEV_ID(node_id), init_fn)     \</span></div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span><span class="preprocessor">    Z_DEVICE_DEFINE(node_id, Z_DEVICE_DT_DEV_ID(node_id),       \</span></div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span><span class="preprocessor">            DEVICE_DT_NAME(node_id),            \</span></div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span><span class="preprocessor">            &amp;UTIL_CAT(Z_DEVICE_DT_DEV_ID(node_id), _init),  \</span></div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span><span class="preprocessor">            pm_device,                  \</span></div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span><span class="preprocessor">            data_ptr, cfg_ptr, level, prio,         \</span></div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span><span class="preprocessor">            api_ptr,                    \</span></div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span><span class="preprocessor">            &amp;(Z_DEVICE_STATE_NAME(Z_DEVICE_DT_DEV_ID(node_id)).devstate), \</span></div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span><span class="preprocessor">            __VA_ARGS__)</span></div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span> </div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> spi_transceive_stats(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">int</span> error,</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>                    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs,</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>                    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs)</div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>{</div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>    uint32_t tx_bytes;</div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>    uint32_t rx_bytes;</div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span> </div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>    <span class="keywordflow">if</span> (error) {</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>        SPI_STATS_TRANSFER_ERROR_INC(dev);</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>    }</div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span> </div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>    <span class="keywordflow">if</span> (tx_bufs) {</div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>        tx_bytes = tx_bufs-&gt;count ? tx_bufs-&gt;buffers-&gt;len : 0;</div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>        SPI_STATS_TX_BYTES_INCN(dev, tx_bytes);</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>    }</div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span> </div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>    <span class="keywordflow">if</span> (rx_bufs) {</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>        rx_bytes = rx_bufs-&gt;count ? rx_bufs-&gt;buffers-&gt;len : 0;</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>        SPI_STATS_RX_BYTES_INCN(dev, rx_bytes);</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>    }</div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>}</div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span> </div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span><span class="preprocessor">#else </span><span class="comment">/*CONFIG_SPI_STATS*/</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span> </div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span><span class="preprocessor">#define SPI_DEVICE_DT_DEFINE(node_id, init_fn, pm,      \</span></div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span><span class="preprocessor">                data, config, level, prio,  \</span></div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span><span class="preprocessor">                api, ...)           \</span></div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span><span class="preprocessor">    Z_DEVICE_STATE_DEFINE(Z_DEVICE_DT_DEV_ID(node_id));         \</span></div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span><span class="preprocessor">    Z_DEVICE_DEFINE(node_id, Z_DEVICE_DT_DEV_ID(node_id),           \</span></div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span><span class="preprocessor">            DEVICE_DT_NAME(node_id), init_fn, pm, data, config, \</span></div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span><span class="preprocessor">            level, prio, api,                   \</span></div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span><span class="preprocessor">            &amp;Z_DEVICE_STATE_NAME(Z_DEVICE_DT_DEV_ID(node_id)),  \</span></div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span><span class="preprocessor">            __VA_ARGS__)</span></div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span> </div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span><span class="preprocessor">#define SPI_STATS_RX_BYTES_INC(dev_)</span></div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span><span class="preprocessor">#define SPI_STATS_TX_BYTES_INC(dev_)</span></div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span><span class="preprocessor">#define SPI_STATS_TRANSFER_ERROR_INC(dev_)</span></div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span> </div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span><span class="preprocessor">#define spi_transceive_stats(dev, error, tx_bufs, rx_bufs)</span></div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span> </div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span><span class="preprocessor">#endif </span><span class="comment">/*CONFIG_SPI_STATS*/</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span> </div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno"><a class="line" href="group__spi__interface.html#gaa03a4e0ce32b9fc5f87d8df9e409eaf2">  587</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__spi__interface.html#gaa03a4e0ce32b9fc5f87d8df9e409eaf2">spi_api_io</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>              <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__config.html">spi_config</a> *config,</div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>              <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs,</div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>              <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs);</div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span> </div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno"><a class="line" href="group__spi__interface.html#ga1db2a410f482d0f26c49f96352aa606d">  599</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__spi__interface.html#ga1db2a410f482d0f26c49f96352aa606d">spi_callback_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">int</span> result, <span class="keywordtype">void</span> *<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>);</div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span> </div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span><span class="keyword">typedef</span> int (*spi_api_io_async)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>                <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__config.html">spi_config</a> *config,</div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>                <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs,</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>                <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs,</div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span>                <a class="code hl_typedef" href="group__spi__interface.html#ga1db2a410f482d0f26c49f96352aa606d">spi_callback_t</a> cb,</div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span>                <span class="keywordtype">void</span> *userdata);</div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span> </div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span><span class="preprocessor">#if defined(CONFIG_SPI_RTIO) || defined(DOXYGEN)</span></div>
+<div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span> </div>
+<div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span><span class="keyword">typedef</span> void (*spi_api_iodev_submit)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span>                     <span class="keyword">struct </span><a class="code hl_struct" href="structrtio__iodev__sqe.html">rtio_iodev_sqe</a> *iodev_sqe);</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_SPI_RTIO */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span> </div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno"><a class="line" href="group__spi__interface.html#ga86340e5e1a89a61b23b8626adcfb16db">  628</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__spi__interface.html#ga86340e5e1a89a61b23b8626adcfb16db">spi_api_release</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>                   <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__config.html">spi_config</a> *config);</div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span> </div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span> </div>
+<div class="foldopen" id="foldopen00636" data-start="{" data-end="};">
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno"><a class="line" href="structspi__driver__api.html">  636</a></span>__subsystem <span class="keyword">struct </span><a class="code hl_struct" href="structspi__driver__api.html">spi_driver_api</a> {</div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span>    <a class="code hl_typedef" href="group__spi__interface.html#gaa03a4e0ce32b9fc5f87d8df9e409eaf2">spi_api_io</a> transceive;</div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span><span class="preprocessor">#ifdef CONFIG_SPI_ASYNC</span></div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span>    spi_api_io_async transceive_async;</div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_SPI_ASYNC */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span><span class="preprocessor">#ifdef CONFIG_SPI_RTIO</span></div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>    spi_api_iodev_submit iodev_submit;</div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_SPI_RTIO */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>    <a class="code hl_typedef" href="group__spi__interface.html#ga86340e5e1a89a61b23b8626adcfb16db">spi_api_release</a> release;</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>};</div>
+</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span> </div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> spi_cs_is_gpio(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config)</div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>{</div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>    <span class="keywordflow">return</span> config-&gt;<a class="code hl_variable" href="structspi__config.html#a537dbfe323fafedaa219de1be2097dde">cs</a>.<a class="code hl_variable" href="structspi__cs__control.html#a8ad907e168666c2ddca77e89f9b9f47f">gpio</a>.<a class="code hl_variable" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">port</a> != NULL;</div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>}</div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> </div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> spi_cs_is_gpio_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__dt__spec.html">spi_dt_spec</a> *spec)</div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>{</div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>    <span class="keywordflow">return</span> spi_cs_is_gpio(&amp;spec-&gt;config);</div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span>}</div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span> </div>
+<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>__deprecated</div>
+<div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> spi_is_ready(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__dt__spec.html">spi_dt_spec</a> *spec)</div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span>{</div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span>    <span class="comment">/* Validate bus is ready */</span></div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="group__device__model.html#ga0b9e6357f7cfdab3b5ad119b9b549de7">device_is_ready</a>(spec-&gt;bus)) {</div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>    }</div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>    <span class="comment">/* Validate CS gpio port is ready, if it is used */</span></div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>    <span class="keywordflow">if</span> (spi_cs_is_gpio_dt(spec) &amp;&amp;</div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>        !gpio_is_ready_dt(&amp;spec-&gt;config.<a class="code hl_variable" href="structspi__config.html#a537dbfe323fafedaa219de1be2097dde">cs</a>.<a class="code hl_variable" href="structspi__cs__control.html#a8ad907e168666c2ddca77e89f9b9f47f">gpio</a>)) {</div>
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span>    }</div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span>}</div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span> </div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> spi_is_ready_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__dt__spec.html">spi_dt_spec</a> *spec)</div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span>{</div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span>    <span class="comment">/* Validate bus is ready */</span></div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="group__device__model.html#ga0b9e6357f7cfdab3b5ad119b9b549de7">device_is_ready</a>(spec-&gt;bus)) {</div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>    }</div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>    <span class="comment">/* Validate CS gpio port is ready, if it is used */</span></div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>    <span class="keywordflow">if</span> (spi_cs_is_gpio_dt(spec) &amp;&amp;</div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span>        !gpio_is_ready_dt(&amp;spec-&gt;config.<a class="code hl_variable" href="structspi__config.html#a537dbfe323fafedaa219de1be2097dde">cs</a>.<a class="code hl_variable" href="structspi__cs__control.html#a8ad907e168666c2ddca77e89f9b9f47f">gpio</a>)) {</div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>    }</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span>}</div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span> </div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno"><a class="line" href="group__spi__interface.html#gafb3c1c76ee8a721f7ec2fc33b8389446">  734</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__spi__interface.html#gafb3c1c76ee8a721f7ec2fc33b8389446">spi_transceive</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>                 <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config,</div>
+<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>                 <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs,</div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>                 <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs);</div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span> </div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_spi_transceive(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>                    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config,</div>
+<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span>                    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs,</div>
+<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span>                    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs)</div>
+<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span>{</div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__driver__api.html">spi_driver_api</a> *api =</div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__driver__api.html">spi_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span> </div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>    ret = api-&gt;transceive(dev, config, tx_bufs, rx_bufs);</div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span>    spi_transceive_stats(dev, ret, tx_bufs, rx_bufs);</div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span> </div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>}</div>
+<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span> </div>
+<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_transceive_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__dt__spec.html">spi_dt_spec</a> *spec,</div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span>                    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs,</div>
+<div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span>                    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs)</div>
+<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span>{</div>
+<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__spi__interface.html#gafb3c1c76ee8a721f7ec2fc33b8389446">spi_transceive</a>(spec-&gt;bus, &amp;spec-&gt;config, tx_bufs, rx_bufs);</div>
+<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>}</div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span> </div>
+<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_read(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span>               <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config,</div>
+<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span>               <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs)</div>
+<div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span>{</div>
+<div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__spi__interface.html#gafb3c1c76ee8a721f7ec2fc33b8389446">spi_transceive</a>(dev, config, NULL, rx_bufs);</div>
+<div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span>}</div>
+<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span> </div>
+<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_read_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__dt__spec.html">spi_dt_spec</a> *spec,</div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>                  <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs)</div>
+<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>{</div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>    <span class="keywordflow">return</span> spi_read(spec-&gt;bus, &amp;spec-&gt;config, rx_bufs);</div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>}</div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span> </div>
+<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_write(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span>                <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config,</div>
+<div class="line"><a id="l00835" name="l00835"></a><span class="lineno">  835</span>                <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs)</div>
+<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span>{</div>
+<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__spi__interface.html#gafb3c1c76ee8a721f7ec2fc33b8389446">spi_transceive</a>(dev, config, tx_bufs, NULL);</div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>}</div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span> </div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_write_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__dt__spec.html">spi_dt_spec</a> *spec,</div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>                   <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs)</div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>{</div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>    <span class="keywordflow">return</span> spi_write(spec-&gt;bus, &amp;spec-&gt;config, tx_bufs);</div>
+<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>}</div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span> </div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span><span class="preprocessor">#if defined(CONFIG_SPI_ASYNC) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span> </div>
+<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_transceive_cb(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>                    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config,</div>
+<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span>                    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs,</div>
+<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span>                    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs,</div>
+<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span>                    <a class="code hl_typedef" href="group__spi__interface.html#ga1db2a410f482d0f26c49f96352aa606d">spi_callback_t</a> callback,</div>
+<div class="line"><a id="l00891" name="l00891"></a><span class="lineno">  891</span>                    <span class="keywordtype">void</span> *userdata)</div>
+<div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span>{</div>
+<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__driver__api.html">spi_driver_api</a> *api =</div>
+<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__driver__api.html">spi_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span> </div>
+<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span>    <span class="keywordflow">return</span> api-&gt;transceive_async(dev, config, tx_bufs, rx_bufs, callback, userdata);</div>
+<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span>}</div>
+<div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span> </div>
+<div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span><span class="preprocessor">#if defined(CONFIG_POLL) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span> </div>
+<div class="line"><a id="l00902" name="l00902"></a><span class="lineno">  902</span><span class="keywordtype">void</span> z_spi_transfer_signal_cb(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">int</span> result, <span class="keywordtype">void</span> *userdata);</div>
+<div class="line"><a id="l00930" name="l00930"></a><span class="lineno">  930</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_transceive_signal(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span>                       <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config,</div>
+<div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span>                       <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs,</div>
+<div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span>                       <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs,</div>
+<div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span>                       <span class="keyword">struct</span> <a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *sig)</div>
+<div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span>{</div>
+<div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__driver__api.html">spi_driver_api</a> *api =</div>
+<div class="line"><a id="l00937" name="l00937"></a><span class="lineno">  937</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__driver__api.html">spi_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span>    <a class="code hl_typedef" href="group__spi__interface.html#ga1db2a410f482d0f26c49f96352aa606d">spi_callback_t</a> cb = (sig == NULL) ? NULL : z_spi_transfer_signal_cb;</div>
+<div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span> </div>
+<div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span>    <span class="keywordflow">return</span> api-&gt;transceive_async(dev, config, tx_bufs, rx_bufs, cb, sig);</div>
+<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span>}</div>
+<div class="line"><a id="l00942" name="l00942"></a><span class="lineno">  942</span> </div>
+<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span>__deprecated <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_transceive_async(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span>                       <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config,</div>
+<div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span>                       <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs,</div>
+<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span>                       <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs,</div>
+<div class="line"><a id="l00952" name="l00952"></a><span class="lineno">  952</span>                       <span class="keyword">struct</span> <a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *sig)</div>
+<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span>{</div>
+<div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span>    <span class="keywordflow">return</span> spi_transceive_signal(dev, config, tx_bufs, rx_bufs, sig);</div>
+<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span>}</div>
+<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span> </div>
+<div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_read_signal(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00981" name="l00981"></a><span class="lineno">  981</span>                 <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config,</div>
+<div class="line"><a id="l00982" name="l00982"></a><span class="lineno">  982</span>                 <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs,</div>
+<div class="line"><a id="l00983" name="l00983"></a><span class="lineno">  983</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *sig)</div>
+<div class="line"><a id="l00984" name="l00984"></a><span class="lineno">  984</span>{</div>
+<div class="line"><a id="l00985" name="l00985"></a><span class="lineno">  985</span>    <span class="keywordflow">return</span> spi_transceive_signal(dev, config, NULL, rx_bufs, sig);</div>
+<div class="line"><a id="l00986" name="l00986"></a><span class="lineno">  986</span>}</div>
+<div class="line"><a id="l00987" name="l00987"></a><span class="lineno">  987</span> </div>
+<div class="line"><a id="l00993" name="l00993"></a><span class="lineno">  993</span>__deprecated <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_read_async(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00994" name="l00994"></a><span class="lineno">  994</span>                 <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config,</div>
+<div class="line"><a id="l00995" name="l00995"></a><span class="lineno">  995</span>                 <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs,</div>
+<div class="line"><a id="l00996" name="l00996"></a><span class="lineno">  996</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *sig)</div>
+<div class="line"><a id="l00997" name="l00997"></a><span class="lineno">  997</span>{</div>
+<div class="line"><a id="l00998" name="l00998"></a><span class="lineno">  998</span>    <span class="keywordflow">return</span> spi_read_signal(dev, config, rx_bufs, sig);</div>
+<div class="line"><a id="l00999" name="l00999"></a><span class="lineno">  999</span>}</div>
+<div class="line"><a id="l01000" name="l01000"></a><span class="lineno"> 1000</span> </div>
+<div class="line"><a id="l01024" name="l01024"></a><span class="lineno"> 1024</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_write_signal(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l01025" name="l01025"></a><span class="lineno"> 1025</span>                  <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config,</div>
+<div class="line"><a id="l01026" name="l01026"></a><span class="lineno"> 1026</span>                  <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs,</div>
+<div class="line"><a id="l01027" name="l01027"></a><span class="lineno"> 1027</span>                  <span class="keyword">struct</span> <a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *sig)</div>
+<div class="line"><a id="l01028" name="l01028"></a><span class="lineno"> 1028</span>{</div>
+<div class="line"><a id="l01029" name="l01029"></a><span class="lineno"> 1029</span>    <span class="keywordflow">return</span> spi_transceive_signal(dev, config, tx_bufs, NULL, sig);</div>
+<div class="line"><a id="l01030" name="l01030"></a><span class="lineno"> 1030</span>}</div>
+<div class="line"><a id="l01031" name="l01031"></a><span class="lineno"> 1031</span> </div>
+<div class="line"><a id="l01037" name="l01037"></a><span class="lineno"> 1037</span>__deprecated <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_write_async(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l01038" name="l01038"></a><span class="lineno"> 1038</span>                 <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config,</div>
+<div class="line"><a id="l01039" name="l01039"></a><span class="lineno"> 1039</span>                 <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs,</div>
+<div class="line"><a id="l01040" name="l01040"></a><span class="lineno"> 1040</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *sig)</div>
+<div class="line"><a id="l01041" name="l01041"></a><span class="lineno"> 1041</span>{</div>
+<div class="line"><a id="l01042" name="l01042"></a><span class="lineno"> 1042</span>    <span class="keywordflow">return</span> spi_write_signal(dev, config, tx_bufs, sig);</div>
+<div class="line"><a id="l01043" name="l01043"></a><span class="lineno"> 1043</span>}</div>
+<div class="line"><a id="l01044" name="l01044"></a><span class="lineno"> 1044</span> </div>
+<div class="line"><a id="l01045" name="l01045"></a><span class="lineno"> 1045</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_POLL */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l01046" name="l01046"></a><span class="lineno"> 1046</span> </div>
+<div class="line"><a id="l01047" name="l01047"></a><span class="lineno"> 1047</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_SPI_ASYNC */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l01048" name="l01048"></a><span class="lineno"> 1048</span> </div>
+<div class="line"><a id="l01049" name="l01049"></a><span class="lineno"> 1049</span> </div>
+<div class="line"><a id="l01050" name="l01050"></a><span class="lineno"> 1050</span><span class="preprocessor">#if defined(CONFIG_SPI_RTIO) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l01051" name="l01051"></a><span class="lineno"> 1051</span> </div>
+<div class="line"><a id="l01059" name="l01059"></a><span class="lineno"> 1059</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> spi_iodev_submit(<span class="keyword">struct</span> <a class="code hl_struct" href="structrtio__iodev__sqe.html">rtio_iodev_sqe</a> *iodev_sqe)</div>
+<div class="line"><a id="l01060" name="l01060"></a><span class="lineno"> 1060</span>{</div>
+<div class="line"><a id="l01061" name="l01061"></a><span class="lineno"> 1061</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__dt__spec.html">spi_dt_spec</a> *dt_spec = iodev_sqe-&gt;sqe.<a class="code hl_variable" href="structrtio__sqe.html#a6c784702f011592c84feacd57915bbfc">iodev</a>-&gt;data;</div>
+<div class="line"><a id="l01062" name="l01062"></a><span class="lineno"> 1062</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev = dt_spec-&gt;bus;</div>
+<div class="line"><a id="l01063" name="l01063"></a><span class="lineno"> 1063</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__driver__api.html">spi_driver_api</a> *api = (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__driver__api.html">spi_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01064" name="l01064"></a><span class="lineno"> 1064</span> </div>
+<div class="line"><a id="l01065" name="l01065"></a><span class="lineno"> 1065</span>    api-&gt;iodev_submit(dt_spec-&gt;bus, iodev_sqe);</div>
+<div class="line"><a id="l01066" name="l01066"></a><span class="lineno"> 1066</span>}</div>
+<div class="line"><a id="l01067" name="l01067"></a><span class="lineno"> 1067</span> </div>
+<div class="line"><a id="l01068" name="l01068"></a><span class="lineno"> 1068</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structrtio__iodev__api.html">rtio_iodev_api</a> spi_iodev_api;</div>
+<div class="line"><a id="l01069" name="l01069"></a><span class="lineno"> 1069</span> </div>
+<div class="line"><a id="l01081" name="l01081"></a><span class="lineno"> 1081</span><span class="preprocessor">#define SPI_DT_IODEV_DEFINE(name, node_id, operation_, delay_)          \</span></div>
+<div class="line"><a id="l01082" name="l01082"></a><span class="lineno"> 1082</span><span class="preprocessor">    const struct spi_dt_spec _spi_dt_spec_##name =              \</span></div>
+<div class="line"><a id="l01083" name="l01083"></a><span class="lineno"> 1083</span><span class="preprocessor">        SPI_DT_SPEC_GET(node_id, operation_, delay_);           \</span></div>
+<div class="line"><a id="l01084" name="l01084"></a><span class="lineno"> 1084</span><span class="preprocessor">    RTIO_IODEV_DEFINE(name, &amp;spi_iodev_api, (void *)&amp;_spi_dt_spec_##name)</span></div>
+<div class="line"><a id="l01085" name="l01085"></a><span class="lineno"> 1085</span> </div>
+<div class="line"><a id="l01094" name="l01094"></a><span class="lineno"> 1094</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> spi_is_ready_iodev(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structrtio__iodev.html">rtio_iodev</a> *spi_iodev)</div>
+<div class="line"><a id="l01095" name="l01095"></a><span class="lineno"> 1095</span>{</div>
+<div class="line"><a id="l01096" name="l01096"></a><span class="lineno"> 1096</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structspi__dt__spec.html">spi_dt_spec</a> *spec = spi_iodev-&gt;data;</div>
+<div class="line"><a id="l01097" name="l01097"></a><span class="lineno"> 1097</span> </div>
+<div class="line"><a id="l01098" name="l01098"></a><span class="lineno"> 1098</span>    <span class="keywordflow">return</span> spi_is_ready_dt(spec);</div>
+<div class="line"><a id="l01099" name="l01099"></a><span class="lineno"> 1099</span>}</div>
+<div class="line"><a id="l01100" name="l01100"></a><span class="lineno"> 1100</span> </div>
+<div class="line"><a id="l01113" name="l01113"></a><span class="lineno"> 1113</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_rtio_copy(<span class="keyword">struct</span> <a class="code hl_struct" href="structrtio.html">rtio</a> *r,</div>
+<div class="line"><a id="l01114" name="l01114"></a><span class="lineno"> 1114</span>                <span class="keyword">struct</span> <a class="code hl_struct" href="structrtio__iodev.html">rtio_iodev</a> *iodev,</div>
+<div class="line"><a id="l01115" name="l01115"></a><span class="lineno"> 1115</span>                <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *tx_bufs,</div>
+<div class="line"><a id="l01116" name="l01116"></a><span class="lineno"> 1116</span>                <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__buf__set.html">spi_buf_set</a> *rx_bufs,</div>
+<div class="line"><a id="l01117" name="l01117"></a><span class="lineno"> 1117</span>                <span class="keyword">struct</span> <a class="code hl_struct" href="structrtio__sqe.html">rtio_sqe</a> **last_sqe)</div>
+<div class="line"><a id="l01118" name="l01118"></a><span class="lineno"> 1118</span>{</div>
+<div class="line"><a id="l01119" name="l01119"></a><span class="lineno"> 1119</span>    <span class="keywordtype">int</span> ret = 0;</div>
+<div class="line"><a id="l01120" name="l01120"></a><span class="lineno"> 1120</span>    <span class="keywordtype">size_t</span> tx_count = tx_bufs ? tx_bufs-&gt;count : 0;</div>
+<div class="line"><a id="l01121" name="l01121"></a><span class="lineno"> 1121</span>    <span class="keywordtype">size_t</span> rx_count = rx_bufs ? rx_bufs-&gt;count : 0;</div>
+<div class="line"><a id="l01122" name="l01122"></a><span class="lineno"> 1122</span> </div>
+<div class="line"><a id="l01123" name="l01123"></a><span class="lineno"> 1123</span>    uint32_t tx = 0, tx_len = 0;</div>
+<div class="line"><a id="l01124" name="l01124"></a><span class="lineno"> 1124</span>    uint32_t rx = 0, rx_len = 0;</div>
+<div class="line"><a id="l01125" name="l01125"></a><span class="lineno"> 1125</span>    uint8_t *tx_buf, *rx_buf;</div>
+<div class="line"><a id="l01126" name="l01126"></a><span class="lineno"> 1126</span> </div>
+<div class="line"><a id="l01127" name="l01127"></a><span class="lineno"> 1127</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structrtio__sqe.html">rtio_sqe</a> *sqe = NULL;</div>
+<div class="line"><a id="l01128" name="l01128"></a><span class="lineno"> 1128</span> </div>
+<div class="line"><a id="l01129" name="l01129"></a><span class="lineno"> 1129</span>    <span class="keywordflow">if</span> (tx &lt; tx_count) {</div>
+<div class="line"><a id="l01130" name="l01130"></a><span class="lineno"> 1130</span>        tx_buf = tx_bufs-&gt;buffers[tx].buf;</div>
+<div class="line"><a id="l01131" name="l01131"></a><span class="lineno"> 1131</span>        tx_len = tx_bufs-&gt;buffers[tx].len;</div>
+<div class="line"><a id="l01132" name="l01132"></a><span class="lineno"> 1132</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l01133" name="l01133"></a><span class="lineno"> 1133</span>        tx_buf = NULL;</div>
+<div class="line"><a id="l01134" name="l01134"></a><span class="lineno"> 1134</span>        tx_len = rx_bufs-&gt;buffers[rx].len;</div>
+<div class="line"><a id="l01135" name="l01135"></a><span class="lineno"> 1135</span>    }</div>
+<div class="line"><a id="l01136" name="l01136"></a><span class="lineno"> 1136</span> </div>
+<div class="line"><a id="l01137" name="l01137"></a><span class="lineno"> 1137</span>    <span class="keywordflow">if</span> (rx &lt; rx_count) {</div>
+<div class="line"><a id="l01138" name="l01138"></a><span class="lineno"> 1138</span>        rx_buf = rx_bufs-&gt;buffers[rx].buf;</div>
+<div class="line"><a id="l01139" name="l01139"></a><span class="lineno"> 1139</span>        rx_len = rx_bufs-&gt;buffers[rx].len;</div>
+<div class="line"><a id="l01140" name="l01140"></a><span class="lineno"> 1140</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l01141" name="l01141"></a><span class="lineno"> 1141</span>        rx_buf = NULL;</div>
+<div class="line"><a id="l01142" name="l01142"></a><span class="lineno"> 1142</span>        rx_len = tx_bufs-&gt;buffers[tx].len;</div>
+<div class="line"><a id="l01143" name="l01143"></a><span class="lineno"> 1143</span>    }</div>
+<div class="line"><a id="l01144" name="l01144"></a><span class="lineno"> 1144</span> </div>
+<div class="line"><a id="l01145" name="l01145"></a><span class="lineno"> 1145</span> </div>
+<div class="line"><a id="l01146" name="l01146"></a><span class="lineno"> 1146</span>    <span class="keywordflow">while</span> ((tx &lt; tx_count || rx &lt; rx_count) &amp;&amp; (tx_len &gt; 0 || rx_len &gt; 0)) {</div>
+<div class="line"><a id="l01147" name="l01147"></a><span class="lineno"> 1147</span>        sqe = rtio_sqe_acquire(r);</div>
+<div class="line"><a id="l01148" name="l01148"></a><span class="lineno"> 1148</span> </div>
+<div class="line"><a id="l01149" name="l01149"></a><span class="lineno"> 1149</span>        <span class="keywordflow">if</span> (sqe == NULL) {</div>
+<div class="line"><a id="l01150" name="l01150"></a><span class="lineno"> 1150</span>            ret = -ENOMEM;</div>
+<div class="line"><a id="l01151" name="l01151"></a><span class="lineno"> 1151</span>            rtio_sqe_drop_all(r);</div>
+<div class="line"><a id="l01152" name="l01152"></a><span class="lineno"> 1152</span>            <span class="keywordflow">goto</span> out;</div>
+<div class="line"><a id="l01153" name="l01153"></a><span class="lineno"> 1153</span>        }</div>
+<div class="line"><a id="l01154" name="l01154"></a><span class="lineno"> 1154</span> </div>
+<div class="line"><a id="l01155" name="l01155"></a><span class="lineno"> 1155</span>        ret++;</div>
+<div class="line"><a id="l01156" name="l01156"></a><span class="lineno"> 1156</span> </div>
+<div class="line"><a id="l01157" name="l01157"></a><span class="lineno"> 1157</span>        <span class="comment">/* If tx/rx len are same, we can do a simple transceive */</span></div>
+<div class="line"><a id="l01158" name="l01158"></a><span class="lineno"> 1158</span>        <span class="keywordflow">if</span> (tx_len == rx_len) {</div>
+<div class="line"><a id="l01159" name="l01159"></a><span class="lineno"> 1159</span>            <span class="keywordflow">if</span> (tx_buf == NULL) {</div>
+<div class="line"><a id="l01160" name="l01160"></a><span class="lineno"> 1160</span>                rtio_sqe_prep_read(sqe, <a class="code hl_variable" href="structrtio__sqe.html#a6c784702f011592c84feacd57915bbfc">iodev</a>, <a class="code hl_define" href="group__rtio__sqe__prio.html#gab02e27e01b7dd4eb3439df557899ce92">RTIO_PRIO_NORM</a>,</div>
+<div class="line"><a id="l01161" name="l01161"></a><span class="lineno"> 1161</span>                           rx_buf, rx_len, NULL);</div>
+<div class="line"><a id="l01162" name="l01162"></a><span class="lineno"> 1162</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (rx_buf == NULL) {</div>
+<div class="line"><a id="l01163" name="l01163"></a><span class="lineno"> 1163</span>                rtio_sqe_prep_write(sqe, <a class="code hl_variable" href="structrtio__sqe.html#a6c784702f011592c84feacd57915bbfc">iodev</a>, <a class="code hl_define" href="group__rtio__sqe__prio.html#gab02e27e01b7dd4eb3439df557899ce92">RTIO_PRIO_NORM</a>,</div>
+<div class="line"><a id="l01164" name="l01164"></a><span class="lineno"> 1164</span>                            tx_buf, tx_len, NULL);</div>
+<div class="line"><a id="l01165" name="l01165"></a><span class="lineno"> 1165</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l01166" name="l01166"></a><span class="lineno"> 1166</span>                rtio_sqe_prep_transceive(sqe, <a class="code hl_variable" href="structrtio__sqe.html#a6c784702f011592c84feacd57915bbfc">iodev</a>, <a class="code hl_define" href="group__rtio__sqe__prio.html#gab02e27e01b7dd4eb3439df557899ce92">RTIO_PRIO_NORM</a>,</div>
+<div class="line"><a id="l01167" name="l01167"></a><span class="lineno"> 1167</span>                             tx_buf, rx_buf, rx_len, NULL);</div>
+<div class="line"><a id="l01168" name="l01168"></a><span class="lineno"> 1168</span>            }</div>
+<div class="line"><a id="l01169" name="l01169"></a><span class="lineno"> 1169</span>            tx++;</div>
+<div class="line"><a id="l01170" name="l01170"></a><span class="lineno"> 1170</span>            rx++;</div>
+<div class="line"><a id="l01171" name="l01171"></a><span class="lineno"> 1171</span>            <span class="keywordflow">if</span> (rx &lt; rx_count) {</div>
+<div class="line"><a id="l01172" name="l01172"></a><span class="lineno"> 1172</span>                rx_buf = rx_bufs-&gt;buffers[rx].buf;</div>
+<div class="line"><a id="l01173" name="l01173"></a><span class="lineno"> 1173</span>                rx_len = rx_bufs-&gt;buffers[rx].len;</div>
+<div class="line"><a id="l01174" name="l01174"></a><span class="lineno"> 1174</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l01175" name="l01175"></a><span class="lineno"> 1175</span>                rx_buf = NULL;</div>
+<div class="line"><a id="l01176" name="l01176"></a><span class="lineno"> 1176</span>                rx_len = 0;</div>
+<div class="line"><a id="l01177" name="l01177"></a><span class="lineno"> 1177</span>            }</div>
+<div class="line"><a id="l01178" name="l01178"></a><span class="lineno"> 1178</span>            <span class="keywordflow">if</span> (tx &lt; tx_count) {</div>
+<div class="line"><a id="l01179" name="l01179"></a><span class="lineno"> 1179</span>                tx_buf = tx_bufs-&gt;buffers[tx].buf;</div>
+<div class="line"><a id="l01180" name="l01180"></a><span class="lineno"> 1180</span>                tx_len = tx_bufs-&gt;buffers[tx].len;</div>
+<div class="line"><a id="l01181" name="l01181"></a><span class="lineno"> 1181</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l01182" name="l01182"></a><span class="lineno"> 1182</span>                tx_buf = NULL;</div>
+<div class="line"><a id="l01183" name="l01183"></a><span class="lineno"> 1183</span>                tx_len = 0;</div>
+<div class="line"><a id="l01184" name="l01184"></a><span class="lineno"> 1184</span>            }</div>
+<div class="line"><a id="l01185" name="l01185"></a><span class="lineno"> 1185</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (tx_len == 0) {</div>
+<div class="line"><a id="l01186" name="l01186"></a><span class="lineno"> 1186</span>            rtio_sqe_prep_read(sqe, <a class="code hl_variable" href="structrtio__sqe.html#a6c784702f011592c84feacd57915bbfc">iodev</a>, <a class="code hl_define" href="group__rtio__sqe__prio.html#gab02e27e01b7dd4eb3439df557899ce92">RTIO_PRIO_NORM</a>,</div>
+<div class="line"><a id="l01187" name="l01187"></a><span class="lineno"> 1187</span>                       (uint8_t *)rx_buf,</div>
+<div class="line"><a id="l01188" name="l01188"></a><span class="lineno"> 1188</span>                       (uint32_t)rx_len,</div>
+<div class="line"><a id="l01189" name="l01189"></a><span class="lineno"> 1189</span>                       NULL);</div>
+<div class="line"><a id="l01190" name="l01190"></a><span class="lineno"> 1190</span>            rx++;</div>
+<div class="line"><a id="l01191" name="l01191"></a><span class="lineno"> 1191</span>            <span class="keywordflow">if</span> (rx &lt; rx_count) {</div>
+<div class="line"><a id="l01192" name="l01192"></a><span class="lineno"> 1192</span>                rx_buf = rx_bufs-&gt;buffers[rx].buf;</div>
+<div class="line"><a id="l01193" name="l01193"></a><span class="lineno"> 1193</span>                rx_len = rx_bufs-&gt;buffers[rx].len;</div>
+<div class="line"><a id="l01194" name="l01194"></a><span class="lineno"> 1194</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l01195" name="l01195"></a><span class="lineno"> 1195</span>                rx_buf = NULL;</div>
+<div class="line"><a id="l01196" name="l01196"></a><span class="lineno"> 1196</span>                rx_len = 0;</div>
+<div class="line"><a id="l01197" name="l01197"></a><span class="lineno"> 1197</span>            }</div>
+<div class="line"><a id="l01198" name="l01198"></a><span class="lineno"> 1198</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (rx_len == 0) {</div>
+<div class="line"><a id="l01199" name="l01199"></a><span class="lineno"> 1199</span>            rtio_sqe_prep_write(sqe, <a class="code hl_variable" href="structrtio__sqe.html#a6c784702f011592c84feacd57915bbfc">iodev</a>, <a class="code hl_define" href="group__rtio__sqe__prio.html#gab02e27e01b7dd4eb3439df557899ce92">RTIO_PRIO_NORM</a>,</div>
+<div class="line"><a id="l01200" name="l01200"></a><span class="lineno"> 1200</span>                        (uint8_t *)tx_buf,</div>
+<div class="line"><a id="l01201" name="l01201"></a><span class="lineno"> 1201</span>                        (uint32_t)tx_len,</div>
+<div class="line"><a id="l01202" name="l01202"></a><span class="lineno"> 1202</span>                        NULL);</div>
+<div class="line"><a id="l01203" name="l01203"></a><span class="lineno"> 1203</span>            tx++;</div>
+<div class="line"><a id="l01204" name="l01204"></a><span class="lineno"> 1204</span>            <span class="keywordflow">if</span> (tx &lt; tx_count) {</div>
+<div class="line"><a id="l01205" name="l01205"></a><span class="lineno"> 1205</span>                tx_buf = rx_bufs-&gt;buffers[rx].buf;</div>
+<div class="line"><a id="l01206" name="l01206"></a><span class="lineno"> 1206</span>                tx_len = rx_bufs-&gt;buffers[rx].len;</div>
+<div class="line"><a id="l01207" name="l01207"></a><span class="lineno"> 1207</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l01208" name="l01208"></a><span class="lineno"> 1208</span>                tx_buf = NULL;</div>
+<div class="line"><a id="l01209" name="l01209"></a><span class="lineno"> 1209</span>                tx_len = 0;</div>
+<div class="line"><a id="l01210" name="l01210"></a><span class="lineno"> 1210</span>            }</div>
+<div class="line"><a id="l01211" name="l01211"></a><span class="lineno"> 1211</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (tx_len &gt; rx_len) {</div>
+<div class="line"><a id="l01212" name="l01212"></a><span class="lineno"> 1212</span>            rtio_sqe_prep_transceive(sqe, <a class="code hl_variable" href="structrtio__sqe.html#a6c784702f011592c84feacd57915bbfc">iodev</a>, <a class="code hl_define" href="group__rtio__sqe__prio.html#gab02e27e01b7dd4eb3439df557899ce92">RTIO_PRIO_NORM</a>,</div>
+<div class="line"><a id="l01213" name="l01213"></a><span class="lineno"> 1213</span>                         (uint8_t *)tx_buf,</div>
+<div class="line"><a id="l01214" name="l01214"></a><span class="lineno"> 1214</span>                         (uint8_t *)rx_buf,</div>
+<div class="line"><a id="l01215" name="l01215"></a><span class="lineno"> 1215</span>                         (uint32_t)rx_len,</div>
+<div class="line"><a id="l01216" name="l01216"></a><span class="lineno"> 1216</span>                         NULL);</div>
+<div class="line"><a id="l01217" name="l01217"></a><span class="lineno"> 1217</span>            tx_len -= rx_len;</div>
+<div class="line"><a id="l01218" name="l01218"></a><span class="lineno"> 1218</span>            tx_buf += rx_len;</div>
+<div class="line"><a id="l01219" name="l01219"></a><span class="lineno"> 1219</span>            rx++;</div>
+<div class="line"><a id="l01220" name="l01220"></a><span class="lineno"> 1220</span>            <span class="keywordflow">if</span> (rx &lt; rx_count) {</div>
+<div class="line"><a id="l01221" name="l01221"></a><span class="lineno"> 1221</span>                rx_buf = rx_bufs-&gt;buffers[rx].buf;</div>
+<div class="line"><a id="l01222" name="l01222"></a><span class="lineno"> 1222</span>                rx_len = rx_bufs-&gt;buffers[rx].len;</div>
+<div class="line"><a id="l01223" name="l01223"></a><span class="lineno"> 1223</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l01224" name="l01224"></a><span class="lineno"> 1224</span>                rx_buf = NULL;</div>
+<div class="line"><a id="l01225" name="l01225"></a><span class="lineno"> 1225</span>                rx_len = tx_len;</div>
+<div class="line"><a id="l01226" name="l01226"></a><span class="lineno"> 1226</span>            }</div>
+<div class="line"><a id="l01227" name="l01227"></a><span class="lineno"> 1227</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (rx_len &gt; tx_len) {</div>
+<div class="line"><a id="l01228" name="l01228"></a><span class="lineno"> 1228</span>            rtio_sqe_prep_transceive(sqe, <a class="code hl_variable" href="structrtio__sqe.html#a6c784702f011592c84feacd57915bbfc">iodev</a>, <a class="code hl_define" href="group__rtio__sqe__prio.html#gab02e27e01b7dd4eb3439df557899ce92">RTIO_PRIO_NORM</a>,</div>
+<div class="line"><a id="l01229" name="l01229"></a><span class="lineno"> 1229</span>                         (uint8_t *)tx_buf,</div>
+<div class="line"><a id="l01230" name="l01230"></a><span class="lineno"> 1230</span>                         (uint8_t *)rx_buf,</div>
+<div class="line"><a id="l01231" name="l01231"></a><span class="lineno"> 1231</span>                         (uint32_t)tx_len,</div>
+<div class="line"><a id="l01232" name="l01232"></a><span class="lineno"> 1232</span>                         NULL);</div>
+<div class="line"><a id="l01233" name="l01233"></a><span class="lineno"> 1233</span>            rx_len -= tx_len;</div>
+<div class="line"><a id="l01234" name="l01234"></a><span class="lineno"> 1234</span>            rx_buf += tx_len;</div>
+<div class="line"><a id="l01235" name="l01235"></a><span class="lineno"> 1235</span>            tx++;</div>
+<div class="line"><a id="l01236" name="l01236"></a><span class="lineno"> 1236</span>            <span class="keywordflow">if</span> (tx &lt; tx_count) {</div>
+<div class="line"><a id="l01237" name="l01237"></a><span class="lineno"> 1237</span>                tx_buf = tx_bufs-&gt;buffers[tx].buf;</div>
+<div class="line"><a id="l01238" name="l01238"></a><span class="lineno"> 1238</span>                tx_len = tx_bufs-&gt;buffers[tx].len;</div>
+<div class="line"><a id="l01239" name="l01239"></a><span class="lineno"> 1239</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l01240" name="l01240"></a><span class="lineno"> 1240</span>                tx_buf = NULL;</div>
+<div class="line"><a id="l01241" name="l01241"></a><span class="lineno"> 1241</span>                tx_len = rx_len;</div>
+<div class="line"><a id="l01242" name="l01242"></a><span class="lineno"> 1242</span>            }</div>
+<div class="line"><a id="l01243" name="l01243"></a><span class="lineno"> 1243</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l01244" name="l01244"></a><span class="lineno"> 1244</span>            __ASSERT_NO_MSG(<span class="stringliteral">&quot;Invalid spi_rtio_copy state&quot;</span>);</div>
+<div class="line"><a id="l01245" name="l01245"></a><span class="lineno"> 1245</span>        }</div>
+<div class="line"><a id="l01246" name="l01246"></a><span class="lineno"> 1246</span> </div>
+<div class="line"><a id="l01247" name="l01247"></a><span class="lineno"> 1247</span>        sqe-&gt;<a class="code hl_variable" href="structrtio__sqe.html#aad2ff8524df0e24b812e77e2393bf5b0">flags</a> = <a class="code hl_define" href="group__rtio__sqe__flags.html#ga07f09cc0c95be6cfdddb23f8acacb1ea">RTIO_SQE_TRANSACTION</a>;</div>
+<div class="line"><a id="l01248" name="l01248"></a><span class="lineno"> 1248</span>    }</div>
+<div class="line"><a id="l01249" name="l01249"></a><span class="lineno"> 1249</span> </div>
+<div class="line"><a id="l01250" name="l01250"></a><span class="lineno"> 1250</span>    <span class="keywordflow">if</span> (sqe != NULL) {</div>
+<div class="line"><a id="l01251" name="l01251"></a><span class="lineno"> 1251</span>        sqe-&gt;<a class="code hl_variable" href="structrtio__sqe.html#aad2ff8524df0e24b812e77e2393bf5b0">flags</a> = 0;</div>
+<div class="line"><a id="l01252" name="l01252"></a><span class="lineno"> 1252</span>        *last_sqe = sqe;</div>
+<div class="line"><a id="l01253" name="l01253"></a><span class="lineno"> 1253</span>    }</div>
+<div class="line"><a id="l01254" name="l01254"></a><span class="lineno"> 1254</span> </div>
+<div class="line"><a id="l01255" name="l01255"></a><span class="lineno"> 1255</span>out:</div>
+<div class="line"><a id="l01256" name="l01256"></a><span class="lineno"> 1256</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l01257" name="l01257"></a><span class="lineno"> 1257</span>}</div>
+<div class="line"><a id="l01258" name="l01258"></a><span class="lineno"> 1258</span> </div>
+<div class="line"><a id="l01259" name="l01259"></a><span class="lineno"> 1259</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_SPI_RTIO */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l01260" name="l01260"></a><span class="lineno"> 1260</span> </div>
+<div class="line"><a id="l01281" name="l01281"></a><span class="lineno"><a class="line" href="group__spi__interface.html#ga3729c489c55f29323fa2f4e64c14e704"> 1281</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__spi__interface.html#ga3729c489c55f29323fa2f4e64c14e704">spi_release</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l01282" name="l01282"></a><span class="lineno"> 1282</span>              <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config);</div>
+<div class="line"><a id="l01283" name="l01283"></a><span class="lineno"> 1283</span> </div>
+<div class="line"><a id="l01284" name="l01284"></a><span class="lineno"> 1284</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_spi_release(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l01285" name="l01285"></a><span class="lineno"> 1285</span>                     <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__config.html">spi_config</a> *config)</div>
+<div class="line"><a id="l01286" name="l01286"></a><span class="lineno"> 1286</span>{</div>
+<div class="line"><a id="l01287" name="l01287"></a><span class="lineno"> 1287</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__driver__api.html">spi_driver_api</a> *api =</div>
+<div class="line"><a id="l01288" name="l01288"></a><span class="lineno"> 1288</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structspi__driver__api.html">spi_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01289" name="l01289"></a><span class="lineno"> 1289</span> </div>
+<div class="line"><a id="l01290" name="l01290"></a><span class="lineno"> 1290</span>    <span class="keywordflow">return</span> api-&gt;release(dev, config);</div>
+<div class="line"><a id="l01291" name="l01291"></a><span class="lineno"> 1291</span>}</div>
+<div class="line"><a id="l01292" name="l01292"></a><span class="lineno"> 1292</span> </div>
+<div class="line"><a id="l01304" name="l01304"></a><span class="lineno"> 1304</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> spi_release_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structspi__dt__spec.html">spi_dt_spec</a> *spec)</div>
+<div class="line"><a id="l01305" name="l01305"></a><span class="lineno"> 1305</span>{</div>
+<div class="line"><a id="l01306" name="l01306"></a><span class="lineno"> 1306</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__spi__interface.html#ga3729c489c55f29323fa2f4e64c14e704">spi_release</a>(spec-&gt;bus, &amp;spec-&gt;config);</div>
+<div class="line"><a id="l01307" name="l01307"></a><span class="lineno"> 1307</span>}</div>
+<div class="line"><a id="l01308" name="l01308"></a><span class="lineno"> 1308</span> </div>
+<div class="line"><a id="l01309" name="l01309"></a><span class="lineno"> 1309</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l01310" name="l01310"></a><span class="lineno"> 1310</span>}</div>
+<div class="line"><a id="l01311" name="l01311"></a><span class="lineno"> 1311</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01312" name="l01312"></a><span class="lineno"> 1312</span> </div>
+<div class="line"><a id="l01317" name="l01317"></a><span class="lineno"> 1317</span><span class="preprocessor">#include &lt;syscalls/spi.h&gt;</span></div>
+<div class="line"><a id="l01318" name="l01318"></a><span class="lineno"> 1318</span> </div>
+<div class="line"><a id="l01319" name="l01319"></a><span class="lineno"> 1319</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_SPI_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__device__model_html_ga0b9e6357f7cfdab3b5ad119b9b549de7"><div class="ttname"><a href="group__device__model.html#ga0b9e6357f7cfdab3b5ad119b9b549de7">device_is_ready</a></div><div class="ttdeci">__syscall bool device_is_ready(const struct device *dev)</div><div class="ttdoc">Verify that a device is ready for use.</div></div>
+<div class="ttc" id="agroup__rtio__sqe__flags_html_ga07f09cc0c95be6cfdddb23f8acacb1ea"><div class="ttname"><a href="group__rtio__sqe__flags.html#ga07f09cc0c95be6cfdddb23f8acacb1ea">RTIO_SQE_TRANSACTION</a></div><div class="ttdeci">#define RTIO_SQE_TRANSACTION</div><div class="ttdoc">The next request in the queue is part of a transaction.</div><div class="ttdef"><b>Definição</b> rtio.h:106</div></div>
+<div class="ttc" id="agroup__rtio__sqe__prio_html_gab02e27e01b7dd4eb3439df557899ce92"><div class="ttname"><a href="group__rtio__sqe__prio.html#gab02e27e01b7dd4eb3439df557899ce92">RTIO_PRIO_NORM</a></div><div class="ttdeci">#define RTIO_PRIO_NORM</div><div class="ttdoc">Normal priority.</div><div class="ttdef"><b>Definição</b> rtio.h:68</div></div>
+<div class="ttc" id="agroup__spi__interface_html_ga043fee67d9dcede8d710cb29e83a6c75"><div class="ttname"><a href="group__spi__interface.html#ga043fee67d9dcede8d710cb29e83a6c75">spi_operation_t</a></div><div class="ttdeci">uint16_t spi_operation_t</div><div class="ttdef"><b>Definição</b> spi.h:278</div></div>
+<div class="ttc" id="agroup__spi__interface_html_ga1db2a410f482d0f26c49f96352aa606d"><div class="ttname"><a href="group__spi__interface.html#ga1db2a410f482d0f26c49f96352aa606d">spi_callback_t</a></div><div class="ttdeci">void(* spi_callback_t)(const struct device *dev, int result, void *data)</div><div class="ttdoc">SPI callback for asynchronous transfer requests.</div><div class="ttdef"><b>Definição</b> spi.h:599</div></div>
+<div class="ttc" id="agroup__spi__interface_html_ga3729c489c55f29323fa2f4e64c14e704"><div class="ttname"><a href="group__spi__interface.html#ga3729c489c55f29323fa2f4e64c14e704">spi_release</a></div><div class="ttdeci">__syscall int spi_release(const struct device *dev, const struct spi_config *config)</div><div class="ttdoc">Release the SPI device locked on and/or the CS by the current config.</div></div>
+<div class="ttc" id="agroup__spi__interface_html_ga86340e5e1a89a61b23b8626adcfb16db"><div class="ttname"><a href="group__spi__interface.html#ga86340e5e1a89a61b23b8626adcfb16db">spi_api_release</a></div><div class="ttdeci">int(* spi_api_release)(const struct device *dev, const struct spi_config *config)</div><div class="ttdoc">Callback API for unlocking SPI device. See spi_release() for argument descriptions.</div><div class="ttdef"><b>Definição</b> spi.h:628</div></div>
+<div class="ttc" id="agroup__spi__interface_html_gaa03a4e0ce32b9fc5f87d8df9e409eaf2"><div class="ttname"><a href="group__spi__interface.html#gaa03a4e0ce32b9fc5f87d8df9e409eaf2">spi_api_io</a></div><div class="ttdeci">int(* spi_api_io)(const struct device *dev, const struct spi_config *config, const struct spi_buf_set *tx_bufs, const struct spi_buf_set *rx_bufs)</div><div class="ttdoc">Callback API for I/O See spi_transceive() for argument descriptions.</div><div class="ttdef"><b>Definição</b> spi.h:587</div></div>
+<div class="ttc" id="agroup__spi__interface_html_gafb3c1c76ee8a721f7ec2fc33b8389446"><div class="ttname"><a href="group__spi__interface.html#gafb3c1c76ee8a721f7ec2fc33b8389446">spi_transceive</a></div><div class="ttdeci">__syscall int spi_transceive(const struct device *dev, const struct spi_config *config, const struct spi_buf_set *tx_bufs, const struct spi_buf_set *rx_bufs)</div><div class="ttdoc">Read/write the specified amount of data from the SPI driver.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2gpio_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">Public APIs for GPIO drivers.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2rtio_2rtio_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2rtio_2rtio_8h.html">rtio.h</a></div><div class="ttdoc">Real-Time IO device API for moving bytes with low effort.</div></div>
+<div class="ttc" id="astats_2stats_8h_html"><div class="ttname"><a href="stats_2stats_8h.html">stats.h</a></div><div class="ttdoc">Statistics.</div></div>
+<div class="ttc" id="astats_2stats_8h_html_a4124f8c0a9ffb78d8be608a780676785"><div class="ttname"><a href="stats_2stats_8h.html#a4124f8c0a9ffb78d8be608a780676785">STATS_SECT_END</a></div><div class="ttdeci">#define STATS_SECT_END</div><div class="ttdoc">Ends a stats group struct definition.</div><div class="ttdef"><b>Definição</b> stats.h:89</div></div>
+<div class="ttc" id="astructdevice__state_html"><div class="ttname"><a href="structdevice__state.html">device_state</a></div><div class="ttdoc">Runtime device dynamic structure (in RAM) per driver instance.</div><div class="ttdef"><b>Definição</b> device.h:358</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a27573cbd10ee145f8bb1396242b27a3e"><div class="ttname"><a href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">device::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definição</b> device.h:395</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructgpio__dt__spec_html"><div class="ttname"><a href="structgpio__dt__spec.html">gpio_dt_spec</a></div><div class="ttdoc">Container for GPIO pin information specified in devicetree.</div><div class="ttdef"><b>Definição</b> gpio.h:286</div></div>
+<div class="ttc" id="astructgpio__dt__spec_html_a5d617d47e2f568c7a4402a8f5a40ed4f"><div class="ttname"><a href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">gpio_dt_spec::port</a></div><div class="ttdeci">const struct device * port</div><div class="ttdef"><b>Definição</b> gpio.h:288</div></div>
+<div class="ttc" id="astructk__poll__signal_html"><div class="ttname"><a href="structk__poll__signal.html">k_poll_signal</a></div><div class="ttdef"><b>Definição</b> kernel.h:5629</div></div>
+<div class="ttc" id="astructrtio__iodev__api_html"><div class="ttname"><a href="structrtio__iodev__api.html">rtio_iodev_api</a></div><div class="ttdoc">API that an RTIO IO device should implement.</div><div class="ttdef"><b>Definição</b> rtio.h:429</div></div>
+<div class="ttc" id="astructrtio__iodev__sqe_html"><div class="ttname"><a href="structrtio__iodev__sqe.html">rtio_iodev_sqe</a></div><div class="ttdoc">Compute the mempool block index for a given pointer.</div><div class="ttdef"><b>Definição</b> rtio.h:419</div></div>
+<div class="ttc" id="astructrtio__iodev_html"><div class="ttname"><a href="structrtio__iodev.html">rtio_iodev</a></div><div class="ttdoc">An IO device with a function table for submitting requests.</div><div class="ttdef"><b>Definição</b> rtio.h:444</div></div>
+<div class="ttc" id="astructrtio__sqe_html"><div class="ttname"><a href="structrtio__sqe.html">rtio_sqe</a></div><div class="ttdoc">A submission queue event.</div><div class="ttdef"><b>Definição</b> rtio.h:230</div></div>
+<div class="ttc" id="astructrtio__sqe_html_a6c784702f011592c84feacd57915bbfc"><div class="ttname"><a href="structrtio__sqe.html#a6c784702f011592c84feacd57915bbfc">rtio_sqe::iodev</a></div><div class="ttdeci">const struct rtio_iodev * iodev</div><div class="ttdef"><b>Definição</b> rtio.h:241</div></div>
+<div class="ttc" id="astructrtio__sqe_html_aad2ff8524df0e24b812e77e2393bf5b0"><div class="ttname"><a href="structrtio__sqe.html#aad2ff8524df0e24b812e77e2393bf5b0">rtio_sqe::flags</a></div><div class="ttdeci">uint16_t flags</div><div class="ttdef"><b>Definição</b> rtio.h:235</div></div>
+<div class="ttc" id="astructrtio_html"><div class="ttname"><a href="structrtio.html">rtio</a></div><div class="ttdoc">An RTIO context containing what can be viewed as a pair of queues.</div><div class="ttdef"><b>Definição</b> rtio.h:323</div></div>
+<div class="ttc" id="astructspi__buf__set_html"><div class="ttname"><a href="structspi__buf__set.html">spi_buf_set</a></div><div class="ttdoc">SPI buffer array structure.</div><div class="ttdef"><b>Definição</b> spi.h:425</div></div>
+<div class="ttc" id="astructspi__buf_html"><div class="ttname"><a href="structspi__buf.html">spi_buf</a></div><div class="ttdoc">SPI buffer structure.</div><div class="ttdef"><b>Definição</b> spi.h:414</div></div>
+<div class="ttc" id="astructspi__config_html"><div class="ttname"><a href="structspi__config.html">spi_config</a></div><div class="ttdoc">SPI controller configuration structure.</div><div class="ttdef"><b>Definição</b> spi.h:284</div></div>
+<div class="ttc" id="astructspi__config_html_a020ca853537483b9641c37be70ab6ca0"><div class="ttname"><a href="structspi__config.html#a020ca853537483b9641c37be70ab6ca0">spi_config::slave</a></div><div class="ttdeci">uint16_t slave</div><div class="ttdoc">Slave number from 0 to host controller slave limit.</div><div class="ttdef"><b>Definição</b> spi.h:309</div></div>
+<div class="ttc" id="astructspi__config_html_a537dbfe323fafedaa219de1be2097dde"><div class="ttname"><a href="structspi__config.html#a537dbfe323fafedaa219de1be2097dde">spi_config::cs</a></div><div class="ttdeci">struct spi_cs_control cs</div><div class="ttdoc">GPIO chip-select line (optional, must be initialized to zero if not used).</div><div class="ttdef"><b>Definição</b> spi.h:314</div></div>
+<div class="ttc" id="astructspi__config_html_a71a02ea548e187e6511abf10fdfa4829"><div class="ttname"><a href="structspi__config.html#a71a02ea548e187e6511abf10fdfa4829">spi_config::operation</a></div><div class="ttdeci">spi_operation_t operation</div><div class="ttdoc">Operation flags.</div><div class="ttdef"><b>Definição</b> spi.h:307</div></div>
+<div class="ttc" id="astructspi__config_html_aa1ec6933fe66f91653c5be488e4c9b2a"><div class="ttname"><a href="structspi__config.html#aa1ec6933fe66f91653c5be488e4c9b2a">spi_config::frequency</a></div><div class="ttdeci">uint32_t frequency</div><div class="ttdoc">Bus frequency in Hertz.</div><div class="ttdef"><b>Definição</b> spi.h:286</div></div>
+<div class="ttc" id="astructspi__cs__control_html"><div class="ttname"><a href="structspi__cs__control.html">spi_cs_control</a></div><div class="ttdoc">SPI Chip Select control structure.</div><div class="ttdef"><b>Definição</b> spi.h:148</div></div>
+<div class="ttc" id="astructspi__cs__control_html_a04569d78ac7d6022ffee0c28f5d3b629"><div class="ttname"><a href="structspi__cs__control.html#a04569d78ac7d6022ffee0c28f5d3b629">spi_cs_control::delay</a></div><div class="ttdeci">uint32_t delay</div><div class="ttdef"><b>Definição</b> spi.h:161</div></div>
+<div class="ttc" id="astructspi__cs__control_html_a8ad907e168666c2ddca77e89f9b9f47f"><div class="ttname"><a href="structspi__cs__control.html#a8ad907e168666c2ddca77e89f9b9f47f">spi_cs_control::gpio</a></div><div class="ttdeci">struct gpio_dt_spec gpio</div><div class="ttdef"><b>Definição</b> spi.h:156</div></div>
+<div class="ttc" id="astructspi__driver__api_html"><div class="ttname"><a href="structspi__driver__api.html">spi_driver_api</a></div><div class="ttdoc">SPI driver API This is the mandatory API any SPI driver needs to expose.</div><div class="ttdef"><b>Definição</b> spi.h:636</div></div>
+<div class="ttc" id="astructspi__dt__spec_html"><div class="ttname"><a href="structspi__dt__spec.html">spi_dt_spec</a></div><div class="ttdoc">Complete SPI DT information.</div><div class="ttdef"><b>Definição</b> spi.h:363</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

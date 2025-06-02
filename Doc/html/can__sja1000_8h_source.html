@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/can/can_sja1000.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_ed0506de7ab42567c412263673117c50.html">can</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">can_sja1000.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="can__sja1000_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2022 Henrik Brix Andersen &lt;henrik@brixandersen.dk&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_CAN_CAN_SJA1000_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_CAN_CAN_SJA1000_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2can_8h.html">zephyr/drivers/can.h</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#define CAN_SJA1000_OCR_OCMODE_MASK    GENMASK(1, 0)</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define CAN_SJA1000_OCR_OCPOL0         BIT(2)</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#define CAN_SJA1000_OCR_OCTN0          BIT(3)</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#define CAN_SJA1000_OCR_OCTP0          BIT(4)</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define CAN_SJA1000_OCR_OCPOL1         BIT(5)</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#define CAN_SJA1000_OCR_OCTN1          BIT(6)</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#define CAN_SJA1000_OCR_OCTP1          BIT(7)</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#define CAN_SJA1000_OCR_OCMODE_BIPHASE FIELD_PREP(CAN_SJA1000_OCR_OCMODE_MASK, 0U)</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#define CAN_SJA1000_OCR_OCMODE_TEST    FIELD_PREP(CAN_SJA1000_OCR_OCMODE_MASK, 1U)</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#define CAN_SJA1000_OCR_OCMODE_NORMAL  FIELD_PREP(CAN_SJA1000_OCR_OCMODE_MASK, 2U)</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#define CAN_SJA1000_OCR_OCMODE_CLOCK   FIELD_PREP(CAN_SJA1000_OCR_OCMODE_MASK, 3U)</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define CAN_SJA1000_CDR_CD_MASK        GENMASK(2, 0)</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#define CAN_SJA1000_CDR_CLOCK_OFF      BIT(3)</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#define CAN_SJA1000_CDR_RXINTEN        BIT(5)</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#define CAN_SJA1000_CDR_CBP        BIT(6)</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define CAN_SJA1000_CDR_CAN_MODE       BIT(7)</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#define CAN_SJA1000_CDR_CD_DIV1        FIELD_PREP(CAN_SJA1000_CDR_CD_MASK, 7U)</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#define CAN_SJA1000_CDR_CD_DIV2        FIELD_PREP(CAN_SJA1000_CDR_CD_MASK, 0U)</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#define CAN_SJA1000_CDR_CD_DIV4        FIELD_PREP(CAN_SJA1000_CDR_CD_MASK, 1U)</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#define CAN_SJA1000_CDR_CD_DIV6        FIELD_PREP(CAN_SJA1000_CDR_CD_MASK, 2U)</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#define CAN_SJA1000_CDR_CD_DIV8        FIELD_PREP(CAN_SJA1000_CDR_CD_MASK, 3U)</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#define CAN_SJA1000_CDR_CD_DIV10       FIELD_PREP(CAN_SJA1000_CDR_CD_MASK, 4U)</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#define CAN_SJA1000_CDR_CD_DIV12       FIELD_PREP(CAN_SJA1000_CDR_CD_MASK, 5U)</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#define CAN_SJA1000_CDR_CD_DIV14       FIELD_PREP(CAN_SJA1000_CDR_CD_MASK, 6U)</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="foldopen" id="foldopen00062" data-start="" data-end="">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#ad396485923ad20b9662e56ae10128e4c">   62</a></span><span class="preprocessor">#define CAN_SJA1000_TIMING_MIN_INITIALIZER              \</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">    {                               \</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">        .sjw = 1,                       \</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">        .prop_seg = 0,                      \</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">        .phase_seg1 = 1,                    \</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">        .phase_seg2 = 1,                    \</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">        .prescaler = 1                      \</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="foldopen" id="foldopen00074" data-start="" data-end="">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a245230e39b3f9eca9f1a76a1926606ab">   74</a></span><span class="preprocessor">#define CAN_SJA1000_TIMING_MAX_INITIALIZER              \</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">    {                               \</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">        .sjw = 4,                       \</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">        .prop_seg = 0,                      \</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">        .phase_seg1 = 16,                   \</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">        .phase_seg2 = 8,                    \</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">        .prescaler = 64                     \</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a7f71e5009721c00f2d6821a7db4c49cb">   90</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="can__sja1000_8h.html#a7f71e5009721c00f2d6821a7db4c49cb">can_sja1000_write_reg_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t reg, uint8_t val);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a62d5b661f7b39f84f93a9597d2371341">   99</a></span><span class="keyword">typedef</span> uint8_t (*<a class="code hl_typedef" href="can__sja1000_8h.html#a62d5b661f7b39f84f93a9597d2371341">can_sja1000_read_reg_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t reg);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="};">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="structcan__sja1000__config.html">  104</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcan__sja1000__config.html">can_sja1000_config</a> {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <a class="code hl_typedef" href="can__sja1000_8h.html#a62d5b661f7b39f84f93a9597d2371341">can_sja1000_read_reg_t</a> read_reg;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <a class="code hl_typedef" href="can__sja1000_8h.html#a7f71e5009721c00f2d6821a7db4c49cb">can_sja1000_write_reg_t</a> write_reg;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    uint32_t bitrate;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    uint32_t sample_point;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    uint32_t sjw;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    uint32_t phase_seg1;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    uint32_t phase_seg2;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *phy;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    uint32_t max_bitrate;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    uint8_t ocr;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    uint8_t cdr;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">const</span> <span class="keywordtype">void</span> *custom;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>};</div>
+</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="foldopen" id="foldopen00129" data-start="" data-end="">
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a228272175f5a62fb68329d08923428be">  129</a></span><span class="preprocessor">#define CAN_SJA1000_DT_CONFIG_GET(node_id, _custom, _read_reg, _write_reg, _ocr, _cdr)             \</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="preprocessor">    {                                                                                          \</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">        .read_reg = _read_reg, .write_reg = _write_reg,                                    \</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="preprocessor">        .bitrate = DT_PROP(node_id, bus_speed), .sjw = DT_PROP(node_id, sjw),              \</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">        .phase_seg1 = DT_PROP_OR(node_id, phase_seg1, 0),                                  \</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">        .phase_seg2 = DT_PROP_OR(node_id, phase_seg2, 0),                                  \</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">        .sample_point = DT_PROP_OR(node_id, sample_point, 0),                              \</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">        .max_bitrate = DT_CAN_TRANSCEIVER_MAX_BITRATE(node_id, 1000000),                   \</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">        .phy = DEVICE_DT_GET_OR_NULL(DT_PHANDLE(node_id, phys)),                           \</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">        .ocr = _ocr, .cdr = _cdr, .custom = _custom,                                       \</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="foldopen" id="foldopen00152" data-start="" data-end="">
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a33e08af5d929d15016ae40601619edac">  152</a></span><span class="preprocessor">#define CAN_SJA1000_DT_CONFIG_INST_GET(inst, _custom, _read_reg, _write_reg, _ocr, _cdr)           \</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">    CAN_SJA1000_DT_CONFIG_GET(DT_DRV_INST(inst), _custom, _read_reg, _write_reg, _ocr, _cdr)</span></div>
+</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="foldopen" id="foldopen00158" data-start="{" data-end="};">
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="structcan__sja1000__rx__filter.html">  158</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcan__sja1000__rx__filter.html">can_sja1000_rx_filter</a> {</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structcan__filter.html">can_filter</a> filter;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <a class="code hl_typedef" href="group__can__interface.html#gaab9525fafab78c0da0a78a2dae39bd6f">can_rx_callback_t</a> callback;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordtype">void</span> *user_data;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>};</div>
+</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="foldopen" id="foldopen00167" data-start="{" data-end="};">
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="structcan__sja1000__data.html">  167</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcan__sja1000__data.html">can_sja1000_data</a> {</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <a class="code hl_define" href="group__atomic__apis.html#ga249c575db9764486197709b327f7370e">ATOMIC_DEFINE</a>(rx_allocs, CONFIG_CAN_MAX_FILTER);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structcan__sja1000__rx__filter.html">can_sja1000_rx_filter</a> filters[CONFIG_CAN_MAX_FILTER];</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__mutex.html">k_mutex</a> mod_lock;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keywordtype">bool</span> started;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <a class="code hl_typedef" href="group__can__interface.html#ga0b2a1456e66f4522a30cf1400fdfced7">can_mode_t</a> mode;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__can__interface.html#gac7ec472c26c564dd7067c49f67c8d2f7">can_state</a> state;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <a class="code hl_typedef" href="group__can__interface.html#ga002ff7ba1f5be374510a902459dd9d3d">can_state_change_callback_t</a> state_change_cb;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordtype">void</span> *state_change_cb_data;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keyword">struct </span>k_sem tx_idle;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <a class="code hl_typedef" href="group__can__interface.html#gab3675297d3e528bf19e2072f6a84bfca">can_tx_callback_t</a> tx_callback;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordtype">void</span> *tx_user_data;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keywordtype">void</span> *custom;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>};</div>
+</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="foldopen" id="foldopen00186" data-start="" data-end="">
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a21aae4f3884e9737b15050fbe55d9bea">  186</a></span><span class="preprocessor">#define CAN_SJA1000_DATA_INITIALIZER(_custom)                                                      \</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="preprocessor">    {                                                                                          \</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">        .custom = _custom,                                                                 \</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a8b36e7b0defa598d4ebcd5997e714209">  195</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="can__sja1000_8h.html#a8b36e7b0defa598d4ebcd5997e714209">can_sja1000_set_timing</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structcan__timing.html">can_timing</a> *timing);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a867ba15d4e2d94800d902b97db1e0482">  201</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="can__sja1000_8h.html#a867ba15d4e2d94800d902b97db1e0482">can_sja1000_get_capabilities</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <a class="code hl_typedef" href="group__can__interface.html#ga0b2a1456e66f4522a30cf1400fdfced7">can_mode_t</a> *cap);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#ad5f343d57184fa3adf7d248fe49e97d3">  207</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="can__sja1000_8h.html#ad5f343d57184fa3adf7d248fe49e97d3">can_sja1000_start</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a90d251f5a048f2688b111e6a4f8165fb">  213</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="can__sja1000_8h.html#a90d251f5a048f2688b111e6a4f8165fb">can_sja1000_stop</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#aee809bd3edef0fd08eaad6ef9270f5cc">  219</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="can__sja1000_8h.html#aee809bd3edef0fd08eaad6ef9270f5cc">can_sja1000_set_mode</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <a class="code hl_typedef" href="group__can__interface.html#ga0b2a1456e66f4522a30cf1400fdfced7">can_mode_t</a> mode);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#ab050fab94165f1ab532f8a4a9ca0748c">  225</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="can__sja1000_8h.html#ab050fab94165f1ab532f8a4a9ca0748c">can_sja1000_send</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structcan__frame.html">can_frame</a> *frame, <a class="code hl_struct" href="structk__timeout__t.html">k_timeout_t</a> timeout,</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>             <a class="code hl_typedef" href="group__can__interface.html#gab3675297d3e528bf19e2072f6a84bfca">can_tx_callback_t</a> callback, <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a5c7c6edb274a773fd863fac96412fa0d">  232</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="can__sja1000_8h.html#a5c7c6edb274a773fd863fac96412fa0d">can_sja1000_add_rx_filter</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <a class="code hl_typedef" href="group__can__interface.html#gaab9525fafab78c0da0a78a2dae39bd6f">can_rx_callback_t</a> callback, <span class="keywordtype">void</span> *user_data,</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                  <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structcan__filter.html">can_filter</a> *filter);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a5b436ad6663d3dddb7f28ec03b520b25">  239</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="can__sja1000_8h.html#a5b436ad6663d3dddb7f28ec03b520b25">can_sja1000_remove_rx_filter</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">int</span> filter_id);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="preprocessor">#ifndef CONFIG_CAN_AUTO_BUS_OFF_RECOVERY</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#abef8951b7f1ad74bc2e6557701258617">  246</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="can__sja1000_8h.html#abef8951b7f1ad74bc2e6557701258617">can_sja1000_recover</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <a class="code hl_struct" href="structk__timeout__t.html">k_timeout_t</a> timeout);</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="preprocessor">#endif </span><span class="comment">/* !CONFIG_CAN_AUTO_BUS_OFF_RECOVERY */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a939a87f8181236c5dbe18ba7865c1b4b">  253</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="can__sja1000_8h.html#a939a87f8181236c5dbe18ba7865c1b4b">can_sja1000_get_state</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__can__interface.html#gac7ec472c26c564dd7067c49f67c8d2f7">can_state</a> *state,</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>              <span class="keyword">struct</span> <a class="code hl_struct" href="structcan__bus__err__cnt.html">can_bus_err_cnt</a> *err_cnt);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a34df509dde4faa3ee45e6e5e0b42649e">  260</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="can__sja1000_8h.html#a34df509dde4faa3ee45e6e5e0b42649e">can_sja1000_set_state_change_callback</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>                       <a class="code hl_typedef" href="group__can__interface.html#ga002ff7ba1f5be374510a902459dd9d3d">can_state_change_callback_t</a> callback, <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a19ee7bbdee6b66b2b2ed5071ac881403">  267</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="can__sja1000_8h.html#a19ee7bbdee6b66b2b2ed5071ac881403">can_sja1000_get_max_filters</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">bool</span> ide);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a43027ab0b7285b5dfb436a53ee67d269">  273</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="can__sja1000_8h.html#a43027ab0b7285b5dfb436a53ee67d269">can_sja1000_get_max_bitrate</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t *max_bitrate);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a65df5350d4191fa93f7ea8054d6139c3">  280</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="can__sja1000_8h.html#a65df5350d4191fa93f7ea8054d6139c3">can_sja1000_isr</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="can__sja1000_8h.html#a5150ea6d32a3d111e5b130b60f63eb82">  287</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="can__sja1000_8h.html#a5150ea6d32a3d111e5b130b60f63eb82">can_sja1000_init</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_CAN_CAN_SJA1000_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acan__sja1000_8h_html_a19ee7bbdee6b66b2b2ed5071ac881403"><div class="ttname"><a href="can__sja1000_8h.html#a19ee7bbdee6b66b2b2ed5071ac881403">can_sja1000_get_max_filters</a></div><div class="ttdeci">int can_sja1000_get_max_filters(const struct device *dev, bool ide)</div><div class="ttdoc">SJA1000 callback API upon getting the maximum number of concurrent CAN RX filters See can_get_max_fil...</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_a34df509dde4faa3ee45e6e5e0b42649e"><div class="ttname"><a href="can__sja1000_8h.html#a34df509dde4faa3ee45e6e5e0b42649e">can_sja1000_set_state_change_callback</a></div><div class="ttdeci">void can_sja1000_set_state_change_callback(const struct device *dev, can_state_change_callback_t callback, void *user_data)</div><div class="ttdoc">SJA1000 callback API upon setting a state change callback See can_set_state_change_callback() for arg...</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_a43027ab0b7285b5dfb436a53ee67d269"><div class="ttname"><a href="can__sja1000_8h.html#a43027ab0b7285b5dfb436a53ee67d269">can_sja1000_get_max_bitrate</a></div><div class="ttdeci">int can_sja1000_get_max_bitrate(const struct device *dev, uint32_t *max_bitrate)</div><div class="ttdoc">SJA1000 callback API upon getting the maximum supported bitrate See can_get_max_bitrate() for argumen...</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_a5150ea6d32a3d111e5b130b60f63eb82"><div class="ttname"><a href="can__sja1000_8h.html#a5150ea6d32a3d111e5b130b60f63eb82">can_sja1000_init</a></div><div class="ttdeci">int can_sja1000_init(const struct device *dev)</div><div class="ttdoc">SJA1000 driver initialization callback.</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_a5b436ad6663d3dddb7f28ec03b520b25"><div class="ttname"><a href="can__sja1000_8h.html#a5b436ad6663d3dddb7f28ec03b520b25">can_sja1000_remove_rx_filter</a></div><div class="ttdeci">void can_sja1000_remove_rx_filter(const struct device *dev, int filter_id)</div><div class="ttdoc">SJA1000 callback API upon removing an RX filter See can_remove_rx_filter() for argument description.</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_a5c7c6edb274a773fd863fac96412fa0d"><div class="ttname"><a href="can__sja1000_8h.html#a5c7c6edb274a773fd863fac96412fa0d">can_sja1000_add_rx_filter</a></div><div class="ttdeci">int can_sja1000_add_rx_filter(const struct device *dev, can_rx_callback_t callback, void *user_data, const struct can_filter *filter)</div><div class="ttdoc">SJA1000 callback API upon adding an RX filter See can_add_rx_callback() for argument description.</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_a62d5b661f7b39f84f93a9597d2371341"><div class="ttname"><a href="can__sja1000_8h.html#a62d5b661f7b39f84f93a9597d2371341">can_sja1000_read_reg_t</a></div><div class="ttdeci">uint8_t(* can_sja1000_read_reg_t)(const struct device *dev, uint8_t reg)</div><div class="ttdoc">SJA1000 driver front-end callback for reading a register value.</div><div class="ttdef"><b>Definição</b> can_sja1000.h:99</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_a65df5350d4191fa93f7ea8054d6139c3"><div class="ttname"><a href="can__sja1000_8h.html#a65df5350d4191fa93f7ea8054d6139c3">can_sja1000_isr</a></div><div class="ttdeci">void can_sja1000_isr(const struct device *dev)</div><div class="ttdoc">SJA1000 IRQ handler callback.</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_a7f71e5009721c00f2d6821a7db4c49cb"><div class="ttname"><a href="can__sja1000_8h.html#a7f71e5009721c00f2d6821a7db4c49cb">can_sja1000_write_reg_t</a></div><div class="ttdeci">void(* can_sja1000_write_reg_t)(const struct device *dev, uint8_t reg, uint8_t val)</div><div class="ttdoc">SJA1000 driver front-end callback for writing a register value.</div><div class="ttdef"><b>Definição</b> can_sja1000.h:90</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_a867ba15d4e2d94800d902b97db1e0482"><div class="ttname"><a href="can__sja1000_8h.html#a867ba15d4e2d94800d902b97db1e0482">can_sja1000_get_capabilities</a></div><div class="ttdeci">int can_sja1000_get_capabilities(const struct device *dev, can_mode_t *cap)</div><div class="ttdoc">SJA1000 callback API upon getting CAN controller capabilities See can_get_capabilities() for argument...</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_a8b36e7b0defa598d4ebcd5997e714209"><div class="ttname"><a href="can__sja1000_8h.html#a8b36e7b0defa598d4ebcd5997e714209">can_sja1000_set_timing</a></div><div class="ttdeci">int can_sja1000_set_timing(const struct device *dev, const struct can_timing *timing)</div><div class="ttdoc">SJA1000 callback API upon setting CAN bus timing See can_set_timing() for argument description.</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_a90d251f5a048f2688b111e6a4f8165fb"><div class="ttname"><a href="can__sja1000_8h.html#a90d251f5a048f2688b111e6a4f8165fb">can_sja1000_stop</a></div><div class="ttdeci">int can_sja1000_stop(const struct device *dev)</div><div class="ttdoc">SJA1000 callback API upon stopping CAN controller See can_stop() for argument description.</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_a939a87f8181236c5dbe18ba7865c1b4b"><div class="ttname"><a href="can__sja1000_8h.html#a939a87f8181236c5dbe18ba7865c1b4b">can_sja1000_get_state</a></div><div class="ttdeci">int can_sja1000_get_state(const struct device *dev, enum can_state *state, struct can_bus_err_cnt *err_cnt)</div><div class="ttdoc">SJA1000 callback API upon getting the CAN controller state See can_get_state() for argument descripti...</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_ab050fab94165f1ab532f8a4a9ca0748c"><div class="ttname"><a href="can__sja1000_8h.html#ab050fab94165f1ab532f8a4a9ca0748c">can_sja1000_send</a></div><div class="ttdeci">int can_sja1000_send(const struct device *dev, const struct can_frame *frame, k_timeout_t timeout, can_tx_callback_t callback, void *user_data)</div><div class="ttdoc">SJA1000 callback API upon sending a CAN frame See can_send() for argument description.</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_abef8951b7f1ad74bc2e6557701258617"><div class="ttname"><a href="can__sja1000_8h.html#abef8951b7f1ad74bc2e6557701258617">can_sja1000_recover</a></div><div class="ttdeci">int can_sja1000_recover(const struct device *dev, k_timeout_t timeout)</div><div class="ttdoc">SJA1000 callback API upon recovering the CAN bus See can_recover() for argument description.</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_ad5f343d57184fa3adf7d248fe49e97d3"><div class="ttname"><a href="can__sja1000_8h.html#ad5f343d57184fa3adf7d248fe49e97d3">can_sja1000_start</a></div><div class="ttdeci">int can_sja1000_start(const struct device *dev)</div><div class="ttdoc">SJA1000 callback API upon starting CAN controller See can_start() for argument description.</div></div>
+<div class="ttc" id="acan__sja1000_8h_html_aee809bd3edef0fd08eaad6ef9270f5cc"><div class="ttname"><a href="can__sja1000_8h.html#aee809bd3edef0fd08eaad6ef9270f5cc">can_sja1000_set_mode</a></div><div class="ttdeci">int can_sja1000_set_mode(const struct device *dev, can_mode_t mode)</div><div class="ttdoc">SJA1000 callback API upon setting CAN controller mode See can_set_mode() for argument description.</div></div>
+<div class="ttc" id="agroup__atomic__apis_html_ga249c575db9764486197709b327f7370e"><div class="ttname"><a href="group__atomic__apis.html#ga249c575db9764486197709b327f7370e">ATOMIC_DEFINE</a></div><div class="ttdeci">#define ATOMIC_DEFINE(name, num_bits)</div><div class="ttdoc">Define an array of atomic variables.</div><div class="ttdef"><b>Definição</b> atomic.h:114</div></div>
+<div class="ttc" id="agroup__can__interface_html_ga002ff7ba1f5be374510a902459dd9d3d"><div class="ttname"><a href="group__can__interface.html#ga002ff7ba1f5be374510a902459dd9d3d">can_state_change_callback_t</a></div><div class="ttdeci">void(* can_state_change_callback_t)(const struct device *dev, enum can_state state, struct can_bus_err_cnt err_cnt, void *user_data)</div><div class="ttdoc">Defines the state change callback handler function signature.</div><div class="ttdef"><b>Definição</b> can.h:317</div></div>
+<div class="ttc" id="agroup__can__interface_html_ga0b2a1456e66f4522a30cf1400fdfced7"><div class="ttname"><a href="group__can__interface.html#ga0b2a1456e66f4522a30cf1400fdfced7">can_mode_t</a></div><div class="ttdeci">uint32_t can_mode_t</div><div class="ttdoc">Provides a type to hold CAN controller configuration flags.</div><div class="ttdef"><b>Definição</b> can.h:116</div></div>
+<div class="ttc" id="agroup__can__interface_html_gaab9525fafab78c0da0a78a2dae39bd6f"><div class="ttname"><a href="group__can__interface.html#gaab9525fafab78c0da0a78a2dae39bd6f">can_rx_callback_t</a></div><div class="ttdeci">void(* can_rx_callback_t)(const struct device *dev, struct can_frame *frame, void *user_data)</div><div class="ttdoc">Defines the application callback handler function signature for receiving.</div><div class="ttdef"><b>Definição</b> can.h:306</div></div>
+<div class="ttc" id="agroup__can__interface_html_gab3675297d3e528bf19e2072f6a84bfca"><div class="ttname"><a href="group__can__interface.html#gab3675297d3e528bf19e2072f6a84bfca">can_tx_callback_t</a></div><div class="ttdeci">void(* can_tx_callback_t)(const struct device *dev, int error, void *user_data)</div><div class="ttdoc">Defines the application callback handler function signature.</div><div class="ttdef"><b>Definição</b> can.h:297</div></div>
+<div class="ttc" id="agroup__can__interface_html_gac7ec472c26c564dd7067c49f67c8d2f7"><div class="ttname"><a href="group__can__interface.html#gac7ec472c26c564dd7067c49f67c8d2f7">can_state</a></div><div class="ttdeci">can_state</div><div class="ttdoc">Defines the state of the CAN controller.</div><div class="ttdef"><b>Definição</b> can.h:121</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2can_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2can_8h.html">can.h</a></div><div class="ttdoc">Controller Area Network (CAN) driver API.</div></div>
+<div class="ttc" id="astructcan__bus__err__cnt_html"><div class="ttname"><a href="structcan__bus__err__cnt.html">can_bus_err_cnt</a></div><div class="ttdoc">CAN controller error counters.</div><div class="ttdef"><b>Definição</b> can.h:237</div></div>
+<div class="ttc" id="astructcan__filter_html"><div class="ttname"><a href="structcan__filter.html">can_filter</a></div><div class="ttdoc">CAN filter structure.</div><div class="ttdef"><b>Definição</b> can.h:220</div></div>
+<div class="ttc" id="astructcan__frame_html"><div class="ttname"><a href="structcan__frame.html">can_frame</a></div><div class="ttdoc">CAN frame structure.</div><div class="ttdef"><b>Definição</b> can.h:163</div></div>
+<div class="ttc" id="astructcan__sja1000__config_html"><div class="ttname"><a href="structcan__sja1000__config.html">can_sja1000_config</a></div><div class="ttdoc">SJA1000 driver internal configuration structure.</div><div class="ttdef"><b>Definição</b> can_sja1000.h:104</div></div>
+<div class="ttc" id="astructcan__sja1000__data_html"><div class="ttname"><a href="structcan__sja1000__data.html">can_sja1000_data</a></div><div class="ttdoc">SJA1000 driver internal data structure.</div><div class="ttdef"><b>Definição</b> can_sja1000.h:167</div></div>
+<div class="ttc" id="astructcan__sja1000__rx__filter_html"><div class="ttname"><a href="structcan__sja1000__rx__filter.html">can_sja1000_rx_filter</a></div><div class="ttdoc">SJA1000 driver internal RX filter structure.</div><div class="ttdef"><b>Definição</b> can_sja1000.h:158</div></div>
+<div class="ttc" id="astructcan__timing_html"><div class="ttname"><a href="structcan__timing.html">can_timing</a></div><div class="ttdoc">CAN bus timing structure.</div><div class="ttdef"><b>Definição</b> can.h:276</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructk__mutex_html"><div class="ttname"><a href="structk__mutex.html">k_mutex</a></div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:31</div></div>
+<div class="ttc" id="astructk__timeout__t_html"><div class="ttname"><a href="structk__timeout__t.html">k_timeout_t</a></div><div class="ttdoc">Kernel timeout type.</div><div class="ttdef"><b>Definição</b> sys_clock.h:65</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

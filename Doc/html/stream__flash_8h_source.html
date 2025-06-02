@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/storage/stream_flash.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7af5f256457bbbf4ca8f6927e1939ee4.html">storage</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">stream_flash.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="stream__flash_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2017, 2020 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2017 Linaro Limited</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_STORAGE_STREAM_FLASH_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define ZEPHYR_INCLUDE_STORAGE_STREAM_FLASH_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2flash_8h.html">zephyr/drivers/flash.h</a>&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="group__stream__flash.html#ga4fd8fdee7c82bc2b68d67ec9bbd36fca">   46</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__stream__flash.html#ga4fd8fdee7c82bc2b68d67ec9bbd36fca">stream_flash_callback_t</a>)(uint8_t *buf, <span class="keywordtype">size_t</span> len, <span class="keywordtype">size_t</span> offset);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="};">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structstream__flash__ctx.html">   54</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structstream__flash__ctx.html">stream_flash_ctx</a> {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    uint8_t *buf; <span class="comment">/* Write buffer */</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">size_t</span> buf_len; <span class="comment">/* Length of write buffer */</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">size_t</span> buf_bytes; <span class="comment">/* Number of bytes currently stored in write buf */</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *fdev; <span class="comment">/* Flash device */</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">size_t</span> bytes_written; <span class="comment">/* Number of bytes written to flash */</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">size_t</span> offset; <span class="comment">/* Offset from base of flash device to write area */</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">size_t</span> available; <span class="comment">/* Available bytes in write area */</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_typedef" href="group__stream__flash.html#ga4fd8fdee7c82bc2b68d67ec9bbd36fca">stream_flash_callback_t</a> callback; <span class="comment">/* Callback invoked after write op */</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#ifdef CONFIG_STREAM_FLASH_ERASE</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    off_t last_erased_page_start_offset; <span class="comment">/* Last erased offset */</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>};</div>
+</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="group__stream__flash.html#ga63e6418e220136a9a0ab2992d9d8f937">   84</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__stream__flash.html#ga63e6418e220136a9a0ab2992d9d8f937">stream_flash_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structstream__flash__ctx.html">stream_flash_ctx</a> *ctx, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *fdev,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>              uint8_t *buf, <span class="keywordtype">size_t</span> buf_len, <span class="keywordtype">size_t</span> offset, <span class="keywordtype">size_t</span> size,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>              <a class="code hl_typedef" href="group__stream__flash.html#ga4fd8fdee7c82bc2b68d67ec9bbd36fca">stream_flash_callback_t</a> cb);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="group__stream__flash.html#gadcff5388f54e0e784619c706795fe7a8">   96</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="group__stream__flash.html#gadcff5388f54e0e784619c706795fe7a8">stream_flash_bytes_written</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structstream__flash__ctx.html">stream_flash_ctx</a> *ctx);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="group__stream__flash.html#gaa23d33939f344fcd42a281afa5e6f1db">  115</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__stream__flash.html#gaa23d33939f344fcd42a281afa5e6f1db">stream_flash_buffered_write</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structstream__flash__ctx.html">stream_flash_ctx</a> *ctx, <span class="keyword">const</span> uint8_t *<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                <span class="keywordtype">size_t</span> len, <span class="keywordtype">bool</span> flush);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="group__stream__flash.html#ga75711b22789724c2d8629e1202dcb48d">  130</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__stream__flash.html#ga75711b22789724c2d8629e1202dcb48d">stream_flash_erase_page</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structstream__flash__ctx.html">stream_flash_ctx</a> *ctx, off_t off);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="group__stream__flash.html#ga2d90ef00da4ded8c2d0ffb1b2e4c2a2f">  146</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__stream__flash.html#ga2d90ef00da4ded8c2d0ffb1b2e4c2a2f">stream_flash_progress_load</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structstream__flash__ctx.html">stream_flash_ctx</a> *ctx,</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>                   <span class="keyword">const</span> <span class="keywordtype">char</span> *settings_key);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="group__stream__flash.html#ga6965ef8973f281fd0507e208d1645483">  158</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__stream__flash.html#ga6965ef8973f281fd0507e208d1645483">stream_flash_progress_save</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structstream__flash__ctx.html">stream_flash_ctx</a> *ctx,</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                   <span class="keyword">const</span> <span class="keywordtype">char</span> *settings_key);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="group__stream__flash.html#gafd736d9014a3c5060d5c43383d07ac59">  170</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__stream__flash.html#gafd736d9014a3c5060d5c43383d07ac59">stream_flash_progress_clear</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structstream__flash__ctx.html">stream_flash_ctx</a> *ctx,</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>                <span class="keyword">const</span> <span class="keywordtype">char</span> *settings_key);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>}</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_STORAGE_STREAM_FLASH_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__stream__flash_html_ga2d90ef00da4ded8c2d0ffb1b2e4c2a2f"><div class="ttname"><a href="group__stream__flash.html#ga2d90ef00da4ded8c2d0ffb1b2e4c2a2f">stream_flash_progress_load</a></div><div class="ttdeci">int stream_flash_progress_load(struct stream_flash_ctx *ctx, const char *settings_key)</div><div class="ttdoc">Load persistent stream write progress stored with key settings_key .</div></div>
+<div class="ttc" id="agroup__stream__flash_html_ga4fd8fdee7c82bc2b68d67ec9bbd36fca"><div class="ttname"><a href="group__stream__flash.html#ga4fd8fdee7c82bc2b68d67ec9bbd36fca">stream_flash_callback_t</a></div><div class="ttdeci">int(* stream_flash_callback_t)(uint8_t *buf, size_t len, size_t offset)</div><div class="ttdoc">Signature for callback invoked after flash write completes.</div><div class="ttdef"><b>Definição</b> stream_flash.h:46</div></div>
+<div class="ttc" id="agroup__stream__flash_html_ga63e6418e220136a9a0ab2992d9d8f937"><div class="ttname"><a href="group__stream__flash.html#ga63e6418e220136a9a0ab2992d9d8f937">stream_flash_init</a></div><div class="ttdeci">int stream_flash_init(struct stream_flash_ctx *ctx, const struct device *fdev, uint8_t *buf, size_t buf_len, size_t offset, size_t size, stream_flash_callback_t cb)</div><div class="ttdoc">Initialize context needed for stream writes to flash.</div></div>
+<div class="ttc" id="agroup__stream__flash_html_ga6965ef8973f281fd0507e208d1645483"><div class="ttname"><a href="group__stream__flash.html#ga6965ef8973f281fd0507e208d1645483">stream_flash_progress_save</a></div><div class="ttdeci">int stream_flash_progress_save(struct stream_flash_ctx *ctx, const char *settings_key)</div><div class="ttdoc">Save persistent stream write progress using key settings_key .</div></div>
+<div class="ttc" id="agroup__stream__flash_html_ga75711b22789724c2d8629e1202dcb48d"><div class="ttname"><a href="group__stream__flash.html#ga75711b22789724c2d8629e1202dcb48d">stream_flash_erase_page</a></div><div class="ttdeci">int stream_flash_erase_page(struct stream_flash_ctx *ctx, off_t off)</div><div class="ttdoc">Erase the flash page to which a given offset belongs.</div></div>
+<div class="ttc" id="agroup__stream__flash_html_gaa23d33939f344fcd42a281afa5e6f1db"><div class="ttname"><a href="group__stream__flash.html#gaa23d33939f344fcd42a281afa5e6f1db">stream_flash_buffered_write</a></div><div class="ttdeci">int stream_flash_buffered_write(struct stream_flash_ctx *ctx, const uint8_t *data, size_t len, bool flush)</div><div class="ttdoc">Process input buffers to be written to flash device in single blocks. Will store remainder between ca...</div></div>
+<div class="ttc" id="agroup__stream__flash_html_gadcff5388f54e0e784619c706795fe7a8"><div class="ttname"><a href="group__stream__flash.html#gadcff5388f54e0e784619c706795fe7a8">stream_flash_bytes_written</a></div><div class="ttdeci">size_t stream_flash_bytes_written(struct stream_flash_ctx *ctx)</div><div class="ttdoc">Read number of bytes written to the flash.</div></div>
+<div class="ttc" id="agroup__stream__flash_html_gafd736d9014a3c5060d5c43383d07ac59"><div class="ttname"><a href="group__stream__flash.html#gafd736d9014a3c5060d5c43383d07ac59">stream_flash_progress_clear</a></div><div class="ttdeci">int stream_flash_progress_clear(struct stream_flash_ctx *ctx, const char *settings_key)</div><div class="ttdoc">Clear persistent stream write progress stored with key settings_key .</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2flash_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2flash_8h.html">flash.h</a></div><div class="ttdoc">Public API for FLASH drivers.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a27573cbd10ee145f8bb1396242b27a3e"><div class="ttname"><a href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">device::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definição</b> device.h:395</div></div>
+<div class="ttc" id="astructstream__flash__ctx_html"><div class="ttname"><a href="structstream__flash__ctx.html">stream_flash_ctx</a></div><div class="ttdoc">Structure for stream flash context.</div><div class="ttdef"><b>Definição</b> stream_flash.h:54</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

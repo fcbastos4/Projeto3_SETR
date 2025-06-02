@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/mgmt/mcumgr/smp/smp_client.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_b22e92e240e215816b4a18258fade257.html">mgmt</a></li><li class="navelem"><a class="el" href="dir_3c972a23a02ad804d76387a7cbd62510.html">mcumgr</a></li><li class="navelem"><a class="el" href="dir_bbedba4b83732b44d6c9005d7edad125.html">smp</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">smp_client.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2023 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef H_SMP_CLIENT_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define H_SMP_CLIENT_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="net_2buf_8h.html">zephyr/net/buf.h</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;mgmt/mcumgr/transport/smp_internal.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="mgmt_2mcumgr_2smp_2smp_8h.html">zephyr/mgmt/mcumgr/smp/smp.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;zephyr/mgmt/mcumgr/transport/smp.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structsmp__client__object.html">   26</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structsmp__client__object.html">smp_client_object</a> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structsmp__client__object.html#ae4c73b23b90ef9f6cb8a93efde992c8a">   28</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work.html">k_work</a> <a class="code hl_variable" href="structsmp__client__object.html#ae4c73b23b90ef9f6cb8a93efde992c8a">work</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structsmp__client__object.html#a5d3cf1e109692112bf52b0b8514bab9f">   30</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__fifo.html">k_fifo</a> <a class="code hl_variable" href="structsmp__client__object.html#a5d3cf1e109692112bf52b0b8514bab9f">tx_fifo</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structsmp__client__object.html#a01507d6fa5a75751b39ccda82d0836ef">   32</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsmp__transport.html">smp_transport</a> *<a class="code hl_variable" href="structsmp__client__object.html#a01507d6fa5a75751b39ccda82d0836ef">smpt</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structsmp__client__object.html#a0de9e7ee538b84cf1a6065b7b8b0bc53">   34</a></span>    uint8_t <a class="code hl_variable" href="structsmp__client__object.html#a0de9e7ee538b84cf1a6065b7b8b0bc53">smp_seq</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>};</div>
+</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="group__mcumgr__smp__client.html#ga07f36d0ac230d158c2959e8010444e47">   50</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcumgr__smp__client.html#ga07f36d0ac230d158c2959e8010444e47">smp_client_object_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structsmp__client__object.html">smp_client_object</a> *smp_client, <span class="keywordtype">int</span> smp_type);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="group__mcumgr__smp__client.html#gae7974bf0e951403f6dfe8b33a2547acc">   61</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__mcumgr__smp__client.html#gae7974bf0e951403f6dfe8b33a2547acc">smp_client_res_fn</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *nb, <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="group__mcumgr__smp__client.html#ga42022a3ea929da134644996c4414cfce">   72</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcumgr__smp__client.html#ga42022a3ea929da134644996c4414cfce">smp_client_single_response</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *nb, <span class="keyword">const</span> <span class="keyword">struct</span> smp_hdr *res_hdr);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="group__mcumgr__smp__client.html#ga57ec028fc6bcb3591298815b1d9b8a3b">   86</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<a class="code hl_function" href="group__mcumgr__smp__client.html#ga57ec028fc6bcb3591298815b1d9b8a3b">smp_client_buf_allocation</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structsmp__client__object.html">smp_client_object</a> *smp_client, uint16_t group,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                      uint8_t command_id, uint8_t op,</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                      <span class="keyword">enum</span> <a class="code hl_enumeration" href="mgmt_2mcumgr_2smp_2smp_8h.html#aa05d01653e39ef61a93f33319c9a00ed">smp_mcumgr_version_t</a> version);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="group__mcumgr__smp__client.html#gace302f95e5f45076db72fbecf190f0f5">   94</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__mcumgr__smp__client.html#gace302f95e5f45076db72fbecf190f0f5">smp_client_buf_free</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *nb);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="group__mcumgr__smp__client.html#gaeb20d13ddf14ddb924b0a84a014abda5">  109</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcumgr__smp__client.html#gaeb20d13ddf14ddb924b0a84a014abda5">smp_client_send_cmd</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structsmp__client__object.html">smp_client_object</a> *smp_client, <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *nb,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            <a class="code hl_typedef" href="group__mcumgr__smp__client.html#gae7974bf0e951403f6dfe8b33a2547acc">smp_client_res_fn</a> cb, <span class="keywordtype">void</span> *user_data, <span class="keywordtype">int</span> timeout_in_sec);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>}</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#endif </span><span class="comment">/* H_SMP_CLIENT_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__mcumgr__smp__client_html_ga07f36d0ac230d158c2959e8010444e47"><div class="ttname"><a href="group__mcumgr__smp__client.html#ga07f36d0ac230d158c2959e8010444e47">smp_client_object_init</a></div><div class="ttdeci">int smp_client_object_init(struct smp_client_object *smp_client, int smp_type)</div><div class="ttdoc">Initialize a SMP client object.</div></div>
+<div class="ttc" id="agroup__mcumgr__smp__client_html_ga42022a3ea929da134644996c4414cfce"><div class="ttname"><a href="group__mcumgr__smp__client.html#ga42022a3ea929da134644996c4414cfce">smp_client_single_response</a></div><div class="ttdeci">int smp_client_single_response(struct net_buf *nb, const struct smp_hdr *res_hdr)</div><div class="ttdoc">SMP client response handler.</div></div>
+<div class="ttc" id="agroup__mcumgr__smp__client_html_ga57ec028fc6bcb3591298815b1d9b8a3b"><div class="ttname"><a href="group__mcumgr__smp__client.html#ga57ec028fc6bcb3591298815b1d9b8a3b">smp_client_buf_allocation</a></div><div class="ttdeci">struct net_buf * smp_client_buf_allocation(struct smp_client_object *smp_client, uint16_t group, uint8_t command_id, uint8_t op, enum smp_mcumgr_version_t version)</div><div class="ttdoc">Allocate buffer and initialize with SMP header.</div></div>
+<div class="ttc" id="agroup__mcumgr__smp__client_html_gace302f95e5f45076db72fbecf190f0f5"><div class="ttname"><a href="group__mcumgr__smp__client.html#gace302f95e5f45076db72fbecf190f0f5">smp_client_buf_free</a></div><div class="ttdeci">void smp_client_buf_free(struct net_buf *nb)</div><div class="ttdoc">Free a SMP client buffer.</div></div>
+<div class="ttc" id="agroup__mcumgr__smp__client_html_gae7974bf0e951403f6dfe8b33a2547acc"><div class="ttname"><a href="group__mcumgr__smp__client.html#gae7974bf0e951403f6dfe8b33a2547acc">smp_client_res_fn</a></div><div class="ttdeci">int(* smp_client_res_fn)(struct net_buf *nb, void *user_data)</div><div class="ttdoc">Response callback for SMP send.</div><div class="ttdef"><b>Definição</b> smp_client.h:61</div></div>
+<div class="ttc" id="agroup__mcumgr__smp__client_html_gaeb20d13ddf14ddb924b0a84a014abda5"><div class="ttname"><a href="group__mcumgr__smp__client.html#gaeb20d13ddf14ddb924b0a84a014abda5">smp_client_send_cmd</a></div><div class="ttdeci">int smp_client_send_cmd(struct smp_client_object *smp_client, struct net_buf *nb, smp_client_res_fn cb, void *user_data, int timeout_in_sec)</div><div class="ttdoc">SMP client data send request.</div></div>
+<div class="ttc" id="amgmt_2mcumgr_2smp_2smp_8h_html"><div class="ttname"><a href="mgmt_2mcumgr_2smp_2smp_8h.html">smp.h</a></div><div class="ttdoc">SMP - Simple Management Protocol.</div></div>
+<div class="ttc" id="amgmt_2mcumgr_2smp_2smp_8h_html_aa05d01653e39ef61a93f33319c9a00ed"><div class="ttname"><a href="mgmt_2mcumgr_2smp_2smp_8h.html#aa05d01653e39ef61a93f33319c9a00ed">smp_mcumgr_version_t</a></div><div class="ttdeci">smp_mcumgr_version_t</div><div class="ttdef"><b>Definição</b> smp.h:39</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="anet_2buf_8h_html"><div class="ttname"><a href="net_2buf_8h.html">buf.h</a></div><div class="ttdoc">Buffer management.</div></div>
+<div class="ttc" id="astructk__fifo_html"><div class="ttname"><a href="structk__fifo.html">k_fifo</a></div><div class="ttdef"><b>Definição</b> kernel.h:2386</div></div>
+<div class="ttc" id="astructk__work_html"><div class="ttname"><a href="structk__work.html">k_work</a></div><div class="ttdoc">A structure used to submit work.</div><div class="ttdef"><b>Definição</b> kernel.h:3866</div></div>
+<div class="ttc" id="astructnet__buf_html"><div class="ttname"><a href="structnet__buf.html">net_buf</a></div><div class="ttdoc">Network buffer representation.</div><div class="ttdef"><b>Definição</b> buf.h:906</div></div>
+<div class="ttc" id="astructsmp__client__object_html"><div class="ttname"><a href="structsmp__client__object.html">smp_client_object</a></div><div class="ttdoc">SMP client object.</div><div class="ttdef"><b>Definição</b> smp_client.h:26</div></div>
+<div class="ttc" id="astructsmp__client__object_html_a01507d6fa5a75751b39ccda82d0836ef"><div class="ttname"><a href="structsmp__client__object.html#a01507d6fa5a75751b39ccda82d0836ef">smp_client_object::smpt</a></div><div class="ttdeci">struct smp_transport * smpt</div><div class="ttdef"><b>Definição</b> smp_client.h:32</div></div>
+<div class="ttc" id="astructsmp__client__object_html_a0de9e7ee538b84cf1a6065b7b8b0bc53"><div class="ttname"><a href="structsmp__client__object.html#a0de9e7ee538b84cf1a6065b7b8b0bc53">smp_client_object::smp_seq</a></div><div class="ttdeci">uint8_t smp_seq</div><div class="ttdef"><b>Definição</b> smp_client.h:34</div></div>
+<div class="ttc" id="astructsmp__client__object_html_a5d3cf1e109692112bf52b0b8514bab9f"><div class="ttname"><a href="structsmp__client__object.html#a5d3cf1e109692112bf52b0b8514bab9f">smp_client_object::tx_fifo</a></div><div class="ttdeci">struct k_fifo tx_fifo</div><div class="ttdef"><b>Definição</b> smp_client.h:30</div></div>
+<div class="ttc" id="astructsmp__client__object_html_ae4c73b23b90ef9f6cb8a93efde992c8a"><div class="ttname"><a href="structsmp__client__object.html#ae4c73b23b90ef9f6cb8a93efde992c8a">smp_client_object::work</a></div><div class="ttdeci">struct k_work work</div><div class="ttdef"><b>Definição</b> smp_client.h:28</div></div>
+<div class="ttc" id="astructsmp__transport_html"><div class="ttname"><a href="structsmp__transport.html">smp_transport</a></div><div class="ttdoc">SMP transport object for sending SMP responses.</div><div class="ttdef"><b>Definição</b> smp.h:118</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

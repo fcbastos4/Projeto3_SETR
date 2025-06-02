@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/net/lldp.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_e87a4ba8d8d39971580ab67f13eff592.html">net</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">lldp.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="lldp_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Copyright (c) 2017 Intel Corporation</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_NET_LLDP_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define ZEPHYR_INCLUDE_NET_LLDP_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#define LLDP_TLV_GET_LENGTH(type_length)    (type_length &amp; BIT_MASK(9))</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#define LLDP_TLV_GET_TYPE(type_length)      ((uint8_t)(type_length &gt;&gt; 9))</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">/* LLDP Definitions */</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">/* According to the spec, End of LLDPDU TLV value is constant. */</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#define NET_LLDP_END_LLDPDU_VALUE 0x0000</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment"> * For the Chassis ID TLV Value, if subtype is a MAC address then we must</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment"> * use values from CONFIG_NET_LLDP_CHASSIS_ID_MAC0 through</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment"> * CONFIG_NET_LLDP_CHASSIS_ID_MAC5. If not, we use CONFIG_NET_LLDP_CHASSIS_ID.</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment"> * FIXME: implement a similar scheme for subtype 5 (network address).</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#if defined(CONFIG_NET_LLDP_CHASSIS_ID_SUBTYPE)</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#if (CONFIG_NET_LLDP_CHASSIS_ID_SUBTYPE == 4)</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define NET_LLDP_CHASSIS_ID_VALUE       \</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">    {                   \</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">      CONFIG_NET_LLDP_CHASSIS_ID_MAC0,  \</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">      CONFIG_NET_LLDP_CHASSIS_ID_MAC1,  \</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">      CONFIG_NET_LLDP_CHASSIS_ID_MAC2,  \</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">      CONFIG_NET_LLDP_CHASSIS_ID_MAC3,  \</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">      CONFIG_NET_LLDP_CHASSIS_ID_MAC4,  \</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">      CONFIG_NET_LLDP_CHASSIS_ID_MAC5   \</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define NET_LLDP_CHASSIS_ID_VALUE_LEN (6)</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define NET_LLDP_CHASSIS_ID_VALUE CONFIG_NET_LLDP_CHASSIS_ID</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#define NET_LLDP_CHASSIS_ID_VALUE_LEN (sizeof(CONFIG_NET_LLDP_CHASSIS_ID) - 1)</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#define NET_LLDP_CHASSIS_ID_VALUE 0</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#define NET_LLDP_CHASSIS_ID_VALUE_LEN 0</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment"> * For the Port ID TLV Value, if subtype is a MAC address then we must</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment"> * use values from CONFIG_NET_LLDP_PORT_ID_MAC0 through</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment"> * CONFIG_NET_LLDP_PORT_ID_MAC5. If not, we use CONFIG_NET_LLDP_PORT_ID.</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment"> * FIXME: implement a similar scheme for subtype 4 (network address).</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#if defined(CONFIG_NET_LLDP_PORT_ID_SUBTYPE)</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#if (CONFIG_NET_LLDP_PORT_ID_SUBTYPE == 3)</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#define NET_LLDP_PORT_ID_VALUE      \</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">    {               \</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">      CONFIG_NET_LLDP_PORT_ID_MAC0, \</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">      CONFIG_NET_LLDP_PORT_ID_MAC1, \</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">      CONFIG_NET_LLDP_PORT_ID_MAC2, \</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">      CONFIG_NET_LLDP_PORT_ID_MAC3, \</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">      CONFIG_NET_LLDP_PORT_ID_MAC4, \</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">      CONFIG_NET_LLDP_PORT_ID_MAC5  \</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">#define NET_LLDP_PORT_ID_VALUE_LEN (6)</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="preprocessor">#define NET_LLDP_PORT_ID_VALUE CONFIG_NET_LLDP_PORT_ID</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#define NET_LLDP_PORT_ID_VALUE_LEN (sizeof(CONFIG_NET_LLDP_PORT_ID) - 1)</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#define NET_LLDP_PORT_ID_VALUE 0</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#define NET_LLDP_PORT_ID_VALUE_LEN 0</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment"> * TLVs Length.</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment"> * Note that TLVs that have a subtype must have a byte added to their length.</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="preprocessor">#define NET_LLDP_CHASSIS_ID_TLV_LEN (NET_LLDP_CHASSIS_ID_VALUE_LEN + 1)</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="preprocessor">#define NET_LLDP_PORT_ID_TLV_LEN (NET_LLDP_PORT_ID_VALUE_LEN + 1)</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">#define NET_LLDP_TTL_TLV_LEN (2)</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment"> * Time to Live value.</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment"> * Calculate based on section 9.2.5.22 from LLDP spec.</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment"> * FIXME: when the network interface is about to be ‘disabled’ TTL shall be set</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment"> * to zero so LLDP Rx agents can invalidate the entry related to this node.</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">#if defined(CONFIG_NET_LLDP_TX_INTERVAL) &amp;&amp; defined(CONFIG_NET_LLDP_TX_HOLD)</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#define NET_LLDP_TTL \</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">    MIN((CONFIG_NET_LLDP_TX_INTERVAL * CONFIG_NET_LLDP_TX_HOLD) + 1, 65535)</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__if.html">net_if</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="foldopen" id="foldopen00121" data-start="{" data-end="};">
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="group__lldp.html#gadd4273e4fe55757729008ce081771899">  121</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__lldp.html#gadd4273e4fe55757729008ce081771899">net_lldp_tlv_type</a> {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a2b7c2a5f9f23b3bd6361e09d190c859a">  122</a></span>    <a class="code hl_enumvalue" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a2b7c2a5f9f23b3bd6361e09d190c859a">LLDP_TLV_END_LLDPDU</a>          = 0, </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899acd8e886391d4356096db264cba5383e6">  123</a></span>    <a class="code hl_enumvalue" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899acd8e886391d4356096db264cba5383e6">LLDP_TLV_CHASSIS_ID</a>          = 1, </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a247164e4394c67b5ebe8da8fd71dae45">  124</a></span>    <a class="code hl_enumvalue" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a247164e4394c67b5ebe8da8fd71dae45">LLDP_TLV_PORT_ID</a>             = 2, </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899af6c7e7e44b7c0a9b1466c4c124f2c12c">  125</a></span>    <a class="code hl_enumvalue" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899af6c7e7e44b7c0a9b1466c4c124f2c12c">LLDP_TLV_TTL</a>                 = 3, </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a848167601f7bb7a21ce25bd1a79836c0">  126</a></span>    <a class="code hl_enumvalue" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a848167601f7bb7a21ce25bd1a79836c0">LLDP_TLV_PORT_DESC</a>           = 4, </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899abb2ebbce9ab2e6234d443dbaa246b6d9">  127</a></span>    <a class="code hl_enumvalue" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899abb2ebbce9ab2e6234d443dbaa246b6d9">LLDP_TLV_SYSTEM_NAME</a>         = 5, </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899ab99a55a2b6620c3d77cb0aeedf135782">  128</a></span>    <a class="code hl_enumvalue" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899ab99a55a2b6620c3d77cb0aeedf135782">LLDP_TLV_SYSTEM_DESC</a>         = 6, </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a9c81c35102ccc8baa15797f69ef95521">  129</a></span>    <a class="code hl_enumvalue" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a9c81c35102ccc8baa15797f69ef95521">LLDP_TLV_SYSTEM_CAPABILITIES</a> = 7, </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899ab0219acd11fad13967aec8a30054cae5">  130</a></span>    <a class="code hl_enumvalue" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899ab0219acd11fad13967aec8a30054cae5">LLDP_TLV_MANAGEMENT_ADDR</a>     = 8, </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="comment">/* Types 9 - 126 are reserved. */</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a07dee140b7ee13ec88a271fc292887ad">  132</a></span>    <a class="code hl_enumvalue" href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a07dee140b7ee13ec88a271fc292887ad">LLDP_TLV_ORG_SPECIFIC</a>       = 127, </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>};</div>
+</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="foldopen" id="foldopen00136" data-start="{" data-end="};">
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="structnet__lldp__chassis__tlv.html">  136</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__lldp__chassis__tlv.html">net_lldp_chassis_tlv</a> {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="structnet__lldp__chassis__tlv.html#af81d3102ad0ec1f7ef76bb1533dcc7cd">  138</a></span>    uint16_t <a class="code hl_variable" href="structnet__lldp__chassis__tlv.html#af81d3102ad0ec1f7ef76bb1533dcc7cd">type_length</a>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="structnet__lldp__chassis__tlv.html#ad9d415f6a1e9018953728de1b529fd98">  140</a></span>    uint8_t <a class="code hl_variable" href="structnet__lldp__chassis__tlv.html#ad9d415f6a1e9018953728de1b529fd98">subtype</a>;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="structnet__lldp__chassis__tlv.html#a37b7e81a670595d1c6c77a45bf9cfc73">  142</a></span>    uint8_t <a class="code hl_variable" href="structnet__lldp__chassis__tlv.html#a37b7e81a670595d1c6c77a45bf9cfc73">value</a>[NET_LLDP_CHASSIS_ID_VALUE_LEN];</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="foldopen" id="foldopen00146" data-start="{" data-end="};">
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="structnet__lldp__port__tlv.html">  146</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__lldp__port__tlv.html">net_lldp_port_tlv</a> {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="structnet__lldp__port__tlv.html#a710beaeda2ddd7933464e07cb87a2bfe">  148</a></span>    uint16_t <a class="code hl_variable" href="structnet__lldp__port__tlv.html#a710beaeda2ddd7933464e07cb87a2bfe">type_length</a>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="structnet__lldp__port__tlv.html#a572a6fd721c68796a572410ac62f2f93">  150</a></span>    uint8_t <a class="code hl_variable" href="structnet__lldp__port__tlv.html#a572a6fd721c68796a572410ac62f2f93">subtype</a>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="structnet__lldp__port__tlv.html#aecc83eaec39284b33c2e7cf07f0ffa05">  152</a></span>    uint8_t <a class="code hl_variable" href="structnet__lldp__port__tlv.html#aecc83eaec39284b33c2e7cf07f0ffa05">value</a>[NET_LLDP_PORT_ID_VALUE_LEN];</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="foldopen" id="foldopen00156" data-start="{" data-end="};">
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="structnet__lldp__time__to__live__tlv.html">  156</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__lldp__time__to__live__tlv.html">net_lldp_time_to_live_tlv</a> {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="structnet__lldp__time__to__live__tlv.html#a78b88d66184a0d25c413baf2fec495ab">  158</a></span>    uint16_t <a class="code hl_variable" href="structnet__lldp__time__to__live__tlv.html#a78b88d66184a0d25c413baf2fec495ab">type_length</a>;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="structnet__lldp__time__to__live__tlv.html#ab967792a938a5d67f744e53be8d5f0fd">  160</a></span>    uint16_t <a class="code hl_variable" href="structnet__lldp__time__to__live__tlv.html#ab967792a938a5d67f744e53be8d5f0fd">ttl</a>;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="foldopen" id="foldopen00167" data-start="{" data-end="};">
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="structnet__lldpdu.html">  167</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__lldpdu.html">net_lldpdu</a> {</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="structnet__lldpdu.html#a1a1c80fe7462ddbfd84289735013834c">  168</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__lldp__chassis__tlv.html">net_lldp_chassis_tlv</a> <a class="code hl_variable" href="structnet__lldpdu.html#a1a1c80fe7462ddbfd84289735013834c">chassis_id</a>; </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="structnet__lldpdu.html#aa55adafc5528576017c37a28413bdaf9">  169</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__lldp__port__tlv.html">net_lldp_port_tlv</a> <a class="code hl_variable" href="structnet__lldpdu.html#aa55adafc5528576017c37a28413bdaf9">port_id</a>;   </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="structnet__lldpdu.html#afbe0618b6d849b8ee7b225844ac399df">  170</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__lldp__time__to__live__tlv.html">net_lldp_time_to_live_tlv</a> <a class="code hl_variable" href="structnet__lldpdu.html#afbe0618b6d849b8ee7b225844ac399df">ttl</a>;   </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="group__lldp.html#ga0efa1813c537dcf02e021db60049c284">  181</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__lldp.html#ga0efa1813c537dcf02e021db60049c284">net_lldp_config</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__lldpdu.html">net_lldpdu</a> *lldpdu);</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="group__lldp.html#ga9702175375a71eaab20f450291cb51ad">  192</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__lldp.html#ga9702175375a71eaab20f450291cb51ad">net_lldp_config_optional</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface, <span class="keyword">const</span> uint8_t *tlv,</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>                 <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="group__lldp.html#ga38f3eff9da2f06e10defddb1776cdb37">  198</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__lldp.html#ga38f3eff9da2f06e10defddb1776cdb37">net_lldp_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__net__core.html#ga8e5393f3bdd85491f221324e637c3896">net_verdict</a> (*<a class="code hl_typedef" href="group__lldp.html#ga1e9fb662d7cdfc3c4c68cfd0312987cf">net_lldp_recv_cb_t</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structnet__if.html">net_if</a> *iface,</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                           <span class="keyword">struct </span><a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="group__lldp.html#ga61845c96c65d6df83f422a68e31162cf">  224</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__lldp.html#ga61845c96c65d6df83f422a68e31162cf">net_lldp_register_callback</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *<a class="code hl_variable" href="structnet__pkt.html#a7590eeacf06469206cb7e7949acfa7b2">iface</a>, <a class="code hl_typedef" href="group__lldp.html#ga1e9fb662d7cdfc3c4c68cfd0312987cf">net_lldp_recv_cb_t</a> cb);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="group__lldp.html#gafde82841435942b1ce7cc91083c9a06f">  234</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__net__core.html#ga8e5393f3bdd85491f221324e637c3896">net_verdict</a> <a class="code hl_function" href="group__lldp.html#gafde82841435942b1ce7cc91083c9a06f">net_lldp_recv</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *<a class="code hl_variable" href="structnet__pkt.html#a7590eeacf06469206cb7e7949acfa7b2">iface</a>, <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="preprocessor">#if defined(CONFIG_NET_LLDP)</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="keywordtype">int</span> <a class="code hl_define" href="group__lldp.html#ga961bc59567ffa2d5a4d21290d1d78407">net_lldp_set_lldpdu</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *<a class="code hl_variable" href="structnet__pkt.html#a7590eeacf06469206cb7e7949acfa7b2">iface</a>);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="group__lldp.html#ga961bc59567ffa2d5a4d21290d1d78407">  246</a></span><span class="preprocessor">#define net_lldp_set_lldpdu(iface)</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="preprocessor">#if defined(CONFIG_NET_LLDP)</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="keywordtype">void</span> <a class="code hl_define" href="group__lldp.html#gafdd1b4cea9f560597c31a0e42d5341e0">net_lldp_unset_lldpdu</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *<a class="code hl_variable" href="structnet__pkt.html#a7590eeacf06469206cb7e7949acfa7b2">iface</a>);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="group__lldp.html#gafdd1b4cea9f560597c31a0e42d5341e0">  257</a></span><span class="preprocessor">#define net_lldp_unset_lldpdu(iface)</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>}</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_NET_LLDP_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__bt__conn_html_gab3cdadb15ef89cfe197d88b4d3fdb596"><div class="ttname"><a href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a></div><div class="ttdeci">__packed</div><div class="ttdef"><b>Definição</b> conn.h:352</div></div>
+<div class="ttc" id="agroup__lldp_html_ga0efa1813c537dcf02e021db60049c284"><div class="ttname"><a href="group__lldp.html#ga0efa1813c537dcf02e021db60049c284">net_lldp_config</a></div><div class="ttdeci">int net_lldp_config(struct net_if *iface, const struct net_lldpdu *lldpdu)</div><div class="ttdoc">Set the LLDP data unit for a network interface.</div></div>
+<div class="ttc" id="agroup__lldp_html_ga1e9fb662d7cdfc3c4c68cfd0312987cf"><div class="ttname"><a href="group__lldp.html#ga1e9fb662d7cdfc3c4c68cfd0312987cf">net_lldp_recv_cb_t</a></div><div class="ttdeci">enum net_verdict(* net_lldp_recv_cb_t)(struct net_if *iface, struct net_pkt *pkt)</div><div class="ttdoc">LLDP Receive packet callback.</div><div class="ttdef"><b>Definição</b> lldp.h:213</div></div>
+<div class="ttc" id="agroup__lldp_html_ga38f3eff9da2f06e10defddb1776cdb37"><div class="ttname"><a href="group__lldp.html#ga38f3eff9da2f06e10defddb1776cdb37">net_lldp_init</a></div><div class="ttdeci">void net_lldp_init(void)</div><div class="ttdoc">Initialize LLDP engine.</div></div>
+<div class="ttc" id="agroup__lldp_html_ga61845c96c65d6df83f422a68e31162cf"><div class="ttname"><a href="group__lldp.html#ga61845c96c65d6df83f422a68e31162cf">net_lldp_register_callback</a></div><div class="ttdeci">int net_lldp_register_callback(struct net_if *iface, net_lldp_recv_cb_t cb)</div><div class="ttdoc">Register LLDP Rx callback function.</div></div>
+<div class="ttc" id="agroup__lldp_html_ga961bc59567ffa2d5a4d21290d1d78407"><div class="ttname"><a href="group__lldp.html#ga961bc59567ffa2d5a4d21290d1d78407">net_lldp_set_lldpdu</a></div><div class="ttdeci">#define net_lldp_set_lldpdu(iface)</div><div class="ttdoc">Set LLDP protocol data unit (LLDPDU) for the network interface.</div><div class="ttdef"><b>Definição</b> lldp.h:246</div></div>
+<div class="ttc" id="agroup__lldp_html_ga9702175375a71eaab20f450291cb51ad"><div class="ttname"><a href="group__lldp.html#ga9702175375a71eaab20f450291cb51ad">net_lldp_config_optional</a></div><div class="ttdeci">int net_lldp_config_optional(struct net_if *iface, const uint8_t *tlv, size_t len)</div><div class="ttdoc">Set the Optional LLDP TLVs for a network interface.</div></div>
+<div class="ttc" id="agroup__lldp_html_gadd4273e4fe55757729008ce081771899"><div class="ttname"><a href="group__lldp.html#gadd4273e4fe55757729008ce081771899">net_lldp_tlv_type</a></div><div class="ttdeci">net_lldp_tlv_type</div><div class="ttdef"><b>Definição</b> lldp.h:121</div></div>
+<div class="ttc" id="agroup__lldp_html_gafdd1b4cea9f560597c31a0e42d5341e0"><div class="ttname"><a href="group__lldp.html#gafdd1b4cea9f560597c31a0e42d5341e0">net_lldp_unset_lldpdu</a></div><div class="ttdeci">#define net_lldp_unset_lldpdu(iface)</div><div class="ttdoc">Unset LLDP protocol data unit (LLDPDU) for the network interface.</div><div class="ttdef"><b>Definição</b> lldp.h:257</div></div>
+<div class="ttc" id="agroup__lldp_html_gafde82841435942b1ce7cc91083c9a06f"><div class="ttname"><a href="group__lldp.html#gafde82841435942b1ce7cc91083c9a06f">net_lldp_recv</a></div><div class="ttdeci">enum net_verdict net_lldp_recv(struct net_if *iface, struct net_pkt *pkt)</div><div class="ttdoc">Parse LLDP packet.</div></div>
+<div class="ttc" id="agroup__lldp_html_ggadd4273e4fe55757729008ce081771899a07dee140b7ee13ec88a271fc292887ad"><div class="ttname"><a href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a07dee140b7ee13ec88a271fc292887ad">LLDP_TLV_ORG_SPECIFIC</a></div><div class="ttdeci">@ LLDP_TLV_ORG_SPECIFIC</div><div class="ttdef"><b>Definição</b> lldp.h:132</div></div>
+<div class="ttc" id="agroup__lldp_html_ggadd4273e4fe55757729008ce081771899a247164e4394c67b5ebe8da8fd71dae45"><div class="ttname"><a href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a247164e4394c67b5ebe8da8fd71dae45">LLDP_TLV_PORT_ID</a></div><div class="ttdeci">@ LLDP_TLV_PORT_ID</div><div class="ttdef"><b>Definição</b> lldp.h:124</div></div>
+<div class="ttc" id="agroup__lldp_html_ggadd4273e4fe55757729008ce081771899a2b7c2a5f9f23b3bd6361e09d190c859a"><div class="ttname"><a href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a2b7c2a5f9f23b3bd6361e09d190c859a">LLDP_TLV_END_LLDPDU</a></div><div class="ttdeci">@ LLDP_TLV_END_LLDPDU</div><div class="ttdef"><b>Definição</b> lldp.h:122</div></div>
+<div class="ttc" id="agroup__lldp_html_ggadd4273e4fe55757729008ce081771899a848167601f7bb7a21ce25bd1a79836c0"><div class="ttname"><a href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a848167601f7bb7a21ce25bd1a79836c0">LLDP_TLV_PORT_DESC</a></div><div class="ttdeci">@ LLDP_TLV_PORT_DESC</div><div class="ttdef"><b>Definição</b> lldp.h:126</div></div>
+<div class="ttc" id="agroup__lldp_html_ggadd4273e4fe55757729008ce081771899a9c81c35102ccc8baa15797f69ef95521"><div class="ttname"><a href="group__lldp.html#ggadd4273e4fe55757729008ce081771899a9c81c35102ccc8baa15797f69ef95521">LLDP_TLV_SYSTEM_CAPABILITIES</a></div><div class="ttdeci">@ LLDP_TLV_SYSTEM_CAPABILITIES</div><div class="ttdef"><b>Definição</b> lldp.h:129</div></div>
+<div class="ttc" id="agroup__lldp_html_ggadd4273e4fe55757729008ce081771899ab0219acd11fad13967aec8a30054cae5"><div class="ttname"><a href="group__lldp.html#ggadd4273e4fe55757729008ce081771899ab0219acd11fad13967aec8a30054cae5">LLDP_TLV_MANAGEMENT_ADDR</a></div><div class="ttdeci">@ LLDP_TLV_MANAGEMENT_ADDR</div><div class="ttdef"><b>Definição</b> lldp.h:130</div></div>
+<div class="ttc" id="agroup__lldp_html_ggadd4273e4fe55757729008ce081771899ab99a55a2b6620c3d77cb0aeedf135782"><div class="ttname"><a href="group__lldp.html#ggadd4273e4fe55757729008ce081771899ab99a55a2b6620c3d77cb0aeedf135782">LLDP_TLV_SYSTEM_DESC</a></div><div class="ttdeci">@ LLDP_TLV_SYSTEM_DESC</div><div class="ttdef"><b>Definição</b> lldp.h:128</div></div>
+<div class="ttc" id="agroup__lldp_html_ggadd4273e4fe55757729008ce081771899abb2ebbce9ab2e6234d443dbaa246b6d9"><div class="ttname"><a href="group__lldp.html#ggadd4273e4fe55757729008ce081771899abb2ebbce9ab2e6234d443dbaa246b6d9">LLDP_TLV_SYSTEM_NAME</a></div><div class="ttdeci">@ LLDP_TLV_SYSTEM_NAME</div><div class="ttdef"><b>Definição</b> lldp.h:127</div></div>
+<div class="ttc" id="agroup__lldp_html_ggadd4273e4fe55757729008ce081771899acd8e886391d4356096db264cba5383e6"><div class="ttname"><a href="group__lldp.html#ggadd4273e4fe55757729008ce081771899acd8e886391d4356096db264cba5383e6">LLDP_TLV_CHASSIS_ID</a></div><div class="ttdeci">@ LLDP_TLV_CHASSIS_ID</div><div class="ttdef"><b>Definição</b> lldp.h:123</div></div>
+<div class="ttc" id="agroup__lldp_html_ggadd4273e4fe55757729008ce081771899af6c7e7e44b7c0a9b1466c4c124f2c12c"><div class="ttname"><a href="group__lldp.html#ggadd4273e4fe55757729008ce081771899af6c7e7e44b7c0a9b1466c4c124f2c12c">LLDP_TLV_TTL</a></div><div class="ttdeci">@ LLDP_TLV_TTL</div><div class="ttdef"><b>Definição</b> lldp.h:125</div></div>
+<div class="ttc" id="agroup__net__core_html_ga8e5393f3bdd85491f221324e637c3896"><div class="ttname"><a href="group__net__core.html#ga8e5393f3bdd85491f221324e637c3896">net_verdict</a></div><div class="ttdeci">net_verdict</div><div class="ttdoc">Net Verdict.</div><div class="ttdef"><b>Definição</b> net_core.h:98</div></div>
+<div class="ttc" id="astructnet__if_html"><div class="ttname"><a href="structnet__if.html">net_if</a></div><div class="ttdoc">Network Interface structure.</div><div class="ttdef"><b>Definição</b> net_if.h:598</div></div>
+<div class="ttc" id="astructnet__lldp__chassis__tlv_html"><div class="ttname"><a href="structnet__lldp__chassis__tlv.html">net_lldp_chassis_tlv</a></div><div class="ttdef"><b>Definição</b> lldp.h:136</div></div>
+<div class="ttc" id="astructnet__lldp__chassis__tlv_html_a37b7e81a670595d1c6c77a45bf9cfc73"><div class="ttname"><a href="structnet__lldp__chassis__tlv.html#a37b7e81a670595d1c6c77a45bf9cfc73">net_lldp_chassis_tlv::value</a></div><div class="ttdeci">uint8_t value[NET_LLDP_CHASSIS_ID_VALUE_LEN]</div><div class="ttdef"><b>Definição</b> lldp.h:142</div></div>
+<div class="ttc" id="astructnet__lldp__chassis__tlv_html_ad9d415f6a1e9018953728de1b529fd98"><div class="ttname"><a href="structnet__lldp__chassis__tlv.html#ad9d415f6a1e9018953728de1b529fd98">net_lldp_chassis_tlv::subtype</a></div><div class="ttdeci">uint8_t subtype</div><div class="ttdef"><b>Definição</b> lldp.h:140</div></div>
+<div class="ttc" id="astructnet__lldp__chassis__tlv_html_af81d3102ad0ec1f7ef76bb1533dcc7cd"><div class="ttname"><a href="structnet__lldp__chassis__tlv.html#af81d3102ad0ec1f7ef76bb1533dcc7cd">net_lldp_chassis_tlv::type_length</a></div><div class="ttdeci">uint16_t type_length</div><div class="ttdef"><b>Definição</b> lldp.h:138</div></div>
+<div class="ttc" id="astructnet__lldp__port__tlv_html"><div class="ttname"><a href="structnet__lldp__port__tlv.html">net_lldp_port_tlv</a></div><div class="ttdef"><b>Definição</b> lldp.h:146</div></div>
+<div class="ttc" id="astructnet__lldp__port__tlv_html_a572a6fd721c68796a572410ac62f2f93"><div class="ttname"><a href="structnet__lldp__port__tlv.html#a572a6fd721c68796a572410ac62f2f93">net_lldp_port_tlv::subtype</a></div><div class="ttdeci">uint8_t subtype</div><div class="ttdef"><b>Definição</b> lldp.h:150</div></div>
+<div class="ttc" id="astructnet__lldp__port__tlv_html_a710beaeda2ddd7933464e07cb87a2bfe"><div class="ttname"><a href="structnet__lldp__port__tlv.html#a710beaeda2ddd7933464e07cb87a2bfe">net_lldp_port_tlv::type_length</a></div><div class="ttdeci">uint16_t type_length</div><div class="ttdef"><b>Definição</b> lldp.h:148</div></div>
+<div class="ttc" id="astructnet__lldp__port__tlv_html_aecc83eaec39284b33c2e7cf07f0ffa05"><div class="ttname"><a href="structnet__lldp__port__tlv.html#aecc83eaec39284b33c2e7cf07f0ffa05">net_lldp_port_tlv::value</a></div><div class="ttdeci">uint8_t value[NET_LLDP_PORT_ID_VALUE_LEN]</div><div class="ttdef"><b>Definição</b> lldp.h:152</div></div>
+<div class="ttc" id="astructnet__lldp__time__to__live__tlv_html"><div class="ttname"><a href="structnet__lldp__time__to__live__tlv.html">net_lldp_time_to_live_tlv</a></div><div class="ttdef"><b>Definição</b> lldp.h:156</div></div>
+<div class="ttc" id="astructnet__lldp__time__to__live__tlv_html_a78b88d66184a0d25c413baf2fec495ab"><div class="ttname"><a href="structnet__lldp__time__to__live__tlv.html#a78b88d66184a0d25c413baf2fec495ab">net_lldp_time_to_live_tlv::type_length</a></div><div class="ttdeci">uint16_t type_length</div><div class="ttdef"><b>Definição</b> lldp.h:158</div></div>
+<div class="ttc" id="astructnet__lldp__time__to__live__tlv_html_ab967792a938a5d67f744e53be8d5f0fd"><div class="ttname"><a href="structnet__lldp__time__to__live__tlv.html#ab967792a938a5d67f744e53be8d5f0fd">net_lldp_time_to_live_tlv::ttl</a></div><div class="ttdeci">uint16_t ttl</div><div class="ttdef"><b>Definição</b> lldp.h:160</div></div>
+<div class="ttc" id="astructnet__lldpdu_html"><div class="ttname"><a href="structnet__lldpdu.html">net_lldpdu</a></div><div class="ttdef"><b>Definição</b> lldp.h:167</div></div>
+<div class="ttc" id="astructnet__lldpdu_html_a1a1c80fe7462ddbfd84289735013834c"><div class="ttname"><a href="structnet__lldpdu.html#a1a1c80fe7462ddbfd84289735013834c">net_lldpdu::chassis_id</a></div><div class="ttdeci">struct net_lldp_chassis_tlv chassis_id</div><div class="ttdef"><b>Definição</b> lldp.h:168</div></div>
+<div class="ttc" id="astructnet__lldpdu_html_aa55adafc5528576017c37a28413bdaf9"><div class="ttname"><a href="structnet__lldpdu.html#aa55adafc5528576017c37a28413bdaf9">net_lldpdu::port_id</a></div><div class="ttdeci">struct net_lldp_port_tlv port_id</div><div class="ttdef"><b>Definição</b> lldp.h:169</div></div>
+<div class="ttc" id="astructnet__lldpdu_html_afbe0618b6d849b8ee7b225844ac399df"><div class="ttname"><a href="structnet__lldpdu.html#afbe0618b6d849b8ee7b225844ac399df">net_lldpdu::ttl</a></div><div class="ttdeci">struct net_lldp_time_to_live_tlv ttl</div><div class="ttdef"><b>Definição</b> lldp.h:170</div></div>
+<div class="ttc" id="astructnet__pkt_html"><div class="ttname"><a href="structnet__pkt.html">net_pkt</a></div><div class="ttdoc">Network packet.</div><div class="ttdef"><b>Definição</b> net_pkt.h:63</div></div>
+<div class="ttc" id="astructnet__pkt_html_a7590eeacf06469206cb7e7949acfa7b2"><div class="ttname"><a href="structnet__pkt.html#a7590eeacf06469206cb7e7949acfa7b2">net_pkt::iface</a></div><div class="ttdeci">struct net_if * iface</div><div class="ttdef"><b>Definição</b> net_pkt.h:86</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

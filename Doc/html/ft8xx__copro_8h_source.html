@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/misc/ft8xx/ft8xx_copro.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_9ad6370ca1a3f83d6a7a55ee003e6faf.html">misc</a></li><li class="navelem"><a class="el" href="dir_100509015dc552ba95442ee1dcec0f91.html">ft8xx</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ft8xx_copro.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ft8xx__copro_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2020 Hubert Miś</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef ZEPHYR_DRIVERS_MISC_FT8XX_FT8XX_COPRO_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define ZEPHYR_DRIVERS_MISC_FT8XX_FT8XX_COPRO_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga304badab7bd34208d499b199080fb557">   29</a></span><span class="preprocessor">#define FT8XX_OPT_3D        0</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga3a79c1128bdb9fe094843688691a085c">   31</a></span><span class="preprocessor">#define FT8XX_OPT_RGB565    0</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga415760ddf94db71ee9a504300bac4661">   33</a></span><span class="preprocessor">#define FT8XX_OPT_MONO      1</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#gacc953470460b083c0b8bd9ebbc8ed03b">   35</a></span><span class="preprocessor">#define FT8XX_OPT_NODL      2</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga160b331fb401eec023e0992c6f4c6331">   37</a></span><span class="preprocessor">#define FT8XX_OPT_FLAT      256</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga5a58155896cdb2d0f1693d203706ce93">   39</a></span><span class="preprocessor">#define FT8XX_OPT_SIGNED    256</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#gac2d1ccbb99eaa032ed9d39fc01d32c66">   41</a></span><span class="preprocessor">#define FT8XX_OPT_CENTERX   512</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga65b3a1e29ae425b2f1c3e66b4ea1449a">   43</a></span><span class="preprocessor">#define FT8XX_OPT_CENTERY   1024</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga013968a6bf9534265c897ab1f4018eb0">   45</a></span><span class="preprocessor">#define FT8XX_OPT_CENTER    1536</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#gac864c155bc2121bf8d3954e1ed8dbb7e">   47</a></span><span class="preprocessor">#define FT8XX_OPT_RIGHTX    2048</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#gacb08df4fac256cbf808b133d4159aa29">   49</a></span><span class="preprocessor">#define FT8XX_OPT_NOBACK    4096</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga50f4fac88e4f4b558450adcda33dae93">   53</a></span><span class="preprocessor">#define FT8XX_OPT_NOTICKS   8192</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga79938d9c1193d44a527ca8c158117a86">   57</a></span><span class="preprocessor">#define FT8XX_OPT_NOHM      16384</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga1a9838a862ec166bfe95d64144b9a052">   59</a></span><span class="preprocessor">#define FT8XX_OPT_NOPOINTER 16384</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga6416f4282d2c483d2adba8c1215ab638">   61</a></span><span class="preprocessor">#define FT8XX_OPT_NOSECS    32768</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#gade56de46694ca420460c1ceb26a33120">   63</a></span><span class="preprocessor">#define FT8XX_OPT_NOHANDS   49152</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#gae64451b001196d2062d2d0a940dadcee">   70</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__ft8xx__copro.html#gae64451b001196d2062d2d0a940dadcee">ft8xx_copro_cmd</a>(uint32_t cmd);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga5ac02fe4d5d3af941b3eca7bc18a9602">   75</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__ft8xx__copro.html#ga5ac02fe4d5d3af941b3eca7bc18a9602">ft8xx_copro_cmd_dlstart</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#gaa6df956e01bc2919c147f6eafb839929">   80</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__ft8xx__copro.html#gaa6df956e01bc2919c147f6eafb839929">ft8xx_copro_cmd_swap</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#gac5cf196bb23196642415b73cb377e345">   97</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__ft8xx__copro.html#gac5cf196bb23196642415b73cb377e345">ft8xx_copro_cmd_text</a>(int16_t x,</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>               int16_t y,</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>               int16_t font,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>               uint16_t options,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>               <span class="keyword">const</span> <span class="keywordtype">char</span> *s);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga6193d853b2105a120619343ccaa62c0c">  122</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__ft8xx__copro.html#ga6193d853b2105a120619343ccaa62c0c">ft8xx_copro_cmd_number</a>(int16_t x,</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                 int16_t y,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                 int16_t font,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                 uint16_t options,</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                 int32_t n);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="group__ft8xx__copro.html#ga770a86ae67d3d30135bc3c48ab4e888b">  139</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__ft8xx__copro.html#ga770a86ae67d3d30135bc3c48ab4e888b">ft8xx_copro_cmd_calibrate</a>(uint32_t *result);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>}</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_DRIVERS_MISC_FT8XX_FT8XX_COPRO_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__ft8xx__copro_html_ga5ac02fe4d5d3af941b3eca7bc18a9602"><div class="ttname"><a href="group__ft8xx__copro.html#ga5ac02fe4d5d3af941b3eca7bc18a9602">ft8xx_copro_cmd_dlstart</a></div><div class="ttdeci">void ft8xx_copro_cmd_dlstart(void)</div><div class="ttdoc">Start a new display list.</div></div>
+<div class="ttc" id="agroup__ft8xx__copro_html_ga6193d853b2105a120619343ccaa62c0c"><div class="ttname"><a href="group__ft8xx__copro.html#ga6193d853b2105a120619343ccaa62c0c">ft8xx_copro_cmd_number</a></div><div class="ttdeci">void ft8xx_copro_cmd_number(int16_t x, int16_t y, int16_t font, uint16_t options, int32_t n)</div><div class="ttdoc">Draw a decimal number.</div></div>
+<div class="ttc" id="agroup__ft8xx__copro_html_ga770a86ae67d3d30135bc3c48ab4e888b"><div class="ttname"><a href="group__ft8xx__copro.html#ga770a86ae67d3d30135bc3c48ab4e888b">ft8xx_copro_cmd_calibrate</a></div><div class="ttdeci">void ft8xx_copro_cmd_calibrate(uint32_t *result)</div><div class="ttdoc">Execute the touch screen calibration routine.</div></div>
+<div class="ttc" id="agroup__ft8xx__copro_html_gaa6df956e01bc2919c147f6eafb839929"><div class="ttname"><a href="group__ft8xx__copro.html#gaa6df956e01bc2919c147f6eafb839929">ft8xx_copro_cmd_swap</a></div><div class="ttdeci">void ft8xx_copro_cmd_swap(void)</div><div class="ttdoc">Swap the current display list.</div></div>
+<div class="ttc" id="agroup__ft8xx__copro_html_gac5cf196bb23196642415b73cb377e345"><div class="ttname"><a href="group__ft8xx__copro.html#gac5cf196bb23196642415b73cb377e345">ft8xx_copro_cmd_text</a></div><div class="ttdeci">void ft8xx_copro_cmd_text(int16_t x, int16_t y, int16_t font, uint16_t options, const char *s)</div><div class="ttdoc">Draw text.</div></div>
+<div class="ttc" id="agroup__ft8xx__copro_html_gae64451b001196d2062d2d0a940dadcee"><div class="ttname"><a href="group__ft8xx__copro.html#gae64451b001196d2062d2d0a940dadcee">ft8xx_copro_cmd</a></div><div class="ttdeci">void ft8xx_copro_cmd(uint32_t cmd)</div><div class="ttdoc">Execute a display list command by co-processor engine.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

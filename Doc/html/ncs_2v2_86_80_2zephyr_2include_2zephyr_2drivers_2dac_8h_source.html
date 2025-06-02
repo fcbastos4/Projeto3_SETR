@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/dac.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">dac.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2dac_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2020 Libre Solar Technologies GmbH</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_DAC_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_DAC_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structdac__channel__cfg.html">   31</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structdac__channel__cfg.html">dac_channel_cfg</a> {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structdac__channel__cfg.html#a41a1708aa81b2a808556ec976ce303f3">   33</a></span>    uint8_t <a class="code hl_variable" href="structdac__channel__cfg.html#a41a1708aa81b2a808556ec976ce303f3">channel_id</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structdac__channel__cfg.html#a4ba4f6dde3e4525e0a0e71fea5aeaef3">   35</a></span>    uint8_t <a class="code hl_variable" href="structdac__channel__cfg.html#a4ba4f6dde3e4525e0a0e71fea5aeaef3">resolution</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structdac__channel__cfg.html#a31df5ad55f40cb89819fac3acd6b4d96">   40</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structdac__channel__cfg.html#a31df5ad55f40cb89819fac3acd6b4d96">buffered</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>};</div>
+</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment"> * Type definition of DAC API function for configuring a channel.</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment"> * See dac_channel_setup() for argument descriptions.</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">typedef</span> int (*dac_api_channel_setup)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                     <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdac__channel__cfg.html">dac_channel_cfg</a> *channel_cfg);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment"> * Type definition of DAC API function for setting a write request.</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"> * See dac_write_value() for argument descriptions.</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">typedef</span> int (*dac_api_write_value)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                    uint8_t channel, uint32_t value);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment"> * DAC driver API</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment"> * This is the mandatory API any DAC driver needs to expose.</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>__subsystem <span class="keyword">struct </span>dac_driver_api {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    dac_api_channel_setup channel_setup;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    dac_api_write_value   write_value;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>};</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="group__dac__interface.html#ga516e955972bd101f874f2bae6c4f7176">   90</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__dac__interface.html#ga516e955972bd101f874f2bae6c4f7176">dac_channel_setup</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdac__channel__cfg.html">dac_channel_cfg</a> *channel_cfg);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_dac_channel_setup(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                       <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdac__channel__cfg.html">dac_channel_cfg</a> *channel_cfg)</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>{</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keyword">const</span> <span class="keyword">struct </span>dac_driver_api *api =</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                (<span class="keyword">const</span> <span class="keyword">struct </span>dac_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordflow">return</span> api-&gt;channel_setup(dev, channel_cfg);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>}</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="group__dac__interface.html#gaed071e2f4fdcc2017cab1b5092daa592">  112</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__dac__interface.html#gaed071e2f4fdcc2017cab1b5092daa592">dac_write_value</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t channel,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                  uint32_t value);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_dac_write_value(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                        uint8_t channel, uint32_t value)</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>{</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">const</span> <span class="keyword">struct </span>dac_driver_api *api =</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                (<span class="keyword">const</span> <span class="keyword">struct </span>dac_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordflow">return</span> api-&gt;write_value(dev, channel, value);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>}</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>}</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="preprocessor">#include &lt;syscalls/dac.h&gt;</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">#endif  </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_DAC_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__dac__interface_html_ga516e955972bd101f874f2bae6c4f7176"><div class="ttname"><a href="group__dac__interface.html#ga516e955972bd101f874f2bae6c4f7176">dac_channel_setup</a></div><div class="ttdeci">__syscall int dac_channel_setup(const struct device *dev, const struct dac_channel_cfg *channel_cfg)</div><div class="ttdoc">Configure a DAC channel.</div></div>
+<div class="ttc" id="agroup__dac__interface_html_gaed071e2f4fdcc2017cab1b5092daa592"><div class="ttname"><a href="group__dac__interface.html#gaed071e2f4fdcc2017cab1b5092daa592">dac_write_value</a></div><div class="ttdeci">__syscall int dac_write_value(const struct device *dev, uint8_t channel, uint32_t value)</div><div class="ttdoc">Write a single value to a DAC channel.</div></div>
+<div class="ttc" id="astructdac__channel__cfg_html"><div class="ttname"><a href="structdac__channel__cfg.html">dac_channel_cfg</a></div><div class="ttdoc">Structure for specifying the configuration of a DAC channel.</div><div class="ttdef"><b>Definição</b> dac.h:31</div></div>
+<div class="ttc" id="astructdac__channel__cfg_html_a31df5ad55f40cb89819fac3acd6b4d96"><div class="ttname"><a href="structdac__channel__cfg.html#a31df5ad55f40cb89819fac3acd6b4d96">dac_channel_cfg::buffered</a></div><div class="ttdeci">bool buffered</div><div class="ttdef"><b>Definição</b> dac.h:40</div></div>
+<div class="ttc" id="astructdac__channel__cfg_html_a41a1708aa81b2a808556ec976ce303f3"><div class="ttname"><a href="structdac__channel__cfg.html#a41a1708aa81b2a808556ec976ce303f3">dac_channel_cfg::channel_id</a></div><div class="ttdeci">uint8_t channel_id</div><div class="ttdef"><b>Definição</b> dac.h:33</div></div>
+<div class="ttc" id="astructdac__channel__cfg_html_a4ba4f6dde3e4525e0a0e71fea5aeaef3"><div class="ttname"><a href="structdac__channel__cfg.html#a4ba4f6dde3e4525e0a0e71fea5aeaef3">dac_channel_cfg::resolution</a></div><div class="ttdeci">uint8_t resolution</div><div class="ttdef"><b>Definição</b> dac.h:35</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

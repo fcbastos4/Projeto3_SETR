@@ -1,0 +1,859 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/i2c.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">i2c.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2i2c_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Copyright (c) 2015 Intel Corporation</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_I2C_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_I2C_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;errno.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;<a class="code" href="slist_8h.html">zephyr/sys/slist.h</a>&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2rtio_2rtio_8h.html">zephyr/rtio/rtio.h</a>&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment"> * The following #defines are used to configure the I2C controller.</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga5ca8c5fbb2caa99ab0b7007ce2c11633">   39</a></span><span class="preprocessor">#define I2C_SPEED_STANDARD      (0x1U)</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#gaef9d097ed2b58676498a33f3cf76f38d">   42</a></span><span class="preprocessor">#define I2C_SPEED_FAST          (0x2U)</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga9c867195c4a99615ed9c0011293a2155">   45</a></span><span class="preprocessor">#define I2C_SPEED_FAST_PLUS     (0x3U)</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#gac7bce1bbfb422a123d3228e97e2cbb71">   48</a></span><span class="preprocessor">#define I2C_SPEED_HIGH          (0x4U)</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga213468d14d1241632c957873cf2d9628">   51</a></span><span class="preprocessor">#define I2C_SPEED_ULTRA         (0x5U)</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#gad38207f2e64b6ef3c08b17c8ccb3a836">   54</a></span><span class="preprocessor">#define I2C_SPEED_DT            (0x7U)</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define I2C_SPEED_SHIFT         (1U)</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#define I2C_SPEED_SET(speed)        (((speed) &lt;&lt; I2C_SPEED_SHIFT) \</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">                        &amp; I2C_SPEED_MASK)</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#define I2C_SPEED_MASK          (0x7U &lt;&lt; I2C_SPEED_SHIFT) </span><span class="comment">/* 3 bits */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#define I2C_SPEED_GET(cfg)      (((cfg) &amp; I2C_SPEED_MASK) \</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">                        &gt;&gt; I2C_SPEED_SHIFT)</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga66836d37196ce866681f506c44c8766d">   64</a></span><span class="preprocessor">#define I2C_ADDR_10_BITS        BIT(0)</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga6b03c8a7668528e2902073ffaa1d3a13">   67</a></span><span class="preprocessor">#define I2C_MODE_CONTROLLER     BIT(4)</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="foldopen" id="foldopen00075" data-start="{" data-end="};">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structi2c__dt__spec.html">   75</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *bus;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    uint16_t addr;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="foldopen" id="foldopen00090" data-start="" data-end="">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga6479e2c8f807fc8c92646a87d1dcca84">   90</a></span><span class="preprocessor">#define I2C_DT_SPEC_GET_ON_I3C(node_id)                 \</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">    .bus = DEVICE_DT_GET(DT_BUS(node_id)),              \</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">    .addr = DT_PROP_BY_IDX(node_id, reg, 0)</span></div>
+</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="foldopen" id="foldopen00104" data-start="" data-end="">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#gafa81ab3407e8a1da368b729b31471af8">  104</a></span><span class="preprocessor">#define I2C_DT_SPEC_GET_ON_I2C(node_id)                 \</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">    .bus = DEVICE_DT_GET(DT_BUS(node_id)),              \</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">    .addr = DT_REG_ADDR(node_id)</span></div>
+</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="foldopen" id="foldopen00118" data-start="" data-end="">
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#gabb3ae5225cea677f3f3b36e4477ed045">  118</a></span><span class="preprocessor">#define I2C_DT_SPEC_GET(node_id)                    \</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">    {                               \</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">        COND_CODE_1(DT_ON_BUS(node_id, i3c),            \</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="preprocessor">                (I2C_DT_SPEC_GET_ON_I3C(node_id)),      \</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">                (I2C_DT_SPEC_GET_ON_I2C(node_id)))      \</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="foldopen" id="foldopen00133" data-start="" data-end="">
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga2197cbc5122f0d8b2e0788113bcb5963">  133</a></span><span class="preprocessor">#define I2C_DT_SPEC_INST_GET(inst) \</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">    I2C_DT_SPEC_GET(DT_DRV_INST(inst))</span></div>
+</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="comment"> * I2C_MSG_* are I2C Message flags.</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#gaf622d3c4aa1c832f90fff7200bb33732">  142</a></span><span class="preprocessor">#define I2C_MSG_WRITE           (0U &lt;&lt; 0U)</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga6c3042e882e6a817a6498b7a4e1f0a95">  145</a></span><span class="preprocessor">#define I2C_MSG_READ            BIT(0)</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">#define I2C_MSG_RW_MASK         BIT(0)</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#gaad55262ad277ee60b786372c71f217aa">  152</a></span><span class="preprocessor">#define I2C_MSG_STOP            BIT(1)</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga8c6cf7be2a04979fdb9d0b7dd9c4f831">  161</a></span><span class="preprocessor">#define I2C_MSG_RESTART         BIT(2)</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga5569e8a3e4f6660928dfe443067c472c">  166</a></span><span class="preprocessor">#define I2C_MSG_ADDR_10_BITS        BIT(3)</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="foldopen" id="foldopen00182" data-start="{" data-end="};">
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="structi2c__msg.html">  182</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> {</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">  184</a></span>    uint8_t     *<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="structi2c__msg.html#ae122c36d1fdc0829321fa116921d7a52">  187</a></span>    uint32_t    <a class="code hl_variable" href="structi2c__msg.html#ae122c36d1fdc0829321fa116921d7a52">len</a>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="structi2c__msg.html#ae6f9dc8a50b611adbca38e29b529ab9c">  190</a></span>    uint8_t     <a class="code hl_variable" href="structi2c__msg.html#ae6f9dc8a50b611adbca38e29b529ab9c">flags</a>;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>};</div>
+</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga590293ec0d90d3fb0d8cbfee097798fc">  200</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__i2c__interface.html#ga590293ec0d90d3fb0d8cbfee097798fc">i2c_callback_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">int</span> result, <span class="keywordtype">void</span> *<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="keyword">struct </span><a class="code hl_struct" href="structi2c__target__config.html">i2c_target_config</a>;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="keyword">typedef</span> int (*i2c_api_configure_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                   uint32_t dev_config);</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="keyword">typedef</span> int (*i2c_api_get_config_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>                    uint32_t *dev_config);</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="keyword">typedef</span> int (*i2c_api_full_io_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>                 <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs,</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>                 uint8_t num_msgs,</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                 uint16_t addr);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="keyword">typedef</span> int (*i2c_api_target_register_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                    <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__target__config.html">i2c_target_config</a> *cfg);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="keyword">typedef</span> int (*i2c_api_target_unregister_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>                      <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__target__config.html">i2c_target_config</a> *cfg);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="preprocessor">#ifdef CONFIG_I2C_CALLBACK</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="keyword">typedef</span> int (*i2c_api_transfer_cb_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                 <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs,</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>                 uint8_t num_msgs,</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>                 uint16_t addr,</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>                 <a class="code hl_typedef" href="group__i2c__interface.html#ga590293ec0d90d3fb0d8cbfee097798fc">i2c_callback_t</a> cb,</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>                 <span class="keywordtype">void</span> *userdata);</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_I2C_CALLBACK */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="preprocessor">#if defined(CONFIG_I2C_RTIO) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="keyword">typedef</span> void (*i2c_api_iodev_submit)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                     <span class="keyword">struct </span><a class="code hl_struct" href="structrtio__iodev__sqe.html">rtio_iodev_sqe</a> *iodev_sqe);</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_I2C_RTIO */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="keyword">typedef</span> int (*i2c_api_recover_bus_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>__subsystem <span class="keyword">struct </span>i2c_driver_api {</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    i2c_api_configure_t configure;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    i2c_api_get_config_t get_config;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    i2c_api_full_io_t transfer;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    i2c_api_target_register_t target_register;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    i2c_api_target_unregister_t target_unregister;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="preprocessor">#ifdef CONFIG_I2C_CALLBACK</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    i2c_api_transfer_cb_t transfer_cb;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="preprocessor">#ifdef CONFIG_I2C_RTIO</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    i2c_api_iodev_submit iodev_submit;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    i2c_api_recover_bus_t recover_bus;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>};</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="keyword">typedef</span> int (*i2c_target_api_register_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="keyword">typedef</span> int (*i2c_target_api_unregister_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="keyword">struct </span>i2c_target_driver_api {</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    i2c_target_api_register_t driver_register;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    i2c_target_api_unregister_t driver_unregister;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>};</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga9031b418a053f4fe0ace72fea91dec3d">  270</a></span><span class="preprocessor">#define I2C_TARGET_FLAGS_ADDR_10_BITS   BIT(0)</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga4cd9be521a6c7d088f15b88400624e4e">  287</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__i2c__interface.html#ga4cd9be521a6c7d088f15b88400624e4e">i2c_target_write_requested_cb_t</a>)(</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__target__config.html">i2c_target_config</a> *config);</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga619db7eea1c4400adcbea5dddf5cf2c5">  308</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__i2c__interface.html#ga619db7eea1c4400adcbea5dddf5cf2c5">i2c_target_write_received_cb_t</a>)(</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__target__config.html">i2c_target_config</a> *config, uint8_t val);</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga244264ecdbd51210728ee92dcbebbc87">  330</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__i2c__interface.html#ga244264ecdbd51210728ee92dcbebbc87">i2c_target_read_requested_cb_t</a>)(</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__target__config.html">i2c_target_config</a> *config, uint8_t *val);</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga4cb0ae2cf41fc2105d1baa5e496e5dae">  352</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__i2c__interface.html#ga4cb0ae2cf41fc2105d1baa5e496e5dae">i2c_target_read_processed_cb_t</a>)(</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__target__config.html">i2c_target_config</a> *config, uint8_t *val);</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="preprocessor">#ifdef CONFIG_I2C_TARGET_BUFFER_MODE</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span><span class="keyword">typedef</span> void (*i2c_target_buf_write_received_cb_t)(</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__target__config.html">i2c_target_config</a> *config, uint8_t *ptr, uint32_t len);</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span><span class="keyword">typedef</span> int (*i2c_target_buf_read_requested_cb_t)(</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__target__config.html">i2c_target_config</a> *config, uint8_t **ptr, uint32_t *len);</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga3c898d0bef364461a3502037cf3d40b0">  412</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__i2c__interface.html#ga3c898d0bef364461a3502037cf3d40b0">i2c_target_stop_cb_t</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structi2c__target__config.html">i2c_target_config</a> *config);</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span> </div>
+<div class="foldopen" id="foldopen00420" data-start="{" data-end="};">
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno"><a class="line" href="structi2c__target__callbacks.html">  420</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi2c__target__callbacks.html">i2c_target_callbacks</a> {</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>    <a class="code hl_typedef" href="group__i2c__interface.html#ga4cd9be521a6c7d088f15b88400624e4e">i2c_target_write_requested_cb_t</a> write_requested;</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>    <a class="code hl_typedef" href="group__i2c__interface.html#ga244264ecdbd51210728ee92dcbebbc87">i2c_target_read_requested_cb_t</a> read_requested;</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>    <a class="code hl_typedef" href="group__i2c__interface.html#ga619db7eea1c4400adcbea5dddf5cf2c5">i2c_target_write_received_cb_t</a> write_received;</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>    <a class="code hl_typedef" href="group__i2c__interface.html#ga4cb0ae2cf41fc2105d1baa5e496e5dae">i2c_target_read_processed_cb_t</a> read_processed;</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span><span class="preprocessor">#ifdef CONFIG_I2C_TARGET_BUFFER_MODE</span></div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>    i2c_target_buf_write_received_cb_t buf_write_received;</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    i2c_target_buf_read_requested_cb_t buf_read_requested;</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    <a class="code hl_typedef" href="group__i2c__interface.html#ga3c898d0bef364461a3502037cf3d40b0">i2c_target_stop_cb_t</a> stop;</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>};</div>
+</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span> </div>
+<div class="foldopen" id="foldopen00443" data-start="{" data-end="};">
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno"><a class="line" href="structi2c__target__config.html">  443</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi2c__target__config.html">i2c_target_config</a> {</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno"><a class="line" href="structi2c__target__config.html#ab2393d22d8e1fb12a389cd457d30933a">  445</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> <a class="code hl_variable" href="structi2c__target__config.html#ab2393d22d8e1fb12a389cd457d30933a">node</a>;</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span> </div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno"><a class="line" href="structi2c__target__config.html#a25d6920d44abb1e1ce8f4c3aeb600bc5">  448</a></span>    uint8_t <a class="code hl_variable" href="structi2c__target__config.html#a25d6920d44abb1e1ce8f4c3aeb600bc5">flags</a>;</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span> </div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno"><a class="line" href="structi2c__target__config.html#a5d531acec2b530a21b8d646ce321b6fd">  451</a></span>    uint16_t <a class="code hl_variable" href="structi2c__target__config.html#a5d531acec2b530a21b8d646ce321b6fd">address</a>;</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span> </div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno"><a class="line" href="structi2c__target__config.html#ad6c9573e97ac2569455f43f022600f77">  454</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__target__callbacks.html">i2c_target_callbacks</a> *<a class="code hl_variable" href="structi2c__target__config.html#ad6c9573e97ac2569455f43f022600f77">callbacks</a>;</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>};</div>
+</div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span> </div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> i2c_is_ready_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> *spec)</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>{</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>    <span class="comment">/* Validate bus is ready */</span></div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__device__model.html#ga0b9e6357f7cfdab3b5ad119b9b549de7">device_is_ready</a>(spec-&gt;bus);</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>}</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span> </div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga2117056d6f6523627dda68f8ba32541e">  497</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__i2c__interface.html#ga2117056d6f6523627dda68f8ba32541e">i2c_dump_msgs_rw</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs, uint8_t num_msgs,</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>              uint16_t addr, <span class="keywordtype">bool</span> dump_read);</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span> </div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> i2c_dump_msgs(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs,</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>                 uint8_t num_msgs, uint16_t addr)</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>{</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>    <a class="code hl_function" href="group__i2c__interface.html#ga2117056d6f6523627dda68f8ba32541e">i2c_dump_msgs_rw</a>(dev, msgs, num_msgs, addr, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span>}</div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span> </div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span><span class="preprocessor">#if defined(CONFIG_I2C_STATS) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span> </div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span><span class="preprocessor">#include &lt;<a class="code" href="stats_2stats_8h.html">zephyr/stats/stats.h</a>&gt;</span></div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span> </div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span>STATS_SECT_START(i2c)</div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span>STATS_SECT_ENTRY32(bytes_read)</div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>STATS_SECT_ENTRY32(bytes_written)</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>STATS_SECT_ENTRY32(message_count)</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>STATS_SECT_ENTRY32(transfer_call_count)</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span><a class="code hl_define" href="stats_2stats_8h.html#a4124f8c0a9ffb78d8be608a780676785">STATS_SECT_END</a>;</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span> </div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>STATS_NAME_START(i2c)</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>STATS_NAME(i2c, bytes_read)</div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>STATS_NAME(i2c, bytes_written)</div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>STATS_NAME(i2c, message_count)</div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>STATS_NAME(i2c, transfer_call_count)</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>STATS_NAME_END(i2c);</div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span> </div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span><span class="keyword">struct </span>i2c_device_state {</div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structdevice__state.html">device_state</a> devstate;</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>    <span class="keyword">struct </span>stats_i2c stats;</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>};</div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span> </div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> i2c_xfer_stats(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs,</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>                  uint8_t num_msgs)</div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>{</div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span>    <span class="keyword">struct </span>i2c_device_state *state =</div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>        <a class="code hl_define" href="group__sys-util.html#gac5bc561d1bfd1bf68877fe577779bd2f">CONTAINER_OF</a>(dev-&gt;<a class="code hl_variable" href="structdevice.html#abe18f600adc4ab760963928477cc944e">state</a>, <span class="keyword">struct</span> i2c_device_state, devstate);</div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>    uint32_t bytes_read = 0U;</div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>    uint32_t bytes_written = 0U;</div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span> </div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>    STATS_INC(state-&gt;stats, transfer_call_count);</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>    STATS_INCN(state-&gt;stats, message_count, num_msgs);</div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>    <span class="keywordflow">for</span> (uint8_t i = 0U; i &lt; num_msgs; i++) {</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>        <span class="keywordflow">if</span> (msgs[i].flags &amp; <a class="code hl_define" href="group__i2c__interface.html#ga6c3042e882e6a817a6498b7a4e1f0a95">I2C_MSG_READ</a>) {</div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>            bytes_read += msgs[i].<a class="code hl_variable" href="structi2c__msg.html#ae122c36d1fdc0829321fa116921d7a52">len</a>;</div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>            bytes_written += msgs[i].<a class="code hl_variable" href="structi2c__msg.html#ae122c36d1fdc0829321fa116921d7a52">len</a>;</div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>        }</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>    }</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>    STATS_INCN(state-&gt;stats, bytes_read, bytes_read);</div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>    STATS_INCN(state-&gt;stats, bytes_written, bytes_written);</div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>}</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span> </div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span><span class="preprocessor">#define Z_I2C_DEVICE_STATE_DEFINE(dev_id)               \</span></div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span><span class="preprocessor">    static struct i2c_device_state Z_DEVICE_STATE_NAME(dev_id)  \</span></div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span><span class="preprocessor">    __attribute__((__section__(&quot;.z_devstate&quot;)))</span></div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span> </div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span><span class="preprocessor">#define Z_I2C_INIT_FN(dev_id, init_fn)                  \</span></div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span><span class="preprocessor">    static inline int UTIL_CAT(dev_id, _init)(const struct device *dev) \</span></div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span><span class="preprocessor">    {                               \</span></div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span><span class="preprocessor">        struct i2c_device_state *state =            \</span></div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span><span class="preprocessor">            CONTAINER_OF(dev-&gt;state, struct i2c_device_state, devstate); \</span></div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span><span class="preprocessor">        stats_init(&amp;state-&gt;stats.s_hdr, STATS_SIZE_32, 4,   \</span></div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span><span class="preprocessor">               STATS_NAME_INIT_PARMS(i2c));         \</span></div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span><span class="preprocessor">        stats_register(dev-&gt;name, &amp;(state-&gt;stats.s_hdr));   \</span></div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span><span class="preprocessor">        if (init_fn != NULL) {                  \</span></div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span><span class="preprocessor">            return init_fn(dev);                \</span></div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span><span class="preprocessor">        }                           \</span></div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span><span class="preprocessor">                                    \</span></div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span><span class="preprocessor">        return 0;                       \</span></div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span> </div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span><span class="preprocessor">#define I2C_DEVICE_DT_DEFINE(node_id, init_fn, pm, data, config, level, \</span></div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span><span class="preprocessor">                 prio, api, ...)                \</span></div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span><span class="preprocessor">    Z_I2C_DEVICE_STATE_DEFINE(Z_DEVICE_DT_DEV_ID(node_id));     \</span></div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span><span class="preprocessor">    Z_I2C_INIT_FN(Z_DEVICE_DT_DEV_ID(node_id), init_fn)     \</span></div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span><span class="preprocessor">    Z_DEVICE_DEFINE(node_id, Z_DEVICE_DT_DEV_ID(node_id),       \</span></div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span><span class="preprocessor">            DEVICE_DT_NAME(node_id),            \</span></div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span><span class="preprocessor">            &amp;UTIL_CAT(Z_DEVICE_DT_DEV_ID(node_id), _init),  \</span></div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span><span class="preprocessor">            pm, data, config, level, prio, api, \</span></div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span><span class="preprocessor">            &amp;(Z_DEVICE_STATE_NAME(Z_DEVICE_DT_DEV_ID(node_id)).devstate), \</span></div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span><span class="preprocessor">            __VA_ARGS__)</span></div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span> </div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span><span class="preprocessor">#else </span><span class="comment">/* CONFIG_I2C_STATS */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span> </div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> i2c_xfer_stats(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs,</div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>                  uint8_t num_msgs)</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>{</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>    ARG_UNUSED(dev);</div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>    ARG_UNUSED(msgs);</div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>    ARG_UNUSED(num_msgs);</div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>}</div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> </div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span><span class="preprocessor">#define I2C_DEVICE_DT_DEFINE(node_id, init_fn, pm, data, config, level, \</span></div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span><span class="preprocessor">                 prio, api, ...)                \</span></div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span><span class="preprocessor">    DEVICE_DT_DEFINE(node_id, init_fn, pm, data, config, level, \</span></div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span><span class="preprocessor">             prio, api, __VA_ARGS__)</span></div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span> </div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_I2C_STATS */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span> </div>
+<div class="foldopen" id="foldopen00674" data-start="" data-end="">
+<div class="line"><a id="l00674" name="l00674"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#gabfd94bccb99bd1a958cd8d7902b2072a">  674</a></span><span class="preprocessor">#define I2C_DEVICE_DT_INST_DEFINE(inst, ...)        \</span></div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span><span class="preprocessor">    I2C_DEVICE_DT_DEFINE(DT_DRV_INST(inst), __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span> </div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span> </div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga6b31c9e474eba2da66f1d1256060acb7">  688</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__i2c__interface.html#ga6b31c9e474eba2da66f1d1256060acb7">i2c_configure</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t dev_config);</div>
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span> </div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_i2c_configure(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span>                       uint32_t dev_config)</div>
+<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span>{</div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *api =</div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span> </div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span>    <span class="keywordflow">return</span> api-&gt;configure(dev, dev_config);</div>
+<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span>}</div>
+<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span> </div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#gac11f27e143c843fb61f638aa322971f4">  719</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__i2c__interface.html#gac11f27e143c843fb61f638aa322971f4">i2c_get_config</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t *dev_config);</div>
+<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span> </div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_i2c_get_config(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t *dev_config)</div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span>{</div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span> </div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>    <span class="keywordflow">if</span> (api-&gt;get_config == NULL) {</div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span>    }</div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span> </div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>    <span class="keywordflow">return</span> api-&gt;get_config(dev, dev_config);</div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>}</div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span> </div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga3f5d603778892dda3528c5acaa1353f5">  759</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__i2c__interface.html#ga3f5d603778892dda3528c5acaa1353f5">i2c_transfer</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span>               <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs, uint8_t num_msgs,</div>
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span>               uint16_t addr);</div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span> </div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_i2c_transfer(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>                      <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs, uint8_t num_msgs,</div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span>                      uint16_t addr)</div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span>{</div>
+<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *api =</div>
+<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span> </div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span>    <span class="keywordtype">int</span> res =  api-&gt;transfer(dev, msgs, num_msgs, addr);</div>
+<div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span> </div>
+<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span>    i2c_xfer_stats(dev, msgs, num_msgs);</div>
+<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span> </div>
+<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>    <span class="keywordflow">if</span> (<a class="code hl_define" href="group__sys-util.html#ga111fe4e9d63758262fc6810a782cb32a">IS_ENABLED</a>(CONFIG_I2C_DUMP_MESSAGES)) {</div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span>        <a class="code hl_function" href="group__i2c__interface.html#ga2117056d6f6523627dda68f8ba32541e">i2c_dump_msgs_rw</a>(dev, msgs, num_msgs, addr, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span>    }</div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span> </div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span>}</div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span> </div>
+<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span><span class="preprocessor">#if defined(CONFIG_I2C_CALLBACK) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span> </div>
+<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_transfer_cb(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs,</div>
+<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>                 uint8_t num_msgs,</div>
+<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>                 uint16_t addr,</div>
+<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span>                 <a class="code hl_typedef" href="group__i2c__interface.html#ga590293ec0d90d3fb0d8cbfee097798fc">i2c_callback_t</a> cb,</div>
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>                 <span class="keywordtype">void</span> *userdata)</div>
+<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>{</div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span> </div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>    <span class="keywordflow">if</span> (api-&gt;transfer_cb == NULL) {</div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span>    }</div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span> </div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>    <span class="keywordflow">return</span> api-&gt;transfer_cb(dev, msgs, num_msgs, addr, cb, userdata);</div>
+<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span>}</div>
+<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span> </div>
+<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_transfer_cb_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> *spec,</div>
+<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span>                <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs,</div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>                uint8_t num_msgs,</div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span>                <a class="code hl_typedef" href="group__i2c__interface.html#ga590293ec0d90d3fb0d8cbfee097798fc">i2c_callback_t</a> cb,</div>
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span>                <span class="keywordtype">void</span> *userdata)</div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span>{</div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>    <span class="keywordflow">return</span> i2c_transfer_cb(spec-&gt;bus, msgs, num_msgs, spec-&gt;addr, cb, userdata);</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>}</div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span> </div>
+<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_write_read_cb(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs,</div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span>                 uint8_t num_msgs, uint16_t addr, <span class="keyword">const</span> <span class="keywordtype">void</span> *write_buf,</div>
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>                 <span class="keywordtype">size_t</span> num_write, <span class="keywordtype">void</span> *read_buf, <span class="keywordtype">size_t</span> num_read,</div>
+<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>                 <a class="code hl_typedef" href="group__i2c__interface.html#ga590293ec0d90d3fb0d8cbfee097798fc">i2c_callback_t</a> cb, <span class="keywordtype">void</span> *userdata)</div>
+<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>{</div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span>    <span class="keywordflow">if</span> ((msgs == NULL) || (num_msgs != 2)) {</div>
+<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span>        <span class="keywordflow">return</span> -EINVAL;</div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span>    }</div>
+<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span> </div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span>    msgs[0].<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a> = (uint8_t *)write_buf;</div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span>    msgs[0].<a class="code hl_variable" href="structi2c__msg.html#ae122c36d1fdc0829321fa116921d7a52">len</a> = num_write;</div>
+<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span>    msgs[0].<a class="code hl_variable" href="structi2c__msg.html#ae6f9dc8a50b611adbca38e29b529ab9c">flags</a> = <a class="code hl_define" href="group__i2c__interface.html#gaf622d3c4aa1c832f90fff7200bb33732">I2C_MSG_WRITE</a>;</div>
+<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span> </div>
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>    msgs[1].<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a> = (uint8_t *)read_buf;</div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span>    msgs[1].<a class="code hl_variable" href="structi2c__msg.html#ae122c36d1fdc0829321fa116921d7a52">len</a> = num_read;</div>
+<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span>    msgs[1].<a class="code hl_variable" href="structi2c__msg.html#ae6f9dc8a50b611adbca38e29b529ab9c">flags</a> = <a class="code hl_define" href="group__i2c__interface.html#ga8c6cf7be2a04979fdb9d0b7dd9c4f831">I2C_MSG_RESTART</a> | <a class="code hl_define" href="group__i2c__interface.html#ga6c3042e882e6a817a6498b7a4e1f0a95">I2C_MSG_READ</a> | <a class="code hl_define" href="group__i2c__interface.html#gaad55262ad277ee60b786372c71f217aa">I2C_MSG_STOP</a>;</div>
+<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span> </div>
+<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span>    <span class="keywordflow">return</span> i2c_transfer_cb(dev, msgs, num_msgs, addr, cb, userdata);</div>
+<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span>}</div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span> </div>
+<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_write_read_cb_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> *spec, <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs,</div>
+<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span>                       uint8_t num_msgs, <span class="keyword">const</span> <span class="keywordtype">void</span> *write_buf, <span class="keywordtype">size_t</span> num_write,</div>
+<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span>                       <span class="keywordtype">void</span> *read_buf, <span class="keywordtype">size_t</span> num_read, <a class="code hl_typedef" href="group__i2c__interface.html#ga590293ec0d90d3fb0d8cbfee097798fc">i2c_callback_t</a> cb,</div>
+<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span>                       <span class="keywordtype">void</span> *userdata)</div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span>{</div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span>    <span class="keywordflow">return</span> i2c_write_read_cb(spec-&gt;bus, msgs, num_msgs, spec-&gt;addr, write_buf, num_write,</div>
+<div class="line"><a id="l00915" name="l00915"></a><span class="lineno">  915</span>                 read_buf, num_read, cb, userdata);</div>
+<div class="line"><a id="l00916" name="l00916"></a><span class="lineno">  916</span>}</div>
+<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span> </div>
+<div class="line"><a id="l00918" name="l00918"></a><span class="lineno">  918</span><span class="preprocessor">#if defined(CONFIG_POLL) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00919" name="l00919"></a><span class="lineno">  919</span> </div>
+<div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span><span class="keywordtype">void</span> z_i2c_transfer_signal_cb(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">int</span> result, <span class="keywordtype">void</span> *userdata);</div>
+<div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_transfer_signal(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs,</div>
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span>                 uint8_t num_msgs,</div>
+<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span>                 uint16_t addr,</div>
+<div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *sig)</div>
+<div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span>{</div>
+<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00952" name="l00952"></a><span class="lineno">  952</span> </div>
+<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span>    <span class="keywordflow">if</span> (api-&gt;transfer_cb == NULL) {</div>
+<div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span>    }</div>
+<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span> </div>
+<div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span>    <span class="keywordflow">return</span> api-&gt;transfer_cb(dev, msgs, num_msgs, addr, z_i2c_transfer_signal_cb, sig);</div>
+<div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span>}</div>
+<div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span> </div>
+<div class="line"><a id="l00960" name="l00960"></a><span class="lineno">  960</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_POLL */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00961" name="l00961"></a><span class="lineno">  961</span> </div>
+<div class="line"><a id="l00962" name="l00962"></a><span class="lineno">  962</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_I2C_CALLBACK */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00963" name="l00963"></a><span class="lineno">  963</span> </div>
+<div class="line"><a id="l00964" name="l00964"></a><span class="lineno">  964</span> </div>
+<div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span><span class="preprocessor">#if defined(CONFIG_I2C_RTIO) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00966" name="l00966"></a><span class="lineno">  966</span> </div>
+<div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> i2c_iodev_submit(<span class="keyword">struct</span> <a class="code hl_struct" href="structrtio__iodev__sqe.html">rtio_iodev_sqe</a> *iodev_sqe)</div>
+<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span>{</div>
+<div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> *dt_spec = iodev_sqe-&gt;sqe-&gt;<a class="code hl_variable" href="structrtio__sqe.html#a6c784702f011592c84feacd57915bbfc">iodev</a>-&gt;data;</div>
+<div class="line"><a id="l00976" name="l00976"></a><span class="lineno">  976</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev = dt_spec-&gt;bus;</div>
+<div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00978" name="l00978"></a><span class="lineno">  978</span> </div>
+<div class="line"><a id="l00979" name="l00979"></a><span class="lineno">  979</span>    api-&gt;iodev_submit(dt_spec-&gt;bus, iodev_sqe);</div>
+<div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span>}</div>
+<div class="line"><a id="l00981" name="l00981"></a><span class="lineno">  981</span> </div>
+<div class="line"><a id="l00982" name="l00982"></a><span class="lineno">  982</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structrtio__iodev__api.html">rtio_iodev_api</a> i2c_iodev_api;</div>
+<div class="line"><a id="l00983" name="l00983"></a><span class="lineno">  983</span> </div>
+<div class="line"><a id="l00993" name="l00993"></a><span class="lineno">  993</span><span class="preprocessor">#define I2C_DT_IODEV_DEFINE(name, node_id)                  \</span></div>
+<div class="line"><a id="l00994" name="l00994"></a><span class="lineno">  994</span><span class="preprocessor">    const struct i2c_dt_spec _i2c_dt_spec_##name =              \</span></div>
+<div class="line"><a id="l00995" name="l00995"></a><span class="lineno">  995</span><span class="preprocessor">        I2C_DT_SPEC_GET(node_id);                   \</span></div>
+<div class="line"><a id="l00996" name="l00996"></a><span class="lineno">  996</span><span class="preprocessor">    RTIO_IODEV_DEFINE(name, &amp;i2c_iodev_api, (void *)&amp;_i2c_dt_spec_##name)</span></div>
+<div class="line"><a id="l00997" name="l00997"></a><span class="lineno">  997</span> </div>
+<div class="line"><a id="l01009" name="l01009"></a><span class="lineno"> 1009</span><span class="keyword">struct </span><a class="code hl_struct" href="structrtio__sqe.html">rtio_sqe</a> *i2c_rtio_copy(<span class="keyword">struct</span> <a class="code hl_struct" href="structrtio.html">rtio</a> *r,</div>
+<div class="line"><a id="l01010" name="l01010"></a><span class="lineno"> 1010</span>                   <span class="keyword">struct</span> <a class="code hl_struct" href="structrtio__iodev.html">rtio_iodev</a> *<a class="code hl_variable" href="structrtio__sqe.html#a6c784702f011592c84feacd57915bbfc">iodev</a>,</div>
+<div class="line"><a id="l01011" name="l01011"></a><span class="lineno"> 1011</span>                   <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs,</div>
+<div class="line"><a id="l01012" name="l01012"></a><span class="lineno"> 1012</span>                   uint8_t num_msgs);</div>
+<div class="line"><a id="l01013" name="l01013"></a><span class="lineno"> 1013</span> </div>
+<div class="line"><a id="l01014" name="l01014"></a><span class="lineno"> 1014</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_I2C_RTIO */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l01015" name="l01015"></a><span class="lineno"> 1015</span> </div>
+<div class="line"><a id="l01029" name="l01029"></a><span class="lineno"> 1029</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_transfer_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> *spec,</div>
+<div class="line"><a id="l01030" name="l01030"></a><span class="lineno"> 1030</span>                  <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> *msgs, uint8_t num_msgs)</div>
+<div class="line"><a id="l01031" name="l01031"></a><span class="lineno"> 1031</span>{</div>
+<div class="line"><a id="l01032" name="l01032"></a><span class="lineno"> 1032</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__i2c__interface.html#ga3f5d603778892dda3528c5acaa1353f5">i2c_transfer</a>(spec-&gt;bus, msgs, num_msgs, spec-&gt;addr);</div>
+<div class="line"><a id="l01033" name="l01033"></a><span class="lineno"> 1033</span>}</div>
+<div class="line"><a id="l01034" name="l01034"></a><span class="lineno"> 1034</span> </div>
+<div class="line"><a id="l01047" name="l01047"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga757baf0b70b8a0ed036929ee73d13b6d"> 1047</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__i2c__interface.html#ga757baf0b70b8a0ed036929ee73d13b6d">i2c_recover_bus</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l01048" name="l01048"></a><span class="lineno"> 1048</span> </div>
+<div class="line"><a id="l01049" name="l01049"></a><span class="lineno"> 1049</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_i2c_recover_bus(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l01050" name="l01050"></a><span class="lineno"> 1050</span>{</div>
+<div class="line"><a id="l01051" name="l01051"></a><span class="lineno"> 1051</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *api =</div>
+<div class="line"><a id="l01052" name="l01052"></a><span class="lineno"> 1052</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01053" name="l01053"></a><span class="lineno"> 1053</span> </div>
+<div class="line"><a id="l01054" name="l01054"></a><span class="lineno"> 1054</span>    <span class="keywordflow">if</span> (api-&gt;recover_bus == NULL) {</div>
+<div class="line"><a id="l01055" name="l01055"></a><span class="lineno"> 1055</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l01056" name="l01056"></a><span class="lineno"> 1056</span>    }</div>
+<div class="line"><a id="l01057" name="l01057"></a><span class="lineno"> 1057</span> </div>
+<div class="line"><a id="l01058" name="l01058"></a><span class="lineno"> 1058</span>    <span class="keywordflow">return</span> api-&gt;recover_bus(dev);</div>
+<div class="line"><a id="l01059" name="l01059"></a><span class="lineno"> 1059</span>}</div>
+<div class="line"><a id="l01060" name="l01060"></a><span class="lineno"> 1060</span> </div>
+<div class="line"><a id="l01085" name="l01085"></a><span class="lineno"> 1085</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_target_register(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l01086" name="l01086"></a><span class="lineno"> 1086</span>                     <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__target__config.html">i2c_target_config</a> *cfg)</div>
+<div class="line"><a id="l01087" name="l01087"></a><span class="lineno"> 1087</span>{</div>
+<div class="line"><a id="l01088" name="l01088"></a><span class="lineno"> 1088</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *api =</div>
+<div class="line"><a id="l01089" name="l01089"></a><span class="lineno"> 1089</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01090" name="l01090"></a><span class="lineno"> 1090</span> </div>
+<div class="line"><a id="l01091" name="l01091"></a><span class="lineno"> 1091</span>    <span class="keywordflow">if</span> (api-&gt;target_register == NULL) {</div>
+<div class="line"><a id="l01092" name="l01092"></a><span class="lineno"> 1092</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l01093" name="l01093"></a><span class="lineno"> 1093</span>    }</div>
+<div class="line"><a id="l01094" name="l01094"></a><span class="lineno"> 1094</span> </div>
+<div class="line"><a id="l01095" name="l01095"></a><span class="lineno"> 1095</span>    <span class="keywordflow">return</span> api-&gt;target_register(dev, cfg);</div>
+<div class="line"><a id="l01096" name="l01096"></a><span class="lineno"> 1096</span>}</div>
+<div class="line"><a id="l01097" name="l01097"></a><span class="lineno"> 1097</span> </div>
+<div class="line"><a id="l01114" name="l01114"></a><span class="lineno"> 1114</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_target_unregister(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l01115" name="l01115"></a><span class="lineno"> 1115</span>                       <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__target__config.html">i2c_target_config</a> *cfg)</div>
+<div class="line"><a id="l01116" name="l01116"></a><span class="lineno"> 1116</span>{</div>
+<div class="line"><a id="l01117" name="l01117"></a><span class="lineno"> 1117</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *api =</div>
+<div class="line"><a id="l01118" name="l01118"></a><span class="lineno"> 1118</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>i2c_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01119" name="l01119"></a><span class="lineno"> 1119</span> </div>
+<div class="line"><a id="l01120" name="l01120"></a><span class="lineno"> 1120</span>    <span class="keywordflow">if</span> (api-&gt;target_unregister == NULL) {</div>
+<div class="line"><a id="l01121" name="l01121"></a><span class="lineno"> 1121</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l01122" name="l01122"></a><span class="lineno"> 1122</span>    }</div>
+<div class="line"><a id="l01123" name="l01123"></a><span class="lineno"> 1123</span> </div>
+<div class="line"><a id="l01124" name="l01124"></a><span class="lineno"> 1124</span>    <span class="keywordflow">return</span> api-&gt;target_unregister(dev, cfg);</div>
+<div class="line"><a id="l01125" name="l01125"></a><span class="lineno"> 1125</span>}</div>
+<div class="line"><a id="l01126" name="l01126"></a><span class="lineno"> 1126</span> </div>
+<div class="line"><a id="l01140" name="l01140"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#gab803794f33b16413add0ac73ebeffdd0"> 1140</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__i2c__interface.html#gab803794f33b16413add0ac73ebeffdd0">i2c_target_driver_register</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l01141" name="l01141"></a><span class="lineno"> 1141</span> </div>
+<div class="line"><a id="l01142" name="l01142"></a><span class="lineno"> 1142</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_i2c_target_driver_register(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l01143" name="l01143"></a><span class="lineno"> 1143</span>{</div>
+<div class="line"><a id="l01144" name="l01144"></a><span class="lineno"> 1144</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i2c_target_driver_api *api =</div>
+<div class="line"><a id="l01145" name="l01145"></a><span class="lineno"> 1145</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>i2c_target_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01146" name="l01146"></a><span class="lineno"> 1146</span> </div>
+<div class="line"><a id="l01147" name="l01147"></a><span class="lineno"> 1147</span>    <span class="keywordflow">return</span> api-&gt;driver_register(dev);</div>
+<div class="line"><a id="l01148" name="l01148"></a><span class="lineno"> 1148</span>}</div>
+<div class="line"><a id="l01149" name="l01149"></a><span class="lineno"> 1149</span> </div>
+<div class="line"><a id="l01163" name="l01163"></a><span class="lineno"><a class="line" href="group__i2c__interface.html#ga14807980ed83ce5c1de204d25802b799"> 1163</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__i2c__interface.html#ga14807980ed83ce5c1de204d25802b799">i2c_target_driver_unregister</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l01164" name="l01164"></a><span class="lineno"> 1164</span> </div>
+<div class="line"><a id="l01165" name="l01165"></a><span class="lineno"> 1165</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_i2c_target_driver_unregister(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l01166" name="l01166"></a><span class="lineno"> 1166</span>{</div>
+<div class="line"><a id="l01167" name="l01167"></a><span class="lineno"> 1167</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i2c_target_driver_api *api =</div>
+<div class="line"><a id="l01168" name="l01168"></a><span class="lineno"> 1168</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>i2c_target_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01169" name="l01169"></a><span class="lineno"> 1169</span> </div>
+<div class="line"><a id="l01170" name="l01170"></a><span class="lineno"> 1170</span>    <span class="keywordflow">return</span> api-&gt;driver_unregister(dev);</div>
+<div class="line"><a id="l01171" name="l01171"></a><span class="lineno"> 1171</span>}</div>
+<div class="line"><a id="l01172" name="l01172"></a><span class="lineno"> 1172</span> </div>
+<div class="line"><a id="l01173" name="l01173"></a><span class="lineno"> 1173</span><span class="comment">/*</span></div>
+<div class="line"><a id="l01174" name="l01174"></a><span class="lineno"> 1174</span><span class="comment"> * Derived i2c APIs -- all implemented in terms of i2c_transfer()</span></div>
+<div class="line"><a id="l01175" name="l01175"></a><span class="lineno"> 1175</span><span class="comment"> */</span></div>
+<div class="line"><a id="l01176" name="l01176"></a><span class="lineno"> 1176</span> </div>
+<div class="line"><a id="l01191" name="l01191"></a><span class="lineno"> 1191</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_write(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> uint8_t *buf,</div>
+<div class="line"><a id="l01192" name="l01192"></a><span class="lineno"> 1192</span>                uint32_t num_bytes, uint16_t addr)</div>
+<div class="line"><a id="l01193" name="l01193"></a><span class="lineno"> 1193</span>{</div>
+<div class="line"><a id="l01194" name="l01194"></a><span class="lineno"> 1194</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> msg;</div>
+<div class="line"><a id="l01195" name="l01195"></a><span class="lineno"> 1195</span> </div>
+<div class="line"><a id="l01196" name="l01196"></a><span class="lineno"> 1196</span>    msg.<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a> = (uint8_t *)<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>;</div>
+<div class="line"><a id="l01197" name="l01197"></a><span class="lineno"> 1197</span>    msg.len = num_bytes;</div>
+<div class="line"><a id="l01198" name="l01198"></a><span class="lineno"> 1198</span>    msg.flags = <a class="code hl_define" href="group__i2c__interface.html#gaf622d3c4aa1c832f90fff7200bb33732">I2C_MSG_WRITE</a> | <a class="code hl_define" href="group__i2c__interface.html#gaad55262ad277ee60b786372c71f217aa">I2C_MSG_STOP</a>;</div>
+<div class="line"><a id="l01199" name="l01199"></a><span class="lineno"> 1199</span> </div>
+<div class="line"><a id="l01200" name="l01200"></a><span class="lineno"> 1200</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__i2c__interface.html#ga3f5d603778892dda3528c5acaa1353f5">i2c_transfer</a>(dev, &amp;msg, 1, addr);</div>
+<div class="line"><a id="l01201" name="l01201"></a><span class="lineno"> 1201</span>}</div>
+<div class="line"><a id="l01202" name="l01202"></a><span class="lineno"> 1202</span> </div>
+<div class="line"><a id="l01216" name="l01216"></a><span class="lineno"> 1216</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_write_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> *spec,</div>
+<div class="line"><a id="l01217" name="l01217"></a><span class="lineno"> 1217</span>                   <span class="keyword">const</span> uint8_t *<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>, uint32_t num_bytes)</div>
+<div class="line"><a id="l01218" name="l01218"></a><span class="lineno"> 1218</span>{</div>
+<div class="line"><a id="l01219" name="l01219"></a><span class="lineno"> 1219</span>    <span class="keywordflow">return</span> i2c_write(spec-&gt;bus, <a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>, num_bytes, spec-&gt;addr);</div>
+<div class="line"><a id="l01220" name="l01220"></a><span class="lineno"> 1220</span>}</div>
+<div class="line"><a id="l01221" name="l01221"></a><span class="lineno"> 1221</span> </div>
+<div class="line"><a id="l01236" name="l01236"></a><span class="lineno"> 1236</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_read(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t *<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>,</div>
+<div class="line"><a id="l01237" name="l01237"></a><span class="lineno"> 1237</span>               uint32_t num_bytes, uint16_t addr)</div>
+<div class="line"><a id="l01238" name="l01238"></a><span class="lineno"> 1238</span>{</div>
+<div class="line"><a id="l01239" name="l01239"></a><span class="lineno"> 1239</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> msg;</div>
+<div class="line"><a id="l01240" name="l01240"></a><span class="lineno"> 1240</span> </div>
+<div class="line"><a id="l01241" name="l01241"></a><span class="lineno"> 1241</span>    msg.<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a> = <a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>;</div>
+<div class="line"><a id="l01242" name="l01242"></a><span class="lineno"> 1242</span>    msg.len = num_bytes;</div>
+<div class="line"><a id="l01243" name="l01243"></a><span class="lineno"> 1243</span>    msg.flags = <a class="code hl_define" href="group__i2c__interface.html#ga6c3042e882e6a817a6498b7a4e1f0a95">I2C_MSG_READ</a> | <a class="code hl_define" href="group__i2c__interface.html#gaad55262ad277ee60b786372c71f217aa">I2C_MSG_STOP</a>;</div>
+<div class="line"><a id="l01244" name="l01244"></a><span class="lineno"> 1244</span> </div>
+<div class="line"><a id="l01245" name="l01245"></a><span class="lineno"> 1245</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__i2c__interface.html#ga3f5d603778892dda3528c5acaa1353f5">i2c_transfer</a>(dev, &amp;msg, 1, addr);</div>
+<div class="line"><a id="l01246" name="l01246"></a><span class="lineno"> 1246</span>}</div>
+<div class="line"><a id="l01247" name="l01247"></a><span class="lineno"> 1247</span> </div>
+<div class="line"><a id="l01261" name="l01261"></a><span class="lineno"> 1261</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_read_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> *spec,</div>
+<div class="line"><a id="l01262" name="l01262"></a><span class="lineno"> 1262</span>                  uint8_t *<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>, uint32_t num_bytes)</div>
+<div class="line"><a id="l01263" name="l01263"></a><span class="lineno"> 1263</span>{</div>
+<div class="line"><a id="l01264" name="l01264"></a><span class="lineno"> 1264</span>    <span class="keywordflow">return</span> i2c_read(spec-&gt;bus, <a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>, num_bytes, spec-&gt;addr);</div>
+<div class="line"><a id="l01265" name="l01265"></a><span class="lineno"> 1265</span>}</div>
+<div class="line"><a id="l01266" name="l01266"></a><span class="lineno"> 1266</span> </div>
+<div class="line"><a id="l01285" name="l01285"></a><span class="lineno"> 1285</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_write_read(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t addr,</div>
+<div class="line"><a id="l01286" name="l01286"></a><span class="lineno"> 1286</span>                 <span class="keyword">const</span> <span class="keywordtype">void</span> *write_buf, <span class="keywordtype">size_t</span> num_write,</div>
+<div class="line"><a id="l01287" name="l01287"></a><span class="lineno"> 1287</span>                 <span class="keywordtype">void</span> *read_buf, <span class="keywordtype">size_t</span> num_read)</div>
+<div class="line"><a id="l01288" name="l01288"></a><span class="lineno"> 1288</span>{</div>
+<div class="line"><a id="l01289" name="l01289"></a><span class="lineno"> 1289</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> msg[2];</div>
+<div class="line"><a id="l01290" name="l01290"></a><span class="lineno"> 1290</span> </div>
+<div class="line"><a id="l01291" name="l01291"></a><span class="lineno"> 1291</span>    msg[0].<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a> = (uint8_t *)write_buf;</div>
+<div class="line"><a id="l01292" name="l01292"></a><span class="lineno"> 1292</span>    msg[0].len = num_write;</div>
+<div class="line"><a id="l01293" name="l01293"></a><span class="lineno"> 1293</span>    msg[0].flags = <a class="code hl_define" href="group__i2c__interface.html#gaf622d3c4aa1c832f90fff7200bb33732">I2C_MSG_WRITE</a>;</div>
+<div class="line"><a id="l01294" name="l01294"></a><span class="lineno"> 1294</span> </div>
+<div class="line"><a id="l01295" name="l01295"></a><span class="lineno"> 1295</span>    msg[1].buf = (uint8_t *)read_buf;</div>
+<div class="line"><a id="l01296" name="l01296"></a><span class="lineno"> 1296</span>    msg[1].len = num_read;</div>
+<div class="line"><a id="l01297" name="l01297"></a><span class="lineno"> 1297</span>    msg[1].flags = <a class="code hl_define" href="group__i2c__interface.html#ga8c6cf7be2a04979fdb9d0b7dd9c4f831">I2C_MSG_RESTART</a> | <a class="code hl_define" href="group__i2c__interface.html#ga6c3042e882e6a817a6498b7a4e1f0a95">I2C_MSG_READ</a> | <a class="code hl_define" href="group__i2c__interface.html#gaad55262ad277ee60b786372c71f217aa">I2C_MSG_STOP</a>;</div>
+<div class="line"><a id="l01298" name="l01298"></a><span class="lineno"> 1298</span> </div>
+<div class="line"><a id="l01299" name="l01299"></a><span class="lineno"> 1299</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__i2c__interface.html#ga3f5d603778892dda3528c5acaa1353f5">i2c_transfer</a>(dev, msg, 2, addr);</div>
+<div class="line"><a id="l01300" name="l01300"></a><span class="lineno"> 1300</span>}</div>
+<div class="line"><a id="l01301" name="l01301"></a><span class="lineno"> 1301</span> </div>
+<div class="line"><a id="l01319" name="l01319"></a><span class="lineno"> 1319</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_write_read_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> *spec,</div>
+<div class="line"><a id="l01320" name="l01320"></a><span class="lineno"> 1320</span>                    <span class="keyword">const</span> <span class="keywordtype">void</span> *write_buf, <span class="keywordtype">size_t</span> num_write,</div>
+<div class="line"><a id="l01321" name="l01321"></a><span class="lineno"> 1321</span>                    <span class="keywordtype">void</span> *read_buf, <span class="keywordtype">size_t</span> num_read)</div>
+<div class="line"><a id="l01322" name="l01322"></a><span class="lineno"> 1322</span>{</div>
+<div class="line"><a id="l01323" name="l01323"></a><span class="lineno"> 1323</span>    <span class="keywordflow">return</span> i2c_write_read(spec-&gt;bus, spec-&gt;addr,</div>
+<div class="line"><a id="l01324" name="l01324"></a><span class="lineno"> 1324</span>                  write_buf, num_write,</div>
+<div class="line"><a id="l01325" name="l01325"></a><span class="lineno"> 1325</span>                  read_buf, num_read);</div>
+<div class="line"><a id="l01326" name="l01326"></a><span class="lineno"> 1326</span>}</div>
+<div class="line"><a id="l01327" name="l01327"></a><span class="lineno"> 1327</span> </div>
+<div class="line"><a id="l01346" name="l01346"></a><span class="lineno"> 1346</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_burst_read(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l01347" name="l01347"></a><span class="lineno"> 1347</span>                 uint16_t dev_addr,</div>
+<div class="line"><a id="l01348" name="l01348"></a><span class="lineno"> 1348</span>                 uint8_t start_addr,</div>
+<div class="line"><a id="l01349" name="l01349"></a><span class="lineno"> 1349</span>                 uint8_t *<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>,</div>
+<div class="line"><a id="l01350" name="l01350"></a><span class="lineno"> 1350</span>                 uint32_t num_bytes)</div>
+<div class="line"><a id="l01351" name="l01351"></a><span class="lineno"> 1351</span>{</div>
+<div class="line"><a id="l01352" name="l01352"></a><span class="lineno"> 1352</span>    <span class="keywordflow">return</span> i2c_write_read(dev, dev_addr,</div>
+<div class="line"><a id="l01353" name="l01353"></a><span class="lineno"> 1353</span>                  &amp;start_addr, <span class="keyword">sizeof</span>(start_addr),</div>
+<div class="line"><a id="l01354" name="l01354"></a><span class="lineno"> 1354</span>                  <a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>, num_bytes);</div>
+<div class="line"><a id="l01355" name="l01355"></a><span class="lineno"> 1355</span>}</div>
+<div class="line"><a id="l01356" name="l01356"></a><span class="lineno"> 1356</span> </div>
+<div class="line"><a id="l01371" name="l01371"></a><span class="lineno"> 1371</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_burst_read_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> *spec,</div>
+<div class="line"><a id="l01372" name="l01372"></a><span class="lineno"> 1372</span>                    uint8_t start_addr,</div>
+<div class="line"><a id="l01373" name="l01373"></a><span class="lineno"> 1373</span>                    uint8_t *<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>,</div>
+<div class="line"><a id="l01374" name="l01374"></a><span class="lineno"> 1374</span>                    uint32_t num_bytes)</div>
+<div class="line"><a id="l01375" name="l01375"></a><span class="lineno"> 1375</span>{</div>
+<div class="line"><a id="l01376" name="l01376"></a><span class="lineno"> 1376</span>    <span class="keywordflow">return</span> i2c_burst_read(spec-&gt;bus, spec-&gt;addr,</div>
+<div class="line"><a id="l01377" name="l01377"></a><span class="lineno"> 1377</span>                  start_addr, <a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>, num_bytes);</div>
+<div class="line"><a id="l01378" name="l01378"></a><span class="lineno"> 1378</span>}</div>
+<div class="line"><a id="l01379" name="l01379"></a><span class="lineno"> 1379</span> </div>
+<div class="line"><a id="l01401" name="l01401"></a><span class="lineno"> 1401</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_burst_write(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l01402" name="l01402"></a><span class="lineno"> 1402</span>                  uint16_t dev_addr,</div>
+<div class="line"><a id="l01403" name="l01403"></a><span class="lineno"> 1403</span>                  uint8_t start_addr,</div>
+<div class="line"><a id="l01404" name="l01404"></a><span class="lineno"> 1404</span>                  <span class="keyword">const</span> uint8_t *<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>,</div>
+<div class="line"><a id="l01405" name="l01405"></a><span class="lineno"> 1405</span>                  uint32_t num_bytes)</div>
+<div class="line"><a id="l01406" name="l01406"></a><span class="lineno"> 1406</span>{</div>
+<div class="line"><a id="l01407" name="l01407"></a><span class="lineno"> 1407</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__msg.html">i2c_msg</a> msg[2];</div>
+<div class="line"><a id="l01408" name="l01408"></a><span class="lineno"> 1408</span> </div>
+<div class="line"><a id="l01409" name="l01409"></a><span class="lineno"> 1409</span>    msg[0].<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a> = &amp;start_addr;</div>
+<div class="line"><a id="l01410" name="l01410"></a><span class="lineno"> 1410</span>    msg[0].len = 1U;</div>
+<div class="line"><a id="l01411" name="l01411"></a><span class="lineno"> 1411</span>    msg[0].flags = <a class="code hl_define" href="group__i2c__interface.html#gaf622d3c4aa1c832f90fff7200bb33732">I2C_MSG_WRITE</a>;</div>
+<div class="line"><a id="l01412" name="l01412"></a><span class="lineno"> 1412</span> </div>
+<div class="line"><a id="l01413" name="l01413"></a><span class="lineno"> 1413</span>    msg[1].buf = (uint8_t *)<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>;</div>
+<div class="line"><a id="l01414" name="l01414"></a><span class="lineno"> 1414</span>    msg[1].len = num_bytes;</div>
+<div class="line"><a id="l01415" name="l01415"></a><span class="lineno"> 1415</span>    msg[1].flags = <a class="code hl_define" href="group__i2c__interface.html#gaf622d3c4aa1c832f90fff7200bb33732">I2C_MSG_WRITE</a> | <a class="code hl_define" href="group__i2c__interface.html#gaad55262ad277ee60b786372c71f217aa">I2C_MSG_STOP</a>;</div>
+<div class="line"><a id="l01416" name="l01416"></a><span class="lineno"> 1416</span> </div>
+<div class="line"><a id="l01417" name="l01417"></a><span class="lineno"> 1417</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__i2c__interface.html#ga3f5d603778892dda3528c5acaa1353f5">i2c_transfer</a>(dev, msg, 2, dev_addr);</div>
+<div class="line"><a id="l01418" name="l01418"></a><span class="lineno"> 1418</span>}</div>
+<div class="line"><a id="l01419" name="l01419"></a><span class="lineno"> 1419</span> </div>
+<div class="line"><a id="l01434" name="l01434"></a><span class="lineno"> 1434</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_burst_write_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> *spec,</div>
+<div class="line"><a id="l01435" name="l01435"></a><span class="lineno"> 1435</span>                     uint8_t start_addr,</div>
+<div class="line"><a id="l01436" name="l01436"></a><span class="lineno"> 1436</span>                     <span class="keyword">const</span> uint8_t *<a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>,</div>
+<div class="line"><a id="l01437" name="l01437"></a><span class="lineno"> 1437</span>                     uint32_t num_bytes)</div>
+<div class="line"><a id="l01438" name="l01438"></a><span class="lineno"> 1438</span>{</div>
+<div class="line"><a id="l01439" name="l01439"></a><span class="lineno"> 1439</span>    <span class="keywordflow">return</span> i2c_burst_write(spec-&gt;bus, spec-&gt;addr,</div>
+<div class="line"><a id="l01440" name="l01440"></a><span class="lineno"> 1440</span>                   start_addr, <a class="code hl_variable" href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">buf</a>, num_bytes);</div>
+<div class="line"><a id="l01441" name="l01441"></a><span class="lineno"> 1441</span>}</div>
+<div class="line"><a id="l01442" name="l01442"></a><span class="lineno"> 1442</span> </div>
+<div class="line"><a id="l01458" name="l01458"></a><span class="lineno"> 1458</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_reg_read_byte(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l01459" name="l01459"></a><span class="lineno"> 1459</span>                    uint16_t dev_addr,</div>
+<div class="line"><a id="l01460" name="l01460"></a><span class="lineno"> 1460</span>                    uint8_t reg_addr, uint8_t *value)</div>
+<div class="line"><a id="l01461" name="l01461"></a><span class="lineno"> 1461</span>{</div>
+<div class="line"><a id="l01462" name="l01462"></a><span class="lineno"> 1462</span>    <span class="keywordflow">return</span> i2c_write_read(dev, dev_addr,</div>
+<div class="line"><a id="l01463" name="l01463"></a><span class="lineno"> 1463</span>                  &amp;reg_addr, <span class="keyword">sizeof</span>(reg_addr),</div>
+<div class="line"><a id="l01464" name="l01464"></a><span class="lineno"> 1464</span>                  value, <span class="keyword">sizeof</span>(*value));</div>
+<div class="line"><a id="l01465" name="l01465"></a><span class="lineno"> 1465</span>}</div>
+<div class="line"><a id="l01466" name="l01466"></a><span class="lineno"> 1466</span> </div>
+<div class="line"><a id="l01480" name="l01480"></a><span class="lineno"> 1480</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_reg_read_byte_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> *spec,</div>
+<div class="line"><a id="l01481" name="l01481"></a><span class="lineno"> 1481</span>                       uint8_t reg_addr, uint8_t *value)</div>
+<div class="line"><a id="l01482" name="l01482"></a><span class="lineno"> 1482</span>{</div>
+<div class="line"><a id="l01483" name="l01483"></a><span class="lineno"> 1483</span>    <span class="keywordflow">return</span> i2c_reg_read_byte(spec-&gt;bus, spec-&gt;addr, reg_addr, value);</div>
+<div class="line"><a id="l01484" name="l01484"></a><span class="lineno"> 1484</span>}</div>
+<div class="line"><a id="l01485" name="l01485"></a><span class="lineno"> 1485</span> </div>
+<div class="line"><a id="l01504" name="l01504"></a><span class="lineno"> 1504</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_reg_write_byte(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l01505" name="l01505"></a><span class="lineno"> 1505</span>                     uint16_t dev_addr,</div>
+<div class="line"><a id="l01506" name="l01506"></a><span class="lineno"> 1506</span>                     uint8_t reg_addr, uint8_t value)</div>
+<div class="line"><a id="l01507" name="l01507"></a><span class="lineno"> 1507</span>{</div>
+<div class="line"><a id="l01508" name="l01508"></a><span class="lineno"> 1508</span>    uint8_t tx_buf[2] = {reg_addr, value};</div>
+<div class="line"><a id="l01509" name="l01509"></a><span class="lineno"> 1509</span> </div>
+<div class="line"><a id="l01510" name="l01510"></a><span class="lineno"> 1510</span>    <span class="keywordflow">return</span> i2c_write(dev, tx_buf, 2, dev_addr);</div>
+<div class="line"><a id="l01511" name="l01511"></a><span class="lineno"> 1511</span>}</div>
+<div class="line"><a id="l01512" name="l01512"></a><span class="lineno"> 1512</span> </div>
+<div class="line"><a id="l01526" name="l01526"></a><span class="lineno"> 1526</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_reg_write_byte_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> *spec,</div>
+<div class="line"><a id="l01527" name="l01527"></a><span class="lineno"> 1527</span>                    uint8_t reg_addr, uint8_t value)</div>
+<div class="line"><a id="l01528" name="l01528"></a><span class="lineno"> 1528</span>{</div>
+<div class="line"><a id="l01529" name="l01529"></a><span class="lineno"> 1529</span>    <span class="keywordflow">return</span> i2c_reg_write_byte(spec-&gt;bus, spec-&gt;addr, reg_addr, value);</div>
+<div class="line"><a id="l01530" name="l01530"></a><span class="lineno"> 1530</span>}</div>
+<div class="line"><a id="l01531" name="l01531"></a><span class="lineno"> 1531</span> </div>
+<div class="line"><a id="l01551" name="l01551"></a><span class="lineno"> 1551</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_reg_update_byte(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l01552" name="l01552"></a><span class="lineno"> 1552</span>                      uint8_t dev_addr,</div>
+<div class="line"><a id="l01553" name="l01553"></a><span class="lineno"> 1553</span>                      uint8_t reg_addr, uint8_t mask,</div>
+<div class="line"><a id="l01554" name="l01554"></a><span class="lineno"> 1554</span>                      uint8_t value)</div>
+<div class="line"><a id="l01555" name="l01555"></a><span class="lineno"> 1555</span>{</div>
+<div class="line"><a id="l01556" name="l01556"></a><span class="lineno"> 1556</span>    uint8_t old_value, new_value;</div>
+<div class="line"><a id="l01557" name="l01557"></a><span class="lineno"> 1557</span>    <span class="keywordtype">int</span> rc;</div>
+<div class="line"><a id="l01558" name="l01558"></a><span class="lineno"> 1558</span> </div>
+<div class="line"><a id="l01559" name="l01559"></a><span class="lineno"> 1559</span>    rc = i2c_reg_read_byte(dev, dev_addr, reg_addr, &amp;old_value);</div>
+<div class="line"><a id="l01560" name="l01560"></a><span class="lineno"> 1560</span>    <span class="keywordflow">if</span> (rc != 0) {</div>
+<div class="line"><a id="l01561" name="l01561"></a><span class="lineno"> 1561</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l01562" name="l01562"></a><span class="lineno"> 1562</span>    }</div>
+<div class="line"><a id="l01563" name="l01563"></a><span class="lineno"> 1563</span> </div>
+<div class="line"><a id="l01564" name="l01564"></a><span class="lineno"> 1564</span>    new_value = (old_value &amp; ~mask) | (value &amp; mask);</div>
+<div class="line"><a id="l01565" name="l01565"></a><span class="lineno"> 1565</span>    <span class="keywordflow">if</span> (new_value == old_value) {</div>
+<div class="line"><a id="l01566" name="l01566"></a><span class="lineno"> 1566</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l01567" name="l01567"></a><span class="lineno"> 1567</span>    }</div>
+<div class="line"><a id="l01568" name="l01568"></a><span class="lineno"> 1568</span> </div>
+<div class="line"><a id="l01569" name="l01569"></a><span class="lineno"> 1569</span>    <span class="keywordflow">return</span> i2c_reg_write_byte(dev, dev_addr, reg_addr, new_value);</div>
+<div class="line"><a id="l01570" name="l01570"></a><span class="lineno"> 1570</span>}</div>
+<div class="line"><a id="l01571" name="l01571"></a><span class="lineno"> 1571</span> </div>
+<div class="line"><a id="l01586" name="l01586"></a><span class="lineno"> 1586</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i2c_reg_update_byte_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi2c__dt__spec.html">i2c_dt_spec</a> *spec,</div>
+<div class="line"><a id="l01587" name="l01587"></a><span class="lineno"> 1587</span>                     uint8_t reg_addr, uint8_t mask,</div>
+<div class="line"><a id="l01588" name="l01588"></a><span class="lineno"> 1588</span>                     uint8_t value)</div>
+<div class="line"><a id="l01589" name="l01589"></a><span class="lineno"> 1589</span>{</div>
+<div class="line"><a id="l01590" name="l01590"></a><span class="lineno"> 1590</span>    <span class="keywordflow">return</span> i2c_reg_update_byte(spec-&gt;bus, spec-&gt;addr,</div>
+<div class="line"><a id="l01591" name="l01591"></a><span class="lineno"> 1591</span>                   reg_addr, mask, value);</div>
+<div class="line"><a id="l01592" name="l01592"></a><span class="lineno"> 1592</span>}</div>
+<div class="line"><a id="l01593" name="l01593"></a><span class="lineno"> 1593</span> </div>
+<div class="line"><a id="l01594" name="l01594"></a><span class="lineno"> 1594</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l01595" name="l01595"></a><span class="lineno"> 1595</span>}</div>
+<div class="line"><a id="l01596" name="l01596"></a><span class="lineno"> 1596</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01597" name="l01597"></a><span class="lineno"> 1597</span> </div>
+<div class="line"><a id="l01602" name="l01602"></a><span class="lineno"> 1602</span><span class="preprocessor">#include &lt;syscalls/i2c.h&gt;</span></div>
+<div class="line"><a id="l01603" name="l01603"></a><span class="lineno"> 1603</span> </div>
+<div class="line"><a id="l01604" name="l01604"></a><span class="lineno"> 1604</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_I2C_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__device__model_html_ga0b9e6357f7cfdab3b5ad119b9b549de7"><div class="ttname"><a href="group__device__model.html#ga0b9e6357f7cfdab3b5ad119b9b549de7">device_is_ready</a></div><div class="ttdeci">__syscall bool device_is_ready(const struct device *dev)</div><div class="ttdoc">Verify that a device is ready for use.</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_ga14807980ed83ce5c1de204d25802b799"><div class="ttname"><a href="group__i2c__interface.html#ga14807980ed83ce5c1de204d25802b799">i2c_target_driver_unregister</a></div><div class="ttdeci">__syscall int i2c_target_driver_unregister(const struct device *dev)</div><div class="ttdoc">Instructs the I2C Target device to unregister itself from the I2C Controller.</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_ga2117056d6f6523627dda68f8ba32541e"><div class="ttname"><a href="group__i2c__interface.html#ga2117056d6f6523627dda68f8ba32541e">i2c_dump_msgs_rw</a></div><div class="ttdeci">void i2c_dump_msgs_rw(const struct device *dev, const struct i2c_msg *msgs, uint8_t num_msgs, uint16_t addr, bool dump_read)</div><div class="ttdoc">Dump out an I2C message.</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_ga244264ecdbd51210728ee92dcbebbc87"><div class="ttname"><a href="group__i2c__interface.html#ga244264ecdbd51210728ee92dcbebbc87">i2c_target_read_requested_cb_t</a></div><div class="ttdeci">int(* i2c_target_read_requested_cb_t)(struct i2c_target_config *config, uint8_t *val)</div><div class="ttdoc">Function called when a read from the device is initiated.</div><div class="ttdef"><b>Definição</b> i2c.h:330</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_ga3c898d0bef364461a3502037cf3d40b0"><div class="ttname"><a href="group__i2c__interface.html#ga3c898d0bef364461a3502037cf3d40b0">i2c_target_stop_cb_t</a></div><div class="ttdeci">int(* i2c_target_stop_cb_t)(struct i2c_target_config *config)</div><div class="ttdoc">Function called when a stop condition is observed after a start condition addressed to a particular d...</div><div class="ttdef"><b>Definição</b> i2c.h:412</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_ga3f5d603778892dda3528c5acaa1353f5"><div class="ttname"><a href="group__i2c__interface.html#ga3f5d603778892dda3528c5acaa1353f5">i2c_transfer</a></div><div class="ttdeci">__syscall int i2c_transfer(const struct device *dev, struct i2c_msg *msgs, uint8_t num_msgs, uint16_t addr)</div><div class="ttdoc">Perform data transfer to another I2C device in controller mode.</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_ga4cb0ae2cf41fc2105d1baa5e496e5dae"><div class="ttname"><a href="group__i2c__interface.html#ga4cb0ae2cf41fc2105d1baa5e496e5dae">i2c_target_read_processed_cb_t</a></div><div class="ttdeci">int(* i2c_target_read_processed_cb_t)(struct i2c_target_config *config, uint8_t *val)</div><div class="ttdoc">Function called when a read from the device is continued.</div><div class="ttdef"><b>Definição</b> i2c.h:352</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_ga4cd9be521a6c7d088f15b88400624e4e"><div class="ttname"><a href="group__i2c__interface.html#ga4cd9be521a6c7d088f15b88400624e4e">i2c_target_write_requested_cb_t</a></div><div class="ttdeci">int(* i2c_target_write_requested_cb_t)(struct i2c_target_config *config)</div><div class="ttdoc">Function called when a write to the device is initiated.</div><div class="ttdef"><b>Definição</b> i2c.h:287</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_ga590293ec0d90d3fb0d8cbfee097798fc"><div class="ttname"><a href="group__i2c__interface.html#ga590293ec0d90d3fb0d8cbfee097798fc">i2c_callback_t</a></div><div class="ttdeci">void(* i2c_callback_t)(const struct device *dev, int result, void *data)</div><div class="ttdoc">I2C callback for asynchronous transfer requests.</div><div class="ttdef"><b>Definição</b> i2c.h:200</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_ga619db7eea1c4400adcbea5dddf5cf2c5"><div class="ttname"><a href="group__i2c__interface.html#ga619db7eea1c4400adcbea5dddf5cf2c5">i2c_target_write_received_cb_t</a></div><div class="ttdeci">int(* i2c_target_write_received_cb_t)(struct i2c_target_config *config, uint8_t val)</div><div class="ttdoc">Function called when a write to the device is continued.</div><div class="ttdef"><b>Definição</b> i2c.h:308</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_ga6b31c9e474eba2da66f1d1256060acb7"><div class="ttname"><a href="group__i2c__interface.html#ga6b31c9e474eba2da66f1d1256060acb7">i2c_configure</a></div><div class="ttdeci">__syscall int i2c_configure(const struct device *dev, uint32_t dev_config)</div><div class="ttdoc">Configure operation of a host controller.</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_ga6c3042e882e6a817a6498b7a4e1f0a95"><div class="ttname"><a href="group__i2c__interface.html#ga6c3042e882e6a817a6498b7a4e1f0a95">I2C_MSG_READ</a></div><div class="ttdeci">#define I2C_MSG_READ</div><div class="ttdef"><b>Definição</b> i2c.h:145</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_ga757baf0b70b8a0ed036929ee73d13b6d"><div class="ttname"><a href="group__i2c__interface.html#ga757baf0b70b8a0ed036929ee73d13b6d">i2c_recover_bus</a></div><div class="ttdeci">__syscall int i2c_recover_bus(const struct device *dev)</div><div class="ttdoc">Recover the I2C bus.</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_ga8c6cf7be2a04979fdb9d0b7dd9c4f831"><div class="ttname"><a href="group__i2c__interface.html#ga8c6cf7be2a04979fdb9d0b7dd9c4f831">I2C_MSG_RESTART</a></div><div class="ttdeci">#define I2C_MSG_RESTART</div><div class="ttdef"><b>Definição</b> i2c.h:161</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_gaad55262ad277ee60b786372c71f217aa"><div class="ttname"><a href="group__i2c__interface.html#gaad55262ad277ee60b786372c71f217aa">I2C_MSG_STOP</a></div><div class="ttdeci">#define I2C_MSG_STOP</div><div class="ttdef"><b>Definição</b> i2c.h:152</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_gab803794f33b16413add0ac73ebeffdd0"><div class="ttname"><a href="group__i2c__interface.html#gab803794f33b16413add0ac73ebeffdd0">i2c_target_driver_register</a></div><div class="ttdeci">__syscall int i2c_target_driver_register(const struct device *dev)</div><div class="ttdoc">Instructs the I2C Target device to register itself to the I2C Controller.</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_gac11f27e143c843fb61f638aa322971f4"><div class="ttname"><a href="group__i2c__interface.html#gac11f27e143c843fb61f638aa322971f4">i2c_get_config</a></div><div class="ttdeci">__syscall int i2c_get_config(const struct device *dev, uint32_t *dev_config)</div><div class="ttdoc">Get configuration of a host controller.</div></div>
+<div class="ttc" id="agroup__i2c__interface_html_gaf622d3c4aa1c832f90fff7200bb33732"><div class="ttname"><a href="group__i2c__interface.html#gaf622d3c4aa1c832f90fff7200bb33732">I2C_MSG_WRITE</a></div><div class="ttdeci">#define I2C_MSG_WRITE</div><div class="ttdef"><b>Definição</b> i2c.h:142</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="agroup__sys-util_html_ga111fe4e9d63758262fc6810a782cb32a"><div class="ttname"><a href="group__sys-util.html#ga111fe4e9d63758262fc6810a782cb32a">IS_ENABLED</a></div><div class="ttdeci">#define IS_ENABLED(config_macro)</div><div class="ttdoc">Check for macro definition in compiler-visible expressions.</div><div class="ttdef"><b>Definição</b> util_macro.h:124</div></div>
+<div class="ttc" id="agroup__sys-util_html_gac5bc561d1bfd1bf68877fe577779bd2f"><div class="ttname"><a href="group__sys-util.html#gac5bc561d1bfd1bf68877fe577779bd2f">CONTAINER_OF</a></div><div class="ttdeci">#define CONTAINER_OF(ptr, type, field)</div><div class="ttdoc">Get a pointer to a structure containing the element.</div><div class="ttdef"><b>Definição</b> util.h:247</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2rtio_2rtio_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2rtio_2rtio_8h.html">rtio.h</a></div><div class="ttdoc">Real-Time IO device API for moving bytes with low effort.</div></div>
+<div class="ttc" id="aslist_8h_html"><div class="ttname"><a href="slist_8h.html">slist.h</a></div></div>
+<div class="ttc" id="astats_2stats_8h_html"><div class="ttname"><a href="stats_2stats_8h.html">stats.h</a></div><div class="ttdoc">Statistics.</div></div>
+<div class="ttc" id="astats_2stats_8h_html_a4124f8c0a9ffb78d8be608a780676785"><div class="ttname"><a href="stats_2stats_8h.html#a4124f8c0a9ffb78d8be608a780676785">STATS_SECT_END</a></div><div class="ttdeci">#define STATS_SECT_END</div><div class="ttdoc">Ends a stats group struct definition.</div><div class="ttdef"><b>Definição</b> stats.h:89</div></div>
+<div class="ttc" id="astructdevice__state_html"><div class="ttname"><a href="structdevice__state.html">device_state</a></div><div class="ttdoc">Runtime device dynamic structure (in RAM) per driver instance.</div><div class="ttdef"><b>Definição</b> device.h:358</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a27573cbd10ee145f8bb1396242b27a3e"><div class="ttname"><a href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">device::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definição</b> device.h:395</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructdevice_html_abe18f600adc4ab760963928477cc944e"><div class="ttname"><a href="structdevice.html#abe18f600adc4ab760963928477cc944e">device::state</a></div><div class="ttdeci">struct device_state * state</div><div class="ttdef"><b>Definição</b> device.h:393</div></div>
+<div class="ttc" id="astructi2c__dt__spec_html"><div class="ttname"><a href="structi2c__dt__spec.html">i2c_dt_spec</a></div><div class="ttdoc">Complete I2C DT information.</div><div class="ttdef"><b>Definição</b> i2c.h:75</div></div>
+<div class="ttc" id="astructi2c__msg_html"><div class="ttname"><a href="structi2c__msg.html">i2c_msg</a></div><div class="ttdoc">One I2C Message.</div><div class="ttdef"><b>Definição</b> i2c.h:182</div></div>
+<div class="ttc" id="astructi2c__msg_html_ac4aa590487270589a51964b38f853a37"><div class="ttname"><a href="structi2c__msg.html#ac4aa590487270589a51964b38f853a37">i2c_msg::buf</a></div><div class="ttdeci">uint8_t * buf</div><div class="ttdef"><b>Definição</b> i2c.h:184</div></div>
+<div class="ttc" id="astructi2c__msg_html_ae122c36d1fdc0829321fa116921d7a52"><div class="ttname"><a href="structi2c__msg.html#ae122c36d1fdc0829321fa116921d7a52">i2c_msg::len</a></div><div class="ttdeci">uint32_t len</div><div class="ttdef"><b>Definição</b> i2c.h:187</div></div>
+<div class="ttc" id="astructi2c__msg_html_ae6f9dc8a50b611adbca38e29b529ab9c"><div class="ttname"><a href="structi2c__msg.html#ae6f9dc8a50b611adbca38e29b529ab9c">i2c_msg::flags</a></div><div class="ttdeci">uint8_t flags</div><div class="ttdef"><b>Definição</b> i2c.h:190</div></div>
+<div class="ttc" id="astructi2c__target__callbacks_html"><div class="ttname"><a href="structi2c__target__callbacks.html">i2c_target_callbacks</a></div><div class="ttdoc">Structure providing callbacks to be implemented for devices that supports the I2C target API.</div><div class="ttdef"><b>Definição</b> i2c.h:420</div></div>
+<div class="ttc" id="astructi2c__target__config_html"><div class="ttname"><a href="structi2c__target__config.html">i2c_target_config</a></div><div class="ttdoc">Structure describing a device that supports the I2C target API.</div><div class="ttdef"><b>Definição</b> i2c.h:443</div></div>
+<div class="ttc" id="astructi2c__target__config_html_a25d6920d44abb1e1ce8f4c3aeb600bc5"><div class="ttname"><a href="structi2c__target__config.html#a25d6920d44abb1e1ce8f4c3aeb600bc5">i2c_target_config::flags</a></div><div class="ttdeci">uint8_t flags</div><div class="ttdef"><b>Definição</b> i2c.h:448</div></div>
+<div class="ttc" id="astructi2c__target__config_html_a5d531acec2b530a21b8d646ce321b6fd"><div class="ttname"><a href="structi2c__target__config.html#a5d531acec2b530a21b8d646ce321b6fd">i2c_target_config::address</a></div><div class="ttdeci">uint16_t address</div><div class="ttdef"><b>Definição</b> i2c.h:451</div></div>
+<div class="ttc" id="astructi2c__target__config_html_ab2393d22d8e1fb12a389cd457d30933a"><div class="ttname"><a href="structi2c__target__config.html#ab2393d22d8e1fb12a389cd457d30933a">i2c_target_config::node</a></div><div class="ttdeci">sys_snode_t node</div><div class="ttdef"><b>Definição</b> i2c.h:445</div></div>
+<div class="ttc" id="astructi2c__target__config_html_ad6c9573e97ac2569455f43f022600f77"><div class="ttname"><a href="structi2c__target__config.html#ad6c9573e97ac2569455f43f022600f77">i2c_target_config::callbacks</a></div><div class="ttdeci">const struct i2c_target_callbacks * callbacks</div><div class="ttdef"><b>Definição</b> i2c.h:454</div></div>
+<div class="ttc" id="astructk__poll__signal_html"><div class="ttname"><a href="structk__poll__signal.html">k_poll_signal</a></div><div class="ttdef"><b>Definição</b> kernel.h:5629</div></div>
+<div class="ttc" id="astructrtio__iodev__api_html"><div class="ttname"><a href="structrtio__iodev__api.html">rtio_iodev_api</a></div><div class="ttdoc">API that an RTIO IO device should implement.</div><div class="ttdef"><b>Definição</b> rtio.h:429</div></div>
+<div class="ttc" id="astructrtio__iodev__sqe_html"><div class="ttname"><a href="structrtio__iodev__sqe.html">rtio_iodev_sqe</a></div><div class="ttdoc">Compute the mempool block index for a given pointer.</div><div class="ttdef"><b>Definição</b> rtio.h:419</div></div>
+<div class="ttc" id="astructrtio__iodev_html"><div class="ttname"><a href="structrtio__iodev.html">rtio_iodev</a></div><div class="ttdoc">An IO device with a function table for submitting requests.</div><div class="ttdef"><b>Definição</b> rtio.h:444</div></div>
+<div class="ttc" id="astructrtio__sqe_html"><div class="ttname"><a href="structrtio__sqe.html">rtio_sqe</a></div><div class="ttdoc">A submission queue event.</div><div class="ttdef"><b>Definição</b> rtio.h:230</div></div>
+<div class="ttc" id="astructrtio__sqe_html_a6c784702f011592c84feacd57915bbfc"><div class="ttname"><a href="structrtio__sqe.html#a6c784702f011592c84feacd57915bbfc">rtio_sqe::iodev</a></div><div class="ttdeci">const struct rtio_iodev * iodev</div><div class="ttdef"><b>Definição</b> rtio.h:241</div></div>
+<div class="ttc" id="astructrtio_html"><div class="ttname"><a href="structrtio.html">rtio</a></div><div class="ttdoc">An RTIO context containing what can be viewed as a pair of queues.</div><div class="ttdef"><b>Definição</b> rtio.h:323</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/usb/class/usb_audio.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_31821c6dd8ee412b58986b1aca4338e2.html">usb</a></li><li class="navelem"><a class="el" href="dir_3a034a727cf3b83ef0e09452cd57e817.html">class</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">usb_audio.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="usb__audio_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * USB audio class core header</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * Copyright (c) 2020 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_USB_CLASS_AUDIO_H_</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#define ZEPHYR_INCLUDE_USB_CLASS_AUDIO_H_</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;<a class="code" href="usb__ch9_8h.html">zephyr/usb/usb_ch9.h</a>&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;<a class="code" href="net_2buf_8h.html">zephyr/net/buf.h</a>&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">zephyr/sys/util.h</a>&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#a4885d280ebe68e42cf068524038ec582">   32</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="usb__audio_8h.html#a4885d280ebe68e42cf068524038ec582">usb_audio_int_subclass_codes</a> {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    USB_AUDIO_SUBCLASS_UNDEFINED    = 0x00,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    USB_AUDIO_AUDIOCONTROL      = 0x01,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    USB_AUDIO_AUDIOSTREAMING    = 0x02,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    USB_AUDIO_MIDISTREAMING     = 0x03</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>};</div>
+</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ab5e6c883af53c089c7fcdee4d2249d9a">   42</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="usb__audio_8h.html#ab5e6c883af53c089c7fcdee4d2249d9a">usb_audio_cs_ac_int_desc_subtypes</a> {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    USB_AUDIO_AC_DESCRIPTOR_UNDEFINED   = 0x00,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    USB_AUDIO_HEADER            = 0x01,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    USB_AUDIO_INPUT_TERMINAL        = 0x02,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    USB_AUDIO_OUTPUT_TERMINAL       = 0x03,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    USB_AUDIO_MIXER_UNIT            = 0x04,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    USB_AUDIO_SELECTOR_UNIT         = 0x05,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    USB_AUDIO_FEATURE_UNIT          = 0x06,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    USB_AUDIO_PROCESSING_UNIT       = 0x07,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    USB_AUDIO_EXTENSION_UNIT        = 0x08</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="};">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ade80a3c7e04049fd27e4e39269baaeeb">   57</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="usb__audio_8h.html#ade80a3c7e04049fd27e4e39269baaeeb">usb_audio_cs_as_int_desc_subtypes</a> {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    USB_AUDIO_AS_DESCRIPTOR_UNDEFINED   = 0x00,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    USB_AUDIO_AS_GENERAL            = 0x01,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    USB_AUDIO_FORMAT_TYPE           = 0x02,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    USB_AUDIO_FORMAT_SPECIFIC       = 0x03</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="};">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad6eb1c3ec75aef329ea973d1cb4dc6ad">   67</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="usb__audio_8h.html#ad6eb1c3ec75aef329ea973d1cb4dc6ad">usb_audio_cs_req_codes</a> {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    USB_AUDIO_REQUEST_CODE_UNDEFINED    = 0x00,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    USB_AUDIO_SET_CUR           = 0x01,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    USB_AUDIO_GET_CUR           = 0x81,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    USB_AUDIO_SET_MIN           = 0x02,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    USB_AUDIO_GET_MIN           = 0x82,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    USB_AUDIO_SET_MAX           = 0x03,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    USB_AUDIO_GET_MAX           = 0x83,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    USB_AUDIO_SET_RES           = 0x04,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    USB_AUDIO_GET_RES           = 0x84,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    USB_AUDIO_SET_MEM           = 0x05,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    USB_AUDIO_GET_MEM           = 0x85,</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    USB_AUDIO_GET_STAT          = 0xFF</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>};</div>
+</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="foldopen" id="foldopen00085" data-start="{" data-end="};">
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#a4d49f239cc36daf8bd0cfa36c5fb75d2">   85</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="usb__audio_8h.html#a4d49f239cc36daf8bd0cfa36c5fb75d2">usb_audio_fucs</a> {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    USB_AUDIO_FU_CONTROL_UNDEFINED      = 0x00,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    USB_AUDIO_FU_MUTE_CONTROL       = 0x01,</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    USB_AUDIO_FU_VOLUME_CONTROL     = 0x02,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    USB_AUDIO_FU_BASS_CONTROL       = 0x03,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    USB_AUDIO_FU_MID_CONTROL        = 0x04,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    USB_AUDIO_FU_TREBLE_CONTROL     = 0x05,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    USB_AUDIO_FU_GRAPHIC_EQUALIZER_CONTROL  = 0x06,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    USB_AUDIO_FU_AUTOMATIC_GAIN_CONTROL = 0x07,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    USB_AUDIO_FU_DELAY_CONTROL      = 0x08,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    USB_AUDIO_FU_BASS_BOOST_CONTROL     = 0x09,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    USB_AUDIO_FU_LOUDNESS_CONTROL       = 0x0A</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>};</div>
+</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="foldopen" id="foldopen00102" data-start="{" data-end="};">
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79e">  102</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79e">usb_audio_terminal_types</a> {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaa0fbe557eba975cb5e368e199ea4f6d4">  108</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaa0fbe557eba975cb5e368e199ea4f6d4">USB_AUDIO_USB_UNDEFINED</a>   = 0x0100,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaad81dbd6f39554f52c3912755643d661">  110</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaad81dbd6f39554f52c3912755643d661">USB_AUDIO_USB_STREAMING</a>   = 0x0101,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea64205001486011d22c1ec0abd382a486">  112</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea64205001486011d22c1ec0abd382a486">USB_AUDIO_USB_VENDOR_SPEC</a> = 0x01FF,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaf85af15795d80c07cdff711ac172be57">  120</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaf85af15795d80c07cdff711ac172be57">USB_AUDIO_IN_UNDEFINED</a>      = 0x0200,</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea699cefac29e9d9c60f53562c7ad7050d">  122</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea699cefac29e9d9c60f53562c7ad7050d">USB_AUDIO_IN_MICROPHONE</a>     = 0x0201,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea3140dd357e3093db21f581226a6b000a">  124</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea3140dd357e3093db21f581226a6b000a">USB_AUDIO_IN_DESKTOP_MIC</a>    = 0x0202,</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea3cace6841265454e604513ebba78f749">  126</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea3cace6841265454e604513ebba78f749">USB_AUDIO_IN_PERSONAL_MIC</a>   = 0x0203,</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea456a90d55e1b271698516d89e8ba7f5b">  128</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea456a90d55e1b271698516d89e8ba7f5b">USB_AUDIO_IN_OM_DIR_MIC</a>     = 0x0204,</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea2eaf530492705b7e493e5d746752c262">  130</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea2eaf530492705b7e493e5d746752c262">USB_AUDIO_IN_MIC_ARRAY</a>      = 0x0205,</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eac565b3d090c71949c1e1423bb8529c86">  132</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eac565b3d090c71949c1e1423bb8529c86">USB_AUDIO_IN_PROC_MIC_ARRAY</a> = 0x0205,</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea64f43c7efb785a88f72302d2ad8d00f0">  140</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea64f43c7efb785a88f72302d2ad8d00f0">USB_AUDIO_OUT_UNDEFINED</a>     = 0x0300,</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea349881bce5285d61f886aec8fc2bf84c">  142</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea349881bce5285d61f886aec8fc2bf84c">USB_AUDIO_OUT_SPEAKER</a>       = 0x0301,</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eac551e3ea3e21ddf057062fe7d05b3ec9">  144</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eac551e3ea3e21ddf057062fe7d05b3ec9">USB_AUDIO_OUT_HEADPHONES</a>    = 0x0302,</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaed594545b8a4e2c0e0703b4b9d3ebb73">  146</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaed594545b8a4e2c0e0703b4b9d3ebb73">USB_AUDIO_OUT_HEAD_AUDIO</a>    = 0x0303,</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eacf6fe169bd54e6178dc74bd7c504f795">  148</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eacf6fe169bd54e6178dc74bd7c504f795">USB_AUDIO_OUT_DESKTOP_SPEAKER</a>   = 0x0304,</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eae6581df62f5da9ab88149ec8049d7213">  150</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eae6581df62f5da9ab88149ec8049d7213">USB_AUDIO_OUT_ROOM_SPEAKER</a>  = 0x0305,</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaff9805f63bd75e000dd08652c6dc913b">  152</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaff9805f63bd75e000dd08652c6dc913b">USB_AUDIO_OUT_COMM_SPEAKER</a>  = 0x0306,</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea8b48c4993389b7f5a08d55b68b924480">  154</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea8b48c4993389b7f5a08d55b68b924480">USB_AUDIO_OUT_LOW_FREQ_SPEAKER</a>  = 0x0307,</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eac740f1b3cfcfba8c4def54e1ca81a3d8">  162</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eac740f1b3cfcfba8c4def54e1ca81a3d8">USB_AUDIO_IO_UNDEFINED</a>          = 0x0400,</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea24f6c5657c301871089dc8eac3b5d207">  164</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea24f6c5657c301871089dc8eac3b5d207">USB_AUDIO_IO_HANDSET</a>            = 0x0401,</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaf75bca3db10d28611a9ffa8637a4488e">  166</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaf75bca3db10d28611a9ffa8637a4488e">USB_AUDIO_IO_HEADSET</a>            = 0x0402,</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea232edf193a4f755d8821c51001d11f1d">  168</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea232edf193a4f755d8821c51001d11f1d">USB_AUDIO_IO_SPEAKERPHONE_ECHO_NONE</a> = 0x0403,</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eab7f8515fb0154f5b0e038f485bdadaf6">  170</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eab7f8515fb0154f5b0e038f485bdadaf6">USB_AUDIO_IO_SPEAKERPHONE_ECHO_SUP</a>  = 0x0404,</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea319eef3f2a59242b0c8dd5ca50212e14">  172</a></span>    <a class="code hl_enumvalue" href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea319eef3f2a59242b0c8dd5ca50212e14">USB_AUDIO_IO_SPEAKERPHONE_ECHO_CAN</a>  = 0x0405,</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>};</div>
+</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="foldopen" id="foldopen00178" data-start="{" data-end="};">
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#acbdc8b284d108983fb204cbd679043bb">  178</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="usb__audio_8h.html#acbdc8b284d108983fb204cbd679043bb">usb_audio_direction</a> {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    USB_AUDIO_IN = 0x00,</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    USB_AUDIO_OUT = 0x01</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>};</div>
+</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="foldopen" id="foldopen00189" data-start="{" data-end="};">
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="structusb__audio__fu__evt.html">  189</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusb__audio__fu__evt.html">usb_audio_fu_evt</a> {</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="structusb__audio__fu__evt.html#a5baf5d4e2a39337dc9c21c4465d5ad8e">  194</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="usb__audio_8h.html#acbdc8b284d108983fb204cbd679043bb">usb_audio_direction</a> <a class="code hl_variable" href="structusb__audio__fu__evt.html#a5baf5d4e2a39337dc9c21c4465d5ad8e">dir</a>;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="structusb__audio__fu__evt.html#a1cb4849aae8b9a4e667ed126e9bce26b">  196</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="usb__audio_8h.html#a4d49f239cc36daf8bd0cfa36c5fb75d2">usb_audio_fucs</a> <a class="code hl_variable" href="structusb__audio__fu__evt.html#a1cb4849aae8b9a4e667ed126e9bce26b">cs</a>;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="structusb__audio__fu__evt.html#a9313b39f178c8a86d680a950ce505713">  201</a></span>    <a class="code hl_variable" href="structusb__audio__fu__evt.html#a9313b39f178c8a86d680a950ce505713">uint8_t</a> <a class="code hl_variable" href="structusb__audio__fu__evt.html#a9313b39f178c8a86d680a950ce505713">channel</a>;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="structusb__audio__fu__evt.html#a6ef19bf7d37c3d636edba243dac8ecb2">  203</a></span>    <a class="code hl_variable" href="structusb__audio__fu__evt.html#a9313b39f178c8a86d680a950ce505713">uint8_t</a> <a class="code hl_variable" href="structusb__audio__fu__evt.html#a6ef19bf7d37c3d636edba243dac8ecb2">val_len</a>;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="structusb__audio__fu__evt.html#a47c6c7c00fac32a04bffd251d715dc39">  205</a></span>    <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="structusb__audio__fu__evt.html#a47c6c7c00fac32a04bffd251d715dc39">val</a>;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>};</div>
+</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#a8f289f2b4d0a7d3accdc6308cb5661e8">  219</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="usb__audio_8h.html#a8f289f2b4d0a7d3accdc6308cb5661e8">usb_audio_data_request_cb_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#a57bc8c499f03323db38f5604f8ebcda2">  232</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="usb__audio_8h.html#a57bc8c499f03323db38f5604f8ebcda2">usb_audio_data_completion_cb_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                           <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *buffer,</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>                           <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structnet__buf.html#a1522d81a002804223e25300a6961f527">size</a>);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#a692362e834622532b7be71d5e0bdc219">  248</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="usb__audio_8h.html#a692362e834622532b7be71d5e0bdc219">usb_audio_feature_updated_cb_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                           <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structusb__audio__fu__evt.html">usb_audio_fu_evt</a> *evt);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="foldopen" id="foldopen00261" data-start="{" data-end="};">
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="structusb__audio__ops.html">  261</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusb__audio__ops.html">usb_audio_ops</a> {</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno"><a class="line" href="structusb__audio__ops.html#a6ee19a7aef47561f14981b7e7ebd8ac7">  263</a></span>    <a class="code hl_typedef" href="usb__audio_8h.html#a8f289f2b4d0a7d3accdc6308cb5661e8">usb_audio_data_request_cb_t</a> <a class="code hl_variable" href="structusb__audio__ops.html#a6ee19a7aef47561f14981b7e7ebd8ac7">data_request_cb</a>;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="structusb__audio__ops.html#a2752018597ba5bd4e9a80d1ae650bf8b">  269</a></span>    <a class="code hl_typedef" href="usb__audio_8h.html#a57bc8c499f03323db38f5604f8ebcda2">usb_audio_data_completion_cb_t</a> <a class="code hl_variable" href="structusb__audio__ops.html#a2752018597ba5bd4e9a80d1ae650bf8b">data_written_cb</a>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="structusb__audio__ops.html#a483af21f54537bef1a6ae3be2cd3717d">  275</a></span>    <a class="code hl_typedef" href="usb__audio_8h.html#a57bc8c499f03323db38f5604f8ebcda2">usb_audio_data_completion_cb_t</a> <a class="code hl_variable" href="structusb__audio__ops.html#a483af21f54537bef1a6ae3be2cd3717d">data_received_cb</a>;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="structusb__audio__ops.html#a861823185efb5c9a06b900799adb9efb">  278</a></span>    <a class="code hl_typedef" href="usb__audio_8h.html#a692362e834622532b7be71d5e0bdc219">usb_audio_feature_updated_cb_t</a> <a class="code hl_variable" href="structusb__audio__ops.html#a861823185efb5c9a06b900799adb9efb">feature_update_cb</a>;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>};</div>
+</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#af314d5beb1d16377855313d46148a86c">  295</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="usb__audio_8h.html#af314d5beb1d16377855313d46148a86c">usb_audio_get_in_frame_size</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#a6a69824dadab0c36bb6a6ce378da8ba5">  306</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="usb__audio_8h.html#a6a69824dadab0c36bb6a6ce378da8ba5">usb_audio_register</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>            <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structusb__audio__ops.html">usb_audio_ops</a> *ops);</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno"><a class="line" href="usb__audio_8h.html#af1874c929638325e9e2a44da0e613041">  329</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="usb__audio_8h.html#af1874c929638325e9e2a44da0e613041">usb_audio_send</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *buffer,</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>           <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_USB_CLASS_AUDIO_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="anet_2buf_8h_html"><div class="ttname"><a href="net_2buf_8h.html">buf.h</a></div><div class="ttdoc">Buffer management.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructnet__buf_html"><div class="ttname"><a href="structnet__buf.html">net_buf</a></div><div class="ttdoc">Network buffer representation.</div><div class="ttdef"><b>Definição</b> buf.h:906</div></div>
+<div class="ttc" id="astructnet__buf_html_a1522d81a002804223e25300a6961f527"><div class="ttname"><a href="structnet__buf.html#a1522d81a002804223e25300a6961f527">net_buf::size</a></div><div class="ttdeci">uint16_t size</div><div class="ttdef"><b>Definição</b> buf.h:938</div></div>
+<div class="ttc" id="astructusb__audio__fu__evt_html"><div class="ttname"><a href="structusb__audio__fu__evt.html">usb_audio_fu_evt</a></div><div class="ttdoc">Feature Unit event structure.</div><div class="ttdef"><b>Definição</b> usb_audio.h:189</div></div>
+<div class="ttc" id="astructusb__audio__fu__evt_html_a1cb4849aae8b9a4e667ed126e9bce26b"><div class="ttname"><a href="structusb__audio__fu__evt.html#a1cb4849aae8b9a4e667ed126e9bce26b">usb_audio_fu_evt::cs</a></div><div class="ttdeci">enum usb_audio_fucs cs</div><div class="ttdef"><b>Definição</b> usb_audio.h:196</div></div>
+<div class="ttc" id="astructusb__audio__fu__evt_html_a47c6c7c00fac32a04bffd251d715dc39"><div class="ttname"><a href="structusb__audio__fu__evt.html#a47c6c7c00fac32a04bffd251d715dc39">usb_audio_fu_evt::val</a></div><div class="ttdeci">const void * val</div><div class="ttdef"><b>Definição</b> usb_audio.h:205</div></div>
+<div class="ttc" id="astructusb__audio__fu__evt_html_a5baf5d4e2a39337dc9c21c4465d5ad8e"><div class="ttname"><a href="structusb__audio__fu__evt.html#a5baf5d4e2a39337dc9c21c4465d5ad8e">usb_audio_fu_evt::dir</a></div><div class="ttdeci">enum usb_audio_direction dir</div><div class="ttdef"><b>Definição</b> usb_audio.h:194</div></div>
+<div class="ttc" id="astructusb__audio__fu__evt_html_a6ef19bf7d37c3d636edba243dac8ecb2"><div class="ttname"><a href="structusb__audio__fu__evt.html#a6ef19bf7d37c3d636edba243dac8ecb2">usb_audio_fu_evt::val_len</a></div><div class="ttdeci">uint8_t val_len</div><div class="ttdef"><b>Definição</b> usb_audio.h:203</div></div>
+<div class="ttc" id="astructusb__audio__fu__evt_html_a9313b39f178c8a86d680a950ce505713"><div class="ttname"><a href="structusb__audio__fu__evt.html#a9313b39f178c8a86d680a950ce505713">usb_audio_fu_evt::channel</a></div><div class="ttdeci">uint8_t channel</div><div class="ttdef"><b>Definição</b> usb_audio.h:201</div></div>
+<div class="ttc" id="astructusb__audio__ops_html"><div class="ttname"><a href="structusb__audio__ops.html">usb_audio_ops</a></div><div class="ttdoc">Audio callbacks used to interact with audio devices by user App.</div><div class="ttdef"><b>Definição</b> usb_audio.h:261</div></div>
+<div class="ttc" id="astructusb__audio__ops_html_a2752018597ba5bd4e9a80d1ae650bf8b"><div class="ttname"><a href="structusb__audio__ops.html#a2752018597ba5bd4e9a80d1ae650bf8b">usb_audio_ops::data_written_cb</a></div><div class="ttdeci">usb_audio_data_completion_cb_t data_written_cb</div><div class="ttdef"><b>Definição</b> usb_audio.h:269</div></div>
+<div class="ttc" id="astructusb__audio__ops_html_a483af21f54537bef1a6ae3be2cd3717d"><div class="ttname"><a href="structusb__audio__ops.html#a483af21f54537bef1a6ae3be2cd3717d">usb_audio_ops::data_received_cb</a></div><div class="ttdeci">usb_audio_data_completion_cb_t data_received_cb</div><div class="ttdef"><b>Definição</b> usb_audio.h:275</div></div>
+<div class="ttc" id="astructusb__audio__ops_html_a6ee19a7aef47561f14981b7e7ebd8ac7"><div class="ttname"><a href="structusb__audio__ops.html#a6ee19a7aef47561f14981b7e7ebd8ac7">usb_audio_ops::data_request_cb</a></div><div class="ttdeci">usb_audio_data_request_cb_t data_request_cb</div><div class="ttdef"><b>Definição</b> usb_audio.h:263</div></div>
+<div class="ttc" id="astructusb__audio__ops_html_a861823185efb5c9a06b900799adb9efb"><div class="ttname"><a href="structusb__audio__ops.html#a861823185efb5c9a06b900799adb9efb">usb_audio_ops::feature_update_cb</a></div><div class="ttdeci">usb_audio_feature_updated_cb_t feature_update_cb</div><div class="ttdef"><b>Definição</b> usb_audio.h:278</div></div>
+<div class="ttc" id="ausb__audio_8h_html_a4885d280ebe68e42cf068524038ec582"><div class="ttname"><a href="usb__audio_8h.html#a4885d280ebe68e42cf068524038ec582">usb_audio_int_subclass_codes</a></div><div class="ttdeci">usb_audio_int_subclass_codes</div><div class="ttdef"><b>Definição</b> usb_audio.h:32</div></div>
+<div class="ttc" id="ausb__audio_8h_html_a4d49f239cc36daf8bd0cfa36c5fb75d2"><div class="ttname"><a href="usb__audio_8h.html#a4d49f239cc36daf8bd0cfa36c5fb75d2">usb_audio_fucs</a></div><div class="ttdeci">usb_audio_fucs</div><div class="ttdef"><b>Definição</b> usb_audio.h:85</div></div>
+<div class="ttc" id="ausb__audio_8h_html_a57bc8c499f03323db38f5604f8ebcda2"><div class="ttname"><a href="usb__audio_8h.html#a57bc8c499f03323db38f5604f8ebcda2">usb_audio_data_completion_cb_t</a></div><div class="ttdeci">void(* usb_audio_data_completion_cb_t)(const struct device *dev, struct net_buf *buffer, size_t size)</div><div class="ttdoc">Callback type used to inform the app that data were successfully send/received.</div><div class="ttdef"><b>Definição</b> usb_audio.h:232</div></div>
+<div class="ttc" id="ausb__audio_8h_html_a692362e834622532b7be71d5e0bdc219"><div class="ttname"><a href="usb__audio_8h.html#a692362e834622532b7be71d5e0bdc219">usb_audio_feature_updated_cb_t</a></div><div class="ttdeci">void(* usb_audio_feature_updated_cb_t)(const struct device *dev, const struct usb_audio_fu_evt *evt)</div><div class="ttdoc">Callback type used to inform the app that Host has changed one of the features configured for the dev...</div><div class="ttdef"><b>Definição</b> usb_audio.h:248</div></div>
+<div class="ttc" id="ausb__audio_8h_html_a6a69824dadab0c36bb6a6ce378da8ba5"><div class="ttname"><a href="usb__audio_8h.html#a6a69824dadab0c36bb6a6ce378da8ba5">usb_audio_register</a></div><div class="ttdeci">void usb_audio_register(const struct device *dev, const struct usb_audio_ops *ops)</div><div class="ttdoc">Register the USB Audio device and make it usable. This must be called in order to make the device wor...</div></div>
+<div class="ttc" id="ausb__audio_8h_html_a8f289f2b4d0a7d3accdc6308cb5661e8"><div class="ttname"><a href="usb__audio_8h.html#a8f289f2b4d0a7d3accdc6308cb5661e8">usb_audio_data_request_cb_t</a></div><div class="ttdeci">void(* usb_audio_data_request_cb_t)(const struct device *dev)</div><div class="ttdoc">Callback type used to inform the app that data were requested from the device and may be send to the ...</div><div class="ttdef"><b>Definição</b> usb_audio.h:219</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ab5e6c883af53c089c7fcdee4d2249d9a"><div class="ttname"><a href="usb__audio_8h.html#ab5e6c883af53c089c7fcdee4d2249d9a">usb_audio_cs_ac_int_desc_subtypes</a></div><div class="ttdeci">usb_audio_cs_ac_int_desc_subtypes</div><div class="ttdef"><b>Definição</b> usb_audio.h:42</div></div>
+<div class="ttc" id="ausb__audio_8h_html_acbdc8b284d108983fb204cbd679043bb"><div class="ttname"><a href="usb__audio_8h.html#acbdc8b284d108983fb204cbd679043bb">usb_audio_direction</a></div><div class="ttdeci">usb_audio_direction</div><div class="ttdoc">Audio device direction.</div><div class="ttdef"><b>Definição</b> usb_audio.h:178</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad6eb1c3ec75aef329ea973d1cb4dc6ad"><div class="ttname"><a href="usb__audio_8h.html#ad6eb1c3ec75aef329ea973d1cb4dc6ad">usb_audio_cs_req_codes</a></div><div class="ttdeci">usb_audio_cs_req_codes</div><div class="ttdef"><b>Definição</b> usb_audio.h:67</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79e"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79e">usb_audio_terminal_types</a></div><div class="ttdeci">usb_audio_terminal_types</div><div class="ttdef"><b>Definição</b> usb_audio.h:102</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79ea232edf193a4f755d8821c51001d11f1d"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea232edf193a4f755d8821c51001d11f1d">USB_AUDIO_IO_SPEAKERPHONE_ECHO_NONE</a></div><div class="ttdeci">@ USB_AUDIO_IO_SPEAKERPHONE_ECHO_NONE</div><div class="ttdef"><b>Definição</b> usb_audio.h:168</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79ea24f6c5657c301871089dc8eac3b5d207"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea24f6c5657c301871089dc8eac3b5d207">USB_AUDIO_IO_HANDSET</a></div><div class="ttdeci">@ USB_AUDIO_IO_HANDSET</div><div class="ttdef"><b>Definição</b> usb_audio.h:164</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79ea2eaf530492705b7e493e5d746752c262"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea2eaf530492705b7e493e5d746752c262">USB_AUDIO_IN_MIC_ARRAY</a></div><div class="ttdeci">@ USB_AUDIO_IN_MIC_ARRAY</div><div class="ttdef"><b>Definição</b> usb_audio.h:130</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79ea3140dd357e3093db21f581226a6b000a"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea3140dd357e3093db21f581226a6b000a">USB_AUDIO_IN_DESKTOP_MIC</a></div><div class="ttdeci">@ USB_AUDIO_IN_DESKTOP_MIC</div><div class="ttdef"><b>Definição</b> usb_audio.h:124</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79ea319eef3f2a59242b0c8dd5ca50212e14"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea319eef3f2a59242b0c8dd5ca50212e14">USB_AUDIO_IO_SPEAKERPHONE_ECHO_CAN</a></div><div class="ttdeci">@ USB_AUDIO_IO_SPEAKERPHONE_ECHO_CAN</div><div class="ttdef"><b>Definição</b> usb_audio.h:172</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79ea349881bce5285d61f886aec8fc2bf84c"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea349881bce5285d61f886aec8fc2bf84c">USB_AUDIO_OUT_SPEAKER</a></div><div class="ttdeci">@ USB_AUDIO_OUT_SPEAKER</div><div class="ttdef"><b>Definição</b> usb_audio.h:142</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79ea3cace6841265454e604513ebba78f749"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea3cace6841265454e604513ebba78f749">USB_AUDIO_IN_PERSONAL_MIC</a></div><div class="ttdeci">@ USB_AUDIO_IN_PERSONAL_MIC</div><div class="ttdef"><b>Definição</b> usb_audio.h:126</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79ea456a90d55e1b271698516d89e8ba7f5b"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea456a90d55e1b271698516d89e8ba7f5b">USB_AUDIO_IN_OM_DIR_MIC</a></div><div class="ttdeci">@ USB_AUDIO_IN_OM_DIR_MIC</div><div class="ttdef"><b>Definição</b> usb_audio.h:128</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79ea64205001486011d22c1ec0abd382a486"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea64205001486011d22c1ec0abd382a486">USB_AUDIO_USB_VENDOR_SPEC</a></div><div class="ttdeci">@ USB_AUDIO_USB_VENDOR_SPEC</div><div class="ttdef"><b>Definição</b> usb_audio.h:112</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79ea64f43c7efb785a88f72302d2ad8d00f0"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea64f43c7efb785a88f72302d2ad8d00f0">USB_AUDIO_OUT_UNDEFINED</a></div><div class="ttdeci">@ USB_AUDIO_OUT_UNDEFINED</div><div class="ttdef"><b>Definição</b> usb_audio.h:140</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79ea699cefac29e9d9c60f53562c7ad7050d"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea699cefac29e9d9c60f53562c7ad7050d">USB_AUDIO_IN_MICROPHONE</a></div><div class="ttdeci">@ USB_AUDIO_IN_MICROPHONE</div><div class="ttdef"><b>Definição</b> usb_audio.h:122</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79ea8b48c4993389b7f5a08d55b68b924480"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79ea8b48c4993389b7f5a08d55b68b924480">USB_AUDIO_OUT_LOW_FREQ_SPEAKER</a></div><div class="ttdeci">@ USB_AUDIO_OUT_LOW_FREQ_SPEAKER</div><div class="ttdef"><b>Definição</b> usb_audio.h:154</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79eaa0fbe557eba975cb5e368e199ea4f6d4"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaa0fbe557eba975cb5e368e199ea4f6d4">USB_AUDIO_USB_UNDEFINED</a></div><div class="ttdeci">@ USB_AUDIO_USB_UNDEFINED</div><div class="ttdef"><b>Definição</b> usb_audio.h:108</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79eaad81dbd6f39554f52c3912755643d661"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaad81dbd6f39554f52c3912755643d661">USB_AUDIO_USB_STREAMING</a></div><div class="ttdeci">@ USB_AUDIO_USB_STREAMING</div><div class="ttdef"><b>Definição</b> usb_audio.h:110</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79eab7f8515fb0154f5b0e038f485bdadaf6"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eab7f8515fb0154f5b0e038f485bdadaf6">USB_AUDIO_IO_SPEAKERPHONE_ECHO_SUP</a></div><div class="ttdeci">@ USB_AUDIO_IO_SPEAKERPHONE_ECHO_SUP</div><div class="ttdef"><b>Definição</b> usb_audio.h:170</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79eac551e3ea3e21ddf057062fe7d05b3ec9"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eac551e3ea3e21ddf057062fe7d05b3ec9">USB_AUDIO_OUT_HEADPHONES</a></div><div class="ttdeci">@ USB_AUDIO_OUT_HEADPHONES</div><div class="ttdef"><b>Definição</b> usb_audio.h:144</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79eac565b3d090c71949c1e1423bb8529c86"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eac565b3d090c71949c1e1423bb8529c86">USB_AUDIO_IN_PROC_MIC_ARRAY</a></div><div class="ttdeci">@ USB_AUDIO_IN_PROC_MIC_ARRAY</div><div class="ttdef"><b>Definição</b> usb_audio.h:132</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79eac740f1b3cfcfba8c4def54e1ca81a3d8"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eac740f1b3cfcfba8c4def54e1ca81a3d8">USB_AUDIO_IO_UNDEFINED</a></div><div class="ttdeci">@ USB_AUDIO_IO_UNDEFINED</div><div class="ttdef"><b>Definição</b> usb_audio.h:162</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79eacf6fe169bd54e6178dc74bd7c504f795"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eacf6fe169bd54e6178dc74bd7c504f795">USB_AUDIO_OUT_DESKTOP_SPEAKER</a></div><div class="ttdeci">@ USB_AUDIO_OUT_DESKTOP_SPEAKER</div><div class="ttdef"><b>Definição</b> usb_audio.h:148</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79eae6581df62f5da9ab88149ec8049d7213"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eae6581df62f5da9ab88149ec8049d7213">USB_AUDIO_OUT_ROOM_SPEAKER</a></div><div class="ttdeci">@ USB_AUDIO_OUT_ROOM_SPEAKER</div><div class="ttdef"><b>Definição</b> usb_audio.h:150</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79eaed594545b8a4e2c0e0703b4b9d3ebb73"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaed594545b8a4e2c0e0703b4b9d3ebb73">USB_AUDIO_OUT_HEAD_AUDIO</a></div><div class="ttdeci">@ USB_AUDIO_OUT_HEAD_AUDIO</div><div class="ttdef"><b>Definição</b> usb_audio.h:146</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79eaf75bca3db10d28611a9ffa8637a4488e"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaf75bca3db10d28611a9ffa8637a4488e">USB_AUDIO_IO_HEADSET</a></div><div class="ttdeci">@ USB_AUDIO_IO_HEADSET</div><div class="ttdef"><b>Definição</b> usb_audio.h:166</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79eaf85af15795d80c07cdff711ac172be57"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaf85af15795d80c07cdff711ac172be57">USB_AUDIO_IN_UNDEFINED</a></div><div class="ttdeci">@ USB_AUDIO_IN_UNDEFINED</div><div class="ttdef"><b>Definição</b> usb_audio.h:120</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ad73e9e9b72475496b6c483f78605e79eaff9805f63bd75e000dd08652c6dc913b"><div class="ttname"><a href="usb__audio_8h.html#ad73e9e9b72475496b6c483f78605e79eaff9805f63bd75e000dd08652c6dc913b">USB_AUDIO_OUT_COMM_SPEAKER</a></div><div class="ttdeci">@ USB_AUDIO_OUT_COMM_SPEAKER</div><div class="ttdef"><b>Definição</b> usb_audio.h:152</div></div>
+<div class="ttc" id="ausb__audio_8h_html_ade80a3c7e04049fd27e4e39269baaeeb"><div class="ttname"><a href="usb__audio_8h.html#ade80a3c7e04049fd27e4e39269baaeeb">usb_audio_cs_as_int_desc_subtypes</a></div><div class="ttdeci">usb_audio_cs_as_int_desc_subtypes</div><div class="ttdef"><b>Definição</b> usb_audio.h:57</div></div>
+<div class="ttc" id="ausb__audio_8h_html_af1874c929638325e9e2a44da0e613041"><div class="ttname"><a href="usb__audio_8h.html#af1874c929638325e9e2a44da0e613041">usb_audio_send</a></div><div class="ttdeci">int usb_audio_send(const struct device *dev, struct net_buf *buffer, size_t len)</div><div class="ttdoc">Send data using USB Audio device.</div></div>
+<div class="ttc" id="ausb__audio_8h_html_af314d5beb1d16377855313d46148a86c"><div class="ttname"><a href="usb__audio_8h.html#af314d5beb1d16377855313d46148a86c">usb_audio_get_in_frame_size</a></div><div class="ttdeci">size_t usb_audio_get_in_frame_size(const struct device *dev)</div><div class="ttdoc">Get the frame size that is accepted by the Host.</div></div>
+<div class="ttc" id="ausb__ch9_8h_html"><div class="ttname"><a href="usb__ch9_8h.html">usb_ch9.h</a></div><div class="ttdoc">USB Chapter 9 structures and definitions.</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Misc utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

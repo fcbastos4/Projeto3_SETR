@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['dac_5fchannel_5fcfg_0',['dac_channel_cfg',['../structdac__channel__cfg.html',1,'']]],
+  ['dai_5fconfig_1',['dai_config',['../structdai__config.html',1,'']]],
+  ['dai_5fproperties_2',['dai_properties',['../structdai__properties.html',1,'']]],
+  ['dai_5fts_5fcfg_3',['dai_ts_cfg',['../structdai__ts__cfg.html',1,'']]],
+  ['dai_5fts_5fdata_4',['dai_ts_data',['../structdai__ts__data.html',1,'']]],
+  ['device_5',['device',['../structdevice.html',1,'']]],
+  ['device_5fstate_6',['device_state',['../structdevice__state.html',1,'']]],
+  ['dfu_5fruntime_5fdescriptor_7',['dfu_runtime_descriptor',['../structdfu__runtime__descriptor.html',1,'']]],
+  ['disk_5finfo_8',['disk_info',['../structdisk__info.html',1,'']]],
+  ['disk_5foperations_9',['disk_operations',['../structdisk__operations.html',1,'']]],
+  ['display_5fbuffer_5fdescriptor_10',['display_buffer_descriptor',['../structdisplay__buffer__descriptor.html',1,'']]],
+  ['display_5fcapabilities_11',['display_capabilities',['../structdisplay__capabilities.html',1,'']]],
+  ['display_5fdriver_5fapi_12',['display_driver_api',['../structdisplay__driver__api.html',1,'']]],
+  ['dma_5fblock_5fconfig_13',['dma_block_config',['../structdma__block__config.html',1,'']]],
+  ['dma_5fconfig_14',['dma_config',['../structdma__config.html',1,'']]],
+  ['dma_5fcontext_15',['dma_context',['../structdma__context.html',1,'']]],
+  ['dma_5fstatus_16',['dma_status',['../structdma__status.html',1,'']]],
+  ['dmic_5fcfg_17',['dmic_cfg',['../structdmic__cfg.html',1,'']]],
+  ['dns_5faddrinfo_18',['dns_addrinfo',['../structdns__addrinfo.html',1,'']]],
+  ['dns_5fpending_5fquery_19',['dns_pending_query',['../structdns__resolve__context_1_1dns__pending__query.html',1,'dns_resolve_context']]],
+  ['dns_5fresolve_5fcontext_20',['dns_resolve_context',['../structdns__resolve__context.html',1,'']]],
+  ['dsa_5fslave_5fconfig_21',['dsa_slave_config',['../structdsa__slave__config.html',1,'']]],
+  ['dummy_5fapi_22',['dummy_api',['../structdummy__api.html',1,'']]],
+  ['dw_5face_5fv1_5fictl_5fdriver_5fapi_23',['dw_ace_v1_ictl_driver_api',['../structdw__ace__v1__ictl__driver__api.html',1,'']]],
+  ['dynamic_5fregion_5finfo_24',['dynamic_region_info',['../structdynamic__region__info.html',1,'']]]
+];

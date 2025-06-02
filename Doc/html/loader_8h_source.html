@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/llext/loader.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_32cb739766f3b331f255abc4af4d61fc.html">llext</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">loader.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2023 Intel Corporation</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_LLEXT_LOADER_H</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_LLEXT_LOADER_H</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;zephyr/llext/elf.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="group__llext__loader.html#ga4b102fd026a978b1fea9c3221015ac59">   27</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__llext__loader.html#ga4b102fd026a978b1fea9c3221015ac59">llext_section</a> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    LLEXT_SECT_TEXT,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    LLEXT_SECT_DATA,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    LLEXT_SECT_RODATA,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    LLEXT_SECT_BSS,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    LLEXT_SECT_REL_TEXT,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    LLEXT_SECT_REL_DATA,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    LLEXT_SECT_REL_RODATA,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    LLEXT_SECT_REL_BSS,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    LLEXT_SECT_SYMTAB,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    LLEXT_SECT_STRTAB,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    LLEXT_SECT_SHSTRTAB,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    LLEXT_SECT_COUNT,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__llext.html#ga9258a6fe4a45aa5dd48c80c7aa07b953">llext_mem</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="};">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structllext__loader.html">   50</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structllext__loader.html">llext_loader</a> {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structllext__loader.html#a29a16df55b72bc299b338036437f53e0">   64</a></span>    int (*<a class="code hl_variable" href="structllext__loader.html#a29a16df55b72bc299b338036437f53e0">read</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structllext__loader.html">llext_loader</a> *ldr, <span class="keywordtype">void</span> *out, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structllext__loader.html#a2376c3774af219972e164b0ee8a6bb6d">   78</a></span>    int (*<a class="code hl_variable" href="structllext__loader.html#a2376c3774af219972e164b0ee8a6bb6d">seek</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structllext__loader.html">llext_loader</a> *ldr, <span class="keywordtype">size_t</span> pos);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structllext__loader.html#af5452f4b4f1099379d110c1bcd7773f6">   90</a></span>    <span class="keywordtype">void</span> *(*peek)(<span class="keyword">struct </span><a class="code hl_struct" href="structllext__loader.html">llext_loader</a> *ldr, <span class="keywordtype">size_t</span> pos);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_struct" href="structelf32__ehdr.html">elf_ehdr_t</a> hdr;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <a class="code hl_struct" href="structelf32__shdr.html">elf_shdr_t</a> sects[LLEXT_SECT_COUNT];</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__llext.html#ga9258a6fe4a45aa5dd48c80c7aa07b953">llext_mem</a> *sect_map;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    uint32_t sect_cnt;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>};</div>
+</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> llext_read(<span class="keyword">struct</span> <a class="code hl_struct" href="structllext__loader.html">llext_loader</a> *l, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> len)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>{</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordflow">return</span> l-&gt;<a class="code hl_variable" href="structllext__loader.html#a29a16df55b72bc299b338036437f53e0">read</a>(l, buf, len);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>}</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> llext_seek(<span class="keyword">struct</span> <a class="code hl_struct" href="structllext__loader.html">llext_loader</a> *l, <span class="keywordtype">size_t</span> pos)</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>{</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordflow">return</span> l-&gt;<a class="code hl_variable" href="structllext__loader.html#a2376c3774af219972e164b0ee8a6bb6d">seek</a>(l, pos);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>}</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> *llext_peek(<span class="keyword">struct</span> <a class="code hl_struct" href="structllext__loader.html">llext_loader</a> *l, <span class="keywordtype">size_t</span> pos)</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>{</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">if</span> (l-&gt;<a class="code hl_variable" href="structllext__loader.html#af5452f4b4f1099379d110c1bcd7773f6">peek</a>) {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordflow">return</span> l-&gt;<a class="code hl_variable" href="structllext__loader.html#af5452f4b4f1099379d110c1bcd7773f6">peek</a>(l, pos);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>}</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>}</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_LLEXT_LOADER_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__llext__loader_html_ga4b102fd026a978b1fea9c3221015ac59"><div class="ttname"><a href="group__llext__loader.html#ga4b102fd026a978b1fea9c3221015ac59">llext_section</a></div><div class="ttdeci">llext_section</div><div class="ttdoc">Enum of sections for lookup tables.</div><div class="ttdef"><b>Definição</b> loader.h:27</div></div>
+<div class="ttc" id="agroup__llext_html_ga9258a6fe4a45aa5dd48c80c7aa07b953"><div class="ttname"><a href="group__llext.html#ga9258a6fe4a45aa5dd48c80c7aa07b953">llext_mem</a></div><div class="ttdeci">llext_mem</div><div class="ttdoc">Enum of memory regions for lookup tables.</div><div class="ttdef"><b>Definição</b> llext.h:31</div></div>
+<div class="ttc" id="astructelf32__ehdr_html"><div class="ttname"><a href="structelf32__ehdr.html">elf32_ehdr</a></div><div class="ttdoc">ELF Header(32-bit)</div><div class="ttdef"><b>Definição</b> elf.h:69</div></div>
+<div class="ttc" id="astructelf32__shdr_html"><div class="ttname"><a href="structelf32__shdr.html">elf32_shdr</a></div><div class="ttdoc">Section Header(32-bit)</div><div class="ttdef"><b>Definição</b> elf.h:149</div></div>
+<div class="ttc" id="astructllext__loader_html"><div class="ttname"><a href="structllext__loader.html">llext_loader</a></div><div class="ttdoc">Linkable loadable extension loader context.</div><div class="ttdef"><b>Definição</b> loader.h:50</div></div>
+<div class="ttc" id="astructllext__loader_html_a2376c3774af219972e164b0ee8a6bb6d"><div class="ttname"><a href="structllext__loader.html#a2376c3774af219972e164b0ee8a6bb6d">llext_loader::seek</a></div><div class="ttdeci">int(* seek)(struct llext_loader *ldr, size_t pos)</div><div class="ttdoc">Seek to a new absolute location.</div><div class="ttdef"><b>Definição</b> loader.h:78</div></div>
+<div class="ttc" id="astructllext__loader_html_a29a16df55b72bc299b338036437f53e0"><div class="ttname"><a href="structllext__loader.html#a29a16df55b72bc299b338036437f53e0">llext_loader::read</a></div><div class="ttdeci">int(* read)(struct llext_loader *ldr, void *out, size_t len)</div><div class="ttdoc">Read (copy) from the loader.</div><div class="ttdef"><b>Definição</b> loader.h:64</div></div>
+<div class="ttc" id="astructllext__loader_html_af5452f4b4f1099379d110c1bcd7773f6"><div class="ttname"><a href="structllext__loader.html#af5452f4b4f1099379d110c1bcd7773f6">llext_loader::peek</a></div><div class="ttdeci">void *(* peek)(struct llext_loader *ldr, size_t pos)</div><div class="ttdoc">Peek at an absolute location.</div><div class="ttdef"><b>Definição</b> loader.h:90</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

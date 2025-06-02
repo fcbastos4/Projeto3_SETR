@@ -1,0 +1,746 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/bluetooth/mesh/access.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_54c0620e537f2166dbbc1b051adfe8cd.html">bluetooth</a></li><li class="navelem"><a class="el" href="dir_20041068832b9a39a164f78830c074f0.html">mesh</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">access.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="access_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Copyright (c) 2017 Intel Corporation</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_BLUETOOTH_MESH_ACCESS_H_</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define ZEPHYR_INCLUDE_BLUETOOTH_MESH_ACCESS_H_</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">zephyr/sys/util.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;zephyr/settings/settings.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="msg_8h.html">zephyr/bluetooth/mesh/msg.h</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">/* Internal macros used to initialize array members */</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#define BT_MESH_KEY_UNUSED_ELT_(IDX, _) BT_MESH_KEY_UNUSED</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#define BT_MESH_ADDR_UNASSIGNED_ELT_(IDX, _) BT_MESH_ADDR_UNASSIGNED</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define BT_MESH_UUID_UNASSIGNED_ELT_(IDX, _) NULL</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define BT_MESH_MODEL_KEYS_UNUSED(_keys)            \</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">    { LISTIFY(_keys, BT_MESH_KEY_UNUSED_ELT_, (,)) }</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define BT_MESH_MODEL_GROUPS_UNASSIGNED(_grps)          \</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">    { LISTIFY(_grps, BT_MESH_ADDR_UNASSIGNED_ELT_, (,)) }</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#if CONFIG_BT_MESH_LABEL_COUNT &gt; 0</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define BT_MESH_MODEL_UUIDS_UNASSIGNED()            \</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">    .uuids = (const uint8_t *[]){ LISTIFY(CONFIG_BT_MESH_LABEL_COUNT, \</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">                     BT_MESH_UUID_UNASSIGNED_ELT_, (,)) },</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#define BT_MESH_MODEL_UUIDS_UNASSIGNED()</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#define BT_MESH_MODEL_RUNTIME_INIT(_user_data)          \</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">    .rt = &amp;(struct bt_mesh_model_rt_ctx){ .user_data = (_user_data) },</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga6d11790af686e6d48f08c6f1cd65317c">   51</a></span><span class="preprocessor">#define BT_MESH_ADDR_UNASSIGNED    0x0000   </span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga27aafd100b6ccc1de060a75370184620">   52</a></span><span class="preprocessor">#define BT_MESH_ADDR_ALL_NODES     0xffff   </span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga5ee81d48846de9c9c966ffe0b90ff011">   53</a></span><span class="preprocessor">#define BT_MESH_ADDR_RELAYS        0xfffe   </span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga5d44892368bb7c1ecd205a81e66bd6f7">   54</a></span><span class="preprocessor">#define BT_MESH_ADDR_FRIENDS       0xfffd   </span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga30d4975d25c2c120da1cbfadf29c098f">   55</a></span><span class="preprocessor">#define BT_MESH_ADDR_PROXIES       0xfffc   </span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gabf77d8365ddc278838fa450826e43243">   56</a></span><span class="preprocessor">#define BT_MESH_ADDR_DFW_NODES     0xfffb   </span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gafd70174e5072dbbfed31156f152aeaa1">   57</a></span><span class="preprocessor">#define BT_MESH_ADDR_IP_NODES      0xfffa   </span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga1055381438e55e953dec2e6d592ab103">   58</a></span><span class="preprocessor">#define BT_MESH_ADDR_IP_BR_ROUTERS 0xfff9   </span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gace23095bac3705c2f2afab749e48c02d">   67</a></span><span class="preprocessor">#define BT_MESH_KEY_UNUSED        0xffff          </span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga7718cce0713be98a08420c7eab1b40ee">   68</a></span><span class="preprocessor">#define BT_MESH_KEY_ANY           0xffff          </span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gabd37f17f3f5c3bc399ad3699df282675">   69</a></span><span class="preprocessor">#define BT_MESH_KEY_DEV           0xfffe          </span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga9c64b38f2a6879f4750e3e1828e8ab7a">   70</a></span><span class="preprocessor">#define BT_MESH_KEY_DEV_LOCAL     BT_MESH_KEY_DEV </span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaaa6ffb62df5d6d55c831d4d9860fc7eb">   71</a></span><span class="preprocessor">#define BT_MESH_KEY_DEV_REMOTE    0xfffd          </span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gace0a526534e31e8067daf283407533fd">   72</a></span><span class="preprocessor">#define BT_MESH_KEY_DEV_ANY       0xfffc          </span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga1a4694cccf834d71f0abe2a0283cb9a8">   80</a></span><span class="preprocessor">#define BT_MESH_ADDR_IS_UNICAST(addr) ((addr) &amp;&amp; (addr) &lt; 0x8000)</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gab50cc8dca6f7ffd5420ef4fb38fbe224">   84</a></span><span class="preprocessor">#define BT_MESH_ADDR_IS_GROUP(addr) ((addr) &gt;= 0xc000 &amp;&amp; (addr) &lt; 0xff00)</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaff5ff58937924a1e6297aa1b20efc30f">   88</a></span><span class="preprocessor">#define BT_MESH_ADDR_IS_FIXED_GROUP(addr) ((addr) &gt;= 0xff00 &amp;&amp; (addr) &lt; 0xffff)</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga623eb2da2c880eec2107f36402ba6621">   92</a></span><span class="preprocessor">#define BT_MESH_ADDR_IS_VIRTUAL(addr) ((addr) &gt;= 0x8000 &amp;&amp; (addr) &lt; 0xc000)</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga98ba7663259ca43cd5a38c7a9e16516d">   96</a></span><span class="preprocessor">#define BT_MESH_ADDR_IS_RFU(addr) ((addr) &gt;= 0xff00 &amp;&amp; (addr) &lt;= 0xfff8)</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="foldopen" id="foldopen00101" data-start="" data-end="">
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gac4aafa0bdd24fb51d515a62e83917936">  101</a></span><span class="preprocessor">#define BT_MESH_IS_DEV_KEY(key) (key == BT_MESH_KEY_DEV_LOCAL || \</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">                 key == BT_MESH_KEY_DEV_REMOTE)</span></div>
+</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaa620c32d1dce8e4b691b7f4270016506">  105</a></span><span class="preprocessor">#define BT_MESH_APP_SEG_SDU_MAX   12</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga64eb6a94b1db9899c4f5bbf4cc88cd9f">  108</a></span><span class="preprocessor">#define BT_MESH_APP_UNSEG_SDU_MAX 15</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#if defined(CONFIG_BT_MESH_RX_SEG_MAX)</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">#define BT_MESH_RX_SEG_MAX CONFIG_BT_MESH_RX_SEG_MAX</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga18756e939ec3b312eef5c3dc9fd70270">  114</a></span><span class="preprocessor">#define BT_MESH_RX_SEG_MAX 0</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">#if defined(CONFIG_BT_MESH_TX_SEG_MAX)</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#define BT_MESH_TX_SEG_MAX CONFIG_BT_MESH_TX_SEG_MAX</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga1b2a3610ac370266578abce195e65fa2">  121</a></span><span class="preprocessor">#define BT_MESH_TX_SEG_MAX 0</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="foldopen" id="foldopen00125" data-start="" data-end="">
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga86d7386603ecd89952b6d540ea4243c2">  125</a></span><span class="preprocessor">#define BT_MESH_TX_SDU_MAX        MAX((BT_MESH_TX_SEG_MAX *     \</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">                       BT_MESH_APP_SEG_SDU_MAX),    \</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">                      BT_MESH_APP_UNSEG_SDU_MAX)</span></div>
+</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="foldopen" id="foldopen00130" data-start="" data-end="">
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga36f299f2fc13892b5a7d871dad1ec9ce">  130</a></span><span class="preprocessor">#define BT_MESH_RX_SDU_MAX        MAX((BT_MESH_RX_SEG_MAX *     \</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">                       BT_MESH_APP_SEG_SDU_MAX),    \</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="preprocessor">                      BT_MESH_APP_UNSEG_SDU_MAX)</span></div>
+</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="foldopen" id="foldopen00143" data-start="" data-end="">
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga321a5091dabd4ec4beb5396db6cabf44">  143</a></span><span class="preprocessor">#define BT_MESH_ELEM(_loc, _mods, _vnd_mods)                \</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="preprocessor">{                                   \</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="preprocessor">    .rt       = &amp;(struct bt_mesh_elem_rt_ctx) { 0 },    \</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">    .loc              = (_loc),                 \</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">    .model_count      = ARRAY_SIZE(_mods),              \</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">    .vnd_model_count  = ARRAY_SIZE(_vnd_mods),          \</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">    .models           = (_mods),                    \</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">    .vnd_models       = (_vnd_mods),                \</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">}</span></div>
+</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="foldopen" id="foldopen00154" data-start="{" data-end="};">
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="structbt__mesh__elem.html">  154</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__elem.html">bt_mesh_elem</a> {</div>
+<div class="foldopen" id="foldopen00156" data-start="{" data-end="};">
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="structbt__mesh__elem_1_1bt__mesh__elem__rt__ctx.html">  156</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__elem_1_1bt__mesh__elem__rt__ctx.html">bt_mesh_elem_rt_ctx</a> {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="structbt__mesh__elem_1_1bt__mesh__elem__rt__ctx.html#a659279b38f1f3e015ebc648901577038">  158</a></span>        uint16_t <a class="code hl_variable" href="structbt__mesh__elem_1_1bt__mesh__elem__rt__ctx.html#a659279b38f1f3e015ebc648901577038">addr</a>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    } * <span class="keyword">const</span> rt;</div>
+</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="structbt__mesh__elem.html#a5f4c8ded34cf56c7f60189584e8e5b46">  162</a></span>    <span class="keyword">const</span> uint16_t <a class="code hl_variable" href="structbt__mesh__elem.html#a5f4c8ded34cf56c7f60189584e8e5b46">loc</a>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="structbt__mesh__elem.html#a648273e844ff9fa71578372e764ca8cf">  164</a></span>    <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="structbt__mesh__elem.html#a648273e844ff9fa71578372e764ca8cf">model_count</a>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="structbt__mesh__elem.html#aea56fd98c9aecfb9de3772ad3f14b25e">  166</a></span>    <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="structbt__mesh__elem.html#aea56fd98c9aecfb9de3772ad3f14b25e">vnd_model_count</a>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="structbt__mesh__elem.html#a57fefe57d9425d6666495d1f72a3f132">  169</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> * <span class="keyword">const</span> <a class="code hl_variable" href="structbt__mesh__elem.html#a57fefe57d9425d6666495d1f72a3f132">models</a>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="structbt__mesh__elem.html#a81d4fc1c41e2944bf7f6e71b00e19a0f">  171</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> * <span class="keyword">const</span> <a class="code hl_variable" href="structbt__mesh__elem.html#a81d4fc1c41e2944bf7f6e71b00e19a0f">vnd_models</a>;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>};</div>
+</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga004d8d1be55b2aec56abbeeca1d118d8">  179</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_CFG_SRV                   0x0000</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga3f8442dcd1a110ea0d0023f50057139f">  181</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_CFG_CLI                   0x0001</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga6416216348d7186f91175ca50bb8c903">  183</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_HEALTH_SRV                0x0002</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gab58b85b7a77feeb579973177c12bb446">  185</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_HEALTH_CLI                0x0003</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga9c7d1c5dfb87a5ce50c08747af47414f">  187</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_REMOTE_PROV_SRV           0x0004</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaf373eb4d8af5d6bee76a821bd4d5e48c">  189</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_REMOTE_PROV_CLI           0x0005</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gacca0e355982935cfbde46a06b09a7bec">  191</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_PRIV_BEACON_SRV           0x000a</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gab3b21cbee4e11319a6e0ba3b02b24a91">  193</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_PRIV_BEACON_CLI           0x000b</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga1e9d8be1d2e65d2977aea0306b015258">  195</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_SAR_CFG_SRV               0x000e</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaf214eb7eef3530919432b62ff9b353c3">  197</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_SAR_CFG_CLI               0x000f</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga5cf2bb09e5eaa299cfc6b7fe4ed66e9a">  199</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_OP_AGG_SRV                0x0010</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gabac62a77e7d2d7677af21c33c8629187">  201</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_OP_AGG_CLI                0x0011</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaec3abd6a0bd7b07a71fe5ed6a7a6931a">  203</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LARGE_COMP_DATA_SRV       0x0012</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga729d67e4183457932e4c837d65abd842">  205</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LARGE_COMP_DATA_CLI       0x0013</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga165bc198dadaa0d534ec82eb8192ebc0">  207</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_SOL_PDU_RPL_SRV       0x0014</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga6e747dd364bcfaa368e37c5f01afd530">  209</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_SOL_PDU_RPL_CLI       0x0015</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaddc0bd645180a57cb9cd36745b84f7a1">  211</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_ON_DEMAND_PROXY_SRV       0x000c</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gadd36546fb2cb6d1c731f7ae7674af6a7">  213</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_ON_DEMAND_PROXY_CLI       0x000d</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga83e1ed5398d513cfeb900e41655aa4d8">  223</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_ONOFF_SRV             0x1000</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga4f0eee2569b518a5e4250f5b7b294fed">  225</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_ONOFF_CLI             0x1001</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga7f10a8332b1406c3ad628b9679e1d7cb">  227</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_LEVEL_SRV             0x1002</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga462c578845a17b20cdb3e008f74f93a6">  229</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_LEVEL_CLI             0x1003</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga004d5ec0870d47a8d37182e5b0c089a5">  231</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_DEF_TRANS_TIME_SRV    0x1004</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gafa1c6a7d857fe13a139ce2242b4e62f5">  233</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_DEF_TRANS_TIME_CLI    0x1005</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga09ac731fff09146ec68557f00e8294e0">  235</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_POWER_ONOFF_SRV       0x1006</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga2a6dad18792ba7f1d81d6c9a1c65f90a">  237</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_POWER_ONOFF_SETUP_SRV 0x1007</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga9f6544f7b87f39d0792ea2de13cd45f1">  239</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_POWER_ONOFF_CLI       0x1008</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gadd30afe63f89e9c1778e56f722fd82f9">  241</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_POWER_LEVEL_SRV       0x1009</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga1ff6ec64ce3a86d1cfd00fc98e89c0a5">  243</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_POWER_LEVEL_SETUP_SRV 0x100a</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga8420454c35afc12c62ede55942f3b6d3">  245</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_POWER_LEVEL_CLI       0x100b</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gacf891135f54fb1fbb62beb812235619e">  247</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_BATTERY_SRV           0x100c</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga34bb3d4839e9685ec55f8285aac9a79f">  249</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_BATTERY_CLI           0x100d</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gad516f513c5c942fbfee65b85332b105e">  251</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_LOCATION_SRV          0x100e</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga240d1ed34b7341627773cce862f85620">  253</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_LOCATION_SETUPSRV     0x100f</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga8fa01ddb1f4de4d61500bb650243390d">  255</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_LOCATION_CLI          0x1010</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga3cc6862e9c72f9282055c5cda2343c89">  257</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_ADMIN_PROP_SRV        0x1011</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga32e09ddfebd2e8b22da9a3102e116aae">  259</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_MANUFACTURER_PROP_SRV 0x1012</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga4b7b6a4b47e87de94ccf11ef1abd64b9">  261</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_USER_PROP_SRV         0x1013</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga20906658018ef26114d8a6656c258f62">  263</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_CLIENT_PROP_SRV       0x1014</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga69455e5b1e6def3d909c4bb6e0dee9ae">  265</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_GEN_PROP_CLI              0x1015</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga3e0dcb14f46f6076e5b1b114b977f630">  267</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_SENSOR_SRV                0x1100</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gad10780bfc1c16866fa28de750e56bec3">  269</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_SENSOR_SETUP_SRV          0x1101</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga8f1e4ff66d388627dbe91b2f8d4ed358">  271</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_SENSOR_CLI                0x1102</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga93fbf1c661a75d70fdbd2a599353eb94">  273</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_TIME_SRV                  0x1200</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga2725121dc8c2c21c0ee469fe4348f45f">  275</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_TIME_SETUP_SRV            0x1201</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga500df90af7989794c5d72e760e5e65c6">  277</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_TIME_CLI                  0x1202</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaaa5554e3d48ae101596476e6bd6caf67">  279</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_SCENE_SRV                 0x1203</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaa3b08fc8788684abb960fa3516726264">  281</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_SCENE_SETUP_SRV           0x1204</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gad60472aa004a8a913aeb63ef62c45857">  283</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_SCENE_CLI                 0x1205</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga82b723752e240f22b9bcc8dc3dd10eb9">  285</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_SCHEDULER_SRV             0x1206</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga3dbec5a3b82cb25a142c4bc851e3fe0e">  287</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_SCHEDULER_SETUP_SRV       0x1207</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gac743b26cf7e746b16302c25e8cd56221">  289</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_SCHEDULER_CLI             0x1208</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga16df49e84e84d0ae4a6ab5d5f3f1b2b6">  291</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_LIGHTNESS_SRV       0x1300</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gadb93b2ed2256a5c9c3f66237841b1bf5">  293</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_LIGHTNESS_SETUP_SRV 0x1301</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga960055723dec7b3b366efa7c49cafc2e">  295</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_LIGHTNESS_CLI       0x1302</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaa9a211341c5b3283b9b0e0842adef053">  297</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_CTL_SRV             0x1303</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga28ac69b2dbeec70bae4bd3c0381e9e93">  299</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_CTL_SETUP_SRV       0x1304</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga58fc8d99b746b0061177ac5d95341da1">  301</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_CTL_CLI             0x1305</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gafcb1f1ea20bb78b78a9ead4bfdbe3e47">  303</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_CTL_TEMP_SRV        0x1306</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaa0ddc753a226060d014dcd368feab17e">  305</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_HSL_SRV             0x1307</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga574d3ba3f629bdbffc8f15db931a263a">  307</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_HSL_SETUP_SRV       0x1308</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga2d111a352322be8e33ba0cba0feb3f0c">  309</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_HSL_CLI             0x1309</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga865952346db9336a255c71bcb5f09774">  311</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_HSL_HUE_SRV         0x130a</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gae55004e70670a8711e18e9c9b3428720">  313</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_HSL_SAT_SRV         0x130b</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga29e1a90f166d88b6773d9b7ccf08e1c7">  315</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_XYL_SRV             0x130c</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga4addae460d6b3c0a914198695b3e31ea">  317</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_XYL_SETUP_SRV       0x130d</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga0ca4d9997e6016b5c27f42549d42a99d">  319</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_XYL_CLI             0x130e</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga789412252034939539ba45e4bf21e3e2">  321</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_LC_SRV              0x130f</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga436358740bb64d845aa4d849d462a12e">  323</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_LC_SETUPSRV         0x1310</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaadd48b07e1eb53df24df40b7ea412e90">  325</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_LIGHT_LC_CLI              0x1311</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gae85d4cf7aad4e94582c24f79d6f60904">  335</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_BLOB_SRV                  0x1400</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga17e2e59a1344e623fe9fec6e27b7f22e">  337</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_BLOB_CLI                  0x1401</span></div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga0215c2c8cd16ab6536ea243864f9604e">  347</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_DFU_SRV                   0x1402</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaf477a37238ec577000a646af40862ee1">  349</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_DFU_CLI                   0x1403</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaf4309dea32d05274f8f3a6ea45faba38">  351</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_DFD_SRV                   0x1404</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga87d3b5cc207dc3b51e85c9594bb98cad">  353</a></span><span class="preprocessor">#define BT_MESH_MODEL_ID_DFD_CLI                   0x1405</span></div>
+<div class="foldopen" id="foldopen00359" data-start="{" data-end="};">
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno"><a class="line" href="structbt__mesh__model__op.html">  359</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model__op.html">bt_mesh_model_op</a> {</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno"><a class="line" href="structbt__mesh__model__op.html#a09c18a889e08bc708b9dc623f8177e39">  361</a></span>    <span class="keyword">const</span> uint32_t  <a class="code hl_variable" href="structbt__mesh__model__op.html#a09c18a889e08bc708b9dc623f8177e39">opcode</a>;</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span> </div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno"><a class="line" href="structbt__mesh__model__op.html#a25445fe2e937a321942c312bd675e486">  369</a></span>    <span class="keyword">const</span> ssize_t <a class="code hl_variable" href="structbt__mesh__model__op.html#a25445fe2e937a321942c312bd675e486">len</a>;</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span> </div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno"><a class="line" href="structbt__mesh__model__op.html#a4a5de7a12f2f8743048aafc81af0cece">  380</a></span>    int (*<span class="keyword">const</span> <a class="code hl_variable" href="structbt__mesh__model__op.html#a4a5de7a12f2f8743048aafc81af0cece">func</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *model,</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>              <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__msg__ctx.html">bt_mesh_msg_ctx</a> *ctx,</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>              <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf__simple.html">net_buf_simple</a> *buf);</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>};</div>
+</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> </div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span><span class="preprocessor">#define BT_MESH_MODEL_OP_1(b0) (b0)</span></div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span><span class="preprocessor">#define BT_MESH_MODEL_OP_2(b0, b1) (((b0) &lt;&lt; 8) | (b1))</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span><span class="preprocessor">#define BT_MESH_MODEL_OP_3(b0, cid) ((((b0) &lt;&lt; 16) | 0xc00000) | (cid))</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span> </div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga637e1be0298dc681414645867b28b59f">  390</a></span><span class="preprocessor">#define BT_MESH_LEN_EXACT(len) (-len)</span></div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga691ed9b3ab3ddaceda0f81c4a715ab3a">  392</a></span><span class="preprocessor">#define BT_MESH_LEN_MIN(len) (len)</span></div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span> </div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaf2c164506c601214c85d451747176827">  395</a></span><span class="preprocessor">#define BT_MESH_MODEL_OP_END { 0, 0, NULL }</span></div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span> </div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span><span class="preprocessor">#if !defined(__cplusplus) || defined(__DOXYGEN__)</span></div>
+<div class="foldopen" id="foldopen00404" data-start="" data-end="">
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gae6d55e0a27bb7c448affd312a2e11656">  404</a></span><span class="preprocessor">#define BT_MESH_MODEL_NO_OPS ((struct bt_mesh_model_op []) \</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span><span class="preprocessor">                  { BT_MESH_MODEL_OP_END })</span></div>
+</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span> </div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gab0ad2aab95d49e5b60fe8dafd69132a4">  413</a></span><span class="preprocessor">#define BT_MESH_MODEL_NONE ((const struct bt_mesh_model []){})</span></div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="foldopen" id="foldopen00432" data-start="" data-end="">
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga925da443eb15a4c1980d48a69388dc2c">  432</a></span><span class="preprocessor">#define BT_MESH_MODEL_CNT_CB(_id, _op, _pub, _user_data, _keys, _grps, _cb) \</span></div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span><span class="preprocessor">{                                       \</span></div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span><span class="preprocessor">    .id = (_id),                                \</span></div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span><span class="preprocessor">    BT_MESH_MODEL_RUNTIME_INIT(_user_data)                  \</span></div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span><span class="preprocessor">    .pub = _pub,                                \</span></div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span><span class="preprocessor">    .keys = (uint16_t []) BT_MESH_MODEL_KEYS_UNUSED(_keys),         \</span></div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span><span class="preprocessor">    .keys_cnt = _keys,                          \</span></div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span><span class="preprocessor">    .groups = (uint16_t []) BT_MESH_MODEL_GROUPS_UNASSIGNED(_grps),     \</span></div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span><span class="preprocessor">    .groups_cnt = _grps,                            \</span></div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span><span class="preprocessor">    BT_MESH_MODEL_UUIDS_UNASSIGNED()                    \</span></div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span><span class="preprocessor">    .op = _op,                              \</span></div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span><span class="preprocessor">    .cb = _cb,                              \</span></div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span><span class="preprocessor">}</span></div>
+</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span> </div>
+<div class="foldopen" id="foldopen00464" data-start="" data-end="">
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga32733dccd9329aa938dc0bd21cf9beae">  464</a></span><span class="preprocessor">#define BT_MESH_MODEL_CNT_VND_CB(_company, _id, _op, _pub, _user_data, _keys, _grps, _cb)   \</span></div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span><span class="preprocessor">{                                               \</span></div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span><span class="preprocessor">    .vnd.company = (_company),                              \</span></div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span><span class="preprocessor">    .vnd.id = (_id),                                    \</span></div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span><span class="preprocessor">    BT_MESH_MODEL_RUNTIME_INIT(_user_data)                          \</span></div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span><span class="preprocessor">    .op = _op,                                      \</span></div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span><span class="preprocessor">    .pub = _pub,                                        \</span></div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span><span class="preprocessor">    .keys = (uint16_t []) BT_MESH_MODEL_KEYS_UNUSED(_keys),                 \</span></div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span><span class="preprocessor">    .keys_cnt = _keys,                                  \</span></div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span><span class="preprocessor">    .groups = (uint16_t []) BT_MESH_MODEL_GROUPS_UNASSIGNED(_grps),             \</span></div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span><span class="preprocessor">    .groups_cnt = _grps,                                    \</span></div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span><span class="preprocessor">    BT_MESH_MODEL_UUIDS_UNASSIGNED()                            \</span></div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span><span class="preprocessor">    .cb = _cb,                                      \</span></div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span><span class="preprocessor">}</span></div>
+</div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span> </div>
+<div class="foldopen" id="foldopen00491" data-start="" data-end="">
+<div class="line"><a id="l00491" name="l00491"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gac062c101b7310020e11a527de9c40d3a">  491</a></span><span class="preprocessor">#define BT_MESH_MODEL_CB(_id, _op, _pub, _user_data, _cb)   \</span></div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span><span class="preprocessor">    BT_MESH_MODEL_CNT_CB(_id, _op, _pub, _user_data,    \</span></div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span><span class="preprocessor">                 CONFIG_BT_MESH_MODEL_KEY_COUNT,    \</span></div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span><span class="preprocessor">                 CONFIG_BT_MESH_MODEL_GROUP_COUNT, _cb)</span></div>
+</div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span> </div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span> </div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span><span class="preprocessor">#if defined(CONFIG_BT_MESH_LARGE_COMP_DATA_SRV)</span></div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span><span class="preprocessor">#define BT_MESH_MODEL_METADATA_CB(_id, _op, _pub, _user_data, _cb, _metadata)                    \</span></div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span><span class="preprocessor">{                                                                            \</span></div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span><span class="preprocessor">    .id = (_id),                                                         \</span></div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span><span class="preprocessor">    BT_MESH_MODEL_RUNTIME_INIT(_user_data)                   \</span></div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span><span class="preprocessor">    .pub = _pub,                                                         \</span></div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span><span class="preprocessor">    .keys = (uint16_t []) BT_MESH_MODEL_KEYS_UNUSED(CONFIG_BT_MESH_MODEL_KEY_COUNT), \</span></div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span><span class="preprocessor">    .keys_cnt = CONFIG_BT_MESH_MODEL_KEY_COUNT,                          \</span></div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span><span class="preprocessor">    .groups = (uint16_t []) BT_MESH_MODEL_GROUPS_UNASSIGNED(CONFIG_BT_MESH_MODEL_GROUP_COUNT), \</span></div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span><span class="preprocessor">    .groups_cnt = CONFIG_BT_MESH_MODEL_GROUP_COUNT,                      \</span></div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span><span class="preprocessor">    BT_MESH_MODEL_UUIDS_UNASSIGNED()                                     \</span></div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span><span class="preprocessor">    .op = _op,                                                           \</span></div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span><span class="preprocessor">    .cb = _cb,                                                           \</span></div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span><span class="preprocessor">    .metadata = _metadata,                                               \</span></div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span><span class="preprocessor">}</span></div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span><span class="preprocessor">#else</span></div>
+<div class="foldopen" id="foldopen00527" data-start="" data-end="">
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga40204b4ccaa819a487de168bcf66c98f">  527</a></span><span class="preprocessor">#define BT_MESH_MODEL_METADATA_CB(_id, _op, _pub, _user_data, _cb, _metadata)  \</span></div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span><span class="preprocessor">    BT_MESH_MODEL_CB(_id, _op, _pub, _user_data, _cb)</span></div>
+</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span> </div>
+<div class="foldopen" id="foldopen00545" data-start="" data-end="">
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gabe79d914990ba2721f5bb7081910e512">  545</a></span><span class="preprocessor">#define BT_MESH_MODEL_VND_CB(_company, _id, _op, _pub, _user_data, _cb) \</span></div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span><span class="preprocessor">    BT_MESH_MODEL_CNT_VND_CB(_company, _id, _op, _pub, _user_data,  \</span></div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span><span class="preprocessor">                 CONFIG_BT_MESH_MODEL_KEY_COUNT,    \</span></div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span><span class="preprocessor">                 CONFIG_BT_MESH_MODEL_GROUP_COUNT, _cb)</span></div>
+</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> </div>
+<div class="foldopen" id="foldopen00565" data-start="" data-end="">
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gac62334962dcbe3a75a03ce5744b326d8">  565</a></span><span class="preprocessor">#define BT_MESH_MODEL_VND_METADATA_CB(_company, _id, _op, _pub, _user_data, _cb, _metadata)      \</span></div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span><span class="preprocessor">{                                                                            \</span></div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span><span class="preprocessor">    .vnd.company = (_company),                                           \</span></div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span><span class="preprocessor">    .vnd.id = (_id),                                                     \</span></div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span><span class="preprocessor">    BT_MESH_MODEL_RUNTIME_INIT(_user_data)                   \</span></div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span><span class="preprocessor">    .op = _op,                                                           \</span></div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span><span class="preprocessor">    .pub = _pub,                                                         \</span></div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span><span class="preprocessor">    .keys = (uint16_t []) BT_MESH_MODEL_KEYS_UNUSED(CONFIG_BT_MESH_MODEL_KEY_COUNT), \</span></div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span><span class="preprocessor">    .keys_cnt = CONFIG_BT_MESH_MODEL_KEY_COUNT,                          \</span></div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span><span class="preprocessor">    .groups = (uint16_t []) BT_MESH_MODEL_GROUPS_UNASSIGNED(CONFIG_BT_MESH_MODEL_GROUP_COUNT), \</span></div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span><span class="preprocessor">    .groups_cnt = CONFIG_BT_MESH_MODEL_GROUP_COUNT,                      \</span></div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span><span class="preprocessor">    BT_MESH_MODEL_UUIDS_UNASSIGNED()                                     \</span></div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span><span class="preprocessor">    .cb = _cb,                                                           \</span></div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span><span class="preprocessor">    .metadata = _metadata,                                               \</span></div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span><span class="preprocessor">}</span></div>
+</div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span> </div>
+<div class="foldopen" id="foldopen00592" data-start="" data-end="">
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gae694f5ac7ef9f0de37aaba846443586f">  592</a></span><span class="preprocessor">#define BT_MESH_MODEL(_id, _op, _pub, _user_data)                              \</span></div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span><span class="preprocessor">    BT_MESH_MODEL_CB(_id, _op, _pub, _user_data, NULL)</span></div>
+</div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span> </div>
+<div class="foldopen" id="foldopen00607" data-start="" data-end="">
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga3759c8c88db48be662bf2511ff514edd">  607</a></span><span class="preprocessor">#define BT_MESH_MODEL_VND(_company, _id, _op, _pub, _user_data)                \</span></div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span><span class="preprocessor">    BT_MESH_MODEL_VND_CB(_company, _id, _op, _pub, _user_data, NULL)</span></div>
+</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span><span class="preprocessor">#endif </span><span class="comment">/* !defined(__cplusplus) || defined(__DOXYGEN__) */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span> </div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaff82bf652232fbce71c31f38a10577a9">  621</a></span><span class="preprocessor">#define BT_MESH_TRANSMIT(count, int_ms) ((count) | (((int_ms / 10) - 1) &lt;&lt; 3))</span></div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span> </div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga62fda0d731241efbaa4827e4eb9d1795">  630</a></span><span class="preprocessor">#define BT_MESH_TRANSMIT_COUNT(transmit) (((transmit) &amp; (uint8_t)BIT_MASK(3)))</span></div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span> </div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga2aa21171c5677d23ad0c472291639417">  639</a></span><span class="preprocessor">#define BT_MESH_TRANSMIT_INT(transmit) ((((transmit) &gt;&gt; 3) + 1) * 10)</span></div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span> </div>
+<div class="foldopen" id="foldopen00651" data-start="" data-end="">
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga19208dea7bab9f31c2c793ef6201dd91">  651</a></span><span class="preprocessor">#define BT_MESH_PUB_TRANSMIT(count, int_ms) BT_MESH_TRANSMIT(count,           \</span></div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span><span class="preprocessor">                                 (int_ms) / 5)</span></div>
+</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span> </div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga13986422dda5edce4f5fb1ce387093e3">  661</a></span><span class="preprocessor">#define BT_MESH_PUB_TRANSMIT_COUNT(transmit) BT_MESH_TRANSMIT_COUNT(transmit)</span></div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span> </div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaac954956dd3913dd7ad2b93a2566afd9">  670</a></span><span class="preprocessor">#define BT_MESH_PUB_TRANSMIT_INT(transmit) ((((transmit) &gt;&gt; 3) + 1) * 50)</span></div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span> </div>
+<div class="line"><a id="l00680" name="l00680"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga230538bb39ac3d6c8c0327d1fad77e69">  680</a></span><span class="preprocessor">#define BT_MESH_PUB_MSG_TOTAL(pub) (BT_MESH_PUB_TRANSMIT_COUNT((pub)-&gt;retransmit) + 1)</span></div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span> </div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga115ee29aba3c3e985aa11d6692ca0d83">  691</a></span><span class="preprocessor">#define BT_MESH_PUB_MSG_NUM(pub) (BT_MESH_PUB_TRANSMIT_COUNT((pub)-&gt;retransmit) + 1 - (pub)-&gt;count)</span></div>
+<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span> </div>
+<div class="foldopen" id="foldopen00698" data-start="{" data-end="};">
+<div class="line"><a id="l00698" name="l00698"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html">  698</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model__pub.html">bt_mesh_model_pub</a> {</div>
+<div class="line"><a id="l00700" name="l00700"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#aa5026299082b3013740c7e36c01f91f5">  700</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *<a class="code hl_variable" href="structbt__mesh__model__pub.html#aa5026299082b3013740c7e36c01f91f5">mod</a>;</div>
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span> </div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#a408c9185168b962f7e7314f9a429fe8c">  702</a></span>    uint16_t <a class="code hl_variable" href="structbt__mesh__model__pub.html#a408c9185168b962f7e7314f9a429fe8c">addr</a>;          </div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#abea9c2085c9d2e1e2fc71f03dd323ee7">  703</a></span>    <span class="keyword">const</span> uint8_t *<a class="code hl_variable" href="structbt__mesh__model__pub.html#abea9c2085c9d2e1e2fc71f03dd323ee7">uuid</a>;    </div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#a0ad1809fe74930c9b36b32516a8d146f">  704</a></span>    uint16_t <a class="code hl_variable" href="structbt__mesh__model__pub.html#a0ad1809fe74930c9b36b32516a8d146f">key</a>:12,        </div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#a3617adb0c1192419bdac2ad0f37199ac">  705</a></span>         <a class="code hl_variable" href="structbt__mesh__model__pub.html#a3617adb0c1192419bdac2ad0f37199ac">cred</a>:1,        </div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#ab704aedcfd06d374615ef18c6ecc84a9">  706</a></span>         <a class="code hl_variable" href="structbt__mesh__model__pub.html#ab704aedcfd06d374615ef18c6ecc84a9">send_rel</a>:1,    </div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#abdbdc3bbc5d4ac5a5d606b55bb2d50ee">  707</a></span>         <a class="code hl_variable" href="structbt__mesh__model__pub.html#abdbdc3bbc5d4ac5a5d606b55bb2d50ee">fast_period</a>:1, </div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#a16c13e46c012ab836acd02b8fe5f05e3">  708</a></span>         <a class="code hl_variable" href="structbt__mesh__model__pub.html#a16c13e46c012ab836acd02b8fe5f05e3">retr_update</a>:1; </div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#a820b713aaa1e0c33a4a59c80f805e854">  710</a></span>    uint8_t  <a class="code hl_variable" href="structbt__mesh__model__pub.html#a820b713aaa1e0c33a4a59c80f805e854">ttl</a>;          </div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#a3d93d44ff85243dc94e7b4d36cde5b97">  711</a></span>    uint8_t  <a class="code hl_variable" href="structbt__mesh__model__pub.html#a3d93d44ff85243dc94e7b4d36cde5b97">retransmit</a>;   </div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#ae550510e9ca45f8c9fd9802e4e7e0f3d">  712</a></span>    uint8_t  <a class="code hl_variable" href="structbt__mesh__model__pub.html#ae550510e9ca45f8c9fd9802e4e7e0f3d">period</a>;       </div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#a4f2ce8727ffb44f564d1dc0615ebcadf">  713</a></span>    uint8_t  <a class="code hl_variable" href="structbt__mesh__model__pub.html#a4f2ce8727ffb44f564d1dc0615ebcadf">period_div</a>:4, </div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#a4e211c851bf91a9b43f035d435e9c93c">  714</a></span>         <a class="code hl_variable" href="structbt__mesh__model__pub.html#a4e211c851bf91a9b43f035d435e9c93c">count</a>:4;      </div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#a23a865dbd2dce5c1af074097864611e9">  716</a></span>    uint8_t <a class="code hl_variable" href="structbt__mesh__model__pub.html#a23a865dbd2dce5c1af074097864611e9">delayable</a>:1;   </div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#ab6e00714ea899eb32873d10b0908d278">  718</a></span>    uint32_t <a class="code hl_variable" href="structbt__mesh__model__pub.html#ab6e00714ea899eb32873d10b0908d278">period_start</a>; </div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#a5f5639c01d3704ec3d527c418d35f827">  727</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf__simple.html">net_buf_simple</a> *<a class="code hl_variable" href="structbt__mesh__model__pub.html#a5f5639c01d3704ec3d527c418d35f827">msg</a>;</div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span> </div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#a0354344e08e633dc4d6c0b4e7b169080">  747</a></span>    int (*<a class="code hl_variable" href="structbt__mesh__model__pub.html#a0354344e08e633dc4d6c0b4e7b169080">update</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *<a class="code hl_variable" href="structbt__mesh__model__pub.html#aa5026299082b3013740c7e36c01f91f5">mod</a>);</div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span> </div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno"><a class="line" href="structbt__mesh__model__pub.html#af3771432d13805710e94f013332e8214">  750</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a> <a class="code hl_variable" href="structbt__mesh__model__pub.html#af3771432d13805710e94f013332e8214">timer</a>;</div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>};</div>
+</div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span> </div>
+<div class="foldopen" id="foldopen00760" data-start="" data-end="">
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga8334ff2da1f0dc3ab2fc914059c33622">  760</a></span><span class="preprocessor">#define BT_MESH_MODEL_PUB_DEFINE(_name, _update, _msg_len) \</span></div>
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span><span class="preprocessor">    NET_BUF_SIMPLE_DEFINE_STATIC(bt_mesh_pub_msg_##_name, _msg_len); \</span></div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span><span class="preprocessor">    static struct bt_mesh_model_pub _name = { \</span></div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span><span class="preprocessor">        .msg = &amp;bt_mesh_pub_msg_##_name, \</span></div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span><span class="preprocessor">        .update = _update, \</span></div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span> </div>
+<div class="foldopen" id="foldopen00772" data-start="{" data-end="};">
+<div class="line"><a id="l00772" name="l00772"></a><span class="lineno"><a class="line" href="structbt__mesh__models__metadata__entry.html">  772</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__models__metadata__entry.html">bt_mesh_models_metadata_entry</a> {</div>
+<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span>    <span class="comment">/* Length of the metadata */</span></div>
+<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>    <span class="keyword">const</span> uint16_t len;</div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span> </div>
+<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span>    <span class="comment">/* ID of the metadata */</span></div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span>    <span class="keyword">const</span> uint16_t id;</div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span> </div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span>    <span class="comment">/* Pointer to raw data */</span></div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>    <span class="keywordtype">void</span> *data;</div>
+<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span>};</div>
+</div>
+<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span> </div>
+<div class="foldopen" id="foldopen00791" data-start="" data-end="">
+<div class="line"><a id="l00791" name="l00791"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaa2587adac719c50c311ae41c548b853c">  791</a></span><span class="preprocessor">#define BT_MESH_MODELS_METADATA_ENTRY(_len, _id, _data)                         \</span></div>
+<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span><span class="preprocessor">    {                                                                      \</span></div>
+<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span><span class="preprocessor">        .len = (_len), .id = _id, .data = _data,                       \</span></div>
+<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span> </div>
+<div class="line"><a id="l00797" name="l00797"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga56b518123ab47cb3ae4a249f471ae556">  797</a></span><span class="preprocessor">#define BT_MESH_MODELS_METADATA_NONE NULL</span></div>
+<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span> </div>
+<div class="line"><a id="l00800" name="l00800"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaab5fe51071f6e54debd9136ac6a70a49">  800</a></span><span class="preprocessor">#define BT_MESH_MODELS_METADATA_END { 0, 0, NULL }</span></div>
+<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span> </div>
+<div class="foldopen" id="foldopen00803" data-start="{" data-end="};">
+<div class="line"><a id="l00803" name="l00803"></a><span class="lineno"><a class="line" href="structbt__mesh__model__cb.html">  803</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model__cb.html">bt_mesh_model_cb</a> {</div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno"><a class="line" href="structbt__mesh__model__cb.html#a21fc24829c6933a035b0f0be1a1f58e5">  817</a></span>    int (*<span class="keyword">const</span> <a class="code hl_variable" href="structbt__mesh__model__cb.html#a21fc24829c6933a035b0f0be1a1f58e5">settings_set</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *model,</div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>                  <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keywordtype">size_t</span> len_rd,</div>
+<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span>                  <a class="code hl_typedef" href="group__settings.html#ga51cdac276c1fb8cd27fc3eec42749a04">settings_read_cb</a> read_cb, <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span> </div>
+<div class="line"><a id="l00833" name="l00833"></a><span class="lineno"><a class="line" href="structbt__mesh__model__cb.html#a8333420fb9d1d98799ae03ba3b23bfe4">  833</a></span>    int (*<span class="keyword">const</span> <a class="code hl_variable" href="structbt__mesh__model__cb.html#a8333420fb9d1d98799ae03ba3b23bfe4">start</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *model);</div>
+<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span> </div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno"><a class="line" href="structbt__mesh__model__cb.html#a1688a2c6d7b3b17ba49a0975b6f4f68e">  847</a></span>    int (*<span class="keyword">const</span> <a class="code hl_variable" href="structbt__mesh__model__cb.html#a1688a2c6d7b3b17ba49a0975b6f4f68e">init</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *model);</div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span> </div>
+<div class="line"><a id="l00859" name="l00859"></a><span class="lineno"><a class="line" href="structbt__mesh__model__cb.html#a3a7ad466120085c55bcffacb15c78518">  859</a></span>    void (*<span class="keyword">const</span> <a class="code hl_variable" href="structbt__mesh__model__cb.html#a3a7ad466120085c55bcffacb15c78518">reset</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *model);</div>
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span> </div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno"><a class="line" href="structbt__mesh__model__cb.html#ae28f875dffc7f5f2ce99abe590369f43">  869</a></span>    void (*<span class="keyword">const</span> <a class="code hl_variable" href="structbt__mesh__model__cb.html#ae28f875dffc7f5f2ce99abe590369f43">pending_store</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *model);</div>
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>};</div>
+</div>
+<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span> </div>
+<div class="foldopen" id="foldopen00873" data-start="{" data-end="};">
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno"><a class="line" href="structbt__mesh__mod__id__vnd.html">  873</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__mod__id__vnd.html">bt_mesh_mod_id_vnd</a> {</div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno"><a class="line" href="structbt__mesh__mod__id__vnd.html#a187a919337c92f54eaba6f932c7a3670">  875</a></span>    uint16_t <a class="code hl_variable" href="structbt__mesh__mod__id__vnd.html#a187a919337c92f54eaba6f932c7a3670">company</a>;</div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno"><a class="line" href="structbt__mesh__mod__id__vnd.html#a1a299852544a5e6fa3c34ac5ffd883d8">  877</a></span>    uint16_t <a class="code hl_variable" href="structbt__mesh__mod__id__vnd.html#a1a299852544a5e6fa3c34ac5ffd883d8">id</a>;</div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span>};</div>
+</div>
+<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span> </div>
+<div class="foldopen" id="foldopen00881" data-start="{" data-end="};">
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno"><a class="line" href="structbt__mesh__model.html">  881</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> {</div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00884" name="l00884"></a><span class="lineno"><a class="line" href="structbt__mesh__model.html#a848ccf09f7b75ff8a48acb6c8088cf2a">  884</a></span>        <span class="keyword">const</span> uint16_t <a class="code hl_variable" href="structbt__mesh__model.html#a848ccf09f7b75ff8a48acb6c8088cf2a">id</a>;</div>
+<div class="line"><a id="l00886" name="l00886"></a><span class="lineno"><a class="line" href="structbt__mesh__model.html#a3372deccde1a5ab26d9204c97339596e">  886</a></span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__mod__id__vnd.html">bt_mesh_mod_id_vnd</a> <a class="code hl_variable" href="structbt__mesh__model.html#a3372deccde1a5ab26d9204c97339596e">vnd</a>;</div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>    };</div>
+<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span> </div>
+<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span>    <span class="comment">/* Model runtime information */</span></div>
+<div class="foldopen" id="foldopen00890" data-start="{" data-end="};">
+<div class="line"><a id="l00890" name="l00890"></a><span class="lineno"><a class="line" href="structbt__mesh__model_1_1bt__mesh__model__rt__ctx.html">  890</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model_1_1bt__mesh__model__rt__ctx.html">bt_mesh_model_rt_ctx</a> {</div>
+<div class="line"><a id="l00891" name="l00891"></a><span class="lineno">  891</span>        uint8_t  elem_idx;   <span class="comment">/* Belongs to Nth element */</span></div>
+<div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span>        uint8_t  mod_idx;    <span class="comment">/* Is the Nth model in the element */</span></div>
+<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span>        uint16_t flags;      <span class="comment">/* Model flags for internal bookkeeping */</span></div>
+<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span> </div>
+<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span><span class="preprocessor">#ifdef CONFIG_BT_MESH_MODEL_EXTENSIONS</span></div>
+<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span>        <span class="comment">/* Pointer to the next model in a model extension list. */</span></div>
+<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *next;</div>
+<div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00900" name="l00900"></a><span class="lineno"><a class="line" href="structbt__mesh__model_1_1bt__mesh__model__rt__ctx.html#a718d3be40e7be83a196634054d18d568">  900</a></span>        <span class="keywordtype">void</span> *<a class="code hl_variable" href="structbt__mesh__model_1_1bt__mesh__model__rt__ctx.html#a718d3be40e7be83a196634054d18d568">user_data</a>;</div>
+<div class="line"><a id="l00901" name="l00901"></a><span class="lineno">  901</span>    } * <span class="keyword">const</span> rt;</div>
+</div>
+<div class="line"><a id="l00902" name="l00902"></a><span class="lineno">  902</span> </div>
+<div class="line"><a id="l00904" name="l00904"></a><span class="lineno"><a class="line" href="structbt__mesh__model.html#af4a1b5e837b3a1266c7f61ee21020c0b">  904</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model__pub.html">bt_mesh_model_pub</a> * <span class="keyword">const</span> <a class="code hl_variable" href="structbt__mesh__model.html#af4a1b5e837b3a1266c7f61ee21020c0b">pub</a>;</div>
+<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span> </div>
+<div class="line"><a id="l00907" name="l00907"></a><span class="lineno"><a class="line" href="structbt__mesh__model.html#a63595a0559ca70ca76c996f0b71c7983">  907</a></span>    uint16_t * <span class="keyword">const</span> <a class="code hl_variable" href="structbt__mesh__model.html#a63595a0559ca70ca76c996f0b71c7983">keys</a>;</div>
+<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span>    <span class="keyword">const</span> uint16_t keys_cnt;</div>
+<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span> </div>
+<div class="line"><a id="l00911" name="l00911"></a><span class="lineno"><a class="line" href="structbt__mesh__model.html#a460ab46730afa4f74e4066f787864b0b">  911</a></span>    uint16_t * <span class="keyword">const</span> <a class="code hl_variable" href="structbt__mesh__model.html#a460ab46730afa4f74e4066f787864b0b">groups</a>;</div>
+<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span>    <span class="keyword">const</span> uint16_t groups_cnt;</div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span> </div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span><span class="preprocessor">#if (CONFIG_BT_MESH_LABEL_COUNT &gt; 0) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00916" name="l00916"></a><span class="lineno">  916</span>    <span class="keyword">const</span> uint8_t ** <span class="keyword">const</span> uuids;</div>
+<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00918" name="l00918"></a><span class="lineno">  918</span> </div>
+<div class="line"><a id="l00920" name="l00920"></a><span class="lineno"><a class="line" href="structbt__mesh__model.html#a4acc656c737cf79161414984312100b6">  920</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model__op.html">bt_mesh_model_op</a> * <span class="keyword">const</span> <a class="code hl_variable" href="structbt__mesh__model.html#a4acc656c737cf79161414984312100b6">op</a>;</div>
+<div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span> </div>
+<div class="line"><a id="l00923" name="l00923"></a><span class="lineno"><a class="line" href="structbt__mesh__model.html#a67a91d64051e055b79f5d9166ab12660">  923</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model__cb.html">bt_mesh_model_cb</a> * <span class="keyword">const</span> <a class="code hl_variable" href="structbt__mesh__model.html#a67a91d64051e055b79f5d9166ab12660">cb</a>;</div>
+<div class="line"><a id="l00924" name="l00924"></a><span class="lineno">  924</span> </div>
+<div class="line"><a id="l00925" name="l00925"></a><span class="lineno">  925</span><span class="preprocessor">#if defined(CONFIG_BT_MESH_LARGE_COMP_DATA_SRV) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00926" name="l00926"></a><span class="lineno">  926</span>    <span class="comment">/* Pointer to the array of model metadata entries. */</span></div>
+<div class="line"><a id="l00927" name="l00927"></a><span class="lineno">  927</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__models__metadata__entry.html">bt_mesh_models_metadata_entry</a> **metadata;</div>
+<div class="line"><a id="l00928" name="l00928"></a><span class="lineno">  928</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00929" name="l00929"></a><span class="lineno">  929</span>};</div>
+</div>
+<div class="line"><a id="l00930" name="l00930"></a><span class="lineno">  930</span> </div>
+<div class="foldopen" id="foldopen00932" data-start="{" data-end="};">
+<div class="line"><a id="l00932" name="l00932"></a><span class="lineno"><a class="line" href="structbt__mesh__send__cb.html">  932</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__send__cb.html">bt_mesh_send_cb</a> {</div>
+<div class="line"><a id="l00939" name="l00939"></a><span class="lineno"><a class="line" href="structbt__mesh__send__cb.html#a2f84ef4cb2d28729cd98b844a3d25f55">  939</a></span>    void (*<a class="code hl_variable" href="structbt__mesh__send__cb.html#a2f84ef4cb2d28729cd98b844a3d25f55">start</a>)(uint16_t duration, <span class="keywordtype">int</span> err, <span class="keywordtype">void</span> *cb_data);</div>
+<div class="line"><a id="l00945" name="l00945"></a><span class="lineno"><a class="line" href="structbt__mesh__send__cb.html#aa169dbec8c96fd41a35616c009604685">  945</a></span>    void (*<a class="code hl_variable" href="structbt__mesh__send__cb.html#aa169dbec8c96fd41a35616c009604685">end</a>)(<span class="keywordtype">int</span> err, <span class="keywordtype">void</span> *cb_data);</div>
+<div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span>};</div>
+</div>
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span> </div>
+<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span> </div>
+<div class="line"><a id="l00950" name="l00950"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga16516272b42420263b1c47c3ea16c0c8">  950</a></span><span class="preprocessor">#define BT_MESH_TTL_DEFAULT 0xff</span></div>
+<div class="line"><a id="l00951" name="l00951"></a><span class="lineno">  951</span> </div>
+<div class="line"><a id="l00953" name="l00953"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga071e85e929589d31bf876e2e09cf2f19">  953</a></span><span class="preprocessor">#define BT_MESH_TTL_MAX     0x7f</span></div>
+<div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span> </div>
+<div class="line"><a id="l00965" name="l00965"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga7cac052ef76f4b37a95343329b078e77">  965</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__access.html#ga7cac052ef76f4b37a95343329b078e77">bt_mesh_model_send</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *model,</div>
+<div class="line"><a id="l00966" name="l00966"></a><span class="lineno">  966</span>               <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__msg__ctx.html">bt_mesh_msg_ctx</a> *ctx,</div>
+<div class="line"><a id="l00967" name="l00967"></a><span class="lineno">  967</span>               <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf__simple.html">net_buf_simple</a> *msg,</div>
+<div class="line"><a id="l00968" name="l00968"></a><span class="lineno">  968</span>               <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__send__cb.html">bt_mesh_send_cb</a> *cb,</div>
+<div class="line"><a id="l00969" name="l00969"></a><span class="lineno">  969</span>               <span class="keywordtype">void</span> *cb_data);</div>
+<div class="line"><a id="l00970" name="l00970"></a><span class="lineno">  970</span> </div>
+<div class="line"><a id="l00984" name="l00984"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga06644f8a5fa43351328d3f3403dbad03">  984</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__access.html#ga06644f8a5fa43351328d3f3403dbad03">bt_mesh_model_publish</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *model);</div>
+<div class="line"><a id="l00985" name="l00985"></a><span class="lineno">  985</span> </div>
+<div class="line"><a id="l00994" name="l00994"></a><span class="lineno">  994</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> bt_mesh_model_pub_is_retransmission(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *model)</div>
+<div class="line"><a id="l00995" name="l00995"></a><span class="lineno">  995</span>{</div>
+<div class="line"><a id="l00996" name="l00996"></a><span class="lineno">  996</span>    <span class="keywordflow">return</span> model-&gt;<a class="code hl_variable" href="structbt__mesh__model.html#af4a1b5e837b3a1266c7f61ee21020c0b">pub</a>-&gt;<a class="code hl_variable" href="structbt__mesh__model__pub.html#a4e211c851bf91a9b43f035d435e9c93c">count</a> != <a class="code hl_define" href="group__bt__mesh__access.html#ga13986422dda5edce4f5fb1ce387093e3">BT_MESH_PUB_TRANSMIT_COUNT</a>(model-&gt;<a class="code hl_variable" href="structbt__mesh__model.html#af4a1b5e837b3a1266c7f61ee21020c0b">pub</a>-&gt;<a class="code hl_variable" href="structbt__mesh__model__pub.html#a3d93d44ff85243dc94e7b4d36cde5b97">retransmit</a>);</div>
+<div class="line"><a id="l00997" name="l00997"></a><span class="lineno">  997</span>}</div>
+<div class="line"><a id="l00998" name="l00998"></a><span class="lineno">  998</span> </div>
+<div class="line"><a id="l01005" name="l01005"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga8edba04af103fb11994d4d3e558ec4fb"> 1005</a></span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__elem.html">bt_mesh_elem</a> *<a class="code hl_function" href="group__bt__mesh__access.html#ga8edba04af103fb11994d4d3e558ec4fb">bt_mesh_model_elem</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *mod);</div>
+<div class="line"><a id="l01006" name="l01006"></a><span class="lineno"> 1006</span> </div>
+<div class="line"><a id="l01015" name="l01015"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaf0510f9511d72f1d4fd07f865753a50a"> 1015</a></span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *<a class="code hl_function" href="group__bt__mesh__access.html#gaf0510f9511d72f1d4fd07f865753a50a">bt_mesh_model_find</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__elem.html">bt_mesh_elem</a> *elem,</div>
+<div class="line"><a id="l01016" name="l01016"></a><span class="lineno"> 1016</span>                           uint16_t <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l01017" name="l01017"></a><span class="lineno"> 1017</span> </div>
+<div class="line"><a id="l01027" name="l01027"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gadfb473db4b23902a192e12d322ff1fd2"> 1027</a></span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *<a class="code hl_function" href="group__bt__mesh__access.html#gadfb473db4b23902a192e12d322ff1fd2">bt_mesh_model_find_vnd</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__elem.html">bt_mesh_elem</a> *elem,</div>
+<div class="line"><a id="l01028" name="l01028"></a><span class="lineno"> 1028</span>                           uint16_t company, uint16_t <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l01029" name="l01029"></a><span class="lineno"> 1029</span> </div>
+<div class="line"><a id="l01036" name="l01036"></a><span class="lineno"> 1036</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> bt_mesh_model_in_primary(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *mod)</div>
+<div class="line"><a id="l01037" name="l01037"></a><span class="lineno"> 1037</span>{</div>
+<div class="line"><a id="l01038" name="l01038"></a><span class="lineno"> 1038</span>    <span class="keywordflow">return</span> (mod-&gt;rt-&gt;elem_idx == 0);</div>
+<div class="line"><a id="l01039" name="l01039"></a><span class="lineno"> 1039</span>}</div>
+<div class="line"><a id="l01040" name="l01040"></a><span class="lineno"> 1040</span> </div>
+<div class="line"><a id="l01052" name="l01052"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gadff0895c5c34928d778fa615512b3d85"> 1052</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__access.html#gadff0895c5c34928d778fa615512b3d85">bt_mesh_model_data_store</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *mod, <span class="keywordtype">bool</span> <a class="code hl_variable" href="structbt__mesh__model.html#a3372deccde1a5ab26d9204c97339596e">vnd</a>,</div>
+<div class="line"><a id="l01053" name="l01053"></a><span class="lineno"> 1053</span>                 <span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <span class="keywordtype">void</span> *data,</div>
+<div class="line"><a id="l01054" name="l01054"></a><span class="lineno"> 1054</span>                 <span class="keywordtype">size_t</span> data_len);</div>
+<div class="line"><a id="l01055" name="l01055"></a><span class="lineno"> 1055</span> </div>
+<div class="line"><a id="l01067" name="l01067"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga762896dd2e806b5be061b220d53ce4db"> 1067</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__bt__mesh__access.html#ga762896dd2e806b5be061b220d53ce4db">bt_mesh_model_data_store_schedule</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *mod);</div>
+<div class="line"><a id="l01068" name="l01068"></a><span class="lineno"> 1068</span> </div>
+<div class="line"><a id="l01092" name="l01092"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#gaf6356f715c8968151b8d539f2dd1880c"> 1092</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__access.html#gaf6356f715c8968151b8d539f2dd1880c">bt_mesh_model_extend</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *extending_mod,</div>
+<div class="line"><a id="l01093" name="l01093"></a><span class="lineno"> 1093</span>             <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *base_mod);</div>
+<div class="line"><a id="l01094" name="l01094"></a><span class="lineno"> 1094</span> </div>
+<div class="line"><a id="l01115" name="l01115"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga03ce9f6f9ccf734ea72beede09288923"> 1115</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__access.html#ga03ce9f6f9ccf734ea72beede09288923">bt_mesh_model_correspond</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *corresponding_mod,</div>
+<div class="line"><a id="l01116" name="l01116"></a><span class="lineno"> 1116</span>                 <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *base_mod);</div>
+<div class="line"><a id="l01117" name="l01117"></a><span class="lineno"> 1117</span> </div>
+<div class="line"><a id="l01124" name="l01124"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga10603a5846210a397f306b227ce10c2e"> 1124</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__bt__mesh__access.html#ga10603a5846210a397f306b227ce10c2e">bt_mesh_model_is_extended</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *model);</div>
+<div class="line"><a id="l01125" name="l01125"></a><span class="lineno"> 1125</span> </div>
+<div class="line"><a id="l01133" name="l01133"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga8575f680e77d86d6c85cac27985b9f3c"> 1133</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__access.html#ga8575f680e77d86d6c85cac27985b9f3c">bt_mesh_comp_change_prepare</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l01134" name="l01134"></a><span class="lineno"> 1134</span> </div>
+<div class="line"><a id="l01142" name="l01142"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga26ac86bdd32d27e0091735d98670687a"> 1142</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__access.html#ga26ac86bdd32d27e0091735d98670687a">bt_mesh_models_metadata_change_prepare</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l01143" name="l01143"></a><span class="lineno"> 1143</span> </div>
+<div class="foldopen" id="foldopen01145" data-start="{" data-end="};">
+<div class="line"><a id="l01145" name="l01145"></a><span class="lineno"><a class="line" href="structbt__mesh__comp.html"> 1145</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__comp.html">bt_mesh_comp</a> {</div>
+<div class="line"><a id="l01146" name="l01146"></a><span class="lineno"><a class="line" href="structbt__mesh__comp.html#a648f695898305ef9e6f4f9db42dd8cf9"> 1146</a></span>    uint16_t <a class="code hl_variable" href="structbt__mesh__comp.html#a648f695898305ef9e6f4f9db42dd8cf9">cid</a>; </div>
+<div class="line"><a id="l01147" name="l01147"></a><span class="lineno"><a class="line" href="structbt__mesh__comp.html#a54031f4c3683a7209e8f7441c5875788"> 1147</a></span>    uint16_t <a class="code hl_variable" href="structbt__mesh__comp.html#a54031f4c3683a7209e8f7441c5875788">pid</a>; </div>
+<div class="line"><a id="l01148" name="l01148"></a><span class="lineno"><a class="line" href="structbt__mesh__comp.html#a7e4351e81e4e04bb9681e76d384f2fa5"> 1148</a></span>    uint16_t <a class="code hl_variable" href="structbt__mesh__comp.html#a7e4351e81e4e04bb9681e76d384f2fa5">vid</a>; </div>
+<div class="line"><a id="l01150" name="l01150"></a><span class="lineno"><a class="line" href="structbt__mesh__comp.html#aff69499c7ac2c1ba643c946c75aa21ce"> 1150</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structbt__mesh__comp.html#aff69499c7ac2c1ba643c946c75aa21ce">elem_count</a>; </div>
+<div class="line"><a id="l01151" name="l01151"></a><span class="lineno"><a class="line" href="structbt__mesh__comp.html#ad3da0629db1cb423260aa202cab7f062"> 1151</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__elem.html">bt_mesh_elem</a> *<a class="code hl_variable" href="structbt__mesh__comp.html#ad3da0629db1cb423260aa202cab7f062">elem</a>; </div>
+<div class="line"><a id="l01152" name="l01152"></a><span class="lineno"> 1152</span>};</div>
+</div>
+<div class="line"><a id="l01153" name="l01153"></a><span class="lineno"> 1153</span> </div>
+<div class="foldopen" id="foldopen01155" data-start="{" data-end="};">
+<div class="line"><a id="l01155" name="l01155"></a><span class="lineno"><a class="line" href="structbt__mesh__comp2__record.html"> 1155</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__comp2__record.html">bt_mesh_comp2_record</a> {</div>
+<div class="line"><a id="l01157" name="l01157"></a><span class="lineno"><a class="line" href="structbt__mesh__comp2__record.html#a19ce94025c1c8079ca2789bbcd09b00e"> 1157</a></span>    uint16_t <a class="code hl_variable" href="structbt__mesh__comp2__record.html#a19ce94025c1c8079ca2789bbcd09b00e">id</a>;</div>
+<div class="line"><a id="l01159" name="l01159"></a><span class="lineno"> 1159</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l01161" name="l01161"></a><span class="lineno"><a class="line" href="structbt__mesh__comp2__record.html#a5f25c33170c77375f6492ad3cc0feaac"> 1161</a></span>        uint8_t <a class="code hl_variable" href="structbt__mesh__comp2__record.html#a5f25c33170c77375f6492ad3cc0feaac">x</a>;</div>
+<div class="line"><a id="l01163" name="l01163"></a><span class="lineno"><a class="line" href="structbt__mesh__comp2__record.html#a4970a0757c34ab97697c69728b564df6"> 1163</a></span>        uint8_t <a class="code hl_variable" href="structbt__mesh__comp2__record.html#a4970a0757c34ab97697c69728b564df6">y</a>;</div>
+<div class="line"><a id="l01165" name="l01165"></a><span class="lineno"><a class="line" href="structbt__mesh__comp2__record.html#ac3cabce01490191f145234f386b9b119"> 1165</a></span>        uint8_t <a class="code hl_variable" href="structbt__mesh__comp2__record.html#ac3cabce01490191f145234f386b9b119">z</a>;</div>
+<div class="line"><a id="l01166" name="l01166"></a><span class="lineno"><a class="line" href="structbt__mesh__comp2__record.html#a571a7f727e518050532ee502fba032ef"> 1166</a></span>    } <a class="code hl_variable" href="structbt__mesh__comp2__record.html#a571a7f727e518050532ee502fba032ef">version</a>;</div>
+<div class="line"><a id="l01168" name="l01168"></a><span class="lineno"><a class="line" href="structbt__mesh__comp2__record.html#ad13066e9d6d32e8e2eab64881249eb7e"> 1168</a></span>    uint8_t <a class="code hl_variable" href="structbt__mesh__comp2__record.html#ad13066e9d6d32e8e2eab64881249eb7e">elem_offset_cnt</a>;</div>
+<div class="line"><a id="l01170" name="l01170"></a><span class="lineno"><a class="line" href="structbt__mesh__comp2__record.html#a6f81d99a62252cd26d87ca4fb289bdf9"> 1170</a></span>    <span class="keyword">const</span> uint8_t *<a class="code hl_variable" href="structbt__mesh__comp2__record.html#a6f81d99a62252cd26d87ca4fb289bdf9">elem_offset</a>;</div>
+<div class="line"><a id="l01172" name="l01172"></a><span class="lineno"><a class="line" href="structbt__mesh__comp2__record.html#abdc488e846233fa05f0fc48f4081576e"> 1172</a></span>    uint16_t <a class="code hl_variable" href="structbt__mesh__comp2__record.html#abdc488e846233fa05f0fc48f4081576e">data_len</a>;</div>
+<div class="line"><a id="l01174" name="l01174"></a><span class="lineno"><a class="line" href="structbt__mesh__comp2__record.html#acd5f5770a6606ad00fa0815e4866ec4e"> 1174</a></span>    <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="structbt__mesh__comp2__record.html#acd5f5770a6606ad00fa0815e4866ec4e">data</a>;</div>
+<div class="line"><a id="l01175" name="l01175"></a><span class="lineno"> 1175</span>};</div>
+</div>
+<div class="line"><a id="l01176" name="l01176"></a><span class="lineno"> 1176</span> </div>
+<div class="foldopen" id="foldopen01178" data-start="{" data-end="};">
+<div class="line"><a id="l01178" name="l01178"></a><span class="lineno"><a class="line" href="structbt__mesh__comp2.html"> 1178</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__comp2.html">bt_mesh_comp2</a> {</div>
+<div class="line"><a id="l01180" name="l01180"></a><span class="lineno"><a class="line" href="structbt__mesh__comp2.html#a9f3425cd64cc487e9a49b85bb0f2159b"> 1180</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structbt__mesh__comp2.html#a9f3425cd64cc487e9a49b85bb0f2159b">record_cnt</a>;</div>
+<div class="line"><a id="l01182" name="l01182"></a><span class="lineno"><a class="line" href="structbt__mesh__comp2.html#adf022ca0738626832d566fd6a5a1d889"> 1182</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__comp2__record.html">bt_mesh_comp2_record</a> *<a class="code hl_variable" href="structbt__mesh__comp2.html#adf022ca0738626832d566fd6a5a1d889">record</a>;</div>
+<div class="line"><a id="l01183" name="l01183"></a><span class="lineno"> 1183</span>};</div>
+</div>
+<div class="line"><a id="l01184" name="l01184"></a><span class="lineno"> 1184</span> </div>
+<div class="line"><a id="l01197" name="l01197"></a><span class="lineno"><a class="line" href="group__bt__mesh__access.html#ga8445c550a47dba16e3fa6fea36d6d9fc"> 1197</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__access.html#ga8445c550a47dba16e3fa6fea36d6d9fc">bt_mesh_comp2_register</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__comp2.html">bt_mesh_comp2</a> *comp2);</div>
+<div class="line"><a id="l01198" name="l01198"></a><span class="lineno"> 1198</span> </div>
+<div class="line"><a id="l01199" name="l01199"></a><span class="lineno"> 1199</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l01200" name="l01200"></a><span class="lineno"> 1200</span>}</div>
+<div class="line"><a id="l01201" name="l01201"></a><span class="lineno"> 1201</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01202" name="l01202"></a><span class="lineno"> 1202</span> </div>
+<div class="line"><a id="l01207" name="l01207"></a><span class="lineno"> 1207</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_BLUETOOTH_MESH_ACCESS_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_ga03ce9f6f9ccf734ea72beede09288923"><div class="ttname"><a href="group__bt__mesh__access.html#ga03ce9f6f9ccf734ea72beede09288923">bt_mesh_model_correspond</a></div><div class="ttdeci">int bt_mesh_model_correspond(const struct bt_mesh_model *corresponding_mod, const struct bt_mesh_model *base_mod)</div><div class="ttdoc">Let a model correspond to another.</div></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_ga06644f8a5fa43351328d3f3403dbad03"><div class="ttname"><a href="group__bt__mesh__access.html#ga06644f8a5fa43351328d3f3403dbad03">bt_mesh_model_publish</a></div><div class="ttdeci">int bt_mesh_model_publish(const struct bt_mesh_model *model)</div><div class="ttdoc">Send a model publication message.</div></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_ga10603a5846210a397f306b227ce10c2e"><div class="ttname"><a href="group__bt__mesh__access.html#ga10603a5846210a397f306b227ce10c2e">bt_mesh_model_is_extended</a></div><div class="ttdeci">bool bt_mesh_model_is_extended(const struct bt_mesh_model *model)</div><div class="ttdoc">Check if model is extended by another model.</div></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_ga13986422dda5edce4f5fb1ce387093e3"><div class="ttname"><a href="group__bt__mesh__access.html#ga13986422dda5edce4f5fb1ce387093e3">BT_MESH_PUB_TRANSMIT_COUNT</a></div><div class="ttdeci">#define BT_MESH_PUB_TRANSMIT_COUNT(transmit)</div><div class="ttdoc">Decode Publish Retransmit count from a given value.</div><div class="ttdef"><b>Definição</b> access.h:661</div></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_ga26ac86bdd32d27e0091735d98670687a"><div class="ttname"><a href="group__bt__mesh__access.html#ga26ac86bdd32d27e0091735d98670687a">bt_mesh_models_metadata_change_prepare</a></div><div class="ttdeci">int bt_mesh_models_metadata_change_prepare(void)</div><div class="ttdoc">Indicate that the metadata will change on next bootup.</div></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_ga762896dd2e806b5be061b220d53ce4db"><div class="ttname"><a href="group__bt__mesh__access.html#ga762896dd2e806b5be061b220d53ce4db">bt_mesh_model_data_store_schedule</a></div><div class="ttdeci">void bt_mesh_model_data_store_schedule(const struct bt_mesh_model *mod)</div><div class="ttdoc">Schedule the model's user data store in persistent storage.</div></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_ga7cac052ef76f4b37a95343329b078e77"><div class="ttname"><a href="group__bt__mesh__access.html#ga7cac052ef76f4b37a95343329b078e77">bt_mesh_model_send</a></div><div class="ttdeci">int bt_mesh_model_send(const struct bt_mesh_model *model, struct bt_mesh_msg_ctx *ctx, struct net_buf_simple *msg, const struct bt_mesh_send_cb *cb, void *cb_data)</div><div class="ttdoc">Send an Access Layer message.</div></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_ga8445c550a47dba16e3fa6fea36d6d9fc"><div class="ttname"><a href="group__bt__mesh__access.html#ga8445c550a47dba16e3fa6fea36d6d9fc">bt_mesh_comp2_register</a></div><div class="ttdeci">int bt_mesh_comp2_register(const struct bt_mesh_comp2 *comp2)</div><div class="ttdoc">Register composition data page 2 of the device.</div></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_ga8575f680e77d86d6c85cac27985b9f3c"><div class="ttname"><a href="group__bt__mesh__access.html#ga8575f680e77d86d6c85cac27985b9f3c">bt_mesh_comp_change_prepare</a></div><div class="ttdeci">int bt_mesh_comp_change_prepare(void)</div><div class="ttdoc">Indicate that the composition data will change on next bootup.</div></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_ga8edba04af103fb11994d4d3e558ec4fb"><div class="ttname"><a href="group__bt__mesh__access.html#ga8edba04af103fb11994d4d3e558ec4fb">bt_mesh_model_elem</a></div><div class="ttdeci">const struct bt_mesh_elem * bt_mesh_model_elem(const struct bt_mesh_model *mod)</div><div class="ttdoc">Get the element that a model belongs to.</div></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_gadfb473db4b23902a192e12d322ff1fd2"><div class="ttname"><a href="group__bt__mesh__access.html#gadfb473db4b23902a192e12d322ff1fd2">bt_mesh_model_find_vnd</a></div><div class="ttdeci">const struct bt_mesh_model * bt_mesh_model_find_vnd(const struct bt_mesh_elem *elem, uint16_t company, uint16_t id)</div><div class="ttdoc">Find a vendor model.</div></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_gadff0895c5c34928d778fa615512b3d85"><div class="ttname"><a href="group__bt__mesh__access.html#gadff0895c5c34928d778fa615512b3d85">bt_mesh_model_data_store</a></div><div class="ttdeci">int bt_mesh_model_data_store(const struct bt_mesh_model *mod, bool vnd, const char *name, const void *data, size_t data_len)</div><div class="ttdoc">Immediately store the model's user data in persistent storage.</div></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_gaf0510f9511d72f1d4fd07f865753a50a"><div class="ttname"><a href="group__bt__mesh__access.html#gaf0510f9511d72f1d4fd07f865753a50a">bt_mesh_model_find</a></div><div class="ttdeci">const struct bt_mesh_model * bt_mesh_model_find(const struct bt_mesh_elem *elem, uint16_t id)</div><div class="ttdoc">Find a SIG model.</div></div>
+<div class="ttc" id="agroup__bt__mesh__access_html_gaf6356f715c8968151b8d539f2dd1880c"><div class="ttname"><a href="group__bt__mesh__access.html#gaf6356f715c8968151b8d539f2dd1880c">bt_mesh_model_extend</a></div><div class="ttdeci">int bt_mesh_model_extend(const struct bt_mesh_model *extending_mod, const struct bt_mesh_model *base_mod)</div><div class="ttdoc">Let a model extend another.</div></div>
+<div class="ttc" id="agroup__settings_html_ga51cdac276c1fb8cd27fc3eec42749a04"><div class="ttname"><a href="group__settings.html#ga51cdac276c1fb8cd27fc3eec42749a04">settings_read_cb</a></div><div class="ttdeci">ssize_t(* settings_read_cb)(void *cb_arg, void *data, size_t len)</div><div class="ttdef"><b>Definição</b> settings.h:59</div></div>
+<div class="ttc" id="amsg_8h_html"><div class="ttname"><a href="msg_8h.html">msg.h</a></div><div class="ttdoc">Message APIs.</div></div>
+<div class="ttc" id="astructbt__mesh__comp2__record_html"><div class="ttname"><a href="structbt__mesh__comp2__record.html">bt_mesh_comp2_record</a></div><div class="ttdef"><b>Definição</b> access.h:1155</div></div>
+<div class="ttc" id="astructbt__mesh__comp2__record_html_a19ce94025c1c8079ca2789bbcd09b00e"><div class="ttname"><a href="structbt__mesh__comp2__record.html#a19ce94025c1c8079ca2789bbcd09b00e">bt_mesh_comp2_record::id</a></div><div class="ttdeci">uint16_t id</div><div class="ttdef"><b>Definição</b> access.h:1157</div></div>
+<div class="ttc" id="astructbt__mesh__comp2__record_html_a4970a0757c34ab97697c69728b564df6"><div class="ttname"><a href="structbt__mesh__comp2__record.html#a4970a0757c34ab97697c69728b564df6">bt_mesh_comp2_record::y</a></div><div class="ttdeci">uint8_t y</div><div class="ttdef"><b>Definição</b> access.h:1163</div></div>
+<div class="ttc" id="astructbt__mesh__comp2__record_html_a571a7f727e518050532ee502fba032ef"><div class="ttname"><a href="structbt__mesh__comp2__record.html#a571a7f727e518050532ee502fba032ef">bt_mesh_comp2_record::version</a></div><div class="ttdeci">struct bt_mesh_comp2_record::@85 version</div></div>
+<div class="ttc" id="astructbt__mesh__comp2__record_html_a5f25c33170c77375f6492ad3cc0feaac"><div class="ttname"><a href="structbt__mesh__comp2__record.html#a5f25c33170c77375f6492ad3cc0feaac">bt_mesh_comp2_record::x</a></div><div class="ttdeci">uint8_t x</div><div class="ttdef"><b>Definição</b> access.h:1161</div></div>
+<div class="ttc" id="astructbt__mesh__comp2__record_html_a6f81d99a62252cd26d87ca4fb289bdf9"><div class="ttname"><a href="structbt__mesh__comp2__record.html#a6f81d99a62252cd26d87ca4fb289bdf9">bt_mesh_comp2_record::elem_offset</a></div><div class="ttdeci">const uint8_t * elem_offset</div><div class="ttdef"><b>Definição</b> access.h:1170</div></div>
+<div class="ttc" id="astructbt__mesh__comp2__record_html_abdc488e846233fa05f0fc48f4081576e"><div class="ttname"><a href="structbt__mesh__comp2__record.html#abdc488e846233fa05f0fc48f4081576e">bt_mesh_comp2_record::data_len</a></div><div class="ttdeci">uint16_t data_len</div><div class="ttdef"><b>Definição</b> access.h:1172</div></div>
+<div class="ttc" id="astructbt__mesh__comp2__record_html_ac3cabce01490191f145234f386b9b119"><div class="ttname"><a href="structbt__mesh__comp2__record.html#ac3cabce01490191f145234f386b9b119">bt_mesh_comp2_record::z</a></div><div class="ttdeci">uint8_t z</div><div class="ttdef"><b>Definição</b> access.h:1165</div></div>
+<div class="ttc" id="astructbt__mesh__comp2__record_html_acd5f5770a6606ad00fa0815e4866ec4e"><div class="ttname"><a href="structbt__mesh__comp2__record.html#acd5f5770a6606ad00fa0815e4866ec4e">bt_mesh_comp2_record::data</a></div><div class="ttdeci">const void * data</div><div class="ttdef"><b>Definição</b> access.h:1174</div></div>
+<div class="ttc" id="astructbt__mesh__comp2__record_html_ad13066e9d6d32e8e2eab64881249eb7e"><div class="ttname"><a href="structbt__mesh__comp2__record.html#ad13066e9d6d32e8e2eab64881249eb7e">bt_mesh_comp2_record::elem_offset_cnt</a></div><div class="ttdeci">uint8_t elem_offset_cnt</div><div class="ttdef"><b>Definição</b> access.h:1168</div></div>
+<div class="ttc" id="astructbt__mesh__comp2_html"><div class="ttname"><a href="structbt__mesh__comp2.html">bt_mesh_comp2</a></div><div class="ttdef"><b>Definição</b> access.h:1178</div></div>
+<div class="ttc" id="astructbt__mesh__comp2_html_a9f3425cd64cc487e9a49b85bb0f2159b"><div class="ttname"><a href="structbt__mesh__comp2.html#a9f3425cd64cc487e9a49b85bb0f2159b">bt_mesh_comp2::record_cnt</a></div><div class="ttdeci">size_t record_cnt</div><div class="ttdef"><b>Definição</b> access.h:1180</div></div>
+<div class="ttc" id="astructbt__mesh__comp2_html_adf022ca0738626832d566fd6a5a1d889"><div class="ttname"><a href="structbt__mesh__comp2.html#adf022ca0738626832d566fd6a5a1d889">bt_mesh_comp2::record</a></div><div class="ttdeci">const struct bt_mesh_comp2_record * record</div><div class="ttdef"><b>Definição</b> access.h:1182</div></div>
+<div class="ttc" id="astructbt__mesh__comp_html"><div class="ttname"><a href="structbt__mesh__comp.html">bt_mesh_comp</a></div><div class="ttdef"><b>Definição</b> access.h:1145</div></div>
+<div class="ttc" id="astructbt__mesh__comp_html_a54031f4c3683a7209e8f7441c5875788"><div class="ttname"><a href="structbt__mesh__comp.html#a54031f4c3683a7209e8f7441c5875788">bt_mesh_comp::pid</a></div><div class="ttdeci">uint16_t pid</div><div class="ttdef"><b>Definição</b> access.h:1147</div></div>
+<div class="ttc" id="astructbt__mesh__comp_html_a648f695898305ef9e6f4f9db42dd8cf9"><div class="ttname"><a href="structbt__mesh__comp.html#a648f695898305ef9e6f4f9db42dd8cf9">bt_mesh_comp::cid</a></div><div class="ttdeci">uint16_t cid</div><div class="ttdef"><b>Definição</b> access.h:1146</div></div>
+<div class="ttc" id="astructbt__mesh__comp_html_a7e4351e81e4e04bb9681e76d384f2fa5"><div class="ttname"><a href="structbt__mesh__comp.html#a7e4351e81e4e04bb9681e76d384f2fa5">bt_mesh_comp::vid</a></div><div class="ttdeci">uint16_t vid</div><div class="ttdef"><b>Definição</b> access.h:1148</div></div>
+<div class="ttc" id="astructbt__mesh__comp_html_ad3da0629db1cb423260aa202cab7f062"><div class="ttname"><a href="structbt__mesh__comp.html#ad3da0629db1cb423260aa202cab7f062">bt_mesh_comp::elem</a></div><div class="ttdeci">const struct bt_mesh_elem * elem</div><div class="ttdef"><b>Definição</b> access.h:1151</div></div>
+<div class="ttc" id="astructbt__mesh__comp_html_aff69499c7ac2c1ba643c946c75aa21ce"><div class="ttname"><a href="structbt__mesh__comp.html#aff69499c7ac2c1ba643c946c75aa21ce">bt_mesh_comp::elem_count</a></div><div class="ttdeci">size_t elem_count</div><div class="ttdef"><b>Definição</b> access.h:1150</div></div>
+<div class="ttc" id="astructbt__mesh__elem_1_1bt__mesh__elem__rt__ctx_html"><div class="ttname"><a href="structbt__mesh__elem_1_1bt__mesh__elem__rt__ctx.html">bt_mesh_elem::bt_mesh_elem_rt_ctx</a></div><div class="ttdef"><b>Definição</b> access.h:156</div></div>
+<div class="ttc" id="astructbt__mesh__elem_1_1bt__mesh__elem__rt__ctx_html_a659279b38f1f3e015ebc648901577038"><div class="ttname"><a href="structbt__mesh__elem_1_1bt__mesh__elem__rt__ctx.html#a659279b38f1f3e015ebc648901577038">bt_mesh_elem::bt_mesh_elem_rt_ctx::addr</a></div><div class="ttdeci">uint16_t addr</div><div class="ttdef"><b>Definição</b> access.h:158</div></div>
+<div class="ttc" id="astructbt__mesh__elem_html"><div class="ttname"><a href="structbt__mesh__elem.html">bt_mesh_elem</a></div><div class="ttdef"><b>Definição</b> access.h:154</div></div>
+<div class="ttc" id="astructbt__mesh__elem_html_a57fefe57d9425d6666495d1f72a3f132"><div class="ttname"><a href="structbt__mesh__elem.html#a57fefe57d9425d6666495d1f72a3f132">bt_mesh_elem::models</a></div><div class="ttdeci">const struct bt_mesh_model *const models</div><div class="ttdef"><b>Definição</b> access.h:169</div></div>
+<div class="ttc" id="astructbt__mesh__elem_html_a5f4c8ded34cf56c7f60189584e8e5b46"><div class="ttname"><a href="structbt__mesh__elem.html#a5f4c8ded34cf56c7f60189584e8e5b46">bt_mesh_elem::loc</a></div><div class="ttdeci">const uint16_t loc</div><div class="ttdef"><b>Definição</b> access.h:162</div></div>
+<div class="ttc" id="astructbt__mesh__elem_html_a648273e844ff9fa71578372e764ca8cf"><div class="ttname"><a href="structbt__mesh__elem.html#a648273e844ff9fa71578372e764ca8cf">bt_mesh_elem::model_count</a></div><div class="ttdeci">const uint8_t model_count</div><div class="ttdef"><b>Definição</b> access.h:164</div></div>
+<div class="ttc" id="astructbt__mesh__elem_html_a81d4fc1c41e2944bf7f6e71b00e19a0f"><div class="ttname"><a href="structbt__mesh__elem.html#a81d4fc1c41e2944bf7f6e71b00e19a0f">bt_mesh_elem::vnd_models</a></div><div class="ttdeci">const struct bt_mesh_model *const vnd_models</div><div class="ttdef"><b>Definição</b> access.h:171</div></div>
+<div class="ttc" id="astructbt__mesh__elem_html_aea56fd98c9aecfb9de3772ad3f14b25e"><div class="ttname"><a href="structbt__mesh__elem.html#aea56fd98c9aecfb9de3772ad3f14b25e">bt_mesh_elem::vnd_model_count</a></div><div class="ttdeci">const uint8_t vnd_model_count</div><div class="ttdef"><b>Definição</b> access.h:166</div></div>
+<div class="ttc" id="astructbt__mesh__mod__id__vnd_html"><div class="ttname"><a href="structbt__mesh__mod__id__vnd.html">bt_mesh_mod_id_vnd</a></div><div class="ttdef"><b>Definição</b> access.h:873</div></div>
+<div class="ttc" id="astructbt__mesh__mod__id__vnd_html_a187a919337c92f54eaba6f932c7a3670"><div class="ttname"><a href="structbt__mesh__mod__id__vnd.html#a187a919337c92f54eaba6f932c7a3670">bt_mesh_mod_id_vnd::company</a></div><div class="ttdeci">uint16_t company</div><div class="ttdef"><b>Definição</b> access.h:875</div></div>
+<div class="ttc" id="astructbt__mesh__mod__id__vnd_html_a1a299852544a5e6fa3c34ac5ffd883d8"><div class="ttname"><a href="structbt__mesh__mod__id__vnd.html#a1a299852544a5e6fa3c34ac5ffd883d8">bt_mesh_mod_id_vnd::id</a></div><div class="ttdeci">uint16_t id</div><div class="ttdef"><b>Definição</b> access.h:877</div></div>
+<div class="ttc" id="astructbt__mesh__model_1_1bt__mesh__model__rt__ctx_html"><div class="ttname"><a href="structbt__mesh__model_1_1bt__mesh__model__rt__ctx.html">bt_mesh_model::bt_mesh_model_rt_ctx</a></div><div class="ttdef"><b>Definição</b> access.h:890</div></div>
+<div class="ttc" id="astructbt__mesh__model_1_1bt__mesh__model__rt__ctx_html_a718d3be40e7be83a196634054d18d568"><div class="ttname"><a href="structbt__mesh__model_1_1bt__mesh__model__rt__ctx.html#a718d3be40e7be83a196634054d18d568">bt_mesh_model::bt_mesh_model_rt_ctx::user_data</a></div><div class="ttdeci">void * user_data</div><div class="ttdef"><b>Definição</b> access.h:900</div></div>
+<div class="ttc" id="astructbt__mesh__model__cb_html"><div class="ttname"><a href="structbt__mesh__model__cb.html">bt_mesh_model_cb</a></div><div class="ttdef"><b>Definição</b> access.h:803</div></div>
+<div class="ttc" id="astructbt__mesh__model__cb_html_a1688a2c6d7b3b17ba49a0975b6f4f68e"><div class="ttname"><a href="structbt__mesh__model__cb.html#a1688a2c6d7b3b17ba49a0975b6f4f68e">bt_mesh_model_cb::init</a></div><div class="ttdeci">int(*const init)(const struct bt_mesh_model *model)</div><div class="ttdoc">Model init callback.</div><div class="ttdef"><b>Definição</b> access.h:847</div></div>
+<div class="ttc" id="astructbt__mesh__model__cb_html_a21fc24829c6933a035b0f0be1a1f58e5"><div class="ttname"><a href="structbt__mesh__model__cb.html#a21fc24829c6933a035b0f0be1a1f58e5">bt_mesh_model_cb::settings_set</a></div><div class="ttdeci">int(*const settings_set)(const struct bt_mesh_model *model, const char *name, size_t len_rd, settings_read_cb read_cb, void *cb_arg)</div><div class="ttdoc">Set value handler of user data tied to the model.</div><div class="ttdef"><b>Definição</b> access.h:817</div></div>
+<div class="ttc" id="astructbt__mesh__model__cb_html_a3a7ad466120085c55bcffacb15c78518"><div class="ttname"><a href="structbt__mesh__model__cb.html#a3a7ad466120085c55bcffacb15c78518">bt_mesh_model_cb::reset</a></div><div class="ttdeci">void(*const reset)(const struct bt_mesh_model *model)</div><div class="ttdoc">Model reset callback.</div><div class="ttdef"><b>Definição</b> access.h:859</div></div>
+<div class="ttc" id="astructbt__mesh__model__cb_html_a8333420fb9d1d98799ae03ba3b23bfe4"><div class="ttname"><a href="structbt__mesh__model__cb.html#a8333420fb9d1d98799ae03ba3b23bfe4">bt_mesh_model_cb::start</a></div><div class="ttdeci">int(*const start)(const struct bt_mesh_model *model)</div><div class="ttdoc">Callback called when the mesh is started.</div><div class="ttdef"><b>Definição</b> access.h:833</div></div>
+<div class="ttc" id="astructbt__mesh__model__cb_html_ae28f875dffc7f5f2ce99abe590369f43"><div class="ttname"><a href="structbt__mesh__model__cb.html#ae28f875dffc7f5f2ce99abe590369f43">bt_mesh_model_cb::pending_store</a></div><div class="ttdeci">void(*const pending_store)(const struct bt_mesh_model *model)</div><div class="ttdoc">Callback used to store pending model's user data.</div><div class="ttdef"><b>Definição</b> access.h:869</div></div>
+<div class="ttc" id="astructbt__mesh__model__op_html"><div class="ttname"><a href="structbt__mesh__model__op.html">bt_mesh_model_op</a></div><div class="ttdef"><b>Definição</b> access.h:359</div></div>
+<div class="ttc" id="astructbt__mesh__model__op_html_a09c18a889e08bc708b9dc623f8177e39"><div class="ttname"><a href="structbt__mesh__model__op.html#a09c18a889e08bc708b9dc623f8177e39">bt_mesh_model_op::opcode</a></div><div class="ttdeci">const uint32_t opcode</div><div class="ttdef"><b>Definição</b> access.h:361</div></div>
+<div class="ttc" id="astructbt__mesh__model__op_html_a25445fe2e937a321942c312bd675e486"><div class="ttname"><a href="structbt__mesh__model__op.html#a25445fe2e937a321942c312bd675e486">bt_mesh_model_op::len</a></div><div class="ttdeci">const ssize_t len</div><div class="ttdef"><b>Definição</b> access.h:369</div></div>
+<div class="ttc" id="astructbt__mesh__model__op_html_a4a5de7a12f2f8743048aafc81af0cece"><div class="ttname"><a href="structbt__mesh__model__op.html#a4a5de7a12f2f8743048aafc81af0cece">bt_mesh_model_op::func</a></div><div class="ttdeci">int(*const func)(const struct bt_mesh_model *model, struct bt_mesh_msg_ctx *ctx, struct net_buf_simple *buf)</div><div class="ttdoc">Handler function for this opcode.</div><div class="ttdef"><b>Definição</b> access.h:380</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html"><div class="ttname"><a href="structbt__mesh__model__pub.html">bt_mesh_model_pub</a></div><div class="ttdef"><b>Definição</b> access.h:698</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_a0354344e08e633dc4d6c0b4e7b169080"><div class="ttname"><a href="structbt__mesh__model__pub.html#a0354344e08e633dc4d6c0b4e7b169080">bt_mesh_model_pub::update</a></div><div class="ttdeci">int(* update)(const struct bt_mesh_model *mod)</div><div class="ttdoc">Callback for updating the publication buffer.</div><div class="ttdef"><b>Definição</b> access.h:747</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_a0ad1809fe74930c9b36b32516a8d146f"><div class="ttname"><a href="structbt__mesh__model__pub.html#a0ad1809fe74930c9b36b32516a8d146f">bt_mesh_model_pub::key</a></div><div class="ttdeci">uint16_t key</div><div class="ttdef"><b>Definição</b> access.h:704</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_a16c13e46c012ab836acd02b8fe5f05e3"><div class="ttname"><a href="structbt__mesh__model__pub.html#a16c13e46c012ab836acd02b8fe5f05e3">bt_mesh_model_pub::retr_update</a></div><div class="ttdeci">uint16_t retr_update</div><div class="ttdef"><b>Definição</b> access.h:708</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_a23a865dbd2dce5c1af074097864611e9"><div class="ttname"><a href="structbt__mesh__model__pub.html#a23a865dbd2dce5c1af074097864611e9">bt_mesh_model_pub::delayable</a></div><div class="ttdeci">uint8_t delayable</div><div class="ttdef"><b>Definição</b> access.h:716</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_a3617adb0c1192419bdac2ad0f37199ac"><div class="ttname"><a href="structbt__mesh__model__pub.html#a3617adb0c1192419bdac2ad0f37199ac">bt_mesh_model_pub::cred</a></div><div class="ttdeci">uint16_t cred</div><div class="ttdef"><b>Definição</b> access.h:705</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_a3d93d44ff85243dc94e7b4d36cde5b97"><div class="ttname"><a href="structbt__mesh__model__pub.html#a3d93d44ff85243dc94e7b4d36cde5b97">bt_mesh_model_pub::retransmit</a></div><div class="ttdeci">uint8_t retransmit</div><div class="ttdef"><b>Definição</b> access.h:711</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_a408c9185168b962f7e7314f9a429fe8c"><div class="ttname"><a href="structbt__mesh__model__pub.html#a408c9185168b962f7e7314f9a429fe8c">bt_mesh_model_pub::addr</a></div><div class="ttdeci">uint16_t addr</div><div class="ttdef"><b>Definição</b> access.h:702</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_a4e211c851bf91a9b43f035d435e9c93c"><div class="ttname"><a href="structbt__mesh__model__pub.html#a4e211c851bf91a9b43f035d435e9c93c">bt_mesh_model_pub::count</a></div><div class="ttdeci">uint8_t count</div><div class="ttdef"><b>Definição</b> access.h:714</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_a4f2ce8727ffb44f564d1dc0615ebcadf"><div class="ttname"><a href="structbt__mesh__model__pub.html#a4f2ce8727ffb44f564d1dc0615ebcadf">bt_mesh_model_pub::period_div</a></div><div class="ttdeci">uint8_t period_div</div><div class="ttdef"><b>Definição</b> access.h:713</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_a5f5639c01d3704ec3d527c418d35f827"><div class="ttname"><a href="structbt__mesh__model__pub.html#a5f5639c01d3704ec3d527c418d35f827">bt_mesh_model_pub::msg</a></div><div class="ttdeci">struct net_buf_simple * msg</div><div class="ttdoc">Publication buffer, containing the publication message.</div><div class="ttdef"><b>Definição</b> access.h:727</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_a820b713aaa1e0c33a4a59c80f805e854"><div class="ttname"><a href="structbt__mesh__model__pub.html#a820b713aaa1e0c33a4a59c80f805e854">bt_mesh_model_pub::ttl</a></div><div class="ttdeci">uint8_t ttl</div><div class="ttdef"><b>Definição</b> access.h:710</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_aa5026299082b3013740c7e36c01f91f5"><div class="ttname"><a href="structbt__mesh__model__pub.html#aa5026299082b3013740c7e36c01f91f5">bt_mesh_model_pub::mod</a></div><div class="ttdeci">const struct bt_mesh_model * mod</div><div class="ttdef"><b>Definição</b> access.h:700</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_ab6e00714ea899eb32873d10b0908d278"><div class="ttname"><a href="structbt__mesh__model__pub.html#ab6e00714ea899eb32873d10b0908d278">bt_mesh_model_pub::period_start</a></div><div class="ttdeci">uint32_t period_start</div><div class="ttdef"><b>Definição</b> access.h:718</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_ab704aedcfd06d374615ef18c6ecc84a9"><div class="ttname"><a href="structbt__mesh__model__pub.html#ab704aedcfd06d374615ef18c6ecc84a9">bt_mesh_model_pub::send_rel</a></div><div class="ttdeci">uint16_t send_rel</div><div class="ttdef"><b>Definição</b> access.h:706</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_abdbdc3bbc5d4ac5a5d606b55bb2d50ee"><div class="ttname"><a href="structbt__mesh__model__pub.html#abdbdc3bbc5d4ac5a5d606b55bb2d50ee">bt_mesh_model_pub::fast_period</a></div><div class="ttdeci">uint16_t fast_period</div><div class="ttdef"><b>Definição</b> access.h:707</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_abea9c2085c9d2e1e2fc71f03dd323ee7"><div class="ttname"><a href="structbt__mesh__model__pub.html#abea9c2085c9d2e1e2fc71f03dd323ee7">bt_mesh_model_pub::uuid</a></div><div class="ttdeci">const uint8_t * uuid</div><div class="ttdef"><b>Definição</b> access.h:703</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_ae550510e9ca45f8c9fd9802e4e7e0f3d"><div class="ttname"><a href="structbt__mesh__model__pub.html#ae550510e9ca45f8c9fd9802e4e7e0f3d">bt_mesh_model_pub::period</a></div><div class="ttdeci">uint8_t period</div><div class="ttdef"><b>Definição</b> access.h:712</div></div>
+<div class="ttc" id="astructbt__mesh__model__pub_html_af3771432d13805710e94f013332e8214"><div class="ttname"><a href="structbt__mesh__model__pub.html#af3771432d13805710e94f013332e8214">bt_mesh_model_pub::timer</a></div><div class="ttdeci">struct k_work_delayable timer</div><div class="ttdef"><b>Definição</b> access.h:750</div></div>
+<div class="ttc" id="astructbt__mesh__model_html"><div class="ttname"><a href="structbt__mesh__model.html">bt_mesh_model</a></div><div class="ttdef"><b>Definição</b> access.h:881</div></div>
+<div class="ttc" id="astructbt__mesh__model_html_a3372deccde1a5ab26d9204c97339596e"><div class="ttname"><a href="structbt__mesh__model.html#a3372deccde1a5ab26d9204c97339596e">bt_mesh_model::vnd</a></div><div class="ttdeci">const struct bt_mesh_mod_id_vnd vnd</div><div class="ttdef"><b>Definição</b> access.h:886</div></div>
+<div class="ttc" id="astructbt__mesh__model_html_a460ab46730afa4f74e4066f787864b0b"><div class="ttname"><a href="structbt__mesh__model.html#a460ab46730afa4f74e4066f787864b0b">bt_mesh_model::groups</a></div><div class="ttdeci">uint16_t *const groups</div><div class="ttdef"><b>Definição</b> access.h:911</div></div>
+<div class="ttc" id="astructbt__mesh__model_html_a4acc656c737cf79161414984312100b6"><div class="ttname"><a href="structbt__mesh__model.html#a4acc656c737cf79161414984312100b6">bt_mesh_model::op</a></div><div class="ttdeci">const struct bt_mesh_model_op *const op</div><div class="ttdef"><b>Definição</b> access.h:920</div></div>
+<div class="ttc" id="astructbt__mesh__model_html_a63595a0559ca70ca76c996f0b71c7983"><div class="ttname"><a href="structbt__mesh__model.html#a63595a0559ca70ca76c996f0b71c7983">bt_mesh_model::keys</a></div><div class="ttdeci">uint16_t *const keys</div><div class="ttdef"><b>Definição</b> access.h:907</div></div>
+<div class="ttc" id="astructbt__mesh__model_html_a67a91d64051e055b79f5d9166ab12660"><div class="ttname"><a href="structbt__mesh__model.html#a67a91d64051e055b79f5d9166ab12660">bt_mesh_model::cb</a></div><div class="ttdeci">const struct bt_mesh_model_cb *const cb</div><div class="ttdef"><b>Definição</b> access.h:923</div></div>
+<div class="ttc" id="astructbt__mesh__model_html_a848ccf09f7b75ff8a48acb6c8088cf2a"><div class="ttname"><a href="structbt__mesh__model.html#a848ccf09f7b75ff8a48acb6c8088cf2a">bt_mesh_model::id</a></div><div class="ttdeci">const uint16_t id</div><div class="ttdef"><b>Definição</b> access.h:884</div></div>
+<div class="ttc" id="astructbt__mesh__model_html_af4a1b5e837b3a1266c7f61ee21020c0b"><div class="ttname"><a href="structbt__mesh__model.html#af4a1b5e837b3a1266c7f61ee21020c0b">bt_mesh_model::pub</a></div><div class="ttdeci">struct bt_mesh_model_pub *const pub</div><div class="ttdef"><b>Definição</b> access.h:904</div></div>
+<div class="ttc" id="astructbt__mesh__models__metadata__entry_html"><div class="ttname"><a href="structbt__mesh__models__metadata__entry.html">bt_mesh_models_metadata_entry</a></div><div class="ttdef"><b>Definição</b> access.h:772</div></div>
+<div class="ttc" id="astructbt__mesh__msg__ctx_html"><div class="ttname"><a href="structbt__mesh__msg__ctx.html">bt_mesh_msg_ctx</a></div><div class="ttdef"><b>Definição</b> msg.h:76</div></div>
+<div class="ttc" id="astructbt__mesh__send__cb_html"><div class="ttname"><a href="structbt__mesh__send__cb.html">bt_mesh_send_cb</a></div><div class="ttdef"><b>Definição</b> access.h:932</div></div>
+<div class="ttc" id="astructbt__mesh__send__cb_html_a2f84ef4cb2d28729cd98b844a3d25f55"><div class="ttname"><a href="structbt__mesh__send__cb.html#a2f84ef4cb2d28729cd98b844a3d25f55">bt_mesh_send_cb::start</a></div><div class="ttdeci">void(* start)(uint16_t duration, int err, void *cb_data)</div><div class="ttdoc">Handler called at the start of the transmission.</div><div class="ttdef"><b>Definição</b> access.h:939</div></div>
+<div class="ttc" id="astructbt__mesh__send__cb_html_aa169dbec8c96fd41a35616c009604685"><div class="ttname"><a href="structbt__mesh__send__cb.html#aa169dbec8c96fd41a35616c009604685">bt_mesh_send_cb::end</a></div><div class="ttdeci">void(* end)(int err, void *cb_data)</div><div class="ttdoc">Handler called at the end of the transmission.</div><div class="ttdef"><b>Definição</b> access.h:945</div></div>
+<div class="ttc" id="astructk__work__delayable_html"><div class="ttname"><a href="structk__work__delayable.html">k_work_delayable</a></div><div class="ttdoc">A structure used to submit work after a delay.</div><div class="ttdef"><b>Definição</b> kernel.h:3894</div></div>
+<div class="ttc" id="astructnet__buf__simple_html"><div class="ttname"><a href="structnet__buf__simple.html">net_buf_simple</a></div><div class="ttdoc">Simple network buffer representation.</div><div class="ttdef"><b>Definição</b> buf.h:83</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Misc utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

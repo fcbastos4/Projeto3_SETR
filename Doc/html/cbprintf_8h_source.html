@@ -1,0 +1,457 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/sys/cbprintf.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_791a8e330d3bfcbb2b6e2254610c12ab.html">sys</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">cbprintf.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2020 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_SYS_CBPRINTF_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_SYS_CBPRINTF_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stdarg.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="toolchain_8h.html">zephyr/toolchain.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifdef CONFIG_CBPRINTF_LIBC_SUBSTS</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_CBPRINTF_LIBC_SUBSTS */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">/* Determine if _Generic is supported using macro from toolchain.h.</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> * @note Z_C_GENERIC is also set for C++ where functionality is implemented</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"> * using overloading and templates.</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#ifndef Z_C_GENERIC</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#if defined(__cplusplus) || TOOLCHAIN_HAS_C_GENERIC</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#define Z_C_GENERIC 1</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#define Z_C_GENERIC 0</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#ifdef __xtensa__</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#define Z_PKG_HDR_EXT_XTENSA_ALIGNMENT 8</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#ifdef CONFIG_CBPRINTF_PACKAGE_HEADER_STORE_CREATION_FLAGS</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#define Z_PKG_DESC_XTENSA_PADDING 1</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#define Z_PKG_DESC_XTENSA_PADDING 0</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif </span><span class="comment">/* __xtensa__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="};">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structcbprintf__package__desc.html">   45</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcbprintf__package__desc.html">cbprintf_package_desc</a> {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structcbprintf__package__desc.html#a02876d066dd9ac4ba5bd3bdc19ff7681">   47</a></span>    uint8_t <a class="code hl_variable" href="structcbprintf__package__desc.html#a02876d066dd9ac4ba5bd3bdc19ff7681">len</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structcbprintf__package__desc.html#a3614347546912dae53d8f9633299912d">   50</a></span>    uint8_t <a class="code hl_variable" href="structcbprintf__package__desc.html#a3614347546912dae53d8f9633299912d">str_cnt</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structcbprintf__package__desc.html#ad9878876ae963e93850dcfd8d5df7b2f">   53</a></span>    uint8_t <a class="code hl_variable" href="structcbprintf__package__desc.html#ad9878876ae963e93850dcfd8d5df7b2f">ro_str_cnt</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structcbprintf__package__desc.html#ae9695a5e1a4fb70e3be5e9ab63c89937">   56</a></span>    uint8_t <a class="code hl_variable" href="structcbprintf__package__desc.html#ae9695a5e1a4fb70e3be5e9ab63c89937">rw_str_cnt</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#ifdef CONFIG_CBPRINTF_PACKAGE_HEADER_STORE_CREATION_FLAGS</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    uint32_t pkg_flags;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#ifdef __xtensa__</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">     * On Xtensa, the first argument needs to be aligned to 8-byte.</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">     * With 32-bit pointers, we need another 4 bytes padding so</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">     * that whole struct cbprintf_package_hdr_ext is of multiple of</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">     * 8 bytes.</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    uint32_t xtensa_padding[Z_PKG_DESC_XTENSA_PADDING];</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="};">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="unioncbprintf__package__hdr.html">   78</a></span><span class="keyword">union </span><a class="code hl_union" href="unioncbprintf__package__hdr.html">cbprintf_package_hdr</a> {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="unioncbprintf__package__hdr.html#aa5e4c2d21fde006827031c41e64e0c04">   80</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structcbprintf__package__desc.html">cbprintf_package_desc</a> <a class="code hl_variable" href="unioncbprintf__package__hdr.html#aa5e4c2d21fde006827031c41e64e0c04">desc</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">void</span> *raw;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#if defined(CONFIG_CBPRINTF_PACKAGE_HEADER_STORE_CREATION_FLAGS) &amp;&amp; !defined(CONFIG_64BIT)</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span> *raw2[2];</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="foldopen" id="foldopen00096" data-start="{" data-end="};">
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="structcbprintf__package__hdr__ext.html">   96</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcbprintf__package__hdr__ext.html">cbprintf_package_hdr_ext</a> {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="structcbprintf__package__hdr__ext.html#a3f1d9bc9ee58367a8e0a4ce29c73a0f5">   98</a></span>    <span class="keyword">union </span><a class="code hl_union" href="unioncbprintf__package__hdr.html">cbprintf_package_hdr</a> <a class="code hl_variable" href="structcbprintf__package__hdr__ext.html#a3f1d9bc9ee58367a8e0a4ce29c73a0f5">hdr</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="structcbprintf__package__hdr__ext.html#af726d9f674740030ccf5f7e13a9b0aa9">  101</a></span>    <span class="keywordtype">char</span> *<a class="code hl_variable" href="structcbprintf__package__hdr__ext.html#af726d9f674740030ccf5f7e13a9b0aa9">fmt</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">     * When extending this struct, make sure this align</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">     * to pointer size.</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="preprocessor">#ifdef __xtensa__</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>BUILD_ASSERT(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structcbprintf__package__hdr__ext.html">cbprintf_package_hdr_ext</a>) % Z_PKG_HDR_EXT_XTENSA_ALIGNMENT == 0,</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>         <span class="stringliteral">&quot;Package header size on Xtensa must be aligned&quot;</span>);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment">/* Z_C_GENERIC is used there */</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">#include &lt;zephyr/sys/cbprintf_internal.h&gt;</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#ifdef __xtensa__</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#define CBPRINTF_PACKAGE_ALIGNMENT 16</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">#else</span></div>
+<div class="foldopen" id="foldopen00140" data-start="" data-end="">
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="group__cbprintf__apis.html#ga3b917fb81bb246a0910066e2708dbd78">  140</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_ALIGNMENT \</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">    Z_POW2_CEIL(COND_CODE_1(CONFIG_CBPRINTF_PACKAGE_LONGDOUBLE, \</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">        (sizeof(long double)), (MAX(sizeof(double), sizeof(long long)))))</span></div>
+</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>BUILD_ASSERT(<a class="code hl_define" href="gcc_8h.html#acb5a70605859d9ef04b77137e60a1ca5">Z_IS_POW2</a>(<a class="code hl_define" href="group__cbprintf__apis.html#ga3b917fb81bb246a0910066e2708dbd78">CBPRINTF_PACKAGE_ALIGNMENT</a>));</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__FLAGS.html#ga6c16ab0b5d98012ffb00942e85d859b3">  156</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_CONST_CHAR_RO BIT(0)</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__FLAGS.html#ga406facc18bf99afe16d453253d042dbb">  159</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_ADD_RO_STR_POS BIT(1)</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__FLAGS.html#gac6ac59dda3a1a8a4572c1012b4adcbaa">  165</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_ADD_RW_STR_POS BIT(2)</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">#define Z_CBPRINTF_PACKAGE_FIRST_RO_STR_BITS 3</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">#define Z_CBPRINTF_PACKAGE_FIRST_RO_STR_OFFSET 3</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#define Z_CBPRINTF_PACKAGE_FIRST_RO_STR_MASK BIT_MASK(Z_CBPRINTF_PACKAGE_FIRST_RO_STR_BITS)</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="foldopen" id="foldopen00178" data-start="" data-end="">
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__FLAGS.html#ga26b5e05198f6609049c54e439b78cf3c">  178</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_FIRST_RO_STR_CNT(n) \</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">    (n &lt;&lt; Z_CBPRINTF_PACKAGE_FIRST_RO_STR_OFFSET)</span></div>
+</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="foldopen" id="foldopen00184" data-start="" data-end="">
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__FLAGS.html#ga1c268ea554eae8d98d5c18b6ec6bd882">  184</a></span><span class="preprocessor">#define Z_CBPRINTF_PACKAGE_FIRST_RO_STR_CNT_GET(flags) \</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="preprocessor">    (((flags) &gt;&gt; Z_CBPRINTF_PACKAGE_FIRST_RO_STR_OFFSET) &amp; Z_CBPRINTF_PACKAGE_FIRST_RO_STR_MASK)</span></div>
+</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="foldopen" id="foldopen00193" data-start="" data-end="">
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__FLAGS.html#ga95b0b7f91303781b8bad610f7cac3fa3">  193</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_ADD_STRING_IDXS \</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">    (CBPRINTF_PACKAGE_ADD_RO_STR_POS | CBPRINTF_PACKAGE_CONST_CHAR_RO)</span></div>
+</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__FLAGS.html#gaa8edaf31e7acfb7cb113afa873efa126">  201</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_ARGS_ARE_TAGGED BIT(6)</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__CONVERT__FLAGS.html#ga9802b700abd5d3cd7cef0e0cbcceb3e7">  218</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_CONVERT_RO_STR BIT(0)</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__CONVERT__FLAGS.html#ga3da36360cc579adbd5e991addf4c3fc6">  220</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_COPY_RO_STR CBPRINTF_PACKAGE_CONVERT_RO_STR __DEPRECATED_MACRO</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__CONVERT__FLAGS.html#ga983c65ed8afb356a29fa2736f9de7b39">  232</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_CONVERT_RW_STR BIT(1)</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__CONVERT__FLAGS.html#ga1b3b798a2a208276ddc3931b06064323">  234</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_COPY_RW_STR CBPRINTF_PACKAGE_CONVERT_RW_STR __DEPRECATED_MACRO</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__CONVERT__FLAGS.html#ga582ebea3e0d18285840bf277c5382da6">  241</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_CONVERT_KEEP_RO_STR BIT(2)</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__CONVERT__FLAGS.html#ga66d65a0f8f9c32440cb7b92a37d0e248">  243</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_COPY_KEEP_RO_STR CBPRINTF_PACKAGE_CONVERT_KEEP_RO_STR __DEPRECATED_MACRO</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="group__CBPRINTF__PACKAGE__CONVERT__FLAGS.html#ga370563f835488868020effcd48b23b90">  262</a></span><span class="preprocessor">#define CBPRINTF_PACKAGE_CONVERT_PTR_CHECK BIT(3)</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno"><a class="line" href="group__Z__CBVPRINTF__PROCESS__FLAGS.html#ga3f1d7dc6859a7b0b414b85431da18dd9">  276</a></span><span class="preprocessor">#define Z_CBVPRINTF_PROCESS_FLAG_TAGGED_ARGS BIT(0)</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="preprocessor">#include &lt;zephyr/sys/cbprintf_enums.h&gt;</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="preprocessor">#ifdef __CHECKER__</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__cbprintf__apis.html#gaca8362dda031a176d96855a604395a83">cbprintf_cb</a>)(<span class="keywordtype">int</span> c, <span class="keywordtype">void</span> *ctx);</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="group__cbprintf__apis.html#gaca8362dda031a176d96855a604395a83">  302</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__cbprintf__apis.html#gaca8362dda031a176d96855a604395a83">cbprintf_cb</a>)(<span class="comment">/* int c, void *ctx */</span>);</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno"><a class="line" href="group__cbprintf__apis.html#ga6e31a5fb5cd760fbb8d0ff5fd5cc3991">  313</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__cbprintf__apis.html#ga6e31a5fb5cd760fbb8d0ff5fd5cc3991">cbprintf_convert_cb</a>)(<span class="keyword">const</span> <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> len, <span class="keywordtype">void</span> *ctx);</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno"><a class="line" href="group__cbprintf__apis.html#ga0decdf49ce8a1594d5c99e93648a24f7">  333</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__cbprintf__apis.html#ga0decdf49ce8a1594d5c99e93648a24f7">cbvprintf_external_formatter_func</a>)(<a class="code hl_typedef" href="group__cbprintf__apis.html#gaca8362dda031a176d96855a604395a83">cbprintf_cb</a> out, <span class="keywordtype">void</span> *ctx,</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>                         <span class="keyword">const</span> <span class="keywordtype">char</span> *fmt, va_list ap);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="foldopen" id="foldopen00353" data-start="" data-end="">
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno"><a class="line" href="group__cbprintf__apis.html#ga4d0a2d35198c2feef1423a1454a98ae6">  353</a></span><span class="preprocessor">#define CBPRINTF_MUST_RUNTIME_PACKAGE(flags, ... </span><span class="comment">/* fmt, ... */</span><span class="preprocessor">) \</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="preprocessor">    Z_CBPRINTF_MUST_RUNTIME_PACKAGE(flags, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="foldopen" id="foldopen00385" data-start="" data-end="">
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno"><a class="line" href="group__cbprintf__apis.html#ga1ac0f7d0956fc96a9d850d2fef928285">  385</a></span><span class="preprocessor">#define CBPRINTF_STATIC_PACKAGE(packaged, inlen, outlen, align_offset, flags, \</span></div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span><span class="preprocessor">                ... </span><span class="comment">/* fmt, ... */</span><span class="preprocessor">) \</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span><span class="preprocessor">    Z_CBPRINTF_STATIC_PACKAGE(packaged, inlen, outlen, \</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="preprocessor">                  align_offset, flags, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span> </div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno"><a class="line" href="group__cbprintf__apis.html#gad5c4f68751564354813e0833425a1256">  430</a></span>__printf_like(4, 5)</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>int cbprintf_package(<span class="keywordtype">void</span> *packaged,</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>             <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>             uint32_t flags,</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>             const <span class="keywordtype">char</span> *format,</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>             ...);</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span> </div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno"><a class="line" href="group__cbprintf__apis.html#ga0080ccfcb263afc0bddd8fe5f70ab029">  471</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__cbprintf__apis.html#ga0080ccfcb263afc0bddd8fe5f70ab029">cbvprintf_package</a>(<span class="keywordtype">void</span> *packaged,</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>              <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>              uint32_t flags,</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>              const <span class="keywordtype">char</span> *format,</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>              va_list ap);</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span> </div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno"><a class="line" href="group__cbprintf__apis.html#ga3d7895fa3997bfd4ecf9cb3711c9bf3f">  512</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__cbprintf__apis.html#ga3d7895fa3997bfd4ecf9cb3711c9bf3f">cbprintf_package_convert</a>(<span class="keywordtype">void</span> *in_packaged,</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>                 <span class="keywordtype">size_t</span> in_len,</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>                 <a class="code hl_typedef" href="group__cbprintf__apis.html#ga6e31a5fb5cd760fbb8d0ff5fd5cc3991">cbprintf_convert_cb</a> cb,</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>                 <span class="keywordtype">void</span> *ctx,</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>                 uint32_t flags,</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>                 uint16_t *strl,</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span>                 <span class="keywordtype">size_t</span> strl_len);</div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span> </div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span><span class="comment">/* @interal Context used for package copying. */</span></div>
+<div class="foldopen" id="foldopen00521" data-start="{" data-end="};">
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno"><a class="line" href="structz__cbprintf__buf__desc.html">  521</a></span>struct <a class="code hl_struct" href="structz__cbprintf__buf__desc.html">z_cbprintf_buf_desc</a> {</div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>    <span class="keywordtype">void</span> *buf;</div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>    <span class="keywordtype">size_t</span> size;</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>    <span class="keywordtype">size_t</span> off;</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>};</div>
+</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span> </div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span><span class="comment">/* @internal Function callback used for package copying. */</span></div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_cbprintf_cpy(<span class="keyword">const</span> <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> len, <span class="keywordtype">void</span> *ctx)</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>{</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structz__cbprintf__buf__desc.html">z_cbprintf_buf_desc</a> *desc = (<span class="keyword">struct </span><a class="code hl_struct" href="structz__cbprintf__buf__desc.html">z_cbprintf_buf_desc</a> *)ctx;</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span> </div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>    <span class="keywordflow">if</span> ((desc-&gt;size - desc-&gt;off) &lt; len) {</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>        <span class="keywordflow">return</span> -ENOSPC;</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>    }</div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span> </div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>    memcpy(&amp;((uint8_t *)desc-&gt;buf)[desc-&gt;off], buf, len);</div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>    desc-&gt;off += len;</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span> </div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>    <span class="keywordflow">return</span> len;</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>}</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span> </div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> cbprintf_package_copy(<span class="keywordtype">void</span> *in_packaged,</div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>                    <span class="keywordtype">size_t</span> in_len,</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>                    <span class="keywordtype">void</span> *packaged,</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>                    <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>                    uint32_t flags,</div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>                    uint16_t *strl,</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>                    <span class="keywordtype">size_t</span> strl_len)</div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>{</div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structz__cbprintf__buf__desc.html">z_cbprintf_buf_desc</a> buf_desc = {</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>        .buf = packaged,</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>        .size = len,</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>        .off = 0,</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>    };</div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span> </div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__cbprintf__apis.html#ga3d7895fa3997bfd4ecf9cb3711c9bf3f">cbprintf_package_convert</a>(in_packaged, in_len,</div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>                    packaged ? z_cbprintf_cpy : NULL, &amp;buf_desc,</div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>                    flags, strl, strl_len);</div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>}</div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span> </div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> cbprintf_fsc_package(<span class="keywordtype">void</span> *in_packaged,</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span>                       <span class="keywordtype">size_t</span> in_len,</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>                       <span class="keywordtype">void</span> *packaged,</div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span>                       <span class="keywordtype">size_t</span> len)</div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>{</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>    <span class="keywordflow">return</span> cbprintf_package_copy(in_packaged, in_len, packaged, len,</div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span>                     <a class="code hl_define" href="group__CBPRINTF__PACKAGE__CONVERT__FLAGS.html#ga9802b700abd5d3cd7cef0e0cbcceb3e7">CBPRINTF_PACKAGE_CONVERT_RO_STR</a> |</div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>                     <a class="code hl_define" href="group__CBPRINTF__PACKAGE__CONVERT__FLAGS.html#ga983c65ed8afb356a29fa2736f9de7b39">CBPRINTF_PACKAGE_CONVERT_RW_STR</a>, NULL, 0);</div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>}</div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span> </div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno"><a class="line" href="group__cbprintf__apis.html#gaa1a040db7e5171dd80d84cd871dfc687">  650</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__cbprintf__apis.html#gaa1a040db7e5171dd80d84cd871dfc687">cbpprintf_external</a>(<a class="code hl_typedef" href="group__cbprintf__apis.html#gaca8362dda031a176d96855a604395a83">cbprintf_cb</a> out,</div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>               <a class="code hl_typedef" href="group__cbprintf__apis.html#ga0decdf49ce8a1594d5c99e93648a24f7">cbvprintf_external_formatter_func</a> formatter,</div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>               <span class="keywordtype">void</span> *ctx,</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>               <span class="keywordtype">void</span> *packaged);</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span> </div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno"><a class="line" href="group__cbprintf__apis.html#gab1f1dfeb897eed43d82fd8a2ec9cd78c">  681</a></span>__printf_like(3, 4)</div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span>int cbprintf(<a class="code hl_typedef" href="group__cbprintf__apis.html#gaca8362dda031a176d96855a604395a83">cbprintf_cb</a> out, <span class="keywordtype">void</span> *ctx, const <span class="keywordtype">char</span> *format, ...);</div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span> </div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno"><a class="line" href="group__cbprintf__apis.html#gac93b0e43ca4686e81b753984878459ab">  712</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__cbprintf__apis.html#gac93b0e43ca4686e81b753984878459ab">z_cbvprintf_impl</a>(<a class="code hl_typedef" href="group__cbprintf__apis.html#gaca8362dda031a176d96855a604395a83">cbprintf_cb</a> out, <span class="keywordtype">void</span> *ctx, const <span class="keywordtype">char</span> *format,</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span>             va_list ap, uint32_t flags);</div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span> </div>
+<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span><span class="preprocessor">#ifdef CONFIG_PICOLIBC</span></div>
+<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span><span class="keywordtype">int</span> cbvprintf(<a class="code hl_typedef" href="group__cbprintf__apis.html#gaca8362dda031a176d96855a604395a83">cbprintf_cb</a> out, <span class="keywordtype">void</span> *ctx, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, va_list ap);</div>
+<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span><span class="keyword">static</span> <span class="keyword">inline</span></div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span><span class="keywordtype">int</span> cbvprintf(<a class="code hl_typedef" href="group__cbprintf__apis.html#gaca8362dda031a176d96855a604395a83">cbprintf_cb</a> out, <span class="keywordtype">void</span> *ctx, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, va_list ap)</div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span>{</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__cbprintf__apis.html#gac93b0e43ca4686e81b753984878459ab">z_cbvprintf_impl</a>(out, ctx, format, ap, 0);</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>}</div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span> </div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span><span class="keyword">static</span> <span class="keyword">inline</span></div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span><span class="keywordtype">int</span> cbvprintf_tagged_args(<a class="code hl_typedef" href="group__cbprintf__apis.html#gaca8362dda031a176d96855a604395a83">cbprintf_cb</a> out, <span class="keywordtype">void</span> *ctx,</div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span>              <span class="keyword">const</span> <span class="keywordtype">char</span> *format, va_list ap)</div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>{</div>
+<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__cbprintf__apis.html#gac93b0e43ca4686e81b753984878459ab">z_cbvprintf_impl</a>(out, ctx, format, ap,</div>
+<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span>                <a class="code hl_define" href="group__Z__CBVPRINTF__PROCESS__FLAGS.html#ga3f1d7dc6859a7b0b414b85431da18dd9">Z_CBVPRINTF_PROCESS_FLAG_TAGGED_ARGS</a>);</div>
+<div class="line"><a id="l00783" name="l00783"></a><span class="lineno">  783</span>}</div>
+<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span> </div>
+<div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span><span class="keyword">static</span> <span class="keyword">inline</span></div>
+<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span><span class="keywordtype">int</span> cbpprintf(<a class="code hl_typedef" href="group__cbprintf__apis.html#gaca8362dda031a176d96855a604395a83">cbprintf_cb</a> out, <span class="keywordtype">void</span> *ctx, <span class="keywordtype">void</span> *packaged)</div>
+<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span>{</div>
+<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span><span class="preprocessor">#if defined(CONFIG_CBPRINTF_PACKAGE_SUPPORT_TAGGED_ARGUMENTS)</span></div>
+<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span>    <span class="keyword">union </span><a class="code hl_union" href="unioncbprintf__package__hdr.html">cbprintf_package_hdr</a> *hdr =</div>
+<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>        (<span class="keyword">union </span><a class="code hl_union" href="unioncbprintf__package__hdr.html">cbprintf_package_hdr</a> *)packaged;</div>
+<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span> </div>
+<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span>    <span class="keywordflow">if</span> ((hdr-&gt;desc.pkg_flags &amp; <a class="code hl_define" href="group__CBPRINTF__PACKAGE__FLAGS.html#gaa8edaf31e7acfb7cb113afa873efa126">CBPRINTF_PACKAGE_ARGS_ARE_TAGGED</a>)</div>
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>        == <a class="code hl_define" href="group__CBPRINTF__PACKAGE__FLAGS.html#gaa8edaf31e7acfb7cb113afa873efa126">CBPRINTF_PACKAGE_ARGS_ARE_TAGGED</a>) {</div>
+<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__cbprintf__apis.html#gaa1a040db7e5171dd80d84cd871dfc687">cbpprintf_external</a>(out, cbvprintf_tagged_args,</div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>                      ctx, packaged);</div>
+<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>    }</div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span> </div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__cbprintf__apis.html#gaa1a040db7e5171dd80d84cd871dfc687">cbpprintf_external</a>(out, cbvprintf, ctx, packaged);</div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span>}</div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span> </div>
+<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span><span class="preprocessor">#ifdef CONFIG_CBPRINTF_LIBC_SUBSTS</span></div>
+<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span> </div>
+<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span><span class="preprocessor">#ifdef CONFIG_PICOLIBC</span></div>
+<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span> </div>
+<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span><span class="preprocessor">#define fprintfcb(stream, ...) fprintf(stream, __VA_ARGS__)</span></div>
+<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span><span class="preprocessor">#define vfprintfcb(stream, format, ap) vfprintf(stream, format, ap)</span></div>
+<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span><span class="preprocessor">#define printfcb(format, ...) printf(format, __VA_ARGS__)</span></div>
+<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span><span class="preprocessor">#define vprintfcb(format, ap) vprintf(format, ap)</span></div>
+<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span><span class="preprocessor">#define snprintfcb(str, size, ...) snprintf(str, size, __VA_ARGS__)</span></div>
+<div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span><span class="preprocessor">#define vsnprintfcb(str, size, format, ap) vsnprintf(str, size, format, ap)</span></div>
+<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span> </div>
+<div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span> </div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span>__printf_like(2, 3)</div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span>int fprintfcb(FILE * stream, const <span class="keywordtype">char</span> *format, ...);</div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span> </div>
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span><span class="keywordtype">int</span> vfprintfcb(FILE *stream, const <span class="keywordtype">char</span> *format, va_list ap);</div>
+<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span> </div>
+<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span>__printf_like(1, 2)</div>
+<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span><span class="keywordtype">int</span> printfcb(const <span class="keywordtype">char</span> *format, ...);</div>
+<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span> </div>
+<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span><span class="keywordtype">int</span> vprintfcb(const <span class="keywordtype">char</span> *format, va_list ap);</div>
+<div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span> </div>
+<div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span>__printf_like(3, 4)</div>
+<div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span><span class="keywordtype">int</span> snprintfcb(<span class="keywordtype">char</span> *str, <span class="keywordtype">size_t</span> size, const <span class="keywordtype">char</span> *format, ...);</div>
+<div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span> </div>
+<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span><span class="keywordtype">int</span> vsnprintfcb(<span class="keywordtype">char</span> *str, <span class="keywordtype">size_t</span> size, const <span class="keywordtype">char</span> *format, va_list ap);</div>
+<div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span> </div>
+<div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_PICOLIBC */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_CBPRINTF_LIBC_SUBSTS */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00960" name="l00960"></a><span class="lineno">  960</span> </div>
+<div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00966" name="l00966"></a><span class="lineno">  966</span>}</div>
+<div class="line"><a id="l00967" name="l00967"></a><span class="lineno">  967</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00968" name="l00968"></a><span class="lineno">  968</span> </div>
+<div class="line"><a id="l00969" name="l00969"></a><span class="lineno">  969</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_SYS_CBPRINTF_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agcc_8h_html_acb5a70605859d9ef04b77137e60a1ca5"><div class="ttname"><a href="gcc_8h.html#acb5a70605859d9ef04b77137e60a1ca5">Z_IS_POW2</a></div><div class="ttdeci">#define Z_IS_POW2(x)</div><div class="ttdoc">Check whether or not a value is a power of 2.</div><div class="ttdef"><b>Definição</b> gcc.h:638</div></div>
+<div class="ttc" id="agroup__CBPRINTF__PACKAGE__CONVERT__FLAGS_html_ga9802b700abd5d3cd7cef0e0cbcceb3e7"><div class="ttname"><a href="group__CBPRINTF__PACKAGE__CONVERT__FLAGS.html#ga9802b700abd5d3cd7cef0e0cbcceb3e7">CBPRINTF_PACKAGE_CONVERT_RO_STR</a></div><div class="ttdeci">#define CBPRINTF_PACKAGE_CONVERT_RO_STR</div><div class="ttdoc">Append read-only strings from source package to destination package.</div><div class="ttdef"><b>Definição</b> cbprintf.h:218</div></div>
+<div class="ttc" id="agroup__CBPRINTF__PACKAGE__CONVERT__FLAGS_html_ga983c65ed8afb356a29fa2736f9de7b39"><div class="ttname"><a href="group__CBPRINTF__PACKAGE__CONVERT__FLAGS.html#ga983c65ed8afb356a29fa2736f9de7b39">CBPRINTF_PACKAGE_CONVERT_RW_STR</a></div><div class="ttdeci">#define CBPRINTF_PACKAGE_CONVERT_RW_STR</div><div class="ttdoc">Append read-write strings from source package to destination package.</div><div class="ttdef"><b>Definição</b> cbprintf.h:232</div></div>
+<div class="ttc" id="agroup__CBPRINTF__PACKAGE__FLAGS_html_gaa8edaf31e7acfb7cb113afa873efa126"><div class="ttname"><a href="group__CBPRINTF__PACKAGE__FLAGS.html#gaa8edaf31e7acfb7cb113afa873efa126">CBPRINTF_PACKAGE_ARGS_ARE_TAGGED</a></div><div class="ttdeci">#define CBPRINTF_PACKAGE_ARGS_ARE_TAGGED</div><div class="ttdoc">Indicate the incoming arguments are tagged.</div><div class="ttdef"><b>Definição</b> cbprintf.h:201</div></div>
+<div class="ttc" id="agroup__Z__CBVPRINTF__PROCESS__FLAGS_html_ga3f1d7dc6859a7b0b414b85431da18dd9"><div class="ttname"><a href="group__Z__CBVPRINTF__PROCESS__FLAGS.html#ga3f1d7dc6859a7b0b414b85431da18dd9">Z_CBVPRINTF_PROCESS_FLAG_TAGGED_ARGS</a></div><div class="ttdeci">#define Z_CBVPRINTF_PROCESS_FLAG_TAGGED_ARGS</div><div class="ttdoc">Indicates the arguments are tagged.</div><div class="ttdef"><b>Definição</b> cbprintf.h:276</div></div>
+<div class="ttc" id="agroup__bt__conn_html_gab3cdadb15ef89cfe197d88b4d3fdb596"><div class="ttname"><a href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a></div><div class="ttdeci">__packed</div><div class="ttdef"><b>Definição</b> conn.h:352</div></div>
+<div class="ttc" id="agroup__cbprintf__apis_html_ga0080ccfcb263afc0bddd8fe5f70ab029"><div class="ttname"><a href="group__cbprintf__apis.html#ga0080ccfcb263afc0bddd8fe5f70ab029">cbvprintf_package</a></div><div class="ttdeci">size_t uint32_t const char int cbvprintf_package(void *packaged, size_t len, uint32_t flags, const char *format, va_list ap)</div><div class="ttdoc">Capture state required to output formatted data later.</div></div>
+<div class="ttc" id="agroup__cbprintf__apis_html_ga0decdf49ce8a1594d5c99e93648a24f7"><div class="ttname"><a href="group__cbprintf__apis.html#ga0decdf49ce8a1594d5c99e93648a24f7">cbvprintf_external_formatter_func</a></div><div class="ttdeci">int(* cbvprintf_external_formatter_func)(cbprintf_cb out, void *ctx, const char *fmt, va_list ap)</div><div class="ttdoc">Signature for a external formatter function identical to cbvprintf.</div><div class="ttdef"><b>Definição</b> cbprintf.h:333</div></div>
+<div class="ttc" id="agroup__cbprintf__apis_html_ga3b917fb81bb246a0910066e2708dbd78"><div class="ttname"><a href="group__cbprintf__apis.html#ga3b917fb81bb246a0910066e2708dbd78">CBPRINTF_PACKAGE_ALIGNMENT</a></div><div class="ttdeci">#define CBPRINTF_PACKAGE_ALIGNMENT</div><div class="ttdoc">Required alignment of the buffer used for packaging.</div><div class="ttdef"><b>Definição</b> cbprintf.h:140</div></div>
+<div class="ttc" id="agroup__cbprintf__apis_html_ga3d7895fa3997bfd4ecf9cb3711c9bf3f"><div class="ttname"><a href="group__cbprintf__apis.html#ga3d7895fa3997bfd4ecf9cb3711c9bf3f">cbprintf_package_convert</a></div><div class="ttdeci">int cbprintf_package_convert(void *in_packaged, size_t in_len, cbprintf_convert_cb cb, void *ctx, uint32_t flags, uint16_t *strl, size_t strl_len)</div><div class="ttdoc">Convert a package.</div></div>
+<div class="ttc" id="agroup__cbprintf__apis_html_ga6e31a5fb5cd760fbb8d0ff5fd5cc3991"><div class="ttname"><a href="group__cbprintf__apis.html#ga6e31a5fb5cd760fbb8d0ff5fd5cc3991">cbprintf_convert_cb</a></div><div class="ttdeci">int(* cbprintf_convert_cb)(const void *buf, size_t len, void *ctx)</div><div class="ttdoc">Signature for a cbprintf multibyte callback function.</div><div class="ttdef"><b>Definição</b> cbprintf.h:313</div></div>
+<div class="ttc" id="agroup__cbprintf__apis_html_gaa1a040db7e5171dd80d84cd871dfc687"><div class="ttname"><a href="group__cbprintf__apis.html#gaa1a040db7e5171dd80d84cd871dfc687">cbpprintf_external</a></div><div class="ttdeci">int cbpprintf_external(cbprintf_cb out, cbvprintf_external_formatter_func formatter, void *ctx, void *packaged)</div><div class="ttdoc">Generate the output for a previously captured format operation using an external formatter.</div></div>
+<div class="ttc" id="agroup__cbprintf__apis_html_gac93b0e43ca4686e81b753984878459ab"><div class="ttname"><a href="group__cbprintf__apis.html#gac93b0e43ca4686e81b753984878459ab">z_cbvprintf_impl</a></div><div class="ttdeci">void const char int z_cbvprintf_impl(cbprintf_cb out, void *ctx, const char *format, va_list ap, uint32_t flags)</div><div class="ttdoc">varargs-aware *printf-like output through a callback.</div></div>
+<div class="ttc" id="agroup__cbprintf__apis_html_gaca8362dda031a176d96855a604395a83"><div class="ttname"><a href="group__cbprintf__apis.html#gaca8362dda031a176d96855a604395a83">cbprintf_cb</a></div><div class="ttdeci">int(* cbprintf_cb)()</div><div class="ttdoc">Signature for a cbprintf callback function.</div><div class="ttdef"><b>Definição</b> cbprintf.h:302</div></div>
+<div class="ttc" id="astructcbprintf__package__desc_html"><div class="ttname"><a href="structcbprintf__package__desc.html">cbprintf_package_desc</a></div><div class="ttdoc">cbprintf package descriptor.</div><div class="ttdef"><b>Definição</b> cbprintf.h:45</div></div>
+<div class="ttc" id="astructcbprintf__package__desc_html_a02876d066dd9ac4ba5bd3bdc19ff7681"><div class="ttname"><a href="structcbprintf__package__desc.html#a02876d066dd9ac4ba5bd3bdc19ff7681">cbprintf_package_desc::len</a></div><div class="ttdeci">uint8_t len</div><div class="ttdef"><b>Definição</b> cbprintf.h:47</div></div>
+<div class="ttc" id="astructcbprintf__package__desc_html_a3614347546912dae53d8f9633299912d"><div class="ttname"><a href="structcbprintf__package__desc.html#a3614347546912dae53d8f9633299912d">cbprintf_package_desc::str_cnt</a></div><div class="ttdeci">uint8_t str_cnt</div><div class="ttdef"><b>Definição</b> cbprintf.h:50</div></div>
+<div class="ttc" id="astructcbprintf__package__desc_html_ad9878876ae963e93850dcfd8d5df7b2f"><div class="ttname"><a href="structcbprintf__package__desc.html#ad9878876ae963e93850dcfd8d5df7b2f">cbprintf_package_desc::ro_str_cnt</a></div><div class="ttdeci">uint8_t ro_str_cnt</div><div class="ttdef"><b>Definição</b> cbprintf.h:53</div></div>
+<div class="ttc" id="astructcbprintf__package__desc_html_ae9695a5e1a4fb70e3be5e9ab63c89937"><div class="ttname"><a href="structcbprintf__package__desc.html#ae9695a5e1a4fb70e3be5e9ab63c89937">cbprintf_package_desc::rw_str_cnt</a></div><div class="ttdeci">uint8_t rw_str_cnt</div><div class="ttdef"><b>Definição</b> cbprintf.h:56</div></div>
+<div class="ttc" id="astructcbprintf__package__hdr__ext_html"><div class="ttname"><a href="structcbprintf__package__hdr__ext.html">cbprintf_package_hdr_ext</a></div><div class="ttdoc">cbprintf package header with format string pointer.</div><div class="ttdef"><b>Definição</b> cbprintf.h:96</div></div>
+<div class="ttc" id="astructcbprintf__package__hdr__ext_html_a3f1d9bc9ee58367a8e0a4ce29c73a0f5"><div class="ttname"><a href="structcbprintf__package__hdr__ext.html#a3f1d9bc9ee58367a8e0a4ce29c73a0f5">cbprintf_package_hdr_ext::hdr</a></div><div class="ttdeci">union cbprintf_package_hdr hdr</div><div class="ttdef"><b>Definição</b> cbprintf.h:98</div></div>
+<div class="ttc" id="astructcbprintf__package__hdr__ext_html_af726d9f674740030ccf5f7e13a9b0aa9"><div class="ttname"><a href="structcbprintf__package__hdr__ext.html#af726d9f674740030ccf5f7e13a9b0aa9">cbprintf_package_hdr_ext::fmt</a></div><div class="ttdeci">char * fmt</div><div class="ttdef"><b>Definição</b> cbprintf.h:101</div></div>
+<div class="ttc" id="astructz__cbprintf__buf__desc_html"><div class="ttname"><a href="structz__cbprintf__buf__desc.html">z_cbprintf_buf_desc</a></div><div class="ttdef"><b>Definição</b> cbprintf.h:521</div></div>
+<div class="ttc" id="atoolchain_8h_html"><div class="ttname"><a href="toolchain_8h.html">toolchain.h</a></div><div class="ttdoc">Macros to abstract toolchain specific capabilities.</div></div>
+<div class="ttc" id="aunioncbprintf__package__hdr_html"><div class="ttname"><a href="unioncbprintf__package__hdr.html">cbprintf_package_hdr</a></div><div class="ttdoc">cbprintf package header</div><div class="ttdef"><b>Definição</b> cbprintf.h:78</div></div>
+<div class="ttc" id="aunioncbprintf__package__hdr_html_aa5e4c2d21fde006827031c41e64e0c04"><div class="ttname"><a href="unioncbprintf__package__hdr.html#aa5e4c2d21fde006827031c41e64e0c04">cbprintf_package_hdr::desc</a></div><div class="ttdeci">struct cbprintf_package_desc desc</div><div class="ttdef"><b>Definição</b> cbprintf.h:80</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

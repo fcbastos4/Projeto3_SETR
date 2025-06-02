@@ -1,0 +1,573 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/portability/cmsis_os.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7a51450d49f00619fca38157e00878e7.html">portability</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">cmsis_os.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* ----------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * $Date:        5. February 2013</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * $Revision:    V1.02</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * Project:      CMSIS-RTOS API</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Title:        cmsis_os.h template header file</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Version 0.02</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *    Initial Proposal Phase</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * Version 0.03</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> *    osKernelStart added, optional feature: main started as thread</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> *    osSemaphores have standard behavior</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment"> *    osTimerCreate does not start the timer, added osTimerStart</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> *    osThreadPass is renamed to osThreadYield</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"> * Version 1.01</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> *    Support for C++ interface</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> *     - const attribute removed from the osXxxxDef_t typedef&#39;s</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> *     - const attribute added to the osXxxxDef macros</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> *    Added: osTimerDelete, osMutexDelete, osSemaphoreDelete</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> *    Added: osKernelInitialize</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> * Version 1.02</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> *    Control functions for short timeouts in microsecond resolution:</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"> *    Added: osKernelSysTick, osKernelSysTickFrequency, osKernelSysTickMicroSec</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"> *    Removed: osSignalGet </span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment"> *----------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment"> * Copyright (c) 2013-2017 ARM LIMITED</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment"> * Licensed under the Apache License, Version 2.0 (the License); you may</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment"> * not use this file except in compliance with the License.</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment"> * You may obtain a copy of the License at</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment"> * www.apache.org/licenses/LICENSE-2.0</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment"> * Unless required by applicable law or agreed to in writing, software</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment"> * distributed under the License is distributed on an AS IS BASIS, WITHOUT</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment"> * See the License for the specific language governing permissions and</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment"> * limitations under the License.</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment"> *---------------------------------------------------------------------------*/</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_CMSIS_RTOS_V1_CMSIS_OS_H_</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define ZEPHYR_INCLUDE_CMSIS_RTOS_V1_CMSIS_OS_H_</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#define osCMSIS           0x10002      </span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#define osCMSIS_KERNEL    0x10000          </span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#define osKernelSystemId &quot;KERNEL V1.00&quot;   </span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define osFeature_MainThread   1       </span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#define osFeature_Pool         1       </span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#define osFeature_MailQ        1       </span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#define osFeature_MessageQ     1       </span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#define osFeature_Signals      8       </span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#define osFeature_Semaphore    30      </span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#define osFeature_Wait         0       </span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#define osFeature_SysTick      1       </span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#include &lt;<a class="code" href="bitarray_8h.html">zephyr/sys/bitarray.h</a>&gt;</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#ifdef  __cplusplus</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>{</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">// ==== Enumeration, structures, defines ====</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">typedef</span> <span class="keyword">enum</span>  {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  osPriorityIdle          = -3,          </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  osPriorityLow           = -2,          </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  osPriorityBelowNormal   = -1,          </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  osPriorityNormal        =  0,          </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  osPriorityAboveNormal   = +1,          </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  osPriorityHigh          = +2,          </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  osPriorityRealtime      = +3,          </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  osPriorityError         =  0x84        </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>} osPriority;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">#define osWaitForever     0xFFFFFFFF     </span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">typedef</span> <span class="keyword">enum</span>  {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  osOK                    =     0,       </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  osEventSignal           =  0x08,       </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  osEventMessage          =  0x10,       </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  osEventMail             =  0x20,       </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  osEventTimeout          =  0x40,       </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  osErrorParameter        =  0x80,       </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  osErrorResource         =  0x81,       </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  osErrorTimeoutResource  =  0xC1,       </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  osErrorISR              =  0x82,       </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  osErrorISRRecursive     =  0x83,       </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  osErrorPriority         =  0x84,       </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  osErrorNoMemory         =  0x85,       </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  osErrorValue            =  0x86,       </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  osErrorOS               =  0xFF,       </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  os_status_reserved      =  0x7FFFFFFF  </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>} osStatus;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keyword">typedef</span> <span class="keyword">enum</span>  {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  osTimerOnce             =     0,       </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  osTimerPeriodic         =     1        </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>} os_timer_type;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">typedef</span> void (*os_pthread) (<span class="keywordtype">void</span> <span class="keyword">const</span> *argument);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keyword">typedef</span> void (*os_ptimer) (<span class="keywordtype">void</span> <span class="keyword">const</span> *argument);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment">// &gt;&gt;&gt; the following data type definitions may shall adapted towards a specific RTOS</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="keyword">typedef</span> <span class="keyword">struct </span>os_thread_cb *osThreadId;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="keyword">typedef</span> <span class="keyword">struct </span>os_timer_cb *osTimerId;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keyword">typedef</span> <span class="keyword">struct </span>os_mutex_cb *osMutexId;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="keyword">typedef</span> <span class="keyword">struct </span>os_semaphore_cb *osSemaphoreId;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="keyword">typedef</span> <span class="keyword">struct </span>os_pool_cb *osPoolId;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="keyword">typedef</span> <span class="keyword">struct </span>os_messageQ_cb *osMessageQId;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="keyword">typedef</span> <span class="keyword">struct </span>os_mailQ_cb *osMailQId;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="foldopen" id="foldopen00166" data-start="{" data-end="};">
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="structos__thread__def.html">  166</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structos__thread__def.html">os_thread_def</a>  {</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="structos__thread__def.html#a0df2a4614d013387de75eebe66a6e3f9">  167</a></span>  os_pthread               <a class="code hl_variable" href="structos__thread__def.html#a0df2a4614d013387de75eebe66a6e3f9">pthread</a>;    </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="structos__thread__def.html#a5e4e35a5f44d174a558a289688022e64">  168</a></span>  osPriority             <a class="code hl_variable" href="structos__thread__def.html#a5e4e35a5f44d174a558a289688022e64">tpriority</a>;    </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="structos__thread__def.html#afd50a1965f6fb28cc37fdfdca5d07e4e">  169</a></span>  uint32_t               <a class="code hl_variable" href="structos__thread__def.html#afd50a1965f6fb28cc37fdfdca5d07e4e">instances</a>;    </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="structos__thread__def.html#aa0dd2cff64a499a08f422dd159fe5780">  170</a></span>  uint32_t               <a class="code hl_variable" href="structos__thread__def.html#aa0dd2cff64a499a08f422dd159fe5780">stacksize</a>;    </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="structos__thread__def.html#a11220ca443e3a57bacea01f896488c8a">  171</a></span>  <span class="keywordtype">void</span>                  *<a class="code hl_variable" href="structos__thread__def.html#a11220ca443e3a57bacea01f896488c8a">stack_mem</a>;    </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="structos__thread__def.html#ac23f98f699c0c2b10f6f7166d9a59605">  172</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structk__thread.html">k_thread</a>       *<a class="code hl_variable" href="structos__thread__def.html#ac23f98f699c0c2b10f6f7166d9a59605">cm_thread</a>;    </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  <span class="keyword">struct </span><a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *poll_signal;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  <span class="keyword">struct </span><a class="code hl_struct" href="structk__poll__event.html">k_poll_event</a>   *poll_event;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="structos__thread__def.html#a2d9ef2c3e383d4496ad6aed209715689">  175</a></span>  int32_t            <a class="code hl_variable" href="structos__thread__def.html#a2d9ef2c3e383d4496ad6aed209715689">signal_results</a>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  <span class="keywordtype">void</span>                 *status_mask;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>} <a class="code hl_struct" href="structos__thread__def.html">osThreadDef_t</a>;</div>
+</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="foldopen" id="foldopen00182" data-start="{" data-end="};">
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="structos__timer__def.html">  182</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structos__timer__def.html">os_timer_def</a>  {</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="structos__timer__def.html#a7e7df6a1b8c1a1149a19d8c7f19cfe05">  183</a></span>  os_ptimer                 <a class="code hl_variable" href="structos__timer__def.html#a7e7df6a1b8c1a1149a19d8c7f19cfe05">ptimer</a>;    </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>} <a class="code hl_struct" href="structos__timer__def.html">osTimerDef_t</a>;</div>
+</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="foldopen" id="foldopen00188" data-start="{" data-end="};">
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="structos__mutex__def.html">  188</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structos__mutex__def.html">os_mutex_def</a>  {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="structos__mutex__def.html#a6364fe3b28142d23aaa03343c627957f">  189</a></span>  uint32_t                   <a class="code hl_variable" href="structos__mutex__def.html#a6364fe3b28142d23aaa03343c627957f">dummy</a>;    </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>} <a class="code hl_struct" href="structos__mutex__def.html">osMutexDef_t</a>;</div>
+</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="foldopen" id="foldopen00194" data-start="{" data-end="};">
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="structos__semaphore__def.html">  194</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structos__semaphore__def.html">os_semaphore_def</a>  {</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="structos__semaphore__def.html#aa95cbcddf4e435fc610035765a58269d">  195</a></span>  uint32_t                   <a class="code hl_variable" href="structos__semaphore__def.html#aa95cbcddf4e435fc610035765a58269d">dummy</a>;    </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>} <a class="code hl_struct" href="structos__semaphore__def.html">osSemaphoreDef_t</a>;</div>
+</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="foldopen" id="foldopen00200" data-start="{" data-end="};">
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="structos__pool__def.html">  200</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structos__pool__def.html">os_pool_def</a>  {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="structos__pool__def.html#a7a455b537ba119df57a704a3c4ac8b40">  201</a></span>  uint32_t                 <a class="code hl_variable" href="structos__pool__def.html#a7a455b537ba119df57a704a3c4ac8b40">pool_sz</a>;    </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="structos__pool__def.html#a815cc2ca8f46c006e460d57fa0f3be6a">  202</a></span>  uint32_t                 <a class="code hl_variable" href="structos__pool__def.html#a815cc2ca8f46c006e460d57fa0f3be6a">item_sz</a>;    </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="structos__pool__def.html#acf74f1070644e33a567bc13a944fcb87">  203</a></span>  <span class="keywordtype">void</span>                       *<a class="code hl_variable" href="structos__pool__def.html#acf74f1070644e33a567bc13a944fcb87">pool</a>;    </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>} <a class="code hl_struct" href="structos__pool__def.html">osPoolDef_t</a>;</div>
+</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="foldopen" id="foldopen00208" data-start="{" data-end="};">
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="structos__messageQ__def.html">  208</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structos__messageQ__def.html">os_messageQ_def</a>  {</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="structos__messageQ__def.html#afc8e51d4d45e959fab77977baf8eb970">  209</a></span>  uint32_t                <a class="code hl_variable" href="structos__messageQ__def.html#afc8e51d4d45e959fab77977baf8eb970">queue_sz</a>;    </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="structos__messageQ__def.html#ae38d83bb9cb36d9ce40e511330bb2c29">  210</a></span>  uint32_t                 <a class="code hl_variable" href="structos__messageQ__def.html#ae38d83bb9cb36d9ce40e511330bb2c29">item_sz</a>;    </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="structos__messageQ__def.html#a3e6445892f2d9a38f559545effe57da9">  211</a></span>  <span class="keywordtype">void</span>                       *<a class="code hl_variable" href="structos__messageQ__def.html#a3e6445892f2d9a38f559545effe57da9">pool</a>;    </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>  <span class="keyword">struct </span><a class="code hl_struct" href="structk__msgq.html">k_msgq</a>              *msgq;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>} <a class="code hl_struct" href="structos__messageQ__def.html">osMessageQDef_t</a>;</div>
+</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="foldopen" id="foldopen00217" data-start="{" data-end="};">
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="structos__mailQ__def.html">  217</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structos__mailQ__def.html">os_mailQ_def</a>  {</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="structos__mailQ__def.html#a2614df3d7904500621666abc01808f22">  218</a></span>  uint32_t                <a class="code hl_variable" href="structos__mailQ__def.html#a2614df3d7904500621666abc01808f22">queue_sz</a>;    </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="structos__mailQ__def.html#a582330af53f89bd1f2ce4a27c7facb07">  219</a></span>  uint32_t                 <a class="code hl_variable" href="structos__mailQ__def.html#a582330af53f89bd1f2ce4a27c7facb07">item_sz</a>;    </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="structos__mailQ__def.html#ad101580200e8c5ff720ff6545531901c">  220</a></span>  <span class="keywordtype">void</span>                       *<a class="code hl_variable" href="structos__mailQ__def.html#ad101580200e8c5ff720ff6545531901c">pool</a>;    </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>  <span class="keyword">struct </span><a class="code hl_struct" href="structk__mbox.html">k_mbox</a>              *mbox;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>} <a class="code hl_struct" href="structos__mailQ__def.html">osMailQDef_t</a>;</div>
+</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="foldopen" id="foldopen00227" data-start="{" data-end="};">
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="structosEvent.html">  227</a></span><span class="keyword">typedef</span> <span class="keyword">struct  </span>{</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno"><a class="line" href="structosEvent.html#aafcd2cedd08e033f9df25fd9875caaf2">  228</a></span>  osStatus                 <a class="code hl_variable" href="structosEvent.html#aafcd2cedd08e033f9df25fd9875caaf2">status</a>;     </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>  <span class="keyword">union  </span>{</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="structosEvent.html#a5d2bb38f7be9c75f508646c24d2de4b1">  230</a></span>    uint32_t                    <a class="code hl_variable" href="structosEvent.html#a5d2bb38f7be9c75f508646c24d2de4b1">v</a>;     </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="structosEvent.html#a70b8f3f364cf158c9e538c5f590d1393">  231</a></span>    <span class="keywordtype">void</span>                       *<a class="code hl_variable" href="structosEvent.html#a70b8f3f364cf158c9e538c5f590d1393">p</a>;     </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="structosEvent.html#ad63c33b8b5d3bb37b45433d7c67d1e09">  232</a></span>    int32_t               <a class="code hl_variable" href="structosEvent.html#ad63c33b8b5d3bb37b45433d7c67d1e09">signals</a>;     </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="structosEvent.html#a6c5ad5604f696e8e122df390c5e702b4">  233</a></span>  } value;                             </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>  <span class="keyword">union  </span>{</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="structosEvent.html#aeeccddfa51120e20a2316e73bdba099a">  235</a></span>    osMailQId             <a class="code hl_variable" href="structosEvent.html#aeeccddfa51120e20a2316e73bdba099a">mail_id</a>;     </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="structosEvent.html#af759bde42477c29f56ed1bf8a19c4db8">  236</a></span>    osMessageQId       <a class="code hl_variable" href="structosEvent.html#af759bde42477c29f56ed1bf8a19c4db8">message_id</a>;     </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="structosEvent.html#a1f70030c9d3959f263df025b38eadaa2">  237</a></span>  } def;                               </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>} <a class="code hl_struct" href="structosEvent.html">osEvent</a>;</div>
+</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="comment">//  ==== Kernel Control Functions ====</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>osStatus osKernelInitialize (<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>osStatus osKernelStart (<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>int32_t osKernelRunning(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="preprocessor">#if (defined (osFeature_SysTick)  &amp;&amp;  (osFeature_SysTick != 0))     </span><span class="comment">// System Timer available</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>uint32_t osKernelSysTick (<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="preprocessor">#define osKernelSysTickFrequency sys_clock_hw_cycles_per_sec</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="preprocessor">#define osKernelSysTickMicroSec(microsec) (((uint64_t)microsec * (osKernelSysTickFrequency)) / 1000000U)</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="preprocessor">#endif    </span><span class="comment">// System Timer available</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="comment">//  ==== Thread Management ====</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="preprocessor">#if defined (osObjectsExternal)  </span><span class="comment">// object is external</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="preprocessor">#define osThreadDef(name, priority, instances, stacksz)  \</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="preprocessor">extern const osThreadDef_t os_thread_def_##name</span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="preprocessor">#else                            </span><span class="comment">// define the object</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span><span class="preprocessor">#define osThreadDef(name, priority, instances, stacksz)  \</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="preprocessor">static K_THREAD_STACK_ARRAY_DEFINE(stacks_##name, instances, CONFIG_CMSIS_THREAD_MAX_STACK_SIZE); \</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="preprocessor">static struct k_thread cm_thread_##name[instances]; \</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="preprocessor">static struct k_poll_signal wait_signal_##name; \</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="preprocessor">static struct k_poll_event wait_events_##name; \</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="preprocessor">SYS_BITARRAY_DEFINE_STATIC(bitarray_##name, instances); \</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="preprocessor">static osThreadDef_t os_thread_def_##name = \</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="preprocessor">{ (name), (priority), (instances), (stacksz), (void *)(stacks_##name), \</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="preprocessor">    (cm_thread_##name), (&amp;wait_signal_##name), \</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="preprocessor">    (&amp;wait_events_##name), 0, (void *)(&amp;bitarray_##name)}</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="preprocessor">#define osThread(name)  \</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="preprocessor">&amp;os_thread_def_##name</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>osThreadId osThreadCreate (<span class="keyword">const</span> <a class="code hl_struct" href="structos__thread__def.html">osThreadDef_t</a> *thread_def, <span class="keywordtype">void</span> *argument);</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>osThreadId osThreadGetId (<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>osStatus osThreadTerminate (osThreadId thread_id);</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>osStatus osThreadYield (<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>osStatus osThreadSetPriority (osThreadId thread_id, osPriority priority);</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>osPriority osThreadGetPriority (osThreadId thread_id);</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span> </div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="comment">//  ==== Generic Wait Functions ====</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>osStatus osDelay (uint32_t millisec);</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span> </div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="preprocessor">#if (defined (osFeature_Wait)  &amp;&amp;  (osFeature_Wait != 0))     </span><span class="comment">// Generic Wait available</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><a class="code hl_struct" href="structosEvent.html">osEvent</a> osWait (uint32_t millisec);</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="preprocessor">#endif  </span><span class="comment">// Generic Wait available</span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> </div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span> </div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="comment">//  ==== Timer Management Functions ====</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span><span class="preprocessor">#if defined (osObjectsExternal)  </span><span class="comment">// object is external</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="preprocessor">#define osTimerDef(name, function)  \</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="preprocessor">extern const osTimerDef_t os_timer_def_##name</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="preprocessor">#else                            </span><span class="comment">// define the object</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="preprocessor">#define osTimerDef(name, function)  \</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="preprocessor">const osTimerDef_t os_timer_def_##name = \</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="preprocessor">{ (function) }</span></div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span><span class="preprocessor">#define osTimer(name) \</span></div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span><span class="preprocessor">&amp;os_timer_def_##name</span></div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> </div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>osTimerId osTimerCreate (<span class="keyword">const</span> <a class="code hl_struct" href="structos__timer__def.html">osTimerDef_t</a> *timer_def, os_timer_type type, <span class="keywordtype">void</span> *argument);</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span> </div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>osStatus osTimerStart (osTimerId timer_id, uint32_t millisec);</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span> </div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>osStatus osTimerStop (osTimerId timer_id);</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>osStatus osTimerDelete (osTimerId timer_id);</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span> </div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span> </div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span><span class="comment">//  ==== Signal Management ====</span></div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>int32_t osSignalSet (osThreadId thread_id, int32_t signals);</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span> </div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>int32_t osSignalClear (osThreadId thread_id, int32_t signals);</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span> </div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span><a class="code hl_struct" href="structosEvent.html">osEvent</a> osSignalWait (int32_t signals, uint32_t millisec);</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span> </div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span><span class="comment">//  ==== Mutex Management ====</span></div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span> </div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span><span class="preprocessor">#if defined (osObjectsExternal)  </span><span class="comment">// object is external</span></div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span><span class="preprocessor">#define osMutexDef(name)  \</span></div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span><span class="preprocessor">extern const osMutexDef_t os_mutex_def_##name</span></div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span><span class="preprocessor">#else                            </span><span class="comment">// define the object</span></div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span><span class="preprocessor">#define osMutexDef(name)  \</span></div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span><span class="preprocessor">const osMutexDef_t os_mutex_def_##name = { 0 }</span></div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span> </div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span><span class="preprocessor">#define osMutex(name)  \</span></div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span><span class="preprocessor">&amp;os_mutex_def_##name</span></div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span> </div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>osMutexId osMutexCreate (<span class="keyword">const</span> <a class="code hl_struct" href="structos__mutex__def.html">osMutexDef_t</a> *mutex_def);</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span> </div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>osStatus osMutexWait (osMutexId mutex_id, uint32_t millisec);</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span> </div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>osStatus osMutexRelease (osMutexId mutex_id);</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span> </div>
+<div class="line"><a id="l00481" name="l00481"></a><span class="lineno">  481</span>osStatus osMutexDelete (osMutexId mutex_id);</div>
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span> </div>
+<div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span> </div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span><span class="comment">//  ==== Semaphore Management Functions ====</span></div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span> </div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span><span class="preprocessor">#if (defined (osFeature_Semaphore)  &amp;&amp;  (osFeature_Semaphore != 0))     </span><span class="comment">// Semaphore available</span></div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span> </div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span><span class="preprocessor">#if defined (osObjectsExternal)  </span><span class="comment">// object is external</span></div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span><span class="preprocessor">#define osSemaphoreDef(name)  \</span></div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span><span class="preprocessor">extern const osSemaphoreDef_t os_semaphore_def_##name</span></div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span><span class="preprocessor">#else                            </span><span class="comment">// define the object</span></div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span><span class="preprocessor">#define osSemaphoreDef(name)  \</span></div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span><span class="preprocessor">const osSemaphoreDef_t os_semaphore_def_##name = { 0 }</span></div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span> </div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span><span class="preprocessor">#define osSemaphore(name)  \</span></div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span><span class="preprocessor">&amp;os_semaphore_def_##name</span></div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span> </div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>osSemaphoreId osSemaphoreCreate (<span class="keyword">const</span> <a class="code hl_struct" href="structos__semaphore__def.html">osSemaphoreDef_t</a> *semaphore_def, int32_t count);</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span> </div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec);</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span> </div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>osStatus osSemaphoreRelease (osSemaphoreId semaphore_id);</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span> </div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>osStatus osSemaphoreDelete (osSemaphoreId semaphore_id);</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span> </div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span><span class="preprocessor">#endif     </span><span class="comment">// Semaphore available</span></div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span> </div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span> </div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span><span class="comment">//  ==== Memory Pool Management Functions ====</span></div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span> </div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span><span class="preprocessor">#if (defined (osFeature_Pool)  &amp;&amp;  (osFeature_Pool != 0))  </span><span class="comment">// Memory Pool Management available</span></div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span> </div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span><span class="preprocessor">#if defined (osObjectsExternal)  </span><span class="comment">// object is external</span></div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span><span class="preprocessor">#define osPoolDef(name, no, type)   \</span></div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span><span class="preprocessor">extern const osPoolDef_t os_pool_def_##name</span></div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span><span class="preprocessor">#else                            </span><span class="comment">// define the object</span></div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span><span class="preprocessor">#define osPoolDef(name, no, type)   \</span></div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span><span class="preprocessor">K_MEM_SLAB_DEFINE(os_mem_##name, sizeof(type), no, 4); \</span></div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span><span class="preprocessor">const osPoolDef_t os_pool_def_##name = \</span></div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span><span class="preprocessor">{ (no), sizeof(type), &amp;os_mem_##name }</span></div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span> </div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span><span class="preprocessor">#define osPool(name) \</span></div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span><span class="preprocessor">&amp;os_pool_def_##name</span></div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span> </div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>osPoolId osPoolCreate (<span class="keyword">const</span> <a class="code hl_struct" href="structos__pool__def.html">osPoolDef_t</a> *pool_def);</div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span> </div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span><span class="keywordtype">void</span> *osPoolAlloc (osPoolId pool_id);</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span> </div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span><span class="keywordtype">void</span> *osPoolCAlloc (osPoolId pool_id);</div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span> </div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>osStatus osPoolFree (osPoolId pool_id, <span class="keywordtype">void</span> *block);</div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span> </div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span><span class="preprocessor">#endif   </span><span class="comment">// Memory Pool Management available</span></div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span> </div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span> </div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span><span class="comment">//  ==== Message Queue Management Functions ====</span></div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span> </div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span><span class="preprocessor">#if (defined (osFeature_MessageQ)  &amp;&amp;  (osFeature_MessageQ != 0))     </span><span class="comment">// Message Queues available</span></div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span> </div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span><span class="preprocessor">#if defined (osObjectsExternal)  </span><span class="comment">// object is external</span></div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span><span class="preprocessor">#define osMessageQDef(name, queue_sz, type)   \</span></div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span><span class="preprocessor">extern const osMessageQDef_t os_messageQ_def_##name</span></div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span><span class="preprocessor">#else                            </span><span class="comment">// define the object</span></div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span><span class="preprocessor">#define osMessageQDef(name, queue_sz, type)   \</span></div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span><span class="preprocessor">struct k_msgq msgq_##name; \</span></div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span><span class="preprocessor">static char __aligned(4) buf_##name[queue_sz * sizeof(type)]; \</span></div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span><span class="preprocessor">const osMessageQDef_t os_messageQ_def_##name = \</span></div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span><span class="preprocessor">{ (queue_sz), sizeof (type), (buf_##name), (&amp;msgq_##name) }</span></div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span> </div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span><span class="preprocessor">#define osMessageQ(name) \</span></div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span><span class="preprocessor">&amp;os_messageQ_def_##name</span></div>
+<div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span> </div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>osMessageQId osMessageCreate (<span class="keyword">const</span> <a class="code hl_struct" href="structos__messageQ__def.html">osMessageQDef_t</a> *queue_def, osThreadId thread_id);</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span> </div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>osStatus osMessagePut (osMessageQId queue_id, uint32_t info, uint32_t millisec);</div>
+<div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span> </div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span><a class="code hl_struct" href="structosEvent.html">osEvent</a> osMessageGet (osMessageQId queue_id, uint32_t millisec);</div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span> </div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span><span class="preprocessor">#endif     </span><span class="comment">// Message Queues available</span></div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span> </div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span> </div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span><span class="comment">//  ==== Mail Queue Management Functions ====</span></div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span> </div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span><span class="preprocessor">#if (defined (osFeature_MailQ)  &amp;&amp;  (osFeature_MailQ != 0))     </span><span class="comment">// Mail Queues available</span></div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span> </div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span><span class="preprocessor">#if defined (osObjectsExternal)  </span><span class="comment">// object is external</span></div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span><span class="preprocessor">#define osMailQDef(name, queue_sz, type) \</span></div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span><span class="preprocessor">extern const osMailQDef_t os_mailQ_def_##name</span></div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span><span class="preprocessor">#else                            </span><span class="comment">// define the object</span></div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span><span class="preprocessor">#define osMailQDef(name, queue_sz, type) \</span></div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span><span class="preprocessor">struct k_mbox mbox_##name; \</span></div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span><span class="preprocessor">K_MEM_SLAB_DEFINE(mailq_slab_##name, sizeof(type), queue_sz, 4); \</span></div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span><span class="preprocessor">const osMailQDef_t os_mailQ_def_##name =  \</span></div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span><span class="preprocessor">{ (queue_sz), sizeof (type), (&amp;mailq_slab_##name), (&amp;mbox_##name) }</span></div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span> </div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span><span class="preprocessor">#define osMailQ(name)  \</span></div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span><span class="preprocessor">&amp;os_mailQ_def_##name</span></div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span> </div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>osMailQId osMailCreate (<span class="keyword">const</span> <a class="code hl_struct" href="structos__mailQ__def.html">osMailQDef_t</a> *queue_def, osThreadId thread_id);</div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span> </div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span><span class="keywordtype">void</span> *osMailAlloc (osMailQId queue_id, uint32_t millisec);</div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span> </div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span><span class="keywordtype">void</span> *osMailCAlloc (osMailQId queue_id, uint32_t millisec);</div>
+<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span> </div>
+<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span>osStatus osMailPut (osMailQId queue_id, <span class="keywordtype">void</span> *mail);</div>
+<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span> </div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span><a class="code hl_struct" href="structosEvent.html">osEvent</a> osMailGet (osMailQId queue_id, uint32_t millisec);</div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span> </div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>osStatus osMailFree (osMailQId queue_id, <span class="keywordtype">void</span> *mail);</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span> </div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span><span class="preprocessor">#endif  </span><span class="comment">// Mail Queues available</span></div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span> </div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span> </div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span><span class="preprocessor">#ifdef  __cplusplus</span></div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>}</div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span> </div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span><span class="preprocessor">#endif  </span><span class="comment">/* ZEPHYR_INCLUDE_CMSIS_RTOS_V1_CMSIS_OS_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="abitarray_8h_html"><div class="ttname"><a href="bitarray_8h.html">bitarray.h</a></div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructk__mbox_html"><div class="ttname"><a href="structk__mbox.html">k_mbox</a></div><div class="ttdoc">Mailbox Structure.</div><div class="ttdef"><b>Definição</b> kernel.h:4723</div></div>
+<div class="ttc" id="astructk__msgq_html"><div class="ttname"><a href="structk__msgq.html">k_msgq</a></div><div class="ttdoc">Message Queue Structure.</div><div class="ttdef"><b>Definição</b> kernel.h:4407</div></div>
+<div class="ttc" id="astructk__poll__event_html"><div class="ttname"><a href="structk__poll__event.html">k_poll_event</a></div><div class="ttdoc">Poll Event.</div><div class="ttdef"><b>Definição</b> kernel.h:5653</div></div>
+<div class="ttc" id="astructk__poll__signal_html"><div class="ttname"><a href="structk__poll__signal.html">k_poll_signal</a></div><div class="ttdef"><b>Definição</b> kernel.h:5629</div></div>
+<div class="ttc" id="astructk__thread_html"><div class="ttname"><a href="structk__thread.html">k_thread</a></div><div class="ttdef"><b>Definição</b> thread.h:250</div></div>
+<div class="ttc" id="astructosEvent_html"><div class="ttname"><a href="structosEvent.html">osEvent</a></div><div class="ttdef"><b>Definição</b> cmsis_os.h:227</div></div>
+<div class="ttc" id="astructosEvent_html_a5d2bb38f7be9c75f508646c24d2de4b1"><div class="ttname"><a href="structosEvent.html#a5d2bb38f7be9c75f508646c24d2de4b1">osEvent::v</a></div><div class="ttdeci">uint32_t v</div><div class="ttdoc">message as 32-bit value</div><div class="ttdef"><b>Definição</b> cmsis_os.h:230</div></div>
+<div class="ttc" id="astructosEvent_html_a70b8f3f364cf158c9e538c5f590d1393"><div class="ttname"><a href="structosEvent.html#a70b8f3f364cf158c9e538c5f590d1393">osEvent::p</a></div><div class="ttdeci">void * p</div><div class="ttdoc">message or mail as void pointer</div><div class="ttdef"><b>Definição</b> cmsis_os.h:231</div></div>
+<div class="ttc" id="astructosEvent_html_aafcd2cedd08e033f9df25fd9875caaf2"><div class="ttname"><a href="structosEvent.html#aafcd2cedd08e033f9df25fd9875caaf2">osEvent::status</a></div><div class="ttdeci">osStatus status</div><div class="ttdoc">status code: event or error information</div><div class="ttdef"><b>Definição</b> cmsis_os.h:228</div></div>
+<div class="ttc" id="astructosEvent_html_ad63c33b8b5d3bb37b45433d7c67d1e09"><div class="ttname"><a href="structosEvent.html#ad63c33b8b5d3bb37b45433d7c67d1e09">osEvent::signals</a></div><div class="ttdeci">int32_t signals</div><div class="ttdoc">signal flags</div><div class="ttdef"><b>Definição</b> cmsis_os.h:232</div></div>
+<div class="ttc" id="astructosEvent_html_aeeccddfa51120e20a2316e73bdba099a"><div class="ttname"><a href="structosEvent.html#aeeccddfa51120e20a2316e73bdba099a">osEvent::mail_id</a></div><div class="ttdeci">osMailQId mail_id</div><div class="ttdoc">mail id obtained by osMailCreate</div><div class="ttdef"><b>Definição</b> cmsis_os.h:235</div></div>
+<div class="ttc" id="astructosEvent_html_af759bde42477c29f56ed1bf8a19c4db8"><div class="ttname"><a href="structosEvent.html#af759bde42477c29f56ed1bf8a19c4db8">osEvent::message_id</a></div><div class="ttdeci">osMessageQId message_id</div><div class="ttdoc">message id obtained by osMessageCreate</div><div class="ttdef"><b>Definição</b> cmsis_os.h:236</div></div>
+<div class="ttc" id="astructos__mailQ__def_html"><div class="ttname"><a href="structos__mailQ__def.html">os_mailQ_def</a></div><div class="ttdef"><b>Definição</b> cmsis_os.h:217</div></div>
+<div class="ttc" id="astructos__mailQ__def_html_a2614df3d7904500621666abc01808f22"><div class="ttname"><a href="structos__mailQ__def.html#a2614df3d7904500621666abc01808f22">os_mailQ_def::queue_sz</a></div><div class="ttdeci">uint32_t queue_sz</div><div class="ttdoc">number of elements in the queue</div><div class="ttdef"><b>Definição</b> cmsis_os.h:218</div></div>
+<div class="ttc" id="astructos__mailQ__def_html_a582330af53f89bd1f2ce4a27c7facb07"><div class="ttname"><a href="structos__mailQ__def.html#a582330af53f89bd1f2ce4a27c7facb07">os_mailQ_def::item_sz</a></div><div class="ttdeci">uint32_t item_sz</div><div class="ttdoc">size of an item</div><div class="ttdef"><b>Definição</b> cmsis_os.h:219</div></div>
+<div class="ttc" id="astructos__mailQ__def_html_ad101580200e8c5ff720ff6545531901c"><div class="ttname"><a href="structos__mailQ__def.html#ad101580200e8c5ff720ff6545531901c">os_mailQ_def::pool</a></div><div class="ttdeci">void * pool</div><div class="ttdoc">memory array for mail</div><div class="ttdef"><b>Definição</b> cmsis_os.h:220</div></div>
+<div class="ttc" id="astructos__messageQ__def_html"><div class="ttname"><a href="structos__messageQ__def.html">os_messageQ_def</a></div><div class="ttdef"><b>Definição</b> cmsis_os.h:208</div></div>
+<div class="ttc" id="astructos__messageQ__def_html_a3e6445892f2d9a38f559545effe57da9"><div class="ttname"><a href="structos__messageQ__def.html#a3e6445892f2d9a38f559545effe57da9">os_messageQ_def::pool</a></div><div class="ttdeci">void * pool</div><div class="ttdoc">memory array for messages</div><div class="ttdef"><b>Definição</b> cmsis_os.h:211</div></div>
+<div class="ttc" id="astructos__messageQ__def_html_ae38d83bb9cb36d9ce40e511330bb2c29"><div class="ttname"><a href="structos__messageQ__def.html#ae38d83bb9cb36d9ce40e511330bb2c29">os_messageQ_def::item_sz</a></div><div class="ttdeci">uint32_t item_sz</div><div class="ttdoc">size of an item</div><div class="ttdef"><b>Definição</b> cmsis_os.h:210</div></div>
+<div class="ttc" id="astructos__messageQ__def_html_afc8e51d4d45e959fab77977baf8eb970"><div class="ttname"><a href="structos__messageQ__def.html#afc8e51d4d45e959fab77977baf8eb970">os_messageQ_def::queue_sz</a></div><div class="ttdeci">uint32_t queue_sz</div><div class="ttdoc">number of elements in the queue</div><div class="ttdef"><b>Definição</b> cmsis_os.h:209</div></div>
+<div class="ttc" id="astructos__mutex__def_html"><div class="ttname"><a href="structos__mutex__def.html">os_mutex_def</a></div><div class="ttdef"><b>Definição</b> cmsis_os.h:188</div></div>
+<div class="ttc" id="astructos__mutex__def_html_a6364fe3b28142d23aaa03343c627957f"><div class="ttname"><a href="structos__mutex__def.html#a6364fe3b28142d23aaa03343c627957f">os_mutex_def::dummy</a></div><div class="ttdeci">uint32_t dummy</div><div class="ttdoc">dummy value.</div><div class="ttdef"><b>Definição</b> cmsis_os.h:189</div></div>
+<div class="ttc" id="astructos__pool__def_html"><div class="ttname"><a href="structos__pool__def.html">os_pool_def</a></div><div class="ttdef"><b>Definição</b> cmsis_os.h:200</div></div>
+<div class="ttc" id="astructos__pool__def_html_a7a455b537ba119df57a704a3c4ac8b40"><div class="ttname"><a href="structos__pool__def.html#a7a455b537ba119df57a704a3c4ac8b40">os_pool_def::pool_sz</a></div><div class="ttdeci">uint32_t pool_sz</div><div class="ttdoc">number of items (elements) in the pool</div><div class="ttdef"><b>Definição</b> cmsis_os.h:201</div></div>
+<div class="ttc" id="astructos__pool__def_html_a815cc2ca8f46c006e460d57fa0f3be6a"><div class="ttname"><a href="structos__pool__def.html#a815cc2ca8f46c006e460d57fa0f3be6a">os_pool_def::item_sz</a></div><div class="ttdeci">uint32_t item_sz</div><div class="ttdoc">size of an item</div><div class="ttdef"><b>Definição</b> cmsis_os.h:202</div></div>
+<div class="ttc" id="astructos__pool__def_html_acf74f1070644e33a567bc13a944fcb87"><div class="ttname"><a href="structos__pool__def.html#acf74f1070644e33a567bc13a944fcb87">os_pool_def::pool</a></div><div class="ttdeci">void * pool</div><div class="ttdoc">pointer to memory for pool</div><div class="ttdef"><b>Definição</b> cmsis_os.h:203</div></div>
+<div class="ttc" id="astructos__semaphore__def_html"><div class="ttname"><a href="structos__semaphore__def.html">os_semaphore_def</a></div><div class="ttdef"><b>Definição</b> cmsis_os.h:194</div></div>
+<div class="ttc" id="astructos__semaphore__def_html_aa95cbcddf4e435fc610035765a58269d"><div class="ttname"><a href="structos__semaphore__def.html#aa95cbcddf4e435fc610035765a58269d">os_semaphore_def::dummy</a></div><div class="ttdeci">uint32_t dummy</div><div class="ttdoc">dummy value.</div><div class="ttdef"><b>Definição</b> cmsis_os.h:195</div></div>
+<div class="ttc" id="astructos__thread__def_html"><div class="ttname"><a href="structos__thread__def.html">os_thread_def</a></div><div class="ttdef"><b>Definição</b> cmsis_os.h:166</div></div>
+<div class="ttc" id="astructos__thread__def_html_a0df2a4614d013387de75eebe66a6e3f9"><div class="ttname"><a href="structos__thread__def.html#a0df2a4614d013387de75eebe66a6e3f9">os_thread_def::pthread</a></div><div class="ttdeci">os_pthread pthread</div><div class="ttdoc">start address of thread function</div><div class="ttdef"><b>Definição</b> cmsis_os.h:167</div></div>
+<div class="ttc" id="astructos__thread__def_html_a11220ca443e3a57bacea01f896488c8a"><div class="ttname"><a href="structos__thread__def.html#a11220ca443e3a57bacea01f896488c8a">os_thread_def::stack_mem</a></div><div class="ttdeci">void * stack_mem</div><div class="ttdoc">pointer to array of stack memory</div><div class="ttdef"><b>Definição</b> cmsis_os.h:171</div></div>
+<div class="ttc" id="astructos__thread__def_html_a2d9ef2c3e383d4496ad6aed209715689"><div class="ttname"><a href="structos__thread__def.html#a2d9ef2c3e383d4496ad6aed209715689">os_thread_def::signal_results</a></div><div class="ttdeci">int32_t signal_results</div><div class="ttdoc">a bitarray used to indicate whether the thread is used or not, 0: unused, 1: used</div><div class="ttdef"><b>Definição</b> cmsis_os.h:175</div></div>
+<div class="ttc" id="astructos__thread__def_html_a5e4e35a5f44d174a558a289688022e64"><div class="ttname"><a href="structos__thread__def.html#a5e4e35a5f44d174a558a289688022e64">os_thread_def::tpriority</a></div><div class="ttdeci">osPriority tpriority</div><div class="ttdoc">initial thread priority</div><div class="ttdef"><b>Definição</b> cmsis_os.h:168</div></div>
+<div class="ttc" id="astructos__thread__def_html_aa0dd2cff64a499a08f422dd159fe5780"><div class="ttname"><a href="structos__thread__def.html#aa0dd2cff64a499a08f422dd159fe5780">os_thread_def::stacksize</a></div><div class="ttdeci">uint32_t stacksize</div><div class="ttdoc">stack size requirements in bytes; 0 is default stack size</div><div class="ttdef"><b>Definição</b> cmsis_os.h:170</div></div>
+<div class="ttc" id="astructos__thread__def_html_ac23f98f699c0c2b10f6f7166d9a59605"><div class="ttname"><a href="structos__thread__def.html#ac23f98f699c0c2b10f6f7166d9a59605">os_thread_def::cm_thread</a></div><div class="ttdeci">struct k_thread * cm_thread</div><div class="ttdoc">pointer to k_thread structure</div><div class="ttdef"><b>Definição</b> cmsis_os.h:172</div></div>
+<div class="ttc" id="astructos__thread__def_html_afd50a1965f6fb28cc37fdfdca5d07e4e"><div class="ttname"><a href="structos__thread__def.html#afd50a1965f6fb28cc37fdfdca5d07e4e">os_thread_def::instances</a></div><div class="ttdeci">uint32_t instances</div><div class="ttdoc">maximum number of instances of that thread function</div><div class="ttdef"><b>Definição</b> cmsis_os.h:169</div></div>
+<div class="ttc" id="astructos__timer__def_html"><div class="ttname"><a href="structos__timer__def.html">os_timer_def</a></div><div class="ttdef"><b>Definição</b> cmsis_os.h:182</div></div>
+<div class="ttc" id="astructos__timer__def_html_a7e7df6a1b8c1a1149a19d8c7f19cfe05"><div class="ttname"><a href="structos__timer__def.html#a7e7df6a1b8c1a1149a19d8c7f19cfe05">os_timer_def::ptimer</a></div><div class="ttdeci">os_ptimer ptimer</div><div class="ttdoc">start address of a timer function</div><div class="ttdef"><b>Definição</b> cmsis_os.h:183</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

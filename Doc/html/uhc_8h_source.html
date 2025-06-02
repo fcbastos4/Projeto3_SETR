@@ -1,0 +1,382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/usb/uhc.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_7663a2eb644177e0593d061db5927bc8.html">usb</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">uhc.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="uhc_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2022 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_UHC_H</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define ZEPHYR_INCLUDE_UHC_H</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="net_2buf_8h.html">zephyr/net/buf.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="usb__ch9_8h.html">zephyr/usb/usb_ch9.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="dlist_8h.html">zephyr/sys/dlist.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="group__uhc__api.html#gaef9b0703714676c1f7bd1cad57f49bc8">   31</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__uhc__api.html#gaef9b0703714676c1f7bd1cad57f49bc8">uhc_control_stage</a> {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    UHC_CONTROL_STAGE_SETUP = 0,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    UHC_CONTROL_STAGE_DATA,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    UHC_CONTROL_STAGE_STATUS,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>};</div>
+</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="};">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structuhc__transfer.html">   47</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structuhc__transfer.html">uhc_transfer</a> {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structuhc__transfer.html#ae1fcb0b866e3d7c5b5ea9dff6221f37d">   49</a></span>    <a class="code hl_struct" href="struct__dnode.html">sys_dnode_t</a> <a class="code hl_variable" href="structuhc__transfer.html#ae1fcb0b866e3d7c5b5ea9dff6221f37d">node</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structuhc__transfer.html#af5e8080b91078a1c9f8ff269c72d70e9">   51</a></span>    uint8_t <a class="code hl_variable" href="structuhc__transfer.html#af5e8080b91078a1c9f8ff269c72d70e9">setup_pkt</a>[8];</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structuhc__transfer.html#a170385b08171659f05ac7112faf8e587">   53</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<a class="code hl_variable" href="structuhc__transfer.html#a170385b08171659f05ac7112faf8e587">buf</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structuhc__transfer.html#a3dbfba5c7d22b69c320fd91079797a2c">   55</a></span>    uint8_t <a class="code hl_variable" href="structuhc__transfer.html#a3dbfba5c7d22b69c320fd91079797a2c">addr</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structuhc__transfer.html#aaf664844dc9f1871cce3d38516c042ef">   57</a></span>    uint8_t <a class="code hl_variable" href="structuhc__transfer.html#aaf664844dc9f1871cce3d38516c042ef">ep</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structuhc__transfer.html#ade24e9892c5c2d87f76cd3898c11304e">   59</a></span>    uint8_t <a class="code hl_variable" href="structuhc__transfer.html#ade24e9892c5c2d87f76cd3898c11304e">attrib</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structuhc__transfer.html#a61a6c74cc7c026404ccf42d1164765b8">   61</a></span>    uint16_t <a class="code hl_variable" href="structuhc__transfer.html#a61a6c74cc7c026404ccf42d1164765b8">mps</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structuhc__transfer.html#a6219fe4fafb80e253d22b3a16faee230">   63</a></span>    uint16_t <a class="code hl_variable" href="structuhc__transfer.html#a6219fe4fafb80e253d22b3a16faee230">timeout</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structuhc__transfer.html#ad2b246c850c3b30f7d2b58fc9a47008b">   65</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structuhc__transfer.html#ad2b246c850c3b30f7d2b58fc9a47008b">queued</a> : 1;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structuhc__transfer.html#a9983482be9724e281e56c978ce27d93f">   67</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structuhc__transfer.html#a9983482be9724e281e56c978ce27d93f">stage</a> : 2;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structuhc__transfer.html#a00a20358e5ea4bab3d21c146cfb74737">   69</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structuhc__transfer.html#a00a20358e5ea4bab3d21c146cfb74737">udev</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structuhc__transfer.html#ad4d80a3f20cdec7dd2237a98054dd287">   71</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structuhc__transfer.html#ad4d80a3f20cdec7dd2237a98054dd287">cb</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structuhc__transfer.html#a11f002f91b1039c226b7c9feb8223e11">   73</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structuhc__transfer.html#a11f002f91b1039c226b7c9feb8223e11">err</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>};</div>
+</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="foldopen" id="foldopen00079" data-start="{" data-end="};">
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="group__uhc__api.html#gabaf69c1e69fe0fb3d912b92daf8754eb">   79</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__uhc__api.html#gabaf69c1e69fe0fb3d912b92daf8754eb">uhc_event_type</a> {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebae0a316b8f60df97f30f54630f6847f70">   81</a></span>    <a class="code hl_enumvalue" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebae0a316b8f60df97f30f54630f6847f70">UHC_EVT_DEV_CONNECTED_LS</a>,</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754eba98d87b3c737c234918fed0ce4589f4ce">   83</a></span>    <a class="code hl_enumvalue" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754eba98d87b3c737c234918fed0ce4589f4ce">UHC_EVT_DEV_CONNECTED_FS</a>,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754eba923b6cfe57c254e22b57eab88c84b67f">   85</a></span>    <a class="code hl_enumvalue" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754eba923b6cfe57c254e22b57eab88c84b67f">UHC_EVT_DEV_CONNECTED_HS</a>,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebab7c4181ad631b127cc50605f7864bc30">   87</a></span>    <a class="code hl_enumvalue" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebab7c4181ad631b127cc50605f7864bc30">UHC_EVT_DEV_REMOVED</a>,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebafb131548cc66e748e562ee88df274ab3">   89</a></span>    <a class="code hl_enumvalue" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebafb131548cc66e748e562ee88df274ab3">UHC_EVT_RESETED</a>,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebab28885b8210133d4f0c2b532561c9c7a">   91</a></span>    <a class="code hl_enumvalue" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebab28885b8210133d4f0c2b532561c9c7a">UHC_EVT_SUSPENDED</a>,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebad874caf1d7338081d185634e12f69848">   93</a></span>    <a class="code hl_enumvalue" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebad874caf1d7338081d185634e12f69848">UHC_EVT_RESUMED</a>,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebaa616f846752aacb8029f9b21747c656e">   95</a></span>    <a class="code hl_enumvalue" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebaa616f846752aacb8029f9b21747c656e">UHC_EVT_RWUP</a>,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754eba5cdc8afb59f760c4dc9b2de314d05483">   97</a></span>    <a class="code hl_enumvalue" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754eba5cdc8afb59f760c4dc9b2de314d05483">UHC_EVT_EP_REQUEST</a>,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebae5970877eb9b6426132d8955cdeb26d7">  102</a></span>    <a class="code hl_enumvalue" href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebae5970877eb9b6426132d8955cdeb26d7">UHC_EVT_ERROR</a>,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>};</div>
+</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="foldopen" id="foldopen00113" data-start="{" data-end="};">
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="structuhc__event.html">  113</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structuhc__event.html">uhc_event</a> {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="structuhc__event.html#acd04587fac14f9a8a91b75642f5b2e82">  115</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> <a class="code hl_variable" href="structuhc__event.html#acd04587fac14f9a8a91b75642f5b2e82">node</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="structuhc__event.html#a30fddbbe0f15a16320fba3cb4fd81d84">  117</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__uhc__api.html#gabaf69c1e69fe0fb3d912b92daf8754eb">uhc_event_type</a> <a class="code hl_variable" href="structuhc__event.html#a30fddbbe0f15a16320fba3cb4fd81d84">type</a>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="structuhc__event.html#a5d7e1cc1bcb25e10f009ac3a8acd94b6">  120</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="structuhc__event.html#a5d7e1cc1bcb25e10f009ac3a8acd94b6">status</a>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="structuhc__event.html#a03f3cebee6edfaf620a98c198a70dbd0">  122</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structuhc__transfer.html">uhc_transfer</a> *<a class="code hl_variable" href="structuhc__event.html#a03f3cebee6edfaf620a98c198a70dbd0">xfer</a>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    };</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="structuhc__event.html#a055be3fd47e16bc48498163be3e55d09">  125</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_variable" href="structuhc__event.html#a055be3fd47e16bc48498163be3e55d09">dev</a>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>};</div>
+</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ga6406ce5f419a5e966809abd6c946fcf3">  139</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__uhc__api.html#ga6406ce5f419a5e966809abd6c946fcf3">uhc_event_cb_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                  <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structuhc__event.html">uhc_event</a> *<span class="keyword">const</span> event);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="foldopen" id="foldopen00147" data-start="{" data-end="};">
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="structuhc__device__caps.html">  147</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structuhc__device__caps.html">uhc_device_caps</a> {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="structuhc__device__caps.html#ab526337af28d25728780cb48dc43e722">  149</a></span>    uint32_t <a class="code hl_variable" href="structuhc__device__caps.html#ab526337af28d25728780cb48dc43e722">hs</a> : 1;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>};</div>
+</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ga09ad6fc9251212fa0dffececb767ff9e">  155</a></span><span class="preprocessor">#define UHC_STATUS_INITIALIZED      0</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ga230e104bd7be1d4b83b2d31ee72ac3c4">  159</a></span><span class="preprocessor">#define UHC_STATUS_ENABLED      1</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="foldopen" id="foldopen00167" data-start="{" data-end="};">
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="structuhc__data.html">  167</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structuhc__data.html">uhc_data</a> {</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="structuhc__data.html#ac2a48d1d6692931807e8985799c5bdb0">  169</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structuhc__device__caps.html">uhc_device_caps</a> <a class="code hl_variable" href="structuhc__data.html#ac2a48d1d6692931807e8985799c5bdb0">caps</a>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="structuhc__data.html#a08772cdd5b42bd11ca4a06a75df846e9">  171</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__mutex.html">k_mutex</a> <a class="code hl_variable" href="structuhc__data.html#a08772cdd5b42bd11ca4a06a75df846e9">mutex</a>;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="structuhc__data.html#a32eec449ffbe5e6c262c907e6e6b475a">  173</a></span>    <a class="code hl_struct" href="struct__dnode.html">sys_dlist_t</a> <a class="code hl_variable" href="structuhc__data.html#a32eec449ffbe5e6c262c907e6e6b475a">ctrl_xfers</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="structuhc__data.html#ac6214566324740c34a8bba42515d1d32">  175</a></span>    <a class="code hl_struct" href="struct__dnode.html">sys_dlist_t</a> <a class="code hl_variable" href="structuhc__data.html#ac6214566324740c34a8bba42515d1d32">bulk_xfers</a>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="structuhc__data.html#afd1a0828a0ca3e397dba09fe38fd8050">  177</a></span>    <a class="code hl_typedef" href="group__uhc__api.html#ga6406ce5f419a5e966809abd6c946fcf3">uhc_event_cb_t</a> <a class="code hl_variable" href="structuhc__data.html#afd1a0828a0ca3e397dba09fe38fd8050">event_cb</a>;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="structuhc__data.html#a10852f2523cc733541cc9ea51706559f">  179</a></span>    atomic_t <a class="code hl_variable" href="structuhc__data.html#a10852f2523cc733541cc9ea51706559f">status</a>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="structuhc__data.html#a294120f6cf8563cb9564c51fcf56d883">  181</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structuhc__data.html#a294120f6cf8563cb9564c51fcf56d883">priv</a>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>};</div>
+</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> uhc_is_initialized(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>{</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structuhc__data.html">uhc_data</a> *data = dev-&gt;<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordflow">return</span> atomic_test_bit(&amp;data-&gt;status, <a class="code hl_define" href="group__uhc__api.html#ga09ad6fc9251212fa0dffececb767ff9e">UHC_STATUS_INITIALIZED</a>);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>}</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> uhc_is_enabled(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>{</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structuhc__data.html">uhc_data</a> *data = dev-&gt;<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordflow">return</span> atomic_test_bit(&amp;data-&gt;status, <a class="code hl_define" href="group__uhc__api.html#ga230e104bd7be1d4b83b2d31ee72ac3c4">UHC_STATUS_ENABLED</a>);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>}</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="keyword">struct </span>uhc_api {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    int (*lock)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    int (*unlock)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    int (*init)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    int (*enable)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    int (*disable)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    int (*shutdown)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    int (*bus_reset)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    int (*sof_enable)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    int (*bus_suspend)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    int (*bus_resume)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    int (*ep_enqueue)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>              <span class="keyword">struct </span><a class="code hl_struct" href="structuhc__transfer.html">uhc_transfer</a> *<span class="keyword">const</span> xfer);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    int (*ep_dequeue)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>              <span class="keyword">struct </span><a class="code hl_struct" href="structuhc__transfer.html">uhc_transfer</a> *<span class="keyword">const</span> xfer);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>};</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> uhc_bus_reset(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>{</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keyword">const</span> <span class="keyword">struct </span>uhc_api *api = dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    api-&gt;lock(dev);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    ret = api-&gt;bus_reset(dev);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    api-&gt;unlock(dev);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>}</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> uhc_sof_enable(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>{</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keyword">const</span> <span class="keyword">struct </span>uhc_api *api = dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    api-&gt;lock(dev);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    ret = api-&gt;sof_enable(dev);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    api-&gt;unlock(dev);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>}</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> uhc_bus_suspend(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>{</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    <span class="keyword">const</span> <span class="keyword">struct </span>uhc_api *api = dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    api-&gt;lock(dev);</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    ret = api-&gt;bus_suspend(dev);</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    api-&gt;unlock(dev);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>}</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> uhc_bus_resume(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>{</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="keyword">const</span> <span class="keyword">struct </span>uhc_api *api = dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    api-&gt;lock(dev);</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    ret = api-&gt;bus_resume(dev);</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    api-&gt;unlock(dev);</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>}</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ga14a5d093d97fc19c7d8e9ec9f0330eaa">  347</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structuhc__transfer.html">uhc_transfer</a> *<a class="code hl_function" href="group__uhc__api.html#ga14a5d093d97fc19c7d8e9ec9f0330eaa">uhc_xfer_alloc</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>                    <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="structuhc__transfer.html#a3dbfba5c7d22b69c320fd91079797a2c">addr</a>,</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>                    <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="structuhc__transfer.html#aaf664844dc9f1871cce3d38516c042ef">ep</a>,</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>                    <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="structuhc__transfer.html#ade24e9892c5c2d87f76cd3898c11304e">attrib</a>,</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>                    <span class="keyword">const</span> uint16_t <a class="code hl_variable" href="structuhc__transfer.html#a61a6c74cc7c026404ccf42d1164765b8">mps</a>,</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>                    <span class="keyword">const</span> uint16_t <a class="code hl_variable" href="structuhc__transfer.html#a6219fe4fafb80e253d22b3a16faee230">timeout</a>,</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>                    <span class="keywordtype">void</span> *<span class="keyword">const</span> <a class="code hl_variable" href="structuhc__transfer.html#a00a20358e5ea4bab3d21c146cfb74737">udev</a>,</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>                    <span class="keywordtype">void</span> *<span class="keyword">const</span> <a class="code hl_variable" href="structuhc__transfer.html#ad4d80a3f20cdec7dd2237a98054dd287">cb</a>);</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ga520161e0e390c94b9c745edc83b32816">  373</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structuhc__transfer.html">uhc_transfer</a> *<a class="code hl_function" href="group__uhc__api.html#ga520161e0e390c94b9c745edc83b32816">uhc_xfer_alloc_with_buf</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>                         <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="structuhc__transfer.html#a3dbfba5c7d22b69c320fd91079797a2c">addr</a>,</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>                         <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="structuhc__transfer.html#aaf664844dc9f1871cce3d38516c042ef">ep</a>,</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>                         <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="structuhc__transfer.html#ade24e9892c5c2d87f76cd3898c11304e">attrib</a>,</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>                         <span class="keyword">const</span> uint16_t <a class="code hl_variable" href="structuhc__transfer.html#a61a6c74cc7c026404ccf42d1164765b8">mps</a>,</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>                         <span class="keyword">const</span> uint16_t <a class="code hl_variable" href="structuhc__transfer.html#a6219fe4fafb80e253d22b3a16faee230">timeout</a>,</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>                         <span class="keywordtype">void</span> *<span class="keyword">const</span> <a class="code hl_variable" href="structuhc__transfer.html#a00a20358e5ea4bab3d21c146cfb74737">udev</a>,</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>                         <span class="keywordtype">void</span> *<span class="keyword">const</span> <a class="code hl_variable" href="structuhc__transfer.html#ad4d80a3f20cdec7dd2237a98054dd287">cb</a>,</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>                         <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno"><a class="line" href="group__uhc__api.html#gab2f6328e8051559edccc05ae3552f4f9">  393</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__uhc__api.html#gab2f6328e8051559edccc05ae3552f4f9">uhc_xfer_free</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>          <span class="keyword">struct</span> <a class="code hl_struct" href="structuhc__transfer.html">uhc_transfer</a> *<span class="keyword">const</span> xfer);</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span> </div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ga779dbd7ee8ac5fce487e087706791ea7">  407</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__uhc__api.html#ga779dbd7ee8ac5fce487e087706791ea7">uhc_xfer_buf_add</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>             <span class="keyword">struct</span> <a class="code hl_struct" href="structuhc__transfer.html">uhc_transfer</a> *<span class="keyword">const</span> xfer,</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>             <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<a class="code hl_variable" href="structuhc__transfer.html#a170385b08171659f05ac7112faf8e587">buf</a>);</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno"><a class="line" href="group__uhc__api.html#gab4f7439fab8c57e203862bc408a6e46b">  421</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<a class="code hl_function" href="group__uhc__api.html#gab4f7439fab8c57e203862bc408a6e46b">uhc_xfer_buf_alloc</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>                   <span class="keyword">const</span> <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structnet__buf.html#a1522d81a002804223e25300a6961f527">size</a>);</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno"><a class="line" href="group__uhc__api.html#gac4bd26a85f8abc2006ecf2622669d615">  432</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__uhc__api.html#gac4bd26a85f8abc2006ecf2622669d615">uhc_xfer_buf_free</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<span class="keyword">const</span> buf);</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> </div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ga7a07b598c00d53393e15f6dae5cf1c4a">  446</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__uhc__api.html#ga7a07b598c00d53393e15f6dae5cf1c4a">uhc_ep_enqueue</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structuhc__transfer.html">uhc_transfer</a> *<span class="keyword">const</span> xfer);</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span> </div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ga7c362cba29e0181ffcc8f70060100e62">  459</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__uhc__api.html#ga7c362cba29e0181ffcc8f70060100e62">uhc_ep_dequeue</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structuhc__transfer.html">uhc_transfer</a> *<span class="keyword">const</span> xfer);</div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span> </div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno"><a class="line" href="group__uhc__api.html#gabfee9100a18fdf67c5d4f8f99928d530">  473</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__uhc__api.html#gabfee9100a18fdf67c5d4f8f99928d530">uhc_init</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <a class="code hl_typedef" href="group__uhc__api.html#ga6406ce5f419a5e966809abd6c946fcf3">uhc_event_cb_t</a> event_cb);</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span> </div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno"><a class="line" href="group__uhc__api.html#gafe94b7f9e32aada9634166ebb2115c2f">  487</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__uhc__api.html#gafe94b7f9e32aada9634166ebb2115c2f">uhc_enable</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span> </div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno"><a class="line" href="group__uhc__api.html#ga9ec92df4497588adbf8da6f0777a4afd">  499</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__uhc__api.html#ga9ec92df4497588adbf8da6f0777a4afd">uhc_disable</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span> </div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno"><a class="line" href="group__uhc__api.html#gac6d1feb9481882a711e58c3e55e915cb">  512</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__uhc__api.html#gac6d1feb9481882a711e58c3e55e915cb">uhc_shutdown</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span> </div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">struct </span><a class="code hl_struct" href="structuhc__device__caps.html">uhc_device_caps</a> uhc_caps(const struct <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>{</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structuhc__data.html">uhc_data</a> *data = dev-&gt;<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span> </div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>    <span class="keywordflow">return</span> data-&gt;caps;</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>}</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span> </div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_UHC_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adlist_8h_html"><div class="ttname"><a href="dlist_8h.html">dlist.h</a></div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ga09ad6fc9251212fa0dffececb767ff9e"><div class="ttname"><a href="group__uhc__api.html#ga09ad6fc9251212fa0dffececb767ff9e">UHC_STATUS_INITIALIZED</a></div><div class="ttdeci">#define UHC_STATUS_INITIALIZED</div><div class="ttdef"><b>Definição</b> uhc.h:155</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ga14a5d093d97fc19c7d8e9ec9f0330eaa"><div class="ttname"><a href="group__uhc__api.html#ga14a5d093d97fc19c7d8e9ec9f0330eaa">uhc_xfer_alloc</a></div><div class="ttdeci">struct uhc_transfer * uhc_xfer_alloc(const struct device *dev, const uint8_t addr, const uint8_t ep, const uint8_t attrib, const uint16_t mps, const uint16_t timeout, void *const udev, void *const cb)</div><div class="ttdoc">Allocate UHC transfer.</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ga230e104bd7be1d4b83b2d31ee72ac3c4"><div class="ttname"><a href="group__uhc__api.html#ga230e104bd7be1d4b83b2d31ee72ac3c4">UHC_STATUS_ENABLED</a></div><div class="ttdeci">#define UHC_STATUS_ENABLED</div><div class="ttdef"><b>Definição</b> uhc.h:159</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ga520161e0e390c94b9c745edc83b32816"><div class="ttname"><a href="group__uhc__api.html#ga520161e0e390c94b9c745edc83b32816">uhc_xfer_alloc_with_buf</a></div><div class="ttdeci">struct uhc_transfer * uhc_xfer_alloc_with_buf(const struct device *dev, const uint8_t addr, const uint8_t ep, const uint8_t attrib, const uint16_t mps, const uint16_t timeout, void *const udev, void *const cb, size_t size)</div><div class="ttdoc">Allocate UHC transfer with buffer.</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ga6406ce5f419a5e966809abd6c946fcf3"><div class="ttname"><a href="group__uhc__api.html#ga6406ce5f419a5e966809abd6c946fcf3">uhc_event_cb_t</a></div><div class="ttdeci">int(* uhc_event_cb_t)(const struct device *dev, const struct uhc_event *const event)</div><div class="ttdoc">Callback to submit UHC event to higher layer.</div><div class="ttdef"><b>Definição</b> uhc.h:139</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ga779dbd7ee8ac5fce487e087706791ea7"><div class="ttname"><a href="group__uhc__api.html#ga779dbd7ee8ac5fce487e087706791ea7">uhc_xfer_buf_add</a></div><div class="ttdeci">int uhc_xfer_buf_add(const struct device *dev, struct uhc_transfer *const xfer, struct net_buf *buf)</div><div class="ttdoc">Add UHC transfer buffer.</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ga7a07b598c00d53393e15f6dae5cf1c4a"><div class="ttname"><a href="group__uhc__api.html#ga7a07b598c00d53393e15f6dae5cf1c4a">uhc_ep_enqueue</a></div><div class="ttdeci">int uhc_ep_enqueue(const struct device *dev, struct uhc_transfer *const xfer)</div><div class="ttdoc">Queue USB host controller transfer.</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ga7c362cba29e0181ffcc8f70060100e62"><div class="ttname"><a href="group__uhc__api.html#ga7c362cba29e0181ffcc8f70060100e62">uhc_ep_dequeue</a></div><div class="ttdeci">int uhc_ep_dequeue(const struct device *dev, struct uhc_transfer *const xfer)</div><div class="ttdoc">Remove a USB host controller transfers from queue.</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ga9ec92df4497588adbf8da6f0777a4afd"><div class="ttname"><a href="group__uhc__api.html#ga9ec92df4497588adbf8da6f0777a4afd">uhc_disable</a></div><div class="ttdeci">int uhc_disable(const struct device *dev)</div><div class="ttdoc">Disable USB host controller.</div></div>
+<div class="ttc" id="agroup__uhc__api_html_gab2f6328e8051559edccc05ae3552f4f9"><div class="ttname"><a href="group__uhc__api.html#gab2f6328e8051559edccc05ae3552f4f9">uhc_xfer_free</a></div><div class="ttdeci">int uhc_xfer_free(const struct device *dev, struct uhc_transfer *const xfer)</div><div class="ttdoc">Free UHC transfer and any buffers.</div></div>
+<div class="ttc" id="agroup__uhc__api_html_gab4f7439fab8c57e203862bc408a6e46b"><div class="ttname"><a href="group__uhc__api.html#gab4f7439fab8c57e203862bc408a6e46b">uhc_xfer_buf_alloc</a></div><div class="ttdeci">struct net_buf * uhc_xfer_buf_alloc(const struct device *dev, const size_t size)</div><div class="ttdoc">Allocate UHC transfer buffer.</div></div>
+<div class="ttc" id="agroup__uhc__api_html_gabaf69c1e69fe0fb3d912b92daf8754eb"><div class="ttname"><a href="group__uhc__api.html#gabaf69c1e69fe0fb3d912b92daf8754eb">uhc_event_type</a></div><div class="ttdeci">uhc_event_type</div><div class="ttdoc">USB host controller event types.</div><div class="ttdef"><b>Definição</b> uhc.h:79</div></div>
+<div class="ttc" id="agroup__uhc__api_html_gabfee9100a18fdf67c5d4f8f99928d530"><div class="ttname"><a href="group__uhc__api.html#gabfee9100a18fdf67c5d4f8f99928d530">uhc_init</a></div><div class="ttdeci">int uhc_init(const struct device *dev, uhc_event_cb_t event_cb)</div><div class="ttdoc">Initialize USB host controller.</div></div>
+<div class="ttc" id="agroup__uhc__api_html_gac4bd26a85f8abc2006ecf2622669d615"><div class="ttname"><a href="group__uhc__api.html#gac4bd26a85f8abc2006ecf2622669d615">uhc_xfer_buf_free</a></div><div class="ttdeci">void uhc_xfer_buf_free(const struct device *dev, struct net_buf *const buf)</div><div class="ttdoc">Free UHC request buffer.</div></div>
+<div class="ttc" id="agroup__uhc__api_html_gac6d1feb9481882a711e58c3e55e915cb"><div class="ttname"><a href="group__uhc__api.html#gac6d1feb9481882a711e58c3e55e915cb">uhc_shutdown</a></div><div class="ttdeci">int uhc_shutdown(const struct device *dev)</div><div class="ttdoc">Poweroff USB host controller.</div></div>
+<div class="ttc" id="agroup__uhc__api_html_gaef9b0703714676c1f7bd1cad57f49bc8"><div class="ttname"><a href="group__uhc__api.html#gaef9b0703714676c1f7bd1cad57f49bc8">uhc_control_stage</a></div><div class="ttdeci">uhc_control_stage</div><div class="ttdoc">USB control transfer stage.</div><div class="ttdef"><b>Definição</b> uhc.h:31</div></div>
+<div class="ttc" id="agroup__uhc__api_html_gafe94b7f9e32aada9634166ebb2115c2f"><div class="ttname"><a href="group__uhc__api.html#gafe94b7f9e32aada9634166ebb2115c2f">uhc_enable</a></div><div class="ttdeci">int uhc_enable(const struct device *dev)</div><div class="ttdoc">Enable USB host controller.</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ggabaf69c1e69fe0fb3d912b92daf8754eba5cdc8afb59f760c4dc9b2de314d05483"><div class="ttname"><a href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754eba5cdc8afb59f760c4dc9b2de314d05483">UHC_EVT_EP_REQUEST</a></div><div class="ttdeci">@ UHC_EVT_EP_REQUEST</div><div class="ttdef"><b>Definição</b> uhc.h:97</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ggabaf69c1e69fe0fb3d912b92daf8754eba923b6cfe57c254e22b57eab88c84b67f"><div class="ttname"><a href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754eba923b6cfe57c254e22b57eab88c84b67f">UHC_EVT_DEV_CONNECTED_HS</a></div><div class="ttdeci">@ UHC_EVT_DEV_CONNECTED_HS</div><div class="ttdef"><b>Definição</b> uhc.h:85</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ggabaf69c1e69fe0fb3d912b92daf8754eba98d87b3c737c234918fed0ce4589f4ce"><div class="ttname"><a href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754eba98d87b3c737c234918fed0ce4589f4ce">UHC_EVT_DEV_CONNECTED_FS</a></div><div class="ttdeci">@ UHC_EVT_DEV_CONNECTED_FS</div><div class="ttdef"><b>Definição</b> uhc.h:83</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ggabaf69c1e69fe0fb3d912b92daf8754ebaa616f846752aacb8029f9b21747c656e"><div class="ttname"><a href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebaa616f846752aacb8029f9b21747c656e">UHC_EVT_RWUP</a></div><div class="ttdeci">@ UHC_EVT_RWUP</div><div class="ttdef"><b>Definição</b> uhc.h:95</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ggabaf69c1e69fe0fb3d912b92daf8754ebab28885b8210133d4f0c2b532561c9c7a"><div class="ttname"><a href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebab28885b8210133d4f0c2b532561c9c7a">UHC_EVT_SUSPENDED</a></div><div class="ttdeci">@ UHC_EVT_SUSPENDED</div><div class="ttdef"><b>Definição</b> uhc.h:91</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ggabaf69c1e69fe0fb3d912b92daf8754ebab7c4181ad631b127cc50605f7864bc30"><div class="ttname"><a href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebab7c4181ad631b127cc50605f7864bc30">UHC_EVT_DEV_REMOVED</a></div><div class="ttdeci">@ UHC_EVT_DEV_REMOVED</div><div class="ttdef"><b>Definição</b> uhc.h:87</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ggabaf69c1e69fe0fb3d912b92daf8754ebad874caf1d7338081d185634e12f69848"><div class="ttname"><a href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebad874caf1d7338081d185634e12f69848">UHC_EVT_RESUMED</a></div><div class="ttdeci">@ UHC_EVT_RESUMED</div><div class="ttdef"><b>Definição</b> uhc.h:93</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ggabaf69c1e69fe0fb3d912b92daf8754ebae0a316b8f60df97f30f54630f6847f70"><div class="ttname"><a href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebae0a316b8f60df97f30f54630f6847f70">UHC_EVT_DEV_CONNECTED_LS</a></div><div class="ttdeci">@ UHC_EVT_DEV_CONNECTED_LS</div><div class="ttdef"><b>Definição</b> uhc.h:81</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ggabaf69c1e69fe0fb3d912b92daf8754ebae5970877eb9b6426132d8955cdeb26d7"><div class="ttname"><a href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebae5970877eb9b6426132d8955cdeb26d7">UHC_EVT_ERROR</a></div><div class="ttdeci">@ UHC_EVT_ERROR</div><div class="ttdef"><b>Definição</b> uhc.h:102</div></div>
+<div class="ttc" id="agroup__uhc__api_html_ggabaf69c1e69fe0fb3d912b92daf8754ebafb131548cc66e748e562ee88df274ab3"><div class="ttname"><a href="group__uhc__api.html#ggabaf69c1e69fe0fb3d912b92daf8754ebafb131548cc66e748e562ee88df274ab3">UHC_EVT_RESETED</a></div><div class="ttdeci">@ UHC_EVT_RESETED</div><div class="ttdef"><b>Definição</b> uhc.h:89</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="anet_2buf_8h_html"><div class="ttname"><a href="net_2buf_8h.html">buf.h</a></div><div class="ttdoc">Buffer management.</div></div>
+<div class="ttc" id="astruct__dnode_html"><div class="ttname"><a href="struct__dnode.html">_dnode</a></div><div class="ttdef"><b>Definição</b> dlist.h:37</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a27573cbd10ee145f8bb1396242b27a3e"><div class="ttname"><a href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">device::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definição</b> device.h:395</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructk__mutex_html"><div class="ttname"><a href="structk__mutex.html">k_mutex</a></div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:31</div></div>
+<div class="ttc" id="astructnet__buf_html"><div class="ttname"><a href="structnet__buf.html">net_buf</a></div><div class="ttdoc">Network buffer representation.</div><div class="ttdef"><b>Definição</b> buf.h:906</div></div>
+<div class="ttc" id="astructnet__buf_html_a1522d81a002804223e25300a6961f527"><div class="ttname"><a href="structnet__buf.html#a1522d81a002804223e25300a6961f527">net_buf::size</a></div><div class="ttdeci">uint16_t size</div><div class="ttdef"><b>Definição</b> buf.h:938</div></div>
+<div class="ttc" id="astructuhc__data_html"><div class="ttname"><a href="structuhc__data.html">uhc_data</a></div><div class="ttdef"><b>Definição</b> uhc.h:167</div></div>
+<div class="ttc" id="astructuhc__data_html_a08772cdd5b42bd11ca4a06a75df846e9"><div class="ttname"><a href="structuhc__data.html#a08772cdd5b42bd11ca4a06a75df846e9">uhc_data::mutex</a></div><div class="ttdeci">struct k_mutex mutex</div><div class="ttdef"><b>Definição</b> uhc.h:171</div></div>
+<div class="ttc" id="astructuhc__data_html_a10852f2523cc733541cc9ea51706559f"><div class="ttname"><a href="structuhc__data.html#a10852f2523cc733541cc9ea51706559f">uhc_data::status</a></div><div class="ttdeci">atomic_t status</div><div class="ttdef"><b>Definição</b> uhc.h:179</div></div>
+<div class="ttc" id="astructuhc__data_html_a294120f6cf8563cb9564c51fcf56d883"><div class="ttname"><a href="structuhc__data.html#a294120f6cf8563cb9564c51fcf56d883">uhc_data::priv</a></div><div class="ttdeci">void * priv</div><div class="ttdef"><b>Definição</b> uhc.h:181</div></div>
+<div class="ttc" id="astructuhc__data_html_a32eec449ffbe5e6c262c907e6e6b475a"><div class="ttname"><a href="structuhc__data.html#a32eec449ffbe5e6c262c907e6e6b475a">uhc_data::ctrl_xfers</a></div><div class="ttdeci">sys_dlist_t ctrl_xfers</div><div class="ttdef"><b>Definição</b> uhc.h:173</div></div>
+<div class="ttc" id="astructuhc__data_html_ac2a48d1d6692931807e8985799c5bdb0"><div class="ttname"><a href="structuhc__data.html#ac2a48d1d6692931807e8985799c5bdb0">uhc_data::caps</a></div><div class="ttdeci">struct uhc_device_caps caps</div><div class="ttdef"><b>Definição</b> uhc.h:169</div></div>
+<div class="ttc" id="astructuhc__data_html_ac6214566324740c34a8bba42515d1d32"><div class="ttname"><a href="structuhc__data.html#ac6214566324740c34a8bba42515d1d32">uhc_data::bulk_xfers</a></div><div class="ttdeci">sys_dlist_t bulk_xfers</div><div class="ttdef"><b>Definição</b> uhc.h:175</div></div>
+<div class="ttc" id="astructuhc__data_html_afd1a0828a0ca3e397dba09fe38fd8050"><div class="ttname"><a href="structuhc__data.html#afd1a0828a0ca3e397dba09fe38fd8050">uhc_data::event_cb</a></div><div class="ttdeci">uhc_event_cb_t event_cb</div><div class="ttdef"><b>Definição</b> uhc.h:177</div></div>
+<div class="ttc" id="astructuhc__device__caps_html"><div class="ttname"><a href="structuhc__device__caps.html">uhc_device_caps</a></div><div class="ttdef"><b>Definição</b> uhc.h:147</div></div>
+<div class="ttc" id="astructuhc__device__caps_html_ab526337af28d25728780cb48dc43e722"><div class="ttname"><a href="structuhc__device__caps.html#ab526337af28d25728780cb48dc43e722">uhc_device_caps::hs</a></div><div class="ttdeci">uint32_t hs</div><div class="ttdef"><b>Definição</b> uhc.h:149</div></div>
+<div class="ttc" id="astructuhc__event_html"><div class="ttname"><a href="structuhc__event.html">uhc_event</a></div><div class="ttdef"><b>Definição</b> uhc.h:113</div></div>
+<div class="ttc" id="astructuhc__event_html_a03f3cebee6edfaf620a98c198a70dbd0"><div class="ttname"><a href="structuhc__event.html#a03f3cebee6edfaf620a98c198a70dbd0">uhc_event::xfer</a></div><div class="ttdeci">struct uhc_transfer * xfer</div><div class="ttdef"><b>Definição</b> uhc.h:122</div></div>
+<div class="ttc" id="astructuhc__event_html_a055be3fd47e16bc48498163be3e55d09"><div class="ttname"><a href="structuhc__event.html#a055be3fd47e16bc48498163be3e55d09">uhc_event::dev</a></div><div class="ttdeci">const struct device * dev</div><div class="ttdef"><b>Definição</b> uhc.h:125</div></div>
+<div class="ttc" id="astructuhc__event_html_a30fddbbe0f15a16320fba3cb4fd81d84"><div class="ttname"><a href="structuhc__event.html#a30fddbbe0f15a16320fba3cb4fd81d84">uhc_event::type</a></div><div class="ttdeci">enum uhc_event_type type</div><div class="ttdef"><b>Definição</b> uhc.h:117</div></div>
+<div class="ttc" id="astructuhc__event_html_a5d7e1cc1bcb25e10f009ac3a8acd94b6"><div class="ttname"><a href="structuhc__event.html#a5d7e1cc1bcb25e10f009ac3a8acd94b6">uhc_event::status</a></div><div class="ttdeci">int status</div><div class="ttdef"><b>Definição</b> uhc.h:120</div></div>
+<div class="ttc" id="astructuhc__event_html_acd04587fac14f9a8a91b75642f5b2e82"><div class="ttname"><a href="structuhc__event.html#acd04587fac14f9a8a91b75642f5b2e82">uhc_event::node</a></div><div class="ttdeci">sys_snode_t node</div><div class="ttdef"><b>Definição</b> uhc.h:115</div></div>
+<div class="ttc" id="astructuhc__transfer_html"><div class="ttname"><a href="structuhc__transfer.html">uhc_transfer</a></div><div class="ttdef"><b>Definição</b> uhc.h:47</div></div>
+<div class="ttc" id="astructuhc__transfer_html_a00a20358e5ea4bab3d21c146cfb74737"><div class="ttname"><a href="structuhc__transfer.html#a00a20358e5ea4bab3d21c146cfb74737">uhc_transfer::udev</a></div><div class="ttdeci">void * udev</div><div class="ttdef"><b>Definição</b> uhc.h:69</div></div>
+<div class="ttc" id="astructuhc__transfer_html_a11f002f91b1039c226b7c9feb8223e11"><div class="ttname"><a href="structuhc__transfer.html#a11f002f91b1039c226b7c9feb8223e11">uhc_transfer::err</a></div><div class="ttdeci">int err</div><div class="ttdef"><b>Definição</b> uhc.h:73</div></div>
+<div class="ttc" id="astructuhc__transfer_html_a170385b08171659f05ac7112faf8e587"><div class="ttname"><a href="structuhc__transfer.html#a170385b08171659f05ac7112faf8e587">uhc_transfer::buf</a></div><div class="ttdeci">struct net_buf * buf</div><div class="ttdef"><b>Definição</b> uhc.h:53</div></div>
+<div class="ttc" id="astructuhc__transfer_html_a3dbfba5c7d22b69c320fd91079797a2c"><div class="ttname"><a href="structuhc__transfer.html#a3dbfba5c7d22b69c320fd91079797a2c">uhc_transfer::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdef"><b>Definição</b> uhc.h:55</div></div>
+<div class="ttc" id="astructuhc__transfer_html_a61a6c74cc7c026404ccf42d1164765b8"><div class="ttname"><a href="structuhc__transfer.html#a61a6c74cc7c026404ccf42d1164765b8">uhc_transfer::mps</a></div><div class="ttdeci">uint16_t mps</div><div class="ttdef"><b>Definição</b> uhc.h:61</div></div>
+<div class="ttc" id="astructuhc__transfer_html_a6219fe4fafb80e253d22b3a16faee230"><div class="ttname"><a href="structuhc__transfer.html#a6219fe4fafb80e253d22b3a16faee230">uhc_transfer::timeout</a></div><div class="ttdeci">uint16_t timeout</div><div class="ttdef"><b>Definição</b> uhc.h:63</div></div>
+<div class="ttc" id="astructuhc__transfer_html_a9983482be9724e281e56c978ce27d93f"><div class="ttname"><a href="structuhc__transfer.html#a9983482be9724e281e56c978ce27d93f">uhc_transfer::stage</a></div><div class="ttdeci">unsigned int stage</div><div class="ttdef"><b>Definição</b> uhc.h:67</div></div>
+<div class="ttc" id="astructuhc__transfer_html_aaf664844dc9f1871cce3d38516c042ef"><div class="ttname"><a href="structuhc__transfer.html#aaf664844dc9f1871cce3d38516c042ef">uhc_transfer::ep</a></div><div class="ttdeci">uint8_t ep</div><div class="ttdef"><b>Definição</b> uhc.h:57</div></div>
+<div class="ttc" id="astructuhc__transfer_html_ad2b246c850c3b30f7d2b58fc9a47008b"><div class="ttname"><a href="structuhc__transfer.html#ad2b246c850c3b30f7d2b58fc9a47008b">uhc_transfer::queued</a></div><div class="ttdeci">unsigned int queued</div><div class="ttdef"><b>Definição</b> uhc.h:65</div></div>
+<div class="ttc" id="astructuhc__transfer_html_ad4d80a3f20cdec7dd2237a98054dd287"><div class="ttname"><a href="structuhc__transfer.html#ad4d80a3f20cdec7dd2237a98054dd287">uhc_transfer::cb</a></div><div class="ttdeci">void * cb</div><div class="ttdef"><b>Definição</b> uhc.h:71</div></div>
+<div class="ttc" id="astructuhc__transfer_html_ade24e9892c5c2d87f76cd3898c11304e"><div class="ttname"><a href="structuhc__transfer.html#ade24e9892c5c2d87f76cd3898c11304e">uhc_transfer::attrib</a></div><div class="ttdeci">uint8_t attrib</div><div class="ttdef"><b>Definição</b> uhc.h:59</div></div>
+<div class="ttc" id="astructuhc__transfer_html_ae1fcb0b866e3d7c5b5ea9dff6221f37d"><div class="ttname"><a href="structuhc__transfer.html#ae1fcb0b866e3d7c5b5ea9dff6221f37d">uhc_transfer::node</a></div><div class="ttdeci">sys_dnode_t node</div><div class="ttdef"><b>Definição</b> uhc.h:49</div></div>
+<div class="ttc" id="astructuhc__transfer_html_af5e8080b91078a1c9f8ff269c72d70e9"><div class="ttname"><a href="structuhc__transfer.html#af5e8080b91078a1c9f8ff269c72d70e9">uhc_transfer::setup_pkt</a></div><div class="ttdeci">uint8_t setup_pkt[8]</div><div class="ttdef"><b>Definição</b> uhc.h:51</div></div>
+<div class="ttc" id="ausb__ch9_8h_html"><div class="ttname"><a href="usb__ch9_8h.html">usb_ch9.h</a></div><div class="ttdoc">USB Chapter 9 structures and definitions.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/mipi_dsi.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">mipi_dsi.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="drivers_2mipi__dsi_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2020 Teslabs Engineering S.L.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_MIPI_DSI_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_MIPI_DSI_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;errno.h&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;zephyr/dt-bindings/mipi_dsi/mipi_dsi.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#define MIPI_DCS_NOP                        0x00U</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#define MIPI_DCS_SOFT_RESET                 0x01U</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#define MIPI_DCS_GET_COMPRESSION_MODE       0x03U</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#define MIPI_DCS_GET_DISPLAY_ID             0x04U</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#define MIPI_DCS_GET_RED_CHANNEL            0x06U</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#define MIPI_DCS_GET_GREEN_CHANNEL          0x07U</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#define MIPI_DCS_GET_BLUE_CHANNEL           0x08U</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define MIPI_DCS_GET_DISPLAY_STATUS         0x09U</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#define MIPI_DCS_GET_POWER_MODE             0x0AU</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#define MIPI_DCS_GET_ADDRESS_MODE           0x0BU</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#define MIPI_DCS_GET_PIXEL_FORMAT           0x0CU</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define MIPI_DCS_GET_DISPLAY_MODE           0x0DU</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#define MIPI_DCS_GET_SIGNAL_MODE            0x0EU</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#define MIPI_DCS_GET_DIAGNOSTIC_RESULT      0x0FU</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#define MIPI_DCS_ENTER_SLEEP_MODE           0x10U</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#define MIPI_DCS_EXIT_SLEEP_MODE            0x11U</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#define MIPI_DCS_ENTER_PARTIAL_MODE         0x12U</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#define MIPI_DCS_ENTER_NORMAL_MODE          0x13U</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#define MIPI_DCS_EXIT_INVERT_MODE           0x20U</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#define MIPI_DCS_ENTER_INVERT_MODE          0x21U</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#define MIPI_DCS_SET_GAMMA_CURVE            0x26U</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define MIPI_DCS_SET_DISPLAY_OFF            0x28U</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#define MIPI_DCS_SET_DISPLAY_ON             0x29U</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define MIPI_DCS_SET_COLUMN_ADDRESS         0x2AU</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#define MIPI_DCS_SET_PAGE_ADDRESS           0x2BU</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#define MIPI_DCS_WRITE_MEMORY_START         0x2CU</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#define MIPI_DCS_WRITE_LUT                  0x2DU</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#define MIPI_DCS_READ_MEMORY_START          0x2EU</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#define MIPI_DCS_SET_PARTIAL_ROWS           0x30U</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#define MIPI_DCS_SET_PARTIAL_COLUMNS        0x31U</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#define MIPI_DCS_SET_SCROLL_AREA            0x33U</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#define MIPI_DCS_SET_TEAR_OFF               0x34U</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#define MIPI_DCS_SET_TEAR_ON                0x35U</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#define MIPI_DCS_SET_ADDRESS_MODE           0x36U</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#define MIPI_DCS_SET_SCROLL_START           0x37U</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#define MIPI_DCS_EXIT_IDLE_MODE             0x38U</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">#define MIPI_DCS_ENTER_IDLE_MODE            0x39U</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#define MIPI_DCS_SET_PIXEL_FORMAT           0x3AU</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#define MIPI_DCS_WRITE_MEMORY_CONTINUE      0x3CU</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#define MIPI_DCS_SET_3D_CONTROL             0x3DU</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#define MIPI_DCS_READ_MEMORY_CONTINUE       0x3EU</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#define MIPI_DCS_GET_3D_CONTROL             0x3FU</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#define MIPI_DCS_SET_VSYNC_TIMING           0x40U</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#define MIPI_DCS_SET_TEAR_SCANLINE          0x44U</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">#define MIPI_DCS_GET_SCANLINE               0x45U</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#define MIPI_DCS_SET_DISPLAY_BRIGHTNESS     0x51U</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#define MIPI_DCS_GET_DISPLAY_BRIGHTNESS     0x52U</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#define MIPI_DCS_WRITE_CONTROL_DISPLAY      0x53U</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">#define MIPI_DCS_GET_CONTROL_DISPLAY        0x54U</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#define MIPI_DCS_WRITE_POWER_SAVE           0x55U</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">#define MIPI_DCS_GET_POWER_SAVE             0x56U</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#define MIPI_DCS_SET_CABC_MIN_BRIGHTNESS    0x5EU</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="preprocessor">#define MIPI_DCS_GET_CABC_MIN_BRIGHTNESS    0x5FU</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#define MIPI_DCS_READ_DDB_START             0xA1U</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">#define MIPI_DCS_READ_DDB_CONTINUE          0xA8U</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#define MIPI_DCS_PIXEL_FORMAT_24BIT         0x77</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#define MIPI_DCS_PIXEL_FORMAT_18BIT         0x66</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#define MIPI_DCS_PIXEL_FORMAT_16BIT         0x55</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#define MIPI_DCS_PIXEL_FORMAT_12BIT         0x33</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">#define MIPI_DCS_PIXEL_FORMAT_8BIT          0x22</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">#define MIPI_DCS_PIXEL_FORMAT_3BIT          0x11</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">#define MIPI_DCS_ADDRESS_MODE_MIRROR_Y      BIT(7)</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">#define MIPI_DCS_ADDRESS_MODE_MIRROR_X      BIT(6)</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#define MIPI_DCS_ADDRESS_MODE_SWAP_XY       BIT(5)</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">#define MIPI_DCS_ADDRESS_MODE_REFRESH_BT    BIT(4)</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="preprocessor">#define MIPI_DCS_ADDRESS_MODE_BGR           BIT(3)</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">#define MIPI_DCS_ADDRESS_MODE_LATCH_RL      BIT(2)</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#define MIPI_DCS_ADDRESS_MODE_FLIP_X        BIT(1)</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">#define MIPI_DCS_ADDRESS_MODE_FLIP_Y        BIT(0)</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="preprocessor">#define MIPI_DSI_V_SYNC_START               0x01U</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#define MIPI_DSI_V_SYNC_END             0x11U</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="preprocessor">#define MIPI_DSI_H_SYNC_START               0x21U</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">#define MIPI_DSI_H_SYNC_END             0x31U</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#define MIPI_DSI_COLOR_MODE_OFF             0x02U</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">#define MIPI_DSI_COLOR_MODE_ON              0x12U</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#define MIPI_DSI_SHUTDOWN_PERIPHERAL            0x22U</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">#define MIPI_DSI_TURN_ON_PERIPHERAL         0x32U</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">#define MIPI_DSI_GENERIC_SHORT_WRITE_0_PARAM        0x03U</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="preprocessor">#define MIPI_DSI_GENERIC_SHORT_WRITE_1_PARAM        0x13U</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">#define MIPI_DSI_GENERIC_SHORT_WRITE_2_PARAM        0x23U</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="preprocessor">#define MIPI_DSI_GENERIC_READ_REQUEST_0_PARAM       0x04U</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">#define MIPI_DSI_GENERIC_READ_REQUEST_1_PARAM       0x14U</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">#define MIPI_DSI_GENERIC_READ_REQUEST_2_PARAM       0x24U</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">#define MIPI_DSI_DCS_SHORT_WRITE            0x05U</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">#define MIPI_DSI_DCS_SHORT_WRITE_PARAM          0x15U</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#define MIPI_DSI_DCS_READ               0x06U</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#define MIPI_DSI_SET_MAXIMUM_RETURN_PACKET_SIZE     0x37U</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">#define MIPI_DSI_END_OF_TRANSMISSION            0x08U</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="preprocessor">#define MIPI_DSI_NULL_PACKET                0x09U</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">#define MIPI_DSI_BLANKING_PACKET            0x19U</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">#define MIPI_DSI_GENERIC_LONG_WRITE         0x29U</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">#define MIPI_DSI_DCS_LONG_WRITE             0x39U</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="preprocessor">#define MIPI_DSI_LOOSELY_PACKED_PIXEL_STREAM_YCBCR20    0x0CU</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="preprocessor">#define MIPI_DSI_PACKED_PIXEL_STREAM_YCBCR24        0x1CU</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">#define MIPI_DSI_PACKED_PIXEL_STREAM_YCBCR16        0x2CU</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">#define MIPI_DSI_PACKED_PIXEL_STREAM_30         0x0DU</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">#define MIPI_DSI_PACKED_PIXEL_STREAM_36         0x1DU</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">#define MIPI_DSI_PACKED_PIXEL_STREAM_YCBCR12        0x3DU</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">#define MIPI_DSI_PACKED_PIXEL_STREAM_16         0x0EU</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">#define MIPI_DSI_PACKED_PIXEL_STREAM_18         0x1EU</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">#define MIPI_DSI_PIXEL_STREAM_3BYTE_18          0x2EU</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">#define MIPI_DSI_PACKED_PIXEL_STREAM_24         0x3EU</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="foldopen" id="foldopen00158" data-start="{" data-end="};">
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="structmipi__dsi__timings.html">  158</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__timings.html">mipi_dsi_timings</a> {</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="structmipi__dsi__timings.html#a3a91e874a7da6c37bf9b06944a3d658a">  160</a></span>    uint32_t <a class="code hl_variable" href="structmipi__dsi__timings.html#a3a91e874a7da6c37bf9b06944a3d658a">hactive</a>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="structmipi__dsi__timings.html#ad1b00493166d0276eb66d73be4b6968d">  162</a></span>    uint32_t <a class="code hl_variable" href="structmipi__dsi__timings.html#ad1b00493166d0276eb66d73be4b6968d">hfp</a>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="structmipi__dsi__timings.html#afb4451d7767a911ea6a92a9fbba5e935">  164</a></span>    uint32_t <a class="code hl_variable" href="structmipi__dsi__timings.html#afb4451d7767a911ea6a92a9fbba5e935">hbp</a>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="structmipi__dsi__timings.html#a58f985d9c43cd149959dad7f12fcff8e">  166</a></span>    uint32_t <a class="code hl_variable" href="structmipi__dsi__timings.html#a58f985d9c43cd149959dad7f12fcff8e">hsync</a>;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="structmipi__dsi__timings.html#acc8077892efa4977fd667680d63f5c7c">  168</a></span>    uint32_t <a class="code hl_variable" href="structmipi__dsi__timings.html#acc8077892efa4977fd667680d63f5c7c">vactive</a>;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="structmipi__dsi__timings.html#ac44c32c7d150ddd4b327308196169578">  170</a></span>    uint32_t <a class="code hl_variable" href="structmipi__dsi__timings.html#ac44c32c7d150ddd4b327308196169578">vfp</a>;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="structmipi__dsi__timings.html#afff80261d02253b76a872ee805a4cd46">  172</a></span>    uint32_t <a class="code hl_variable" href="structmipi__dsi__timings.html#afff80261d02253b76a872ee805a4cd46">vbp</a>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="structmipi__dsi__timings.html#a535e0177862b753ef9f4af011ed483a4">  174</a></span>    uint32_t <a class="code hl_variable" href="structmipi__dsi__timings.html#a535e0177862b753ef9f4af011ed483a4">vsync</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>};</div>
+</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#ga2b4ff0fda3d00061b06e576a98628e7b">  183</a></span><span class="preprocessor">#define MIPI_DSI_MODE_VIDEO     BIT(0)</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#gaabfe30e5981efc1a73f4f9bf2def1610">  185</a></span><span class="preprocessor">#define MIPI_DSI_MODE_VIDEO_BURST   BIT(1)</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#ga75709f3a91b803598d9d772f3c5b9eed">  187</a></span><span class="preprocessor">#define MIPI_DSI_MODE_VIDEO_SYNC_PULSE  BIT(2)</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#ga5871aadda35ece0944217053f5c6c6fe">  189</a></span><span class="preprocessor">#define MIPI_DSI_MODE_VIDEO_AUTO_VERT   BIT(3)</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#ga21d9620a4986884bbe2ac3a11b311337">  191</a></span><span class="preprocessor">#define MIPI_DSI_MODE_VIDEO_HSE     BIT(4)</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#ga625d1738ae1cfd25aef5772729c0aae8">  193</a></span><span class="preprocessor">#define MIPI_DSI_MODE_VIDEO_HFP     BIT(5)</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#ga90e09b889a1dbac1e2b7b9ae84f38ee4">  195</a></span><span class="preprocessor">#define MIPI_DSI_MODE_VIDEO_HBP     BIT(6)</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#ga395bb9085f92a1927e3cc317196ab353">  197</a></span><span class="preprocessor">#define MIPI_DSI_MODE_VIDEO_HSA     BIT(7)</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#gacdc35d8e6726accc88c2e2e82c88d46d">  199</a></span><span class="preprocessor">#define MIPI_DSI_MODE_VSYNC_FLUSH   BIT(8)</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#ga4bbcabcb84af1a2bd715b0bd8be78db3">  201</a></span><span class="preprocessor">#define MIPI_DSI_MODE_EOT_PACKET    BIT(9)</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#ga75c0e183f1235e37245cf890aa4a656b">  203</a></span><span class="preprocessor">#define MIPI_DSI_CLOCK_NON_CONTINUOUS   BIT(10)</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#ga1f8923811fc5d704e28362e72a1f1633">  205</a></span><span class="preprocessor">#define MIPI_DSI_MODE_LPM       BIT(11)</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="foldopen" id="foldopen00210" data-start="{" data-end="};">
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="structmipi__dsi__device.html">  210</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__device.html">mipi_dsi_device</a> {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="structmipi__dsi__device.html#ae2e6fddb1651a71c1b969ecec295e1c0">  212</a></span>    uint8_t <a class="code hl_variable" href="structmipi__dsi__device.html#ae2e6fddb1651a71c1b969ecec295e1c0">data_lanes</a>;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="structmipi__dsi__device.html#af9ec42cd1fcb16cf63060b0097180f3f">  214</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__timings.html">mipi_dsi_timings</a> <a class="code hl_variable" href="structmipi__dsi__device.html#af9ec42cd1fcb16cf63060b0097180f3f">timings</a>;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="structmipi__dsi__device.html#a729dd69843ee3eaf6bd5cbd2e725fdea">  216</a></span>    uint32_t <a class="code hl_variable" href="structmipi__dsi__device.html#a729dd69843ee3eaf6bd5cbd2e725fdea">pixfmt</a>;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="structmipi__dsi__device.html#af22eab1f95d8865fe7a67e49d6e36f8c">  218</a></span>    uint32_t <a class="code hl_variable" href="structmipi__dsi__device.html#af22eab1f95d8865fe7a67e49d6e36f8c">mode_flags</a>;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>};</div>
+</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment"> * Per message flag to indicate the message must be sent</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment"> * using Low Power Mode instead of controller default.</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="preprocessor">#define MIPI_DSI_MSG_USE_LPM BIT(0x0)</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="foldopen" id="foldopen00228" data-start="{" data-end="};">
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno"><a class="line" href="structmipi__dsi__msg.html">  228</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__msg.html">mipi_dsi_msg</a> {</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="structmipi__dsi__msg.html#a92dc0767c36f31cb23207a0581d3355f">  230</a></span>    uint8_t <a class="code hl_variable" href="structmipi__dsi__msg.html#a92dc0767c36f31cb23207a0581d3355f">type</a>;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="structmipi__dsi__msg.html#ac93016853da47dc07094e7fe44e4625f">  232</a></span>    uint16_t <a class="code hl_variable" href="structmipi__dsi__msg.html#ac93016853da47dc07094e7fe44e4625f">flags</a>;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="structmipi__dsi__msg.html#a45ee5101f773a600e116d41a247cdcf4">  234</a></span>    uint8_t <a class="code hl_variable" href="structmipi__dsi__msg.html#a45ee5101f773a600e116d41a247cdcf4">cmd</a>;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="structmipi__dsi__msg.html#a4cb0756c8cffa6acc10fee77ba6d4b17">  236</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structmipi__dsi__msg.html#a4cb0756c8cffa6acc10fee77ba6d4b17">tx_len</a>;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="structmipi__dsi__msg.html#a73e62f4c7e45f0553fd0deeec06356a2">  238</a></span>    <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="structmipi__dsi__msg.html#a73e62f4c7e45f0553fd0deeec06356a2">tx_buf</a>;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="structmipi__dsi__msg.html#ab17fda1dbb330bc8e66597ef816f413f">  240</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structmipi__dsi__msg.html#ab17fda1dbb330bc8e66597ef816f413f">rx_len</a>;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="structmipi__dsi__msg.html#aa21b5be5cdfac9411601c83f72e58405">  242</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structmipi__dsi__msg.html#aa21b5be5cdfac9411601c83f72e58405">rx_buf</a>;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>};</div>
+</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="foldopen" id="foldopen00246" data-start="{" data-end="};">
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="structmipi__dsi__driver__api.html">  246</a></span>__subsystem <span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__driver__api.html">mipi_dsi_driver_api</a> {</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    int (*attach)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t channel,</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>              <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__device.html">mipi_dsi_device</a> *mdev);</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    ssize_t (*transfer)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t channel,</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                <span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__msg.html">mipi_dsi_msg</a> *msg);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    int (*detach)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t channel,</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>              <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__device.html">mipi_dsi_device</a> *mdev);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>};</div>
+</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> mipi_dsi_attach(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                  uint8_t channel,</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                  <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmipi__dsi__device.html">mipi_dsi_device</a> *mdev)</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>{</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__driver__api.html">mipi_dsi_driver_api</a> *api = (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__driver__api.html">mipi_dsi_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keywordflow">return</span> api-&gt;attach(dev, channel, mdev);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>}</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="keyword">static</span> <span class="keyword">inline</span> ssize_t mipi_dsi_transfer(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                    uint8_t channel,</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>                    <span class="keyword">struct</span> <a class="code hl_struct" href="structmipi__dsi__msg.html">mipi_dsi_msg</a> *msg)</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>{</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__driver__api.html">mipi_dsi_driver_api</a> *api = (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__driver__api.html">mipi_dsi_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="keywordflow">return</span> api-&gt;transfer(dev, channel, msg);</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>}</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#ga121633e8e379e7d1ebd749328f2014fd">  303</a></span>ssize_t <a class="code hl_function" href="group__mipi__dsi__interface.html#ga121633e8e379e7d1ebd749328f2014fd">mipi_dsi_generic_read</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t channel,</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>                  <span class="keyword">const</span> <span class="keywordtype">void</span> *params, <span class="keywordtype">size_t</span> nparams,</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>                  <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#ga5442f45c7c827d1dd8c3fa21da49c560">  317</a></span>ssize_t <a class="code hl_function" href="group__mipi__dsi__interface.html#ga5442f45c7c827d1dd8c3fa21da49c560">mipi_dsi_generic_write</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t channel,</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>                   <span class="keyword">const</span> <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#ga7b5f52bcd51821bf120c5ac67b4c2fa5">  331</a></span>ssize_t <a class="code hl_function" href="group__mipi__dsi__interface.html#ga7b5f52bcd51821bf120c5ac67b4c2fa5">mipi_dsi_dcs_read</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t channel,</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>              uint8_t cmd, <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno"><a class="line" href="group__mipi__dsi__interface.html#gad0f324e32191469bc0d24ba203286237">  345</a></span>ssize_t <a class="code hl_function" href="group__mipi__dsi__interface.html#gad0f324e32191469bc0d24ba203286237">mipi_dsi_dcs_write</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t channel,</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>               uint8_t cmd, <span class="keyword">const</span> <span class="keywordtype">void</span> *buf, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> </div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> mipi_dsi_detach(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>                  uint8_t channel,</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>                  <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmipi__dsi__device.html">mipi_dsi_device</a> *mdev)</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>{</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__driver__api.html">mipi_dsi_driver_api</a> *api = (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmipi__dsi__driver__api.html">mipi_dsi_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span> </div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="keywordflow">if</span> (api-&gt;detach == NULL) {</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    }</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    <span class="keywordflow">return</span> api-&gt;detach(dev, channel, mdev);</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>}</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span> </div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>}</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span> </div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_MIPI_DSI_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__mipi__dsi__interface_html_ga121633e8e379e7d1ebd749328f2014fd"><div class="ttname"><a href="group__mipi__dsi__interface.html#ga121633e8e379e7d1ebd749328f2014fd">mipi_dsi_generic_read</a></div><div class="ttdeci">ssize_t mipi_dsi_generic_read(const struct device *dev, uint8_t channel, const void *params, size_t nparams, void *buf, size_t len)</div><div class="ttdoc">MIPI-DSI generic read.</div></div>
+<div class="ttc" id="agroup__mipi__dsi__interface_html_ga5442f45c7c827d1dd8c3fa21da49c560"><div class="ttname"><a href="group__mipi__dsi__interface.html#ga5442f45c7c827d1dd8c3fa21da49c560">mipi_dsi_generic_write</a></div><div class="ttdeci">ssize_t mipi_dsi_generic_write(const struct device *dev, uint8_t channel, const void *buf, size_t len)</div><div class="ttdoc">MIPI-DSI generic write.</div></div>
+<div class="ttc" id="agroup__mipi__dsi__interface_html_ga7b5f52bcd51821bf120c5ac67b4c2fa5"><div class="ttname"><a href="group__mipi__dsi__interface.html#ga7b5f52bcd51821bf120c5ac67b4c2fa5">mipi_dsi_dcs_read</a></div><div class="ttdeci">ssize_t mipi_dsi_dcs_read(const struct device *dev, uint8_t channel, uint8_t cmd, void *buf, size_t len)</div><div class="ttdoc">MIPI-DSI DCS read.</div></div>
+<div class="ttc" id="agroup__mipi__dsi__interface_html_gad0f324e32191469bc0d24ba203286237"><div class="ttname"><a href="group__mipi__dsi__interface.html#gad0f324e32191469bc0d24ba203286237">mipi_dsi_dcs_write</a></div><div class="ttdeci">ssize_t mipi_dsi_dcs_write(const struct device *dev, uint8_t channel, uint8_t cmd, const void *buf, size_t len)</div><div class="ttdoc">MIPI-DSI DCS write.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructmipi__dsi__device_html"><div class="ttname"><a href="structmipi__dsi__device.html">mipi_dsi_device</a></div><div class="ttdef"><b>Definição</b> mipi_dsi.h:210</div></div>
+<div class="ttc" id="astructmipi__dsi__device_html_a729dd69843ee3eaf6bd5cbd2e725fdea"><div class="ttname"><a href="structmipi__dsi__device.html#a729dd69843ee3eaf6bd5cbd2e725fdea">mipi_dsi_device::pixfmt</a></div><div class="ttdeci">uint32_t pixfmt</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:216</div></div>
+<div class="ttc" id="astructmipi__dsi__device_html_ae2e6fddb1651a71c1b969ecec295e1c0"><div class="ttname"><a href="structmipi__dsi__device.html#ae2e6fddb1651a71c1b969ecec295e1c0">mipi_dsi_device::data_lanes</a></div><div class="ttdeci">uint8_t data_lanes</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:212</div></div>
+<div class="ttc" id="astructmipi__dsi__device_html_af22eab1f95d8865fe7a67e49d6e36f8c"><div class="ttname"><a href="structmipi__dsi__device.html#af22eab1f95d8865fe7a67e49d6e36f8c">mipi_dsi_device::mode_flags</a></div><div class="ttdeci">uint32_t mode_flags</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:218</div></div>
+<div class="ttc" id="astructmipi__dsi__device_html_af9ec42cd1fcb16cf63060b0097180f3f"><div class="ttname"><a href="structmipi__dsi__device.html#af9ec42cd1fcb16cf63060b0097180f3f">mipi_dsi_device::timings</a></div><div class="ttdeci">struct mipi_dsi_timings timings</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:214</div></div>
+<div class="ttc" id="astructmipi__dsi__driver__api_html"><div class="ttname"><a href="structmipi__dsi__driver__api.html">mipi_dsi_driver_api</a></div><div class="ttdef"><b>Definição</b> mipi_dsi.h:246</div></div>
+<div class="ttc" id="astructmipi__dsi__msg_html"><div class="ttname"><a href="structmipi__dsi__msg.html">mipi_dsi_msg</a></div><div class="ttdef"><b>Definição</b> mipi_dsi.h:228</div></div>
+<div class="ttc" id="astructmipi__dsi__msg_html_a45ee5101f773a600e116d41a247cdcf4"><div class="ttname"><a href="structmipi__dsi__msg.html#a45ee5101f773a600e116d41a247cdcf4">mipi_dsi_msg::cmd</a></div><div class="ttdeci">uint8_t cmd</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:234</div></div>
+<div class="ttc" id="astructmipi__dsi__msg_html_a4cb0756c8cffa6acc10fee77ba6d4b17"><div class="ttname"><a href="structmipi__dsi__msg.html#a4cb0756c8cffa6acc10fee77ba6d4b17">mipi_dsi_msg::tx_len</a></div><div class="ttdeci">size_t tx_len</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:236</div></div>
+<div class="ttc" id="astructmipi__dsi__msg_html_a73e62f4c7e45f0553fd0deeec06356a2"><div class="ttname"><a href="structmipi__dsi__msg.html#a73e62f4c7e45f0553fd0deeec06356a2">mipi_dsi_msg::tx_buf</a></div><div class="ttdeci">const void * tx_buf</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:238</div></div>
+<div class="ttc" id="astructmipi__dsi__msg_html_a92dc0767c36f31cb23207a0581d3355f"><div class="ttname"><a href="structmipi__dsi__msg.html#a92dc0767c36f31cb23207a0581d3355f">mipi_dsi_msg::type</a></div><div class="ttdeci">uint8_t type</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:230</div></div>
+<div class="ttc" id="astructmipi__dsi__msg_html_aa21b5be5cdfac9411601c83f72e58405"><div class="ttname"><a href="structmipi__dsi__msg.html#aa21b5be5cdfac9411601c83f72e58405">mipi_dsi_msg::rx_buf</a></div><div class="ttdeci">void * rx_buf</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:242</div></div>
+<div class="ttc" id="astructmipi__dsi__msg_html_ab17fda1dbb330bc8e66597ef816f413f"><div class="ttname"><a href="structmipi__dsi__msg.html#ab17fda1dbb330bc8e66597ef816f413f">mipi_dsi_msg::rx_len</a></div><div class="ttdeci">size_t rx_len</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:240</div></div>
+<div class="ttc" id="astructmipi__dsi__msg_html_ac93016853da47dc07094e7fe44e4625f"><div class="ttname"><a href="structmipi__dsi__msg.html#ac93016853da47dc07094e7fe44e4625f">mipi_dsi_msg::flags</a></div><div class="ttdeci">uint16_t flags</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:232</div></div>
+<div class="ttc" id="astructmipi__dsi__timings_html"><div class="ttname"><a href="structmipi__dsi__timings.html">mipi_dsi_timings</a></div><div class="ttdef"><b>Definição</b> mipi_dsi.h:158</div></div>
+<div class="ttc" id="astructmipi__dsi__timings_html_a3a91e874a7da6c37bf9b06944a3d658a"><div class="ttname"><a href="structmipi__dsi__timings.html#a3a91e874a7da6c37bf9b06944a3d658a">mipi_dsi_timings::hactive</a></div><div class="ttdeci">uint32_t hactive</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:160</div></div>
+<div class="ttc" id="astructmipi__dsi__timings_html_a535e0177862b753ef9f4af011ed483a4"><div class="ttname"><a href="structmipi__dsi__timings.html#a535e0177862b753ef9f4af011ed483a4">mipi_dsi_timings::vsync</a></div><div class="ttdeci">uint32_t vsync</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:174</div></div>
+<div class="ttc" id="astructmipi__dsi__timings_html_a58f985d9c43cd149959dad7f12fcff8e"><div class="ttname"><a href="structmipi__dsi__timings.html#a58f985d9c43cd149959dad7f12fcff8e">mipi_dsi_timings::hsync</a></div><div class="ttdeci">uint32_t hsync</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:166</div></div>
+<div class="ttc" id="astructmipi__dsi__timings_html_ac44c32c7d150ddd4b327308196169578"><div class="ttname"><a href="structmipi__dsi__timings.html#ac44c32c7d150ddd4b327308196169578">mipi_dsi_timings::vfp</a></div><div class="ttdeci">uint32_t vfp</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:170</div></div>
+<div class="ttc" id="astructmipi__dsi__timings_html_acc8077892efa4977fd667680d63f5c7c"><div class="ttname"><a href="structmipi__dsi__timings.html#acc8077892efa4977fd667680d63f5c7c">mipi_dsi_timings::vactive</a></div><div class="ttdeci">uint32_t vactive</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:168</div></div>
+<div class="ttc" id="astructmipi__dsi__timings_html_ad1b00493166d0276eb66d73be4b6968d"><div class="ttname"><a href="structmipi__dsi__timings.html#ad1b00493166d0276eb66d73be4b6968d">mipi_dsi_timings::hfp</a></div><div class="ttdeci">uint32_t hfp</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:162</div></div>
+<div class="ttc" id="astructmipi__dsi__timings_html_afb4451d7767a911ea6a92a9fbba5e935"><div class="ttname"><a href="structmipi__dsi__timings.html#afb4451d7767a911ea6a92a9fbba5e935">mipi_dsi_timings::hbp</a></div><div class="ttdeci">uint32_t hbp</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:164</div></div>
+<div class="ttc" id="astructmipi__dsi__timings_html_afff80261d02253b76a872ee805a4cd46"><div class="ttname"><a href="structmipi__dsi__timings.html#afff80261d02253b76a872ee805a4cd46">mipi_dsi_timings::vbp</a></div><div class="ttdeci">uint32_t vbp</div><div class="ttdef"><b>Definição</b> mipi_dsi.h:172</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,1030 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/gpio.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">gpio.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2gpio_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2019-2020 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2019 Piotr Mienkowski</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * Copyright (c) 2017 ARM Ltd</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * Copyright (c) 2015-2016 Intel Corporation.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_GPIO_H_</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_GPIO_H_</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;errno.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;zephyr/sys/__assert.h&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="slist_8h.html">zephyr/sys/slist.h</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;zephyr/dt-bindings/gpio/gpio.h&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga7be6a0cc9aa65da1d4ee5751b4085853">   45</a></span><span class="preprocessor">#define GPIO_INPUT              (1U &lt;&lt; 16)</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga0db9fe8a278e6ab7c5c6f14fe58e5eb1">   48</a></span><span class="preprocessor">#define GPIO_OUTPUT             (1U &lt;&lt; 17)</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gaf82306c09450f6933366c4b821db21ed">   51</a></span><span class="preprocessor">#define GPIO_DISCONNECTED   0</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">/* Initializes output to a low state. */</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define GPIO_OUTPUT_INIT_LOW    (1U &lt;&lt; 18)</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">/* Initializes output to a high state. */</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#define GPIO_OUTPUT_INIT_HIGH   (1U &lt;&lt; 19)</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">/* Initializes output based on logic level */</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#define GPIO_OUTPUT_INIT_LOGICAL (1U &lt;&lt; 20)</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gaf85baf9f9c1ba554324b4cd7064487b0">   67</a></span><span class="preprocessor">#define GPIO_OUTPUT_LOW         (GPIO_OUTPUT | GPIO_OUTPUT_INIT_LOW)</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga10d31f204c0e927017d571352422fb09">   69</a></span><span class="preprocessor">#define GPIO_OUTPUT_HIGH        (GPIO_OUTPUT | GPIO_OUTPUT_INIT_HIGH)</span></div>
+<div class="foldopen" id="foldopen00071" data-start="" data-end="">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga1e1d6be5f2f788f89468a0ce8b854634">   71</a></span><span class="preprocessor">#define GPIO_OUTPUT_INACTIVE    (GPIO_OUTPUT |          \</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">                 GPIO_OUTPUT_INIT_LOW |     \</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">                 GPIO_OUTPUT_INIT_LOGICAL)</span></div>
+</div>
+<div class="foldopen" id="foldopen00075" data-start="" data-end="">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga0f5cc126d6a690eb3e303eb29aa718ce">   75</a></span><span class="preprocessor">#define GPIO_OUTPUT_ACTIVE      (GPIO_OUTPUT |          \</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">                 GPIO_OUTPUT_INIT_HIGH |    \</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">                 GPIO_OUTPUT_INIT_LOGICAL)</span></div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga91657faac28f9b213105dd61a419dd5a">   98</a></span><span class="preprocessor">#define GPIO_INT_DISABLE               (1U &lt;&lt; 21)</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">/* Enables GPIO pin interrupt. */</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">#define GPIO_INT_ENABLE                (1U &lt;&lt; 22)</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">/* GPIO interrupt is sensitive to logical levels.</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment"> * This is a component flag that should be combined with other</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment"> * `GPIO_INT_*` flags to produce a meaningful configuration.</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">#define GPIO_INT_LEVELS_LOGICAL        (1U &lt;&lt; 23)</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment">/* GPIO interrupt is edge sensitive.</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment"> * Note: by default interrupts are level sensitive.</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment"> * This is a component flag that should be combined with other</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment"> * `GPIO_INT_*` flags to produce a meaningful configuration.</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#define GPIO_INT_EDGE                  (1U &lt;&lt; 24)</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">/* Trigger detection when input state is (or transitions to) physical low or</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment"> * logical 0 level.</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment"> * This is a component flag that should be combined with other</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="comment"> * `GPIO_INT_*` flags to produce a meaningful configuration.</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#define GPIO_INT_LOW_0                 (1U &lt;&lt; 25)</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment">/* Trigger detection on input state is (or transitions to) physical high or</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment"> * logical 1 level.</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment"> * This is a component flag that should be combined with other</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment"> * `GPIO_INT_*` flags to produce a meaningful configuration.</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">#define GPIO_INT_HIGH_1                (1U &lt;&lt; 26)</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#ifdef CONFIG_GPIO_ENABLE_DISABLE_INTERRUPT</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="comment">/* Disable/Enable interrupt functionality without changing other interrupt</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment"> * related register, such as clearing the pending register.</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="comment"> * This is a component flag that should be combined with `GPIO_INT_ENABLE` or</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="comment"> * `GPIO_INT_DISABLE` flags to produce a meaningful configuration.</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="preprocessor">#define GPIO_INT_ENABLE_DISABLE_ONLY   (1u &lt;&lt; 27)</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_GPIO_ENABLE_DISABLE_INTERRUPT */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">#define GPIO_INT_MASK                  (GPIO_INT_DISABLE | \</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">                    GPIO_INT_ENABLE | \</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">                    GPIO_INT_LEVELS_LOGICAL | \</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">                    GPIO_INT_EDGE | \</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">                    GPIO_INT_LOW_0 | \</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">                    GPIO_INT_HIGH_1)</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="foldopen" id="foldopen00158" data-start="" data-end="">
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gaed642a4e482f73aa917477370d0e241b">  158</a></span><span class="preprocessor">#define GPIO_INT_EDGE_RISING           (GPIO_INT_ENABLE | \</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">                    GPIO_INT_EDGE | \</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="preprocessor">                    GPIO_INT_HIGH_1)</span></div>
+</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="foldopen" id="foldopen00165" data-start="" data-end="">
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga73bed10383a27d4a03feb300e64af8e8">  165</a></span><span class="preprocessor">#define GPIO_INT_EDGE_FALLING          (GPIO_INT_ENABLE | \</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">                    GPIO_INT_EDGE | \</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">                    GPIO_INT_LOW_0)</span></div>
+</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="foldopen" id="foldopen00172" data-start="" data-end="">
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga10fa307ab17d02819108165a09f8e08b">  172</a></span><span class="preprocessor">#define GPIO_INT_EDGE_BOTH             (GPIO_INT_ENABLE | \</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="preprocessor">                    GPIO_INT_EDGE | \</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="preprocessor">                    GPIO_INT_LOW_0 | \</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="preprocessor">                    GPIO_INT_HIGH_1)</span></div>
+</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="foldopen" id="foldopen00180" data-start="" data-end="">
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gaddbb5ad576875af9c2d73b73df55c893">  180</a></span><span class="preprocessor">#define GPIO_INT_LEVEL_LOW             (GPIO_INT_ENABLE | \</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">                    GPIO_INT_LOW_0)</span></div>
+</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="foldopen" id="foldopen00186" data-start="" data-end="">
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga233690d9a6a64bc9f804e3caa6d4a88f">  186</a></span><span class="preprocessor">#define GPIO_INT_LEVEL_HIGH            (GPIO_INT_ENABLE | \</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="preprocessor">                    GPIO_INT_HIGH_1)</span></div>
+</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="foldopen" id="foldopen00192" data-start="" data-end="">
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga7b922529a3cb9396b0d82ca823e9d010">  192</a></span><span class="preprocessor">#define GPIO_INT_EDGE_TO_INACTIVE      (GPIO_INT_ENABLE | \</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">                    GPIO_INT_LEVELS_LOGICAL | \</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">                    GPIO_INT_EDGE | \</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="preprocessor">                    GPIO_INT_LOW_0)</span></div>
+</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="foldopen" id="foldopen00200" data-start="" data-end="">
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga35d2ff0e041236d82004a4bb2b5bf634">  200</a></span><span class="preprocessor">#define GPIO_INT_EDGE_TO_ACTIVE        (GPIO_INT_ENABLE | \</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="preprocessor">                    GPIO_INT_LEVELS_LOGICAL | \</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="preprocessor">                    GPIO_INT_EDGE | \</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="preprocessor">                    GPIO_INT_HIGH_1)</span></div>
+</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="foldopen" id="foldopen00208" data-start="" data-end="">
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gacb9bb1b63f172af2da7eb193e234c4f2">  208</a></span><span class="preprocessor">#define GPIO_INT_LEVEL_INACTIVE        (GPIO_INT_ENABLE | \</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="preprocessor">                    GPIO_INT_LEVELS_LOGICAL | \</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="preprocessor">                    GPIO_INT_LOW_0)</span></div>
+</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="foldopen" id="foldopen00215" data-start="" data-end="">
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gae51c68ff83959994bb942bb253505ca1">  215</a></span><span class="preprocessor">#define GPIO_INT_LEVEL_ACTIVE          (GPIO_INT_ENABLE | \</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="preprocessor">                    GPIO_INT_LEVELS_LOGICAL | \</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="preprocessor">                    GPIO_INT_HIGH_1)</span></div>
+</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="preprocessor">#define GPIO_DIR_MASK       (GPIO_INPUT | GPIO_OUTPUT)</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">  231</a></span><span class="keyword">typedef</span> uint32_t <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gabcebe24c93486896e1dfc2459ec25693">  244</a></span><span class="keyword">typedef</span> uint32_t <a class="code hl_typedef" href="group__gpio__interface.html#gabcebe24c93486896e1dfc2459ec25693">gpio_port_value_t</a>;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">  252</a></span><span class="keyword">typedef</span> uint8_t <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a>;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gad435719dccdc37c05852960a7218fbd2">  264</a></span><span class="keyword">typedef</span> uint16_t <a class="code hl_typedef" href="group__gpio__interface.html#gad435719dccdc37c05852960a7218fbd2">gpio_dt_flags_t</a>;</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">  272</a></span><span class="keyword">typedef</span> uint32_t <a class="code hl_typedef" href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">gpio_flags_t</a>;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="foldopen" id="foldopen00286" data-start="{" data-end="};">
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno"><a class="line" href="structgpio__dt__spec.html">  286</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structgpio__dt__spec.html">gpio_dt_spec</a> {</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno"><a class="line" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">  288</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_variable" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">port</a>;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno"><a class="line" href="structgpio__dt__spec.html#ad7e6fbb0cba0be94a47d4f2add056c84">  290</a></span>    <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> <a class="code hl_variable" href="structgpio__dt__spec.html#ad7e6fbb0cba0be94a47d4f2add056c84">pin</a>;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="structgpio__dt__spec.html#ae3b90e7e22708798c67da94f72ad1ab0">  292</a></span>    <a class="code hl_typedef" href="group__gpio__interface.html#gad435719dccdc37c05852960a7218fbd2">gpio_dt_flags_t</a> <a class="code hl_variable" href="structgpio__dt__spec.html#ae3b90e7e22708798c67da94f72ad1ab0">dt_flags</a>;</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>};</div>
+</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="foldopen" id="foldopen00329" data-start="" data-end="">
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gacb1077b77aecf8f1a9c7636ea583c4cf">  329</a></span><span class="preprocessor">#define GPIO_DT_SPEC_GET_BY_IDX(node_id, prop, idx)                \</span></div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span><span class="preprocessor">    {                                      \</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="preprocessor">        .port = DEVICE_DT_GET(DT_GPIO_CTLR_BY_IDX(node_id, prop, idx)),\</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="preprocessor">        .pin = DT_GPIO_PIN_BY_IDX(node_id, prop, idx),             \</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="preprocessor">        .dt_flags = DT_GPIO_FLAGS_BY_IDX(node_id, prop, idx),          \</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="foldopen" id="foldopen00353" data-start="" data-end="">
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga3db4fa464e191016287f4c4d7eb9a983">  353</a></span><span class="preprocessor">#define GPIO_DT_SPEC_GET_BY_IDX_OR(node_id, prop, idx, default_value)   \</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="preprocessor">    COND_CODE_1(DT_NODE_HAS_PROP(node_id, prop),            \</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="preprocessor">            (GPIO_DT_SPEC_GET_BY_IDX(node_id, prop, idx)),  \</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="preprocessor">            (default_value))</span></div>
+</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
+<div class="foldopen" id="foldopen00366" data-start="" data-end="">
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga2fa6bb5880f46984f9fc29c70f7d503e">  366</a></span><span class="preprocessor">#define GPIO_DT_SPEC_GET(node_id, prop) \</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="preprocessor">    GPIO_DT_SPEC_GET_BY_IDX(node_id, prop, 0)</span></div>
+</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
+<div class="foldopen" id="foldopen00379" data-start="" data-end="">
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga26b2205aa82819df1d80a22761352e71">  379</a></span><span class="preprocessor">#define GPIO_DT_SPEC_GET_OR(node_id, prop, default_value) \</span></div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span><span class="preprocessor">    GPIO_DT_SPEC_GET_BY_IDX_OR(node_id, prop, 0, default_value)</span></div>
+</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span> </div>
+<div class="foldopen" id="foldopen00392" data-start="" data-end="">
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gabbdbef450f14fd0af73667e2728ad084">  392</a></span><span class="preprocessor">#define GPIO_DT_SPEC_INST_GET_BY_IDX(inst, prop, idx) \</span></div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span><span class="preprocessor">    GPIO_DT_SPEC_GET_BY_IDX(DT_DRV_INST(inst), prop, idx)</span></div>
+</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span> </div>
+<div class="foldopen" id="foldopen00406" data-start="" data-end="">
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gaf07edf6bc88af18e9976c76f6c3c3bf1">  406</a></span><span class="preprocessor">#define GPIO_DT_SPEC_INST_GET_BY_IDX_OR(inst, prop, idx, default_value)     \</span></div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span><span class="preprocessor">    COND_CODE_1(DT_PROP_HAS_IDX(DT_DRV_INST(inst), prop, idx),      \</span></div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span><span class="preprocessor">            (GPIO_DT_SPEC_GET_BY_IDX(DT_DRV_INST(inst), prop, idx)),    \</span></div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span><span class="preprocessor">            (default_value))</span></div>
+</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span> </div>
+<div class="foldopen" id="foldopen00419" data-start="" data-end="">
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga168f5c6e39a0111191f606a9a0826e89">  419</a></span><span class="preprocessor">#define GPIO_DT_SPEC_INST_GET(inst, prop) \</span></div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span><span class="preprocessor">    GPIO_DT_SPEC_INST_GET_BY_IDX(inst, prop, 0)</span></div>
+</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span> </div>
+<div class="foldopen" id="foldopen00432" data-start="" data-end="">
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gae6b4a354c3cf0e042a390aac4bc37c69">  432</a></span><span class="preprocessor">#define GPIO_DT_SPEC_INST_GET_OR(inst, prop, default_value) \</span></div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span><span class="preprocessor">    GPIO_DT_SPEC_INST_GET_BY_IDX_OR(inst, prop, 0, default_value)</span></div>
+</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span> </div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span><span class="comment"> * @cond INTERNAL_HIDDEN</span></div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span> </div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span><span class="preprocessor">#define Z_GPIO_GEN_BITMASK_COND(node_id, prop, off_idx, sz_idx)          \</span></div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span><span class="preprocessor">    COND_CODE_1(DT_PROP_HAS_IDX(node_id, prop, off_idx),             \</span></div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span><span class="preprocessor">        (COND_CODE_0(DT_PROP_BY_IDX(node_id, prop, sz_idx),      \</span></div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span><span class="preprocessor">            (0),                             \</span></div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span><span class="preprocessor">            (GENMASK64(DT_PROP_BY_IDX(node_id, prop, off_idx) +  \</span></div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span><span class="preprocessor">                DT_PROP_BY_IDX(node_id, prop, sz_idx) - 1,   \</span></div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span><span class="preprocessor">                DT_PROP_BY_IDX(node_id, prop, off_idx))))    \</span></div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span><span class="preprocessor">        ), (0))</span></div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span> </div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span><span class="preprocessor">#define Z_GPIO_GEN_RESERVED_RANGES_COND(odd_it, node_id)              \</span></div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span><span class="preprocessor">    COND_CODE_1(DT_PROP_HAS_IDX(node_id, gpio_reserved_ranges, odd_it),   \</span></div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span><span class="preprocessor">        (Z_GPIO_GEN_BITMASK_COND(node_id,                 \</span></div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span><span class="preprocessor">            gpio_reserved_ranges,                     \</span></div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span><span class="preprocessor">            GET_ARG_N(odd_it, Z_SPARSE_LIST_EVEN_NUMBERS),        \</span></div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span><span class="preprocessor">            odd_it)),                         \</span></div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span><span class="preprocessor">        (0))</span></div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span> </div>
+<div class="foldopen" id="foldopen00564" data-start="" data-end="">
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga439c3d29aa585b00853aba6d6416028a">  564</a></span><span class="preprocessor">#define GPIO_DT_RESERVED_RANGES_NGPIOS(node_id, ngpios)                \</span></div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span><span class="preprocessor">    ((gpio_port_pins_t)                            \</span></div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span><span class="preprocessor">    COND_CODE_1(DT_NODE_HAS_PROP(node_id, gpio_reserved_ranges),           \</span></div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span><span class="preprocessor">        (GENMASK64(BITS_PER_LONG_LONG - 1, ngpios)             \</span></div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span><span class="preprocessor">        | FOR_EACH_FIXED_ARG(Z_GPIO_GEN_RESERVED_RANGES_COND,          \</span></div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span><span class="preprocessor">            (|),                               \</span></div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span><span class="preprocessor">            node_id,                           \</span></div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span><span class="preprocessor">            LIST_DROP_EMPTY(Z_SPARSE_LIST_ODD_NUMBERS))),          \</span></div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span><span class="preprocessor">        (0)))</span></div>
+</div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span> </div>
+<div class="foldopen" id="foldopen00581" data-start="" data-end="">
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga648fcc0633d57b52d3df683efda98440">  581</a></span><span class="preprocessor">#define GPIO_DT_RESERVED_RANGES(node_id)                       \</span></div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span><span class="preprocessor">    GPIO_DT_RESERVED_RANGES_NGPIOS(node_id, DT_PROP(node_id, ngpios))</span></div>
+</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span> </div>
+<div class="foldopen" id="foldopen00593" data-start="" data-end="">
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gaebaea00f6f7649c61651e8d50c7cdf07">  593</a></span><span class="preprocessor">#define GPIO_DT_INST_RESERVED_RANGES_NGPIOS(inst, ngpios)              \</span></div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span><span class="preprocessor">        GPIO_DT_RESERVED_RANGES_NGPIOS(DT_DRV_INST(inst), ngpios)</span></div>
+</div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span> </div>
+<div class="foldopen" id="foldopen00604" data-start="" data-end="">
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga9136b467eaddcc734bc6a0a7d8b34e14">  604</a></span><span class="preprocessor">#define GPIO_DT_INST_RESERVED_RANGES(inst)                     \</span></div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span><span class="preprocessor">        GPIO_DT_RESERVED_RANGES(DT_DRV_INST(inst))</span></div>
+</div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span> </div>
+<div class="foldopen" id="foldopen00655" data-start="" data-end="">
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga274e09d7082d97b2f90c6a7fd4b71d49">  655</a></span><span class="preprocessor">#define GPIO_DT_PORT_PIN_MASK_NGPIOS_EXC(node_id, ngpios)              \</span></div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span><span class="preprocessor">    ((gpio_port_pins_t)                            \</span></div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span><span class="preprocessor">    COND_CODE_0(ngpios,                            \</span></div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span><span class="preprocessor">        (0),                                   \</span></div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span><span class="preprocessor">        (COND_CODE_1(DT_NODE_HAS_PROP(node_id, gpio_reserved_ranges),  \</span></div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span><span class="preprocessor">            ((GENMASK64(ngpios - 1, 0) &amp;                   \</span></div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span><span class="preprocessor">            ~GPIO_DT_RESERVED_RANGES_NGPIOS(node_id, ngpios))),    \</span></div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span><span class="preprocessor">            (GENMASK64(ngpios - 1, 0)))                \</span></div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span><span class="preprocessor">        )                                  \</span></div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span><span class="preprocessor">    ))</span></div>
+</div>
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span> </div>
+<div class="foldopen" id="foldopen00675" data-start="" data-end="">
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga856fe8042e496a39ef3a4e19fff2c4ce">  675</a></span><span class="preprocessor">#define GPIO_DT_INST_PORT_PIN_MASK_NGPIOS_EXC(inst, ngpios) \</span></div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span><span class="preprocessor">        GPIO_DT_PORT_PIN_MASK_NGPIOS_EXC(DT_DRV_INST(inst), ngpios)</span></div>
+</div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span> </div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga1449ba90eaec5e6144fe4faae21f2e3f">  681</a></span><span class="preprocessor">#define GPIO_MAX_PINS_PER_PORT (sizeof(gpio_port_pins_t) * __CHAR_BIT__)</span></div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span> </div>
+<div class="foldopen" id="foldopen00688" data-start="{" data-end="};">
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno"><a class="line" href="structgpio__driver__config.html">  688</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> {</div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno"><a class="line" href="structgpio__driver__config.html#af73c0d9d433b86b9d0e0c6703e737052">  694</a></span>    <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> <a class="code hl_variable" href="structgpio__driver__config.html#af73c0d9d433b86b9d0e0c6703e737052">port_pin_mask</a>;</div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>};</div>
+</div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span> </div>
+<div class="foldopen" id="foldopen00701" data-start="{" data-end="};">
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno"><a class="line" href="structgpio__driver__data.html">  701</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__data.html">gpio_driver_data</a> {</div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno"><a class="line" href="structgpio__driver__data.html#ab62038a3c7c341cafda6665dfab3f169">  707</a></span>    <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> <a class="code hl_variable" href="structgpio__driver__data.html#ab62038a3c7c341cafda6665dfab3f169">invert</a>;</div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>};</div>
+</div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span> </div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span><span class="keyword">struct </span><a class="code hl_struct" href="structgpio__callback.html">gpio_callback</a>;</div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span> </div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga2b400e2193e3899c63253d2f48ed90db">  724</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__gpio__interface.html#ga2b400e2193e3899c63253d2f48ed90db">gpio_callback_handler_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>                    <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__callback.html">gpio_callback</a> *cb,</div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span>                    <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins);</div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span> </div>
+<div class="foldopen" id="foldopen00738" data-start="{" data-end="};">
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno"><a class="line" href="structgpio__callback.html">  738</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structgpio__callback.html">gpio_callback</a> {</div>
+<div class="line"><a id="l00742" name="l00742"></a><span class="lineno"><a class="line" href="structgpio__callback.html#ab60e7093072964bd818d536c746211e4">  742</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> <a class="code hl_variable" href="structgpio__callback.html#ab60e7093072964bd818d536c746211e4">node</a>;</div>
+<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span> </div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno"><a class="line" href="structgpio__callback.html#af89dc41cbd610d81ac03cae7ab764ceb">  745</a></span>    <a class="code hl_typedef" href="group__gpio__interface.html#ga2b400e2193e3899c63253d2f48ed90db">gpio_callback_handler_t</a> <a class="code hl_variable" href="structgpio__callback.html#af89dc41cbd610d81ac03cae7ab764ceb">handler</a>;</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span> </div>
+<div class="line"><a id="l00753" name="l00753"></a><span class="lineno"><a class="line" href="structgpio__callback.html#ace5c2b83f1d51f73877a1f2c54ba8c67">  753</a></span>    <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> <a class="code hl_variable" href="structgpio__callback.html#ace5c2b83f1d51f73877a1f2c54ba8c67">pin_mask</a>;</div>
+<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span>};</div>
+</div>
+<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span> </div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span><span class="comment">/* Used by driver api function pin_interrupt_configure, these are defined</span></div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span><span class="comment"> * in terms of the public flags so we can just mask and pass them</span></div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span><span class="comment"> * through to the driver api</span></div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span><span class="keyword">enum</span> gpio_int_mode {</div>
+<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span>    GPIO_INT_MODE_DISABLED = <a class="code hl_define" href="group__gpio__interface.html#ga91657faac28f9b213105dd61a419dd5a">GPIO_INT_DISABLE</a>,</div>
+<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span>    GPIO_INT_MODE_LEVEL = GPIO_INT_ENABLE,</div>
+<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span>    GPIO_INT_MODE_EDGE = GPIO_INT_ENABLE | GPIO_INT_EDGE,</div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span><span class="preprocessor">#ifdef CONFIG_GPIO_ENABLE_DISABLE_INTERRUPT</span></div>
+<div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span>    GPIO_INT_MODE_DISABLE_ONLY = <a class="code hl_define" href="group__gpio__interface.html#ga91657faac28f9b213105dd61a419dd5a">GPIO_INT_DISABLE</a> | GPIO_INT_ENABLE_DISABLE_ONLY,</div>
+<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span>    GPIO_INT_MODE_ENABLE_ONLY = GPIO_INT_ENABLE | GPIO_INT_ENABLE_DISABLE_ONLY,</div>
+<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_GPIO_ENABLE_DISABLE_INTERRUPT */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>};</div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span> </div>
+<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span><span class="keyword">enum</span> gpio_int_trig {</div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span>    <span class="comment">/* Trigger detection when input state is (or transitions to)</span></div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span><span class="comment">     * physical low. (Edge Falling or Active Low)</span></div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>    GPIO_INT_TRIG_LOW = GPIO_INT_LOW_0,</div>
+<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span>    <span class="comment">/* Trigger detection when input state is (or transitions to)</span></div>
+<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span><span class="comment">     * physical high. (Edge Rising or Active High) */</span></div>
+<div class="line"><a id="l00783" name="l00783"></a><span class="lineno">  783</span>    GPIO_INT_TRIG_HIGH = GPIO_INT_HIGH_1,</div>
+<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>    <span class="comment">/* Trigger detection on pin rising or falling edge. */</span></div>
+<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span>    GPIO_INT_TRIG_BOTH = GPIO_INT_LOW_0 | GPIO_INT_HIGH_1,</div>
+<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>};</div>
+<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span> </div>
+<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span>__subsystem <span class="keyword">struct </span>gpio_driver_api {</div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span>    int (*pin_configure)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *port, <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin,</div>
+<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span>                 <a class="code hl_typedef" href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">gpio_flags_t</a> flags);</div>
+<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span><span class="preprocessor">#ifdef CONFIG_GPIO_GET_CONFIG</span></div>
+<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span>    int (*pin_get_config)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *port, <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin,</div>
+<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span>                  <a class="code hl_typedef" href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">gpio_flags_t</a> *flags);</div>
+<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span>    int (*port_get_raw)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span>                <a class="code hl_typedef" href="group__gpio__interface.html#gabcebe24c93486896e1dfc2459ec25693">gpio_port_value_t</a> *value);</div>
+<div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span>    int (*port_set_masked_raw)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span>                   <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> mask,</div>
+<div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span>                   <a class="code hl_typedef" href="group__gpio__interface.html#gabcebe24c93486896e1dfc2459ec25693">gpio_port_value_t</a> value);</div>
+<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span>    int (*port_set_bits_raw)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span>                 <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins);</div>
+<div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span>    int (*port_clear_bits_raw)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span>                   <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins);</div>
+<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span>    int (*port_toggle_bits)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>                <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins);</div>
+<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span>    int (*pin_interrupt_configure)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>                       <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin,</div>
+<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>                       <span class="keyword">enum</span> gpio_int_mode, <span class="keyword">enum</span> gpio_int_trig);</div>
+<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span>    int (*manage_callback)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>                   <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__callback.html">gpio_callback</a> *cb,</div>
+<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>                   <span class="keywordtype">bool</span> set);</div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>    uint32_t (*get_pending_int)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span><span class="preprocessor">#ifdef CONFIG_GPIO_GET_DIRECTION</span></div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>    int (*port_get_direction)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *port, <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> map,</div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>                  <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> *inputs, <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> *outputs);</div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_GPIO_GET_DIRECTION */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span>};</div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span> </div>
+<div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> gpio_is_ready_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__dt__spec.html">gpio_dt_spec</a> *spec)</div>
+<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span>{</div>
+<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span>    <span class="comment">/* Validate port is ready */</span></div>
+<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__device__model.html#ga0b9e6357f7cfdab3b5ad119b9b549de7">device_is_ready</a>(spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">port</a>);</div>
+<div class="line"><a id="l00835" name="l00835"></a><span class="lineno">  835</span>}</div>
+<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span> </div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gab0350b4adcc05dd9deaea2417d83e5e8">  858</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__gpio__interface.html#gab0350b4adcc05dd9deaea2417d83e5e8">gpio_pin_interrupt_configure</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span>                       <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin,</div>
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>                       <a class="code hl_typedef" href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">gpio_flags_t</a> flags);</div>
+<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span> </div>
+<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_gpio_pin_interrupt_configure(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span>                              <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin,</div>
+<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span>                              <a class="code hl_typedef" href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">gpio_flags_t</a> flags)</div>
+<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span>{</div>
+<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span>    <span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *api =</div>
+<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *)port-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span>    __unused <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *<span class="keyword">const</span> cfg =</div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *)port-&gt;<a class="code hl_variable" href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">config</a>;</div>
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__data.html">gpio_driver_data</a> *<span class="keyword">const</span> data =</div>
+<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__data.html">gpio_driver_data</a> *)port-&gt;data;</div>
+<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>    <span class="keyword">enum</span> gpio_int_trig trig;</div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span>    <span class="keyword">enum</span> gpio_int_mode mode;</div>
+<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span> </div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span>    <span class="keywordflow">if</span> (api-&gt;pin_interrupt_configure == NULL) {</div>
+<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span>    }</div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span> </div>
+<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span>    __ASSERT((flags &amp; (<a class="code hl_define" href="group__gpio__interface.html#ga91657faac28f9b213105dd61a419dd5a">GPIO_INT_DISABLE</a> | GPIO_INT_ENABLE))</div>
+<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span>         != (<a class="code hl_define" href="group__gpio__interface.html#ga91657faac28f9b213105dd61a419dd5a">GPIO_INT_DISABLE</a> | GPIO_INT_ENABLE),</div>
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>         <span class="stringliteral">&quot;Cannot both enable and disable interrupts&quot;</span>);</div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span> </div>
+<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span>    __ASSERT((flags &amp; (<a class="code hl_define" href="group__gpio__interface.html#ga91657faac28f9b213105dd61a419dd5a">GPIO_INT_DISABLE</a> | GPIO_INT_ENABLE)) != 0U,</div>
+<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span>         <span class="stringliteral">&quot;Must either enable or disable interrupts&quot;</span>);</div>
+<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span> </div>
+<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span>    __ASSERT(((flags &amp; GPIO_INT_ENABLE) == 0) ||</div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span>         ((flags &amp; GPIO_INT_EDGE) != 0) ||</div>
+<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span>         ((flags &amp; (GPIO_INT_LOW_0 | GPIO_INT_HIGH_1)) !=</div>
+<div class="line"><a id="l00889" name="l00889"></a><span class="lineno">  889</span>          (GPIO_INT_LOW_0 | GPIO_INT_HIGH_1)),</div>
+<div class="line"><a id="l00890" name="l00890"></a><span class="lineno">  890</span>         <span class="stringliteral">&quot;Only one of GPIO_INT_LOW_0, GPIO_INT_HIGH_1 can be &quot;</span></div>
+<div class="line"><a id="l00891" name="l00891"></a><span class="lineno">  891</span>         <span class="stringliteral">&quot;enabled for a level interrupt.&quot;</span>);</div>
+<div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span> </div>
+<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span>    __ASSERT(((flags &amp; GPIO_INT_ENABLE) == 0) ||</div>
+<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span>#ifdef CONFIG_GPIO_ENABLE_DISABLE_INTERRUPT</div>
+<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span>             ((flags &amp; (GPIO_INT_LOW_0 | GPIO_INT_HIGH_1)) != 0) ||</div>
+<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span>             (flags &amp; GPIO_INT_ENABLE_DISABLE_ONLY) != 0,</div>
+<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span>#<span class="keywordflow">else</span></div>
+<div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span>             ((flags &amp; (GPIO_INT_LOW_0 | GPIO_INT_HIGH_1)) != 0),</div>
+<div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span>#endif <span class="comment">/* CONFIG_GPIO_ENABLE_DISABLE_INTERRUPT */</span></div>
+<div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span>         <span class="stringliteral">&quot;At least one of GPIO_INT_LOW_0, GPIO_INT_HIGH_1 has to be &quot;</span></div>
+<div class="line"><a id="l00901" name="l00901"></a><span class="lineno">  901</span>         <span class="stringliteral">&quot;enabled.&quot;</span>);</div>
+<div class="line"><a id="l00902" name="l00902"></a><span class="lineno">  902</span> </div>
+<div class="line"><a id="l00903" name="l00903"></a><span class="lineno">  903</span>    __ASSERT((cfg-&gt;port_pin_mask &amp; (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin)) != 0U,</div>
+<div class="line"><a id="l00904" name="l00904"></a><span class="lineno">  904</span>         <span class="stringliteral">&quot;Unsupported pin&quot;</span>);</div>
+<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span> </div>
+<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span>    <span class="keywordflow">if</span> (((flags &amp; GPIO_INT_LEVELS_LOGICAL) != 0) &amp;&amp;</div>
+<div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span>        ((data-&gt;invert &amp; (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin)) != 0)) {</div>
+<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span>        <span class="comment">/* Invert signal bits */</span></div>
+<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span>        flags ^= (GPIO_INT_LOW_0 | GPIO_INT_HIGH_1);</div>
+<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span>    }</div>
+<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span> </div>
+<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span>    trig = (<span class="keyword">enum</span> gpio_int_trig)(flags &amp; (GPIO_INT_LOW_0 | GPIO_INT_HIGH_1));</div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span><span class="preprocessor">#ifdef CONFIG_GPIO_ENABLE_DISABLE_INTERRUPT</span></div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span>    mode = (<span class="keyword">enum</span> gpio_int_mode)(flags &amp; (GPIO_INT_EDGE | <a class="code hl_define" href="group__gpio__interface.html#ga91657faac28f9b213105dd61a419dd5a">GPIO_INT_DISABLE</a> | GPIO_INT_ENABLE |</div>
+<div class="line"><a id="l00915" name="l00915"></a><span class="lineno">  915</span>                         GPIO_INT_ENABLE_DISABLE_ONLY));</div>
+<div class="line"><a id="l00916" name="l00916"></a><span class="lineno">  916</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span>    mode = (<span class="keyword">enum</span> gpio_int_mode)(flags &amp; (GPIO_INT_EDGE | <a class="code hl_define" href="group__gpio__interface.html#ga91657faac28f9b213105dd61a419dd5a">GPIO_INT_DISABLE</a> | GPIO_INT_ENABLE));</div>
+<div class="line"><a id="l00918" name="l00918"></a><span class="lineno">  918</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_GPIO_ENABLE_DISABLE_INTERRUPT */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00919" name="l00919"></a><span class="lineno">  919</span> </div>
+<div class="line"><a id="l00920" name="l00920"></a><span class="lineno">  920</span>    <span class="keywordflow">return</span> api-&gt;pin_interrupt_configure(port, pin, mode, trig);</div>
+<div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span>}</div>
+<div class="line"><a id="l00922" name="l00922"></a><span class="lineno">  922</span> </div>
+<div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_interrupt_configure_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__dt__spec.html">gpio_dt_spec</a> *spec,</div>
+<div class="line"><a id="l00937" name="l00937"></a><span class="lineno">  937</span>                          <a class="code hl_typedef" href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">gpio_flags_t</a> flags)</div>
+<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span>{</div>
+<div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__gpio__interface.html#gab0350b4adcc05dd9deaea2417d83e5e8">gpio_pin_interrupt_configure</a>(spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">port</a>, spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#ad7e6fbb0cba0be94a47d4f2add056c84">pin</a>, flags);</div>
+<div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span>}</div>
+<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span> </div>
+<div class="line"><a id="l00957" name="l00957"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gaff24196bbdb18ab5300467b85a2cd14d">  957</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__gpio__interface.html#gaff24196bbdb18ab5300467b85a2cd14d">gpio_pin_configure</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span>                 <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin,</div>
+<div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span>                 <a class="code hl_typedef" href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">gpio_flags_t</a> flags);</div>
+<div class="line"><a id="l00960" name="l00960"></a><span class="lineno">  960</span> </div>
+<div class="line"><a id="l00961" name="l00961"></a><span class="lineno">  961</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_gpio_pin_configure(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l00962" name="l00962"></a><span class="lineno">  962</span>                        <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin,</div>
+<div class="line"><a id="l00963" name="l00963"></a><span class="lineno">  963</span>                        <a class="code hl_typedef" href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">gpio_flags_t</a> flags)</div>
+<div class="line"><a id="l00964" name="l00964"></a><span class="lineno">  964</span>{</div>
+<div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span>    <span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *api =</div>
+<div class="line"><a id="l00966" name="l00966"></a><span class="lineno">  966</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *)port-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00967" name="l00967"></a><span class="lineno">  967</span>    __unused <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *<span class="keyword">const</span> cfg =</div>
+<div class="line"><a id="l00968" name="l00968"></a><span class="lineno">  968</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *)port-&gt;config;</div>
+<div class="line"><a id="l00969" name="l00969"></a><span class="lineno">  969</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__data.html">gpio_driver_data</a> *data =</div>
+<div class="line"><a id="l00970" name="l00970"></a><span class="lineno">  970</span>        (<span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__data.html">gpio_driver_data</a> *)port-&gt;data;</div>
+<div class="line"><a id="l00971" name="l00971"></a><span class="lineno">  971</span> </div>
+<div class="line"><a id="l00972" name="l00972"></a><span class="lineno">  972</span>    __ASSERT((flags &amp; GPIO_INT_MASK) == 0,</div>
+<div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span>         <span class="stringliteral">&quot;Interrupt flags are not supported&quot;</span>);</div>
+<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span> </div>
+<div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span>    __ASSERT((flags &amp; (<a class="code hl_define" href="group__gpio__interface.html#gaaa7921da231fd2b96575fa522e2c1970">GPIO_PULL_UP</a> | <a class="code hl_define" href="group__gpio__interface.html#gadec1802e074f3021d464da09cd66c7cf">GPIO_PULL_DOWN</a>)) !=</div>
+<div class="line"><a id="l00976" name="l00976"></a><span class="lineno">  976</span>         (<a class="code hl_define" href="group__gpio__interface.html#gaaa7921da231fd2b96575fa522e2c1970">GPIO_PULL_UP</a> | <a class="code hl_define" href="group__gpio__interface.html#gadec1802e074f3021d464da09cd66c7cf">GPIO_PULL_DOWN</a>),</div>
+<div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span>         <span class="stringliteral">&quot;Pull Up and Pull Down should not be enabled simultaneously&quot;</span>);</div>
+<div class="line"><a id="l00978" name="l00978"></a><span class="lineno">  978</span> </div>
+<div class="line"><a id="l00979" name="l00979"></a><span class="lineno">  979</span>    __ASSERT(!((flags &amp; <a class="code hl_define" href="group__gpio__interface.html#ga7be6a0cc9aa65da1d4ee5751b4085853">GPIO_INPUT</a>) &amp;&amp; !(flags &amp; <a class="code hl_define" href="group__gpio__interface.html#ga0db9fe8a278e6ab7c5c6f14fe58e5eb1">GPIO_OUTPUT</a>) &amp;&amp; (flags &amp; GPIO_SINGLE_ENDED)),</div>
+<div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span>         <span class="stringliteral">&quot;Input cannot be enabled for &#39;Open Drain&#39;, &#39;Open Source&#39; modes without Output&quot;</span>);</div>
+<div class="line"><a id="l00981" name="l00981"></a><span class="lineno">  981</span> </div>
+<div class="line"><a id="l00982" name="l00982"></a><span class="lineno">  982</span>    __ASSERT_NO_MSG((flags &amp; GPIO_SINGLE_ENDED) != 0 ||</div>
+<div class="line"><a id="l00983" name="l00983"></a><span class="lineno">  983</span>            (flags &amp; GPIO_LINE_OPEN_DRAIN) == 0);</div>
+<div class="line"><a id="l00984" name="l00984"></a><span class="lineno">  984</span> </div>
+<div class="line"><a id="l00985" name="l00985"></a><span class="lineno">  985</span>    __ASSERT((flags &amp; (GPIO_OUTPUT_INIT_LOW | GPIO_OUTPUT_INIT_HIGH)) == 0</div>
+<div class="line"><a id="l00986" name="l00986"></a><span class="lineno">  986</span>         || (flags &amp; <a class="code hl_define" href="group__gpio__interface.html#ga0db9fe8a278e6ab7c5c6f14fe58e5eb1">GPIO_OUTPUT</a>) != 0,</div>
+<div class="line"><a id="l00987" name="l00987"></a><span class="lineno">  987</span>         <span class="stringliteral">&quot;Output needs to be enabled to be initialized low or high&quot;</span>);</div>
+<div class="line"><a id="l00988" name="l00988"></a><span class="lineno">  988</span> </div>
+<div class="line"><a id="l00989" name="l00989"></a><span class="lineno">  989</span>    __ASSERT((flags &amp; (GPIO_OUTPUT_INIT_LOW | GPIO_OUTPUT_INIT_HIGH))</div>
+<div class="line"><a id="l00990" name="l00990"></a><span class="lineno">  990</span>         != (GPIO_OUTPUT_INIT_LOW | GPIO_OUTPUT_INIT_HIGH),</div>
+<div class="line"><a id="l00991" name="l00991"></a><span class="lineno">  991</span>         <span class="stringliteral">&quot;Output cannot be initialized low and high&quot;</span>);</div>
+<div class="line"><a id="l00992" name="l00992"></a><span class="lineno">  992</span> </div>
+<div class="line"><a id="l00993" name="l00993"></a><span class="lineno">  993</span>    <span class="keywordflow">if</span> (((flags &amp; GPIO_OUTPUT_INIT_LOGICAL) != 0)</div>
+<div class="line"><a id="l00994" name="l00994"></a><span class="lineno">  994</span>        &amp;&amp; ((flags &amp; (GPIO_OUTPUT_INIT_LOW | GPIO_OUTPUT_INIT_HIGH)) != 0)</div>
+<div class="line"><a id="l00995" name="l00995"></a><span class="lineno">  995</span>        &amp;&amp; ((flags &amp; <a class="code hl_define" href="group__gpio__interface.html#ga62cea8989df2425e5e5e712217d65f46">GPIO_ACTIVE_LOW</a>) != 0)) {</div>
+<div class="line"><a id="l00996" name="l00996"></a><span class="lineno">  996</span>        flags ^= GPIO_OUTPUT_INIT_LOW | GPIO_OUTPUT_INIT_HIGH;</div>
+<div class="line"><a id="l00997" name="l00997"></a><span class="lineno">  997</span>    }</div>
+<div class="line"><a id="l00998" name="l00998"></a><span class="lineno">  998</span> </div>
+<div class="line"><a id="l00999" name="l00999"></a><span class="lineno">  999</span>    flags &amp;= ~GPIO_OUTPUT_INIT_LOGICAL;</div>
+<div class="line"><a id="l01000" name="l01000"></a><span class="lineno"> 1000</span> </div>
+<div class="line"><a id="l01001" name="l01001"></a><span class="lineno"> 1001</span>    __ASSERT((cfg-&gt;port_pin_mask &amp; (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin)) != 0U,</div>
+<div class="line"><a id="l01002" name="l01002"></a><span class="lineno"> 1002</span>         <span class="stringliteral">&quot;Unsupported pin&quot;</span>);</div>
+<div class="line"><a id="l01003" name="l01003"></a><span class="lineno"> 1003</span> </div>
+<div class="line"><a id="l01004" name="l01004"></a><span class="lineno"> 1004</span>    <span class="keywordflow">if</span> ((flags &amp; <a class="code hl_define" href="group__gpio__interface.html#ga62cea8989df2425e5e5e712217d65f46">GPIO_ACTIVE_LOW</a>) != 0) {</div>
+<div class="line"><a id="l01005" name="l01005"></a><span class="lineno"> 1005</span>        data-&gt;invert |= (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin);</div>
+<div class="line"><a id="l01006" name="l01006"></a><span class="lineno"> 1006</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l01007" name="l01007"></a><span class="lineno"> 1007</span>        data-&gt;invert &amp;= ~(<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin);</div>
+<div class="line"><a id="l01008" name="l01008"></a><span class="lineno"> 1008</span>    }</div>
+<div class="line"><a id="l01009" name="l01009"></a><span class="lineno"> 1009</span> </div>
+<div class="line"><a id="l01010" name="l01010"></a><span class="lineno"> 1010</span>    <span class="keywordflow">return</span> api-&gt;pin_configure(port, pin, flags);</div>
+<div class="line"><a id="l01011" name="l01011"></a><span class="lineno"> 1011</span>}</div>
+<div class="line"><a id="l01012" name="l01012"></a><span class="lineno"> 1012</span> </div>
+<div class="line"><a id="l01024" name="l01024"></a><span class="lineno"> 1024</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_configure_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__dt__spec.html">gpio_dt_spec</a> *spec,</div>
+<div class="line"><a id="l01025" name="l01025"></a><span class="lineno"> 1025</span>                    <a class="code hl_typedef" href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">gpio_flags_t</a> extra_flags)</div>
+<div class="line"><a id="l01026" name="l01026"></a><span class="lineno"> 1026</span>{</div>
+<div class="line"><a id="l01027" name="l01027"></a><span class="lineno"> 1027</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__gpio__interface.html#gaff24196bbdb18ab5300467b85a2cd14d">gpio_pin_configure</a>(spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">port</a>,</div>
+<div class="line"><a id="l01028" name="l01028"></a><span class="lineno"> 1028</span>                  spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#ad7e6fbb0cba0be94a47d4f2add056c84">pin</a>,</div>
+<div class="line"><a id="l01029" name="l01029"></a><span class="lineno"> 1029</span>                  spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#ae3b90e7e22708798c67da94f72ad1ab0">dt_flags</a> | extra_flags);</div>
+<div class="line"><a id="l01030" name="l01030"></a><span class="lineno"> 1030</span>}</div>
+<div class="line"><a id="l01031" name="l01031"></a><span class="lineno"> 1031</span> </div>
+<div class="line"><a id="l01050" name="l01050"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga5da2ed2712a88e6e2ee0636564d330ab"> 1050</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__gpio__interface.html#ga5da2ed2712a88e6e2ee0636564d330ab">gpio_port_get_direction</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port, <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> map,</div>
+<div class="line"><a id="l01051" name="l01051"></a><span class="lineno"> 1051</span>                      <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> *inputs, <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> *outputs);</div>
+<div class="line"><a id="l01052" name="l01052"></a><span class="lineno"> 1052</span> </div>
+<div class="line"><a id="l01053" name="l01053"></a><span class="lineno"> 1053</span><span class="preprocessor">#ifdef CONFIG_GPIO_GET_DIRECTION</span></div>
+<div class="line"><a id="l01054" name="l01054"></a><span class="lineno"> 1054</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_gpio_port_get_direction(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port, <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> map,</div>
+<div class="line"><a id="l01055" name="l01055"></a><span class="lineno"> 1055</span>                         <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> *inputs,</div>
+<div class="line"><a id="l01056" name="l01056"></a><span class="lineno"> 1056</span>                         <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> *outputs)</div>
+<div class="line"><a id="l01057" name="l01057"></a><span class="lineno"> 1057</span>{</div>
+<div class="line"><a id="l01058" name="l01058"></a><span class="lineno"> 1058</span>    <span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *)port-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01059" name="l01059"></a><span class="lineno"> 1059</span> </div>
+<div class="line"><a id="l01060" name="l01060"></a><span class="lineno"> 1060</span>    <span class="keywordflow">if</span> (api-&gt;port_get_direction == NULL) {</div>
+<div class="line"><a id="l01061" name="l01061"></a><span class="lineno"> 1061</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l01062" name="l01062"></a><span class="lineno"> 1062</span>    }</div>
+<div class="line"><a id="l01063" name="l01063"></a><span class="lineno"> 1063</span> </div>
+<div class="line"><a id="l01064" name="l01064"></a><span class="lineno"> 1064</span>    <span class="keywordflow">return</span> api-&gt;port_get_direction(port, map, inputs, outputs);</div>
+<div class="line"><a id="l01065" name="l01065"></a><span class="lineno"> 1065</span>}</div>
+<div class="line"><a id="l01066" name="l01066"></a><span class="lineno"> 1066</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_GPIO_GET_DIRECTION */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l01067" name="l01067"></a><span class="lineno"> 1067</span> </div>
+<div class="line"><a id="l01080" name="l01080"></a><span class="lineno"> 1080</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_is_input(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port, <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin)</div>
+<div class="line"><a id="l01081" name="l01081"></a><span class="lineno"> 1081</span>{</div>
+<div class="line"><a id="l01082" name="l01082"></a><span class="lineno"> 1082</span>    <span class="keywordtype">int</span> rv;</div>
+<div class="line"><a id="l01083" name="l01083"></a><span class="lineno"> 1083</span>    <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins;</div>
+<div class="line"><a id="l01084" name="l01084"></a><span class="lineno"> 1084</span>    __unused <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *cfg =</div>
+<div class="line"><a id="l01085" name="l01085"></a><span class="lineno"> 1085</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *)port-&gt;<a class="code hl_variable" href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">config</a>;</div>
+<div class="line"><a id="l01086" name="l01086"></a><span class="lineno"> 1086</span> </div>
+<div class="line"><a id="l01087" name="l01087"></a><span class="lineno"> 1087</span>    __ASSERT((cfg-&gt;port_pin_mask &amp; (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin)) != 0U, <span class="stringliteral">&quot;Unsupported pin&quot;</span>);</div>
+<div class="line"><a id="l01088" name="l01088"></a><span class="lineno"> 1088</span> </div>
+<div class="line"><a id="l01089" name="l01089"></a><span class="lineno"> 1089</span>    rv = <a class="code hl_function" href="group__gpio__interface.html#ga5da2ed2712a88e6e2ee0636564d330ab">gpio_port_get_direction</a>(port, <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin), &amp;pins, NULL);</div>
+<div class="line"><a id="l01090" name="l01090"></a><span class="lineno"> 1090</span>    <span class="keywordflow">if</span> (rv &lt; 0) {</div>
+<div class="line"><a id="l01091" name="l01091"></a><span class="lineno"> 1091</span>        <span class="keywordflow">return</span> rv;</div>
+<div class="line"><a id="l01092" name="l01092"></a><span class="lineno"> 1092</span>    }</div>
+<div class="line"><a id="l01093" name="l01093"></a><span class="lineno"> 1093</span> </div>
+<div class="line"><a id="l01094" name="l01094"></a><span class="lineno"> 1094</span>    <span class="keywordflow">return</span> (<span class="keywordtype">int</span>)!!((<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin) &amp; pins);</div>
+<div class="line"><a id="l01095" name="l01095"></a><span class="lineno"> 1095</span>}</div>
+<div class="line"><a id="l01096" name="l01096"></a><span class="lineno"> 1096</span> </div>
+<div class="line"><a id="l01108" name="l01108"></a><span class="lineno"> 1108</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_is_input_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__dt__spec.html">gpio_dt_spec</a> *spec)</div>
+<div class="line"><a id="l01109" name="l01109"></a><span class="lineno"> 1109</span>{</div>
+<div class="line"><a id="l01110" name="l01110"></a><span class="lineno"> 1110</span>    <span class="keywordflow">return</span> gpio_pin_is_input(spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">port</a>, spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#ad7e6fbb0cba0be94a47d4f2add056c84">pin</a>);</div>
+<div class="line"><a id="l01111" name="l01111"></a><span class="lineno"> 1111</span>}</div>
+<div class="line"><a id="l01112" name="l01112"></a><span class="lineno"> 1112</span> </div>
+<div class="line"><a id="l01125" name="l01125"></a><span class="lineno"> 1125</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_is_output(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port, <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin)</div>
+<div class="line"><a id="l01126" name="l01126"></a><span class="lineno"> 1126</span>{</div>
+<div class="line"><a id="l01127" name="l01127"></a><span class="lineno"> 1127</span>    <span class="keywordtype">int</span> rv;</div>
+<div class="line"><a id="l01128" name="l01128"></a><span class="lineno"> 1128</span>    <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins;</div>
+<div class="line"><a id="l01129" name="l01129"></a><span class="lineno"> 1129</span>    __unused <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *cfg =</div>
+<div class="line"><a id="l01130" name="l01130"></a><span class="lineno"> 1130</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *)port-&gt;<a class="code hl_variable" href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">config</a>;</div>
+<div class="line"><a id="l01131" name="l01131"></a><span class="lineno"> 1131</span> </div>
+<div class="line"><a id="l01132" name="l01132"></a><span class="lineno"> 1132</span>    __ASSERT((cfg-&gt;port_pin_mask &amp; (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin)) != 0U, <span class="stringliteral">&quot;Unsupported pin&quot;</span>);</div>
+<div class="line"><a id="l01133" name="l01133"></a><span class="lineno"> 1133</span> </div>
+<div class="line"><a id="l01134" name="l01134"></a><span class="lineno"> 1134</span>    rv = <a class="code hl_function" href="group__gpio__interface.html#ga5da2ed2712a88e6e2ee0636564d330ab">gpio_port_get_direction</a>(port, <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin), NULL, &amp;pins);</div>
+<div class="line"><a id="l01135" name="l01135"></a><span class="lineno"> 1135</span>    <span class="keywordflow">if</span> (rv &lt; 0) {</div>
+<div class="line"><a id="l01136" name="l01136"></a><span class="lineno"> 1136</span>        <span class="keywordflow">return</span> rv;</div>
+<div class="line"><a id="l01137" name="l01137"></a><span class="lineno"> 1137</span>    }</div>
+<div class="line"><a id="l01138" name="l01138"></a><span class="lineno"> 1138</span> </div>
+<div class="line"><a id="l01139" name="l01139"></a><span class="lineno"> 1139</span>    <span class="keywordflow">return</span> (<span class="keywordtype">int</span>)!!((<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin) &amp; pins);</div>
+<div class="line"><a id="l01140" name="l01140"></a><span class="lineno"> 1140</span>}</div>
+<div class="line"><a id="l01141" name="l01141"></a><span class="lineno"> 1141</span> </div>
+<div class="line"><a id="l01153" name="l01153"></a><span class="lineno"> 1153</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_is_output_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__dt__spec.html">gpio_dt_spec</a> *spec)</div>
+<div class="line"><a id="l01154" name="l01154"></a><span class="lineno"> 1154</span>{</div>
+<div class="line"><a id="l01155" name="l01155"></a><span class="lineno"> 1155</span>    <span class="keywordflow">return</span> gpio_pin_is_output(spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">port</a>, spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#ad7e6fbb0cba0be94a47d4f2add056c84">pin</a>);</div>
+<div class="line"><a id="l01156" name="l01156"></a><span class="lineno"> 1156</span>}</div>
+<div class="line"><a id="l01157" name="l01157"></a><span class="lineno"> 1157</span> </div>
+<div class="line"><a id="l01173" name="l01173"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gafc0d74167bad294c8369b14c9a07eb30"> 1173</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__gpio__interface.html#gafc0d74167bad294c8369b14c9a07eb30">gpio_pin_get_config</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port, <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin,</div>
+<div class="line"><a id="l01174" name="l01174"></a><span class="lineno"> 1174</span>                  <a class="code hl_typedef" href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">gpio_flags_t</a> *flags);</div>
+<div class="line"><a id="l01175" name="l01175"></a><span class="lineno"> 1175</span> </div>
+<div class="line"><a id="l01176" name="l01176"></a><span class="lineno"> 1176</span><span class="preprocessor">#ifdef CONFIG_GPIO_GET_CONFIG</span></div>
+<div class="line"><a id="l01177" name="l01177"></a><span class="lineno"> 1177</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_gpio_pin_get_config(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01178" name="l01178"></a><span class="lineno"> 1178</span>                         <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin,</div>
+<div class="line"><a id="l01179" name="l01179"></a><span class="lineno"> 1179</span>                         <a class="code hl_typedef" href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">gpio_flags_t</a> *flags)</div>
+<div class="line"><a id="l01180" name="l01180"></a><span class="lineno"> 1180</span>{</div>
+<div class="line"><a id="l01181" name="l01181"></a><span class="lineno"> 1181</span>    <span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *api =</div>
+<div class="line"><a id="l01182" name="l01182"></a><span class="lineno"> 1182</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *)port-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01183" name="l01183"></a><span class="lineno"> 1183</span> </div>
+<div class="line"><a id="l01184" name="l01184"></a><span class="lineno"> 1184</span>    <span class="keywordflow">if</span> (api-&gt;pin_get_config == NULL)</div>
+<div class="line"><a id="l01185" name="l01185"></a><span class="lineno"> 1185</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l01186" name="l01186"></a><span class="lineno"> 1186</span> </div>
+<div class="line"><a id="l01187" name="l01187"></a><span class="lineno"> 1187</span>    <span class="keywordflow">return</span> api-&gt;pin_get_config(port, pin, flags);</div>
+<div class="line"><a id="l01188" name="l01188"></a><span class="lineno"> 1188</span>}</div>
+<div class="line"><a id="l01189" name="l01189"></a><span class="lineno"> 1189</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01190" name="l01190"></a><span class="lineno"> 1190</span> </div>
+<div class="line"><a id="l01203" name="l01203"></a><span class="lineno"> 1203</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_get_config_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__dt__spec.html">gpio_dt_spec</a> *spec,</div>
+<div class="line"><a id="l01204" name="l01204"></a><span class="lineno"> 1204</span>                    <a class="code hl_typedef" href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">gpio_flags_t</a> *flags)</div>
+<div class="line"><a id="l01205" name="l01205"></a><span class="lineno"> 1205</span>{</div>
+<div class="line"><a id="l01206" name="l01206"></a><span class="lineno"> 1206</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__gpio__interface.html#gafc0d74167bad294c8369b14c9a07eb30">gpio_pin_get_config</a>(spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">port</a>, spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#ad7e6fbb0cba0be94a47d4f2add056c84">pin</a>, flags);</div>
+<div class="line"><a id="l01207" name="l01207"></a><span class="lineno"> 1207</span>}</div>
+<div class="line"><a id="l01208" name="l01208"></a><span class="lineno"> 1208</span> </div>
+<div class="line"><a id="l01226" name="l01226"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gacabecda1788142ab097544dd5eac9fca"> 1226</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__gpio__interface.html#gacabecda1788142ab097544dd5eac9fca">gpio_port_get_raw</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01227" name="l01227"></a><span class="lineno"> 1227</span>                <a class="code hl_typedef" href="group__gpio__interface.html#gabcebe24c93486896e1dfc2459ec25693">gpio_port_value_t</a> *value);</div>
+<div class="line"><a id="l01228" name="l01228"></a><span class="lineno"> 1228</span> </div>
+<div class="line"><a id="l01229" name="l01229"></a><span class="lineno"> 1229</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_gpio_port_get_raw(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01230" name="l01230"></a><span class="lineno"> 1230</span>                       <a class="code hl_typedef" href="group__gpio__interface.html#gabcebe24c93486896e1dfc2459ec25693">gpio_port_value_t</a> *value)</div>
+<div class="line"><a id="l01231" name="l01231"></a><span class="lineno"> 1231</span>{</div>
+<div class="line"><a id="l01232" name="l01232"></a><span class="lineno"> 1232</span>    <span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *api =</div>
+<div class="line"><a id="l01233" name="l01233"></a><span class="lineno"> 1233</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *)port-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01234" name="l01234"></a><span class="lineno"> 1234</span> </div>
+<div class="line"><a id="l01235" name="l01235"></a><span class="lineno"> 1235</span>    <span class="keywordflow">return</span> api-&gt;port_get_raw(port, value);</div>
+<div class="line"><a id="l01236" name="l01236"></a><span class="lineno"> 1236</span>}</div>
+<div class="line"><a id="l01237" name="l01237"></a><span class="lineno"> 1237</span> </div>
+<div class="line"><a id="l01256" name="l01256"></a><span class="lineno"> 1256</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_port_get(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01257" name="l01257"></a><span class="lineno"> 1257</span>                <a class="code hl_typedef" href="group__gpio__interface.html#gabcebe24c93486896e1dfc2459ec25693">gpio_port_value_t</a> *value)</div>
+<div class="line"><a id="l01258" name="l01258"></a><span class="lineno"> 1258</span>{</div>
+<div class="line"><a id="l01259" name="l01259"></a><span class="lineno"> 1259</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__data.html">gpio_driver_data</a> *<span class="keyword">const</span> data =</div>
+<div class="line"><a id="l01260" name="l01260"></a><span class="lineno"> 1260</span>            (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__data.html">gpio_driver_data</a> *)port-&gt;<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l01261" name="l01261"></a><span class="lineno"> 1261</span>    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a id="l01262" name="l01262"></a><span class="lineno"> 1262</span> </div>
+<div class="line"><a id="l01263" name="l01263"></a><span class="lineno"> 1263</span>    ret = <a class="code hl_function" href="group__gpio__interface.html#gacabecda1788142ab097544dd5eac9fca">gpio_port_get_raw</a>(port, value);</div>
+<div class="line"><a id="l01264" name="l01264"></a><span class="lineno"> 1264</span>    <span class="keywordflow">if</span> (ret == 0) {</div>
+<div class="line"><a id="l01265" name="l01265"></a><span class="lineno"> 1265</span>        *value ^= data-&gt;invert;</div>
+<div class="line"><a id="l01266" name="l01266"></a><span class="lineno"> 1266</span>    }</div>
+<div class="line"><a id="l01267" name="l01267"></a><span class="lineno"> 1267</span> </div>
+<div class="line"><a id="l01268" name="l01268"></a><span class="lineno"> 1268</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l01269" name="l01269"></a><span class="lineno"> 1269</span>}</div>
+<div class="line"><a id="l01270" name="l01270"></a><span class="lineno"> 1270</span> </div>
+<div class="line"><a id="l01288" name="l01288"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga32858c8282e98163f2b57cb46bf3333a"> 1288</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__gpio__interface.html#ga32858c8282e98163f2b57cb46bf3333a">gpio_port_set_masked_raw</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01289" name="l01289"></a><span class="lineno"> 1289</span>                       <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> mask,</div>
+<div class="line"><a id="l01290" name="l01290"></a><span class="lineno"> 1290</span>                       <a class="code hl_typedef" href="group__gpio__interface.html#gabcebe24c93486896e1dfc2459ec25693">gpio_port_value_t</a> value);</div>
+<div class="line"><a id="l01291" name="l01291"></a><span class="lineno"> 1291</span> </div>
+<div class="line"><a id="l01292" name="l01292"></a><span class="lineno"> 1292</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_gpio_port_set_masked_raw(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01293" name="l01293"></a><span class="lineno"> 1293</span>                          <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> mask,</div>
+<div class="line"><a id="l01294" name="l01294"></a><span class="lineno"> 1294</span>                          <a class="code hl_typedef" href="group__gpio__interface.html#gabcebe24c93486896e1dfc2459ec25693">gpio_port_value_t</a> value)</div>
+<div class="line"><a id="l01295" name="l01295"></a><span class="lineno"> 1295</span>{</div>
+<div class="line"><a id="l01296" name="l01296"></a><span class="lineno"> 1296</span>    <span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *api =</div>
+<div class="line"><a id="l01297" name="l01297"></a><span class="lineno"> 1297</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *)port-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01298" name="l01298"></a><span class="lineno"> 1298</span> </div>
+<div class="line"><a id="l01299" name="l01299"></a><span class="lineno"> 1299</span>    <span class="keywordflow">return</span> api-&gt;port_set_masked_raw(port, mask, value);</div>
+<div class="line"><a id="l01300" name="l01300"></a><span class="lineno"> 1300</span>}</div>
+<div class="line"><a id="l01301" name="l01301"></a><span class="lineno"> 1301</span> </div>
+<div class="line"><a id="l01322" name="l01322"></a><span class="lineno"> 1322</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_port_set_masked(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01323" name="l01323"></a><span class="lineno"> 1323</span>                       <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> mask,</div>
+<div class="line"><a id="l01324" name="l01324"></a><span class="lineno"> 1324</span>                       <a class="code hl_typedef" href="group__gpio__interface.html#gabcebe24c93486896e1dfc2459ec25693">gpio_port_value_t</a> value)</div>
+<div class="line"><a id="l01325" name="l01325"></a><span class="lineno"> 1325</span>{</div>
+<div class="line"><a id="l01326" name="l01326"></a><span class="lineno"> 1326</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__data.html">gpio_driver_data</a> *<span class="keyword">const</span> data =</div>
+<div class="line"><a id="l01327" name="l01327"></a><span class="lineno"> 1327</span>            (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__data.html">gpio_driver_data</a> *)port-&gt;<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l01328" name="l01328"></a><span class="lineno"> 1328</span> </div>
+<div class="line"><a id="l01329" name="l01329"></a><span class="lineno"> 1329</span>    value ^= data-&gt;invert;</div>
+<div class="line"><a id="l01330" name="l01330"></a><span class="lineno"> 1330</span> </div>
+<div class="line"><a id="l01331" name="l01331"></a><span class="lineno"> 1331</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__gpio__interface.html#ga32858c8282e98163f2b57cb46bf3333a">gpio_port_set_masked_raw</a>(port, mask, value);</div>
+<div class="line"><a id="l01332" name="l01332"></a><span class="lineno"> 1332</span>}</div>
+<div class="line"><a id="l01333" name="l01333"></a><span class="lineno"> 1333</span> </div>
+<div class="line"><a id="l01344" name="l01344"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga29fd9846ff20fdf26de144fcd61a3b1a"> 1344</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__gpio__interface.html#ga29fd9846ff20fdf26de144fcd61a3b1a">gpio_port_set_bits_raw</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01345" name="l01345"></a><span class="lineno"> 1345</span>                     <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins);</div>
+<div class="line"><a id="l01346" name="l01346"></a><span class="lineno"> 1346</span> </div>
+<div class="line"><a id="l01347" name="l01347"></a><span class="lineno"> 1347</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_gpio_port_set_bits_raw(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01348" name="l01348"></a><span class="lineno"> 1348</span>                        <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins)</div>
+<div class="line"><a id="l01349" name="l01349"></a><span class="lineno"> 1349</span>{</div>
+<div class="line"><a id="l01350" name="l01350"></a><span class="lineno"> 1350</span>    <span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *api =</div>
+<div class="line"><a id="l01351" name="l01351"></a><span class="lineno"> 1351</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *)port-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01352" name="l01352"></a><span class="lineno"> 1352</span> </div>
+<div class="line"><a id="l01353" name="l01353"></a><span class="lineno"> 1353</span>    <span class="keywordflow">return</span> api-&gt;port_set_bits_raw(port, pins);</div>
+<div class="line"><a id="l01354" name="l01354"></a><span class="lineno"> 1354</span>}</div>
+<div class="line"><a id="l01355" name="l01355"></a><span class="lineno"> 1355</span> </div>
+<div class="line"><a id="l01366" name="l01366"></a><span class="lineno"> 1366</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_port_set_bits(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01367" name="l01367"></a><span class="lineno"> 1367</span>                     <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins)</div>
+<div class="line"><a id="l01368" name="l01368"></a><span class="lineno"> 1368</span>{</div>
+<div class="line"><a id="l01369" name="l01369"></a><span class="lineno"> 1369</span>    <span class="keywordflow">return</span> gpio_port_set_masked(port, pins, pins);</div>
+<div class="line"><a id="l01370" name="l01370"></a><span class="lineno"> 1370</span>}</div>
+<div class="line"><a id="l01371" name="l01371"></a><span class="lineno"> 1371</span> </div>
+<div class="line"><a id="l01382" name="l01382"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga5855648f26a433b455e7919957b1d92c"> 1382</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__gpio__interface.html#ga5855648f26a433b455e7919957b1d92c">gpio_port_clear_bits_raw</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01383" name="l01383"></a><span class="lineno"> 1383</span>                       <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins);</div>
+<div class="line"><a id="l01384" name="l01384"></a><span class="lineno"> 1384</span> </div>
+<div class="line"><a id="l01385" name="l01385"></a><span class="lineno"> 1385</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_gpio_port_clear_bits_raw(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01386" name="l01386"></a><span class="lineno"> 1386</span>                          <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins)</div>
+<div class="line"><a id="l01387" name="l01387"></a><span class="lineno"> 1387</span>{</div>
+<div class="line"><a id="l01388" name="l01388"></a><span class="lineno"> 1388</span>    <span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *api =</div>
+<div class="line"><a id="l01389" name="l01389"></a><span class="lineno"> 1389</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *)port-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01390" name="l01390"></a><span class="lineno"> 1390</span> </div>
+<div class="line"><a id="l01391" name="l01391"></a><span class="lineno"> 1391</span>    <span class="keywordflow">return</span> api-&gt;port_clear_bits_raw(port, pins);</div>
+<div class="line"><a id="l01392" name="l01392"></a><span class="lineno"> 1392</span>}</div>
+<div class="line"><a id="l01393" name="l01393"></a><span class="lineno"> 1393</span> </div>
+<div class="line"><a id="l01404" name="l01404"></a><span class="lineno"> 1404</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_port_clear_bits(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01405" name="l01405"></a><span class="lineno"> 1405</span>                       <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins)</div>
+<div class="line"><a id="l01406" name="l01406"></a><span class="lineno"> 1406</span>{</div>
+<div class="line"><a id="l01407" name="l01407"></a><span class="lineno"> 1407</span>    <span class="keywordflow">return</span> gpio_port_set_masked(port, pins, 0);</div>
+<div class="line"><a id="l01408" name="l01408"></a><span class="lineno"> 1408</span>}</div>
+<div class="line"><a id="l01409" name="l01409"></a><span class="lineno"> 1409</span> </div>
+<div class="line"><a id="l01420" name="l01420"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#ga63b817d34acbbf0ff51b405f3579657f"> 1420</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__gpio__interface.html#ga63b817d34acbbf0ff51b405f3579657f">gpio_port_toggle_bits</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01421" name="l01421"></a><span class="lineno"> 1421</span>                    <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins);</div>
+<div class="line"><a id="l01422" name="l01422"></a><span class="lineno"> 1422</span> </div>
+<div class="line"><a id="l01423" name="l01423"></a><span class="lineno"> 1423</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_gpio_port_toggle_bits(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01424" name="l01424"></a><span class="lineno"> 1424</span>                           <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pins)</div>
+<div class="line"><a id="l01425" name="l01425"></a><span class="lineno"> 1425</span>{</div>
+<div class="line"><a id="l01426" name="l01426"></a><span class="lineno"> 1426</span>    <span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *api =</div>
+<div class="line"><a id="l01427" name="l01427"></a><span class="lineno"> 1427</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *)port-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01428" name="l01428"></a><span class="lineno"> 1428</span> </div>
+<div class="line"><a id="l01429" name="l01429"></a><span class="lineno"> 1429</span>    <span class="keywordflow">return</span> api-&gt;port_toggle_bits(port, pins);</div>
+<div class="line"><a id="l01430" name="l01430"></a><span class="lineno"> 1430</span>}</div>
+<div class="line"><a id="l01431" name="l01431"></a><span class="lineno"> 1431</span> </div>
+<div class="line"><a id="l01443" name="l01443"></a><span class="lineno"> 1443</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_port_set_clr_bits_raw(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01444" name="l01444"></a><span class="lineno"> 1444</span>                         <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> set_pins,</div>
+<div class="line"><a id="l01445" name="l01445"></a><span class="lineno"> 1445</span>                         <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> clear_pins)</div>
+<div class="line"><a id="l01446" name="l01446"></a><span class="lineno"> 1446</span>{</div>
+<div class="line"><a id="l01447" name="l01447"></a><span class="lineno"> 1447</span>    __ASSERT((set_pins &amp; clear_pins) == 0, <span class="stringliteral">&quot;Set and Clear pins overlap&quot;</span>);</div>
+<div class="line"><a id="l01448" name="l01448"></a><span class="lineno"> 1448</span> </div>
+<div class="line"><a id="l01449" name="l01449"></a><span class="lineno"> 1449</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__gpio__interface.html#ga32858c8282e98163f2b57cb46bf3333a">gpio_port_set_masked_raw</a>(port, set_pins | clear_pins, set_pins);</div>
+<div class="line"><a id="l01450" name="l01450"></a><span class="lineno"> 1450</span>}</div>
+<div class="line"><a id="l01451" name="l01451"></a><span class="lineno"> 1451</span> </div>
+<div class="line"><a id="l01463" name="l01463"></a><span class="lineno"> 1463</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_port_set_clr_bits(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01464" name="l01464"></a><span class="lineno"> 1464</span>                     <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> set_pins,</div>
+<div class="line"><a id="l01465" name="l01465"></a><span class="lineno"> 1465</span>                     <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> clear_pins)</div>
+<div class="line"><a id="l01466" name="l01466"></a><span class="lineno"> 1466</span>{</div>
+<div class="line"><a id="l01467" name="l01467"></a><span class="lineno"> 1467</span>    __ASSERT((set_pins &amp; clear_pins) == 0, <span class="stringliteral">&quot;Set and Clear pins overlap&quot;</span>);</div>
+<div class="line"><a id="l01468" name="l01468"></a><span class="lineno"> 1468</span> </div>
+<div class="line"><a id="l01469" name="l01469"></a><span class="lineno"> 1469</span>    <span class="keywordflow">return</span> gpio_port_set_masked(port, set_pins | clear_pins, set_pins);</div>
+<div class="line"><a id="l01470" name="l01470"></a><span class="lineno"> 1470</span>}</div>
+<div class="line"><a id="l01471" name="l01471"></a><span class="lineno"> 1471</span> </div>
+<div class="line"><a id="l01487" name="l01487"></a><span class="lineno"> 1487</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_get_raw(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port, <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin)</div>
+<div class="line"><a id="l01488" name="l01488"></a><span class="lineno"> 1488</span>{</div>
+<div class="line"><a id="l01489" name="l01489"></a><span class="lineno"> 1489</span>    __unused <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *<span class="keyword">const</span> cfg =</div>
+<div class="line"><a id="l01490" name="l01490"></a><span class="lineno"> 1490</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *)port-&gt;<a class="code hl_variable" href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">config</a>;</div>
+<div class="line"><a id="l01491" name="l01491"></a><span class="lineno"> 1491</span>    <a class="code hl_typedef" href="group__gpio__interface.html#gabcebe24c93486896e1dfc2459ec25693">gpio_port_value_t</a> value;</div>
+<div class="line"><a id="l01492" name="l01492"></a><span class="lineno"> 1492</span>    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a id="l01493" name="l01493"></a><span class="lineno"> 1493</span> </div>
+<div class="line"><a id="l01494" name="l01494"></a><span class="lineno"> 1494</span>    __ASSERT((cfg-&gt;port_pin_mask &amp; (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin)) != 0U,</div>
+<div class="line"><a id="l01495" name="l01495"></a><span class="lineno"> 1495</span>         <span class="stringliteral">&quot;Unsupported pin&quot;</span>);</div>
+<div class="line"><a id="l01496" name="l01496"></a><span class="lineno"> 1496</span> </div>
+<div class="line"><a id="l01497" name="l01497"></a><span class="lineno"> 1497</span>    ret = <a class="code hl_function" href="group__gpio__interface.html#gacabecda1788142ab097544dd5eac9fca">gpio_port_get_raw</a>(port, &amp;value);</div>
+<div class="line"><a id="l01498" name="l01498"></a><span class="lineno"> 1498</span>    <span class="keywordflow">if</span> (ret == 0) {</div>
+<div class="line"><a id="l01499" name="l01499"></a><span class="lineno"> 1499</span>        ret = (value &amp; (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin)) != 0 ? 1 : 0;</div>
+<div class="line"><a id="l01500" name="l01500"></a><span class="lineno"> 1500</span>    }</div>
+<div class="line"><a id="l01501" name="l01501"></a><span class="lineno"> 1501</span> </div>
+<div class="line"><a id="l01502" name="l01502"></a><span class="lineno"> 1502</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l01503" name="l01503"></a><span class="lineno"> 1503</span>}</div>
+<div class="line"><a id="l01504" name="l01504"></a><span class="lineno"> 1504</span> </div>
+<div class="line"><a id="l01524" name="l01524"></a><span class="lineno"> 1524</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_get(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port, <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin)</div>
+<div class="line"><a id="l01525" name="l01525"></a><span class="lineno"> 1525</span>{</div>
+<div class="line"><a id="l01526" name="l01526"></a><span class="lineno"> 1526</span>    __unused <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *<span class="keyword">const</span> cfg =</div>
+<div class="line"><a id="l01527" name="l01527"></a><span class="lineno"> 1527</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *)port-&gt;<a class="code hl_variable" href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">config</a>;</div>
+<div class="line"><a id="l01528" name="l01528"></a><span class="lineno"> 1528</span>    <a class="code hl_typedef" href="group__gpio__interface.html#gabcebe24c93486896e1dfc2459ec25693">gpio_port_value_t</a> value;</div>
+<div class="line"><a id="l01529" name="l01529"></a><span class="lineno"> 1529</span>    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a id="l01530" name="l01530"></a><span class="lineno"> 1530</span> </div>
+<div class="line"><a id="l01531" name="l01531"></a><span class="lineno"> 1531</span>    __ASSERT((cfg-&gt;port_pin_mask &amp; (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin)) != 0U,</div>
+<div class="line"><a id="l01532" name="l01532"></a><span class="lineno"> 1532</span>         <span class="stringliteral">&quot;Unsupported pin&quot;</span>);</div>
+<div class="line"><a id="l01533" name="l01533"></a><span class="lineno"> 1533</span> </div>
+<div class="line"><a id="l01534" name="l01534"></a><span class="lineno"> 1534</span>    ret = gpio_port_get(port, &amp;value);</div>
+<div class="line"><a id="l01535" name="l01535"></a><span class="lineno"> 1535</span>    <span class="keywordflow">if</span> (ret == 0) {</div>
+<div class="line"><a id="l01536" name="l01536"></a><span class="lineno"> 1536</span>        ret = (value &amp; (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin)) != 0 ? 1 : 0;</div>
+<div class="line"><a id="l01537" name="l01537"></a><span class="lineno"> 1537</span>    }</div>
+<div class="line"><a id="l01538" name="l01538"></a><span class="lineno"> 1538</span> </div>
+<div class="line"><a id="l01539" name="l01539"></a><span class="lineno"> 1539</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l01540" name="l01540"></a><span class="lineno"> 1540</span>}</div>
+<div class="line"><a id="l01541" name="l01541"></a><span class="lineno"> 1541</span> </div>
+<div class="line"><a id="l01552" name="l01552"></a><span class="lineno"> 1552</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_get_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__dt__spec.html">gpio_dt_spec</a> *spec)</div>
+<div class="line"><a id="l01553" name="l01553"></a><span class="lineno"> 1553</span>{</div>
+<div class="line"><a id="l01554" name="l01554"></a><span class="lineno"> 1554</span>    <span class="keywordflow">return</span> gpio_pin_get(spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">port</a>, spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#ad7e6fbb0cba0be94a47d4f2add056c84">pin</a>);</div>
+<div class="line"><a id="l01555" name="l01555"></a><span class="lineno"> 1555</span>}</div>
+<div class="line"><a id="l01556" name="l01556"></a><span class="lineno"> 1556</span> </div>
+<div class="line"><a id="l01572" name="l01572"></a><span class="lineno"> 1572</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_set_raw(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port, <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin,</div>
+<div class="line"><a id="l01573" name="l01573"></a><span class="lineno"> 1573</span>                   <span class="keywordtype">int</span> value)</div>
+<div class="line"><a id="l01574" name="l01574"></a><span class="lineno"> 1574</span>{</div>
+<div class="line"><a id="l01575" name="l01575"></a><span class="lineno"> 1575</span>    __unused <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *<span class="keyword">const</span> cfg =</div>
+<div class="line"><a id="l01576" name="l01576"></a><span class="lineno"> 1576</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *)port-&gt;<a class="code hl_variable" href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">config</a>;</div>
+<div class="line"><a id="l01577" name="l01577"></a><span class="lineno"> 1577</span>    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a id="l01578" name="l01578"></a><span class="lineno"> 1578</span> </div>
+<div class="line"><a id="l01579" name="l01579"></a><span class="lineno"> 1579</span>    __ASSERT((cfg-&gt;port_pin_mask &amp; (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin)) != 0U,</div>
+<div class="line"><a id="l01580" name="l01580"></a><span class="lineno"> 1580</span>         <span class="stringliteral">&quot;Unsupported pin&quot;</span>);</div>
+<div class="line"><a id="l01581" name="l01581"></a><span class="lineno"> 1581</span> </div>
+<div class="line"><a id="l01582" name="l01582"></a><span class="lineno"> 1582</span>    <span class="keywordflow">if</span> (value != 0) {</div>
+<div class="line"><a id="l01583" name="l01583"></a><span class="lineno"> 1583</span>        ret = <a class="code hl_function" href="group__gpio__interface.html#ga29fd9846ff20fdf26de144fcd61a3b1a">gpio_port_set_bits_raw</a>(port, (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin));</div>
+<div class="line"><a id="l01584" name="l01584"></a><span class="lineno"> 1584</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l01585" name="l01585"></a><span class="lineno"> 1585</span>        ret = <a class="code hl_function" href="group__gpio__interface.html#ga5855648f26a433b455e7919957b1d92c">gpio_port_clear_bits_raw</a>(port, (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin));</div>
+<div class="line"><a id="l01586" name="l01586"></a><span class="lineno"> 1586</span>    }</div>
+<div class="line"><a id="l01587" name="l01587"></a><span class="lineno"> 1587</span> </div>
+<div class="line"><a id="l01588" name="l01588"></a><span class="lineno"> 1588</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l01589" name="l01589"></a><span class="lineno"> 1589</span>}</div>
+<div class="line"><a id="l01590" name="l01590"></a><span class="lineno"> 1590</span> </div>
+<div class="line"><a id="l01612" name="l01612"></a><span class="lineno"> 1612</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_set(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port, <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin,</div>
+<div class="line"><a id="l01613" name="l01613"></a><span class="lineno"> 1613</span>                   <span class="keywordtype">int</span> value)</div>
+<div class="line"><a id="l01614" name="l01614"></a><span class="lineno"> 1614</span>{</div>
+<div class="line"><a id="l01615" name="l01615"></a><span class="lineno"> 1615</span>    __unused <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *<span class="keyword">const</span> cfg =</div>
+<div class="line"><a id="l01616" name="l01616"></a><span class="lineno"> 1616</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *)port-&gt;<a class="code hl_variable" href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">config</a>;</div>
+<div class="line"><a id="l01617" name="l01617"></a><span class="lineno"> 1617</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__data.html">gpio_driver_data</a> *<span class="keyword">const</span> data =</div>
+<div class="line"><a id="l01618" name="l01618"></a><span class="lineno"> 1618</span>            (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__data.html">gpio_driver_data</a> *)port-&gt;<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l01619" name="l01619"></a><span class="lineno"> 1619</span> </div>
+<div class="line"><a id="l01620" name="l01620"></a><span class="lineno"> 1620</span>    __ASSERT((cfg-&gt;port_pin_mask &amp; (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin)) != 0U,</div>
+<div class="line"><a id="l01621" name="l01621"></a><span class="lineno"> 1621</span>         <span class="stringliteral">&quot;Unsupported pin&quot;</span>);</div>
+<div class="line"><a id="l01622" name="l01622"></a><span class="lineno"> 1622</span> </div>
+<div class="line"><a id="l01623" name="l01623"></a><span class="lineno"> 1623</span>    <span class="keywordflow">if</span> (data-&gt;invert &amp; (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin)) {</div>
+<div class="line"><a id="l01624" name="l01624"></a><span class="lineno"> 1624</span>        value = (value != 0) ? 0 : 1;</div>
+<div class="line"><a id="l01625" name="l01625"></a><span class="lineno"> 1625</span>    }</div>
+<div class="line"><a id="l01626" name="l01626"></a><span class="lineno"> 1626</span> </div>
+<div class="line"><a id="l01627" name="l01627"></a><span class="lineno"> 1627</span>    <span class="keywordflow">return</span> gpio_pin_set_raw(port, pin, value);</div>
+<div class="line"><a id="l01628" name="l01628"></a><span class="lineno"> 1628</span>}</div>
+<div class="line"><a id="l01629" name="l01629"></a><span class="lineno"> 1629</span> </div>
+<div class="line"><a id="l01641" name="l01641"></a><span class="lineno"> 1641</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_set_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__dt__spec.html">gpio_dt_spec</a> *spec, <span class="keywordtype">int</span> value)</div>
+<div class="line"><a id="l01642" name="l01642"></a><span class="lineno"> 1642</span>{</div>
+<div class="line"><a id="l01643" name="l01643"></a><span class="lineno"> 1643</span>    <span class="keywordflow">return</span> gpio_pin_set(spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">port</a>, spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#ad7e6fbb0cba0be94a47d4f2add056c84">pin</a>, value);</div>
+<div class="line"><a id="l01644" name="l01644"></a><span class="lineno"> 1644</span>}</div>
+<div class="line"><a id="l01645" name="l01645"></a><span class="lineno"> 1645</span> </div>
+<div class="line"><a id="l01656" name="l01656"></a><span class="lineno"> 1656</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_toggle(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port, <a class="code hl_typedef" href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a> pin)</div>
+<div class="line"><a id="l01657" name="l01657"></a><span class="lineno"> 1657</span>{</div>
+<div class="line"><a id="l01658" name="l01658"></a><span class="lineno"> 1658</span>    __unused <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *<span class="keyword">const</span> cfg =</div>
+<div class="line"><a id="l01659" name="l01659"></a><span class="lineno"> 1659</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structgpio__driver__config.html">gpio_driver_config</a> *)port-&gt;<a class="code hl_variable" href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">config</a>;</div>
+<div class="line"><a id="l01660" name="l01660"></a><span class="lineno"> 1660</span> </div>
+<div class="line"><a id="l01661" name="l01661"></a><span class="lineno"> 1661</span>    __ASSERT((cfg-&gt;port_pin_mask &amp; (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin)) != 0U,</div>
+<div class="line"><a id="l01662" name="l01662"></a><span class="lineno"> 1662</span>         <span class="stringliteral">&quot;Unsupported pin&quot;</span>);</div>
+<div class="line"><a id="l01663" name="l01663"></a><span class="lineno"> 1663</span> </div>
+<div class="line"><a id="l01664" name="l01664"></a><span class="lineno"> 1664</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__gpio__interface.html#ga63b817d34acbbf0ff51b405f3579657f">gpio_port_toggle_bits</a>(port, (<a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a>)<a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(pin));</div>
+<div class="line"><a id="l01665" name="l01665"></a><span class="lineno"> 1665</span>}</div>
+<div class="line"><a id="l01666" name="l01666"></a><span class="lineno"> 1666</span> </div>
+<div class="line"><a id="l01677" name="l01677"></a><span class="lineno"> 1677</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_pin_toggle_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__dt__spec.html">gpio_dt_spec</a> *spec)</div>
+<div class="line"><a id="l01678" name="l01678"></a><span class="lineno"> 1678</span>{</div>
+<div class="line"><a id="l01679" name="l01679"></a><span class="lineno"> 1679</span>    <span class="keywordflow">return</span> gpio_pin_toggle(spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">port</a>, spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#ad7e6fbb0cba0be94a47d4f2add056c84">pin</a>);</div>
+<div class="line"><a id="l01680" name="l01680"></a><span class="lineno"> 1680</span>}</div>
+<div class="line"><a id="l01681" name="l01681"></a><span class="lineno"> 1681</span> </div>
+<div class="line"><a id="l01688" name="l01688"></a><span class="lineno"> 1688</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> gpio_init_callback(<span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__callback.html">gpio_callback</a> *callback,</div>
+<div class="line"><a id="l01689" name="l01689"></a><span class="lineno"> 1689</span>                      <a class="code hl_typedef" href="group__gpio__interface.html#ga2b400e2193e3899c63253d2f48ed90db">gpio_callback_handler_t</a> handler,</div>
+<div class="line"><a id="l01690" name="l01690"></a><span class="lineno"> 1690</span>                      <a class="code hl_typedef" href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a> pin_mask)</div>
+<div class="line"><a id="l01691" name="l01691"></a><span class="lineno"> 1691</span>{</div>
+<div class="line"><a id="l01692" name="l01692"></a><span class="lineno"> 1692</span>    __ASSERT(callback, <span class="stringliteral">&quot;Callback pointer should not be NULL&quot;</span>);</div>
+<div class="line"><a id="l01693" name="l01693"></a><span class="lineno"> 1693</span>    __ASSERT(handler, <span class="stringliteral">&quot;Callback handler pointer should not be NULL&quot;</span>);</div>
+<div class="line"><a id="l01694" name="l01694"></a><span class="lineno"> 1694</span> </div>
+<div class="line"><a id="l01695" name="l01695"></a><span class="lineno"> 1695</span>    callback-&gt;<a class="code hl_variable" href="structgpio__callback.html#af89dc41cbd610d81ac03cae7ab764ceb">handler</a> = handler;</div>
+<div class="line"><a id="l01696" name="l01696"></a><span class="lineno"> 1696</span>    callback-&gt;<a class="code hl_variable" href="structgpio__callback.html#ace5c2b83f1d51f73877a1f2c54ba8c67">pin_mask</a> = pin_mask;</div>
+<div class="line"><a id="l01697" name="l01697"></a><span class="lineno"> 1697</span>}</div>
+<div class="line"><a id="l01698" name="l01698"></a><span class="lineno"> 1698</span> </div>
+<div class="line"><a id="l01713" name="l01713"></a><span class="lineno"> 1713</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_add_callback(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01714" name="l01714"></a><span class="lineno"> 1714</span>                    <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__callback.html">gpio_callback</a> *callback)</div>
+<div class="line"><a id="l01715" name="l01715"></a><span class="lineno"> 1715</span>{</div>
+<div class="line"><a id="l01716" name="l01716"></a><span class="lineno"> 1716</span>    <span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *api =</div>
+<div class="line"><a id="l01717" name="l01717"></a><span class="lineno"> 1717</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *)port-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01718" name="l01718"></a><span class="lineno"> 1718</span> </div>
+<div class="line"><a id="l01719" name="l01719"></a><span class="lineno"> 1719</span>    <span class="keywordflow">if</span> (api-&gt;manage_callback == NULL) {</div>
+<div class="line"><a id="l01720" name="l01720"></a><span class="lineno"> 1720</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l01721" name="l01721"></a><span class="lineno"> 1721</span>    }</div>
+<div class="line"><a id="l01722" name="l01722"></a><span class="lineno"> 1722</span> </div>
+<div class="line"><a id="l01723" name="l01723"></a><span class="lineno"> 1723</span>    <span class="keywordflow">return</span> api-&gt;manage_callback(port, callback, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l01724" name="l01724"></a><span class="lineno"> 1724</span>}</div>
+<div class="line"><a id="l01725" name="l01725"></a><span class="lineno"> 1725</span> </div>
+<div class="line"><a id="l01737" name="l01737"></a><span class="lineno"> 1737</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_add_callback_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__dt__spec.html">gpio_dt_spec</a> *spec,</div>
+<div class="line"><a id="l01738" name="l01738"></a><span class="lineno"> 1738</span>                       <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__callback.html">gpio_callback</a> *callback)</div>
+<div class="line"><a id="l01739" name="l01739"></a><span class="lineno"> 1739</span>{</div>
+<div class="line"><a id="l01740" name="l01740"></a><span class="lineno"> 1740</span>    <span class="keywordflow">return</span> gpio_add_callback(spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">port</a>, callback);</div>
+<div class="line"><a id="l01741" name="l01741"></a><span class="lineno"> 1741</span>}</div>
+<div class="line"><a id="l01742" name="l01742"></a><span class="lineno"> 1742</span> </div>
+<div class="line"><a id="l01761" name="l01761"></a><span class="lineno"> 1761</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_remove_callback(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *port,</div>
+<div class="line"><a id="l01762" name="l01762"></a><span class="lineno"> 1762</span>                       <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__callback.html">gpio_callback</a> *callback)</div>
+<div class="line"><a id="l01763" name="l01763"></a><span class="lineno"> 1763</span>{</div>
+<div class="line"><a id="l01764" name="l01764"></a><span class="lineno"> 1764</span>    <span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *api =</div>
+<div class="line"><a id="l01765" name="l01765"></a><span class="lineno"> 1765</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *)port-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01766" name="l01766"></a><span class="lineno"> 1766</span> </div>
+<div class="line"><a id="l01767" name="l01767"></a><span class="lineno"> 1767</span>    <span class="keywordflow">if</span> (api-&gt;manage_callback == NULL) {</div>
+<div class="line"><a id="l01768" name="l01768"></a><span class="lineno"> 1768</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l01769" name="l01769"></a><span class="lineno"> 1769</span>    }</div>
+<div class="line"><a id="l01770" name="l01770"></a><span class="lineno"> 1770</span> </div>
+<div class="line"><a id="l01771" name="l01771"></a><span class="lineno"> 1771</span>    <span class="keywordflow">return</span> api-&gt;manage_callback(port, callback, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l01772" name="l01772"></a><span class="lineno"> 1772</span>}</div>
+<div class="line"><a id="l01773" name="l01773"></a><span class="lineno"> 1773</span> </div>
+<div class="line"><a id="l01785" name="l01785"></a><span class="lineno"> 1785</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> gpio_remove_callback_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__dt__spec.html">gpio_dt_spec</a> *spec,</div>
+<div class="line"><a id="l01786" name="l01786"></a><span class="lineno"> 1786</span>                      <span class="keyword">struct</span> <a class="code hl_struct" href="structgpio__callback.html">gpio_callback</a> *callback)</div>
+<div class="line"><a id="l01787" name="l01787"></a><span class="lineno"> 1787</span>{</div>
+<div class="line"><a id="l01788" name="l01788"></a><span class="lineno"> 1788</span>    <span class="keywordflow">return</span> gpio_remove_callback(spec-&gt;<a class="code hl_variable" href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">port</a>, callback);</div>
+<div class="line"><a id="l01789" name="l01789"></a><span class="lineno"> 1789</span>}</div>
+<div class="line"><a id="l01790" name="l01790"></a><span class="lineno"> 1790</span> </div>
+<div class="line"><a id="l01805" name="l01805"></a><span class="lineno"><a class="line" href="group__gpio__interface.html#gaa8e8e39b89860df43cb44d832d58b0f2"> 1805</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__gpio__interface.html#gaa8e8e39b89860df43cb44d832d58b0f2">gpio_get_pending_int</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l01806" name="l01806"></a><span class="lineno"> 1806</span> </div>
+<div class="line"><a id="l01807" name="l01807"></a><span class="lineno"> 1807</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_gpio_get_pending_int(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l01808" name="l01808"></a><span class="lineno"> 1808</span>{</div>
+<div class="line"><a id="l01809" name="l01809"></a><span class="lineno"> 1809</span>    <span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *api =</div>
+<div class="line"><a id="l01810" name="l01810"></a><span class="lineno"> 1810</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>gpio_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01811" name="l01811"></a><span class="lineno"> 1811</span> </div>
+<div class="line"><a id="l01812" name="l01812"></a><span class="lineno"> 1812</span>    <span class="keywordflow">if</span> (api-&gt;get_pending_int == NULL) {</div>
+<div class="line"><a id="l01813" name="l01813"></a><span class="lineno"> 1813</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l01814" name="l01814"></a><span class="lineno"> 1814</span>    }</div>
+<div class="line"><a id="l01815" name="l01815"></a><span class="lineno"> 1815</span> </div>
+<div class="line"><a id="l01816" name="l01816"></a><span class="lineno"> 1816</span>    <span class="keywordflow">return</span> api-&gt;get_pending_int(dev);</div>
+<div class="line"><a id="l01817" name="l01817"></a><span class="lineno"> 1817</span>}</div>
+<div class="line"><a id="l01818" name="l01818"></a><span class="lineno"> 1818</span> </div>
+<div class="line"><a id="l01823" name="l01823"></a><span class="lineno"> 1823</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l01824" name="l01824"></a><span class="lineno"> 1824</span>}</div>
+<div class="line"><a id="l01825" name="l01825"></a><span class="lineno"> 1825</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01826" name="l01826"></a><span class="lineno"> 1826</span> </div>
+<div class="line"><a id="l01827" name="l01827"></a><span class="lineno"> 1827</span><span class="preprocessor">#include &lt;syscalls/gpio.h&gt;</span></div>
+<div class="line"><a id="l01828" name="l01828"></a><span class="lineno"> 1828</span> </div>
+<div class="line"><a id="l01829" name="l01829"></a><span class="lineno"> 1829</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_GPIO_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__device__model_html_ga0b9e6357f7cfdab3b5ad119b9b549de7"><div class="ttname"><a href="group__device__model.html#ga0b9e6357f7cfdab3b5ad119b9b549de7">device_is_ready</a></div><div class="ttdeci">__syscall bool device_is_ready(const struct device *dev)</div><div class="ttdoc">Verify that a device is ready for use.</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_ga0db9fe8a278e6ab7c5c6f14fe58e5eb1"><div class="ttname"><a href="group__gpio__interface.html#ga0db9fe8a278e6ab7c5c6f14fe58e5eb1">GPIO_OUTPUT</a></div><div class="ttdeci">#define GPIO_OUTPUT</div><div class="ttdef"><b>Definição</b> gpio.h:48</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_ga29fd9846ff20fdf26de144fcd61a3b1a"><div class="ttname"><a href="group__gpio__interface.html#ga29fd9846ff20fdf26de144fcd61a3b1a">gpio_port_set_bits_raw</a></div><div class="ttdeci">__syscall int gpio_port_set_bits_raw(const struct device *port, gpio_port_pins_t pins)</div><div class="ttdoc">Set physical level of selected output pins to high.</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_ga2b400e2193e3899c63253d2f48ed90db"><div class="ttname"><a href="group__gpio__interface.html#ga2b400e2193e3899c63253d2f48ed90db">gpio_callback_handler_t</a></div><div class="ttdeci">void(* gpio_callback_handler_t)(const struct device *port, struct gpio_callback *cb, gpio_port_pins_t pins)</div><div class="ttdoc">Define the application callback handler function signature.</div><div class="ttdef"><b>Definição</b> gpio.h:724</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_ga32858c8282e98163f2b57cb46bf3333a"><div class="ttname"><a href="group__gpio__interface.html#ga32858c8282e98163f2b57cb46bf3333a">gpio_port_set_masked_raw</a></div><div class="ttdeci">__syscall int gpio_port_set_masked_raw(const struct device *port, gpio_port_pins_t mask, gpio_port_value_t value)</div><div class="ttdoc">Set physical level of output pins in a port.</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_ga38179eb7a46a743c12cfac28f347fb34"><div class="ttname"><a href="group__gpio__interface.html#ga38179eb7a46a743c12cfac28f347fb34">gpio_pin_t</a></div><div class="ttdeci">uint8_t gpio_pin_t</div><div class="ttdoc">Provides a type to hold a GPIO pin index.</div><div class="ttdef"><b>Definição</b> gpio.h:252</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_ga5855648f26a433b455e7919957b1d92c"><div class="ttname"><a href="group__gpio__interface.html#ga5855648f26a433b455e7919957b1d92c">gpio_port_clear_bits_raw</a></div><div class="ttdeci">__syscall int gpio_port_clear_bits_raw(const struct device *port, gpio_port_pins_t pins)</div><div class="ttdoc">Set physical level of selected output pins to low.</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_ga5da2ed2712a88e6e2ee0636564d330ab"><div class="ttname"><a href="group__gpio__interface.html#ga5da2ed2712a88e6e2ee0636564d330ab">gpio_port_get_direction</a></div><div class="ttdeci">__syscall int gpio_port_get_direction(const struct device *port, gpio_port_pins_t map, gpio_port_pins_t *inputs, gpio_port_pins_t *outputs)</div><div class="ttdoc">Get direction of select pins in a port.</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_ga5f5cb5e7dae6d58e072bb450af029d2e"><div class="ttname"><a href="group__gpio__interface.html#ga5f5cb5e7dae6d58e072bb450af029d2e">gpio_flags_t</a></div><div class="ttdeci">uint32_t gpio_flags_t</div><div class="ttdoc">Provides a type to hold GPIO configuration flags.</div><div class="ttdef"><b>Definição</b> gpio.h:272</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_ga62cea8989df2425e5e5e712217d65f46"><div class="ttname"><a href="group__gpio__interface.html#ga62cea8989df2425e5e5e712217d65f46">GPIO_ACTIVE_LOW</a></div><div class="ttdeci">#define GPIO_ACTIVE_LOW</div><div class="ttdef"><b>Definição</b> gpio.h:26</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_ga63b817d34acbbf0ff51b405f3579657f"><div class="ttname"><a href="group__gpio__interface.html#ga63b817d34acbbf0ff51b405f3579657f">gpio_port_toggle_bits</a></div><div class="ttdeci">__syscall int gpio_port_toggle_bits(const struct device *port, gpio_port_pins_t pins)</div><div class="ttdoc">Toggle level of selected output pins.</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_ga7be6a0cc9aa65da1d4ee5751b4085853"><div class="ttname"><a href="group__gpio__interface.html#ga7be6a0cc9aa65da1d4ee5751b4085853">GPIO_INPUT</a></div><div class="ttdeci">#define GPIO_INPUT</div><div class="ttdef"><b>Definição</b> gpio.h:45</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_ga7f40ed51f14fd8000e9b52ab347b273f"><div class="ttname"><a href="group__gpio__interface.html#ga7f40ed51f14fd8000e9b52ab347b273f">gpio_port_pins_t</a></div><div class="ttdeci">uint32_t gpio_port_pins_t</div><div class="ttdoc">Identifies a set of pins associated with a port.</div><div class="ttdef"><b>Definição</b> gpio.h:231</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_ga91657faac28f9b213105dd61a419dd5a"><div class="ttname"><a href="group__gpio__interface.html#ga91657faac28f9b213105dd61a419dd5a">GPIO_INT_DISABLE</a></div><div class="ttdeci">#define GPIO_INT_DISABLE</div><div class="ttdef"><b>Definição</b> gpio.h:98</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_gaa8e8e39b89860df43cb44d832d58b0f2"><div class="ttname"><a href="group__gpio__interface.html#gaa8e8e39b89860df43cb44d832d58b0f2">gpio_get_pending_int</a></div><div class="ttdeci">__syscall int gpio_get_pending_int(const struct device *dev)</div><div class="ttdoc">Function to get pending interrupts.</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_gaaa7921da231fd2b96575fa522e2c1970"><div class="ttname"><a href="group__gpio__interface.html#gaaa7921da231fd2b96575fa522e2c1970">GPIO_PULL_UP</a></div><div class="ttdeci">#define GPIO_PULL_UP</div><div class="ttdef"><b>Definição</b> gpio.h:75</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_gab0350b4adcc05dd9deaea2417d83e5e8"><div class="ttname"><a href="group__gpio__interface.html#gab0350b4adcc05dd9deaea2417d83e5e8">gpio_pin_interrupt_configure</a></div><div class="ttdeci">__syscall int gpio_pin_interrupt_configure(const struct device *port, gpio_pin_t pin, gpio_flags_t flags)</div><div class="ttdoc">Configure pin interrupt.</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_gabcebe24c93486896e1dfc2459ec25693"><div class="ttname"><a href="group__gpio__interface.html#gabcebe24c93486896e1dfc2459ec25693">gpio_port_value_t</a></div><div class="ttdeci">uint32_t gpio_port_value_t</div><div class="ttdoc">Provides values for a set of pins associated with a port.</div><div class="ttdef"><b>Definição</b> gpio.h:244</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_gacabecda1788142ab097544dd5eac9fca"><div class="ttname"><a href="group__gpio__interface.html#gacabecda1788142ab097544dd5eac9fca">gpio_port_get_raw</a></div><div class="ttdeci">__syscall int gpio_port_get_raw(const struct device *port, gpio_port_value_t *value)</div><div class="ttdoc">Get physical level of all input pins in a port.</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_gad435719dccdc37c05852960a7218fbd2"><div class="ttname"><a href="group__gpio__interface.html#gad435719dccdc37c05852960a7218fbd2">gpio_dt_flags_t</a></div><div class="ttdeci">uint16_t gpio_dt_flags_t</div><div class="ttdoc">Provides a type to hold GPIO devicetree flags.</div><div class="ttdef"><b>Definição</b> gpio.h:264</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_gadec1802e074f3021d464da09cd66c7cf"><div class="ttname"><a href="group__gpio__interface.html#gadec1802e074f3021d464da09cd66c7cf">GPIO_PULL_DOWN</a></div><div class="ttdeci">#define GPIO_PULL_DOWN</div><div class="ttdef"><b>Definição</b> gpio.h:78</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_gafc0d74167bad294c8369b14c9a07eb30"><div class="ttname"><a href="group__gpio__interface.html#gafc0d74167bad294c8369b14c9a07eb30">gpio_pin_get_config</a></div><div class="ttdeci">__syscall int gpio_pin_get_config(const struct device *port, gpio_pin_t pin, gpio_flags_t *flags)</div><div class="ttdoc">Get a configuration of a single pin.</div></div>
+<div class="ttc" id="agroup__gpio__interface_html_gaff24196bbdb18ab5300467b85a2cd14d"><div class="ttname"><a href="group__gpio__interface.html#gaff24196bbdb18ab5300467b85a2cd14d">gpio_pin_configure</a></div><div class="ttdeci">__syscall int gpio_pin_configure(const struct device *port, gpio_pin_t pin, gpio_flags_t flags)</div><div class="ttdoc">Configure a single pin.</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="agroup__sys-util_html_ga3a8ea58898cb58fc96013383d39f482c"><div class="ttname"><a href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a></div><div class="ttdeci">#define BIT(n)</div><div class="ttdoc">Unsigned integer with bit position n set (signed in assembly language).</div><div class="ttdef"><b>Definição</b> util_macro.h:44</div></div>
+<div class="ttc" id="aslist_8h_html"><div class="ttname"><a href="slist_8h.html">slist.h</a></div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a27573cbd10ee145f8bb1396242b27a3e"><div class="ttname"><a href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">device::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definição</b> device.h:395</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructdevice_html_aca2d801eb15996cf1c74dc65cfa651fc"><div class="ttname"><a href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">device::config</a></div><div class="ttdeci">const void * config</div><div class="ttdef"><b>Definição</b> device.h:389</div></div>
+<div class="ttc" id="astructgpio__callback_html"><div class="ttname"><a href="structgpio__callback.html">gpio_callback</a></div><div class="ttdoc">GPIO callback structure.</div><div class="ttdef"><b>Definição</b> gpio.h:738</div></div>
+<div class="ttc" id="astructgpio__callback_html_ab60e7093072964bd818d536c746211e4"><div class="ttname"><a href="structgpio__callback.html#ab60e7093072964bd818d536c746211e4">gpio_callback::node</a></div><div class="ttdeci">sys_snode_t node</div><div class="ttdef"><b>Definição</b> gpio.h:742</div></div>
+<div class="ttc" id="astructgpio__callback_html_ace5c2b83f1d51f73877a1f2c54ba8c67"><div class="ttname"><a href="structgpio__callback.html#ace5c2b83f1d51f73877a1f2c54ba8c67">gpio_callback::pin_mask</a></div><div class="ttdeci">gpio_port_pins_t pin_mask</div><div class="ttdef"><b>Definição</b> gpio.h:753</div></div>
+<div class="ttc" id="astructgpio__callback_html_af89dc41cbd610d81ac03cae7ab764ceb"><div class="ttname"><a href="structgpio__callback.html#af89dc41cbd610d81ac03cae7ab764ceb">gpio_callback::handler</a></div><div class="ttdeci">gpio_callback_handler_t handler</div><div class="ttdef"><b>Definição</b> gpio.h:745</div></div>
+<div class="ttc" id="astructgpio__driver__config_html"><div class="ttname"><a href="structgpio__driver__config.html">gpio_driver_config</a></div><div class="ttdef"><b>Definição</b> gpio.h:688</div></div>
+<div class="ttc" id="astructgpio__driver__config_html_af73c0d9d433b86b9d0e0c6703e737052"><div class="ttname"><a href="structgpio__driver__config.html#af73c0d9d433b86b9d0e0c6703e737052">gpio_driver_config::port_pin_mask</a></div><div class="ttdeci">gpio_port_pins_t port_pin_mask</div><div class="ttdef"><b>Definição</b> gpio.h:694</div></div>
+<div class="ttc" id="astructgpio__driver__data_html"><div class="ttname"><a href="structgpio__driver__data.html">gpio_driver_data</a></div><div class="ttdef"><b>Definição</b> gpio.h:701</div></div>
+<div class="ttc" id="astructgpio__driver__data_html_ab62038a3c7c341cafda6665dfab3f169"><div class="ttname"><a href="structgpio__driver__data.html#ab62038a3c7c341cafda6665dfab3f169">gpio_driver_data::invert</a></div><div class="ttdeci">gpio_port_pins_t invert</div><div class="ttdef"><b>Definição</b> gpio.h:707</div></div>
+<div class="ttc" id="astructgpio__dt__spec_html"><div class="ttname"><a href="structgpio__dt__spec.html">gpio_dt_spec</a></div><div class="ttdoc">Container for GPIO pin information specified in devicetree.</div><div class="ttdef"><b>Definição</b> gpio.h:286</div></div>
+<div class="ttc" id="astructgpio__dt__spec_html_a5d617d47e2f568c7a4402a8f5a40ed4f"><div class="ttname"><a href="structgpio__dt__spec.html#a5d617d47e2f568c7a4402a8f5a40ed4f">gpio_dt_spec::port</a></div><div class="ttdeci">const struct device * port</div><div class="ttdef"><b>Definição</b> gpio.h:288</div></div>
+<div class="ttc" id="astructgpio__dt__spec_html_ad7e6fbb0cba0be94a47d4f2add056c84"><div class="ttname"><a href="structgpio__dt__spec.html#ad7e6fbb0cba0be94a47d4f2add056c84">gpio_dt_spec::pin</a></div><div class="ttdeci">gpio_pin_t pin</div><div class="ttdef"><b>Definição</b> gpio.h:290</div></div>
+<div class="ttc" id="astructgpio__dt__spec_html_ae3b90e7e22708798c67da94f72ad1ab0"><div class="ttname"><a href="structgpio__dt__spec.html#ae3b90e7e22708798c67da94f72ad1ab0">gpio_dt_spec::dt_flags</a></div><div class="ttdeci">gpio_dt_flags_t dt_flags</div><div class="ttdef"><b>Definição</b> gpio.h:292</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

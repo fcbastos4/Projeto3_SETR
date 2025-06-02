@@ -1,0 +1,58 @@
+digraph "sd_card"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [id="Node000001",label="sd_card",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="SD card structure."];
+  Node2 -> Node1 [id="edge1_Node000001_Node000002",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" sdhc",fontcolor="grey" ];
+  Node2 [id="Node000002",label="device",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structdevice.html",tooltip="Runtime device structure (in ROM) per driver instance."];
+  Node3 -> Node2 [id="edge2_Node000002_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" state",fontcolor="grey" ];
+  Node3 [id="Node000003",label="device_state",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structdevice__state.html",tooltip="Runtime device dynamic structure (in RAM) per driver instance."];
+  Node4 -> Node1 [id="edge3_Node000001_Node000004",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" bus_io",fontcolor="grey" ];
+  Node4 [id="Node000004",label="sdhc_io",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structsdhc__io.html",tooltip="SD host controller I/O control structure."];
+  Node5 -> Node1 [id="edge4_Node000001_Node000005",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" lock",fontcolor="grey" ];
+  Node5 [id="Node000005",label="k_mutex",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structk__mutex.html",tooltip=" "];
+  Node6 -> Node5 [id="edge5_Node000005_Node000006",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" wait_q",fontcolor="grey" ];
+  Node6 [id="Node000006",label="_wait_q_t",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$struct__wait__q__t.html",tooltip=" "];
+  Node7 -> Node6 [id="edge6_Node000006_Node000007",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" waitq",fontcolor="grey" ];
+  Node7 [id="Node000007",label="_dnode",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$struct__dnode.html",tooltip=" "];
+  Node7 -> Node7 [id="edge7_Node000007_Node000007",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" head\nnext\nprev\ntail",fontcolor="grey" ];
+  Node8 -> Node5 [id="edge8_Node000005_Node000008",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" owner",fontcolor="grey" ];
+  Node8 [id="Node000008",label="k_thread",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structk__thread.html",tooltip=" "];
+  Node9 -> Node8 [id="edge9_Node000008_Node000009",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" base",fontcolor="grey" ];
+  Node9 [id="Node000009",label="_thread_base",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$struct__thread__base.html",tooltip=" "];
+  Node7 -> Node9 [id="edge10_Node000009_Node000007",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" qnode_dlist",fontcolor="grey" ];
+  Node10 -> Node9 [id="edge11_Node000009_Node000010",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" qnode_rb",fontcolor="grey" ];
+  Node10 [id="Node000010",label="rbnode",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structrbnode.html",tooltip="Balanced red/black tree node structure."];
+  Node6 -> Node9 [id="edge12_Node000009_Node000006",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" pended_on",fontcolor="grey" ];
+  Node11 -> Node8 [id="edge13_Node000008_Node000011",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" callee_saved",fontcolor="grey" ];
+  Node11 [id="Node000011",label="_callee_saved",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$struct__callee__saved.html",tooltip=" "];
+  Node6 -> Node8 [id="edge14_Node000008_Node000006",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" join_queue",fontcolor="grey" ];
+  Node12 -> Node8 [id="edge15_Node000008_Node000012",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" resource_pool",fontcolor="grey" ];
+  Node12 [id="Node000012",label="k_heap",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$structk__heap.html",tooltip=" "];
+  Node13 -> Node12 [id="edge16_Node000012_Node000013",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" heap",fontcolor="grey" ];
+  Node13 [id="Node000013",label="sys_heap",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$structsys__heap.html",tooltip=" "];
+  Node6 -> Node12 [id="edge17_Node000012_Node000006",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" wait_q",fontcolor="grey" ];
+  Node14 -> Node12 [id="edge18_Node000012_Node000014",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" lock",fontcolor="grey" ];
+  Node14 [id="Node000014",label="k_spinlock",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structk__spinlock.html",tooltip="Kernel Spin Lock."];
+  Node15 -> Node8 [id="edge19_Node000008_Node000015",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" arch",fontcolor="grey" ];
+  Node15 [id="Node000015",label="_thread_arch",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$struct__thread__arch.html",tooltip=" "];
+  Node16 -> Node15 [id="edge20_Node000015_Node000016",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" preempFloatReg",fontcolor="grey" ];
+  Node16 [id="Node000016",label="s_preempFloatReg",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$structs__preempFloatReg.html",tooltip=" "];
+  Node17 -> Node16 [id="edge21_Node000016_Node000017",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" fpRegs",fontcolor="grey" ];
+  Node17 [id="Node000017",label="s_FpRegSet",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$structs__FpRegSet.html",tooltip=" "];
+  Node18 -> Node16 [id="edge22_Node000016_Node000018",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" fpRegsEx",fontcolor="grey" ];
+  Node18 [id="Node000018",label="s_FpRegSetEx",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$structs__FpRegSetEx.html",tooltip=" "];
+  Node19 -> Node1 [id="edge23_Node000001_Node000019",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" host_props",fontcolor="grey" ];
+  Node19 [id="Node000019",label="sdhc_host_props",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structsdhc__host__props.html",tooltip="SD host controller properties."];
+  Node20 -> Node19 [id="edge24_Node000019_Node000020",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" host_caps",fontcolor="grey" ];
+  Node20 [id="Node000020",label="sdhc_host_caps",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structsdhc__host__caps.html",tooltip="SD host controller capabilities."];
+  Node21 -> Node1 [id="edge25_Node000001_Node000021",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" switch_caps",fontcolor="grey" ];
+  Node21 [id="Node000021",label="sd_switch_caps",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structsd__switch__caps.html",tooltip="SD switch capabilities."];
+  Node22 -> Node1 [id="edge26_Node000001_Node000022",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" func0",fontcolor="grey" ];
+  Node22 [id="Node000022",label="sdio_func",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structsdio__func.html",tooltip="SDIO function definition."];
+  Node1 -> Node22 [id="edge27_Node000022_Node000001",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" card",fontcolor="grey" ];
+  Node23 -> Node22 [id="edge28_Node000022_Node000023",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" cis",fontcolor="grey" ];
+  Node23 [id="Node000023",label="sdio_cis",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structsdio__cis.html",tooltip="SDIO common CIS tuple properties."];
+}

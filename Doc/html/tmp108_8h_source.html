@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/sensor/tmp108.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_b83550166953e14393252d2d007944f0.html">sensor</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">tmp108.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="tmp108_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2021, Jimmy Johnson &lt;catch22@fastmail.net&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_SENSOR_TMP108_H_</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_SENSOR_TMP108_H_</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263ac">   22</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263ac">sensor_attribute_tmp_108</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263aca7d3aaeefef79d21d14b094a73859aad5">   24</a></span>    <a class="code hl_enumvalue" href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263aca7d3aaeefef79d21d14b094a73859aad5">SENSOR_ATTR_TMP108_ONE_SHOT_MODE</a> = <a class="code hl_enumvalue" href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940bafb4b5859bc369f817f60eaa161bcefc3">SENSOR_ATTR_PRIV_START</a>,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263aca77ad914dd8719431e411c521ba439f51">   26</a></span>    <a class="code hl_enumvalue" href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263aca77ad914dd8719431e411c521ba439f51">SENSOR_ATTR_TMP108_SHUTDOWN_MODE</a>,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263aca15ffb18b0a416692f198df2974695845">   28</a></span>    <a class="code hl_enumvalue" href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263aca15ffb18b0a416692f198df2974695845">SENSOR_ATTR_TMP108_CONTINUOUS_CONVERSION_MODE</a>,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_enumvalue" href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263aca7368db02e4565f72373efbcf8d671feb">SENSOR_ATTR_TMP108_ALERT_POLARITY</a></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263aca7368db02e4565f72373efbcf8d671feb">   31</a></span>};</div>
+</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="tmp108_8h.html#a8d041a318c3d3ec133079a630ae33748">   34</a></span><span class="preprocessor">#define TMP108_OVER_TEMP_MASK 0x1000U</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="tmp108_8h.html#a3d9d079354814ebac6580499851d8846">   37</a></span><span class="preprocessor">#define TMP108_UNDER_TEMP_MASK  0x0800U</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="tmp108_8h.html#aeb7ae5deef7c19daa33a7b90105f6e72">   40</a></span><span class="preprocessor">#define A6212_ALERT_TEMP_MASK   0x0020U</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_SENSOR_TMP108_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__sensor__interface_html_gga0dcb6842bc969492bd1c9eb49708940bafb4b5859bc369f817f60eaa161bcefc3"><div class="ttname"><a href="group__sensor__interface.html#gga0dcb6842bc969492bd1c9eb49708940bafb4b5859bc369f817f60eaa161bcefc3">SENSOR_ATTR_PRIV_START</a></div><div class="ttdeci">@ SENSOR_ATTR_PRIV_START</div><div class="ttdef"><b>Definição</b> sensor.h:350</div></div>
+<div class="ttc" id="atmp108_8h_html_a27e0be5adff7e6b9ddee08ab329263ac"><div class="ttname"><a href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263ac">sensor_attribute_tmp_108</a></div><div class="ttdeci">sensor_attribute_tmp_108</div><div class="ttdef"><b>Definição</b> tmp108.h:22</div></div>
+<div class="ttc" id="atmp108_8h_html_a27e0be5adff7e6b9ddee08ab329263aca15ffb18b0a416692f198df2974695845"><div class="ttname"><a href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263aca15ffb18b0a416692f198df2974695845">SENSOR_ATTR_TMP108_CONTINUOUS_CONVERSION_MODE</a></div><div class="ttdeci">@ SENSOR_ATTR_TMP108_CONTINUOUS_CONVERSION_MODE</div><div class="ttdef"><b>Definição</b> tmp108.h:28</div></div>
+<div class="ttc" id="atmp108_8h_html_a27e0be5adff7e6b9ddee08ab329263aca7368db02e4565f72373efbcf8d671feb"><div class="ttname"><a href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263aca7368db02e4565f72373efbcf8d671feb">SENSOR_ATTR_TMP108_ALERT_POLARITY</a></div><div class="ttdeci">@ SENSOR_ATTR_TMP108_ALERT_POLARITY</div><div class="ttdef"><b>Definição</b> tmp108.h:30</div></div>
+<div class="ttc" id="atmp108_8h_html_a27e0be5adff7e6b9ddee08ab329263aca77ad914dd8719431e411c521ba439f51"><div class="ttname"><a href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263aca77ad914dd8719431e411c521ba439f51">SENSOR_ATTR_TMP108_SHUTDOWN_MODE</a></div><div class="ttdeci">@ SENSOR_ATTR_TMP108_SHUTDOWN_MODE</div><div class="ttdef"><b>Definição</b> tmp108.h:26</div></div>
+<div class="ttc" id="atmp108_8h_html_a27e0be5adff7e6b9ddee08ab329263aca7d3aaeefef79d21d14b094a73859aad5"><div class="ttname"><a href="tmp108_8h.html#a27e0be5adff7e6b9ddee08ab329263aca7d3aaeefef79d21d14b094a73859aad5">SENSOR_ATTR_TMP108_ONE_SHOT_MODE</a></div><div class="ttdeci">@ SENSOR_ATTR_TMP108_ONE_SHOT_MODE</div><div class="ttdef"><b>Definição</b> tmp108.h:24</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

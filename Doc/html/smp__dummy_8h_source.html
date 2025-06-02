@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/mgmt/mcumgr/transport/smp_dummy.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_b22e92e240e215816b4a18258fade257.html">mgmt</a></li><li class="navelem"><a class="el" href="dir_3c972a23a02ad804d76387a7cbd62510.html">mcumgr</a></li><li class="navelem"><a class="el" href="dir_e9c1135da5f5aa853ca373ca917eff4f.html">transport</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">smp_dummy.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="smp__dummy_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright Runtime.io 2018. All rights reserved.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright Laird Connectivity 2021-2022. All rights reserved.</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_MGMT_MCUMGR_TRANSPORT_DUMMY_H_</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define ZEPHYR_INCLUDE_MGMT_MCUMGR_TRANSPORT_DUMMY_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="net_2buf_8h.html">zephyr/net/buf.h</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;zephyr/mgmt/mcumgr/mgmt/mgmt.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;zephyr/mgmt/mcumgr/transport/serial.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="smp__dummy_8h.html#ad9b3c7f35e4fa24fe863145a687f53db">   26</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="smp__dummy_8h.html#ad9b3c7f35e4fa24fe863145a687f53db">smp_dummy_clear_state</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="smp__dummy_8h.html#a8bf3d0c12669c2cf5370eb7e148f10c2">   34</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="smp__dummy_8h.html#a8bf3d0c12669c2cf5370eb7e148f10c2">dummy_mcumgr_add_data</a>(uint8_t *data, uint16_t data_size);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="smp__dummy_8h.html#aa744df8e85bdb93cff2322b215164e9a">   42</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<a class="code hl_function" href="smp__dummy_8h.html#aa744df8e85bdb93cff2322b215164e9a">smp_dummy_get_outgoing</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="smp__dummy_8h.html#a501596f79e8cf48fa1bb07484966fe53">   53</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="smp__dummy_8h.html#a501596f79e8cf48fa1bb07484966fe53">smp_dummy_wait_for_data</a>(uint32_t wait_time_s);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="smp__dummy_8h.html#ab5a47cd08e9467c969cbee9c85dcfe8a">   58</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="smp__dummy_8h.html#ab5a47cd08e9467c969cbee9c85dcfe8a">smp_dummy_add_data</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="smp__dummy_8h.html#ab09b0ae8ed526252b4900e77afa57dc5">   65</a></span>uint16_t <a class="code hl_function" href="smp__dummy_8h.html#ab09b0ae8ed526252b4900e77afa57dc5">smp_dummy_get_send_pos</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="smp__dummy_8h.html#a71158b7a935497506a6cc9e2f40a2b1e">   72</a></span>uint16_t <a class="code hl_function" href="smp__dummy_8h.html#a71158b7a935497506a6cc9e2f40a2b1e">smp_dummy_get_receive_pos</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="smp__dummy_8h.html#a5440421e4994119fc98ec119706e4dd9">   82</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="smp__dummy_8h.html#a5440421e4994119fc98ec119706e4dd9">smp_dummy_tx_pkt</a>(<span class="keyword">const</span> uint8_t *<a class="code hl_variable" href="structnet__buf.html#ac6eef59915e7ce167442fdacbbfb5e56">data</a>, <span class="keywordtype">int</span> <a class="code hl_variable" href="structnet__buf.html#ae75b7ca728fb7440ea483be8bf88bc38">len</a>);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="smp__dummy_8h.html#adde2de8dc7895bda0e5d72a961dfba78">   87</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="smp__dummy_8h.html#adde2de8dc7895bda0e5d72a961dfba78">smp_dummy_enable</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="smp__dummy_8h.html#a57d38b86c8b826ef1d49bcae0565b772">   92</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="smp__dummy_8h.html#a57d38b86c8b826ef1d49bcae0565b772">smp_dummy_disable</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="smp__dummy_8h.html#a364817f12c377c6538867c6118d071c6">   99</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="smp__dummy_8h.html#a364817f12c377c6538867c6118d071c6">smp_dummy_get_status</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_MGMT_MCUMGR_TRANSPORT_DUMMY_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="anet_2buf_8h_html"><div class="ttname"><a href="net_2buf_8h.html">buf.h</a></div><div class="ttdoc">Buffer management.</div></div>
+<div class="ttc" id="asmp__dummy_8h_html_a364817f12c377c6538867c6118d071c6"><div class="ttname"><a href="smp__dummy_8h.html#a364817f12c377c6538867c6118d071c6">smp_dummy_get_status</a></div><div class="ttdeci">bool smp_dummy_get_status(void)</div><div class="ttdoc">Returns status on if the dummy SMP system is active.</div></div>
+<div class="ttc" id="asmp__dummy_8h_html_a501596f79e8cf48fa1bb07484966fe53"><div class="ttname"><a href="smp__dummy_8h.html#a501596f79e8cf48fa1bb07484966fe53">smp_dummy_wait_for_data</a></div><div class="ttdeci">bool smp_dummy_wait_for_data(uint32_t wait_time_s)</div><div class="ttdoc">Waits for a period of time for outgoing SMPC data to be ready and returns either when a full message ...</div></div>
+<div class="ttc" id="asmp__dummy_8h_html_a5440421e4994119fc98ec119706e4dd9"><div class="ttname"><a href="smp__dummy_8h.html#a5440421e4994119fc98ec119706e4dd9">smp_dummy_tx_pkt</a></div><div class="ttdeci">int smp_dummy_tx_pkt(const uint8_t *data, int len)</div><div class="ttdoc">Converts input data to go out through the internal SMPC buffer.</div></div>
+<div class="ttc" id="asmp__dummy_8h_html_a57d38b86c8b826ef1d49bcae0565b772"><div class="ttname"><a href="smp__dummy_8h.html#a57d38b86c8b826ef1d49bcae0565b772">smp_dummy_disable</a></div><div class="ttdeci">void smp_dummy_disable(void)</div><div class="ttdoc">Disables the dummy SMP module (will not process sent/received data)</div></div>
+<div class="ttc" id="asmp__dummy_8h_html_a71158b7a935497506a6cc9e2f40a2b1e"><div class="ttname"><a href="smp__dummy_8h.html#a71158b7a935497506a6cc9e2f40a2b1e">smp_dummy_get_receive_pos</a></div><div class="ttdeci">uint16_t smp_dummy_get_receive_pos(void)</div><div class="ttdoc">Gets current receive buffer position.</div></div>
+<div class="ttc" id="asmp__dummy_8h_html_a8bf3d0c12669c2cf5370eb7e148f10c2"><div class="ttname"><a href="smp__dummy_8h.html#a8bf3d0c12669c2cf5370eb7e148f10c2">dummy_mcumgr_add_data</a></div><div class="ttdeci">void dummy_mcumgr_add_data(uint8_t *data, uint16_t data_size)</div><div class="ttdoc">Adds SMPC data to the internal buffer to be processed.</div></div>
+<div class="ttc" id="asmp__dummy_8h_html_aa744df8e85bdb93cff2322b215164e9a"><div class="ttname"><a href="smp__dummy_8h.html#aa744df8e85bdb93cff2322b215164e9a">smp_dummy_get_outgoing</a></div><div class="ttdeci">struct net_buf * smp_dummy_get_outgoing(void)</div><div class="ttdoc">Processes a single line (fragment) coming from the mcumgr response to be used in tests.</div></div>
+<div class="ttc" id="asmp__dummy_8h_html_ab09b0ae8ed526252b4900e77afa57dc5"><div class="ttname"><a href="smp__dummy_8h.html#ab09b0ae8ed526252b4900e77afa57dc5">smp_dummy_get_send_pos</a></div><div class="ttdeci">uint16_t smp_dummy_get_send_pos(void)</div><div class="ttdoc">Gets current send buffer position.</div></div>
+<div class="ttc" id="asmp__dummy_8h_html_ab5a47cd08e9467c969cbee9c85dcfe8a"><div class="ttname"><a href="smp__dummy_8h.html#ab5a47cd08e9467c969cbee9c85dcfe8a">smp_dummy_add_data</a></div><div class="ttdeci">void smp_dummy_add_data(void)</div><div class="ttdoc">Calls dummy_mcumgr_add_data with the internal SMPC receive buffer.</div></div>
+<div class="ttc" id="asmp__dummy_8h_html_ad9b3c7f35e4fa24fe863145a687f53db"><div class="ttname"><a href="smp__dummy_8h.html#ad9b3c7f35e4fa24fe863145a687f53db">smp_dummy_clear_state</a></div><div class="ttdeci">void smp_dummy_clear_state(void)</div><div class="ttdoc">Clears internal dummy SMP state and resets semaphore.</div></div>
+<div class="ttc" id="asmp__dummy_8h_html_adde2de8dc7895bda0e5d72a961dfba78"><div class="ttname"><a href="smp__dummy_8h.html#adde2de8dc7895bda0e5d72a961dfba78">smp_dummy_enable</a></div><div class="ttdeci">void smp_dummy_enable(void)</div><div class="ttdoc">Enabled the dummy SMP module (will process sent/received data)</div></div>
+<div class="ttc" id="astructnet__buf_html"><div class="ttname"><a href="structnet__buf.html">net_buf</a></div><div class="ttdoc">Network buffer representation.</div><div class="ttdef"><b>Definição</b> buf.h:906</div></div>
+<div class="ttc" id="astructnet__buf_html_ac6eef59915e7ce167442fdacbbfb5e56"><div class="ttname"><a href="structnet__buf.html#ac6eef59915e7ce167442fdacbbfb5e56">net_buf::data</a></div><div class="ttdeci">uint8_t * data</div><div class="ttdef"><b>Definição</b> buf.h:932</div></div>
+<div class="ttc" id="astructnet__buf_html_ae75b7ca728fb7440ea483be8bf88bc38"><div class="ttname"><a href="structnet__buf.html#ae75b7ca728fb7440ea483be8bf88bc38">net_buf::len</a></div><div class="ttdeci">uint16_t len</div><div class="ttdef"><b>Definição</b> buf.h:935</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

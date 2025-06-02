@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/sys/mpsc_pbuf.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_791a8e330d3bfcbb2b6e2254610c12ab.html">sys</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">mpsc_pbuf.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2021 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_SYS_MPSC_PBUF_H_</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define ZEPHYR_INCLUDE_SYS_MPSC_PBUF_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;zephyr/sys/mpsc_packet.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment"> * Multi producer, single consumer packet buffer allows to allocate variable</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"> * length consecutive space for storing a packet. When space is allocated</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"> * it can be filled by the user (except for the first 2 bits) and when packet</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"> * is ready it is committed. It is allowed to allocate another packet before</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment"> * committing the previous one.</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment"> * If buffer is full and packet cannot be allocated then null is returned unless</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment"> * overwrite mode is selected. In that mode, oldest entry are dropped (user is</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment"> * notified) until allocation succeeds. It can happen that candidate for</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment"> * dropping is currently being claimed. In that case, it is omitted and next</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment"> * packet is dropped and claimed packet is marked as invalid when freeing.</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment"> * Reading packets is performed in two steps. First packet is claimed. Claiming</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment"> * returns pointer to the packet within the buffer. Packet is freed when no</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment"> * longer in use.</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="group__MPSC__PBUF__FLAGS.html#ga6bed4eecb4eca06fb86a70c09505ccb8">   52</a></span><span class="preprocessor">#define MPSC_PBUF_SIZE_POW2 BIT(0)</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="group__MPSC__PBUF__FLAGS.html#ga983332f7aff31ed7b7e62cacf7960497">   59</a></span><span class="preprocessor">#define MPSC_PBUF_MODE_OVERWRITE BIT(1)</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="group__MPSC__PBUF__FLAGS.html#gad0f57dbcecbb51a6b5b916c31a8eaab2">   62</a></span><span class="preprocessor">#define MPSC_PBUF_MAX_UTILIZATION BIT(2)</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="group__MPSC__PBUF__FLAGS.html#ga71a287b22771128b80c23d9263677498">   65</a></span><span class="preprocessor">#define MPSC_PBUF_FULL BIT(3)</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">/* Forward declaration */</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">struct </span><a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="group__mpsc__buf.html#ga00b0a1839bc466c623928a29921d76b8">   78</a></span><span class="keyword">typedef</span> uint32_t (*<a class="code hl_typedef" href="group__mpsc__buf.html#ga00b0a1839bc466c623928a29921d76b8">mpsc_pbuf_get_wlen</a>)(<span class="keyword">const</span> <span class="keyword">union </span><a class="code hl_union" href="unionmpsc__pbuf__generic.html">mpsc_pbuf_generic</a> *packet);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="group__mpsc__buf.html#ga87f3795770880fb552316a8cac7b85ae">   86</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__mpsc__buf.html#ga87f3795770880fb552316a8cac7b85ae">mpsc_pbuf_notify_drop</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a> *buffer,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                      <span class="keyword">const</span> <span class="keyword">union </span><a class="code hl_union" href="unionmpsc__pbuf__generic.html">mpsc_pbuf_generic</a> *packet);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="foldopen" id="foldopen00090" data-start="{" data-end="};">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structmpsc__pbuf__buffer.html">   90</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a> {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structmpsc__pbuf__buffer.html#a55df06357be70a3b633213199d987e71">   92</a></span>    uint32_t <a class="code hl_variable" href="structmpsc__pbuf__buffer.html#a55df06357be70a3b633213199d987e71">tmp_wr_idx</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="structmpsc__pbuf__buffer.html#a3f292f281f08b97d10183f9248ee7c4d">   95</a></span>    uint32_t <a class="code hl_variable" href="structmpsc__pbuf__buffer.html#a3f292f281f08b97d10183f9248ee7c4d">wr_idx</a>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="structmpsc__pbuf__buffer.html#aeea63b40d7b24e4396fa228bcf2a171f">   98</a></span>    uint32_t <a class="code hl_variable" href="structmpsc__pbuf__buffer.html#aeea63b40d7b24e4396fa228bcf2a171f">tmp_rd_idx</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="structmpsc__pbuf__buffer.html#af9340dd31ea8e37b4d609898b126497a">  101</a></span>    uint32_t <a class="code hl_variable" href="structmpsc__pbuf__buffer.html#af9340dd31ea8e37b4d609898b126497a">rd_idx</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="structmpsc__pbuf__buffer.html#a10e9152b8c85be62eac0a3828e3b1e2a">  104</a></span>    uint32_t <a class="code hl_variable" href="structmpsc__pbuf__buffer.html#a10e9152b8c85be62eac0a3828e3b1e2a">flags</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="structmpsc__pbuf__buffer.html#a1a986b86547aa644747b9a79a982b780">  107</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__spinlock.html">k_spinlock</a> <a class="code hl_variable" href="structmpsc__pbuf__buffer.html#a1a986b86547aa644747b9a79a982b780">lock</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="structmpsc__pbuf__buffer.html#acdebdb6e7175ea3f39f484885ff6bec2">  113</a></span>    <a class="code hl_typedef" href="group__mpsc__buf.html#ga87f3795770880fb552316a8cac7b85ae">mpsc_pbuf_notify_drop</a> <a class="code hl_variable" href="structmpsc__pbuf__buffer.html#acdebdb6e7175ea3f39f484885ff6bec2">notify_drop</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="structmpsc__pbuf__buffer.html#ad87f240d978605258cb03d7d1e5e006f">  116</a></span>    <a class="code hl_typedef" href="group__mpsc__buf.html#ga00b0a1839bc466c623928a29921d76b8">mpsc_pbuf_get_wlen</a> <a class="code hl_variable" href="structmpsc__pbuf__buffer.html#ad87f240d978605258cb03d7d1e5e006f">get_wlen</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="comment">/* Buffer. */</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    uint32_t *buf;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="comment">/* Buffer size in 32 bit words. */</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    uint32_t size;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">/* Store max buffer usage. */</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    uint32_t max_usage;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keyword">struct </span>k_sem sem;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>};</div>
+</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="foldopen" id="foldopen00131" data-start="{" data-end="};">
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="structmpsc__pbuf__buffer__config.html">  131</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmpsc__pbuf__buffer__config.html">mpsc_pbuf_buffer_config</a> {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">/* Pointer to a memory used for storing packets. */</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    uint32_t *buf;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="comment">/* Buffer size in 32 bit words. */</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    uint32_t size;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="comment">/* Callbacks. */</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <a class="code hl_typedef" href="group__mpsc__buf.html#ga87f3795770880fb552316a8cac7b85ae">mpsc_pbuf_notify_drop</a> notify_drop;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <a class="code hl_typedef" href="group__mpsc__buf.html#ga00b0a1839bc466c623928a29921d76b8">mpsc_pbuf_get_wlen</a> get_wlen;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="comment">/* Configuration flags. */</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    uint32_t flags;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>};</div>
+</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="group__mpsc__buf.html#ga5152b9ae9c0da98fde3f8b73afac52b8">  152</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__mpsc__buf.html#ga5152b9ae9c0da98fde3f8b73afac52b8">mpsc_pbuf_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a> *buffer,</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>            <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmpsc__pbuf__buffer__config.html">mpsc_pbuf_buffer_config</a> *config);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="group__mpsc__buf.html#ga398dd24464a5da03e80a3fc7d728dddd">  171</a></span><span class="keyword">union </span><a class="code hl_union" href="unionmpsc__pbuf__generic.html">mpsc_pbuf_generic</a> *<a class="code hl_function" href="group__mpsc__buf.html#ga398dd24464a5da03e80a3fc7d728dddd">mpsc_pbuf_alloc</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a> *buffer,</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>                     <span class="keywordtype">size_t</span> wlen, <a class="code hl_struct" href="structk__timeout__t.html">k_timeout_t</a> timeout);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="group__mpsc__buf.html#gaa537b9e73ca4fda26a92dc56b960270e">  180</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__mpsc__buf.html#gaa537b9e73ca4fda26a92dc56b960270e">mpsc_pbuf_commit</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a> *buffer,</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>            <span class="keyword">union</span> <a class="code hl_union" href="unionmpsc__pbuf__generic.html">mpsc_pbuf_generic</a> *packet);</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="group__mpsc__buf.html#gabc366638ec262c7ec41b320f0dcc6a87">  193</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__mpsc__buf.html#gabc366638ec262c7ec41b320f0dcc6a87">mpsc_pbuf_put_word</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a> *buffer,</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>            <span class="keyword">const</span> <span class="keyword">union</span> <a class="code hl_union" href="unionmpsc__pbuf__generic.html">mpsc_pbuf_generic</a> word);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="group__mpsc__buf.html#ga7f4df1864fad89ec9557b6f0e18c9589">  208</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__mpsc__buf.html#ga7f4df1864fad89ec9557b6f0e18c9589">mpsc_pbuf_put_word_ext</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a> *buffer,</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                <span class="keyword">const</span> <span class="keyword">union</span> <a class="code hl_union" href="unionmpsc__pbuf__generic.html">mpsc_pbuf_generic</a> word,</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>                <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="group__mpsc__buf.html#ga7b52261bac98a7a0c6bae2a838f23316">  223</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__mpsc__buf.html#ga7b52261bac98a7a0c6bae2a838f23316">mpsc_pbuf_put_data</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a> *buffer,</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>            <span class="keyword">const</span> uint32_t *data, <span class="keywordtype">size_t</span> wlen);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="group__mpsc__buf.html#ga9642d07deca00bc25cea2ae253ec7d76">  232</a></span><span class="keyword">const</span> <span class="keyword">union </span><a class="code hl_union" href="unionmpsc__pbuf__generic.html">mpsc_pbuf_generic</a> *<a class="code hl_function" href="group__mpsc__buf.html#ga9642d07deca00bc25cea2ae253ec7d76">mpsc_pbuf_claim</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a> *buffer);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="group__mpsc__buf.html#ga54f8705fa262a6cda75f1feecde5e57e">  240</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__mpsc__buf.html#ga54f8705fa262a6cda75f1feecde5e57e">mpsc_pbuf_free</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a> *buffer,</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>            <span class="keyword">const</span> <span class="keyword">union</span> <a class="code hl_union" href="unionmpsc__pbuf__generic.html">mpsc_pbuf_generic</a> *packet);</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="group__mpsc__buf.html#ga2c8ac7f489fba611a2bca25bb2bbb5fb">  250</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__mpsc__buf.html#ga2c8ac7f489fba611a2bca25bb2bbb5fb">mpsc_pbuf_is_pending</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a> *buffer);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="group__mpsc__buf.html#ga73be0efc020500865cfa07c45494f4a5">  258</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__mpsc__buf.html#ga73be0efc020500865cfa07c45494f4a5">mpsc_pbuf_get_utilization</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a> *buffer,</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                   uint32_t *size, uint32_t *now);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="group__mpsc__buf.html#ga8ee7fd071effaca18797862d423279d7">  269</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mpsc__buf.html#ga8ee7fd071effaca18797862d423279d7">mpsc_pbuf_get_max_utilization</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a> *buffer, uint32_t *max);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>}</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_SYS_MPSC_PBUF_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__mpsc__buf_html_ga00b0a1839bc466c623928a29921d76b8"><div class="ttname"><a href="group__mpsc__buf.html#ga00b0a1839bc466c623928a29921d76b8">mpsc_pbuf_get_wlen</a></div><div class="ttdeci">uint32_t(* mpsc_pbuf_get_wlen)(const union mpsc_pbuf_generic *packet)</div><div class="ttdoc">Callback prototype for getting length of a packet.</div><div class="ttdef"><b>Definição</b> mpsc_pbuf.h:78</div></div>
+<div class="ttc" id="agroup__mpsc__buf_html_ga2c8ac7f489fba611a2bca25bb2bbb5fb"><div class="ttname"><a href="group__mpsc__buf.html#ga2c8ac7f489fba611a2bca25bb2bbb5fb">mpsc_pbuf_is_pending</a></div><div class="ttdeci">bool mpsc_pbuf_is_pending(struct mpsc_pbuf_buffer *buffer)</div><div class="ttdoc">Check if there are any message pending.</div></div>
+<div class="ttc" id="agroup__mpsc__buf_html_ga398dd24464a5da03e80a3fc7d728dddd"><div class="ttname"><a href="group__mpsc__buf.html#ga398dd24464a5da03e80a3fc7d728dddd">mpsc_pbuf_alloc</a></div><div class="ttdeci">union mpsc_pbuf_generic * mpsc_pbuf_alloc(struct mpsc_pbuf_buffer *buffer, size_t wlen, k_timeout_t timeout)</div><div class="ttdoc">Allocate a packet.</div></div>
+<div class="ttc" id="agroup__mpsc__buf_html_ga5152b9ae9c0da98fde3f8b73afac52b8"><div class="ttname"><a href="group__mpsc__buf.html#ga5152b9ae9c0da98fde3f8b73afac52b8">mpsc_pbuf_init</a></div><div class="ttdeci">void mpsc_pbuf_init(struct mpsc_pbuf_buffer *buffer, const struct mpsc_pbuf_buffer_config *config)</div><div class="ttdoc">Initialize a packet buffer.</div></div>
+<div class="ttc" id="agroup__mpsc__buf_html_ga54f8705fa262a6cda75f1feecde5e57e"><div class="ttname"><a href="group__mpsc__buf.html#ga54f8705fa262a6cda75f1feecde5e57e">mpsc_pbuf_free</a></div><div class="ttdeci">void mpsc_pbuf_free(struct mpsc_pbuf_buffer *buffer, const union mpsc_pbuf_generic *packet)</div><div class="ttdoc">Free a packet.</div></div>
+<div class="ttc" id="agroup__mpsc__buf_html_ga73be0efc020500865cfa07c45494f4a5"><div class="ttname"><a href="group__mpsc__buf.html#ga73be0efc020500865cfa07c45494f4a5">mpsc_pbuf_get_utilization</a></div><div class="ttdeci">void mpsc_pbuf_get_utilization(struct mpsc_pbuf_buffer *buffer, uint32_t *size, uint32_t *now)</div><div class="ttdoc">Get current memory utilization.</div></div>
+<div class="ttc" id="agroup__mpsc__buf_html_ga7b52261bac98a7a0c6bae2a838f23316"><div class="ttname"><a href="group__mpsc__buf.html#ga7b52261bac98a7a0c6bae2a838f23316">mpsc_pbuf_put_data</a></div><div class="ttdeci">void mpsc_pbuf_put_data(struct mpsc_pbuf_buffer *buffer, const uint32_t *data, size_t wlen)</div><div class="ttdoc">Put a packet into a buffer.</div></div>
+<div class="ttc" id="agroup__mpsc__buf_html_ga7f4df1864fad89ec9557b6f0e18c9589"><div class="ttname"><a href="group__mpsc__buf.html#ga7f4df1864fad89ec9557b6f0e18c9589">mpsc_pbuf_put_word_ext</a></div><div class="ttdeci">void mpsc_pbuf_put_word_ext(struct mpsc_pbuf_buffer *buffer, const union mpsc_pbuf_generic word, const void *data)</div><div class="ttdoc">Put a packet consisting of a word and a pointer.Function is optimized for storing packet consisting o...</div></div>
+<div class="ttc" id="agroup__mpsc__buf_html_ga87f3795770880fb552316a8cac7b85ae"><div class="ttname"><a href="group__mpsc__buf.html#ga87f3795770880fb552316a8cac7b85ae">mpsc_pbuf_notify_drop</a></div><div class="ttdeci">void(* mpsc_pbuf_notify_drop)(const struct mpsc_pbuf_buffer *buffer, const union mpsc_pbuf_generic *packet)</div><div class="ttdoc">Callback called when packet is dropped.</div><div class="ttdef"><b>Definição</b> mpsc_pbuf.h:86</div></div>
+<div class="ttc" id="agroup__mpsc__buf_html_ga8ee7fd071effaca18797862d423279d7"><div class="ttname"><a href="group__mpsc__buf.html#ga8ee7fd071effaca18797862d423279d7">mpsc_pbuf_get_max_utilization</a></div><div class="ttdeci">int mpsc_pbuf_get_max_utilization(struct mpsc_pbuf_buffer *buffer, uint32_t *max)</div><div class="ttdoc">Get maximum memory utilization.</div></div>
+<div class="ttc" id="agroup__mpsc__buf_html_ga9642d07deca00bc25cea2ae253ec7d76"><div class="ttname"><a href="group__mpsc__buf.html#ga9642d07deca00bc25cea2ae253ec7d76">mpsc_pbuf_claim</a></div><div class="ttdeci">const union mpsc_pbuf_generic * mpsc_pbuf_claim(struct mpsc_pbuf_buffer *buffer)</div><div class="ttdoc">Claim the first pending packet.</div></div>
+<div class="ttc" id="agroup__mpsc__buf_html_gaa537b9e73ca4fda26a92dc56b960270e"><div class="ttname"><a href="group__mpsc__buf.html#gaa537b9e73ca4fda26a92dc56b960270e">mpsc_pbuf_commit</a></div><div class="ttdeci">void mpsc_pbuf_commit(struct mpsc_pbuf_buffer *buffer, union mpsc_pbuf_generic *packet)</div><div class="ttdoc">Commit a packet.</div></div>
+<div class="ttc" id="agroup__mpsc__buf_html_gabc366638ec262c7ec41b320f0dcc6a87"><div class="ttname"><a href="group__mpsc__buf.html#gabc366638ec262c7ec41b320f0dcc6a87">mpsc_pbuf_put_word</a></div><div class="ttdeci">void mpsc_pbuf_put_word(struct mpsc_pbuf_buffer *buffer, const union mpsc_pbuf_generic word)</div><div class="ttdoc">Put single word packet into a buffer.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructk__spinlock_html"><div class="ttname"><a href="structk__spinlock.html">k_spinlock</a></div><div class="ttdoc">Kernel Spin Lock.</div><div class="ttdef"><b>Definição</b> spinlock.h:45</div></div>
+<div class="ttc" id="astructk__timeout__t_html"><div class="ttname"><a href="structk__timeout__t.html">k_timeout_t</a></div><div class="ttdoc">Kernel timeout type.</div><div class="ttdef"><b>Definição</b> sys_clock.h:65</div></div>
+<div class="ttc" id="astructmpsc__pbuf__buffer__config_html"><div class="ttname"><a href="structmpsc__pbuf__buffer__config.html">mpsc_pbuf_buffer_config</a></div><div class="ttdoc">MPSC packet buffer configuration.</div><div class="ttdef"><b>Definição</b> mpsc_pbuf.h:131</div></div>
+<div class="ttc" id="astructmpsc__pbuf__buffer_html"><div class="ttname"><a href="structmpsc__pbuf__buffer.html">mpsc_pbuf_buffer</a></div><div class="ttdoc">MPSC packet buffer structure.</div><div class="ttdef"><b>Definição</b> mpsc_pbuf.h:90</div></div>
+<div class="ttc" id="astructmpsc__pbuf__buffer_html_a10e9152b8c85be62eac0a3828e3b1e2a"><div class="ttname"><a href="structmpsc__pbuf__buffer.html#a10e9152b8c85be62eac0a3828e3b1e2a">mpsc_pbuf_buffer::flags</a></div><div class="ttdeci">uint32_t flags</div><div class="ttdef"><b>Definição</b> mpsc_pbuf.h:104</div></div>
+<div class="ttc" id="astructmpsc__pbuf__buffer_html_a1a986b86547aa644747b9a79a982b780"><div class="ttname"><a href="structmpsc__pbuf__buffer.html#a1a986b86547aa644747b9a79a982b780">mpsc_pbuf_buffer::lock</a></div><div class="ttdeci">struct k_spinlock lock</div><div class="ttdef"><b>Definição</b> mpsc_pbuf.h:107</div></div>
+<div class="ttc" id="astructmpsc__pbuf__buffer_html_a3f292f281f08b97d10183f9248ee7c4d"><div class="ttname"><a href="structmpsc__pbuf__buffer.html#a3f292f281f08b97d10183f9248ee7c4d">mpsc_pbuf_buffer::wr_idx</a></div><div class="ttdeci">uint32_t wr_idx</div><div class="ttdef"><b>Definição</b> mpsc_pbuf.h:95</div></div>
+<div class="ttc" id="astructmpsc__pbuf__buffer_html_a55df06357be70a3b633213199d987e71"><div class="ttname"><a href="structmpsc__pbuf__buffer.html#a55df06357be70a3b633213199d987e71">mpsc_pbuf_buffer::tmp_wr_idx</a></div><div class="ttdeci">uint32_t tmp_wr_idx</div><div class="ttdef"><b>Definição</b> mpsc_pbuf.h:92</div></div>
+<div class="ttc" id="astructmpsc__pbuf__buffer_html_acdebdb6e7175ea3f39f484885ff6bec2"><div class="ttname"><a href="structmpsc__pbuf__buffer.html#acdebdb6e7175ea3f39f484885ff6bec2">mpsc_pbuf_buffer::notify_drop</a></div><div class="ttdeci">mpsc_pbuf_notify_drop notify_drop</div><div class="ttdef"><b>Definição</b> mpsc_pbuf.h:113</div></div>
+<div class="ttc" id="astructmpsc__pbuf__buffer_html_ad87f240d978605258cb03d7d1e5e006f"><div class="ttname"><a href="structmpsc__pbuf__buffer.html#ad87f240d978605258cb03d7d1e5e006f">mpsc_pbuf_buffer::get_wlen</a></div><div class="ttdeci">mpsc_pbuf_get_wlen get_wlen</div><div class="ttdef"><b>Definição</b> mpsc_pbuf.h:116</div></div>
+<div class="ttc" id="astructmpsc__pbuf__buffer_html_aeea63b40d7b24e4396fa228bcf2a171f"><div class="ttname"><a href="structmpsc__pbuf__buffer.html#aeea63b40d7b24e4396fa228bcf2a171f">mpsc_pbuf_buffer::tmp_rd_idx</a></div><div class="ttdeci">uint32_t tmp_rd_idx</div><div class="ttdef"><b>Definição</b> mpsc_pbuf.h:98</div></div>
+<div class="ttc" id="astructmpsc__pbuf__buffer_html_af9340dd31ea8e37b4d609898b126497a"><div class="ttname"><a href="structmpsc__pbuf__buffer.html#af9340dd31ea8e37b4d609898b126497a">mpsc_pbuf_buffer::rd_idx</a></div><div class="ttdeci">uint32_t rd_idx</div><div class="ttdef"><b>Definição</b> mpsc_pbuf.h:101</div></div>
+<div class="ttc" id="aunionmpsc__pbuf__generic_html"><div class="ttname"><a href="unionmpsc__pbuf__generic.html">mpsc_pbuf_generic</a></div><div class="ttdoc">Generic packet header.</div><div class="ttdef"><b>Definição</b> mpsc_packet.h:49</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

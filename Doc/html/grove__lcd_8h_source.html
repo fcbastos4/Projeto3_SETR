@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/misc/grove_lcd/grove_lcd.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_9ad6370ca1a3f83d6a7a55ee003e6faf.html">misc</a></li><li class="navelem"><a class="el" href="dir_4bb9f95514dd7ea61dcd82353875ff10.html">grove_lcd</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">grove_lcd.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* grove_lcd.h - Public API for the Grove RGB LCD device */</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2015 Intel Corporation</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DISPLAY_GROVE_LCD_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DISPLAY_GROVE_LCD_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="group__grove__display.html#gaecd7b73186d110fa4bd2c47bbb7d63a2">   32</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__grove__display.html#gaecd7b73186d110fa4bd2c47bbb7d63a2">glcd_print</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">char</span> *data, uint32_t size);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="group__grove__display.html#ga8272c8c1ff41835306908a0f6932feae">   42</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__grove__display.html#ga8272c8c1ff41835306908a0f6932feae">glcd_cursor_pos_set</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t col, uint8_t row);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__grove__display.html#ga10929139f1632247968ccdd4fdd79dcd">   49</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__grove__display.html#ga10929139f1632247968ccdd4fdd79dcd">glcd_clear</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">/* Defines for the GLCD_CMD_DISPLAY_SWITCH options */</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#define GLCD_DS_DISPLAY_ON      (1 &lt;&lt; 2)</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#define GLCD_DS_DISPLAY_OFF     (0 &lt;&lt; 2)</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#define GLCD_DS_CURSOR_ON       (1 &lt;&lt; 1)</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#define GLCD_DS_CURSOR_OFF      (0 &lt;&lt; 1)</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define GLCD_DS_BLINK_ON        (1 &lt;&lt; 0)</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#define GLCD_DS_BLINK_OFF       (0 &lt;&lt; 0)</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="group__grove__display.html#ga103c6edb0b5ed37f34c12694338acc70">   69</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__grove__display.html#ga103c6edb0b5ed37f34c12694338acc70">glcd_display_state_set</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t opt);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="group__grove__display.html#gac3139bf68d1acbb27905a2346da13b17">   78</a></span>uint8_t <a class="code hl_function" href="group__grove__display.html#gac3139bf68d1acbb27905a2346da13b17">glcd_display_state_get</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">/* Defines for the GLCD_CMD_INPUT_SET to change text direction */</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#define GLCD_IS_SHIFT_INCREMENT (1 &lt;&lt; 1)</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#define GLCD_IS_SHIFT_DECREMENT (0 &lt;&lt; 1)</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">#define GLCD_IS_ENTRY_LEFT  (1 &lt;&lt; 0)</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#define GLCD_IS_ENTRY_RIGHT (0 &lt;&lt; 0)</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="group__grove__display.html#gae73554047414529e5e7957a5d394e4a2">   95</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__grove__display.html#gae73554047414529e5e7957a5d394e4a2">glcd_input_state_set</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t opt);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="group__grove__display.html#ga3c590c83b2f1c8ea0fe301daa7a40198">  104</a></span>uint8_t <a class="code hl_function" href="group__grove__display.html#ga3c590c83b2f1c8ea0fe301daa7a40198">glcd_input_state_get</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">/* Defines for the LCD_FUNCTION_SET */</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#define GLCD_FS_8BIT_MODE   (1 &lt;&lt; 4)</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">#define GLCD_FS_ROWS_2      (1 &lt;&lt; 3)</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="preprocessor">#define GLCD_FS_ROWS_1      (0 &lt;&lt; 3)</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">#define GLCD_FS_DOT_SIZE_BIG    (1 &lt;&lt; 2)</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#define GLCD_FS_DOT_SIZE_LITTLE (0 &lt;&lt; 2)</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment">/* Bits 0, 1 are not defined for this register */</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="group__grove__display.html#ga5e9fb362faf9c040eaa16addbfad2b6d">  123</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__grove__display.html#ga5e9fb362faf9c040eaa16addbfad2b6d">glcd_function_set</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t opt);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="group__grove__display.html#gad660824e481428b811c914d6bf4634f5">  132</a></span>uint8_t <a class="code hl_function" href="group__grove__display.html#gad660824e481428b811c914d6bf4634f5">glcd_function_get</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">/* Available color selections */</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">#define GROVE_RGB_WHITE     0</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#define GROVE_RGB_RED       1</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#define GROVE_RGB_GREEN     2</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">#define GROVE_RGB_BLUE      3</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="group__grove__display.html#gabd119208e05f9f878b7f24a62da08db2">  145</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__grove__display.html#gabd119208e05f9f878b7f24a62da08db2">glcd_color_select</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t color);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="group__grove__display.html#gaf99aa37f71396baaf523348a3ea9cbbe">  156</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__grove__display.html#gaf99aa37f71396baaf523348a3ea9cbbe">glcd_color_set</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t r, uint8_t g,</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            uint8_t b);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>}</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DISPLAY_GROVE_LCD_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__grove__display_html_ga103c6edb0b5ed37f34c12694338acc70"><div class="ttname"><a href="group__grove__display.html#ga103c6edb0b5ed37f34c12694338acc70">glcd_display_state_set</a></div><div class="ttdeci">void glcd_display_state_set(const struct device *dev, uint8_t opt)</div><div class="ttdoc">Function to change the display state.</div></div>
+<div class="ttc" id="agroup__grove__display_html_ga10929139f1632247968ccdd4fdd79dcd"><div class="ttname"><a href="group__grove__display.html#ga10929139f1632247968ccdd4fdd79dcd">glcd_clear</a></div><div class="ttdeci">void glcd_clear(const struct device *dev)</div><div class="ttdoc">Clear the current display.</div></div>
+<div class="ttc" id="agroup__grove__display_html_ga3c590c83b2f1c8ea0fe301daa7a40198"><div class="ttname"><a href="group__grove__display.html#ga3c590c83b2f1c8ea0fe301daa7a40198">glcd_input_state_get</a></div><div class="ttdeci">uint8_t glcd_input_state_get(const struct device *dev)</div><div class="ttdoc">return the input set associated with the device</div></div>
+<div class="ttc" id="agroup__grove__display_html_ga5e9fb362faf9c040eaa16addbfad2b6d"><div class="ttname"><a href="group__grove__display.html#ga5e9fb362faf9c040eaa16addbfad2b6d">glcd_function_set</a></div><div class="ttdeci">void glcd_function_set(const struct device *dev, uint8_t opt)</div><div class="ttdoc">Function to set the functional state of the display.</div></div>
+<div class="ttc" id="agroup__grove__display_html_ga8272c8c1ff41835306908a0f6932feae"><div class="ttname"><a href="group__grove__display.html#ga8272c8c1ff41835306908a0f6932feae">glcd_cursor_pos_set</a></div><div class="ttdeci">void glcd_cursor_pos_set(const struct device *dev, uint8_t col, uint8_t row)</div><div class="ttdoc">Set text cursor position for next additions.</div></div>
+<div class="ttc" id="agroup__grove__display_html_gabd119208e05f9f878b7f24a62da08db2"><div class="ttname"><a href="group__grove__display.html#gabd119208e05f9f878b7f24a62da08db2">glcd_color_select</a></div><div class="ttdeci">void glcd_color_select(const struct device *dev, uint8_t color)</div><div class="ttdoc">Set LCD background to a predefined color.</div></div>
+<div class="ttc" id="agroup__grove__display_html_gac3139bf68d1acbb27905a2346da13b17"><div class="ttname"><a href="group__grove__display.html#gac3139bf68d1acbb27905a2346da13b17">glcd_display_state_get</a></div><div class="ttdeci">uint8_t glcd_display_state_get(const struct device *dev)</div><div class="ttdoc">return the display feature set associated with the device</div></div>
+<div class="ttc" id="agroup__grove__display_html_gad660824e481428b811c914d6bf4634f5"><div class="ttname"><a href="group__grove__display.html#gad660824e481428b811c914d6bf4634f5">glcd_function_get</a></div><div class="ttdeci">uint8_t glcd_function_get(const struct device *dev)</div><div class="ttdoc">return the function set associated with the device</div></div>
+<div class="ttc" id="agroup__grove__display_html_gae73554047414529e5e7957a5d394e4a2"><div class="ttname"><a href="group__grove__display.html#gae73554047414529e5e7957a5d394e4a2">glcd_input_state_set</a></div><div class="ttdeci">void glcd_input_state_set(const struct device *dev, uint8_t opt)</div><div class="ttdoc">Function to change the input state.</div></div>
+<div class="ttc" id="agroup__grove__display_html_gaecd7b73186d110fa4bd2c47bbb7d63a2"><div class="ttname"><a href="group__grove__display.html#gaecd7b73186d110fa4bd2c47bbb7d63a2">glcd_print</a></div><div class="ttdeci">void glcd_print(const struct device *dev, char *data, uint32_t size)</div><div class="ttdoc">Send text to the screen.</div></div>
+<div class="ttc" id="agroup__grove__display_html_gaf99aa37f71396baaf523348a3ea9cbbe"><div class="ttname"><a href="group__grove__display.html#gaf99aa37f71396baaf523348a3ea9cbbe">glcd_color_set</a></div><div class="ttdeci">void glcd_color_set(const struct device *dev, uint8_t r, uint8_t g, uint8_t b)</div><div class="ttdoc">Set LCD background to custom RGB color value.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

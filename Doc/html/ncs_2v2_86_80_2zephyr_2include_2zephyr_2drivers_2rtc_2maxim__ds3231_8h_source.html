@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/rtc/maxim_ds3231.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_876094e697428aee2dcf1ca98b88b061.html">rtc</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">maxim_ds3231.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2019 Peter Bigot Consulting, LLC</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_RTC_DS3231_H_</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_RTC_DS3231_H_</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2counter_8h.html">zephyr/drivers/counter.h</a>&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;zephyr/sys/notify.h&gt;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#aa4c7c4796b95c1565f1cbc89e3f8666c">   47</a></span><span class="preprocessor">#define MAXIM_DS3231_ALARM1 BIT(0)</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a6bfaaa0a0dabf27c2836d80a5b603e36">   50</a></span><span class="preprocessor">#define MAXIM_DS3231_ALARM2 BIT(1)</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">/* Constants corresponding to bits in the DS3231 control register at</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment"> * 0x0E.</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment"> * See the datasheet for interpretation of these bits.</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a7a0c8cd9efebab0c1d393bbf724b48be">   58</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_CTRL_A1IE MAXIM_DS3231_ALARM1</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a402938e78fe63caea36a719fc66a1d5a">   61</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_CTRL_A2IE MAXIM_DS3231_ALARM2</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a3434c24e2058e8af1e5634ea81fa16d9">   70</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_CTRL_INTCN BIT(2)</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a91f55e1d2e9fcc15a5a4a28b65904fc5">   76</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_CTRL_RS_Pos 3</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a81b83144c73488ae9d4bf39e5c49c383">   79</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_CTRL_RS_Msk (0x03 &lt;&lt; MAXIM_DS3231_REG_CTRL_RS_Pos)</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#ab85257cd6a6971702dfbdeca86b39018">   82</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_CTRL_RS_1Hz 0x00</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a7e14bad3fb7439b128216effade29f5d">   85</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_CTRL_RS_1KiHz 0x01</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a21e219fe89353341f9dd4634d0be4efa">   88</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_CTRL_RS_4KiHz 0x02</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#aa6069b89201545ca8c3bcdef952a1176">   91</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_CTRL_RS_8KiHz 0x03</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#ab3e3e38695c5375d24c55381263cc257">   94</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_CTRL_CONV BIT(5)</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#aae0c76ff6e883a79a4586c275469ef96">   97</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_CTRL_BBSQW BIT(6)</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#aabace2215a936b246329c2519291d876">  100</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_CTRL_EOSCn BIT(7),</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#ac3321b05e01df54d607cec07e4f02824">  108</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_STAT_A1F MAXIM_DS3231_ALARM1</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a81df2ff1cbf0ac6ecbe2b80dbbe1b182">  116</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_STAT_A2F MAXIM_DS3231_ALARM2</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#ad522b899503e0606a53aaf1f9c9c0d38">  119</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_STAT_BSY BIT(2)</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#aa966f6de1e7662e66fac1d631b44d021">  126</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_STAT_EN32kHz BIT(3)</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#afe205661d94e00c332404e4c7f6dd138">  129</a></span><span class="preprocessor">#define MAXIM_DS3231_REG_STAT_OSF BIT(7)</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a65bba3dabc99b5098ffe280590b2dbba">  145</a></span><span class="preprocessor">#define MAXIM_DS3231_ALARM_FLAGS_IGNSE BIT(0)</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a4be38828079d6eda3e952dee03c205e3">  159</a></span><span class="preprocessor">#define MAXIM_DS3231_ALARM_FLAGS_IGNMN BIT(1)</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a2217d1d4d37b3d116f6d0fb4f6eb5f04">  172</a></span><span class="preprocessor">#define MAXIM_DS3231_ALARM_FLAGS_IGNHR BIT(2)</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a8041898f159b2a4c2fc13d942e08058b">  186</a></span><span class="preprocessor">#define MAXIM_DS3231_ALARM_FLAGS_IGNDA BIT(3)</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a92341088a6917efe124c946faa359d57">  196</a></span><span class="preprocessor">#define MAXIM_DS3231_ALARM_FLAGS_DOW BIT(4)</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_2maxim__ds3231_8h.html#a06f65bcbdbfde80613a193b27803ed95">  207</a></span><span class="preprocessor">#define MAXIM_DS3231_ALARM_FLAGS_AUTODISABLE BIT(7)</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="group__rtc__ds3231__interface.html#ga684b29dc1c11d8df698437f27e6d0403">  230</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__rtc__ds3231__interface.html#ga684b29dc1c11d8df698437f27e6d0403">maxim_ds3231_alarm_callback_handler_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                              uint8_t id,</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>                              uint32_t syncclock,</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                              <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="group__rtc__ds3231__interface.html#ga59541c849327f388169ca3a15df0ba57">  247</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__rtc__ds3231__interface.html#ga59541c849327f388169ca3a15df0ba57">maxim_ds3231_notify_callback</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                         <span class="keyword">struct </span><a class="code hl_struct" href="structsys__notify.html">sys_notify</a> *notify,</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                         <span class="keywordtype">int</span> res);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="foldopen" id="foldopen00262" data-start="{" data-end="};">
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="structmaxim__ds3231__alarm.html">  262</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmaxim__ds3231__alarm.html">maxim_ds3231_alarm</a> {</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="structmaxim__ds3231__alarm.html#a363a2dc65517c3d00de7658ce421937f">  275</a></span>    time_t <a class="code hl_variable" href="structmaxim__ds3231__alarm.html#a363a2dc65517c3d00de7658ce421937f">time</a>;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno"><a class="line" href="structmaxim__ds3231__alarm.html#a9628b99ed059a64f25143291c0df1c8c">  294</a></span>    <a class="code hl_typedef" href="group__rtc__ds3231__interface.html#ga684b29dc1c11d8df698437f27e6d0403">maxim_ds3231_alarm_callback_handler_t</a> <a class="code hl_variable" href="structmaxim__ds3231__alarm.html#a9628b99ed059a64f25143291c0df1c8c">handler</a>;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno"><a class="line" href="structmaxim__ds3231__alarm.html#a192fb8c10246bfe466e74aafbb45d720">  297</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structmaxim__ds3231__alarm.html#a192fb8c10246bfe466e74aafbb45d720">user_data</a>;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno"><a class="line" href="structmaxim__ds3231__alarm.html#a98ebc645761cc0d035e269fa8d3f9c68">  311</a></span>    uint8_t <a class="code hl_variable" href="structmaxim__ds3231__alarm.html#a98ebc645761cc0d035e269fa8d3f9c68">flags</a>;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>};</div>
+</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="foldopen" id="foldopen00320" data-start="{" data-end="};">
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="structmaxim__ds3231__syncpoint.html">  320</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmaxim__ds3231__syncpoint.html">maxim_ds3231_syncpoint</a> {</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="structmaxim__ds3231__syncpoint.html#aff4219f350140cb6a53e73bb91815452">  326</a></span>    <span class="keyword">struct </span>timespec <a class="code hl_variable" href="structmaxim__ds3231__syncpoint.html#aff4219f350140cb6a53e73bb91815452">rtc</a>;</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno"><a class="line" href="structmaxim__ds3231__syncpoint.html#adb649c698084d6dbb83915aa6e6079b8">  334</a></span>    uint32_t <a class="code hl_variable" href="structmaxim__ds3231__syncpoint.html#adb649c698084d6dbb83915aa6e6079b8">syncclock</a>;</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>};</div>
+</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span> </div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t maxim_ds3231_read_syncclock(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>{</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    <span class="keywordflow">return</span> k_uptime_get_32();</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>}</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t maxim_ds3231_syncclock_frequency(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>{</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    <span class="keywordflow">return</span> 1000U;</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>}</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno"><a class="line" href="group__rtc__ds3231__interface.html#ga1a41193eb70b147eb623ff07be3b3954">  395</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__rtc__ds3231__interface.html#ga1a41193eb70b147eb623ff07be3b3954">maxim_ds3231_ctrl_update</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>                 uint8_t set_bits,</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>                 uint8_t clear_bits);</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> </div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno"><a class="line" href="group__rtc__ds3231__interface.html#ga1073100b5943141333de8cfd0cd8ac2b">  428</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__rtc__ds3231__interface.html#ga1073100b5943141333de8cfd0cd8ac2b">maxim_ds3231_stat_update</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>                 uint8_t set_bits,</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>                 uint8_t clear_bits);</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span> </div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno"><a class="line" href="group__rtc__ds3231__interface.html#gabc9bd9ff8a2107c08a7d9ca02c162be1">  450</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__rtc__ds3231__interface.html#gabc9bd9ff8a2107c08a7d9ca02c162be1">maxim_ds3231_get_alarm</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>               uint8_t <span class="keywordtype">id</span>,</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>               <span class="keyword">struct</span> <a class="code hl_struct" href="structmaxim__ds3231__alarm.html">maxim_ds3231_alarm</a> *cfg);</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span> </div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno"><a class="line" href="group__rtc__ds3231__interface.html#ga8f876ad2e16e88d80a2f914be3df49b1">  474</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__rtc__ds3231__interface.html#ga8f876ad2e16e88d80a2f914be3df49b1">maxim_ds3231_set_alarm</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>               uint8_t <span class="keywordtype">id</span>,</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>               <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmaxim__ds3231__alarm.html">maxim_ds3231_alarm</a> *cfg);</div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span> </div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno"><a class="line" href="group__rtc__ds3231__interface.html#gabdf39bc4983b12646ad3b18ccfc1a7dc">  504</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__rtc__ds3231__interface.html#gabdf39bc4983b12646ad3b18ccfc1a7dc">maxim_ds3231_synchronize</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structsys__notify.html">sys_notify</a> *notify);</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span> </div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno"><a class="line" href="group__rtc__ds3231__interface.html#ga37bf94d90a5ced44e8cdb7555f17f402">  522</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__rtc__ds3231__interface.html#ga37bf94d90a5ced44e8cdb7555f17f402">maxim_ds3231_req_syncpoint</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>                     <span class="keyword">struct</span> <a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *signal);</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span> </div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno"><a class="line" href="group__rtc__ds3231__interface.html#gab96c8c6d778c647761645f214d3c625a">  537</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__rtc__ds3231__interface.html#gab96c8c6d778c647761645f214d3c625a">maxim_ds3231_get_syncpoint</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>                     <span class="keyword">struct</span> <a class="code hl_struct" href="structmaxim__ds3231__syncpoint.html">maxim_ds3231_syncpoint</a> *syncpoint);</div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span> </div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno"><a class="line" href="group__rtc__ds3231__interface.html#ga485db29a3aca59000798d5ae16ad7041">  567</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__rtc__ds3231__interface.html#ga485db29a3aca59000798d5ae16ad7041">maxim_ds3231_set</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>             <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmaxim__ds3231__syncpoint.html">maxim_ds3231_syncpoint</a> *syncpoint,</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>             <span class="keyword">struct</span> <a class="code hl_struct" href="structsys__notify.html">sys_notify</a> *notify);</div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span> </div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno"><a class="line" href="group__rtc__ds3231__interface.html#gab2091298eb9b94da29ad79616b707bad">  588</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__rtc__ds3231__interface.html#gab2091298eb9b94da29ad79616b707bad">maxim_ds3231_check_alarms</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span> </div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>}</div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span> </div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span><span class="comment">/* @todo this should be syscalls/drivers/rtc/maxim_ds3231.h */</span></div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span><span class="preprocessor">#include &lt;syscalls/maxim_ds3231.h&gt;</span></div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span> </div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_RTC_DS3231_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__rtc__ds3231__interface_html_ga1073100b5943141333de8cfd0cd8ac2b"><div class="ttname"><a href="group__rtc__ds3231__interface.html#ga1073100b5943141333de8cfd0cd8ac2b">maxim_ds3231_stat_update</a></div><div class="ttdeci">int maxim_ds3231_stat_update(const struct device *dev, uint8_t set_bits, uint8_t clear_bits)</div><div class="ttdoc">Read the ctrl_stat register then set and clear bits in it.</div></div>
+<div class="ttc" id="agroup__rtc__ds3231__interface_html_ga1a41193eb70b147eb623ff07be3b3954"><div class="ttname"><a href="group__rtc__ds3231__interface.html#ga1a41193eb70b147eb623ff07be3b3954">maxim_ds3231_ctrl_update</a></div><div class="ttdeci">int maxim_ds3231_ctrl_update(const struct device *dev, uint8_t set_bits, uint8_t clear_bits)</div><div class="ttdoc">Set and clear specific bits in the control register.</div></div>
+<div class="ttc" id="agroup__rtc__ds3231__interface_html_ga37bf94d90a5ced44e8cdb7555f17f402"><div class="ttname"><a href="group__rtc__ds3231__interface.html#ga37bf94d90a5ced44e8cdb7555f17f402">maxim_ds3231_req_syncpoint</a></div><div class="ttdeci">__syscall int maxim_ds3231_req_syncpoint(const struct device *dev, struct k_poll_signal *signal)</div><div class="ttdoc">Request to update the synchronization point.</div></div>
+<div class="ttc" id="agroup__rtc__ds3231__interface_html_ga485db29a3aca59000798d5ae16ad7041"><div class="ttname"><a href="group__rtc__ds3231__interface.html#ga485db29a3aca59000798d5ae16ad7041">maxim_ds3231_set</a></div><div class="ttdeci">int maxim_ds3231_set(const struct device *dev, const struct maxim_ds3231_syncpoint *syncpoint, struct sys_notify *notify)</div><div class="ttdoc">Set the RTC to a time consistent with the provided synchronization.</div></div>
+<div class="ttc" id="agroup__rtc__ds3231__interface_html_ga59541c849327f388169ca3a15df0ba57"><div class="ttname"><a href="group__rtc__ds3231__interface.html#ga59541c849327f388169ca3a15df0ba57">maxim_ds3231_notify_callback</a></div><div class="ttdeci">void(* maxim_ds3231_notify_callback)(const struct device *dev, struct sys_notify *notify, int res)</div><div class="ttdoc">Signature used to notify a user of the DS3231 that an asynchronous operation has completed.</div><div class="ttdef"><b>Definição</b> maxim_ds3231.h:247</div></div>
+<div class="ttc" id="agroup__rtc__ds3231__interface_html_ga684b29dc1c11d8df698437f27e6d0403"><div class="ttname"><a href="group__rtc__ds3231__interface.html#ga684b29dc1c11d8df698437f27e6d0403">maxim_ds3231_alarm_callback_handler_t</a></div><div class="ttdeci">void(* maxim_ds3231_alarm_callback_handler_t)(const struct device *dev, uint8_t id, uint32_t syncclock, void *user_data)</div><div class="ttdoc">Signature for DS3231 alarm callbacks.</div><div class="ttdef"><b>Definição</b> maxim_ds3231.h:230</div></div>
+<div class="ttc" id="agroup__rtc__ds3231__interface_html_ga8f876ad2e16e88d80a2f914be3df49b1"><div class="ttname"><a href="group__rtc__ds3231__interface.html#ga8f876ad2e16e88d80a2f914be3df49b1">maxim_ds3231_set_alarm</a></div><div class="ttdeci">int maxim_ds3231_set_alarm(const struct device *dev, uint8_t id, const struct maxim_ds3231_alarm *cfg)</div><div class="ttdoc">Configure a DS3231 alarm.</div></div>
+<div class="ttc" id="agroup__rtc__ds3231__interface_html_gab2091298eb9b94da29ad79616b707bad"><div class="ttname"><a href="group__rtc__ds3231__interface.html#gab2091298eb9b94da29ad79616b707bad">maxim_ds3231_check_alarms</a></div><div class="ttdeci">int maxim_ds3231_check_alarms(const struct device *dev)</div><div class="ttdoc">Check for and clear flags indicating that an alarm has fired.</div></div>
+<div class="ttc" id="agroup__rtc__ds3231__interface_html_gab96c8c6d778c647761645f214d3c625a"><div class="ttname"><a href="group__rtc__ds3231__interface.html#gab96c8c6d778c647761645f214d3c625a">maxim_ds3231_get_syncpoint</a></div><div class="ttdeci">__syscall int maxim_ds3231_get_syncpoint(const struct device *dev, struct maxim_ds3231_syncpoint *syncpoint)</div><div class="ttdoc">Retrieve the most recent synchronization point.</div></div>
+<div class="ttc" id="agroup__rtc__ds3231__interface_html_gabc9bd9ff8a2107c08a7d9ca02c162be1"><div class="ttname"><a href="group__rtc__ds3231__interface.html#gabc9bd9ff8a2107c08a7d9ca02c162be1">maxim_ds3231_get_alarm</a></div><div class="ttdeci">int maxim_ds3231_get_alarm(const struct device *dev, uint8_t id, struct maxim_ds3231_alarm *cfg)</div><div class="ttdoc">Read a DS3231 alarm configuration.</div></div>
+<div class="ttc" id="agroup__rtc__ds3231__interface_html_gabdf39bc4983b12646ad3b18ccfc1a7dc"><div class="ttname"><a href="group__rtc__ds3231__interface.html#gabdf39bc4983b12646ad3b18ccfc1a7dc">maxim_ds3231_synchronize</a></div><div class="ttdeci">int maxim_ds3231_synchronize(const struct device *dev, struct sys_notify *notify)</div><div class="ttdoc">Synchronize the RTC against the local clock.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2counter_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2counter_8h.html">counter.h</a></div><div class="ttdoc">Public API for counter and timer drivers.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructk__poll__signal_html"><div class="ttname"><a href="structk__poll__signal.html">k_poll_signal</a></div><div class="ttdef"><b>Definição</b> kernel.h:5629</div></div>
+<div class="ttc" id="astructmaxim__ds3231__alarm_html"><div class="ttname"><a href="structmaxim__ds3231__alarm.html">maxim_ds3231_alarm</a></div><div class="ttdoc">Information defining the alarm configuration.</div><div class="ttdef"><b>Definição</b> maxim_ds3231.h:262</div></div>
+<div class="ttc" id="astructmaxim__ds3231__alarm_html_a192fb8c10246bfe466e74aafbb45d720"><div class="ttname"><a href="structmaxim__ds3231__alarm.html#a192fb8c10246bfe466e74aafbb45d720">maxim_ds3231_alarm::user_data</a></div><div class="ttdeci">void * user_data</div><div class="ttdoc">User-provided pointer passed to alarm callback.</div><div class="ttdef"><b>Definição</b> maxim_ds3231.h:297</div></div>
+<div class="ttc" id="astructmaxim__ds3231__alarm_html_a363a2dc65517c3d00de7658ce421937f"><div class="ttname"><a href="structmaxim__ds3231__alarm.html#a363a2dc65517c3d00de7658ce421937f">maxim_ds3231_alarm::time</a></div><div class="ttdeci">time_t time</div><div class="ttdoc">Time specification for an RTC alarm.</div><div class="ttdef"><b>Definição</b> maxim_ds3231.h:275</div></div>
+<div class="ttc" id="astructmaxim__ds3231__alarm_html_a9628b99ed059a64f25143291c0df1c8c"><div class="ttname"><a href="structmaxim__ds3231__alarm.html#a9628b99ed059a64f25143291c0df1c8c">maxim_ds3231_alarm::handler</a></div><div class="ttdeci">maxim_ds3231_alarm_callback_handler_t handler</div><div class="ttdoc">Handler to be invoked when alarms are signalled.</div><div class="ttdef"><b>Definição</b> maxim_ds3231.h:294</div></div>
+<div class="ttc" id="astructmaxim__ds3231__alarm_html_a98ebc645761cc0d035e269fa8d3f9c68"><div class="ttname"><a href="structmaxim__ds3231__alarm.html#a98ebc645761cc0d035e269fa8d3f9c68">maxim_ds3231_alarm::flags</a></div><div class="ttdeci">uint8_t flags</div><div class="ttdoc">Flags controlling configuration of the alarm alarm.</div><div class="ttdef"><b>Definição</b> maxim_ds3231.h:311</div></div>
+<div class="ttc" id="astructmaxim__ds3231__syncpoint_html"><div class="ttname"><a href="structmaxim__ds3231__syncpoint.html">maxim_ds3231_syncpoint</a></div><div class="ttdoc">Register the RTC clock against system clocks.</div><div class="ttdef"><b>Definição</b> maxim_ds3231.h:320</div></div>
+<div class="ttc" id="astructmaxim__ds3231__syncpoint_html_adb649c698084d6dbb83915aa6e6079b8"><div class="ttname"><a href="structmaxim__ds3231__syncpoint.html#adb649c698084d6dbb83915aa6e6079b8">maxim_ds3231_syncpoint::syncclock</a></div><div class="ttdeci">uint32_t syncclock</div><div class="ttdoc">Value of a local clock at the same instant as rtc.</div><div class="ttdef"><b>Definição</b> maxim_ds3231.h:334</div></div>
+<div class="ttc" id="astructmaxim__ds3231__syncpoint_html_aff4219f350140cb6a53e73bb91815452"><div class="ttname"><a href="structmaxim__ds3231__syncpoint.html#aff4219f350140cb6a53e73bb91815452">maxim_ds3231_syncpoint::rtc</a></div><div class="ttdeci">struct timespec rtc</div><div class="ttdoc">Time from the DS3231.</div><div class="ttdef"><b>Definição</b> maxim_ds3231.h:326</div></div>
+<div class="ttc" id="astructsys__notify_html"><div class="ttname"><a href="structsys__notify.html">sys_notify</a></div><div class="ttdoc">State associated with notification for an asynchronous operation.</div><div class="ttdef"><b>Definição</b> notify.h:138</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

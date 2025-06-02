@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/lorawan/lorawan.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_56c3b6c35a04372cbe2d3d408c563d28.html">lorawan</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">lorawan.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="lorawan_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2020 Manivannan Sadhasivam &lt;mani@kernel.org&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_LORAWAN_LORAWAN_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_LORAWAN_LORAWAN_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="slist_8h.html">zephyr/sys/slist.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga88b65799c3f1d98fbce80927218c0837">   28</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__lorawan__api.html#ga88b65799c3f1d98fbce80927218c0837">lorawan_class</a> {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    LORAWAN_CLASS_A = 0x00,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    LORAWAN_CLASS_B = 0x01,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    LORAWAN_CLASS_C = 0x02,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
+</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="};">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga2bf50442214ecdc717f1a24dc058a338">   37</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__lorawan__api.html#ga2bf50442214ecdc717f1a24dc058a338">lorawan_act_type</a> {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    LORAWAN_ACT_OTAA = 0,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    LORAWAN_ACT_ABP,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
+</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="};">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga276e66fb8ce88f853d1987686e31fc86">   45</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__lorawan__api.html#ga276e66fb8ce88f853d1987686e31fc86">lorawan_datarate</a> {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    LORAWAN_DR_0 = 0,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    LORAWAN_DR_1,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    LORAWAN_DR_2,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    LORAWAN_DR_3,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    LORAWAN_DR_4,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    LORAWAN_DR_5,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    LORAWAN_DR_6,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    LORAWAN_DR_7,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    LORAWAN_DR_8,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    LORAWAN_DR_9,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    LORAWAN_DR_10,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    LORAWAN_DR_11,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    LORAWAN_DR_12,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    LORAWAN_DR_13,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    LORAWAN_DR_14,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    LORAWAN_DR_15,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="};">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#gacb8efaa0761f8761146a0e913dcb627d">   67</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__lorawan__api.html#gacb8efaa0761f8761146a0e913dcb627d">lorawan_region</a> {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    LORAWAN_REGION_AS923,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    LORAWAN_REGION_AU915,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    LORAWAN_REGION_CN470,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    LORAWAN_REGION_CN779,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    LORAWAN_REGION_EU433,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    LORAWAN_REGION_EU868,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    LORAWAN_REGION_KR920,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    LORAWAN_REGION_IN865,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    LORAWAN_REGION_US915,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    LORAWAN_REGION_RU864,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="};">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga5d78efba3f8e62ccd6317aed8af4bc54">   83</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__lorawan__api.html#ga5d78efba3f8e62ccd6317aed8af4bc54">lorawan_message_type</a> {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    LORAWAN_MSG_UNCONFIRMED = 0,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    LORAWAN_MSG_CONFIRMED,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="foldopen" id="foldopen00096" data-start="{" data-end="};">
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="structlorawan__join__otaa.html">   96</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structlorawan__join__otaa.html">lorawan_join_otaa</a> {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="structlorawan__join__otaa.html#aacf3523f615f08fac1993e0bdc354072">   98</a></span>    uint8_t *<a class="code hl_variable" href="structlorawan__join__otaa.html#aacf3523f615f08fac1993e0bdc354072">join_eui</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="structlorawan__join__otaa.html#af1a96b4fa17ee70ee0e8ba078b02a6bc">  100</a></span>    uint8_t *<a class="code hl_variable" href="structlorawan__join__otaa.html#af1a96b4fa17ee70ee0e8ba078b02a6bc">nwk_key</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="structlorawan__join__otaa.html#a28dd704e28d0bed909c3e85e516c85ea">  102</a></span>    uint8_t *<a class="code hl_variable" href="structlorawan__join__otaa.html#a28dd704e28d0bed909c3e85e516c85ea">app_key</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structlorawan__join__otaa.html#ab83167af58040f95072a95fbaed1ff5d">  110</a></span>    uint16_t <a class="code hl_variable" href="structlorawan__join__otaa.html#ab83167af58040f95072a95fbaed1ff5d">dev_nonce</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>};</div>
+</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="foldopen" id="foldopen00116" data-start="{" data-end="};">
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="structlorawan__join__abp.html">  116</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structlorawan__join__abp.html">lorawan_join_abp</a> {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="structlorawan__join__abp.html#ad132826d04b66f145865f9a30ff03fff">  118</a></span>    uint32_t <a class="code hl_variable" href="structlorawan__join__abp.html#ad132826d04b66f145865f9a30ff03fff">dev_addr</a>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="structlorawan__join__abp.html#a8019bead1dfdda7a0b05f35f128edca5">  120</a></span>    uint8_t *<a class="code hl_variable" href="structlorawan__join__abp.html#a8019bead1dfdda7a0b05f35f128edca5">app_skey</a>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="structlorawan__join__abp.html#aa389fec6799b12e750d57aaf0b34e6b0">  122</a></span>    uint8_t *<a class="code hl_variable" href="structlorawan__join__abp.html#aa389fec6799b12e750d57aaf0b34e6b0">nwk_skey</a>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="structlorawan__join__abp.html#a7a409fa2f3761c49085818768a62d216">  124</a></span>    uint8_t *<a class="code hl_variable" href="structlorawan__join__abp.html#a7a409fa2f3761c49085818768a62d216">app_eui</a>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>};</div>
+</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="foldopen" id="foldopen00130" data-start="{" data-end="};">
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="structlorawan__join__config.html">  130</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structlorawan__join__config.html">lorawan_join_config</a> {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structlorawan__join__otaa.html">lorawan_join_otaa</a> otaa;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structlorawan__join__abp.html">lorawan_join_abp</a> abp;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    };</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="structlorawan__join__config.html#af5c973ed774255858b2219f737a3fe0a">  137</a></span>    uint8_t *<a class="code hl_variable" href="structlorawan__join__config.html#af5c973ed774255858b2219f737a3fe0a">dev_eui</a>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="structlorawan__join__config.html#a9dbe39641f878e4c997a16711fdb5585">  140</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__lorawan__api.html#ga2bf50442214ecdc717f1a24dc058a338">lorawan_act_type</a> <a class="code hl_variable" href="structlorawan__join__config.html#a9dbe39641f878e4c997a16711fdb5585">mode</a>;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>};</div>
+</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">#define LW_RECV_PORT_ANY UINT16_MAX</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="foldopen" id="foldopen00148" data-start="{" data-end="};">
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="structlorawan__downlink__cb.html">  148</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structlorawan__downlink__cb.html">lorawan_downlink_cb</a> {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="structlorawan__downlink__cb.html#a0479e13faf06b99cf9023ebed8022131">  156</a></span>    uint16_t <a class="code hl_variable" href="structlorawan__downlink__cb.html#a0479e13faf06b99cf9023ebed8022131">port</a>;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="structlorawan__downlink__cb.html#adee407633f1c6fa35178769cb9355178">  170</a></span>    void (*<a class="code hl_variable" href="structlorawan__downlink__cb.html#adee407633f1c6fa35178769cb9355178">cb</a>)(uint8_t <a class="code hl_variable" href="structlorawan__downlink__cb.html#a0479e13faf06b99cf9023ebed8022131">port</a>, <span class="keywordtype">bool</span> data_pending,</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>           int16_t rssi, int8_t snr,</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>           uint8_t len, <span class="keyword">const</span> uint8_t *data);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="structlorawan__downlink__cb.html#ad54df4a4ab38003d59f82b19fb16f5fd">  174</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> <a class="code hl_variable" href="structlorawan__downlink__cb.html#ad54df4a4ab38003d59f82b19fb16f5fd">node</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>};</div>
+</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga17a7a2e1dbfa19b9f7e18a81be5514dd">  184</a></span><span class="keyword">typedef</span> uint8_t (*<a class="code hl_typedef" href="group__lorawan__api.html#ga17a7a2e1dbfa19b9f7e18a81be5514dd">lorawan_battery_level_cb_t</a>)(void);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga87a8d911f1c825bcf8c77ada568f3ed4">  191</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__lorawan__api.html#ga87a8d911f1c825bcf8c77ada568f3ed4">lorawan_dr_changed_cb_t</a>)(<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__lorawan__api.html#ga276e66fb8ce88f853d1987686e31fc86">lorawan_datarate</a> dr);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga9771704a8bcab778dd30653a0fbdeb2f">  203</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__lorawan__api.html#ga9771704a8bcab778dd30653a0fbdeb2f">lorawan_register_battery_level_callback</a>(<a class="code hl_typedef" href="group__lorawan__api.html#ga17a7a2e1dbfa19b9f7e18a81be5514dd">lorawan_battery_level_cb_t</a> cb);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#gab91f31477cd44e10692ca9d56d137ae2">  210</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__lorawan__api.html#gab91f31477cd44e10692ca9d56d137ae2">lorawan_register_downlink_callback</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structlorawan__downlink__cb.html">lorawan_downlink_cb</a> *cb);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga505e8d27bc7bc029feb93bbe4982d329">  220</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__lorawan__api.html#ga505e8d27bc7bc029feb93bbe4982d329">lorawan_register_dr_changed_callback</a>(<a class="code hl_typedef" href="group__lorawan__api.html#ga87a8d911f1c825bcf8c77ada568f3ed4">lorawan_dr_changed_cb_t</a> cb);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga5b2c7543c45801c9d0d7f46546771f17">  231</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__lorawan__api.html#ga5b2c7543c45801c9d0d7f46546771f17">lorawan_join</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structlorawan__join__config.html">lorawan_join_config</a> *config);</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga640d93930e09327ee87563597f919725">  240</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__lorawan__api.html#ga640d93930e09327ee87563597f919725">lorawan_start</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga23758c3225e3ebf62bbe91b7589b67d7">  258</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__lorawan__api.html#ga23758c3225e3ebf62bbe91b7589b67d7">lorawan_send</a>(uint8_t port, uint8_t *data, uint8_t len, <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__lorawan__api.html#ga5d78efba3f8e62ccd6317aed8af4bc54">lorawan_message_type</a> type);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#gab9768bad8d0c18410f6b8e946e89cbbe">  270</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__lorawan__api.html#gab9768bad8d0c18410f6b8e946e89cbbe">lorawan_set_class</a>(<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__lorawan__api.html#ga88b65799c3f1d98fbce80927218c0837">lorawan_class</a> dev_class);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga14f9cb6a11c585f9ac4e9986735a82c3">  279</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__lorawan__api.html#ga14f9cb6a11c585f9ac4e9986735a82c3">lorawan_set_conf_msg_tries</a>(uint8_t tries);</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga432929bd5911e04e57ef178b65e1beaa">  292</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__lorawan__api.html#ga432929bd5911e04e57ef178b65e1beaa">lorawan_enable_adr</a>(<span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#gaaa70ba5aa545b59233bc906948a4030d">  303</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__lorawan__api.html#gaaa70ba5aa545b59233bc906948a4030d">lorawan_set_datarate</a>(<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__lorawan__api.html#ga276e66fb8ce88f853d1987686e31fc86">lorawan_datarate</a> dr);</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga6d1b45c5543473ff4fbcef473a8e0e35">  313</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__lorawan__api.html#ga276e66fb8ce88f853d1987686e31fc86">lorawan_datarate</a> <a class="code hl_function" href="group__lorawan__api.html#ga6d1b45c5543473ff4fbcef473a8e0e35">lorawan_get_min_datarate</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#ga94e3c282537618efae65e8ada1f88e81">  325</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__lorawan__api.html#ga94e3c282537618efae65e8ada1f88e81">lorawan_get_payload_sizes</a>(uint8_t *max_next_payload_size,</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>                   uint8_t *max_payload_size);</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno"><a class="line" href="group__lorawan__api.html#gaaf60e8b09d6f8d3a89aa2089c137fd3f">  338</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__lorawan__api.html#gaaf60e8b09d6f8d3a89aa2089c137fd3f">lorawan_set_region</a>(<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__lorawan__api.html#gacb8efaa0761f8761146a0e913dcb627d">lorawan_region</a> region);</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="preprocessor">#ifdef CONFIG_LORAWAN_APP_CLOCK_SYNC</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span> </div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="keywordtype">int</span> lorawan_clock_sync_run(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="keywordtype">int</span> lorawan_clock_sync_get(uint32_t *gps_time);</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_LORAWAN_APP_CLOCK_SYNC */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>}</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span> </div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_LORAWAN_LORAWAN_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga14f9cb6a11c585f9ac4e9986735a82c3"><div class="ttname"><a href="group__lorawan__api.html#ga14f9cb6a11c585f9ac4e9986735a82c3">lorawan_set_conf_msg_tries</a></div><div class="ttdeci">int lorawan_set_conf_msg_tries(uint8_t tries)</div><div class="ttdoc">Set the number of tries used for transmissions.</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga17a7a2e1dbfa19b9f7e18a81be5514dd"><div class="ttname"><a href="group__lorawan__api.html#ga17a7a2e1dbfa19b9f7e18a81be5514dd">lorawan_battery_level_cb_t</a></div><div class="ttdeci">uint8_t(* lorawan_battery_level_cb_t)(void)</div><div class="ttdoc">Defines the battery level callback handler function signature.</div><div class="ttdef"><b>Definição</b> lorawan.h:184</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga23758c3225e3ebf62bbe91b7589b67d7"><div class="ttname"><a href="group__lorawan__api.html#ga23758c3225e3ebf62bbe91b7589b67d7">lorawan_send</a></div><div class="ttdeci">int lorawan_send(uint8_t port, uint8_t *data, uint8_t len, enum lorawan_message_type type)</div><div class="ttdoc">Send data to the LoRaWAN network.</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga276e66fb8ce88f853d1987686e31fc86"><div class="ttname"><a href="group__lorawan__api.html#ga276e66fb8ce88f853d1987686e31fc86">lorawan_datarate</a></div><div class="ttdeci">lorawan_datarate</div><div class="ttdoc">LoRaWAN datarate types.</div><div class="ttdef"><b>Definição</b> lorawan.h:45</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga2bf50442214ecdc717f1a24dc058a338"><div class="ttname"><a href="group__lorawan__api.html#ga2bf50442214ecdc717f1a24dc058a338">lorawan_act_type</a></div><div class="ttdeci">lorawan_act_type</div><div class="ttdoc">LoRaWAN activation types.</div><div class="ttdef"><b>Definição</b> lorawan.h:37</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga432929bd5911e04e57ef178b65e1beaa"><div class="ttname"><a href="group__lorawan__api.html#ga432929bd5911e04e57ef178b65e1beaa">lorawan_enable_adr</a></div><div class="ttdeci">void lorawan_enable_adr(bool enable)</div><div class="ttdoc">Enable Adaptive Data Rate (ADR)</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga505e8d27bc7bc029feb93bbe4982d329"><div class="ttname"><a href="group__lorawan__api.html#ga505e8d27bc7bc029feb93bbe4982d329">lorawan_register_dr_changed_callback</a></div><div class="ttdeci">void lorawan_register_dr_changed_callback(lorawan_dr_changed_cb_t cb)</div><div class="ttdoc">Register a callback to be called when the datarate changes.</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga5b2c7543c45801c9d0d7f46546771f17"><div class="ttname"><a href="group__lorawan__api.html#ga5b2c7543c45801c9d0d7f46546771f17">lorawan_join</a></div><div class="ttdeci">int lorawan_join(const struct lorawan_join_config *config)</div><div class="ttdoc">Join the LoRaWAN network.</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga5d78efba3f8e62ccd6317aed8af4bc54"><div class="ttname"><a href="group__lorawan__api.html#ga5d78efba3f8e62ccd6317aed8af4bc54">lorawan_message_type</a></div><div class="ttdeci">lorawan_message_type</div><div class="ttdoc">LoRaWAN message types.</div><div class="ttdef"><b>Definição</b> lorawan.h:83</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga640d93930e09327ee87563597f919725"><div class="ttname"><a href="group__lorawan__api.html#ga640d93930e09327ee87563597f919725">lorawan_start</a></div><div class="ttdeci">int lorawan_start(void)</div><div class="ttdoc">Start the LoRaWAN stack.</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga6d1b45c5543473ff4fbcef473a8e0e35"><div class="ttname"><a href="group__lorawan__api.html#ga6d1b45c5543473ff4fbcef473a8e0e35">lorawan_get_min_datarate</a></div><div class="ttdeci">enum lorawan_datarate lorawan_get_min_datarate(void)</div><div class="ttdoc">Get the minimum possible datarate.</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga87a8d911f1c825bcf8c77ada568f3ed4"><div class="ttname"><a href="group__lorawan__api.html#ga87a8d911f1c825bcf8c77ada568f3ed4">lorawan_dr_changed_cb_t</a></div><div class="ttdeci">void(* lorawan_dr_changed_cb_t)(enum lorawan_datarate dr)</div><div class="ttdoc">Defines the datarate changed callback handler function signature.</div><div class="ttdef"><b>Definição</b> lorawan.h:191</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga88b65799c3f1d98fbce80927218c0837"><div class="ttname"><a href="group__lorawan__api.html#ga88b65799c3f1d98fbce80927218c0837">lorawan_class</a></div><div class="ttdeci">lorawan_class</div><div class="ttdoc">LoRaWAN class types.</div><div class="ttdef"><b>Definição</b> lorawan.h:28</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga94e3c282537618efae65e8ada1f88e81"><div class="ttname"><a href="group__lorawan__api.html#ga94e3c282537618efae65e8ada1f88e81">lorawan_get_payload_sizes</a></div><div class="ttdeci">void lorawan_get_payload_sizes(uint8_t *max_next_payload_size, uint8_t *max_payload_size)</div><div class="ttdoc">Get the current payload sizes.</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_ga9771704a8bcab778dd30653a0fbdeb2f"><div class="ttname"><a href="group__lorawan__api.html#ga9771704a8bcab778dd30653a0fbdeb2f">lorawan_register_battery_level_callback</a></div><div class="ttdeci">void lorawan_register_battery_level_callback(lorawan_battery_level_cb_t cb)</div><div class="ttdoc">Register a battery level callback function.</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_gaaa70ba5aa545b59233bc906948a4030d"><div class="ttname"><a href="group__lorawan__api.html#gaaa70ba5aa545b59233bc906948a4030d">lorawan_set_datarate</a></div><div class="ttdeci">int lorawan_set_datarate(enum lorawan_datarate dr)</div><div class="ttdoc">Set the default data rate.</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_gaaf60e8b09d6f8d3a89aa2089c137fd3f"><div class="ttname"><a href="group__lorawan__api.html#gaaf60e8b09d6f8d3a89aa2089c137fd3f">lorawan_set_region</a></div><div class="ttdeci">int lorawan_set_region(enum lorawan_region region)</div><div class="ttdoc">Set the region and frequency to be used.</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_gab91f31477cd44e10692ca9d56d137ae2"><div class="ttname"><a href="group__lorawan__api.html#gab91f31477cd44e10692ca9d56d137ae2">lorawan_register_downlink_callback</a></div><div class="ttdeci">void lorawan_register_downlink_callback(struct lorawan_downlink_cb *cb)</div><div class="ttdoc">Register a callback to be run on downlink packets.</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_gab9768bad8d0c18410f6b8e946e89cbbe"><div class="ttname"><a href="group__lorawan__api.html#gab9768bad8d0c18410f6b8e946e89cbbe">lorawan_set_class</a></div><div class="ttdeci">int lorawan_set_class(enum lorawan_class dev_class)</div><div class="ttdoc">Set the current device class.</div></div>
+<div class="ttc" id="agroup__lorawan__api_html_gacb8efaa0761f8761146a0e913dcb627d"><div class="ttname"><a href="group__lorawan__api.html#gacb8efaa0761f8761146a0e913dcb627d">lorawan_region</a></div><div class="ttdeci">lorawan_region</div><div class="ttdoc">LoRaWAN region types.</div><div class="ttdef"><b>Definição</b> lorawan.h:67</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="aslist_8h_html"><div class="ttname"><a href="slist_8h.html">slist.h</a></div></div>
+<div class="ttc" id="astructlorawan__downlink__cb_html"><div class="ttname"><a href="structlorawan__downlink__cb.html">lorawan_downlink_cb</a></div><div class="ttdoc">LoRaWAN downlink callback parameters.</div><div class="ttdef"><b>Definição</b> lorawan.h:148</div></div>
+<div class="ttc" id="astructlorawan__downlink__cb_html_a0479e13faf06b99cf9023ebed8022131"><div class="ttname"><a href="structlorawan__downlink__cb.html#a0479e13faf06b99cf9023ebed8022131">lorawan_downlink_cb::port</a></div><div class="ttdeci">uint16_t port</div><div class="ttdoc">Port to handle messages for.</div><div class="ttdef"><b>Definição</b> lorawan.h:156</div></div>
+<div class="ttc" id="astructlorawan__downlink__cb_html_ad54df4a4ab38003d59f82b19fb16f5fd"><div class="ttname"><a href="structlorawan__downlink__cb.html#ad54df4a4ab38003d59f82b19fb16f5fd">lorawan_downlink_cb::node</a></div><div class="ttdeci">sys_snode_t node</div><div class="ttdef"><b>Definição</b> lorawan.h:174</div></div>
+<div class="ttc" id="astructlorawan__downlink__cb_html_adee407633f1c6fa35178769cb9355178"><div class="ttname"><a href="structlorawan__downlink__cb.html#adee407633f1c6fa35178769cb9355178">lorawan_downlink_cb::cb</a></div><div class="ttdeci">void(* cb)(uint8_t port, bool data_pending, int16_t rssi, int8_t snr, uint8_t len, const uint8_t *data)</div><div class="ttdoc">Callback function to run on downlink data.</div><div class="ttdef"><b>Definição</b> lorawan.h:170</div></div>
+<div class="ttc" id="astructlorawan__join__abp_html"><div class="ttname"><a href="structlorawan__join__abp.html">lorawan_join_abp</a></div><div class="ttdoc">LoRaWAN join parameters for activation by personalization (ABP)</div><div class="ttdef"><b>Definição</b> lorawan.h:116</div></div>
+<div class="ttc" id="astructlorawan__join__abp_html_a7a409fa2f3761c49085818768a62d216"><div class="ttname"><a href="structlorawan__join__abp.html#a7a409fa2f3761c49085818768a62d216">lorawan_join_abp::app_eui</a></div><div class="ttdeci">uint8_t * app_eui</div><div class="ttdef"><b>Definição</b> lorawan.h:124</div></div>
+<div class="ttc" id="astructlorawan__join__abp_html_a8019bead1dfdda7a0b05f35f128edca5"><div class="ttname"><a href="structlorawan__join__abp.html#a8019bead1dfdda7a0b05f35f128edca5">lorawan_join_abp::app_skey</a></div><div class="ttdeci">uint8_t * app_skey</div><div class="ttdef"><b>Definição</b> lorawan.h:120</div></div>
+<div class="ttc" id="astructlorawan__join__abp_html_aa389fec6799b12e750d57aaf0b34e6b0"><div class="ttname"><a href="structlorawan__join__abp.html#aa389fec6799b12e750d57aaf0b34e6b0">lorawan_join_abp::nwk_skey</a></div><div class="ttdeci">uint8_t * nwk_skey</div><div class="ttdef"><b>Definição</b> lorawan.h:122</div></div>
+<div class="ttc" id="astructlorawan__join__abp_html_ad132826d04b66f145865f9a30ff03fff"><div class="ttname"><a href="structlorawan__join__abp.html#ad132826d04b66f145865f9a30ff03fff">lorawan_join_abp::dev_addr</a></div><div class="ttdeci">uint32_t dev_addr</div><div class="ttdef"><b>Definição</b> lorawan.h:118</div></div>
+<div class="ttc" id="astructlorawan__join__config_html"><div class="ttname"><a href="structlorawan__join__config.html">lorawan_join_config</a></div><div class="ttdoc">LoRaWAN join parameters.</div><div class="ttdef"><b>Definição</b> lorawan.h:130</div></div>
+<div class="ttc" id="astructlorawan__join__config_html_a9dbe39641f878e4c997a16711fdb5585"><div class="ttname"><a href="structlorawan__join__config.html#a9dbe39641f878e4c997a16711fdb5585">lorawan_join_config::mode</a></div><div class="ttdeci">enum lorawan_act_type mode</div><div class="ttdef"><b>Definição</b> lorawan.h:140</div></div>
+<div class="ttc" id="astructlorawan__join__config_html_af5c973ed774255858b2219f737a3fe0a"><div class="ttname"><a href="structlorawan__join__config.html#af5c973ed774255858b2219f737a3fe0a">lorawan_join_config::dev_eui</a></div><div class="ttdeci">uint8_t * dev_eui</div><div class="ttdef"><b>Definição</b> lorawan.h:137</div></div>
+<div class="ttc" id="astructlorawan__join__otaa_html"><div class="ttname"><a href="structlorawan__join__otaa.html">lorawan_join_otaa</a></div><div class="ttdoc">LoRaWAN join parameters for over-the-Air activation (OTAA)</div><div class="ttdef"><b>Definição</b> lorawan.h:96</div></div>
+<div class="ttc" id="astructlorawan__join__otaa_html_a28dd704e28d0bed909c3e85e516c85ea"><div class="ttname"><a href="structlorawan__join__otaa.html#a28dd704e28d0bed909c3e85e516c85ea">lorawan_join_otaa::app_key</a></div><div class="ttdeci">uint8_t * app_key</div><div class="ttdef"><b>Definição</b> lorawan.h:102</div></div>
+<div class="ttc" id="astructlorawan__join__otaa_html_aacf3523f615f08fac1993e0bdc354072"><div class="ttname"><a href="structlorawan__join__otaa.html#aacf3523f615f08fac1993e0bdc354072">lorawan_join_otaa::join_eui</a></div><div class="ttdeci">uint8_t * join_eui</div><div class="ttdef"><b>Definição</b> lorawan.h:98</div></div>
+<div class="ttc" id="astructlorawan__join__otaa_html_ab83167af58040f95072a95fbaed1ff5d"><div class="ttname"><a href="structlorawan__join__otaa.html#ab83167af58040f95072a95fbaed1ff5d">lorawan_join_otaa::dev_nonce</a></div><div class="ttdeci">uint16_t dev_nonce</div><div class="ttdef"><b>Definição</b> lorawan.h:110</div></div>
+<div class="ttc" id="astructlorawan__join__otaa_html_af1a96b4fa17ee70ee0e8ba078b02a6bc"><div class="ttname"><a href="structlorawan__join__otaa.html#af1a96b4fa17ee70ee0e8ba078b02a6bc">lorawan_join_otaa::nwk_key</a></div><div class="ttdeci">uint8_t * nwk_key</div><div class="ttdef"><b>Definição</b> lorawan.h:100</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/fs/fcb.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_073a8270037451a35a5f51a062cbcd1c.html">fs</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">fcb.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2017-2023 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2015 Runtime Inc</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_FS_FCB_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_FS_FCB_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * Flash circular buffer.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;limits.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="flash__map_8h.html">zephyr/storage/flash_map.h</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="util__macro_8h.html">zephyr/sys/util_macro.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="group__fcb__data__structures.html#gaccabb1cb7f83c0d8919571cf3de7ee47">   38</a></span><span class="preprocessor">#define FCB_MAX_LEN (CHAR_MAX | CHAR_MAX &lt;&lt; 7) </span></div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="};">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structfcb__entry.html">   49</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structfcb__entry.html">fcb_entry</a> {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structfcb__entry.html#aa564f9f79012beb20265bc5e85816fea">   50</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structflash__sector.html">flash_sector</a> *<a class="code hl_variable" href="structfcb__entry.html#aa564f9f79012beb20265bc5e85816fea">fe_sector</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structfcb__entry.html#a6d01cb2107949bf4f0a2779c9781261f">   53</a></span>    uint32_t <a class="code hl_variable" href="structfcb__entry.html#a6d01cb2107949bf4f0a2779c9781261f">fe_elem_off</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structfcb__entry.html#a82cba5933875498c804f31722a6e90f9">   56</a></span>    uint32_t <a class="code hl_variable" href="structfcb__entry.html#a82cba5933875498c804f31722a6e90f9">fe_data_off</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structfcb__entry.html#aa207d21d51bc2c7aa838ca9dc3b52be7">   59</a></span>    uint16_t <a class="code hl_variable" href="structfcb__entry.html#aa207d21d51bc2c7aa838ca9dc3b52be7">fe_data_len</a>; </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>};</div>
+</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="foldopen" id="foldopen00068" data-start="" data-end="">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="group__fcb__data__structures.html#ga9b47a1aa59039995107c8e23dfacf43f">   68</a></span><span class="preprocessor">#define FCB_ENTRY_FA_DATA_OFF(entry) (entry.fe_sector-&gt;fs_off +\</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">                      entry.fe_data_off)</span></div>
+</div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="};">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structfcb__entry__ctx.html">   74</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structfcb__entry__ctx.html">fcb_entry_ctx</a> {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structfcb__entry__ctx.html#a0da5217647b82c8799a6cde221253680">   75</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structfcb__entry.html">fcb_entry</a> <a class="code hl_variable" href="structfcb__entry__ctx.html#a0da5217647b82c8799a6cde221253680">loc</a>; </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="structfcb__entry__ctx.html#a8b491cd670e609c2b4d897d15e37eb2b">   76</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structflash__area.html">flash_area</a> *<a class="code hl_variable" href="structfcb__entry__ctx.html#a8b491cd670e609c2b4d897d15e37eb2b">fap</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="group__fcb__data__structures.html#ga2fc8801bea1d91a422aa622bcf4cb6e0">   83</a></span><span class="preprocessor">#define FCB_FLAGS_CRC_DISABLED BIT(0)</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="foldopen" id="foldopen00092" data-start="{" data-end="};">
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structfcb.html">   92</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structfcb.html">fcb</a> {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="comment">/* Caller of fcb_init fills this in */</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="structfcb.html#a4206faa9ed633ba2315163c52e557397">   94</a></span>    uint32_t <a class="code hl_variable" href="structfcb.html#a4206faa9ed633ba2315163c52e557397">f_magic</a>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="structfcb.html#a030b96abd6c857295f154197278cca69">  103</a></span>    uint8_t <a class="code hl_variable" href="structfcb.html#a030b96abd6c857295f154197278cca69">f_version</a>; </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="structfcb.html#aa642058028d755c7bc5b6814a4cb8c16">  104</a></span>    uint8_t <a class="code hl_variable" href="structfcb.html#aa642058028d755c7bc5b6814a4cb8c16">f_sector_cnt</a>; </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="structfcb.html#aab748de6989e30de6571fc94d66ee365">  105</a></span>    uint8_t <a class="code hl_variable" href="structfcb.html#aab748de6989e30de6571fc94d66ee365">f_scratch_cnt</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structfcb.html#afc96f045d541c8d141d3427884f1fb44">  110</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structflash__sector.html">flash_sector</a> *<a class="code hl_variable" href="structfcb.html#afc96f045d541c8d141d3427884f1fb44">f_sectors</a>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">/* Flash circular buffer internal state */</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="structfcb.html#a1f30c78d7e02748fbf0bf5033d4bdadf">  114</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__mutex.html">k_mutex</a> <a class="code hl_variable" href="structfcb.html#a1f30c78d7e02748fbf0bf5033d4bdadf">f_mtx</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="structfcb.html#ac6dc6236f8b03e4b03f691c55b4d3327">  117</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structflash__sector.html">flash_sector</a> *<a class="code hl_variable" href="structfcb.html#ac6dc6236f8b03e4b03f691c55b4d3327">f_oldest</a>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="structfcb.html#a1f7922dc1e8076bcfffca117260d5e02">  122</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structfcb__entry.html">fcb_entry</a> <a class="code hl_variable" href="structfcb.html#a1f7922dc1e8076bcfffca117260d5e02">f_active</a>; </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="structfcb.html#a8da1d0b4bef7d9ddcd5922d9bbef0cef">  123</a></span>    uint16_t <a class="code hl_variable" href="structfcb.html#a8da1d0b4bef7d9ddcd5922d9bbef0cef">f_active_id</a>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structfcb.html#aa745e88d4477408b40a759dd1baea637">  126</a></span>    uint8_t <a class="code hl_variable" href="structfcb.html#aa745e88d4477408b40a759dd1baea637">f_align</a>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="structfcb.html#a16cfc82afc8abe70291f4b462e617f2f">  129</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structflash__area.html">flash_area</a> *<a class="code hl_variable" href="structfcb.html#a16cfc82afc8abe70291f4b462e617f2f">fap</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="structfcb.html#a614c6441395637c6c0a17a4fd6107db3">  134</a></span>    uint8_t <a class="code hl_variable" href="structfcb.html#a614c6441395637c6c0a17a4fd6107db3">f_erase_value</a>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#ifdef CONFIG_FCB_ALLOW_FIXED_ENDMARKER</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keyword">const</span> uint8_t f_flags;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>};</div>
+</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="group__fcb__api.html#ga318d35b6f023bb4079aaf76c01a59b96">  163</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__fcb__api.html#ga318d35b6f023bb4079aaf76c01a59b96">fcb_init</a>(<span class="keywordtype">int</span> f_area_id, <span class="keyword">struct</span> <a class="code hl_struct" href="structfcb.html">fcb</a> *<a class="code hl_struct" href="structfcb.html">fcb</a>);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="group__fcb__api.html#ga46a06d5c3bf945ba807b6960a354d744">  180</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__fcb__api.html#ga46a06d5c3bf945ba807b6960a354d744">fcb_append</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfcb.html">fcb</a> *<a class="code hl_struct" href="structfcb.html">fcb</a>, uint16_t len, <span class="keyword">struct</span> <a class="code hl_struct" href="structfcb__entry.html">fcb_entry</a> *loc);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="group__fcb__api.html#ga2d8581e0784546fd73e4cd2f8baeebd9">  190</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__fcb__api.html#ga2d8581e0784546fd73e4cd2f8baeebd9">fcb_append_finish</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfcb.html">fcb</a> *<a class="code hl_struct" href="structfcb.html">fcb</a>, <span class="keyword">struct</span> <a class="code hl_struct" href="structfcb__entry.html">fcb_entry</a> *append_loc);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="group__fcb__api.html#gaeed5144438ee00d83c9b3d3b4b7490ea">  207</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__fcb__api.html#gaeed5144438ee00d83c9b3d3b4b7490ea">fcb_walk_cb</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structfcb__entry__ctx.html">fcb_entry_ctx</a> *loc_ctx, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="group__fcb__api.html#ga2e22f120b3f1d729f8e861f0c0e448fb">  224</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__fcb__api.html#ga2e22f120b3f1d729f8e861f0c0e448fb">fcb_walk</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfcb.html">fcb</a> *<a class="code hl_struct" href="structfcb.html">fcb</a>, <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__sector.html">flash_sector</a> *sector, <a class="code hl_typedef" href="group__fcb__api.html#gaeed5144438ee00d83c9b3d3b4b7490ea">fcb_walk_cb</a> cb,</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>         <span class="keywordtype">void</span> *cb_arg);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="group__fcb__api.html#gaeeeb1d66ebc6dcefde1e07c3d8bdf4bc">  243</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__fcb__api.html#gaeeeb1d66ebc6dcefde1e07c3d8bdf4bc">fcb_getnext</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfcb.html">fcb</a> *<a class="code hl_struct" href="structfcb.html">fcb</a>, <span class="keyword">struct</span> <a class="code hl_struct" href="structfcb__entry.html">fcb_entry</a> *<a class="code hl_variable" href="structfcb__entry__ctx.html#a0da5217647b82c8799a6cde221253680">loc</a>);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="group__fcb__api.html#gab749a92fa5890a35996c27f9f2b8f98f">  253</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__fcb__api.html#gab749a92fa5890a35996c27f9f2b8f98f">fcb_rotate</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfcb.html">fcb</a> *<a class="code hl_struct" href="structfcb.html">fcb</a>);</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="group__fcb__api.html#gaf26d681ddea9b22d06122184b5a09566">  265</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__fcb__api.html#gaf26d681ddea9b22d06122184b5a09566">fcb_append_to_scratch</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfcb.html">fcb</a> *<a class="code hl_struct" href="structfcb.html">fcb</a>);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno"><a class="line" href="group__fcb__api.html#ga2dec5f90b687466997eb25be43448daa">  274</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__fcb__api.html#ga2dec5f90b687466997eb25be43448daa">fcb_free_sector_cnt</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfcb.html">fcb</a> *<a class="code hl_struct" href="structfcb.html">fcb</a>);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="group__fcb__api.html#ga76d29d337d5e457f065ed897297ba6cb">  283</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__fcb__api.html#ga76d29d337d5e457f065ed897297ba6cb">fcb_is_empty</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfcb.html">fcb</a> *<a class="code hl_struct" href="structfcb.html">fcb</a>);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno"><a class="line" href="group__fcb__api.html#gacf4b86d660b7f3a3b73477defd86590c">  294</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__fcb__api.html#gacf4b86d660b7f3a3b73477defd86590c">fcb_offset_last_n</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfcb.html">fcb</a> *<a class="code hl_struct" href="structfcb.html">fcb</a>, uint8_t entries,</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>              <span class="keyword">struct</span> <a class="code hl_struct" href="structfcb__entry.html">fcb_entry</a> *last_n_entry);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno"><a class="line" href="group__fcb__api.html#gab3d5c09980af72f0de1692682c8dfef1">  304</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__fcb__api.html#gab3d5c09980af72f0de1692682c8dfef1">fcb_clear</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structfcb.html">fcb</a> *<a class="code hl_struct" href="structfcb.html">fcb</a>);</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno"><a class="line" href="group__fcb__internal.html#ga85e3a7fcd92a029b16f7aebdfd7fd546">  328</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__fcb__internal.html#ga85e3a7fcd92a029b16f7aebdfd7fd546">fcb_flash_read</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structfcb.html">fcb</a> *<a class="code hl_struct" href="structfcb.html">fcb</a>, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__sector.html">flash_sector</a> *sector,</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>           off_t off, <span class="keywordtype">void</span> *dst, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno"><a class="line" href="group__fcb__internal.html#ga181d43e24799940105185fef9436ce8d">  342</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__fcb__internal.html#ga181d43e24799940105185fef9436ce8d">fcb_flash_write</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structfcb.html">fcb</a> *<a class="code hl_struct" href="structfcb.html">fcb</a>, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structflash__sector.html">flash_sector</a> *sector,</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>            off_t off, <span class="keyword">const</span> <span class="keywordtype">void</span> *src, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>}</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_FS_FCB_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aflash__map_8h_html"><div class="ttname"><a href="flash__map_8h.html">flash_map.h</a></div><div class="ttdoc">Public API for flash map.</div></div>
+<div class="ttc" id="agroup__fcb__api_html_ga2d8581e0784546fd73e4cd2f8baeebd9"><div class="ttname"><a href="group__fcb__api.html#ga2d8581e0784546fd73e4cd2f8baeebd9">fcb_append_finish</a></div><div class="ttdeci">int fcb_append_finish(struct fcb *fcb, struct fcb_entry *append_loc)</div></div>
+<div class="ttc" id="agroup__fcb__api_html_ga2dec5f90b687466997eb25be43448daa"><div class="ttname"><a href="group__fcb__api.html#ga2dec5f90b687466997eb25be43448daa">fcb_free_sector_cnt</a></div><div class="ttdeci">int fcb_free_sector_cnt(struct fcb *fcb)</div></div>
+<div class="ttc" id="agroup__fcb__api_html_ga2e22f120b3f1d729f8e861f0c0e448fb"><div class="ttname"><a href="group__fcb__api.html#ga2e22f120b3f1d729f8e861f0c0e448fb">fcb_walk</a></div><div class="ttdeci">int fcb_walk(struct fcb *fcb, struct flash_sector *sector, fcb_walk_cb cb, void *cb_arg)</div></div>
+<div class="ttc" id="agroup__fcb__api_html_ga318d35b6f023bb4079aaf76c01a59b96"><div class="ttname"><a href="group__fcb__api.html#ga318d35b6f023bb4079aaf76c01a59b96">fcb_init</a></div><div class="ttdeci">int fcb_init(int f_area_id, struct fcb *fcb)</div></div>
+<div class="ttc" id="agroup__fcb__api_html_ga46a06d5c3bf945ba807b6960a354d744"><div class="ttname"><a href="group__fcb__api.html#ga46a06d5c3bf945ba807b6960a354d744">fcb_append</a></div><div class="ttdeci">int fcb_append(struct fcb *fcb, uint16_t len, struct fcb_entry *loc)</div></div>
+<div class="ttc" id="agroup__fcb__api_html_ga76d29d337d5e457f065ed897297ba6cb"><div class="ttname"><a href="group__fcb__api.html#ga76d29d337d5e457f065ed897297ba6cb">fcb_is_empty</a></div><div class="ttdeci">int fcb_is_empty(struct fcb *fcb)</div></div>
+<div class="ttc" id="agroup__fcb__api_html_gab3d5c09980af72f0de1692682c8dfef1"><div class="ttname"><a href="group__fcb__api.html#gab3d5c09980af72f0de1692682c8dfef1">fcb_clear</a></div><div class="ttdeci">int fcb_clear(struct fcb *fcb)</div></div>
+<div class="ttc" id="agroup__fcb__api_html_gab749a92fa5890a35996c27f9f2b8f98f"><div class="ttname"><a href="group__fcb__api.html#gab749a92fa5890a35996c27f9f2b8f98f">fcb_rotate</a></div><div class="ttdeci">int fcb_rotate(struct fcb *fcb)</div></div>
+<div class="ttc" id="agroup__fcb__api_html_gacf4b86d660b7f3a3b73477defd86590c"><div class="ttname"><a href="group__fcb__api.html#gacf4b86d660b7f3a3b73477defd86590c">fcb_offset_last_n</a></div><div class="ttdeci">int fcb_offset_last_n(struct fcb *fcb, uint8_t entries, struct fcb_entry *last_n_entry)</div></div>
+<div class="ttc" id="agroup__fcb__api_html_gaeed5144438ee00d83c9b3d3b4b7490ea"><div class="ttname"><a href="group__fcb__api.html#gaeed5144438ee00d83c9b3d3b4b7490ea">fcb_walk_cb</a></div><div class="ttdeci">int(* fcb_walk_cb)(struct fcb_entry_ctx *loc_ctx, void *arg)</div><div class="ttdef"><b>Definição</b> fcb.h:207</div></div>
+<div class="ttc" id="agroup__fcb__api_html_gaeeeb1d66ebc6dcefde1e07c3d8bdf4bc"><div class="ttname"><a href="group__fcb__api.html#gaeeeb1d66ebc6dcefde1e07c3d8bdf4bc">fcb_getnext</a></div><div class="ttdeci">int fcb_getnext(struct fcb *fcb, struct fcb_entry *loc)</div></div>
+<div class="ttc" id="agroup__fcb__api_html_gaf26d681ddea9b22d06122184b5a09566"><div class="ttname"><a href="group__fcb__api.html#gaf26d681ddea9b22d06122184b5a09566">fcb_append_to_scratch</a></div><div class="ttdeci">int fcb_append_to_scratch(struct fcb *fcb)</div></div>
+<div class="ttc" id="agroup__fcb__internal_html_ga181d43e24799940105185fef9436ce8d"><div class="ttname"><a href="group__fcb__internal.html#ga181d43e24799940105185fef9436ce8d">fcb_flash_write</a></div><div class="ttdeci">int fcb_flash_write(const struct fcb *fcb, const struct flash_sector *sector, off_t off, const void *src, size_t len)</div></div>
+<div class="ttc" id="agroup__fcb__internal_html_ga85e3a7fcd92a029b16f7aebdfd7fd546"><div class="ttname"><a href="group__fcb__internal.html#ga85e3a7fcd92a029b16f7aebdfd7fd546">fcb_flash_read</a></div><div class="ttdeci">int fcb_flash_read(const struct fcb *fcb, const struct flash_sector *sector, off_t off, void *dst, size_t len)</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructfcb__entry__ctx_html"><div class="ttname"><a href="structfcb__entry__ctx.html">fcb_entry_ctx</a></div><div class="ttdoc">Structure for transferring complete information about FCB entry location within flash memory.</div><div class="ttdef"><b>Definição</b> fcb.h:74</div></div>
+<div class="ttc" id="astructfcb__entry__ctx_html_a0da5217647b82c8799a6cde221253680"><div class="ttname"><a href="structfcb__entry__ctx.html#a0da5217647b82c8799a6cde221253680">fcb_entry_ctx::loc</a></div><div class="ttdeci">struct fcb_entry loc</div><div class="ttdef"><b>Definição</b> fcb.h:75</div></div>
+<div class="ttc" id="astructfcb__entry__ctx_html_a8b491cd670e609c2b4d897d15e37eb2b"><div class="ttname"><a href="structfcb__entry__ctx.html#a8b491cd670e609c2b4d897d15e37eb2b">fcb_entry_ctx::fap</a></div><div class="ttdeci">const struct flash_area * fap</div><div class="ttdef"><b>Definição</b> fcb.h:76</div></div>
+<div class="ttc" id="astructfcb__entry_html"><div class="ttname"><a href="structfcb__entry.html">fcb_entry</a></div><div class="ttdoc">FCB entry info structure. This data structure describes the element location in the flash.</div><div class="ttdef"><b>Definição</b> fcb.h:49</div></div>
+<div class="ttc" id="astructfcb__entry_html_a6d01cb2107949bf4f0a2779c9781261f"><div class="ttname"><a href="structfcb__entry.html#a6d01cb2107949bf4f0a2779c9781261f">fcb_entry::fe_elem_off</a></div><div class="ttdeci">uint32_t fe_elem_off</div><div class="ttdef"><b>Definição</b> fcb.h:53</div></div>
+<div class="ttc" id="astructfcb__entry_html_a82cba5933875498c804f31722a6e90f9"><div class="ttname"><a href="structfcb__entry.html#a82cba5933875498c804f31722a6e90f9">fcb_entry::fe_data_off</a></div><div class="ttdeci">uint32_t fe_data_off</div><div class="ttdef"><b>Definição</b> fcb.h:56</div></div>
+<div class="ttc" id="astructfcb__entry_html_aa207d21d51bc2c7aa838ca9dc3b52be7"><div class="ttname"><a href="structfcb__entry.html#aa207d21d51bc2c7aa838ca9dc3b52be7">fcb_entry::fe_data_len</a></div><div class="ttdeci">uint16_t fe_data_len</div><div class="ttdef"><b>Definição</b> fcb.h:59</div></div>
+<div class="ttc" id="astructfcb__entry_html_aa564f9f79012beb20265bc5e85816fea"><div class="ttname"><a href="structfcb__entry.html#aa564f9f79012beb20265bc5e85816fea">fcb_entry::fe_sector</a></div><div class="ttdeci">struct flash_sector * fe_sector</div><div class="ttdef"><b>Definição</b> fcb.h:50</div></div>
+<div class="ttc" id="astructfcb_html"><div class="ttname"><a href="structfcb.html">fcb</a></div><div class="ttdoc">FCB instance structure.</div><div class="ttdef"><b>Definição</b> fcb.h:92</div></div>
+<div class="ttc" id="astructfcb_html_a030b96abd6c857295f154197278cca69"><div class="ttname"><a href="structfcb.html#a030b96abd6c857295f154197278cca69">fcb::f_version</a></div><div class="ttdeci">uint8_t f_version</div><div class="ttdef"><b>Definição</b> fcb.h:103</div></div>
+<div class="ttc" id="astructfcb_html_a16cfc82afc8abe70291f4b462e617f2f"><div class="ttname"><a href="structfcb.html#a16cfc82afc8abe70291f4b462e617f2f">fcb::fap</a></div><div class="ttdeci">const struct flash_area * fap</div><div class="ttdef"><b>Definição</b> fcb.h:129</div></div>
+<div class="ttc" id="astructfcb_html_a1f30c78d7e02748fbf0bf5033d4bdadf"><div class="ttname"><a href="structfcb.html#a1f30c78d7e02748fbf0bf5033d4bdadf">fcb::f_mtx</a></div><div class="ttdeci">struct k_mutex f_mtx</div><div class="ttdef"><b>Definição</b> fcb.h:114</div></div>
+<div class="ttc" id="astructfcb_html_a1f7922dc1e8076bcfffca117260d5e02"><div class="ttname"><a href="structfcb.html#a1f7922dc1e8076bcfffca117260d5e02">fcb::f_active</a></div><div class="ttdeci">struct fcb_entry f_active</div><div class="ttdef"><b>Definição</b> fcb.h:122</div></div>
+<div class="ttc" id="astructfcb_html_a4206faa9ed633ba2315163c52e557397"><div class="ttname"><a href="structfcb.html#a4206faa9ed633ba2315163c52e557397">fcb::f_magic</a></div><div class="ttdeci">uint32_t f_magic</div><div class="ttdef"><b>Definição</b> fcb.h:94</div></div>
+<div class="ttc" id="astructfcb_html_a614c6441395637c6c0a17a4fd6107db3"><div class="ttname"><a href="structfcb.html#a614c6441395637c6c0a17a4fd6107db3">fcb::f_erase_value</a></div><div class="ttdeci">uint8_t f_erase_value</div><div class="ttdef"><b>Definição</b> fcb.h:134</div></div>
+<div class="ttc" id="astructfcb_html_a8da1d0b4bef7d9ddcd5922d9bbef0cef"><div class="ttname"><a href="structfcb.html#a8da1d0b4bef7d9ddcd5922d9bbef0cef">fcb::f_active_id</a></div><div class="ttdeci">uint16_t f_active_id</div><div class="ttdef"><b>Definição</b> fcb.h:123</div></div>
+<div class="ttc" id="astructfcb_html_aa642058028d755c7bc5b6814a4cb8c16"><div class="ttname"><a href="structfcb.html#aa642058028d755c7bc5b6814a4cb8c16">fcb::f_sector_cnt</a></div><div class="ttdeci">uint8_t f_sector_cnt</div><div class="ttdef"><b>Definição</b> fcb.h:104</div></div>
+<div class="ttc" id="astructfcb_html_aa745e88d4477408b40a759dd1baea637"><div class="ttname"><a href="structfcb.html#aa745e88d4477408b40a759dd1baea637">fcb::f_align</a></div><div class="ttdeci">uint8_t f_align</div><div class="ttdef"><b>Definição</b> fcb.h:126</div></div>
+<div class="ttc" id="astructfcb_html_aab748de6989e30de6571fc94d66ee365"><div class="ttname"><a href="structfcb.html#aab748de6989e30de6571fc94d66ee365">fcb::f_scratch_cnt</a></div><div class="ttdeci">uint8_t f_scratch_cnt</div><div class="ttdef"><b>Definição</b> fcb.h:105</div></div>
+<div class="ttc" id="astructfcb_html_ac6dc6236f8b03e4b03f691c55b4d3327"><div class="ttname"><a href="structfcb.html#ac6dc6236f8b03e4b03f691c55b4d3327">fcb::f_oldest</a></div><div class="ttdeci">struct flash_sector * f_oldest</div><div class="ttdef"><b>Definição</b> fcb.h:117</div></div>
+<div class="ttc" id="astructfcb_html_afc96f045d541c8d141d3427884f1fb44"><div class="ttname"><a href="structfcb.html#afc96f045d541c8d141d3427884f1fb44">fcb::f_sectors</a></div><div class="ttdeci">struct flash_sector * f_sectors</div><div class="ttdef"><b>Definição</b> fcb.h:110</div></div>
+<div class="ttc" id="astructflash__area_html"><div class="ttname"><a href="structflash__area.html">flash_area</a></div><div class="ttdoc">Flash partition.</div><div class="ttdef"><b>Definição</b> flash_map.h:57</div></div>
+<div class="ttc" id="astructflash__sector_html"><div class="ttname"><a href="structflash__sector.html">flash_sector</a></div><div class="ttdoc">Structure for transfer flash sector boundaries.</div><div class="ttdef"><b>Definição</b> flash_map.h:79</div></div>
+<div class="ttc" id="astructk__mutex_html"><div class="ttname"><a href="structk__mutex.html">k_mutex</a></div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:31</div></div>
+<div class="ttc" id="autil__macro_8h_html"><div class="ttname"><a href="util__macro_8h.html">util_macro.h</a></div><div class="ttdoc">Macro utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

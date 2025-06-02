@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Documentação Mini Projeto SETR 24/25</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Documentação Mini Projeto SETR 24/25 </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h2><a class="anchor" id="autotoc_md0"></a>
+Introdução</h2>
+<p>Com este curto projeto pretendemos desenvolver um protótipo de um sistema de controlo de um processo térmico. O atuador é implementaddo com uma resistência de potência e a sensibilidade à temperatura é feita através d um sensor digital de temperatura (interface I2C).</p>
+<p>O sistema tem duas interfaces de operação, uma para configuração e outra para operaçãos normal:</p><ul>
+<li>A interface de configuração é feita através de UART. Um engenheiro pode usar um terminal do PC para definir alguns parâmetros relevantes, como a máxima temperatura aceitável e as definições do controlador, e também obter dados em tempo-real sobre o processo;</li>
+<li>A interface de operação permite o utilizador ligar/desligar o sistema e definir a temperatura pretendida. Há também alguns indicadores em relação ao estado de operação do sistema.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Especificações</h2>
+<p><b>Interface de Operação:</b></p><ul>
+<li>Button 1: Liga/Desliga o sistema;</li>
+<li>Button 2: Aumenta a temperatura pertendida em 1ºC;</li>
+<li>Button 3: Diminui a temperatura pertendida em 1ºC;</li>
+<li>Led 1: indica se o sistema está ligado (led on) ou se está desligado (led off);</li>
+<li>Led 2: "normal state", indica que o sistema está no estado normal, isto é, a temperatura está dentro de uma gama de +/- 2ºC da temperatura pertendida;</li>
+<li>Led 3: "warning-low", indica que o sistema está abaixo do pretendido, isto é, a temperatura está 2ºC abaixo da temperatura pertendida;</li>
+<li>Led 4: "warning-high", indica que o sistema está acima do pretendido, isto é, a temperatura está 2ºC acima da temperatura pertendida;</li>
+</ul>
+<p><b>Interface de Configuração:</b></p><ul>
+<li>via UART, set to 115200, 8, n, 1;</li>
+<li>Orientação em frame. Todas as comunicações são em ASCII, e. g. se a temperatura for +25ºC, os bytes correspondentes serão 43 ('+'), 50 ('2') e 53 ('5');</li>
+</ul>
+<p>Estrutura dos comandos: **#CMD DATA CS!** (sem espaços entre os campos)</p><ul>
+<li><b>- #</b>: um byte, símbolo de inicio do frame</li>
+<li><b>- !</b>: um byte, símbolo de fim do frame</li>
+<li><b>- CMD</b>: um byte, define o comando/resposta</li>
+<li><b>- DATA</b>: tamanho variável, argumentos do comando/resposta</li>
+<li><b>- CS</b>: modulo-256 checksum. Somatório do valor numérico de CMD e DATA[i] bytes</li>
+</ul>
+<p>Comandos suportados:</p><ul>
+<li><b>- #Mxxxyyy!</b>: define o valor máximo da temperatura em "xxx"(ºC). "yyy" correspondente ao checksum;</li>
+<li><b>- #Cyyy!</b>: obtem a temperatura atual do processo. "yyy" correspondente ao checksum;</li>
+<li><b>- #Sxx...xxyyy!</b>: define os parâmetros do controlador. "xx...xx" são os parâmetros *(Kp, Ti, Td para PID/histerese para on/off controlador (apagar!!!!!!!!!))*. "yyy" correspondente ao checksum;</li>
+<li><b>- #_________!</b>:</li>
+</ul>
+<p>Comandos de confirmação:</p><ul>
+<li><b>-#Eoyyy!</b>: Sem erros/Ok. "yyy" correspondente ao checksum;</li>
+<li><b>-#Efyyy!</b>: Erros de frames. "yyy" correspondente ao checksum;</li>
+<li><b>-#Esyyy!</b>: Erro checksum. "yyy" correspondente ao checksum;</li>
+<li><b>-#Eiyyy!</b>: Comando inválido. "yyy" correspondente ao checksum;</li>
+<li>Comandos em que há uma resposta explícita (E.g. #Cyyy!) não precisão de confirmação. As respostas a estes comandos é uma confirmação implícita de sucesso, nestes casos.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Ficheiros</h2>
+<ul>
+<li><b>cmd_proc (.c/.h)</b>: Ficheiros header e sua respetiva implementação do módulo de processamento dos comandos recebidos via UART</li>
+<li><b>sensor_temp (.c/.h)</b>: Ficheiros header e sua respetiva implementação do módulo de leitura do sensor de temperatura</li>
+<li><b>task_control (.c/.h)</b>: Ficheiros header e sua respetiva implementação do módulo de controlo da temperatura</li>
+<li><b>RTDB (.c/.h)</b>: Ficheiros header e sua respetiva implementação do módulo de base de dados em tempo-real (Real-Time Database)</li>
+<li><b>unity (.c/.h)</b>: Ficheiros header e sua respetiva implementação das funções a utilizar para o teste dos módulos a desenvolver (ficheiros retirados da comunidade ThrowTheSwitch.org github )</li>
+<li><b><a class="el" href="main_8c.html" title="...">main.c</a></b>: Integração e implementação dos vários módulos</li>
+<li><b>test.c</b>: Ficheiro para teste específico das funções desenvolvidas, usando unity</li>
+<li><b>README.md</b>: Instruções de compilação e para abrir documentação html</li>
+<li><b>MAINPAGE.md</b>: Ficheiro de configuração da página principal html</li>
+</ul>
+<dl class="section author"><dt>Autor</dt><dd>Guilherme Santos, <a href="#" onclick="location.href='mai'+'lto:'+'gui'+'.s'+'ant'+'os'+'@ua'+'.p'+'t'; return false;">gui.s<span class="obfuscator">.nosp@m.</span>anto<span class="obfuscator">.nosp@m.</span>s@ua.<span class="obfuscator">.nosp@m.</span>pt</a> </dd>
+<dd>
+Francisco Bastos, <a href="#" onclick="location.href='mai'+'lto:'+'fcb'+'as'+'tos'+'4@'+'ua.'+'pt'; return false;">fcbas<span class="obfuscator">.nosp@m.</span>tos4<span class="obfuscator">.nosp@m.</span>@ua.p<span class="obfuscator">.nosp@m.</span>t</a> </dd></dl>
+</div></div><!-- PageDoc -->
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/usb/usb_device.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_31821c6dd8ee412b58986b1aca4338e2.html">usb</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">usb_device.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="usb__device_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* SPDX-License-Identifier: BSD-3-Clause */</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *  LPCUSB, an USB device driver for LPC microcontrollers</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *  Copyright (C) 2006 Bertrik Sikken (bertrik@sikken.nl)</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> *  Copyright (c) 2016 Intel Corporation</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> *  Redistribution and use in source and binary forms, with or without</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *  modification, are permitted provided that the following conditions are met:</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> *  1. Redistributions of source code must retain the above copyright</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> *     notice, this list of conditions and the following disclaimer.</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment"> *  2. Redistributions in binary form must reproduce the above copyright</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment"> *     notice, this list of conditions and the following disclaimer in the</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment"> *     documentation and/or other materials provided with the distribution.</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment"> *  3. The name of the author may not be used to endorse or promote products</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment"> *     derived from this software without specific prior written permission.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"> *  THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS&#39;&#39; AND ANY EXPRESS OR</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment"> *  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment"> *  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment"> *  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment"> *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"> *  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment"> *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"> *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment"> *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"> *  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_USB_USB_DEVICE_H_</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#define ZEPHYR_INCLUDE_USB_USB_DEVICE_H_</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#include &lt;<a class="code" href="usb__dc_8h.html">zephyr/drivers/usb/usb_dc.h</a>&gt;</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#include &lt;<a class="code" href="usb__ch9_8h.html">zephyr/usb/usb_ch9.h</a>&gt;</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#include &lt;zephyr/logging/log.h&gt;</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#include &lt;zephyr/sys/iterable_sections.h&gt;</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment"> * These macros should be used to place the USB descriptors</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment"> * in predetermined order in the RAM.</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#define USBD_DEVICE_DESCR_DEFINE(p) \</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">    static __in_section(usb, descriptor_##p, 0) __used __aligned(1)</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define USBD_CLASS_DESCR_DEFINE(p, instance) \</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">    static __in_section(usb, descriptor_##p.1, instance) __used __aligned(1)</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define USBD_MISC_DESCR_DEFINE(p) \</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">    static __in_section(usb, descriptor_##p, 2) __used __aligned(1)</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#define USBD_USER_DESCR_DEFINE(p) \</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">    static __in_section(usb, descriptor_##p, 3) __used __aligned(1)</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#define USBD_STRING_DESCR_DEFINE(p) \</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">    static __in_section(usb, descriptor_##p, 4) __used __aligned(1)</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#define USBD_STRING_DESCR_USER_DEFINE(p) \</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">    static __in_section(usb, descriptor_##p, 5) __used __aligned(1)</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#define USBD_TERM_DESCR_DEFINE(p) \</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">    static __in_section(usb, descriptor_##p, 6) __used __aligned(1)</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment"> * This macro should be used to place the struct usb_cfg_data</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment"> * inside usb data section in the RAM.</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#define USBD_DEFINE_CFG_DATA(name) \</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">    static STRUCT_SECTION_ITERABLE(usb_cfg_data, name)</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#define USBD_CFG_DATA_DEFINE(p, name) __DEPRECATED_MACRO \</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">    static __in_section(_usb_cfg_data, static, p##_name) __used __aligned(4)</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">/*************************************************************************</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment"> *  USB configuration</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment"> **************************************************************************/</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="usb__device_8h.html#a3d01cf3cbbd08db3d6cfcfb45062b961">   83</a></span><span class="preprocessor">#define USB_MAX_CTRL_MPS    64   </span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="usb__device_8h.html#a07bbd07466b47a0c498f26e25932392f">   84</a></span><span class="preprocessor">#define USB_MAX_FS_BULK_MPS 64   </span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="usb__device_8h.html#ae88dc2d0b2a21779d8c353cd63ae3455">   85</a></span><span class="preprocessor">#define USB_MAX_FS_INT_MPS  64   </span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="usb__device_8h.html#ae45dfb00deef73b2a142576bf136b062">   86</a></span><span class="preprocessor">#define USB_MAX_FS_ISO_MPS  1023 </span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">/*************************************************************************</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment"> *  USB application interface</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment"> **************************************************************************/</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga9a45db26a9be295640ed122533427725">  101</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group____usb__device__core__api.html#ga9a45db26a9be295640ed122533427725">usb_ep_callback</a>)(uint8_t ep,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                <span class="keyword">enum</span> <a class="code hl_enumeration" href="group____usb__device__controller__api.html#gaf7f083f61e1406e7d41513113dccd3bd">usb_dc_ep_cb_status_code</a> cb_status);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#gaddacbff094a41c885c3041af72fa6804">  115</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group____usb__device__core__api.html#gaddacbff094a41c885c3041af72fa6804">usb_request_handler</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusb__setup__packet.html">usb_setup_packet</a> *setup,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                   int32_t *transfer_len, uint8_t **payload_data);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga3439af9464471b3acdc21f4359efb53a">  121</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group____usb__device__core__api.html#ga3439af9464471b3acdc21f4359efb53a">usb_interface_config</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusb__desc__header.html">usb_desc_header</a> *head,</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                     uint8_t bInterfaceNumber);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="foldopen" id="foldopen00129" data-start="{" data-end="};">
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="structusb__ep__cfg__data.html">  129</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusb__ep__cfg__data.html">usb_ep_cfg_data</a> {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="structusb__ep__cfg__data.html#a5d03244508b6a58d9d0bfb896c2537d1">  135</a></span>    <a class="code hl_typedef" href="group____usb__device__core__api.html#ga9a45db26a9be295640ed122533427725">usb_ep_callback</a> <a class="code hl_variable" href="structusb__ep__cfg__data.html#a5d03244508b6a58d9d0bfb896c2537d1">ep_cb</a>;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="structusb__ep__cfg__data.html#aa87f676a577a8c1605bb9a8fa04f411c">  142</a></span>    uint8_t <a class="code hl_variable" href="structusb__ep__cfg__data.html#aa87f676a577a8c1605bb9a8fa04f411c">ep_addr</a>;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>};</div>
+</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="foldopen" id="foldopen00150" data-start="{" data-end="};">
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="structusb__interface__cfg__data.html">  150</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusb__interface__cfg__data.html">usb_interface_cfg_data</a> {</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="structusb__interface__cfg__data.html#a144ed5ba67d1adb8dbb1d936ac440272">  152</a></span>    <a class="code hl_typedef" href="group____usb__device__core__api.html#gaddacbff094a41c885c3041af72fa6804">usb_request_handler</a> <a class="code hl_variable" href="structusb__interface__cfg__data.html#a144ed5ba67d1adb8dbb1d936ac440272">class_handler</a>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="structusb__interface__cfg__data.html#a2d5d65d41cef609173287161797318d2">  154</a></span>    <a class="code hl_typedef" href="group____usb__device__core__api.html#gaddacbff094a41c885c3041af72fa6804">usb_request_handler</a> <a class="code hl_variable" href="structusb__interface__cfg__data.html#a2d5d65d41cef609173287161797318d2">vendor_handler</a>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="structusb__interface__cfg__data.html#a117a1a88c02048ee43994d3e5a4ce922">  164</a></span>    <a class="code hl_typedef" href="group____usb__device__core__api.html#gaddacbff094a41c885c3041af72fa6804">usb_request_handler</a> <a class="code hl_variable" href="structusb__interface__cfg__data.html#a117a1a88c02048ee43994d3e5a4ce922">custom_handler</a>;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>};</div>
+</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="foldopen" id="foldopen00175" data-start="{" data-end="};">
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="structusb__cfg__data.html">  175</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusb__cfg__data.html">usb_cfg_data</a> {</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="structusb__cfg__data.html#a842d4d8a08dd619dd8ee5ccf62ae1e2a">  180</a></span>    <span class="keyword">const</span> uint8_t *<a class="code hl_variable" href="structusb__cfg__data.html#a842d4d8a08dd619dd8ee5ccf62ae1e2a">usb_device_description</a>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="structusb__cfg__data.html#ade7cc5e164a82a86d7c57d7a2a4ef306">  182</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structusb__cfg__data.html#ade7cc5e164a82a86d7c57d7a2a4ef306">interface_descriptor</a>;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="structusb__cfg__data.html#a3ea73c7ea8759d3637852ff2d02ee96b">  184</a></span>    <a class="code hl_typedef" href="group____usb__device__core__api.html#ga3439af9464471b3acdc21f4359efb53a">usb_interface_config</a> <a class="code hl_variable" href="structusb__cfg__data.html#a3ea73c7ea8759d3637852ff2d02ee96b">interface_config</a>;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="structusb__cfg__data.html#aaf33be8983eb59105beb2d6e551ff195">  186</a></span>    void (*<a class="code hl_variable" href="structusb__cfg__data.html#aaf33be8983eb59105beb2d6e551ff195">cb_usb_status</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusb__cfg__data.html">usb_cfg_data</a> *cfg,</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>                  <span class="keyword">enum</span> <a class="code hl_enumeration" href="group____usb__device__controller__api.html#gac09e3e0af1a2b41a5bfbad91f900baf7">usb_dc_status_code</a> cb_status,</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>                  <span class="keyword">const</span> uint8_t *param);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="structusb__cfg__data.html#a84b41f3ddabab946ed165c03e3812e10">  190</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structusb__interface__cfg__data.html">usb_interface_cfg_data</a> <a class="code hl_variable" href="structusb__cfg__data.html#a84b41f3ddabab946ed165c03e3812e10">interface</a>;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="structusb__cfg__data.html#a5e58af56af22ecdf0e2222afc408a33b">  192</a></span>    uint8_t <a class="code hl_variable" href="structusb__cfg__data.html#a5e58af56af22ecdf0e2222afc408a33b">num_endpoints</a>;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="structusb__cfg__data.html#adbd7a747db040b54d047c48bed2f50c3">  198</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structusb__ep__cfg__data.html">usb_ep_cfg_data</a> *<a class="code hl_variable" href="structusb__cfg__data.html#adbd7a747db040b54d047c48bed2f50c3">endpoint</a>;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>};</div>
+</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga28783e727e35db1a651309a7f9f5444a">  211</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group____usb__device__core__api.html#ga28783e727e35db1a651309a7f9f5444a">usb_set_config</a>(<span class="keyword">const</span> uint8_t *usb_descriptor);</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga2d485c77055dd975f3170fbaea7f2bdf">  220</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group____usb__device__core__api.html#ga2d485c77055dd975f3170fbaea7f2bdf">usb_deconfig</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#gad1fa5e491d93c2bd1fe7967c12148902">  238</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group____usb__device__core__api.html#gad1fa5e491d93c2bd1fe7967c12148902">usb_enable</a>(<a class="code hl_typedef" href="group____usb__device__controller__api.html#ga2ddb0b059b4e1e76473ed7f56d0cf2ee">usb_dc_status_callback</a> status_cb);</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga65723c9469a12c87e5554169396f8e76">  249</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group____usb__device__core__api.html#ga65723c9469a12c87e5554169396f8e76">usb_disable</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga6d4b568f2f3aac4f099c35393fb601b3">  267</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group____usb__device__core__api.html#ga6d4b568f2f3aac4f099c35393fb601b3">usb_write</a>(uint8_t ep, <span class="keyword">const</span> uint8_t *data, uint32_t data_len, uint32_t *bytes_ret);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#gab2c21738baa839b483654d1d5baf2981">  286</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group____usb__device__core__api.html#gab2c21738baa839b483654d1d5baf2981">usb_read</a>(uint8_t ep, uint8_t *data, uint32_t max_data_len, uint32_t *ret_bytes);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#gaaf206afaf32bde1b8d77d04bc6ec091f">  299</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group____usb__device__core__api.html#gaaf206afaf32bde1b8d77d04bc6ec091f">usb_ep_set_stall</a>(uint8_t ep);</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#gae7bc410d0db8a6d2142992153bb1424d">  312</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group____usb__device__core__api.html#gae7bc410d0db8a6d2142992153bb1424d">usb_ep_clear_stall</a>(uint8_t ep);</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga4c919f7e993f80150bdde2d7fab254ee">  332</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group____usb__device__core__api.html#ga4c919f7e993f80150bdde2d7fab254ee">usb_ep_read_wait</a>(uint8_t ep, uint8_t *data, uint32_t max_data_len,</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>             uint32_t *read_bytes);</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#gaab17b8c523ac211ff308c8dc774ba092">  349</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group____usb__device__core__api.html#gaab17b8c523ac211ff308c8dc774ba092">usb_ep_read_continue</a>(uint8_t ep);</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga2e599eb20f647d9bb2369d76a7dc51db">  354</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group____usb__device__core__api.html#ga2e599eb20f647d9bb2369d76a7dc51db">usb_transfer_callback</a>)(uint8_t ep, <span class="keywordtype">int</span> tsize, <span class="keywordtype">void</span> *priv);</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="comment">/* USB transfer flags */</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="preprocessor">#define USB_TRANS_READ       BIT(0)   </span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="preprocessor">#define USB_TRANS_WRITE      BIT(1)   </span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="preprocessor">#define USB_TRANS_NO_ZLP     BIT(2)   </span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga3485c3d1c3fa7259de32fd57d303bc77">  367</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group____usb__device__core__api.html#ga3485c3d1c3fa7259de32fd57d303bc77">usb_transfer_ep_callback</a>(uint8_t ep, <span class="keyword">enum</span> <a class="code hl_enumeration" href="group____usb__device__controller__api.html#gaf7f083f61e1406e7d41513113dccd3bd">usb_dc_ep_cb_status_code</a>);</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga27c3040dca474b5b45e6bea63a500cce">  386</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group____usb__device__core__api.html#ga27c3040dca474b5b45e6bea63a500cce">usb_transfer</a>(uint8_t ep, uint8_t *data, <span class="keywordtype">size_t</span> dlen, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags,</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>         <a class="code hl_typedef" href="group____usb__device__core__api.html#ga2e599eb20f647d9bb2369d76a7dc51db">usb_transfer_callback</a> cb, <span class="keywordtype">void</span> *priv);</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span> </div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga1060e3a473a7f0bc71763a413e91ab56">  405</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group____usb__device__core__api.html#ga1060e3a473a7f0bc71763a413e91ab56">usb_transfer_sync</a>(uint8_t ep, uint8_t *data, <span class="keywordtype">size_t</span> dlen, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags);</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span> </div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#gab399dc4a43a99c927ee7588a57c49211">  413</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group____usb__device__core__api.html#gab399dc4a43a99c927ee7588a57c49211">usb_cancel_transfer</a>(uint8_t ep);</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga758a63b22c48d2ae9d025adb92ed5925">  418</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group____usb__device__core__api.html#ga758a63b22c48d2ae9d025adb92ed5925">usb_cancel_transfers</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span> </div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga6292a473cffc1f8683da902c2a85d653">  428</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group____usb__device__core__api.html#ga6292a473cffc1f8683da902c2a85d653">usb_transfer_is_busy</a>(uint8_t ep);</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span> </div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga7d67c8d49b52fb33818d654ca647c1e5">  440</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group____usb__device__core__api.html#ga7d67c8d49b52fb33818d654ca647c1e5">usb_wakeup_request</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span> </div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno"><a class="line" href="group____usb__device__core__api.html#ga577018c415eec38ef5038cdb2f45ed2f">  447</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group____usb__device__core__api.html#ga577018c415eec38ef5038cdb2f45ed2f">usb_get_remote_wakeup_status</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span> </div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>}</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span> </div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_USB_USB_DEVICE_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup____usb__device__controller__api_html_ga2ddb0b059b4e1e76473ed7f56d0cf2ee"><div class="ttname"><a href="group____usb__device__controller__api.html#ga2ddb0b059b4e1e76473ed7f56d0cf2ee">usb_dc_status_callback</a></div><div class="ttdeci">void(* usb_dc_status_callback)(enum usb_dc_status_code cb_status, const uint8_t *param)</div><div class="ttdef"><b>Definição</b> usb_dc.h:133</div></div>
+<div class="ttc" id="agroup____usb__device__controller__api_html_gac09e3e0af1a2b41a5bfbad91f900baf7"><div class="ttname"><a href="group____usb__device__controller__api.html#gac09e3e0af1a2b41a5bfbad91f900baf7">usb_dc_status_code</a></div><div class="ttdeci">usb_dc_status_code</div><div class="ttdoc">USB Driver Status Codes.</div><div class="ttdef"><b>Definição</b> usb_dc.h:33</div></div>
+<div class="ttc" id="agroup____usb__device__controller__api_html_gaf7f083f61e1406e7d41513113dccd3bd"><div class="ttname"><a href="group____usb__device__controller__api.html#gaf7f083f61e1406e7d41513113dccd3bd">usb_dc_ep_cb_status_code</a></div><div class="ttdeci">usb_dc_ep_cb_status_code</div><div class="ttdoc">USB Endpoint Callback Status Codes.</div><div class="ttdef"><b>Definição</b> usb_dc.h:65</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga1060e3a473a7f0bc71763a413e91ab56"><div class="ttname"><a href="group____usb__device__core__api.html#ga1060e3a473a7f0bc71763a413e91ab56">usb_transfer_sync</a></div><div class="ttdeci">int usb_transfer_sync(uint8_t ep, uint8_t *data, size_t dlen, unsigned int flags)</div><div class="ttdoc">Start a transfer and block-wait for completion.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga27c3040dca474b5b45e6bea63a500cce"><div class="ttname"><a href="group____usb__device__core__api.html#ga27c3040dca474b5b45e6bea63a500cce">usb_transfer</a></div><div class="ttdeci">int usb_transfer(uint8_t ep, uint8_t *data, size_t dlen, unsigned int flags, usb_transfer_callback cb, void *priv)</div><div class="ttdoc">Start a transfer.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga28783e727e35db1a651309a7f9f5444a"><div class="ttname"><a href="group____usb__device__core__api.html#ga28783e727e35db1a651309a7f9f5444a">usb_set_config</a></div><div class="ttdeci">int usb_set_config(const uint8_t *usb_descriptor)</div><div class="ttdoc">Configure USB controller.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga2d485c77055dd975f3170fbaea7f2bdf"><div class="ttname"><a href="group____usb__device__core__api.html#ga2d485c77055dd975f3170fbaea7f2bdf">usb_deconfig</a></div><div class="ttdeci">int usb_deconfig(void)</div><div class="ttdoc">Deconfigure USB controller.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga2e599eb20f647d9bb2369d76a7dc51db"><div class="ttname"><a href="group____usb__device__core__api.html#ga2e599eb20f647d9bb2369d76a7dc51db">usb_transfer_callback</a></div><div class="ttdeci">void(* usb_transfer_callback)(uint8_t ep, int tsize, void *priv)</div><div class="ttdef"><b>Definição</b> usb_device.h:354</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga3439af9464471b3acdc21f4359efb53a"><div class="ttname"><a href="group____usb__device__core__api.html#ga3439af9464471b3acdc21f4359efb53a">usb_interface_config</a></div><div class="ttdeci">void(* usb_interface_config)(struct usb_desc_header *head, uint8_t bInterfaceNumber)</div><div class="ttdoc">Function for interface runtime configuration.</div><div class="ttdef"><b>Definição</b> usb_device.h:121</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga3485c3d1c3fa7259de32fd57d303bc77"><div class="ttname"><a href="group____usb__device__core__api.html#ga3485c3d1c3fa7259de32fd57d303bc77">usb_transfer_ep_callback</a></div><div class="ttdeci">void usb_transfer_ep_callback(uint8_t ep, enum usb_dc_ep_cb_status_code)</div><div class="ttdoc">Transfer management endpoint callback.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga4c919f7e993f80150bdde2d7fab254ee"><div class="ttname"><a href="group____usb__device__core__api.html#ga4c919f7e993f80150bdde2d7fab254ee">usb_ep_read_wait</a></div><div class="ttdeci">int usb_ep_read_wait(uint8_t ep, uint8_t *data, uint32_t max_data_len, uint32_t *read_bytes)</div><div class="ttdoc">Read data from the specified endpoint.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga577018c415eec38ef5038cdb2f45ed2f"><div class="ttname"><a href="group____usb__device__core__api.html#ga577018c415eec38ef5038cdb2f45ed2f">usb_get_remote_wakeup_status</a></div><div class="ttdeci">bool usb_get_remote_wakeup_status(void)</div><div class="ttdoc">Get status of the USB remote wakeup feature.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga6292a473cffc1f8683da902c2a85d653"><div class="ttname"><a href="group____usb__device__core__api.html#ga6292a473cffc1f8683da902c2a85d653">usb_transfer_is_busy</a></div><div class="ttdeci">bool usb_transfer_is_busy(uint8_t ep)</div><div class="ttdoc">Check that transfer is ongoing for the endpoint.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga65723c9469a12c87e5554169396f8e76"><div class="ttname"><a href="group____usb__device__core__api.html#ga65723c9469a12c87e5554169396f8e76">usb_disable</a></div><div class="ttdeci">int usb_disable(void)</div><div class="ttdoc">Disable the USB device.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga6d4b568f2f3aac4f099c35393fb601b3"><div class="ttname"><a href="group____usb__device__core__api.html#ga6d4b568f2f3aac4f099c35393fb601b3">usb_write</a></div><div class="ttdeci">int usb_write(uint8_t ep, const uint8_t *data, uint32_t data_len, uint32_t *bytes_ret)</div><div class="ttdoc">Write data to the specified endpoint.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga758a63b22c48d2ae9d025adb92ed5925"><div class="ttname"><a href="group____usb__device__core__api.html#ga758a63b22c48d2ae9d025adb92ed5925">usb_cancel_transfers</a></div><div class="ttdeci">void usb_cancel_transfers(void)</div><div class="ttdoc">Cancel all ongoing transfers.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga7d67c8d49b52fb33818d654ca647c1e5"><div class="ttname"><a href="group____usb__device__core__api.html#ga7d67c8d49b52fb33818d654ca647c1e5">usb_wakeup_request</a></div><div class="ttdeci">int usb_wakeup_request(void)</div><div class="ttdoc">Start the USB remote wakeup procedure.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_ga9a45db26a9be295640ed122533427725"><div class="ttname"><a href="group____usb__device__core__api.html#ga9a45db26a9be295640ed122533427725">usb_ep_callback</a></div><div class="ttdeci">void(* usb_ep_callback)(uint8_t ep, enum usb_dc_ep_cb_status_code cb_status)</div><div class="ttdoc">Callback function signature for the USB Endpoint status.</div><div class="ttdef"><b>Definição</b> usb_device.h:101</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_gaab17b8c523ac211ff308c8dc774ba092"><div class="ttname"><a href="group____usb__device__core__api.html#gaab17b8c523ac211ff308c8dc774ba092">usb_ep_read_continue</a></div><div class="ttdeci">int usb_ep_read_continue(uint8_t ep)</div><div class="ttdoc">Continue reading data from the endpoint.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_gaaf206afaf32bde1b8d77d04bc6ec091f"><div class="ttname"><a href="group____usb__device__core__api.html#gaaf206afaf32bde1b8d77d04bc6ec091f">usb_ep_set_stall</a></div><div class="ttdeci">int usb_ep_set_stall(uint8_t ep)</div><div class="ttdoc">Set STALL condition on the specified endpoint.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_gab2c21738baa839b483654d1d5baf2981"><div class="ttname"><a href="group____usb__device__core__api.html#gab2c21738baa839b483654d1d5baf2981">usb_read</a></div><div class="ttdeci">int usb_read(uint8_t ep, uint8_t *data, uint32_t max_data_len, uint32_t *ret_bytes)</div><div class="ttdoc">Read data from the specified endpoint.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_gab399dc4a43a99c927ee7588a57c49211"><div class="ttname"><a href="group____usb__device__core__api.html#gab399dc4a43a99c927ee7588a57c49211">usb_cancel_transfer</a></div><div class="ttdeci">void usb_cancel_transfer(uint8_t ep)</div><div class="ttdoc">Cancel any ongoing transfer on the specified endpoint.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_gad1fa5e491d93c2bd1fe7967c12148902"><div class="ttname"><a href="group____usb__device__core__api.html#gad1fa5e491d93c2bd1fe7967c12148902">usb_enable</a></div><div class="ttdeci">int usb_enable(usb_dc_status_callback status_cb)</div><div class="ttdoc">Enable the USB subsystem and associated hardware.</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_gaddacbff094a41c885c3041af72fa6804"><div class="ttname"><a href="group____usb__device__core__api.html#gaddacbff094a41c885c3041af72fa6804">usb_request_handler</a></div><div class="ttdeci">int(* usb_request_handler)(struct usb_setup_packet *setup, int32_t *transfer_len, uint8_t **payload_data)</div><div class="ttdoc">Callback function signature for class specific requests.</div><div class="ttdef"><b>Definição</b> usb_device.h:115</div></div>
+<div class="ttc" id="agroup____usb__device__core__api_html_gae7bc410d0db8a6d2142992153bb1424d"><div class="ttname"><a href="group____usb__device__core__api.html#gae7bc410d0db8a6d2142992153bb1424d">usb_ep_clear_stall</a></div><div class="ttdeci">int usb_ep_clear_stall(uint8_t ep)</div><div class="ttdoc">Clears STALL condition on the specified endpoint.</div></div>
+<div class="ttc" id="astructusb__cfg__data_html"><div class="ttname"><a href="structusb__cfg__data.html">usb_cfg_data</a></div><div class="ttdoc">USB device configuration.</div><div class="ttdef"><b>Definição</b> usb_device.h:175</div></div>
+<div class="ttc" id="astructusb__cfg__data_html_a3ea73c7ea8759d3637852ff2d02ee96b"><div class="ttname"><a href="structusb__cfg__data.html#a3ea73c7ea8759d3637852ff2d02ee96b">usb_cfg_data::interface_config</a></div><div class="ttdeci">usb_interface_config interface_config</div><div class="ttdef"><b>Definição</b> usb_device.h:184</div></div>
+<div class="ttc" id="astructusb__cfg__data_html_a5e58af56af22ecdf0e2222afc408a33b"><div class="ttname"><a href="structusb__cfg__data.html#a5e58af56af22ecdf0e2222afc408a33b">usb_cfg_data::num_endpoints</a></div><div class="ttdeci">uint8_t num_endpoints</div><div class="ttdef"><b>Definição</b> usb_device.h:192</div></div>
+<div class="ttc" id="astructusb__cfg__data_html_a842d4d8a08dd619dd8ee5ccf62ae1e2a"><div class="ttname"><a href="structusb__cfg__data.html#a842d4d8a08dd619dd8ee5ccf62ae1e2a">usb_cfg_data::usb_device_description</a></div><div class="ttdeci">const uint8_t * usb_device_description</div><div class="ttdef"><b>Definição</b> usb_device.h:180</div></div>
+<div class="ttc" id="astructusb__cfg__data_html_a84b41f3ddabab946ed165c03e3812e10"><div class="ttname"><a href="structusb__cfg__data.html#a84b41f3ddabab946ed165c03e3812e10">usb_cfg_data::interface</a></div><div class="ttdeci">struct usb_interface_cfg_data interface</div><div class="ttdef"><b>Definição</b> usb_device.h:190</div></div>
+<div class="ttc" id="astructusb__cfg__data_html_aaf33be8983eb59105beb2d6e551ff195"><div class="ttname"><a href="structusb__cfg__data.html#aaf33be8983eb59105beb2d6e551ff195">usb_cfg_data::cb_usb_status</a></div><div class="ttdeci">void(* cb_usb_status)(struct usb_cfg_data *cfg, enum usb_dc_status_code cb_status, const uint8_t *param)</div><div class="ttdef"><b>Definição</b> usb_device.h:186</div></div>
+<div class="ttc" id="astructusb__cfg__data_html_adbd7a747db040b54d047c48bed2f50c3"><div class="ttname"><a href="structusb__cfg__data.html#adbd7a747db040b54d047c48bed2f50c3">usb_cfg_data::endpoint</a></div><div class="ttdeci">struct usb_ep_cfg_data * endpoint</div><div class="ttdef"><b>Definição</b> usb_device.h:198</div></div>
+<div class="ttc" id="astructusb__cfg__data_html_ade7cc5e164a82a86d7c57d7a2a4ef306"><div class="ttname"><a href="structusb__cfg__data.html#ade7cc5e164a82a86d7c57d7a2a4ef306">usb_cfg_data::interface_descriptor</a></div><div class="ttdeci">void * interface_descriptor</div><div class="ttdef"><b>Definição</b> usb_device.h:182</div></div>
+<div class="ttc" id="astructusb__desc__header_html"><div class="ttname"><a href="structusb__desc__header.html">usb_desc_header</a></div><div class="ttdef"><b>Definição</b> usb_ch9.h:143</div></div>
+<div class="ttc" id="astructusb__ep__cfg__data_html"><div class="ttname"><a href="structusb__ep__cfg__data.html">usb_ep_cfg_data</a></div><div class="ttdoc">USB Endpoint Configuration.</div><div class="ttdef"><b>Definição</b> usb_device.h:129</div></div>
+<div class="ttc" id="astructusb__ep__cfg__data_html_a5d03244508b6a58d9d0bfb896c2537d1"><div class="ttname"><a href="structusb__ep__cfg__data.html#a5d03244508b6a58d9d0bfb896c2537d1">usb_ep_cfg_data::ep_cb</a></div><div class="ttdeci">usb_ep_callback ep_cb</div><div class="ttdef"><b>Definição</b> usb_device.h:135</div></div>
+<div class="ttc" id="astructusb__ep__cfg__data_html_aa87f676a577a8c1605bb9a8fa04f411c"><div class="ttname"><a href="structusb__ep__cfg__data.html#aa87f676a577a8c1605bb9a8fa04f411c">usb_ep_cfg_data::ep_addr</a></div><div class="ttdeci">uint8_t ep_addr</div><div class="ttdef"><b>Definição</b> usb_device.h:142</div></div>
+<div class="ttc" id="astructusb__interface__cfg__data_html"><div class="ttname"><a href="structusb__interface__cfg__data.html">usb_interface_cfg_data</a></div><div class="ttdoc">USB Interface Configuration.</div><div class="ttdef"><b>Definição</b> usb_device.h:150</div></div>
+<div class="ttc" id="astructusb__interface__cfg__data_html_a117a1a88c02048ee43994d3e5a4ce922"><div class="ttname"><a href="structusb__interface__cfg__data.html#a117a1a88c02048ee43994d3e5a4ce922">usb_interface_cfg_data::custom_handler</a></div><div class="ttdeci">usb_request_handler custom_handler</div><div class="ttdef"><b>Definição</b> usb_device.h:164</div></div>
+<div class="ttc" id="astructusb__interface__cfg__data_html_a144ed5ba67d1adb8dbb1d936ac440272"><div class="ttname"><a href="structusb__interface__cfg__data.html#a144ed5ba67d1adb8dbb1d936ac440272">usb_interface_cfg_data::class_handler</a></div><div class="ttdeci">usb_request_handler class_handler</div><div class="ttdef"><b>Definição</b> usb_device.h:152</div></div>
+<div class="ttc" id="astructusb__interface__cfg__data_html_a2d5d65d41cef609173287161797318d2"><div class="ttname"><a href="structusb__interface__cfg__data.html#a2d5d65d41cef609173287161797318d2">usb_interface_cfg_data::vendor_handler</a></div><div class="ttdeci">usb_request_handler vendor_handler</div><div class="ttdef"><b>Definição</b> usb_device.h:154</div></div>
+<div class="ttc" id="astructusb__setup__packet_html"><div class="ttname"><a href="structusb__setup__packet.html">usb_setup_packet</a></div><div class="ttdef"><b>Definição</b> usb_ch9.h:39</div></div>
+<div class="ttc" id="ausb__ch9_8h_html"><div class="ttname"><a href="usb__ch9_8h.html">usb_ch9.h</a></div><div class="ttdoc">USB Chapter 9 structures and definitions.</div></div>
+<div class="ttc" id="ausb__dc_8h_html"><div class="ttname"><a href="usb__dc_8h.html">usb_dc.h</a></div><div class="ttdoc">USB device controller APIs.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

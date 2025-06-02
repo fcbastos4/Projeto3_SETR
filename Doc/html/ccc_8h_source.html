@@ -1,0 +1,797 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/i3c/ccc.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_fde9829581448aa2eaf128a45a28098a.html">i3c</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ccc.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright 2022 Intel Corporation</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_I3C_CCC_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_I3C_CCC_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="toolchain_8h.html">zephyr/toolchain.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">zephyr/sys/util.h</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaf7b1cbdc790aa1d2c307e1f4ba773ba2">   27</a></span><span class="preprocessor">#define I3C_CCC_BROADCAST_MAX_ID        0x7FU</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga06fc2296ada6198ab7a00646804ad5ed">   34</a></span><span class="preprocessor">#define I3C_CCC_ENEC(broadcast)         ((broadcast) ? 0x00U : 0x80U)</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga8798591746e72a8ae1f901e97d45b810">   41</a></span><span class="preprocessor">#define I3C_CCC_DISEC(broadcast)        ((broadcast) ? 0x01U : 0x81U)</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga213102b3a8dbd490b02c3c89843c8d2a">   49</a></span><span class="preprocessor">#define I3C_CCC_ENTAS(as, broadcast)        (((broadcast) ? 0x02U : 0x82U) + (as))</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga364ce54e30957f7871e56cd82c1f825c">   56</a></span><span class="preprocessor">#define I3C_CCC_ENTAS0(broadcast)       I3C_CCC_ENTAS(0, broadcast)</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga21c57ce34fe60255c9c8b28dac0a7a85">   63</a></span><span class="preprocessor">#define I3C_CCC_ENTAS1(broadcast)       I3C_CCC_ENTAS(1, broadcast)</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga3adea01f66748ae2b153bf7eb9eab1eb">   70</a></span><span class="preprocessor">#define I3C_CCC_ENTAS2(broadcast)       I3C_CCC_ENTAS(2, broadcast)</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga4dba9093fe562e3d09470610ab393f21">   77</a></span><span class="preprocessor">#define I3C_CCC_ENTAS3(broadcast)       I3C_CCC_ENTAS(3, broadcast)</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaed94df1e670fc3670970f261865d6f63">   80</a></span><span class="preprocessor">#define I3C_CCC_RSTDAA              0x06U</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gad6663cfa56be6bba2187a1d42d64be7b">   83</a></span><span class="preprocessor">#define I3C_CCC_ENTDAA              0x07U</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga17e63ffe790f279a3e6eb8235c936604">   86</a></span><span class="preprocessor">#define I3C_CCC_DEFTGTS             0x08U</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaab1ccf6cd47dfecee24811501e123802">   93</a></span><span class="preprocessor">#define I3C_CCC_SETMWL(broadcast)       ((broadcast) ? 0x09U : 0x89U)</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga97fd874b2e6c918f2e1262f7600bfd64">  100</a></span><span class="preprocessor">#define I3C_CCC_SETMRL(broadcast)       ((broadcast) ? 0x0AU : 0x8AU)</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gace2b7fc835d31ade916aad3126eb0c6c">  103</a></span><span class="preprocessor">#define I3C_CCC_ENTTM               0x0BU</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gac0f85a020956e3ee1ae8da899a9e06a6">  106</a></span><span class="preprocessor">#define I3C_CCC_SETBUSCON           0x0CU</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga4f331e7c21f15dd211a70c1a01c49738">  113</a></span><span class="preprocessor">#define I3C_CCC_ENDXFER(broadcast)      ((broadcast) ? 0x12U : 0x92U)</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gae213fc68bf723d8f7aee8c41cb9156c3">  116</a></span><span class="preprocessor">#define I3C_CCC_ENTHDR(x)           (0x20U + (x))</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gae88e44e9469891609ece0b8711162b9d">  119</a></span><span class="preprocessor">#define I3C_CCC_ENTHDR0             0x20U</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gae5319f3916df262579ecaac7497ed006">  122</a></span><span class="preprocessor">#define I3C_CCC_ENTHDR1             0x21U</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaeff48ef5d76e4ea051f5aee1d1e4fc40">  125</a></span><span class="preprocessor">#define I3C_CCC_ENTHDR2             0x22U</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga24eaa0af83a4a2223f4f84c3c67e05fe">  128</a></span><span class="preprocessor">#define I3C_CCC_ENTHDR3             0x23U</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaf15d188164c8fa9c0bf589eb7c5622d0">  131</a></span><span class="preprocessor">#define I3C_CCC_ENTHDR4             0x24U</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaafcad6bfacab1e42f22c8ee941ed6441">  134</a></span><span class="preprocessor">#define I3C_CCC_ENTHDR5             0x25U</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gae55615887425917b202818bb0b7c5ac5">  137</a></span><span class="preprocessor">#define I3C_CCC_ENTHDR6             0x26U</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga9ab8c02bb5a80913024a43077fb97ffb">  140</a></span><span class="preprocessor">#define I3C_CCC_ENTHDR7             0x27U</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga4203d5fdd9e9ca253803359934f22524">  147</a></span><span class="preprocessor">#define I3C_CCC_SETXTIME(broadcast)     ((broadcast) ? 0x28U : 0x98U)</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gae995ef9e94beb26932b47136bdf89b57">  150</a></span><span class="preprocessor">#define I3C_CCC_SETAASA             0x29U</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga424cb224727d33c1ab18e4149bbea232">  157</a></span><span class="preprocessor">#define I3C_CCC_RSTACT(broadcast)       ((broadcast) ? 0x2AU : 0x9AU)</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga89f8f72a7c7e8c9cb4fe8ece75ad78cf">  160</a></span><span class="preprocessor">#define I3C_CCC_DEFGRPA             0x2BU</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga46611eab0c82b74c615a7a7435f79d85">  167</a></span><span class="preprocessor">#define I3C_CCC_RSTGRPA(broadcast)      ((broadcast) ? 0x2CU : 0x9CU)</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga290cc5511d95b5be31c2c4cfea929085">  170</a></span><span class="preprocessor">#define I3C_CCC_MLANE(broadcast)        ((broadcast) ? 0x2DU : 0x9DU)</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaee5fb96b2d54df3b1b7aadefd54a608d">  178</a></span><span class="preprocessor">#define I3C_CCC_VENDOR(broadcast, id)       ((id) + ((broadcast) ? 0x61U : 0xE0U))</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga134d5948b056144c83b133f93083a0f8">  181</a></span><span class="preprocessor">#define I3C_CCC_SETDASA             0x87U</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gae0d6d0047f2c6e73e49e5019ec8d9ff0">  184</a></span><span class="preprocessor">#define I3C_CCC_SETNEWDA            0x88U</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gae74935317b7ca471c09b767acf359e34">  187</a></span><span class="preprocessor">#define I3C_CCC_GETMWL              0x8BU</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga92e89b1ba719fbb8833c6e32fe4ef1dc">  190</a></span><span class="preprocessor">#define I3C_CCC_GETMRL              0x8CU</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga04f7386d55742e935fa4dbfeb0120124">  193</a></span><span class="preprocessor">#define I3C_CCC_GETPID              0x8DU</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga1d7d49ab48098e4c2d5f63bd91d005e1">  196</a></span><span class="preprocessor">#define I3C_CCC_GETBCR              0x8EU</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga04ab6d4f0b2bf9d7f195132c0959225c">  199</a></span><span class="preprocessor">#define I3C_CCC_GETDCR              0x8FU</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga858603dfc251b684b9d049b90119993d">  202</a></span><span class="preprocessor">#define I3C_CCC_GETSTATUS           0x90U</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaa6807d3113c9c4d19b6fd27db32b3698">  205</a></span><span class="preprocessor">#define I3C_CCC_GETACCCR            0x91U</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gab3cac5de39903cc2331a38ac66c4ff14">  208</a></span><span class="preprocessor">#define I3C_CCC_SETBRGTGT           0x93U</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga2c078bf24e36689f34ad90979dd5c687">  211</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS             0x94U</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaa913844f97ee35405e9bf50c61a161a8">  214</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS             0x95U</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga5cf5cdb40299d4f8203b8035dacac17a">  217</a></span><span class="preprocessor">#define I3C_CCC_SETROUTE            0x96U</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaa2d86faed4f7c36939ce754be852751a">  220</a></span><span class="preprocessor">#define I3C_CCC_D2DXFER             0x97U</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga66bb5e8027b103298f882f413f8ee6e8">  223</a></span><span class="preprocessor">#define I3C_CCC_GETXTIME            0x99U</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaa0bef5d42c9bf2a21e888e5d5998d5cb">  226</a></span><span class="preprocessor">#define I3C_CCC_SETGRPA             0x9BU</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a>;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="foldopen" id="foldopen00233" data-start="{" data-end="};">
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="structi3c__ccc__target__payload.html">  233</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__target__payload.html">i3c_ccc_target_payload</a> {</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="structi3c__ccc__target__payload.html#a2669978506b20ef01569357fbd3a9eef">  235</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__target__payload.html#a2669978506b20ef01569357fbd3a9eef">addr</a>;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="structi3c__ccc__target__payload.html#aa09ebbfdff5d9d97be1558a63bb3535e">  238</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__target__payload.html#aa09ebbfdff5d9d97be1558a63bb3535e">rnw</a>:1;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="structi3c__ccc__target__payload.html#abc655b08df77701275038e80bfb5ba85">  247</a></span>    uint8_t *<a class="code hl_variable" href="structi3c__ccc__target__payload.html#abc655b08df77701275038e80bfb5ba85">data</a>;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="structi3c__ccc__target__payload.html#a5ddda39b2aeb2818b389d4df1e25ba0a">  250</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structi3c__ccc__target__payload.html#a5ddda39b2aeb2818b389d4df1e25ba0a">data_len</a>;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>};</div>
+</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="foldopen" id="foldopen00256" data-start="{" data-end="};">
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="structi3c__ccc__payload.html">  256</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__payload.html">i3c_ccc_payload</a> {</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="structi3c__ccc__payload.html#ae6aa0a3465af855872ae0006def29fea">  261</a></span>        uint8_t <a class="code hl_variable" href="structi3c__ccc__payload.html#ae6aa0a3465af855872ae0006def29fea">id</a>;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="structi3c__ccc__payload.html#ac52dbf51c5d7903c02c9f149e47a1b0b">  269</a></span>        uint8_t *<a class="code hl_variable" href="structi3c__ccc__payload.html#ac52dbf51c5d7903c02c9f149e47a1b0b">data</a>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="structi3c__ccc__payload.html#afcc17965b8bdd0e5e26cd15cebe49cee">  272</a></span>        <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structi3c__ccc__payload.html#afcc17965b8bdd0e5e26cd15cebe49cee">data_len</a>;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    } ccc;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno"><a class="line" href="structi3c__ccc__payload.html#a3dcab72bf5b627426f963df56514c38d">  284</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__target__payload.html">i3c_ccc_target_payload</a> *<a class="code hl_variable" href="structi3c__ccc__payload.html#a3dcab72bf5b627426f963df56514c38d">payloads</a>;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="structi3c__ccc__payload.html#afc1706d47d22300e7fa44754920b2685">  287</a></span>        <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structi3c__ccc__payload.html#afc1706d47d22300e7fa44754920b2685">num_targets</a>;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    } targets;</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>};</div>
+</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="foldopen" id="foldopen00294" data-start="{" data-end="};">
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno"><a class="line" href="structi3c__ccc__events.html">  294</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__events.html">i3c_ccc_events</a> {</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno"><a class="line" href="structi3c__ccc__events.html#ac34bcdae31cdc718eb54962d6b707320">  304</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__events.html#ac34bcdae31cdc718eb54962d6b707320">events</a>;</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gafe40d9b2ccedca40071c47929ff66e65">  308</a></span><span class="preprocessor">#define I3C_CCC_ENEC_EVT_ENINTR     BIT(0)</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gad73e2e9f31f3a02f52b20d77e64671ff">  311</a></span><span class="preprocessor">#define I3C_CCC_ENEC_EVT_ENCR       BIT(1)</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga7e705ac95643d0462ac4275eed42153a">  314</a></span><span class="preprocessor">#define I3C_CCC_ENEC_EVT_ENHJ       BIT(3)</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="preprocessor">#define I3C_CCC_ENEC_EVT_ALL        \</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="preprocessor">    (I3C_CCC_ENEC_EVT_ENINTR | I3C_CCC_ENEC_EVT_ENCR | I3C_CCC_ENEC_EVT_ENHJ)</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaf6da0458f1ae2d45ae7337cd4e576484">  320</a></span><span class="preprocessor">#define I3C_CCC_DISEC_EVT_DISINTR   BIT(0)</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga1f1612a16d2cb68b66f1ca85ba6f450a">  323</a></span><span class="preprocessor">#define I3C_CCC_DISEC_EVT_DISCR     BIT(1)</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gac3ffda84f683f99a0d4e0ad67adfd675">  326</a></span><span class="preprocessor">#define I3C_CCC_DISEC_EVT_DISHJ     BIT(3)</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="preprocessor">#define I3C_CCC_DISEC_EVT_ALL       \</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="preprocessor">    (I3C_CCC_DISEC_EVT_DISINTR | I3C_CCC_DISEC_EVT_DISCR | I3C_CCC_DISEC_EVT_DISHJ)</span></div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="comment"> * Events for both enabling and disabling since</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="comment"> * they have the same bits.</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga14cbf3628627f965336ac3740858aeea">  337</a></span><span class="preprocessor">#define I3C_CCC_EVT_INTR        BIT(0)</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gad515a978c4912ef0c0444f14e51d8e8f">  340</a></span><span class="preprocessor">#define I3C_CCC_EVT_CR          BIT(1)</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span> </div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaedf65a98d59de51a533ff3d2f8cf075a">  343</a></span><span class="preprocessor">#define I3C_CCC_EVT_HJ          BIT(3)</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
+<div class="foldopen" id="foldopen00346" data-start="" data-end="">
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga8ff2055f745c4970bd41850bfd5b2aff">  346</a></span><span class="preprocessor">#define I3C_CCC_EVT_ALL         \</span></div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="preprocessor">    (I3C_CCC_EVT_INTR | I3C_CCC_EVT_CR | I3C_CCC_EVT_HJ)</span></div>
+</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="foldopen" id="foldopen00357" data-start="{" data-end="};">
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno"><a class="line" href="structi3c__ccc__mwl.html">  357</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__mwl.html">i3c_ccc_mwl</a> {</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno"><a class="line" href="structi3c__ccc__mwl.html#a5312fa1fc7cc93dfdf88d490352cf08e">  359</a></span>    uint16_t <a class="code hl_variable" href="structi3c__ccc__mwl.html#a5312fa1fc7cc93dfdf88d490352cf08e">len</a>;</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> </div>
+<div class="foldopen" id="foldopen00370" data-start="{" data-end="};">
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno"><a class="line" href="structi3c__ccc__mrl.html">  370</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__mrl.html">i3c_ccc_mrl</a> {</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno"><a class="line" href="structi3c__ccc__mrl.html#a381d52439049c6a13d232e4e94d17335">  372</a></span>    uint16_t <a class="code hl_variable" href="structi3c__ccc__mrl.html#a381d52439049c6a13d232e4e94d17335">len</a>;</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno"><a class="line" href="structi3c__ccc__mrl.html#a7480df4486c9eb8a11581e42ff3b6b67">  375</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__mrl.html#a7480df4486c9eb8a11581e42ff3b6b67">ibi_len</a>;</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
+<div class="foldopen" id="foldopen00384" data-start="{" data-end="};">
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts__active__controller.html">  384</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__deftgts__active__controller.html">i3c_ccc_deftgts_active_controller</a> {</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts__active__controller.html#a4d7671db542bb70ef623be26804c154a">  386</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__deftgts__active__controller.html#a4d7671db542bb70ef623be26804c154a">addr</a>;</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span> </div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts__active__controller.html#a7acd12fad49f565a6b8a71993b6ad5d4">  389</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__deftgts__active__controller.html#a7acd12fad49f565a6b8a71993b6ad5d4">dcr</a>;</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts__active__controller.html#aeb56808d9b998c51d5b30307e0212328">  392</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__deftgts__active__controller.html#aeb56808d9b998c51d5b30307e0212328">bcr</a>;</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span> </div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts__active__controller.html#ae2fb1ebc28ef1f69c6114af0b25875d3">  395</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__deftgts__active__controller.html#ae2fb1ebc28ef1f69c6114af0b25875d3">static_addr</a>;</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>};</div>
+</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
+<div class="foldopen" id="foldopen00404" data-start="{" data-end="};">
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts__target.html">  404</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__deftgts__target.html">i3c_ccc_deftgts_target</a> {</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts__target.html#a34a02df3d4dc456733746437b2cd983a">  406</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__deftgts__target.html#a34a02df3d4dc456733746437b2cd983a">addr</a>;</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> </div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts__target.html#a08689c18d74fa4b74fc2ada055394e65">  413</a></span>        uint8_t <a class="code hl_variable" href="structi3c__ccc__deftgts__target.html#a08689c18d74fa4b74fc2ada055394e65">dcr</a>;</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts__target.html#ab4fbe6aac8d5860ef90613e51b15ef83">  416</a></span>        uint8_t <a class="code hl_variable" href="structi3c__ccc__deftgts__target.html#ab4fbe6aac8d5860ef90613e51b15ef83">lvr</a>;</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>    };</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span> </div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts__target.html#a7c234182e16da66c308e86d72591063d">  420</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__deftgts__target.html#a7c234182e16da66c308e86d72591063d">bcr</a>;</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span> </div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts__target.html#a7374dd59c060462af7ca366ae7165107">  423</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__deftgts__target.html#a7374dd59c060462af7ca366ae7165107">static_addr</a>;</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>};</div>
+</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
+<div class="foldopen" id="foldopen00434" data-start="{" data-end="};">
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts.html">  434</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__deftgts.html">i3c_ccc_deftgts</a> {</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts.html#a1f59c280bd388eb7e7818eb674b5f12f">  436</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__deftgts__active__controller.html">i3c_ccc_deftgts_active_controller</a> <a class="code hl_variable" href="structi3c__ccc__deftgts.html#a1f59c280bd388eb7e7818eb674b5f12f">active_controller</a>;</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span> </div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno"><a class="line" href="structi3c__ccc__deftgts.html#a3ead83f46d63c4dd4723ef76dba770ee">  439</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__deftgts__target.html">i3c_ccc_deftgts_target</a> <a class="code hl_variable" href="structi3c__ccc__deftgts.html#a3ead83f46d63c4dd4723ef76dba770ee">targets</a>[];</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span> </div>
+<div class="foldopen" id="foldopen00455" data-start="{" data-end="};">
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno"><a class="line" href="structi3c__ccc__address.html">  455</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__address.html">i3c_ccc_address</a> {</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno"><a class="line" href="structi3c__ccc__address.html#afc3d7db034b3fd72c6118790a18a677b">  470</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__address.html#afc3d7db034b3fd72c6118790a18a677b">addr</a>;</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span> </div>
+<div class="foldopen" id="foldopen00476" data-start="{" data-end="};">
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno"><a class="line" href="structi3c__ccc__getpid.html">  476</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__getpid.html">i3c_ccc_getpid</a> {</div>
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno"><a class="line" href="structi3c__ccc__getpid.html#a060023fcb180e44b39a73c0f955f02c7">  482</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__getpid.html#a060023fcb180e44b39a73c0f955f02c7">pid</a>[6];</div>
+<div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span> </div>
+<div class="foldopen" id="foldopen00488" data-start="{" data-end="};">
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno"><a class="line" href="structi3c__ccc__getbcr.html">  488</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__getbcr.html">i3c_ccc_getbcr</a> {</div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno"><a class="line" href="structi3c__ccc__getbcr.html#a09df0a49b57a38b91fe2e51c4de5c334">  490</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__getbcr.html#a09df0a49b57a38b91fe2e51c4de5c334">bcr</a>;</div>
+<div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span> </div>
+<div class="foldopen" id="foldopen00496" data-start="{" data-end="};">
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno"><a class="line" href="structi3c__ccc__getdcr.html">  496</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__getdcr.html">i3c_ccc_getdcr</a> {</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno"><a class="line" href="structi3c__ccc__getdcr.html#a0615f439c4d556b08f7ecba8dff1c007">  498</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__getdcr.html#a0615f439c4d556b08f7ecba8dff1c007">dcr</a>;</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span> </div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span> </div>
+<div class="foldopen" id="foldopen00505" data-start="{" data-end="};">
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga75934ea02ef8eb1c737da3ebfd368648">  505</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__i3c__ccc.html#ga75934ea02ef8eb1c737da3ebfd368648">i3c_ccc_getstatus_fmt</a> {</div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gga75934ea02ef8eb1c737da3ebfd368648ae42215e3898baa40cc90e35c5777b57b">  507</a></span>    <a class="code hl_enumvalue" href="group__i3c__ccc.html#gga75934ea02ef8eb1c737da3ebfd368648ae42215e3898baa40cc90e35c5777b57b">GETSTATUS_FORMAT_1</a>,</div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span> </div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gga75934ea02ef8eb1c737da3ebfd368648a08af2d5d884af32b46b7e0f2f429c68f">  510</a></span>    <a class="code hl_enumvalue" href="group__i3c__ccc.html#gga75934ea02ef8eb1c737da3ebfd368648a08af2d5d884af32b46b7e0f2f429c68f">GETSTATUS_FORMAT_2</a>,</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>};</div>
+</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span> </div>
+<div class="foldopen" id="foldopen00516" data-start="{" data-end="};">
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga1977f86d4865a97047119e5b3fbcb172">  516</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__i3c__ccc.html#ga1977f86d4865a97047119e5b3fbcb172">i3c_ccc_getstatus_defbyte</a> {</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gga1977f86d4865a97047119e5b3fbcb172ac485e9d12c2a4855fd40ddcb6ab938eb">  518</a></span>    <a class="code hl_enumvalue" href="group__i3c__ccc.html#gga1977f86d4865a97047119e5b3fbcb172ac485e9d12c2a4855fd40ddcb6ab938eb">GETSTATUS_FORMAT_2_TGTSTAT</a> = 0x00U,</div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span> </div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gga1977f86d4865a97047119e5b3fbcb172a536a82ce39767e0cd3c25ebc56974877">  521</a></span>    <a class="code hl_enumvalue" href="group__i3c__ccc.html#gga1977f86d4865a97047119e5b3fbcb172a536a82ce39767e0cd3c25ebc56974877">GETSTATUS_FORMAT_2_PRECR</a> = 0x91U,</div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span> </div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>    <a class="code hl_enumvalue" href="group__i3c__ccc.html#gga1977f86d4865a97047119e5b3fbcb172a83ccf53b5520866ec71e2c0824347e19">GETSTATUS_FORMAT_2_INVALID</a> = 0x100U</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gga1977f86d4865a97047119e5b3fbcb172a83ccf53b5520866ec71e2c0824347e19">  525</a></span>};</div>
+</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span> </div>
+<div class="foldopen" id="foldopen00530" data-start="{" data-end="};">
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno"><a class="line" href="unioni3c__ccc__getstatus.html">  530</a></span><span class="keyword">union </span><a class="code hl_union" href="unioni3c__ccc__getstatus.html">i3c_ccc_getstatus</a> {</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno"><a class="line" href="unioni3c__ccc__getstatus.html#a23fe55c75741457ea399a6c7074017f6">  545</a></span>        uint16_t <a class="code hl_variable" href="unioni3c__ccc__getstatus.html#a23fe55c75741457ea399a6c7074017f6">status</a>;</div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>    } fmt1;</div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span> </div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno"><a class="line" href="unioni3c__ccc__getstatus.html#a18b3c86f3157b3dfb30dc51127de2b69">  554</a></span>        uint16_t <a class="code hl_variable" href="unioni3c__ccc__getstatus.html#a18b3c86f3157b3dfb30dc51127de2b69">tgtstat</a>;</div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span> </div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno"><a class="line" href="unioni3c__ccc__getstatus.html#a104f75402b9ea4b07c9aafc376349d84">  568</a></span>        uint16_t <a class="code hl_variable" href="unioni3c__ccc__getstatus.html#a104f75402b9ea4b07c9aafc376349d84">precr</a>;</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span> </div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>        uint16_t raw_u16;</div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>    } fmt2;</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span> </div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaee3dd61e9ac723a90868c610d0179b7d">  575</a></span><span class="preprocessor">#define I3C_CCC_GETSTATUS_PROTOCOL_ERR              BIT(5)</span></div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span> </div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga8aca4592e579411a2c17f80ad682d93f">  578</a></span><span class="preprocessor">#define I3C_CCC_GETSTATUS_ACTIVITY_MODE_SHIFT           6</span></div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span> </div>
+<div class="foldopen" id="foldopen00581" data-start="" data-end="">
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga1006146ca810c06674fbee0ee1f66286">  581</a></span><span class="preprocessor">#define I3C_CCC_GETSTATUS_ACTIVITY_MODE_MASK            \</span></div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span><span class="preprocessor">    (0x03U &lt;&lt; I3C_CCC_GETSTATUS_ACTIVITY_MODE_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span> </div>
+<div class="foldopen" id="foldopen00592" data-start="" data-end="">
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga660e179384e9426b498cd62da5665b15">  592</a></span><span class="preprocessor">#define I3C_CCC_GETSTATUS_ACTIVITY_MODE(status)         \</span></div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span><span class="preprocessor">    (((status) &amp; I3C_CCC_GETSTATUS_ACTIVITY_MODE_MASK)  \</span></div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span><span class="preprocessor">     &gt;&gt; I3C_CCC_GETSTATUS_ACTIVITY_MODE_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span> </div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga1c07ae6c80088b8336f7f2d728487606">  597</a></span><span class="preprocessor">#define I3C_CCC_GETSTATUS_NUM_INT_SHIFT             0</span></div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span> </div>
+<div class="foldopen" id="foldopen00600" data-start="" data-end="">
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gae0bcc3ea13a34f63b073d63569d2e53a">  600</a></span><span class="preprocessor">#define I3C_CCC_GETSTATUS_NUM_INT_MASK              \</span></div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span><span class="preprocessor">    (0x0FU &lt;&lt; I3C_CCC_GETSTATUS_NUM_INT_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span> </div>
+<div class="foldopen" id="foldopen00611" data-start="" data-end="">
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga1436dc4b9f71c6f61fd3e3331857f3bd">  611</a></span><span class="preprocessor">#define I3C_CCC_GETSTATUS_NUM_INT(status)           \</span></div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span><span class="preprocessor">    (((status) &amp; I3C_CCC_GETSTATUS_NUM_INT_MASK)        \</span></div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span><span class="preprocessor">     &gt;&gt; I3C_CCC_GETSTATUS_NUM_INT_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span> </div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga94afb0ebcfce55b85fc4a81953b4178a">  616</a></span><span class="preprocessor">#define I3C_CCC_GETSTATUS_PRECR_DEEP_SLEEP_DETECTED     BIT(0)</span></div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span> </div>
+<div class="line"><a id="l00619" name="l00619"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gadda1781cae312f4e588c3d3dcfa74f38">  619</a></span><span class="preprocessor">#define I3C_CCC_GETSTATUS_PRECR_HANDOFF_DELAY_NACK      BIT(1)</span></div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span> </div>
+<div class="foldopen" id="foldopen00624" data-start="{" data-end="};">
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno"><a class="line" href="structi3c__ccc__setbrgtgt__tgt.html">  624</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__setbrgtgt__tgt.html">i3c_ccc_setbrgtgt_tgt</a> {</div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno"><a class="line" href="structi3c__ccc__setbrgtgt__tgt.html#a6fa24f8354e856031464aaaa2c8fd1bb">  631</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__setbrgtgt__tgt.html#a6fa24f8354e856031464aaaa2c8fd1bb">addr</a>;</div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span> </div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno"><a class="line" href="structi3c__ccc__setbrgtgt__tgt.html#a1dca2717ca9502f11b300a0d9a1fc0e6">  641</a></span>    uint16_t <a class="code hl_variable" href="structi3c__ccc__setbrgtgt__tgt.html#a1dca2717ca9502f11b300a0d9a1fc0e6">id</a>;</div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span> </div>
+<div class="foldopen" id="foldopen00651" data-start="{" data-end="};">
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno"><a class="line" href="structi3c__ccc__setbrgtgt.html">  651</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__setbrgtgt.html">i3c_ccc_setbrgtgt</a> {</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno"><a class="line" href="structi3c__ccc__setbrgtgt.html#a9099e2979baca2c3fbbb7a6b781edbf3">  653</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__setbrgtgt.html#a9099e2979baca2c3fbbb7a6b781edbf3">count</a>;</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span> </div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno"><a class="line" href="structi3c__ccc__setbrgtgt.html#aa019eb13d7da60941382c6e43884b60d">  656</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__setbrgtgt__tgt.html">i3c_ccc_setbrgtgt_tgt</a> <a class="code hl_variable" href="structi3c__ccc__setbrgtgt.html#aa019eb13d7da60941382c6e43884b60d">targets</a>[];</div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> </div>
+<div class="foldopen" id="foldopen00664" data-start="{" data-end="};">
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno"><a class="line" href="unioni3c__ccc__getmxds.html">  664</a></span><span class="keyword">union </span><a class="code hl_union" href="unioni3c__ccc__getmxds.html">i3c_ccc_getmxds</a> {</div>
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno"><a class="line" href="unioni3c__ccc__getmxds.html#a9307643fd53554053b38cda5a0663a13">  667</a></span>        uint8_t <a class="code hl_variable" href="unioni3c__ccc__getmxds.html#a9307643fd53554053b38cda5a0663a13">maxwr</a>;</div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span> </div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno"><a class="line" href="unioni3c__ccc__getmxds.html#a668e1ed30b96a40534d96e4b56ce7e98">  670</a></span>        uint8_t <a class="code hl_variable" href="unioni3c__ccc__getmxds.html#a668e1ed30b96a40534d96e4b56ce7e98">maxrd</a>;</div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span>    } fmt1;</div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span> </div>
+<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span>        uint8_t <a class="code hl_variable" href="unioni3c__ccc__getmxds.html#a9307643fd53554053b38cda5a0663a13">maxwr</a>;</div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span> </div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>        uint8_t <a class="code hl_variable" href="unioni3c__ccc__getmxds.html#a668e1ed30b96a40534d96e4b56ce7e98">maxrd</a>;</div>
+<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span> </div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno"><a class="line" href="unioni3c__ccc__getmxds.html#a3782b5dce0db847362b9413a02d90baa">  685</a></span>        uint8_t <a class="code hl_variable" href="unioni3c__ccc__getmxds.html#a3782b5dce0db847362b9413a02d90baa">maxrdturn</a>[3];</div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>    } fmt2;</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span> </div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno"><a class="line" href="unioni3c__ccc__getmxds.html#a3324b594867b06b7c306decd81eed53d">  694</a></span>        uint8_t <a class="code hl_variable" href="unioni3c__ccc__getmxds.html#a3324b594867b06b7c306decd81eed53d">wrrdturn</a>;</div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span> </div>
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno"><a class="line" href="unioni3c__ccc__getmxds.html#ad55160abc13a3ad04d5d6f827714f48b">  701</a></span>        uint8_t <a class="code hl_variable" href="unioni3c__ccc__getmxds.html#ad55160abc13a3ad04d5d6f827714f48b">crhdly1</a>;</div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span>    } fmt3;</div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span> </div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga65ed8d5c2e6f562215674217f974d608">  706</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAX_SDR_FSCL_MAX            0</span></div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span> </div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaac6dec9aee1e1d5a56c964a4d1fe32b1">  709</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAX_SDR_FSCL_8MHZ           1</span></div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span> </div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gae1ff27ad2b8c9119e2efa88c0a696555">  712</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAX_SDR_FSCL_6MHZ           2</span></div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span> </div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga409666d6a17b53e518d702863826eb28">  715</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAX_SDR_FSCL_4MHZ           3</span></div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span> </div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga5a329b3fa12ecafd6958b05bab163a5c">  718</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAX_SDR_FSCL_2MHZ           4</span></div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span> </div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gad5e417bc3cabf8a915d1e7938415125a">  721</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_TSCO_8NS                0</span></div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span> </div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaaee475f82f3a3759c7d62bb48082ebc2">  724</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_TSCO_9NS                1</span></div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span> </div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga5e264e39aa2d4b602ec5e3218708e2f6">  727</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_TSCO_10NS               2</span></div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span> </div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga2b27c9023f447da9c474c078091cf580">  730</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_TSCO_11NS               3</span></div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span> </div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga06d33d1884a30d179aace82af956d62d">  733</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_TSCO_12NS               4</span></div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span> </div>
+<div class="line"><a id="l00736" name="l00736"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga5be034f241ccfb59534ae247d2e31d85">  736</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_TSCO_GT_12NS                7</span></div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span> </div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga43fa03b6fea48cca06d07e962c5c04ef">  739</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAXWR_DEFINING_BYTE_SUPPORT     BIT(3)</span></div>
+<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span> </div>
+<div class="line"><a id="l00742" name="l00742"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga9bfab32baa69d2e437167afa31a6b428">  742</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAXWR_MAX_SDR_FSCL_SHIFT        0</span></div>
+<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span> </div>
+<div class="foldopen" id="foldopen00745" data-start="" data-end="">
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga5f4c6dde339c3467bdb3aea0d680d01f">  745</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAXWR_MAX_SDR_FSCL_MASK         \</span></div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span><span class="preprocessor">    (0x07U &lt;&lt; I3C_CCC_GET_MXDS_MAXWR_MAX_SDR_FSCL_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span> </div>
+<div class="foldopen" id="foldopen00756" data-start="" data-end="">
+<div class="line"><a id="l00756" name="l00756"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gae61b18d964e575809a1ebe2189aae028">  756</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAXWR_MAX_SDR_FSCL(maxwr)       \</span></div>
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span><span class="preprocessor">    (((maxwr) &amp;                     \</span></div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span><span class="preprocessor">      I3C_CCC_GETMXDS_MAXWR_MAX_SDR_FSCL_MASK)      \</span></div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span><span class="preprocessor">     &gt;&gt; I3C_CCC_GETMXDS_MAXWR_MAX_SDR_FSCL_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span> </div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaf5b95266cc911a37a3e46565b7601970">  762</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAXRD_W2R_PERMITS_STOP_BETWEEN      BIT(6)</span></div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span> </div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaf9c4764b0953c28af83b4fe06df0ebc3">  765</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAXRD_TSCO_SHIFT            3</span></div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span> </div>
+<div class="foldopen" id="foldopen00768" data-start="" data-end="">
+<div class="line"><a id="l00768" name="l00768"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga41958f7756cc5dec1c0546e7832b764a">  768</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAXRD_TSCO_MASK             \</span></div>
+<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span><span class="preprocessor">    (0x07U &lt;&lt; I3C_CCC_GETMXDS_MAXRD_TSCO_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span> </div>
+<div class="foldopen" id="foldopen00779" data-start="" data-end="">
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga8284130d363dd1898de44c572b3d566c">  779</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAXRD_TSCO(maxrd)           \</span></div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span><span class="preprocessor">    (((maxrd) &amp; I3C_CCC_GETMXDS_MAXRD_TSCO_MASK)        \</span></div>
+<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span><span class="preprocessor">     &gt;&gt; I3C_CCC_GETMXDS_MAXRD_TSCO_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span> </div>
+<div class="line"><a id="l00784" name="l00784"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga474f4d9ec309436863bdf0d7151de95f">  784</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAXRD_MAX_SDR_FSCL_SHIFT        0</span></div>
+<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span> </div>
+<div class="foldopen" id="foldopen00787" data-start="" data-end="">
+<div class="line"><a id="l00787" name="l00787"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gad8b14f71cc1d5c1a0daa27703ab0c774">  787</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAXRD_MAX_SDR_FSCL_MASK         \</span></div>
+<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span><span class="preprocessor">    (0x07U &lt;&lt; I3C_CCC_GET_MXDS_MAXRD_MAX_SDR_FSCL_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span> </div>
+<div class="foldopen" id="foldopen00798" data-start="" data-end="">
+<div class="line"><a id="l00798" name="l00798"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaf5ac7364357e1e123adddcbfc134a0be">  798</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_MAXRD_MAX_SDR_FSCL(maxrd)       \</span></div>
+<div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span><span class="preprocessor">    (((maxrd) &amp;                     \</span></div>
+<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span><span class="preprocessor">      I3C_CCC_GETMXDS_MAXRD_MAX_SDR_FSCL_MASK)      \</span></div>
+<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span><span class="preprocessor">     &gt;&gt; I3C_CCC_GETMXDS_MAXRD_MAX_SDR_FSCL_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span> </div>
+<div class="line"><a id="l00804" name="l00804"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga9aa4eaf8a537323883d242e9ebb9a985">  804</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_CRDHLY1_SET_BUS_ACT_STATE       BIT(2)</span></div>
+<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span> </div>
+<div class="line"><a id="l00807" name="l00807"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga7853f150811ae69b09520628d774a033">  807</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_CRDHLY1_CTRL_HANDOFF_ACT_STATE_SHIFT    0</span></div>
+<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span> </div>
+<div class="foldopen" id="foldopen00810" data-start="" data-end="">
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga9ad046b7ec49bbca3f70a5a30fb1524b">  810</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_CRDHLY1_CTRL_HANDOFF_ACT_STATE_MASK \</span></div>
+<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span><span class="preprocessor">    (0x03U &lt;&lt; I3C_CCC_GETMXDS_CRDHLY1_SET_BUS_ACT_STATE_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span> </div>
+<div class="foldopen" id="foldopen00821" data-start="" data-end="">
+<div class="line"><a id="l00821" name="l00821"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gab43a5adbcf158086d23c5d796a7e9399">  821</a></span><span class="preprocessor">#define I3C_CCC_GETMXDS_CRDHLY1_CTRL_HANDOFF_ACT_STATE(crhdly1) \</span></div>
+<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span><span class="preprocessor">    (((crhdly1) &amp;                       \</span></div>
+<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span><span class="preprocessor">      I3C_CCC_GETMXDS_CRDHLY1_SET_BUS_ACT_STATE_MASK)   \</span></div>
+<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span><span class="preprocessor">     &gt;&gt; I3C_CCC_GETMXDS_CRDHLY1_SET_BUS_ACT_STATE_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span> </div>
+<div class="foldopen" id="foldopen00831" data-start="{" data-end="};">
+<div class="line"><a id="l00831" name="l00831"></a><span class="lineno"><a class="line" href="structi3c__ccc__getcaps.html">  831</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__ccc__getcaps.html">i3c_ccc_getcaps</a> {</div>
+<div class="line"><a id="l00835" name="l00835"></a><span class="lineno"><a class="line" href="structi3c__ccc__getcaps.html#ab16e2b0e084371a9cbf57abf518f3e7e">  835</a></span>    uint8_t <a class="code hl_variable" href="structi3c__ccc__getcaps.html#ab16e2b0e084371a9cbf57abf518f3e7e">getcaps</a>[4];</div>
+<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span> </div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gab984c6a18a555e4a3c0552684083e330">  839</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS1_HDR_DDR                BIT(0)</span></div>
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span> </div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaac01f085ed1af56d686a33694744081c">  842</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS1_HDR_BT                 BIT(3)</span></div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span> </div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaae9483f4d5de3ba092b870b20e6b5f4a">  851</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS1_HDR_MODE(x)                BIT(x)</span></div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span> </div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gad1389fc52c3fec4d6206bc56566bbf5d">  854</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS1_HDR_MODE0              BIT(0)</span></div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span> </div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gacfd20baf528fcceca7f71719e15d5ea0">  857</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS1_HDR_MODE1              BIT(1)</span></div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span> </div>
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga9e5581743cbbe7363bb0919b95148d85">  860</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS1_HDR_MODE2              BIT(2)</span></div>
+<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span> </div>
+<div class="line"><a id="l00863" name="l00863"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga97b146596467f410ce9f063365ac9aaf">  863</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS1_HDR_MODE3              BIT(3)</span></div>
+<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span> </div>
+<div class="line"><a id="l00866" name="l00866"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga0dd98eeb74f493bfb04aeb698e656772">  866</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS1_HDR_MODE4              BIT(4)</span></div>
+<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span> </div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga99bff02c40ccb15797dcf10c6dc00e87">  869</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS1_HDR_MODE5              BIT(5)</span></div>
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span> </div>
+<div class="line"><a id="l00872" name="l00872"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga12cead0a8ceb518a5c897f22b1d3dd64">  872</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS1_HDR_MODE6              BIT(6)</span></div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span> </div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga8b3373f18c0e3b365cc199c19ae82fb0">  875</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS1_HDR_MODE7              BIT(7)</span></div>
+<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span> </div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga1c2ceeaa44ee641c3d05176baf7e681d">  878</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS2_HDRDDR_WRITE_ABORT         BIT(6)</span></div>
+<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span> </div>
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga8faf5ff5b2542a309f114ce4d6d11640">  881</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS2_HDRDDR_ABORT_CRC           BIT(7)</span></div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span> </div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga9ad0caec4913cd9454fa4c939555ad32">  887</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS2_GRPADDR_CAP_SHIFT          4</span></div>
+<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span> </div>
+<div class="foldopen" id="foldopen00893" data-start="" data-end="">
+<div class="line"><a id="l00893" name="l00893"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga64f58d1aaf847cf4a7811b20cca13b55">  893</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS2_GRPADDR_CAP_MASK           \</span></div>
+<div class="line"><a id="l00894" name="l00894"></a><span class="lineno">  894</span><span class="preprocessor">    (0x03U &lt;&lt; I3C_CCC_GETCAPS2_GRPADDR_CAP_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span> </div>
+<div class="foldopen" id="foldopen00904" data-start="" data-end="">
+<div class="line"><a id="l00904" name="l00904"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gabeb9acdabd6dce2117e9f5830673b2ed">  904</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS2_GRPADDR_CAP(getcaps2)          \</span></div>
+<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span><span class="preprocessor">    (((getcaps2) &amp;                      \</span></div>
+<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span><span class="preprocessor">      I3C_CCC_GETCAPS2_GRPADDR_CAP_MASK)            \</span></div>
+<div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span><span class="preprocessor">     &gt;&gt; I3C_CCC_GETCAPS_GRPADDR_CAP_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span> </div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga558dc49b9856d49ccd77bfac88fbfc7c">  913</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS2_SPEC_VER_SHIFT             0</span></div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span> </div>
+<div class="foldopen" id="foldopen00919" data-start="" data-end="">
+<div class="line"><a id="l00919" name="l00919"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gae0015aa7768a8d5c18426a47cdbb67f8">  919</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS2_SPEC_VER_MASK              \</span></div>
+<div class="line"><a id="l00920" name="l00920"></a><span class="lineno">  920</span><span class="preprocessor">    (0x0FU &lt;&lt; I3C_CCC_GETCAPS2_SPEC_VER_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span> </div>
+<div class="foldopen" id="foldopen00931" data-start="" data-end="">
+<div class="line"><a id="l00931" name="l00931"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga093449c1cf029bddf1a25181cbfed570">  931</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS2_SPEC_VER(getcaps2)         \</span></div>
+<div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span><span class="preprocessor">    (((getcaps2) &amp;                      \</span></div>
+<div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span><span class="preprocessor">      I3C_CCC_GETCAPS2_SPEC_VER_MASK)           \</span></div>
+<div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span><span class="preprocessor">     &gt;&gt; I3C_CCC_GETCAPS_SPEC_VER_SHIFT)</span></div>
+</div>
+<div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span> </div>
+<div class="line"><a id="l00940" name="l00940"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaf0a2358f0f5f46c5fa1c084373f09be1">  940</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS3_MLANE_SUPPORT              BIT(0)</span></div>
+<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span> </div>
+<div class="line"><a id="l00946" name="l00946"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga08cc3c3976195642282e00ba00c1b283">  946</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS3_D2DXFER_SUPPORT            BIT(1)</span></div>
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span> </div>
+<div class="line"><a id="l00952" name="l00952"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga73829cd436decbe55d2290dc750b3918">  952</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS3_D2DXFER_IBI_CAPABLE            BIT(2)</span></div>
+<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span> </div>
+<div class="line"><a id="l00958" name="l00958"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaf40cc6cc08619363056e9650453a9a26">  958</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS3_GETCAPS_DEFINING_BYTE_SUPPORT      BIT(3)</span></div>
+<div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span> </div>
+<div class="line"><a id="l00964" name="l00964"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gafbf1e9c947c40d70ae1c45991d093570">  964</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS3_GETSTATUS_DEFINING_BYTE_SUPPORT    BIT(4)</span></div>
+<div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span> </div>
+<div class="line"><a id="l00970" name="l00970"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga3575eb8aa6fc3b49f2115104dcdfaeec">  970</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS3_HDRBT_CRC32_SUPPORT            BIT(5)</span></div>
+<div class="line"><a id="l00971" name="l00971"></a><span class="lineno">  971</span> </div>
+<div class="line"><a id="l00976" name="l00976"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gac13d1465aa4222be0acccbf5303f3f3e">  976</a></span><span class="preprocessor">#define I3C_CCC_GETCAPS3_IBI_MDR_PENDING_READ_NOTIFICATION  BIT(6)</span></div>
+<div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span> </div>
+<div class="foldopen" id="foldopen00981" data-start="{" data-end="};">
+<div class="line"><a id="l00981" name="l00981"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga61e1a1945a39b374edee5b75fbeb27d1">  981</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__i3c__ccc.html#ga61e1a1945a39b374edee5b75fbeb27d1">i3c_ccc_rstact_defining_byte</a> {</div>
+<div class="line"><a id="l00983" name="l00983"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1aaba42ef747745ca61cf3aa91068fe7c2">  983</a></span>    <a class="code hl_enumvalue" href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1aaba42ef747745ca61cf3aa91068fe7c2">I3C_CCC_RSTACT_NO_RESET</a> = 0x00U,</div>
+<div class="line"><a id="l00984" name="l00984"></a><span class="lineno">  984</span> </div>
+<div class="line"><a id="l00986" name="l00986"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1a5875b237e23a0a2ad01051ca1d612476">  986</a></span>    <a class="code hl_enumvalue" href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1a5875b237e23a0a2ad01051ca1d612476">I3C_CCC_RSTACT_PERIPHERAL_ONLY</a> = 0x01U,</div>
+<div class="line"><a id="l00987" name="l00987"></a><span class="lineno">  987</span> </div>
+<div class="line"><a id="l00989" name="l00989"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1af7b7e39dd7a9b214e13f1bdc7f869879">  989</a></span>    <a class="code hl_enumvalue" href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1af7b7e39dd7a9b214e13f1bdc7f869879">I3C_CCC_RSTACT_RESET_WHOLE_TARGET</a> = 0x02U,</div>
+<div class="line"><a id="l00990" name="l00990"></a><span class="lineno">  990</span> </div>
+<div class="line"><a id="l00992" name="l00992"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1a860a409d86fdb60d9d03df670a724519">  992</a></span>    <a class="code hl_enumvalue" href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1a860a409d86fdb60d9d03df670a724519">I3C_CCC_RSTACT_DEBUG_NETWORK_ADAPTER</a> = 0x03U,</div>
+<div class="line"><a id="l00993" name="l00993"></a><span class="lineno">  993</span> </div>
+<div class="line"><a id="l00995" name="l00995"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1ac56441fa6318702856ca6d2ae5ea328e">  995</a></span>    <a class="code hl_enumvalue" href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1ac56441fa6318702856ca6d2ae5ea328e">I3C_CCC_RSTACT_VIRTUAL_TARGET_DETECT</a> = 0x04U,</div>
+<div class="line"><a id="l00996" name="l00996"></a><span class="lineno">  996</span>};</div>
+</div>
+<div class="line"><a id="l00997" name="l00997"></a><span class="lineno">  997</span> </div>
+<div class="line"><a id="l01008" name="l01008"></a><span class="lineno"> 1008</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> i3c_ccc_is_payload_broadcast(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__ccc__payload.html">i3c_ccc_payload</a> *payload)</div>
+<div class="line"><a id="l01009" name="l01009"></a><span class="lineno"> 1009</span>{</div>
+<div class="line"><a id="l01010" name="l01010"></a><span class="lineno"> 1010</span>    <span class="keywordflow">return</span> (payload-&gt;ccc.<a class="code hl_variable" href="structi3c__ccc__payload.html#ae6aa0a3465af855872ae0006def29fea">id</a> &lt;= <a class="code hl_define" href="group__i3c__ccc.html#gaf7b1cbdc790aa1d2c307e1f4ba773ba2">I3C_CCC_BROADCAST_MAX_ID</a>);</div>
+<div class="line"><a id="l01011" name="l01011"></a><span class="lineno"> 1011</span>}</div>
+<div class="line"><a id="l01012" name="l01012"></a><span class="lineno"> 1012</span> </div>
+<div class="line"><a id="l01024" name="l01024"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga7d5bb9c8fd88721b858180f503c1af4c"> 1024</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#ga7d5bb9c8fd88721b858180f503c1af4c">i3c_ccc_do_getbcr</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a> *target,</div>
+<div class="line"><a id="l01025" name="l01025"></a><span class="lineno"> 1025</span>              <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__ccc__getbcr.html">i3c_ccc_getbcr</a> *bcr);</div>
+<div class="line"><a id="l01026" name="l01026"></a><span class="lineno"> 1026</span> </div>
+<div class="line"><a id="l01038" name="l01038"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga7f886c0dbe0afec07f5678b574dc1101"> 1038</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#ga7f886c0dbe0afec07f5678b574dc1101">i3c_ccc_do_getdcr</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a> *target,</div>
+<div class="line"><a id="l01039" name="l01039"></a><span class="lineno"> 1039</span>              <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__ccc__getdcr.html">i3c_ccc_getdcr</a> *dcr);</div>
+<div class="line"><a id="l01040" name="l01040"></a><span class="lineno"> 1040</span> </div>
+<div class="line"><a id="l01052" name="l01052"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga949810a9a7c862d00ce4eec7e2c4d7df"> 1052</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#ga949810a9a7c862d00ce4eec7e2c4d7df">i3c_ccc_do_getpid</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a> *target,</div>
+<div class="line"><a id="l01053" name="l01053"></a><span class="lineno"> 1053</span>              <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__ccc__getpid.html">i3c_ccc_getpid</a> *pid);</div>
+<div class="line"><a id="l01054" name="l01054"></a><span class="lineno"> 1054</span> </div>
+<div class="line"><a id="l01066" name="l01066"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga40294e43357f46338a6542f9a03d7ce7"> 1066</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#ga40294e43357f46338a6542f9a03d7ce7">i3c_ccc_do_rstact_all</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *controller,</div>
+<div class="line"><a id="l01067" name="l01067"></a><span class="lineno"> 1067</span>              <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__i3c__ccc.html#ga61e1a1945a39b374edee5b75fbeb27d1">i3c_ccc_rstact_defining_byte</a> action);</div>
+<div class="line"><a id="l01068" name="l01068"></a><span class="lineno"> 1068</span> </div>
+<div class="line"><a id="l01078" name="l01078"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gab1102467bb92a2aff7c9c1a66dd273a7"> 1078</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#gab1102467bb92a2aff7c9c1a66dd273a7">i3c_ccc_do_rstdaa_all</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *controller);</div>
+<div class="line"><a id="l01079" name="l01079"></a><span class="lineno"> 1079</span> </div>
+<div class="line"><a id="l01093" name="l01093"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gae4be97aae166be3b6e794fd77c8be6f8"> 1093</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#gae4be97aae166be3b6e794fd77c8be6f8">i3c_ccc_do_setdasa</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a> *target);</div>
+<div class="line"><a id="l01094" name="l01094"></a><span class="lineno"> 1094</span> </div>
+<div class="line"><a id="l01108" name="l01108"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga6d19dc9d3b421b4c936c6183977c4eec"> 1108</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#ga6d19dc9d3b421b4c936c6183977c4eec">i3c_ccc_do_setnewda</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a> *target,</div>
+<div class="line"><a id="l01109" name="l01109"></a><span class="lineno"> 1109</span>              <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__ccc__address.html">i3c_ccc_address</a> new_da);</div>
+<div class="line"><a id="l01110" name="l01110"></a><span class="lineno"> 1110</span> </div>
+<div class="line"><a id="l01123" name="l01123"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaf5fbaf2108053df855c95233181dc580"> 1123</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#gaf5fbaf2108053df855c95233181dc580">i3c_ccc_do_events_all_set</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *controller,</div>
+<div class="line"><a id="l01124" name="l01124"></a><span class="lineno"> 1124</span>                  <span class="keywordtype">bool</span> enable, <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__ccc__events.html">i3c_ccc_events</a> *events);</div>
+<div class="line"><a id="l01125" name="l01125"></a><span class="lineno"> 1125</span> </div>
+<div class="line"><a id="l01138" name="l01138"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaf6575647b4b8f858f90bf2785a0f0d49"> 1138</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#gaf6575647b4b8f858f90bf2785a0f0d49">i3c_ccc_do_events_set</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a> *target,</div>
+<div class="line"><a id="l01139" name="l01139"></a><span class="lineno"> 1139</span>              <span class="keywordtype">bool</span> enable, <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__ccc__events.html">i3c_ccc_events</a> *events);</div>
+<div class="line"><a id="l01140" name="l01140"></a><span class="lineno"> 1140</span> </div>
+<div class="line"><a id="l01152" name="l01152"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga66c8c6318134d6287f4a14f6c31af02d"> 1152</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#ga66c8c6318134d6287f4a14f6c31af02d">i3c_ccc_do_setmwl_all</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *controller,</div>
+<div class="line"><a id="l01153" name="l01153"></a><span class="lineno"> 1153</span>              <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__ccc__mwl.html">i3c_ccc_mwl</a> *mwl);</div>
+<div class="line"><a id="l01154" name="l01154"></a><span class="lineno"> 1154</span> </div>
+<div class="line"><a id="l01166" name="l01166"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gab3de109c73dd58f6d2cf0a9229408f49"> 1166</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#gab3de109c73dd58f6d2cf0a9229408f49">i3c_ccc_do_setmwl</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a> *target,</div>
+<div class="line"><a id="l01167" name="l01167"></a><span class="lineno"> 1167</span>              <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__ccc__mwl.html">i3c_ccc_mwl</a> *mwl);</div>
+<div class="line"><a id="l01168" name="l01168"></a><span class="lineno"> 1168</span> </div>
+<div class="line"><a id="l01180" name="l01180"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gaf1077e3d6cf8a7e1f0e02e985058e507"> 1180</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#gaf1077e3d6cf8a7e1f0e02e985058e507">i3c_ccc_do_getmwl</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a> *target,</div>
+<div class="line"><a id="l01181" name="l01181"></a><span class="lineno"> 1181</span>              <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__ccc__mwl.html">i3c_ccc_mwl</a> *mwl);</div>
+<div class="line"><a id="l01182" name="l01182"></a><span class="lineno"> 1182</span> </div>
+<div class="line"><a id="l01196" name="l01196"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga2542f4ebcc0c2bb31bc8e334955620b0"> 1196</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#ga2542f4ebcc0c2bb31bc8e334955620b0">i3c_ccc_do_setmrl_all</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *controller,</div>
+<div class="line"><a id="l01197" name="l01197"></a><span class="lineno"> 1197</span>              <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__ccc__mrl.html">i3c_ccc_mrl</a> *mrl,</div>
+<div class="line"><a id="l01198" name="l01198"></a><span class="lineno"> 1198</span>              <span class="keywordtype">bool</span> has_ibi_size);</div>
+<div class="line"><a id="l01199" name="l01199"></a><span class="lineno"> 1199</span> </div>
+<div class="line"><a id="l01214" name="l01214"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga6e4f26d23919a619c89624b15d16390a"> 1214</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#ga6e4f26d23919a619c89624b15d16390a">i3c_ccc_do_setmrl</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a> *target,</div>
+<div class="line"><a id="l01215" name="l01215"></a><span class="lineno"> 1215</span>              <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__ccc__mrl.html">i3c_ccc_mrl</a> *mrl);</div>
+<div class="line"><a id="l01216" name="l01216"></a><span class="lineno"> 1216</span> </div>
+<div class="line"><a id="l01231" name="l01231"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#gac4331a4c7dbb7af0eaea63b01bb08485"> 1231</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#gac4331a4c7dbb7af0eaea63b01bb08485">i3c_ccc_do_getmrl</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a> *target,</div>
+<div class="line"><a id="l01232" name="l01232"></a><span class="lineno"> 1232</span>              <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__ccc__mrl.html">i3c_ccc_mrl</a> *mrl);</div>
+<div class="line"><a id="l01233" name="l01233"></a><span class="lineno"> 1233</span> </div>
+<div class="line"><a id="l01250" name="l01250"></a><span class="lineno"><a class="line" href="group__i3c__ccc.html#ga4fe9d056a5ac78ff83513763a71c7dfe"> 1250</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__i3c__ccc.html#ga4fe9d056a5ac78ff83513763a71c7dfe">i3c_ccc_do_getstatus</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a> *target,</div>
+<div class="line"><a id="l01251" name="l01251"></a><span class="lineno"> 1251</span>             <span class="keyword">union</span> <a class="code hl_union" href="unioni3c__ccc__getstatus.html">i3c_ccc_getstatus</a> *status,</div>
+<div class="line"><a id="l01252" name="l01252"></a><span class="lineno"> 1252</span>             <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__i3c__ccc.html#ga75934ea02ef8eb1c737da3ebfd368648">i3c_ccc_getstatus_fmt</a> fmt,</div>
+<div class="line"><a id="l01253" name="l01253"></a><span class="lineno"> 1253</span>             <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__i3c__ccc.html#ga1977f86d4865a97047119e5b3fbcb172">i3c_ccc_getstatus_defbyte</a> defbyte);</div>
+<div class="line"><a id="l01254" name="l01254"></a><span class="lineno"> 1254</span> </div>
+<div class="line"><a id="l01266" name="l01266"></a><span class="lineno"> 1266</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i3c_ccc_do_getstatus_fmt1(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a> *target,</div>
+<div class="line"><a id="l01267" name="l01267"></a><span class="lineno"> 1267</span>                        <span class="keyword">union</span> <a class="code hl_union" href="unioni3c__ccc__getstatus.html">i3c_ccc_getstatus</a> *status)</div>
+<div class="line"><a id="l01268" name="l01268"></a><span class="lineno"> 1268</span>{</div>
+<div class="line"><a id="l01269" name="l01269"></a><span class="lineno"> 1269</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__i3c__ccc.html#ga4fe9d056a5ac78ff83513763a71c7dfe">i3c_ccc_do_getstatus</a>(target, status,</div>
+<div class="line"><a id="l01270" name="l01270"></a><span class="lineno"> 1270</span>                    <a class="code hl_enumvalue" href="group__i3c__ccc.html#gga75934ea02ef8eb1c737da3ebfd368648ae42215e3898baa40cc90e35c5777b57b">GETSTATUS_FORMAT_1</a>,</div>
+<div class="line"><a id="l01271" name="l01271"></a><span class="lineno"> 1271</span>                    <a class="code hl_enumvalue" href="group__i3c__ccc.html#gga1977f86d4865a97047119e5b3fbcb172a83ccf53b5520866ec71e2c0824347e19">GETSTATUS_FORMAT_2_INVALID</a>);</div>
+<div class="line"><a id="l01272" name="l01272"></a><span class="lineno"> 1272</span>}</div>
+<div class="line"><a id="l01273" name="l01273"></a><span class="lineno"> 1273</span> </div>
+<div class="line"><a id="l01286" name="l01286"></a><span class="lineno"> 1286</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i3c_ccc_do_getstatus_fmt2(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__device__desc.html">i3c_device_desc</a> *target,</div>
+<div class="line"><a id="l01287" name="l01287"></a><span class="lineno"> 1287</span>                        <span class="keyword">union</span> <a class="code hl_union" href="unioni3c__ccc__getstatus.html">i3c_ccc_getstatus</a> *status,</div>
+<div class="line"><a id="l01288" name="l01288"></a><span class="lineno"> 1288</span>                        <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__i3c__ccc.html#ga1977f86d4865a97047119e5b3fbcb172">i3c_ccc_getstatus_defbyte</a> defbyte)</div>
+<div class="line"><a id="l01289" name="l01289"></a><span class="lineno"> 1289</span>{</div>
+<div class="line"><a id="l01290" name="l01290"></a><span class="lineno"> 1290</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__i3c__ccc.html#ga4fe9d056a5ac78ff83513763a71c7dfe">i3c_ccc_do_getstatus</a>(target, status,</div>
+<div class="line"><a id="l01291" name="l01291"></a><span class="lineno"> 1291</span>                    <a class="code hl_enumvalue" href="group__i3c__ccc.html#gga75934ea02ef8eb1c737da3ebfd368648a08af2d5d884af32b46b7e0f2f429c68f">GETSTATUS_FORMAT_2</a>, defbyte);</div>
+<div class="line"><a id="l01292" name="l01292"></a><span class="lineno"> 1292</span>}</div>
+<div class="line"><a id="l01293" name="l01293"></a><span class="lineno"> 1293</span> </div>
+<div class="line"><a id="l01294" name="l01294"></a><span class="lineno"> 1294</span> </div>
+<div class="line"><a id="l01295" name="l01295"></a><span class="lineno"> 1295</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l01296" name="l01296"></a><span class="lineno"> 1296</span>}</div>
+<div class="line"><a id="l01297" name="l01297"></a><span class="lineno"> 1297</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01298" name="l01298"></a><span class="lineno"> 1298</span> </div>
+<div class="line"><a id="l01303" name="l01303"></a><span class="lineno"> 1303</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_I3C_CCC_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__bt__conn_html_gab3cdadb15ef89cfe197d88b4d3fdb596"><div class="ttname"><a href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a></div><div class="ttdeci">__packed</div><div class="ttdef"><b>Definição</b> conn.h:352</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_ga1977f86d4865a97047119e5b3fbcb172"><div class="ttname"><a href="group__i3c__ccc.html#ga1977f86d4865a97047119e5b3fbcb172">i3c_ccc_getstatus_defbyte</a></div><div class="ttdeci">i3c_ccc_getstatus_defbyte</div><div class="ttdoc">Defining byte values for GETSTATUS Format 2.</div><div class="ttdef"><b>Definição</b> ccc.h:516</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_ga2542f4ebcc0c2bb31bc8e334955620b0"><div class="ttname"><a href="group__i3c__ccc.html#ga2542f4ebcc0c2bb31bc8e334955620b0">i3c_ccc_do_setmrl_all</a></div><div class="ttdeci">int i3c_ccc_do_setmrl_all(const struct device *controller, const struct i3c_ccc_mrl *mrl, bool has_ibi_size)</div><div class="ttdoc">Broadcast SETMRL to Set Maximum Read Length.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_ga40294e43357f46338a6542f9a03d7ce7"><div class="ttname"><a href="group__i3c__ccc.html#ga40294e43357f46338a6542f9a03d7ce7">i3c_ccc_do_rstact_all</a></div><div class="ttdeci">int i3c_ccc_do_rstact_all(const struct device *controller, enum i3c_ccc_rstact_defining_byte action)</div><div class="ttdoc">Broadcast RSTACT to reset I3C Peripheral.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_ga4fe9d056a5ac78ff83513763a71c7dfe"><div class="ttname"><a href="group__i3c__ccc.html#ga4fe9d056a5ac78ff83513763a71c7dfe">i3c_ccc_do_getstatus</a></div><div class="ttdeci">int i3c_ccc_do_getstatus(const struct i3c_device_desc *target, union i3c_ccc_getstatus *status, enum i3c_ccc_getstatus_fmt fmt, enum i3c_ccc_getstatus_defbyte defbyte)</div><div class="ttdoc">Single target GETSTATUS to Get Target Status.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_ga61e1a1945a39b374edee5b75fbeb27d1"><div class="ttname"><a href="group__i3c__ccc.html#ga61e1a1945a39b374edee5b75fbeb27d1">i3c_ccc_rstact_defining_byte</a></div><div class="ttdeci">i3c_ccc_rstact_defining_byte</div><div class="ttdoc">Enum for I3C Reset Action (RSTACT) Defining Byte Values.</div><div class="ttdef"><b>Definição</b> ccc.h:981</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_ga66c8c6318134d6287f4a14f6c31af02d"><div class="ttname"><a href="group__i3c__ccc.html#ga66c8c6318134d6287f4a14f6c31af02d">i3c_ccc_do_setmwl_all</a></div><div class="ttdeci">int i3c_ccc_do_setmwl_all(const struct device *controller, const struct i3c_ccc_mwl *mwl)</div><div class="ttdoc">Broadcast SETMWL to Set Maximum Write Length.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_ga6d19dc9d3b421b4c936c6183977c4eec"><div class="ttname"><a href="group__i3c__ccc.html#ga6d19dc9d3b421b4c936c6183977c4eec">i3c_ccc_do_setnewda</a></div><div class="ttdeci">int i3c_ccc_do_setnewda(const struct i3c_device_desc *target, struct i3c_ccc_address new_da)</div><div class="ttdoc">Set New Dynamic Address for a target.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_ga6e4f26d23919a619c89624b15d16390a"><div class="ttname"><a href="group__i3c__ccc.html#ga6e4f26d23919a619c89624b15d16390a">i3c_ccc_do_setmrl</a></div><div class="ttdeci">int i3c_ccc_do_setmrl(const struct i3c_device_desc *target, const struct i3c_ccc_mrl *mrl)</div><div class="ttdoc">Single target SETMRL to Set Maximum Read Length.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_ga75934ea02ef8eb1c737da3ebfd368648"><div class="ttname"><a href="group__i3c__ccc.html#ga75934ea02ef8eb1c737da3ebfd368648">i3c_ccc_getstatus_fmt</a></div><div class="ttdeci">i3c_ccc_getstatus_fmt</div><div class="ttdoc">Indicate which format of GETSTATUS to use.</div><div class="ttdef"><b>Definição</b> ccc.h:505</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_ga7d5bb9c8fd88721b858180f503c1af4c"><div class="ttname"><a href="group__i3c__ccc.html#ga7d5bb9c8fd88721b858180f503c1af4c">i3c_ccc_do_getbcr</a></div><div class="ttdeci">int i3c_ccc_do_getbcr(struct i3c_device_desc *target, struct i3c_ccc_getbcr *bcr)</div><div class="ttdoc">Get BCR from a target.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_ga7f886c0dbe0afec07f5678b574dc1101"><div class="ttname"><a href="group__i3c__ccc.html#ga7f886c0dbe0afec07f5678b574dc1101">i3c_ccc_do_getdcr</a></div><div class="ttdeci">int i3c_ccc_do_getdcr(struct i3c_device_desc *target, struct i3c_ccc_getdcr *dcr)</div><div class="ttdoc">Get DCR from a target.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_ga949810a9a7c862d00ce4eec7e2c4d7df"><div class="ttname"><a href="group__i3c__ccc.html#ga949810a9a7c862d00ce4eec7e2c4d7df">i3c_ccc_do_getpid</a></div><div class="ttdeci">int i3c_ccc_do_getpid(struct i3c_device_desc *target, struct i3c_ccc_getpid *pid)</div><div class="ttdoc">Get PID from a target.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gab1102467bb92a2aff7c9c1a66dd273a7"><div class="ttname"><a href="group__i3c__ccc.html#gab1102467bb92a2aff7c9c1a66dd273a7">i3c_ccc_do_rstdaa_all</a></div><div class="ttdeci">int i3c_ccc_do_rstdaa_all(const struct device *controller)</div><div class="ttdoc">Broadcast RSTDAA to reset dynamic addresses for all targets.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gab3de109c73dd58f6d2cf0a9229408f49"><div class="ttname"><a href="group__i3c__ccc.html#gab3de109c73dd58f6d2cf0a9229408f49">i3c_ccc_do_setmwl</a></div><div class="ttdeci">int i3c_ccc_do_setmwl(const struct i3c_device_desc *target, const struct i3c_ccc_mwl *mwl)</div><div class="ttdoc">Single target SETMWL to Set Maximum Write Length.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gac4331a4c7dbb7af0eaea63b01bb08485"><div class="ttname"><a href="group__i3c__ccc.html#gac4331a4c7dbb7af0eaea63b01bb08485">i3c_ccc_do_getmrl</a></div><div class="ttdeci">int i3c_ccc_do_getmrl(const struct i3c_device_desc *target, struct i3c_ccc_mrl *mrl)</div><div class="ttdoc">Single target GETMRL to Get Maximum Read Length.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gae4be97aae166be3b6e794fd77c8be6f8"><div class="ttname"><a href="group__i3c__ccc.html#gae4be97aae166be3b6e794fd77c8be6f8">i3c_ccc_do_setdasa</a></div><div class="ttdeci">int i3c_ccc_do_setdasa(const struct i3c_device_desc *target)</div><div class="ttdoc">Set Dynamic Address from Static Address for a target.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gaf1077e3d6cf8a7e1f0e02e985058e507"><div class="ttname"><a href="group__i3c__ccc.html#gaf1077e3d6cf8a7e1f0e02e985058e507">i3c_ccc_do_getmwl</a></div><div class="ttdeci">int i3c_ccc_do_getmwl(const struct i3c_device_desc *target, struct i3c_ccc_mwl *mwl)</div><div class="ttdoc">Single target GETMWL to Get Maximum Write Length.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gaf5fbaf2108053df855c95233181dc580"><div class="ttname"><a href="group__i3c__ccc.html#gaf5fbaf2108053df855c95233181dc580">i3c_ccc_do_events_all_set</a></div><div class="ttdeci">int i3c_ccc_do_events_all_set(const struct device *controller, bool enable, struct i3c_ccc_events *events)</div><div class="ttdoc">Broadcast ENEC/DISEC to enable/disable target events.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gaf6575647b4b8f858f90bf2785a0f0d49"><div class="ttname"><a href="group__i3c__ccc.html#gaf6575647b4b8f858f90bf2785a0f0d49">i3c_ccc_do_events_set</a></div><div class="ttdeci">int i3c_ccc_do_events_set(struct i3c_device_desc *target, bool enable, struct i3c_ccc_events *events)</div><div class="ttdoc">Direct CCC ENEC/DISEC to enable/disable target events.</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gaf7b1cbdc790aa1d2c307e1f4ba773ba2"><div class="ttname"><a href="group__i3c__ccc.html#gaf7b1cbdc790aa1d2c307e1f4ba773ba2">I3C_CCC_BROADCAST_MAX_ID</a></div><div class="ttdeci">#define I3C_CCC_BROADCAST_MAX_ID</div><div class="ttdef"><b>Definição</b> ccc.h:27</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gga1977f86d4865a97047119e5b3fbcb172a536a82ce39767e0cd3c25ebc56974877"><div class="ttname"><a href="group__i3c__ccc.html#gga1977f86d4865a97047119e5b3fbcb172a536a82ce39767e0cd3c25ebc56974877">GETSTATUS_FORMAT_2_PRECR</a></div><div class="ttdeci">@ GETSTATUS_FORMAT_2_PRECR</div><div class="ttdef"><b>Definição</b> ccc.h:521</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gga1977f86d4865a97047119e5b3fbcb172a83ccf53b5520866ec71e2c0824347e19"><div class="ttname"><a href="group__i3c__ccc.html#gga1977f86d4865a97047119e5b3fbcb172a83ccf53b5520866ec71e2c0824347e19">GETSTATUS_FORMAT_2_INVALID</a></div><div class="ttdeci">@ GETSTATUS_FORMAT_2_INVALID</div><div class="ttdef"><b>Definição</b> ccc.h:524</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gga1977f86d4865a97047119e5b3fbcb172ac485e9d12c2a4855fd40ddcb6ab938eb"><div class="ttname"><a href="group__i3c__ccc.html#gga1977f86d4865a97047119e5b3fbcb172ac485e9d12c2a4855fd40ddcb6ab938eb">GETSTATUS_FORMAT_2_TGTSTAT</a></div><div class="ttdeci">@ GETSTATUS_FORMAT_2_TGTSTAT</div><div class="ttdef"><b>Definição</b> ccc.h:518</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gga61e1a1945a39b374edee5b75fbeb27d1a5875b237e23a0a2ad01051ca1d612476"><div class="ttname"><a href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1a5875b237e23a0a2ad01051ca1d612476">I3C_CCC_RSTACT_PERIPHERAL_ONLY</a></div><div class="ttdeci">@ I3C_CCC_RSTACT_PERIPHERAL_ONLY</div><div class="ttdef"><b>Definição</b> ccc.h:986</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gga61e1a1945a39b374edee5b75fbeb27d1a860a409d86fdb60d9d03df670a724519"><div class="ttname"><a href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1a860a409d86fdb60d9d03df670a724519">I3C_CCC_RSTACT_DEBUG_NETWORK_ADAPTER</a></div><div class="ttdeci">@ I3C_CCC_RSTACT_DEBUG_NETWORK_ADAPTER</div><div class="ttdef"><b>Definição</b> ccc.h:992</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gga61e1a1945a39b374edee5b75fbeb27d1aaba42ef747745ca61cf3aa91068fe7c2"><div class="ttname"><a href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1aaba42ef747745ca61cf3aa91068fe7c2">I3C_CCC_RSTACT_NO_RESET</a></div><div class="ttdeci">@ I3C_CCC_RSTACT_NO_RESET</div><div class="ttdef"><b>Definição</b> ccc.h:983</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gga61e1a1945a39b374edee5b75fbeb27d1ac56441fa6318702856ca6d2ae5ea328e"><div class="ttname"><a href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1ac56441fa6318702856ca6d2ae5ea328e">I3C_CCC_RSTACT_VIRTUAL_TARGET_DETECT</a></div><div class="ttdeci">@ I3C_CCC_RSTACT_VIRTUAL_TARGET_DETECT</div><div class="ttdef"><b>Definição</b> ccc.h:995</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gga61e1a1945a39b374edee5b75fbeb27d1af7b7e39dd7a9b214e13f1bdc7f869879"><div class="ttname"><a href="group__i3c__ccc.html#gga61e1a1945a39b374edee5b75fbeb27d1af7b7e39dd7a9b214e13f1bdc7f869879">I3C_CCC_RSTACT_RESET_WHOLE_TARGET</a></div><div class="ttdeci">@ I3C_CCC_RSTACT_RESET_WHOLE_TARGET</div><div class="ttdef"><b>Definição</b> ccc.h:989</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gga75934ea02ef8eb1c737da3ebfd368648a08af2d5d884af32b46b7e0f2f429c68f"><div class="ttname"><a href="group__i3c__ccc.html#gga75934ea02ef8eb1c737da3ebfd368648a08af2d5d884af32b46b7e0f2f429c68f">GETSTATUS_FORMAT_2</a></div><div class="ttdeci">@ GETSTATUS_FORMAT_2</div><div class="ttdef"><b>Definição</b> ccc.h:510</div></div>
+<div class="ttc" id="agroup__i3c__ccc_html_gga75934ea02ef8eb1c737da3ebfd368648ae42215e3898baa40cc90e35c5777b57b"><div class="ttname"><a href="group__i3c__ccc.html#gga75934ea02ef8eb1c737da3ebfd368648ae42215e3898baa40cc90e35c5777b57b">GETSTATUS_FORMAT_1</a></div><div class="ttdeci">@ GETSTATUS_FORMAT_1</div><div class="ttdef"><b>Definição</b> ccc.h:507</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructi3c__ccc__address_html"><div class="ttname"><a href="structi3c__ccc__address.html">i3c_ccc_address</a></div><div class="ttdoc">Payload for a single device address.</div><div class="ttdef"><b>Definição</b> ccc.h:455</div></div>
+<div class="ttc" id="astructi3c__ccc__address_html_afc3d7db034b3fd72c6118790a18a677b"><div class="ttname"><a href="structi3c__ccc__address.html#afc3d7db034b3fd72c6118790a18a677b">i3c_ccc_address::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdef"><b>Definição</b> ccc.h:470</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts__active__controller_html"><div class="ttname"><a href="structi3c__ccc__deftgts__active__controller.html">i3c_ccc_deftgts_active_controller</a></div><div class="ttdoc">The active controller part of payload for DEFTGTS CCC.</div><div class="ttdef"><b>Definição</b> ccc.h:384</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts__active__controller_html_a4d7671db542bb70ef623be26804c154a"><div class="ttname"><a href="structi3c__ccc__deftgts__active__controller.html#a4d7671db542bb70ef623be26804c154a">i3c_ccc_deftgts_active_controller::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdef"><b>Definição</b> ccc.h:386</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts__active__controller_html_a7acd12fad49f565a6b8a71993b6ad5d4"><div class="ttname"><a href="structi3c__ccc__deftgts__active__controller.html#a7acd12fad49f565a6b8a71993b6ad5d4">i3c_ccc_deftgts_active_controller::dcr</a></div><div class="ttdeci">uint8_t dcr</div><div class="ttdef"><b>Definição</b> ccc.h:389</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts__active__controller_html_ae2fb1ebc28ef1f69c6114af0b25875d3"><div class="ttname"><a href="structi3c__ccc__deftgts__active__controller.html#ae2fb1ebc28ef1f69c6114af0b25875d3">i3c_ccc_deftgts_active_controller::static_addr</a></div><div class="ttdeci">uint8_t static_addr</div><div class="ttdef"><b>Definição</b> ccc.h:395</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts__active__controller_html_aeb56808d9b998c51d5b30307e0212328"><div class="ttname"><a href="structi3c__ccc__deftgts__active__controller.html#aeb56808d9b998c51d5b30307e0212328">i3c_ccc_deftgts_active_controller::bcr</a></div><div class="ttdeci">uint8_t bcr</div><div class="ttdef"><b>Definição</b> ccc.h:392</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts__target_html"><div class="ttname"><a href="structi3c__ccc__deftgts__target.html">i3c_ccc_deftgts_target</a></div><div class="ttdoc">The target device part of payload for DEFTGTS CCC.</div><div class="ttdef"><b>Definição</b> ccc.h:404</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts__target_html_a08689c18d74fa4b74fc2ada055394e65"><div class="ttname"><a href="structi3c__ccc__deftgts__target.html#a08689c18d74fa4b74fc2ada055394e65">i3c_ccc_deftgts_target::dcr</a></div><div class="ttdeci">uint8_t dcr</div><div class="ttdef"><b>Definição</b> ccc.h:413</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts__target_html_a34a02df3d4dc456733746437b2cd983a"><div class="ttname"><a href="structi3c__ccc__deftgts__target.html#a34a02df3d4dc456733746437b2cd983a">i3c_ccc_deftgts_target::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdef"><b>Definição</b> ccc.h:406</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts__target_html_a7374dd59c060462af7ca366ae7165107"><div class="ttname"><a href="structi3c__ccc__deftgts__target.html#a7374dd59c060462af7ca366ae7165107">i3c_ccc_deftgts_target::static_addr</a></div><div class="ttdeci">uint8_t static_addr</div><div class="ttdef"><b>Definição</b> ccc.h:423</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts__target_html_a7c234182e16da66c308e86d72591063d"><div class="ttname"><a href="structi3c__ccc__deftgts__target.html#a7c234182e16da66c308e86d72591063d">i3c_ccc_deftgts_target::bcr</a></div><div class="ttdeci">uint8_t bcr</div><div class="ttdef"><b>Definição</b> ccc.h:420</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts__target_html_ab4fbe6aac8d5860ef90613e51b15ef83"><div class="ttname"><a href="structi3c__ccc__deftgts__target.html#ab4fbe6aac8d5860ef90613e51b15ef83">i3c_ccc_deftgts_target::lvr</a></div><div class="ttdeci">uint8_t lvr</div><div class="ttdef"><b>Definição</b> ccc.h:416</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts_html"><div class="ttname"><a href="structi3c__ccc__deftgts.html">i3c_ccc_deftgts</a></div><div class="ttdoc">Payload for DEFTGTS CCC (Define List of Targets).</div><div class="ttdef"><b>Definição</b> ccc.h:434</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts_html_a1f59c280bd388eb7e7818eb674b5f12f"><div class="ttname"><a href="structi3c__ccc__deftgts.html#a1f59c280bd388eb7e7818eb674b5f12f">i3c_ccc_deftgts::active_controller</a></div><div class="ttdeci">struct i3c_ccc_deftgts_active_controller active_controller</div><div class="ttdef"><b>Definição</b> ccc.h:436</div></div>
+<div class="ttc" id="astructi3c__ccc__deftgts_html_a3ead83f46d63c4dd4723ef76dba770ee"><div class="ttname"><a href="structi3c__ccc__deftgts.html#a3ead83f46d63c4dd4723ef76dba770ee">i3c_ccc_deftgts::targets</a></div><div class="ttdeci">struct i3c_ccc_deftgts_target targets[]</div><div class="ttdef"><b>Definição</b> ccc.h:439</div></div>
+<div class="ttc" id="astructi3c__ccc__events_html"><div class="ttname"><a href="structi3c__ccc__events.html">i3c_ccc_events</a></div><div class="ttdoc">Payload for ENEC/DISEC CCC (Target Events Command).</div><div class="ttdef"><b>Definição</b> ccc.h:294</div></div>
+<div class="ttc" id="astructi3c__ccc__events_html_ac34bcdae31cdc718eb54962d6b707320"><div class="ttname"><a href="structi3c__ccc__events.html#ac34bcdae31cdc718eb54962d6b707320">i3c_ccc_events::events</a></div><div class="ttdeci">uint8_t events</div><div class="ttdef"><b>Definição</b> ccc.h:304</div></div>
+<div class="ttc" id="astructi3c__ccc__getbcr_html"><div class="ttname"><a href="structi3c__ccc__getbcr.html">i3c_ccc_getbcr</a></div><div class="ttdoc">Payload for GETBCR CCC (Get Bus Characteristics Register).</div><div class="ttdef"><b>Definição</b> ccc.h:488</div></div>
+<div class="ttc" id="astructi3c__ccc__getbcr_html_a09df0a49b57a38b91fe2e51c4de5c334"><div class="ttname"><a href="structi3c__ccc__getbcr.html#a09df0a49b57a38b91fe2e51c4de5c334">i3c_ccc_getbcr::bcr</a></div><div class="ttdeci">uint8_t bcr</div><div class="ttdef"><b>Definição</b> ccc.h:490</div></div>
+<div class="ttc" id="astructi3c__ccc__getcaps_html"><div class="ttname"><a href="structi3c__ccc__getcaps.html">i3c_ccc_getcaps</a></div><div class="ttdoc">Payload for GETCAPS CCC (Get Optional Feature Capabilities).</div><div class="ttdef"><b>Definição</b> ccc.h:831</div></div>
+<div class="ttc" id="astructi3c__ccc__getcaps_html_ab16e2b0e084371a9cbf57abf518f3e7e"><div class="ttname"><a href="structi3c__ccc__getcaps.html#ab16e2b0e084371a9cbf57abf518f3e7e">i3c_ccc_getcaps::getcaps</a></div><div class="ttdeci">uint8_t getcaps[4]</div><div class="ttdef"><b>Definição</b> ccc.h:835</div></div>
+<div class="ttc" id="astructi3c__ccc__getdcr_html"><div class="ttname"><a href="structi3c__ccc__getdcr.html">i3c_ccc_getdcr</a></div><div class="ttdoc">Payload for GETDCR CCC (Get Device Characteristics Register).</div><div class="ttdef"><b>Definição</b> ccc.h:496</div></div>
+<div class="ttc" id="astructi3c__ccc__getdcr_html_a0615f439c4d556b08f7ecba8dff1c007"><div class="ttname"><a href="structi3c__ccc__getdcr.html#a0615f439c4d556b08f7ecba8dff1c007">i3c_ccc_getdcr::dcr</a></div><div class="ttdeci">uint8_t dcr</div><div class="ttdef"><b>Definição</b> ccc.h:498</div></div>
+<div class="ttc" id="astructi3c__ccc__getpid_html"><div class="ttname"><a href="structi3c__ccc__getpid.html">i3c_ccc_getpid</a></div><div class="ttdoc">Payload for GETPID CCC (Get Provisioned ID).</div><div class="ttdef"><b>Definição</b> ccc.h:476</div></div>
+<div class="ttc" id="astructi3c__ccc__getpid_html_a060023fcb180e44b39a73c0f955f02c7"><div class="ttname"><a href="structi3c__ccc__getpid.html#a060023fcb180e44b39a73c0f955f02c7">i3c_ccc_getpid::pid</a></div><div class="ttdeci">uint8_t pid[6]</div><div class="ttdef"><b>Definição</b> ccc.h:482</div></div>
+<div class="ttc" id="astructi3c__ccc__mrl_html"><div class="ttname"><a href="structi3c__ccc__mrl.html">i3c_ccc_mrl</a></div><div class="ttdoc">Payload for SETMRL/GETMRL CCC (Set/Get Maximum Read Length).</div><div class="ttdef"><b>Definição</b> ccc.h:370</div></div>
+<div class="ttc" id="astructi3c__ccc__mrl_html_a381d52439049c6a13d232e4e94d17335"><div class="ttname"><a href="structi3c__ccc__mrl.html#a381d52439049c6a13d232e4e94d17335">i3c_ccc_mrl::len</a></div><div class="ttdeci">uint16_t len</div><div class="ttdef"><b>Definição</b> ccc.h:372</div></div>
+<div class="ttc" id="astructi3c__ccc__mrl_html_a7480df4486c9eb8a11581e42ff3b6b67"><div class="ttname"><a href="structi3c__ccc__mrl.html#a7480df4486c9eb8a11581e42ff3b6b67">i3c_ccc_mrl::ibi_len</a></div><div class="ttdeci">uint8_t ibi_len</div><div class="ttdef"><b>Definição</b> ccc.h:375</div></div>
+<div class="ttc" id="astructi3c__ccc__mwl_html"><div class="ttname"><a href="structi3c__ccc__mwl.html">i3c_ccc_mwl</a></div><div class="ttdoc">Payload for SETMWL/GETMWL CCC (Set/Get Maximum Write Length).</div><div class="ttdef"><b>Definição</b> ccc.h:357</div></div>
+<div class="ttc" id="astructi3c__ccc__mwl_html_a5312fa1fc7cc93dfdf88d490352cf08e"><div class="ttname"><a href="structi3c__ccc__mwl.html#a5312fa1fc7cc93dfdf88d490352cf08e">i3c_ccc_mwl::len</a></div><div class="ttdeci">uint16_t len</div><div class="ttdef"><b>Definição</b> ccc.h:359</div></div>
+<div class="ttc" id="astructi3c__ccc__payload_html"><div class="ttname"><a href="structi3c__ccc__payload.html">i3c_ccc_payload</a></div><div class="ttdoc">Payload structure for one CCC transaction.</div><div class="ttdef"><b>Definição</b> ccc.h:256</div></div>
+<div class="ttc" id="astructi3c__ccc__payload_html_a3dcab72bf5b627426f963df56514c38d"><div class="ttname"><a href="structi3c__ccc__payload.html#a3dcab72bf5b627426f963df56514c38d">i3c_ccc_payload::payloads</a></div><div class="ttdeci">struct i3c_ccc_target_payload * payloads</div><div class="ttdef"><b>Definição</b> ccc.h:284</div></div>
+<div class="ttc" id="astructi3c__ccc__payload_html_ac52dbf51c5d7903c02c9f149e47a1b0b"><div class="ttname"><a href="structi3c__ccc__payload.html#ac52dbf51c5d7903c02c9f149e47a1b0b">i3c_ccc_payload::data</a></div><div class="ttdeci">uint8_t * data</div><div class="ttdef"><b>Definição</b> ccc.h:269</div></div>
+<div class="ttc" id="astructi3c__ccc__payload_html_ae6aa0a3465af855872ae0006def29fea"><div class="ttname"><a href="structi3c__ccc__payload.html#ae6aa0a3465af855872ae0006def29fea">i3c_ccc_payload::id</a></div><div class="ttdeci">uint8_t id</div><div class="ttdef"><b>Definição</b> ccc.h:261</div></div>
+<div class="ttc" id="astructi3c__ccc__payload_html_afc1706d47d22300e7fa44754920b2685"><div class="ttname"><a href="structi3c__ccc__payload.html#afc1706d47d22300e7fa44754920b2685">i3c_ccc_payload::num_targets</a></div><div class="ttdeci">size_t num_targets</div><div class="ttdef"><b>Definição</b> ccc.h:287</div></div>
+<div class="ttc" id="astructi3c__ccc__payload_html_afcc17965b8bdd0e5e26cd15cebe49cee"><div class="ttname"><a href="structi3c__ccc__payload.html#afcc17965b8bdd0e5e26cd15cebe49cee">i3c_ccc_payload::data_len</a></div><div class="ttdeci">size_t data_len</div><div class="ttdef"><b>Definição</b> ccc.h:272</div></div>
+<div class="ttc" id="astructi3c__ccc__setbrgtgt__tgt_html"><div class="ttname"><a href="structi3c__ccc__setbrgtgt__tgt.html">i3c_ccc_setbrgtgt_tgt</a></div><div class="ttdoc">One Bridged Target for SETBRGTGT payload.</div><div class="ttdef"><b>Definição</b> ccc.h:624</div></div>
+<div class="ttc" id="astructi3c__ccc__setbrgtgt__tgt_html_a1dca2717ca9502f11b300a0d9a1fc0e6"><div class="ttname"><a href="structi3c__ccc__setbrgtgt__tgt.html#a1dca2717ca9502f11b300a0d9a1fc0e6">i3c_ccc_setbrgtgt_tgt::id</a></div><div class="ttdeci">uint16_t id</div><div class="ttdef"><b>Definição</b> ccc.h:641</div></div>
+<div class="ttc" id="astructi3c__ccc__setbrgtgt__tgt_html_a6fa24f8354e856031464aaaa2c8fd1bb"><div class="ttname"><a href="structi3c__ccc__setbrgtgt__tgt.html#a6fa24f8354e856031464aaaa2c8fd1bb">i3c_ccc_setbrgtgt_tgt::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdef"><b>Definição</b> ccc.h:631</div></div>
+<div class="ttc" id="astructi3c__ccc__setbrgtgt_html"><div class="ttname"><a href="structi3c__ccc__setbrgtgt.html">i3c_ccc_setbrgtgt</a></div><div class="ttdoc">Payload for SETBRGTGT CCC (Set Bridge Targets).</div><div class="ttdef"><b>Definição</b> ccc.h:651</div></div>
+<div class="ttc" id="astructi3c__ccc__setbrgtgt_html_a9099e2979baca2c3fbbb7a6b781edbf3"><div class="ttname"><a href="structi3c__ccc__setbrgtgt.html#a9099e2979baca2c3fbbb7a6b781edbf3">i3c_ccc_setbrgtgt::count</a></div><div class="ttdeci">uint8_t count</div><div class="ttdef"><b>Definição</b> ccc.h:653</div></div>
+<div class="ttc" id="astructi3c__ccc__setbrgtgt_html_aa019eb13d7da60941382c6e43884b60d"><div class="ttname"><a href="structi3c__ccc__setbrgtgt.html#aa019eb13d7da60941382c6e43884b60d">i3c_ccc_setbrgtgt::targets</a></div><div class="ttdeci">struct i3c_ccc_setbrgtgt_tgt targets[]</div><div class="ttdef"><b>Definição</b> ccc.h:656</div></div>
+<div class="ttc" id="astructi3c__ccc__target__payload_html"><div class="ttname"><a href="structi3c__ccc__target__payload.html">i3c_ccc_target_payload</a></div><div class="ttdoc">Payload structure for Direct CCC to one target.</div><div class="ttdef"><b>Definição</b> ccc.h:233</div></div>
+<div class="ttc" id="astructi3c__ccc__target__payload_html_a2669978506b20ef01569357fbd3a9eef"><div class="ttname"><a href="structi3c__ccc__target__payload.html#a2669978506b20ef01569357fbd3a9eef">i3c_ccc_target_payload::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdef"><b>Definição</b> ccc.h:235</div></div>
+<div class="ttc" id="astructi3c__ccc__target__payload_html_a5ddda39b2aeb2818b389d4df1e25ba0a"><div class="ttname"><a href="structi3c__ccc__target__payload.html#a5ddda39b2aeb2818b389d4df1e25ba0a">i3c_ccc_target_payload::data_len</a></div><div class="ttdeci">size_t data_len</div><div class="ttdef"><b>Definição</b> ccc.h:250</div></div>
+<div class="ttc" id="astructi3c__ccc__target__payload_html_aa09ebbfdff5d9d97be1558a63bb3535e"><div class="ttname"><a href="structi3c__ccc__target__payload.html#aa09ebbfdff5d9d97be1558a63bb3535e">i3c_ccc_target_payload::rnw</a></div><div class="ttdeci">uint8_t rnw</div><div class="ttdef"><b>Definição</b> ccc.h:238</div></div>
+<div class="ttc" id="astructi3c__ccc__target__payload_html_abc655b08df77701275038e80bfb5ba85"><div class="ttname"><a href="structi3c__ccc__target__payload.html#abc655b08df77701275038e80bfb5ba85">i3c_ccc_target_payload::data</a></div><div class="ttdeci">uint8_t * data</div><div class="ttdef"><b>Definição</b> ccc.h:247</div></div>
+<div class="ttc" id="astructi3c__device__desc_html"><div class="ttname"><a href="structi3c__device__desc.html">i3c_device_desc</a></div><div class="ttdoc">Structure describing a I3C target device.</div><div class="ttdef"><b>Definição</b> i3c.h:894</div></div>
+<div class="ttc" id="atoolchain_8h_html"><div class="ttname"><a href="toolchain_8h.html">toolchain.h</a></div><div class="ttdoc">Macros to abstract toolchain specific capabilities.</div></div>
+<div class="ttc" id="aunioni3c__ccc__getmxds_html"><div class="ttname"><a href="unioni3c__ccc__getmxds.html">i3c_ccc_getmxds</a></div><div class="ttdoc">Payload for GETMXDS CCC (Get Max Data Speed).</div><div class="ttdef"><b>Definição</b> ccc.h:664</div></div>
+<div class="ttc" id="aunioni3c__ccc__getmxds_html_a3324b594867b06b7c306decd81eed53d"><div class="ttname"><a href="unioni3c__ccc__getmxds.html#a3324b594867b06b7c306decd81eed53d">i3c_ccc_getmxds::wrrdturn</a></div><div class="ttdeci">uint8_t wrrdturn</div><div class="ttdef"><b>Definição</b> ccc.h:694</div></div>
+<div class="ttc" id="aunioni3c__ccc__getmxds_html_a3782b5dce0db847362b9413a02d90baa"><div class="ttname"><a href="unioni3c__ccc__getmxds.html#a3782b5dce0db847362b9413a02d90baa">i3c_ccc_getmxds::maxrdturn</a></div><div class="ttdeci">uint8_t maxrdturn[3]</div><div class="ttdef"><b>Definição</b> ccc.h:685</div></div>
+<div class="ttc" id="aunioni3c__ccc__getmxds_html_a668e1ed30b96a40534d96e4b56ce7e98"><div class="ttname"><a href="unioni3c__ccc__getmxds.html#a668e1ed30b96a40534d96e4b56ce7e98">i3c_ccc_getmxds::maxrd</a></div><div class="ttdeci">uint8_t maxrd</div><div class="ttdef"><b>Definição</b> ccc.h:670</div></div>
+<div class="ttc" id="aunioni3c__ccc__getmxds_html_a9307643fd53554053b38cda5a0663a13"><div class="ttname"><a href="unioni3c__ccc__getmxds.html#a9307643fd53554053b38cda5a0663a13">i3c_ccc_getmxds::maxwr</a></div><div class="ttdeci">uint8_t maxwr</div><div class="ttdef"><b>Definição</b> ccc.h:667</div></div>
+<div class="ttc" id="aunioni3c__ccc__getmxds_html_ad55160abc13a3ad04d5d6f827714f48b"><div class="ttname"><a href="unioni3c__ccc__getmxds.html#ad55160abc13a3ad04d5d6f827714f48b">i3c_ccc_getmxds::crhdly1</a></div><div class="ttdeci">uint8_t crhdly1</div><div class="ttdef"><b>Definição</b> ccc.h:701</div></div>
+<div class="ttc" id="aunioni3c__ccc__getstatus_html"><div class="ttname"><a href="unioni3c__ccc__getstatus.html">i3c_ccc_getstatus</a></div><div class="ttdoc">Payload for GETSTATUS CCC (Get Device Status).</div><div class="ttdef"><b>Definição</b> ccc.h:530</div></div>
+<div class="ttc" id="aunioni3c__ccc__getstatus_html_a104f75402b9ea4b07c9aafc376349d84"><div class="ttname"><a href="unioni3c__ccc__getstatus.html#a104f75402b9ea4b07c9aafc376349d84">i3c_ccc_getstatus::precr</a></div><div class="ttdeci">uint16_t precr</div><div class="ttdef"><b>Definição</b> ccc.h:568</div></div>
+<div class="ttc" id="aunioni3c__ccc__getstatus_html_a18b3c86f3157b3dfb30dc51127de2b69"><div class="ttname"><a href="unioni3c__ccc__getstatus.html#a18b3c86f3157b3dfb30dc51127de2b69">i3c_ccc_getstatus::tgtstat</a></div><div class="ttdeci">uint16_t tgtstat</div><div class="ttdef"><b>Definição</b> ccc.h:554</div></div>
+<div class="ttc" id="aunioni3c__ccc__getstatus_html_a23fe55c75741457ea399a6c7074017f6"><div class="ttname"><a href="unioni3c__ccc__getstatus.html#a23fe55c75741457ea399a6c7074017f6">i3c_ccc_getstatus::status</a></div><div class="ttdeci">uint16_t status</div><div class="ttdef"><b>Definição</b> ccc.h:545</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Misc utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

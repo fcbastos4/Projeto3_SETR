@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/watchdog.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">watchdog.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2017 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2015 Intel Corporation</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_WATCHDOG_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_WATCHDOG_H_</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">zephyr/sys/util.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="group__watchdog__interface.html#gafe8472573a7d77a283974cd3843c3c01">   33</a></span><span class="preprocessor">#define WDT_OPT_PAUSE_IN_SLEEP      BIT(0)</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="group__watchdog__interface.html#ga6d6e1b7cd126a6ca55a955b783962339">   36</a></span><span class="preprocessor">#define WDT_OPT_PAUSE_HALTED_BY_DBG BIT(1)</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#define WDT_FLAG_RESET_SHIFT        (0)</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#define WDT_FLAG_RESET_MASK     (0x3 &lt;&lt; WDT_FLAG_RESET_SHIFT)</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="group__watchdog__interface.html#ga46a9d878848572cacde89a777977c86b">   54</a></span><span class="preprocessor">#define WDT_FLAG_RESET_NONE     (0 &lt;&lt; WDT_FLAG_RESET_SHIFT)</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="group__watchdog__interface.html#ga24e1f60628198d8e763cf7ec14afed2e">   56</a></span><span class="preprocessor">#define WDT_FLAG_RESET_CPU_CORE     (1 &lt;&lt; WDT_FLAG_RESET_SHIFT)</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="group__watchdog__interface.html#ga71845f454594fac290599f3537d563c9">   58</a></span><span class="preprocessor">#define WDT_FLAG_RESET_SOC      (2 &lt;&lt; WDT_FLAG_RESET_SHIFT)</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="foldopen" id="foldopen00072" data-start="{" data-end="};">
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structwdt__window.html">   72</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structwdt__window.html">wdt_window</a> {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structwdt__window.html#a4e5be19373804f900aa9c1d925f0aace">   74</a></span>    uint32_t <a class="code hl_variable" href="structwdt__window.html#a4e5be19373804f900aa9c1d925f0aace">min</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="structwdt__window.html#a21195de2e42f9a183a1aba0fb0732572">   76</a></span>    uint32_t <a class="code hl_variable" href="structwdt__window.html#a21195de2e42f9a183a1aba0fb0732572">max</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="group__watchdog__interface.html#ga11a942c8e7ee7ceae87c4601dbea8486">   85</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__watchdog__interface.html#ga11a942c8e7ee7ceae87c4601dbea8486">wdt_callback_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">int</span> channel_id);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="foldopen" id="foldopen00088" data-start="{" data-end="};">
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="structwdt__timeout__cfg.html">   88</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structwdt__timeout__cfg.html">wdt_timeout_cfg</a> {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structwdt__timeout__cfg.html#a7942c675aacd228e38ea3cde383aab41">   90</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structwdt__window.html">wdt_window</a> <a class="code hl_variable" href="structwdt__timeout__cfg.html#a7942c675aacd228e38ea3cde383aab41">window</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structwdt__timeout__cfg.html#a0a3bcc1a3f2785b44c0196a7d3223aa0">   92</a></span>    <a class="code hl_typedef" href="group__watchdog__interface.html#ga11a942c8e7ee7ceae87c4601dbea8486">wdt_callback_t</a> <a class="code hl_variable" href="structwdt__timeout__cfg.html#a0a3bcc1a3f2785b44c0196a7d3223aa0">callback</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#if defined(CONFIG_WDT_MULTISTAGE) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structwdt__timeout__cfg.html">wdt_timeout_cfg</a> *next;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="structwdt__timeout__cfg.html#a71aa1ffb4f9937cce8197278cc0c61ee">  104</a></span>    uint8_t <a class="code hl_variable" href="structwdt__timeout__cfg.html#a71aa1ffb4f9937cce8197278cc0c61ee">flags</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>};</div>
+</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">typedef</span> int (*wdt_api_setup)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t options);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="keyword">typedef</span> int (*wdt_api_disable)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keyword">typedef</span> int (*wdt_api_install_timeout)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                       <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structwdt__timeout__cfg.html">wdt_timeout_cfg</a> *cfg);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="keyword">typedef</span> int (*wdt_api_feed)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">int</span> channel_id);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>__subsystem <span class="keyword">struct </span>wdt_driver_api {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    wdt_api_setup setup;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    wdt_api_disable disable;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    wdt_api_install_timeout install_timeout;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    wdt_api_feed feed;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>};</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="group__watchdog__interface.html#ga1bdea84d213bd2224938b2abadd9a590">  160</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__watchdog__interface.html#ga1bdea84d213bd2224938b2abadd9a590">wdt_setup</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t options);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_wdt_setup(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t options)</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>{</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keyword">const</span> <span class="keyword">struct </span>wdt_driver_api *api =</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>wdt_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keywordflow">return</span> api-&gt;setup(dev, options);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>}</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="group__watchdog__interface.html#gaa9e3ed045a3c135b6a245d28aabb645d">  184</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__watchdog__interface.html#gaa9e3ed045a3c135b6a245d28aabb645d">wdt_disable</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_wdt_disable(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>{</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keyword">const</span> <span class="keyword">struct </span>wdt_driver_api *api =</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>wdt_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keywordflow">return</span> api-&gt;disable(dev);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>}</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> wdt_install_timeout(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                      <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structwdt__timeout__cfg.html">wdt_timeout_cfg</a> *cfg)</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>{</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keyword">const</span> <span class="keyword">struct </span>wdt_driver_api *api =</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>wdt_driver_api *) dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="keywordflow">return</span> api-&gt;install_timeout(dev, cfg);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>}</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="group__watchdog__interface.html#gad99d39149292ae9f34c9cb7c322321bf">  238</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__watchdog__interface.html#gad99d39149292ae9f34c9cb7c322321bf">wdt_feed</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">int</span> channel_id);</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_wdt_feed(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">int</span> channel_id)</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>{</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keyword">const</span> <span class="keyword">struct </span>wdt_driver_api *api =</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>wdt_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keywordflow">return</span> api-&gt;feed(dev, channel_id);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>}</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>}</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="preprocessor">#include &lt;syscalls/watchdog.h&gt;</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_WATCHDOG_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__watchdog__interface_html_ga11a942c8e7ee7ceae87c4601dbea8486"><div class="ttname"><a href="group__watchdog__interface.html#ga11a942c8e7ee7ceae87c4601dbea8486">wdt_callback_t</a></div><div class="ttdeci">void(* wdt_callback_t)(const struct device *dev, int channel_id)</div><div class="ttdoc">Watchdog callback.</div><div class="ttdef"><b>Definição</b> watchdog.h:85</div></div>
+<div class="ttc" id="agroup__watchdog__interface_html_ga1bdea84d213bd2224938b2abadd9a590"><div class="ttname"><a href="group__watchdog__interface.html#ga1bdea84d213bd2224938b2abadd9a590">wdt_setup</a></div><div class="ttdeci">__syscall int wdt_setup(const struct device *dev, uint8_t options)</div><div class="ttdoc">Set up watchdog instance.</div></div>
+<div class="ttc" id="agroup__watchdog__interface_html_gaa9e3ed045a3c135b6a245d28aabb645d"><div class="ttname"><a href="group__watchdog__interface.html#gaa9e3ed045a3c135b6a245d28aabb645d">wdt_disable</a></div><div class="ttdeci">__syscall int wdt_disable(const struct device *dev)</div><div class="ttdoc">Disable watchdog instance.</div></div>
+<div class="ttc" id="agroup__watchdog__interface_html_gad99d39149292ae9f34c9cb7c322321bf"><div class="ttname"><a href="group__watchdog__interface.html#gad99d39149292ae9f34c9cb7c322321bf">wdt_feed</a></div><div class="ttdeci">__syscall int wdt_feed(const struct device *dev, int channel_id)</div><div class="ttdoc">Feed specified watchdog timeout.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructwdt__timeout__cfg_html"><div class="ttname"><a href="structwdt__timeout__cfg.html">wdt_timeout_cfg</a></div><div class="ttdoc">Watchdog timeout configuration.</div><div class="ttdef"><b>Definição</b> watchdog.h:88</div></div>
+<div class="ttc" id="astructwdt__timeout__cfg_html_a0a3bcc1a3f2785b44c0196a7d3223aa0"><div class="ttname"><a href="structwdt__timeout__cfg.html#a0a3bcc1a3f2785b44c0196a7d3223aa0">wdt_timeout_cfg::callback</a></div><div class="ttdeci">wdt_callback_t callback</div><div class="ttdef"><b>Definição</b> watchdog.h:92</div></div>
+<div class="ttc" id="astructwdt__timeout__cfg_html_a71aa1ffb4f9937cce8197278cc0c61ee"><div class="ttname"><a href="structwdt__timeout__cfg.html#a71aa1ffb4f9937cce8197278cc0c61ee">wdt_timeout_cfg::flags</a></div><div class="ttdeci">uint8_t flags</div><div class="ttdef"><b>Definição</b> watchdog.h:104</div></div>
+<div class="ttc" id="astructwdt__timeout__cfg_html_a7942c675aacd228e38ea3cde383aab41"><div class="ttname"><a href="structwdt__timeout__cfg.html#a7942c675aacd228e38ea3cde383aab41">wdt_timeout_cfg::window</a></div><div class="ttdeci">struct wdt_window window</div><div class="ttdef"><b>Definição</b> watchdog.h:90</div></div>
+<div class="ttc" id="astructwdt__window_html"><div class="ttname"><a href="structwdt__window.html">wdt_window</a></div><div class="ttdoc">Watchdog timeout window.</div><div class="ttdef"><b>Definição</b> watchdog.h:72</div></div>
+<div class="ttc" id="astructwdt__window_html_a21195de2e42f9a183a1aba0fb0732572"><div class="ttname"><a href="structwdt__window.html#a21195de2e42f9a183a1aba0fb0732572">wdt_window::max</a></div><div class="ttdeci">uint32_t max</div><div class="ttdef"><b>Definição</b> watchdog.h:76</div></div>
+<div class="ttc" id="astructwdt__window_html_a4e5be19373804f900aa9c1d925f0aace"><div class="ttname"><a href="structwdt__window.html#a4e5be19373804f900aa9c1d925f0aace">wdt_window::min</a></div><div class="ttdeci">uint32_t min</div><div class="ttdef"><b>Definição</b> watchdog.h:74</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Misc utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

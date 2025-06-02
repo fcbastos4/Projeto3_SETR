@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/mgmt/osdp.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_b22e92e240e215816b4a18258fade257.html">mgmt</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">osdp.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2020 Siddharth Chandrasekaran &lt;siddharth@embedjournal.com&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef _OSDP_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define _OSDP_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="slist_8h.html">zephyr/sys/slist.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#define OSDP_CMD_TEXT_MAX_LEN          32</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define OSDP_CMD_KEYSET_KEY_MAX_LEN    32</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define OSDP_EVENT_MAX_DATALEN         64</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="};">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structosdp__cmd__output.html">   37</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__output.html">osdp_cmd_output</a> {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    uint8_t output_no;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    uint8_t control_code;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    uint16_t timer_count;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>};</div>
+</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">enum</span> osdp_led_color_e {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    OSDP_LED_COLOR_NONE,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    OSDP_LED_COLOR_RED,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    OSDP_LED_COLOR_GREEN,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    OSDP_LED_COLOR_AMBER,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    OSDP_LED_COLOR_BLUE,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    OSDP_LED_COLOR_SENTINEL</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="foldopen" id="foldopen00073" data-start="{" data-end="};">
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structosdp__cmd__led__params.html">   73</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__led__params.html">osdp_cmd_led_params</a> {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    uint8_t control_code;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    uint8_t on_count;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    uint8_t off_count;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    uint8_t on_color;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    uint8_t off_color;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    uint16_t timer_count;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>};</div>
+</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="foldopen" id="foldopen00090" data-start="{" data-end="};">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structosdp__cmd__led.html">   90</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__led.html">osdp_cmd_led</a> {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    uint8_t reader;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    uint8_t led_number;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__led__params.html">osdp_cmd_led_params</a> temporary;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__led__params.html">osdp_cmd_led_params</a> permanent;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>};</div>
+</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="};">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="structosdp__cmd__buzzer.html">  106</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__buzzer.html">osdp_cmd_buzzer</a> {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    uint8_t reader;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    uint8_t control_code;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    uint8_t on_count;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    uint8_t off_count;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    uint8_t rep_count;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>};</div>
+</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="foldopen" id="foldopen00129" data-start="{" data-end="};">
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="structosdp__cmd__text.html">  129</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__text.html">osdp_cmd_text</a> {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    uint8_t reader;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    uint8_t control_code;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    uint8_t temp_time;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    uint8_t offset_row;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    uint8_t offset_col;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    uint8_t length;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    uint8_t data[OSDP_CMD_TEXT_MAX_LEN];</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>};</div>
+</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="foldopen" id="foldopen00147" data-start="{" data-end="};">
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="structosdp__cmd__comset.html">  147</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__comset.html">osdp_cmd_comset</a> {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    uint8_t address;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    uint32_t baud_rate;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>};</div>
+</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="foldopen" id="foldopen00160" data-start="{" data-end="};">
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="structosdp__cmd__keyset.html">  160</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__keyset.html">osdp_cmd_keyset</a> {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    uint8_t type;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    uint8_t length;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    uint8_t data[OSDP_CMD_KEYSET_KEY_MAX_LEN];</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>};</div>
+</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="keyword">enum</span> osdp_cmd_e {</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    OSDP_CMD_OUTPUT = 1,</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    OSDP_CMD_LED,</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    OSDP_CMD_BUZZER,</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    OSDP_CMD_TEXT,</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    OSDP_CMD_KEYSET,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    OSDP_CMD_COMSET,</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    OSDP_CMD_SENTINEL</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>};</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="foldopen" id="foldopen00191" data-start="{" data-end="};">
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="structosdp__cmd.html">  191</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd.html">osdp_cmd</a> {</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> node;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keyword">enum</span> osdp_cmd_e id;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__led.html">osdp_cmd_led</a>    led;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__buzzer.html">osdp_cmd_buzzer</a> buzzer;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__text.html">osdp_cmd_text</a>   text;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__output.html">osdp_cmd_output</a> output;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__comset.html">osdp_cmd_comset</a> comset;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd__keyset.html">osdp_cmd_keyset</a> keyset;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    };</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>};</div>
+</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="keyword">enum</span> osdp_event_cardread_format_e {</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    OSDP_CARD_FMT_RAW_UNSPECIFIED,</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    OSDP_CARD_FMT_RAW_WIEGAND,</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    OSDP_CARD_FMT_ASCII,</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    OSDP_CARD_FMT_SENTINEL</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>};</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="foldopen" id="foldopen00233" data-start="{" data-end="};">
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="structosdp__event__cardread.html">  233</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structosdp__event__cardread.html">osdp_event_cardread</a> {</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keywordtype">int</span> reader_no;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keyword">enum</span> osdp_event_cardread_format_e format;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keywordtype">int</span> direction;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordtype">int</span> length;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    uint8_t data[OSDP_EVENT_MAX_DATALEN];</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>};</div>
+</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="foldopen" id="foldopen00249" data-start="{" data-end="};">
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="structosdp__event__keypress.html">  249</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structosdp__event__keypress.html">osdp_event_keypress</a> {</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordtype">int</span> reader_no;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keywordtype">int</span> length;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    uint8_t data[OSDP_EVENT_MAX_DATALEN];</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>};</div>
+</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="keyword">enum</span> osdp_event_type {</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    OSDP_EVENT_CARDREAD,</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    OSDP_EVENT_KEYPRESS,</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    OSDP_EVENT_SENTINEL</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>};</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="foldopen" id="foldopen00271" data-start="{" data-end="};">
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="structosdp__event.html">  271</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structosdp__event.html">osdp_event</a> {</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> node;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keyword">enum</span> osdp_event_type type;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structosdp__event__keypress.html">osdp_event_keypress</a> keypress;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structosdp__event__cardread.html">osdp_event_cardread</a> cardread;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    };</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>};</div>
+</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="keyword">typedef</span> int (*pd_command_callback_t)(<span class="keywordtype">void</span> *arg, <span class="keyword">struct </span><a class="code hl_struct" href="structosdp__cmd.html">osdp_cmd</a> *cmd);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="keyword">typedef</span> int (*cp_event_callback_t)(<span class="keywordtype">void</span> *arg, <span class="keywordtype">int</span> pd, <span class="keyword">struct </span><a class="code hl_struct" href="structosdp__event.html">osdp_event</a> *ev);</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="preprocessor">#ifdef CONFIG_OSDP_MODE_PD</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="keywordtype">void</span> osdp_pd_set_command_callback(pd_command_callback_t cb, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="keywordtype">int</span> osdp_pd_notify_event(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structosdp__event.html">osdp_event</a> *event);</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="preprocessor">#else </span><span class="comment">/* CONFIG_OSDP_MODE_PD */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="keywordtype">int</span> osdp_cp_send_command(<span class="keywordtype">int</span> pd, <span class="keyword">struct</span> <a class="code hl_struct" href="structosdp__cmd.html">osdp_cmd</a> *cmd);</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="keywordtype">void</span> osdp_cp_set_event_callback(cp_event_callback_t cb, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_OSDP_MODE_PD */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> </div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="preprocessor">#ifdef CONFIG_OSDP_SC_ENABLED</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span> </div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>uint32_t osdp_get_sc_status_mask(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>}</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="preprocessor">#endif  </span><span class="comment">/* _OSDP_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="aslist_8h_html"><div class="ttname"><a href="slist_8h.html">slist.h</a></div></div>
+<div class="ttc" id="astructosdp__cmd__buzzer_html"><div class="ttname"><a href="structosdp__cmd__buzzer.html">osdp_cmd_buzzer</a></div><div class="ttdoc">Sent from CP to control the behaviour of a buzzer in the PD.</div><div class="ttdef"><b>Definição</b> osdp.h:106</div></div>
+<div class="ttc" id="astructosdp__cmd__comset_html"><div class="ttname"><a href="structosdp__cmd__comset.html">osdp_cmd_comset</a></div><div class="ttdoc">Sent in response to a COMSET command. Set communication parameters to PD. Must be stored in PD non-vo...</div><div class="ttdef"><b>Definição</b> osdp.h:147</div></div>
+<div class="ttc" id="astructosdp__cmd__keyset_html"><div class="ttname"><a href="structosdp__cmd__keyset.html">osdp_cmd_keyset</a></div><div class="ttdoc">This command transfers an encryption key from the CP to a PD.</div><div class="ttdef"><b>Definição</b> osdp.h:160</div></div>
+<div class="ttc" id="astructosdp__cmd__led__params_html"><div class="ttname"><a href="structosdp__cmd__led__params.html">osdp_cmd_led_params</a></div><div class="ttdoc">LED params sub-structure. Part of LED command. See struct osdp_cmd_led.</div><div class="ttdef"><b>Definição</b> osdp.h:73</div></div>
+<div class="ttc" id="astructosdp__cmd__led_html"><div class="ttname"><a href="structosdp__cmd__led.html">osdp_cmd_led</a></div><div class="ttdoc">Sent from CP to PD to control the behaviour of it's on-board LEDs.</div><div class="ttdef"><b>Definição</b> osdp.h:90</div></div>
+<div class="ttc" id="astructosdp__cmd__output_html"><div class="ttname"><a href="structosdp__cmd__output.html">osdp_cmd_output</a></div><div class="ttdoc">Command sent from CP to Control digital output of PD.</div><div class="ttdef"><b>Definição</b> osdp.h:37</div></div>
+<div class="ttc" id="astructosdp__cmd__text_html"><div class="ttname"><a href="structosdp__cmd__text.html">osdp_cmd_text</a></div><div class="ttdoc">Command to manipulate any display units that the PD supports.</div><div class="ttdef"><b>Definição</b> osdp.h:129</div></div>
+<div class="ttc" id="astructosdp__cmd_html"><div class="ttname"><a href="structosdp__cmd.html">osdp_cmd</a></div><div class="ttdoc">OSDP Command Structure. This is a wrapper for all individual OSDP commands.</div><div class="ttdef"><b>Definição</b> osdp.h:191</div></div>
+<div class="ttc" id="astructosdp__event__cardread_html"><div class="ttname"><a href="structosdp__event__cardread.html">osdp_event_cardread</a></div><div class="ttdoc">OSDP event cardread.</div><div class="ttdef"><b>Definição</b> osdp.h:233</div></div>
+<div class="ttc" id="astructosdp__event__keypress_html"><div class="ttname"><a href="structosdp__event__keypress.html">osdp_event_keypress</a></div><div class="ttdoc">OSDP Event Keypad.</div><div class="ttdef"><b>Definição</b> osdp.h:249</div></div>
+<div class="ttc" id="astructosdp__event_html"><div class="ttname"><a href="structosdp__event.html">osdp_event</a></div><div class="ttdoc">OSDP Event structure.</div><div class="ttdef"><b>Definição</b> osdp.h:271</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

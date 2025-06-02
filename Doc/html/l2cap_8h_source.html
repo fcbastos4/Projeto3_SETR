@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/bluetooth/l2cap.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_54c0620e537f2166dbbc1b051adfe8cd.html">bluetooth</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">l2cap.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="l2cap_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Copyright (c) 2015-2016 Intel Corporation</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * Copyright (c) 2023 Nordic Semiconductor</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_BLUETOOTH_L2CAP_H_</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define ZEPHYR_INCLUDE_BLUETOOTH_L2CAP_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;zephyr/sys/atomic.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;<a class="code" href="bluetooth_2buf_8h.html">zephyr/bluetooth/buf.h</a>&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;<a class="code" href="conn_8h.html">zephyr/bluetooth/conn.h</a>&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;zephyr/bluetooth/hci.h&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gab33b91052026973180356640b7310659">   33</a></span><span class="preprocessor">#define BT_L2CAP_HDR_SIZE               4</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga45ef5aee4ed4dd705cad6d234562c660">   36</a></span><span class="preprocessor">#define BT_L2CAP_TX_MTU (CONFIG_BT_L2CAP_TX_MTU)</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga6e458a1758e5012755f3b97f8348c966">   39</a></span><span class="preprocessor">#define BT_L2CAP_RX_MTU (CONFIG_BT_BUF_ACL_RX_SIZE - BT_L2CAP_HDR_SIZE)</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gab95b119de4757588074e367a90a7136a">   48</a></span><span class="preprocessor">#define BT_L2CAP_BUF_SIZE(mtu) BT_BUF_ACL_SIZE(BT_L2CAP_HDR_SIZE + (mtu))</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga967c4c3f9b9beba1d0ce8516c5d1c659">   51</a></span><span class="preprocessor">#define BT_L2CAP_SDU_HDR_SIZE           2</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gaa6fcd053d918db7005bc058501c2a598">   61</a></span><span class="preprocessor">#define BT_L2CAP_SDU_TX_MTU (BT_L2CAP_TX_MTU - BT_L2CAP_SDU_HDR_SIZE)</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga13b93a8f09157fbcf739fa4949840efe">   73</a></span><span class="preprocessor">#define BT_L2CAP_SDU_RX_MTU (BT_L2CAP_RX_MTU - BT_L2CAP_SDU_HDR_SIZE)</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga1c76618c32bbe86b18fd8663760fb220">   84</a></span><span class="preprocessor">#define BT_L2CAP_SDU_BUF_SIZE(mtu) BT_L2CAP_BUF_SIZE(BT_L2CAP_SDU_HDR_SIZE + (mtu))</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gafe930d6bed8baed9f982f791b5d2172f">   93</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__bt__l2cap.html#gafe930d6bed8baed9f982f791b5d2172f">bt_l2cap_chan_destroy_t</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="foldopen" id="foldopen00107" data-start="{" data-end="};">
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga642436bdf29f79495763b10231c6b25b">  107</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__bt__l2cap.html#ga642436bdf29f79495763b10231c6b25b">bt_l2cap_chan_state</a> {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25ba1dc4c69537acf13a8c00dfca5acfb83c">  109</a></span>    <a class="code hl_enumvalue" href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25ba1dc4c69537acf13a8c00dfca5acfb83c">BT_L2CAP_DISCONNECTED</a>,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25bac2a46c646c8739e8b129b89698eae7cd">  111</a></span>    <a class="code hl_enumvalue" href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25bac2a46c646c8739e8b129b89698eae7cd">BT_L2CAP_CONNECTING</a>,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25ba3167a1b491cb9b97ebe51f66c209f064">  113</a></span>    <a class="code hl_enumvalue" href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25ba3167a1b491cb9b97ebe51f66c209f064">BT_L2CAP_CONFIG</a>,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25ba3adc86576ca2db5a7f74030d11699b68">  115</a></span>    <a class="code hl_enumvalue" href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25ba3adc86576ca2db5a7f74030d11699b68">BT_L2CAP_CONNECTED</a>,</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25ba7a24502cfb06df715f58ad2e088cb7e8">  117</a></span>    <a class="code hl_enumvalue" href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25ba7a24502cfb06df715f58ad2e088cb7e8">BT_L2CAP_DISCONNECTING</a>,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga5a80330e52ea0fa4ee3266094570bb16">  119</a></span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a> <a class="code hl_typedef" href="group__bt__l2cap.html#ga5a80330e52ea0fa4ee3266094570bb16">bt_l2cap_chan_state_t</a>;</div>
+</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="foldopen" id="foldopen00122" data-start="{" data-end="};">
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga371a747c8939a1156111dc03c774015c">  122</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__bt__l2cap.html#ga371a747c8939a1156111dc03c774015c">bt_l2cap_chan_status</a> {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gga371a747c8939a1156111dc03c774015ca89aea3cf3d9a004ffd53eae602666fd5">  124</a></span>    <a class="code hl_enumvalue" href="group__bt__l2cap.html#gga371a747c8939a1156111dc03c774015ca89aea3cf3d9a004ffd53eae602666fd5">BT_L2CAP_STATUS_OUT</a>,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gga371a747c8939a1156111dc03c774015ca82d4e553f4298d00c27045949663208e">  131</a></span>    <a class="code hl_enumvalue" href="group__bt__l2cap.html#gga371a747c8939a1156111dc03c774015ca82d4e553f4298d00c27045949663208e">BT_L2CAP_STATUS_SHUTDOWN</a>,</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gga371a747c8939a1156111dc03c774015caea6cc7cae26d69926e7def91242650af">  134</a></span>    <a class="code hl_enumvalue" href="group__bt__l2cap.html#gga371a747c8939a1156111dc03c774015caea6cc7cae26d69926e7def91242650af">BT_L2CAP_STATUS_ENCRYPT_PENDING</a>,</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="comment">/* Total number of status - must be at the end of the enum */</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    BT_L2CAP_NUM_STATUS,</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga3a1a88a8e87aefe9bea1dd01aa193b42">  138</a></span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a> <a class="code hl_typedef" href="group__bt__l2cap.html#ga3a1a88a8e87aefe9bea1dd01aa193b42">bt_l2cap_chan_status_t</a>;</div>
+</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="foldopen" id="foldopen00141" data-start="{" data-end="};">
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="structbt__l2cap__chan.html">  141</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> {</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="structbt__l2cap__chan.html#a007a7ef11a00c0dff22cd64961260d3d">  143</a></span>    <span class="keyword">struct </span>bt_conn          *<a class="code hl_variable" href="structbt__l2cap__chan.html#a007a7ef11a00c0dff22cd64961260d3d">conn</a>;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="structbt__l2cap__chan.html#a3e370744f17ca4cff200cc0a2ee1a74b">  145</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan__ops.html">bt_l2cap_chan_ops</a>  *<a class="code hl_variable" href="structbt__l2cap__chan.html#a3e370744f17ca4cff200cc0a2ee1a74b">ops</a>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a>         node;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <a class="code hl_typedef" href="group__bt__l2cap.html#gafe930d6bed8baed9f982f791b5d2172f">bt_l2cap_chan_destroy_t</a>     destroy;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <a class="code hl_define" href="group__atomic__apis.html#ga249c575db9764486197709b327f7370e">ATOMIC_DEFINE</a>(status, BT_L2CAP_NUM_STATUS);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>};</div>
+</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="foldopen" id="foldopen00153" data-start="{" data-end="};">
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="structbt__l2cap__le__endpoint.html">  153</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__le__endpoint.html">bt_l2cap_le_endpoint</a> {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="structbt__l2cap__le__endpoint.html#aeee85135541b17bede098891b820c63f">  155</a></span>    uint16_t                <a class="code hl_variable" href="structbt__l2cap__le__endpoint.html#aeee85135541b17bede098891b820c63f">cid</a>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="structbt__l2cap__le__endpoint.html#a598f0c7f0ad4cc029013358d35ce9dc2">  157</a></span>    uint16_t                <a class="code hl_variable" href="structbt__l2cap__le__endpoint.html#a598f0c7f0ad4cc029013358d35ce9dc2">mtu</a>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="structbt__l2cap__le__endpoint.html#aa9e4f21e48eda61a3d0b777ee13c2599">  159</a></span>    uint16_t                <a class="code hl_variable" href="structbt__l2cap__le__endpoint.html#aa9e4f21e48eda61a3d0b777ee13c2599">mps</a>;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="structbt__l2cap__le__endpoint.html#a834561b4a8857253bdfc3d0d2c1033f5">  161</a></span>    uint16_t                <a class="code hl_variable" href="structbt__l2cap__le__endpoint.html#a834561b4a8857253bdfc3d0d2c1033f5">init_credits</a>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="structbt__l2cap__le__endpoint.html#ab3f475c383791731c595845c80c27edf">  163</a></span>    atomic_t            <a class="code hl_variable" href="structbt__l2cap__le__endpoint.html#ab3f475c383791731c595845c80c27edf">credits</a>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>};</div>
+</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="foldopen" id="foldopen00167" data-start="{" data-end="};">
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="structbt__l2cap__le__chan.html">  167</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__le__chan.html">bt_l2cap_le_chan</a> {</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="structbt__l2cap__le__chan.html#a980126cabc3824ab623d634d91f7d761">  169</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a>        <a class="code hl_variable" href="structbt__l2cap__le__chan.html#a980126cabc3824ab623d634d91f7d761">chan</a>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="structbt__l2cap__le__chan.html#a95808ad9bcd910b65bee31fa6bd4b638">  182</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__le__endpoint.html">bt_l2cap_le_endpoint</a> <a class="code hl_variable" href="structbt__l2cap__le__chan.html#a95808ad9bcd910b65bee31fa6bd4b638">rx</a>;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="structbt__l2cap__le__chan.html#a55d8ce850f365ac7ab7ff450ecb61f23">  185</a></span>    uint16_t <a class="code hl_variable" href="structbt__l2cap__le__chan.html#a55d8ce850f365ac7ab7ff450ecb61f23">pending_rx_mtu</a>;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="structbt__l2cap__le__chan.html#a059f98cebf6f43a05937ac82815009e7">  194</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__le__endpoint.html">bt_l2cap_le_endpoint</a> <a class="code hl_variable" href="structbt__l2cap__le__chan.html#a059f98cebf6f43a05937ac82815009e7">tx</a>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="preprocessor">#if defined(CONFIG_BT_L2CAP_DYNAMIC_CHANNEL)</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__fifo.html">k_fifo</a>                   tx_queue;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a>                  *tx_buf;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a>     tx_work;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a>          *_sdu;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    uint16_t            _sdu_len;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="preprocessor">#if defined(CONFIG_BT_L2CAP_SEG_RECV)</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    uint16_t            _sdu_len_done;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_BT_L2CAP_SEG_RECV */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work.html">k_work</a>           rx_work;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__fifo.html">k_fifo</a>           rx_queue;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <a class="code hl_typedef" href="group__bt__l2cap.html#ga5a80330e52ea0fa4ee3266094570bb16">bt_l2cap_chan_state_t</a>       state;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    uint16_t            psm;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    uint8_t             ident;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <a class="code hl_typedef" href="group__bt__conn.html#ga8d1e073f2c08987aff71d41f14b69a35">bt_security_t</a>           required_sec_level;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="comment">/* Response Timeout eXpired (RTX) timer */</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a>     rtx_work;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__sync.html">k_work_sync</a>      rtx_sync;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>};</div>
+</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gac936761e661a5c65d65ee9b4c185679b">  234</a></span><span class="preprocessor">#define BT_L2CAP_LE_CHAN(_ch) CONTAINER_OF(_ch, struct bt_l2cap_le_chan, chan)</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="foldopen" id="foldopen00237" data-start="{" data-end="};">
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="structbt__l2cap__br__endpoint.html">  237</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__br__endpoint.html">bt_l2cap_br_endpoint</a> {</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="structbt__l2cap__br__endpoint.html#acbe4f6cc15bb20703fca53e7084b2ea7">  239</a></span>    uint16_t                <a class="code hl_variable" href="structbt__l2cap__br__endpoint.html#acbe4f6cc15bb20703fca53e7084b2ea7">cid</a>;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="structbt__l2cap__br__endpoint.html#aaeb46128990fe08c926d34049bbc2d6a">  241</a></span>    uint16_t                <a class="code hl_variable" href="structbt__l2cap__br__endpoint.html#aaeb46128990fe08c926d34049bbc2d6a">mtu</a>;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>};</div>
+</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="foldopen" id="foldopen00245" data-start="{" data-end="};">
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="structbt__l2cap__br__chan.html">  245</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__br__chan.html">bt_l2cap_br_chan</a> {</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="structbt__l2cap__br__chan.html#a28ed2b2541697390c325c706d4ad8f0b">  247</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a>        <a class="code hl_variable" href="structbt__l2cap__br__chan.html#a28ed2b2541697390c325c706d4ad8f0b">chan</a>;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="structbt__l2cap__br__chan.html#a00d49d2d73f2dafdc73a9f7b9393b98d">  249</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__br__endpoint.html">bt_l2cap_br_endpoint</a> <a class="code hl_variable" href="structbt__l2cap__br__chan.html#a00d49d2d73f2dafdc73a9f7b9393b98d">rx</a>;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="structbt__l2cap__br__chan.html#a67aec1f3bef3afe689c164185bd77f98">  251</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__br__endpoint.html">bt_l2cap_br_endpoint</a> <a class="code hl_variable" href="structbt__l2cap__br__chan.html#a67aec1f3bef3afe689c164185bd77f98">tx</a>;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="comment">/* For internal use only */</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    atomic_t            flags[1];</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <a class="code hl_typedef" href="group__bt__l2cap.html#ga5a80330e52ea0fa4ee3266094570bb16">bt_l2cap_chan_state_t</a>       state;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="structbt__l2cap__br__chan.html#a1ca3ed81f6f8edafc2993941de4c9771">  257</a></span>    uint16_t            <a class="code hl_variable" href="structbt__l2cap__br__chan.html#a1ca3ed81f6f8edafc2993941de4c9771">psm</a>;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno"><a class="line" href="structbt__l2cap__br__chan.html#ace996412a41a168c37d60d5e4096dc94">  259</a></span>    uint8_t             <a class="code hl_variable" href="structbt__l2cap__br__chan.html#ace996412a41a168c37d60d5e4096dc94">ident</a>;</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <a class="code hl_typedef" href="group__bt__conn.html#ga8d1e073f2c08987aff71d41f14b69a35">bt_security_t</a>           required_sec_level;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="comment">/* Response Timeout eXpired (RTX) timer */</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a>     rtx_work;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__sync.html">k_work_sync</a>      rtx_sync;</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>};</div>
+</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
+<div class="foldopen" id="foldopen00268" data-start="{" data-end="};">
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="structbt__l2cap__chan__ops.html">  268</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan__ops.html">bt_l2cap_chan_ops</a> {</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno"><a class="line" href="structbt__l2cap__chan__ops.html#a3a4dd75a11c9867adcade6d288dec2de">  276</a></span>    void (*<a class="code hl_variable" href="structbt__l2cap__chan__ops.html#a3a4dd75a11c9867adcade6d288dec2de">connected</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno"><a class="line" href="structbt__l2cap__chan__ops.html#a2e5fcc77a5174de6e3933bb6a14e4ad3">  286</a></span>    void (*<a class="code hl_variable" href="structbt__l2cap__chan__ops.html#a2e5fcc77a5174de6e3933bb6a14e4ad3">disconnected</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno"><a class="line" href="structbt__l2cap__chan__ops.html#ab973539dd8b5e3ab115042a03362f141">  303</a></span>    void (*<a class="code hl_variable" href="structbt__l2cap__chan__ops.html#a12f3290f9bd04fb5fe562c620dff6984">encrypt_change</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan, uint8_t hci_status);</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *(*alloc_seg)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *(*alloc_buf)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan);</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno"><a class="line" href="structbt__l2cap__chan__ops.html#a0ab419d3c52c08e0dfda236466d7cadd">  345</a></span>    int (*<a class="code hl_variable" href="structbt__l2cap__chan__ops.html#a0ab419d3c52c08e0dfda236466d7cadd">recv</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan, <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *buf);</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno"><a class="line" href="structbt__l2cap__chan__ops.html#a770c09f3fb10c9d1e069333d22803d1a">  354</a></span>    void (*<a class="code hl_variable" href="structbt__l2cap__chan__ops.html#a770c09f3fb10c9d1e069333d22803d1a">sent</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan);</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno"><a class="line" href="structbt__l2cap__chan__ops.html#a4be7fadf07368750cc33cf034d3073e7">  364</a></span>    void (*<a class="code hl_variable" href="structbt__l2cap__chan__ops.html#a4be7fadf07368750cc33cf034d3073e7">status</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan, atomic_t *<a class="code hl_variable" href="structbt__l2cap__chan__ops.html#a4be7fadf07368750cc33cf034d3073e7">status</a>);</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    <span class="comment">/* @brief Channel released callback</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="comment">     *</span></div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="comment">     * If this callback is set it is called when the stack has release all</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span><span class="comment">     * references to the channel object.</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    void (*released)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan);</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno"><a class="line" href="structbt__l2cap__chan__ops.html#afba426353897bc3a57c936a98acab839">  381</a></span>    void (*<a class="code hl_variable" href="structbt__l2cap__chan__ops.html#afba426353897bc3a57c936a98acab839">reconfigured</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan);</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span><span class="preprocessor">#if defined(CONFIG_BT_L2CAP_SEG_RECV)</span></div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    void (*seg_recv)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan, <span class="keywordtype">size_t</span> sdu_len,</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>             off_t seg_offset, <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf__simple.html">net_buf_simple</a> *seg);</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_BT_L2CAP_SEG_RECV */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>};</div>
+</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span> </div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga281232ec622c626c0be2be23bae18d8d">  423</a></span><span class="preprocessor">#define BT_L2CAP_CHAN_SEND_RESERVE (BT_L2CAP_BUF_SIZE(0))</span></div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span> </div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gabdb3983d3862f6654a1653dd45c4157d">  428</a></span><span class="preprocessor">#define BT_L2CAP_SDU_CHAN_SEND_RESERVE (BT_L2CAP_SDU_BUF_SIZE(0))</span></div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span> </div>
+<div class="foldopen" id="foldopen00431" data-start="{" data-end="};">
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno"><a class="line" href="structbt__l2cap__server.html">  431</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__server.html">bt_l2cap_server</a> {</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno"><a class="line" href="structbt__l2cap__server.html#a07925dda8566ee7518b1809725e1b110">  445</a></span>    uint16_t            <a class="code hl_variable" href="structbt__l2cap__server.html#a07925dda8566ee7518b1809725e1b110">psm</a>;</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span> </div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno"><a class="line" href="structbt__l2cap__server.html#a9f082abf679a397264a7b51fa4400852">  448</a></span>    <a class="code hl_typedef" href="group__bt__conn.html#ga8d1e073f2c08987aff71d41f14b69a35">bt_security_t</a>       <a class="code hl_variable" href="structbt__l2cap__server.html#a9f082abf679a397264a7b51fa4400852">sec_level</a>;</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span> </div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno"><a class="line" href="structbt__l2cap__server.html#ad31a1908f7dc733f9497164ccabba2af">  464</a></span>    int (*<a class="code hl_variable" href="structbt__l2cap__server.html#ad31a1908f7dc733f9497164ccabba2af">accept</a>)(<span class="keyword">struct </span>bt_conn *conn, <span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__server.html">bt_l2cap_server</a> *server,</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>              <span class="keyword">struct </span><a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> **chan);</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span> </div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> node;</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>};</div>
+</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span> </div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga1a5e8c81c086872d7fb8da5329f982c6">  489</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__l2cap.html#ga1a5e8c81c086872d7fb8da5329f982c6">bt_l2cap_server_register</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__l2cap__server.html">bt_l2cap_server</a> *server);</div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span> </div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga5b0ae2abd714f46e6bb2394bce33e613">  501</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__l2cap.html#ga5b0ae2abd714f46e6bb2394bce33e613">bt_l2cap_br_server_register</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__l2cap__server.html">bt_l2cap_server</a> *server);</div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span> </div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gaebc2d157fb5f013722e9c332b3d81804">  515</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__l2cap.html#gaebc2d157fb5f013722e9c332b3d81804">bt_l2cap_ecred_chan_connect</a>(<span class="keyword">struct</span> bt_conn *<a class="code hl_variable" href="structbt__l2cap__chan.html#a007a7ef11a00c0dff22cd64961260d3d">conn</a>,</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>                <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> **chans, uint16_t psm);</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span> </div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga05d28a51d9fba08d609287957ea4c7ec">  530</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__l2cap.html#ga05d28a51d9fba08d609287957ea4c7ec">bt_l2cap_ecred_chan_reconfigure</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> **chans, uint16_t mtu);</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span> </div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga3c3cfb4b151c808c0a3d2562a5c26a20">  550</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__l2cap.html#ga3c3cfb4b151c808c0a3d2562a5c26a20">bt_l2cap_chan_connect</a>(<span class="keyword">struct</span> bt_conn *<a class="code hl_variable" href="structbt__l2cap__chan.html#a007a7ef11a00c0dff22cd64961260d3d">conn</a>, <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan,</div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>              uint16_t psm);</div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span> </div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga7165f82a05e3a19d6b2baf0ba292a3fe">  564</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__l2cap.html#ga7165f82a05e3a19d6b2baf0ba292a3fe">bt_l2cap_chan_disconnect</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan);</div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span> </div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga97b7909749667f910f83e6fcb54495c3">  597</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__l2cap.html#ga97b7909749667f910f83e6fcb54495c3">bt_l2cap_chan_send</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan, <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *buf);</div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span> </div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#ga9bc950a929fc2bdb1463c268cea478b6">  620</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__l2cap.html#ga9bc950a929fc2bdb1463c268cea478b6">bt_l2cap_chan_give_credits</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan, uint16_t additional_credits);</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span> </div>
+<div class="line"><a id="l00634" name="l00634"></a><span class="lineno"><a class="line" href="group__bt__l2cap.html#gad53f5fc31314121ff84e740879eae3cf">  634</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__l2cap.html#gad53f5fc31314121ff84e740879eae3cf">bt_l2cap_chan_recv_complete</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__l2cap__chan.html">bt_l2cap_chan</a> *chan,</div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span>                <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *buf);</div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span> </div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span>}</div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span> </div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_BLUETOOTH_L2CAP_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="abluetooth_2buf_8h_html"><div class="ttname"><a href="bluetooth_2buf_8h.html">buf.h</a></div><div class="ttdoc">Bluetooth data buffer API.</div></div>
+<div class="ttc" id="aconn_8h_html"><div class="ttname"><a href="conn_8h.html">conn.h</a></div><div class="ttdoc">Bluetooth connection handling.</div></div>
+<div class="ttc" id="agroup__atomic__apis_html_ga249c575db9764486197709b327f7370e"><div class="ttname"><a href="group__atomic__apis.html#ga249c575db9764486197709b327f7370e">ATOMIC_DEFINE</a></div><div class="ttdeci">#define ATOMIC_DEFINE(name, num_bits)</div><div class="ttdoc">Define an array of atomic variables.</div><div class="ttdef"><b>Definição</b> atomic.h:114</div></div>
+<div class="ttc" id="agroup__bt__conn_html_ga8d1e073f2c08987aff71d41f14b69a35"><div class="ttname"><a href="group__bt__conn.html#ga8d1e073f2c08987aff71d41f14b69a35">bt_security_t</a></div><div class="ttdeci">enum __packed bt_security_t</div></div>
+<div class="ttc" id="agroup__bt__conn_html_gab3cdadb15ef89cfe197d88b4d3fdb596"><div class="ttname"><a href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a></div><div class="ttdeci">__packed</div><div class="ttdef"><b>Definição</b> conn.h:352</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_ga05d28a51d9fba08d609287957ea4c7ec"><div class="ttname"><a href="group__bt__l2cap.html#ga05d28a51d9fba08d609287957ea4c7ec">bt_l2cap_ecred_chan_reconfigure</a></div><div class="ttdeci">int bt_l2cap_ecred_chan_reconfigure(struct bt_l2cap_chan **chans, uint16_t mtu)</div><div class="ttdoc">Reconfigure Enhanced Credit Based L2CAP channels.</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_ga1a5e8c81c086872d7fb8da5329f982c6"><div class="ttname"><a href="group__bt__l2cap.html#ga1a5e8c81c086872d7fb8da5329f982c6">bt_l2cap_server_register</a></div><div class="ttdeci">int bt_l2cap_server_register(struct bt_l2cap_server *server)</div><div class="ttdoc">Register L2CAP server.</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_ga371a747c8939a1156111dc03c774015c"><div class="ttname"><a href="group__bt__l2cap.html#ga371a747c8939a1156111dc03c774015c">bt_l2cap_chan_status</a></div><div class="ttdeci">bt_l2cap_chan_status</div><div class="ttdoc">Status of L2CAP channel.</div><div class="ttdef"><b>Definição</b> l2cap.h:122</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_ga3a1a88a8e87aefe9bea1dd01aa193b42"><div class="ttname"><a href="group__bt__l2cap.html#ga3a1a88a8e87aefe9bea1dd01aa193b42">bt_l2cap_chan_status_t</a></div><div class="ttdeci">enum bt_l2cap_chan_status bt_l2cap_chan_status_t</div><div class="ttdoc">Status of L2CAP channel.</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_ga3c3cfb4b151c808c0a3d2562a5c26a20"><div class="ttname"><a href="group__bt__l2cap.html#ga3c3cfb4b151c808c0a3d2562a5c26a20">bt_l2cap_chan_connect</a></div><div class="ttdeci">int bt_l2cap_chan_connect(struct bt_conn *conn, struct bt_l2cap_chan *chan, uint16_t psm)</div><div class="ttdoc">Connect L2CAP channel.</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_ga5a80330e52ea0fa4ee3266094570bb16"><div class="ttname"><a href="group__bt__l2cap.html#ga5a80330e52ea0fa4ee3266094570bb16">bt_l2cap_chan_state_t</a></div><div class="ttdeci">enum bt_l2cap_chan_state bt_l2cap_chan_state_t</div><div class="ttdoc">Life-span states of L2CAP CoC channel.</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_ga5b0ae2abd714f46e6bb2394bce33e613"><div class="ttname"><a href="group__bt__l2cap.html#ga5b0ae2abd714f46e6bb2394bce33e613">bt_l2cap_br_server_register</a></div><div class="ttdeci">int bt_l2cap_br_server_register(struct bt_l2cap_server *server)</div><div class="ttdoc">Register L2CAP server on BR/EDR oriented connection.</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_ga642436bdf29f79495763b10231c6b25b"><div class="ttname"><a href="group__bt__l2cap.html#ga642436bdf29f79495763b10231c6b25b">bt_l2cap_chan_state</a></div><div class="ttdeci">bt_l2cap_chan_state</div><div class="ttdoc">Life-span states of L2CAP CoC channel.</div><div class="ttdef"><b>Definição</b> l2cap.h:107</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_ga7165f82a05e3a19d6b2baf0ba292a3fe"><div class="ttname"><a href="group__bt__l2cap.html#ga7165f82a05e3a19d6b2baf0ba292a3fe">bt_l2cap_chan_disconnect</a></div><div class="ttdeci">int bt_l2cap_chan_disconnect(struct bt_l2cap_chan *chan)</div><div class="ttdoc">Disconnect L2CAP channel.</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_ga97b7909749667f910f83e6fcb54495c3"><div class="ttname"><a href="group__bt__l2cap.html#ga97b7909749667f910f83e6fcb54495c3">bt_l2cap_chan_send</a></div><div class="ttdeci">int bt_l2cap_chan_send(struct bt_l2cap_chan *chan, struct net_buf *buf)</div><div class="ttdoc">Send data to L2CAP channel.</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_ga9bc950a929fc2bdb1463c268cea478b6"><div class="ttname"><a href="group__bt__l2cap.html#ga9bc950a929fc2bdb1463c268cea478b6">bt_l2cap_chan_give_credits</a></div><div class="ttdeci">int bt_l2cap_chan_give_credits(struct bt_l2cap_chan *chan, uint16_t additional_credits)</div><div class="ttdoc">Give credits to the remote.</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_gad53f5fc31314121ff84e740879eae3cf"><div class="ttname"><a href="group__bt__l2cap.html#gad53f5fc31314121ff84e740879eae3cf">bt_l2cap_chan_recv_complete</a></div><div class="ttdeci">int bt_l2cap_chan_recv_complete(struct bt_l2cap_chan *chan, struct net_buf *buf)</div><div class="ttdoc">Complete receiving L2CAP channel data.</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_gaebc2d157fb5f013722e9c332b3d81804"><div class="ttname"><a href="group__bt__l2cap.html#gaebc2d157fb5f013722e9c332b3d81804">bt_l2cap_ecred_chan_connect</a></div><div class="ttdeci">int bt_l2cap_ecred_chan_connect(struct bt_conn *conn, struct bt_l2cap_chan **chans, uint16_t psm)</div><div class="ttdoc">Connect Enhanced Credit Based L2CAP channels.</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_gafe930d6bed8baed9f982f791b5d2172f"><div class="ttname"><a href="group__bt__l2cap.html#gafe930d6bed8baed9f982f791b5d2172f">bt_l2cap_chan_destroy_t</a></div><div class="ttdeci">void(* bt_l2cap_chan_destroy_t)(struct bt_l2cap_chan *chan)</div><div class="ttdoc">Channel destroy callback.</div><div class="ttdef"><b>Definição</b> l2cap.h:93</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_gga371a747c8939a1156111dc03c774015ca82d4e553f4298d00c27045949663208e"><div class="ttname"><a href="group__bt__l2cap.html#gga371a747c8939a1156111dc03c774015ca82d4e553f4298d00c27045949663208e">BT_L2CAP_STATUS_SHUTDOWN</a></div><div class="ttdeci">@ BT_L2CAP_STATUS_SHUTDOWN</div><div class="ttdoc">Channel shutdown status.</div><div class="ttdef"><b>Definição</b> l2cap.h:131</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_gga371a747c8939a1156111dc03c774015ca89aea3cf3d9a004ffd53eae602666fd5"><div class="ttname"><a href="group__bt__l2cap.html#gga371a747c8939a1156111dc03c774015ca89aea3cf3d9a004ffd53eae602666fd5">BT_L2CAP_STATUS_OUT</a></div><div class="ttdeci">@ BT_L2CAP_STATUS_OUT</div><div class="ttdef"><b>Definição</b> l2cap.h:124</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_gga371a747c8939a1156111dc03c774015caea6cc7cae26d69926e7def91242650af"><div class="ttname"><a href="group__bt__l2cap.html#gga371a747c8939a1156111dc03c774015caea6cc7cae26d69926e7def91242650af">BT_L2CAP_STATUS_ENCRYPT_PENDING</a></div><div class="ttdeci">@ BT_L2CAP_STATUS_ENCRYPT_PENDING</div><div class="ttdoc">Channel encryption pending status.</div><div class="ttdef"><b>Definição</b> l2cap.h:134</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_gga642436bdf29f79495763b10231c6b25ba1dc4c69537acf13a8c00dfca5acfb83c"><div class="ttname"><a href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25ba1dc4c69537acf13a8c00dfca5acfb83c">BT_L2CAP_DISCONNECTED</a></div><div class="ttdeci">@ BT_L2CAP_DISCONNECTED</div><div class="ttdef"><b>Definição</b> l2cap.h:109</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_gga642436bdf29f79495763b10231c6b25ba3167a1b491cb9b97ebe51f66c209f064"><div class="ttname"><a href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25ba3167a1b491cb9b97ebe51f66c209f064">BT_L2CAP_CONFIG</a></div><div class="ttdeci">@ BT_L2CAP_CONFIG</div><div class="ttdef"><b>Definição</b> l2cap.h:113</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_gga642436bdf29f79495763b10231c6b25ba3adc86576ca2db5a7f74030d11699b68"><div class="ttname"><a href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25ba3adc86576ca2db5a7f74030d11699b68">BT_L2CAP_CONNECTED</a></div><div class="ttdeci">@ BT_L2CAP_CONNECTED</div><div class="ttdef"><b>Definição</b> l2cap.h:115</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_gga642436bdf29f79495763b10231c6b25ba7a24502cfb06df715f58ad2e088cb7e8"><div class="ttname"><a href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25ba7a24502cfb06df715f58ad2e088cb7e8">BT_L2CAP_DISCONNECTING</a></div><div class="ttdeci">@ BT_L2CAP_DISCONNECTING</div><div class="ttdef"><b>Definição</b> l2cap.h:117</div></div>
+<div class="ttc" id="agroup__bt__l2cap_html_gga642436bdf29f79495763b10231c6b25bac2a46c646c8739e8b129b89698eae7cd"><div class="ttname"><a href="group__bt__l2cap.html#gga642436bdf29f79495763b10231c6b25bac2a46c646c8739e8b129b89698eae7cd">BT_L2CAP_CONNECTING</a></div><div class="ttdeci">@ BT_L2CAP_CONNECTING</div><div class="ttdef"><b>Definição</b> l2cap.h:111</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="astructbt__l2cap__br__chan_html"><div class="ttname"><a href="structbt__l2cap__br__chan.html">bt_l2cap_br_chan</a></div><div class="ttdoc">BREDR L2CAP Channel structure.</div><div class="ttdef"><b>Definição</b> l2cap.h:245</div></div>
+<div class="ttc" id="astructbt__l2cap__br__chan_html_a00d49d2d73f2dafdc73a9f7b9393b98d"><div class="ttname"><a href="structbt__l2cap__br__chan.html#a00d49d2d73f2dafdc73a9f7b9393b98d">bt_l2cap_br_chan::rx</a></div><div class="ttdeci">struct bt_l2cap_br_endpoint rx</div><div class="ttdef"><b>Definição</b> l2cap.h:249</div></div>
+<div class="ttc" id="astructbt__l2cap__br__chan_html_a1ca3ed81f6f8edafc2993941de4c9771"><div class="ttname"><a href="structbt__l2cap__br__chan.html#a1ca3ed81f6f8edafc2993941de4c9771">bt_l2cap_br_chan::psm</a></div><div class="ttdeci">uint16_t psm</div><div class="ttdef"><b>Definição</b> l2cap.h:257</div></div>
+<div class="ttc" id="astructbt__l2cap__br__chan_html_a28ed2b2541697390c325c706d4ad8f0b"><div class="ttname"><a href="structbt__l2cap__br__chan.html#a28ed2b2541697390c325c706d4ad8f0b">bt_l2cap_br_chan::chan</a></div><div class="ttdeci">struct bt_l2cap_chan chan</div><div class="ttdef"><b>Definição</b> l2cap.h:247</div></div>
+<div class="ttc" id="astructbt__l2cap__br__chan_html_a67aec1f3bef3afe689c164185bd77f98"><div class="ttname"><a href="structbt__l2cap__br__chan.html#a67aec1f3bef3afe689c164185bd77f98">bt_l2cap_br_chan::tx</a></div><div class="ttdeci">struct bt_l2cap_br_endpoint tx</div><div class="ttdef"><b>Definição</b> l2cap.h:251</div></div>
+<div class="ttc" id="astructbt__l2cap__br__chan_html_ace996412a41a168c37d60d5e4096dc94"><div class="ttname"><a href="structbt__l2cap__br__chan.html#ace996412a41a168c37d60d5e4096dc94">bt_l2cap_br_chan::ident</a></div><div class="ttdeci">uint8_t ident</div><div class="ttdef"><b>Definição</b> l2cap.h:259</div></div>
+<div class="ttc" id="astructbt__l2cap__br__endpoint_html"><div class="ttname"><a href="structbt__l2cap__br__endpoint.html">bt_l2cap_br_endpoint</a></div><div class="ttdoc">BREDR L2CAP Endpoint structure.</div><div class="ttdef"><b>Definição</b> l2cap.h:237</div></div>
+<div class="ttc" id="astructbt__l2cap__br__endpoint_html_aaeb46128990fe08c926d34049bbc2d6a"><div class="ttname"><a href="structbt__l2cap__br__endpoint.html#aaeb46128990fe08c926d34049bbc2d6a">bt_l2cap_br_endpoint::mtu</a></div><div class="ttdeci">uint16_t mtu</div><div class="ttdef"><b>Definição</b> l2cap.h:241</div></div>
+<div class="ttc" id="astructbt__l2cap__br__endpoint_html_acbe4f6cc15bb20703fca53e7084b2ea7"><div class="ttname"><a href="structbt__l2cap__br__endpoint.html#acbe4f6cc15bb20703fca53e7084b2ea7">bt_l2cap_br_endpoint::cid</a></div><div class="ttdeci">uint16_t cid</div><div class="ttdef"><b>Definição</b> l2cap.h:239</div></div>
+<div class="ttc" id="astructbt__l2cap__chan__ops_html"><div class="ttname"><a href="structbt__l2cap__chan__ops.html">bt_l2cap_chan_ops</a></div><div class="ttdoc">L2CAP Channel operations structure.</div><div class="ttdef"><b>Definição</b> l2cap.h:268</div></div>
+<div class="ttc" id="astructbt__l2cap__chan__ops_html_a0ab419d3c52c08e0dfda236466d7cadd"><div class="ttname"><a href="structbt__l2cap__chan__ops.html#a0ab419d3c52c08e0dfda236466d7cadd">bt_l2cap_chan_ops::recv</a></div><div class="ttdeci">int(* recv)(struct bt_l2cap_chan *chan, struct net_buf *buf)</div><div class="ttdoc">Channel recv callback.</div><div class="ttdef"><b>Definição</b> l2cap.h:345</div></div>
+<div class="ttc" id="astructbt__l2cap__chan__ops_html_a12f3290f9bd04fb5fe562c620dff6984"><div class="ttname"><a href="structbt__l2cap__chan__ops.html#a12f3290f9bd04fb5fe562c620dff6984">bt_l2cap_chan_ops::encrypt_change</a></div><div class="ttdeci">void(* encrypt_change)(struct bt_l2cap_chan *chan, uint8_t hci_status)</div><div class="ttdoc">Channel encrypt_change callback.</div><div class="ttdef"><b>Definição</b> l2cap.h:303</div></div>
+<div class="ttc" id="astructbt__l2cap__chan__ops_html_a2e5fcc77a5174de6e3933bb6a14e4ad3"><div class="ttname"><a href="structbt__l2cap__chan__ops.html#a2e5fcc77a5174de6e3933bb6a14e4ad3">bt_l2cap_chan_ops::disconnected</a></div><div class="ttdeci">void(* disconnected)(struct bt_l2cap_chan *chan)</div><div class="ttdoc">Channel disconnected callback.</div><div class="ttdef"><b>Definição</b> l2cap.h:286</div></div>
+<div class="ttc" id="astructbt__l2cap__chan__ops_html_a3a4dd75a11c9867adcade6d288dec2de"><div class="ttname"><a href="structbt__l2cap__chan__ops.html#a3a4dd75a11c9867adcade6d288dec2de">bt_l2cap_chan_ops::connected</a></div><div class="ttdeci">void(* connected)(struct bt_l2cap_chan *chan)</div><div class="ttdoc">Channel connected callback.</div><div class="ttdef"><b>Definição</b> l2cap.h:276</div></div>
+<div class="ttc" id="astructbt__l2cap__chan__ops_html_a4be7fadf07368750cc33cf034d3073e7"><div class="ttname"><a href="structbt__l2cap__chan__ops.html#a4be7fadf07368750cc33cf034d3073e7">bt_l2cap_chan_ops::status</a></div><div class="ttdeci">void(* status)(struct bt_l2cap_chan *chan, atomic_t *status)</div><div class="ttdoc">Channel status callback.</div><div class="ttdef"><b>Definição</b> l2cap.h:364</div></div>
+<div class="ttc" id="astructbt__l2cap__chan__ops_html_a770c09f3fb10c9d1e069333d22803d1a"><div class="ttname"><a href="structbt__l2cap__chan__ops.html#a770c09f3fb10c9d1e069333d22803d1a">bt_l2cap_chan_ops::sent</a></div><div class="ttdeci">void(* sent)(struct bt_l2cap_chan *chan)</div><div class="ttdoc">Channel sent callback.</div><div class="ttdef"><b>Definição</b> l2cap.h:354</div></div>
+<div class="ttc" id="astructbt__l2cap__chan__ops_html_afba426353897bc3a57c936a98acab839"><div class="ttname"><a href="structbt__l2cap__chan__ops.html#afba426353897bc3a57c936a98acab839">bt_l2cap_chan_ops::reconfigured</a></div><div class="ttdeci">void(* reconfigured)(struct bt_l2cap_chan *chan)</div><div class="ttdoc">Channel reconfigured callback.</div><div class="ttdef"><b>Definição</b> l2cap.h:381</div></div>
+<div class="ttc" id="astructbt__l2cap__chan_html"><div class="ttname"><a href="structbt__l2cap__chan.html">bt_l2cap_chan</a></div><div class="ttdoc">L2CAP Channel structure.</div><div class="ttdef"><b>Definição</b> l2cap.h:141</div></div>
+<div class="ttc" id="astructbt__l2cap__chan_html_a007a7ef11a00c0dff22cd64961260d3d"><div class="ttname"><a href="structbt__l2cap__chan.html#a007a7ef11a00c0dff22cd64961260d3d">bt_l2cap_chan::conn</a></div><div class="ttdeci">struct bt_conn * conn</div><div class="ttdef"><b>Definição</b> l2cap.h:143</div></div>
+<div class="ttc" id="astructbt__l2cap__chan_html_a3e370744f17ca4cff200cc0a2ee1a74b"><div class="ttname"><a href="structbt__l2cap__chan.html#a3e370744f17ca4cff200cc0a2ee1a74b">bt_l2cap_chan::ops</a></div><div class="ttdeci">const struct bt_l2cap_chan_ops * ops</div><div class="ttdef"><b>Definição</b> l2cap.h:145</div></div>
+<div class="ttc" id="astructbt__l2cap__le__chan_html"><div class="ttname"><a href="structbt__l2cap__le__chan.html">bt_l2cap_le_chan</a></div><div class="ttdoc">LE L2CAP Channel structure.</div><div class="ttdef"><b>Definição</b> l2cap.h:167</div></div>
+<div class="ttc" id="astructbt__l2cap__le__chan_html_a059f98cebf6f43a05937ac82815009e7"><div class="ttname"><a href="structbt__l2cap__le__chan.html#a059f98cebf6f43a05937ac82815009e7">bt_l2cap_le_chan::tx</a></div><div class="ttdeci">struct bt_l2cap_le_endpoint tx</div><div class="ttdef"><b>Definição</b> l2cap.h:194</div></div>
+<div class="ttc" id="astructbt__l2cap__le__chan_html_a55d8ce850f365ac7ab7ff450ecb61f23"><div class="ttname"><a href="structbt__l2cap__le__chan.html#a55d8ce850f365ac7ab7ff450ecb61f23">bt_l2cap_le_chan::pending_rx_mtu</a></div><div class="ttdeci">uint16_t pending_rx_mtu</div><div class="ttdef"><b>Definição</b> l2cap.h:185</div></div>
+<div class="ttc" id="astructbt__l2cap__le__chan_html_a95808ad9bcd910b65bee31fa6bd4b638"><div class="ttname"><a href="structbt__l2cap__le__chan.html#a95808ad9bcd910b65bee31fa6bd4b638">bt_l2cap_le_chan::rx</a></div><div class="ttdeci">struct bt_l2cap_le_endpoint rx</div><div class="ttdoc">Channel Receiving Endpoint.</div><div class="ttdef"><b>Definição</b> l2cap.h:182</div></div>
+<div class="ttc" id="astructbt__l2cap__le__chan_html_a980126cabc3824ab623d634d91f7d761"><div class="ttname"><a href="structbt__l2cap__le__chan.html#a980126cabc3824ab623d634d91f7d761">bt_l2cap_le_chan::chan</a></div><div class="ttdeci">struct bt_l2cap_chan chan</div><div class="ttdef"><b>Definição</b> l2cap.h:169</div></div>
+<div class="ttc" id="astructbt__l2cap__le__endpoint_html"><div class="ttname"><a href="structbt__l2cap__le__endpoint.html">bt_l2cap_le_endpoint</a></div><div class="ttdoc">LE L2CAP Endpoint structure.</div><div class="ttdef"><b>Definição</b> l2cap.h:153</div></div>
+<div class="ttc" id="astructbt__l2cap__le__endpoint_html_a598f0c7f0ad4cc029013358d35ce9dc2"><div class="ttname"><a href="structbt__l2cap__le__endpoint.html#a598f0c7f0ad4cc029013358d35ce9dc2">bt_l2cap_le_endpoint::mtu</a></div><div class="ttdeci">uint16_t mtu</div><div class="ttdef"><b>Definição</b> l2cap.h:157</div></div>
+<div class="ttc" id="astructbt__l2cap__le__endpoint_html_a834561b4a8857253bdfc3d0d2c1033f5"><div class="ttname"><a href="structbt__l2cap__le__endpoint.html#a834561b4a8857253bdfc3d0d2c1033f5">bt_l2cap_le_endpoint::init_credits</a></div><div class="ttdeci">uint16_t init_credits</div><div class="ttdef"><b>Definição</b> l2cap.h:161</div></div>
+<div class="ttc" id="astructbt__l2cap__le__endpoint_html_aa9e4f21e48eda61a3d0b777ee13c2599"><div class="ttname"><a href="structbt__l2cap__le__endpoint.html#aa9e4f21e48eda61a3d0b777ee13c2599">bt_l2cap_le_endpoint::mps</a></div><div class="ttdeci">uint16_t mps</div><div class="ttdef"><b>Definição</b> l2cap.h:159</div></div>
+<div class="ttc" id="astructbt__l2cap__le__endpoint_html_ab3f475c383791731c595845c80c27edf"><div class="ttname"><a href="structbt__l2cap__le__endpoint.html#ab3f475c383791731c595845c80c27edf">bt_l2cap_le_endpoint::credits</a></div><div class="ttdeci">atomic_t credits</div><div class="ttdef"><b>Definição</b> l2cap.h:163</div></div>
+<div class="ttc" id="astructbt__l2cap__le__endpoint_html_aeee85135541b17bede098891b820c63f"><div class="ttname"><a href="structbt__l2cap__le__endpoint.html#aeee85135541b17bede098891b820c63f">bt_l2cap_le_endpoint::cid</a></div><div class="ttdeci">uint16_t cid</div><div class="ttdef"><b>Definição</b> l2cap.h:155</div></div>
+<div class="ttc" id="astructbt__l2cap__server_html"><div class="ttname"><a href="structbt__l2cap__server.html">bt_l2cap_server</a></div><div class="ttdoc">L2CAP Server structure.</div><div class="ttdef"><b>Definição</b> l2cap.h:431</div></div>
+<div class="ttc" id="astructbt__l2cap__server_html_a07925dda8566ee7518b1809725e1b110"><div class="ttname"><a href="structbt__l2cap__server.html#a07925dda8566ee7518b1809725e1b110">bt_l2cap_server::psm</a></div><div class="ttdeci">uint16_t psm</div><div class="ttdoc">Server PSM.</div><div class="ttdef"><b>Definição</b> l2cap.h:445</div></div>
+<div class="ttc" id="astructbt__l2cap__server_html_a9f082abf679a397264a7b51fa4400852"><div class="ttname"><a href="structbt__l2cap__server.html#a9f082abf679a397264a7b51fa4400852">bt_l2cap_server::sec_level</a></div><div class="ttdeci">bt_security_t sec_level</div><div class="ttdef"><b>Definição</b> l2cap.h:448</div></div>
+<div class="ttc" id="astructbt__l2cap__server_html_ad31a1908f7dc733f9497164ccabba2af"><div class="ttname"><a href="structbt__l2cap__server.html#ad31a1908f7dc733f9497164ccabba2af">bt_l2cap_server::accept</a></div><div class="ttdeci">int(* accept)(struct bt_conn *conn, struct bt_l2cap_server *server, struct bt_l2cap_chan **chan)</div><div class="ttdoc">Server accept callback.</div><div class="ttdef"><b>Definição</b> l2cap.h:464</div></div>
+<div class="ttc" id="astructk__fifo_html"><div class="ttname"><a href="structk__fifo.html">k_fifo</a></div><div class="ttdef"><b>Definição</b> kernel.h:2386</div></div>
+<div class="ttc" id="astructk__work__delayable_html"><div class="ttname"><a href="structk__work__delayable.html">k_work_delayable</a></div><div class="ttdoc">A structure used to submit work after a delay.</div><div class="ttdef"><b>Definição</b> kernel.h:3894</div></div>
+<div class="ttc" id="astructk__work__sync_html"><div class="ttname"><a href="structk__work__sync.html">k_work_sync</a></div><div class="ttdoc">A structure holding internal state for a pending synchronous operation on a work item or queue.</div><div class="ttdef"><b>Definição</b> kernel.h:3977</div></div>
+<div class="ttc" id="astructk__work_html"><div class="ttname"><a href="structk__work.html">k_work</a></div><div class="ttdoc">A structure used to submit work.</div><div class="ttdef"><b>Definição</b> kernel.h:3866</div></div>
+<div class="ttc" id="astructnet__buf__simple_html"><div class="ttname"><a href="structnet__buf__simple.html">net_buf_simple</a></div><div class="ttdoc">Simple network buffer representation.</div><div class="ttdef"><b>Definição</b> buf.h:83</div></div>
+<div class="ttc" id="astructnet__buf_html"><div class="ttname"><a href="structnet__buf.html">net_buf</a></div><div class="ttdoc">Network buffer representation.</div><div class="ttdef"><b>Definição</b> buf.h:906</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

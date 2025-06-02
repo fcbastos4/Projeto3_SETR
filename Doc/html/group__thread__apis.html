@@ -1,0 +1,1629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Thread APIs</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Estruturas de Dados</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Definições de tipos</a> &#124;
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle"><div class="title">Thread APIs<div class="ingroups"><a class="el" href="group__kernel__apis.html">Kernel APIs</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Diagrama de colaboração para Thread APIs:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__thread__apis.png" border="0" usemap="#agroup____thread____apis" alt=""/></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Estruturas de Dados</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structk__thread.html">k_thread</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gad503fbcca905a9266b0e154e3ded258c" id="r_gad503fbcca905a9266b0e154e3ded258c"><td class="memItemLeft" align="right" valign="top"><a id="gad503fbcca905a9266b0e154e3ded258c" name="gad503fbcca905a9266b0e154e3ded258c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>K_ESSENTIAL</b>&#160;&#160;&#160;(<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(0))</td></tr>
+<tr class="memdesc:gad503fbcca905a9266b0e154e3ded258c"><td class="mdescLeft">&#160;</td><td class="mdescRight">system thread that must not abort <br /></td></tr>
+<tr class="separator:gad503fbcca905a9266b0e154e3ded258c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb5340339892f22301e02697c6039ccc" id="r_gacb5340339892f22301e02697c6039ccc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gacb5340339892f22301e02697c6039ccc">K_USER</a>&#160;&#160;&#160;(<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(2))</td></tr>
+<tr class="memdesc:gacb5340339892f22301e02697c6039ccc"><td class="mdescLeft">&#160;</td><td class="mdescRight">user mode thread  <br /></td></tr>
+<tr class="separator:gacb5340339892f22301e02697c6039ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa1788a413a055745d1de71b4da7c2eb2" id="r_gaa1788a413a055745d1de71b4da7c2eb2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gaa1788a413a055745d1de71b4da7c2eb2">K_INHERIT_PERMS</a>&#160;&#160;&#160;(<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(3))</td></tr>
+<tr class="memdesc:gaa1788a413a055745d1de71b4da7c2eb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherit Permissions.  <br /></td></tr>
+<tr class="separator:gaa1788a413a055745d1de71b4da7c2eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacbdb579370978fe07e4a863a84bd8bee" id="r_gacbdb579370978fe07e4a863a84bd8bee"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gacbdb579370978fe07e4a863a84bd8bee">K_CALLBACK_STATE</a>&#160;&#160;&#160;(<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(4))</td></tr>
+<tr class="memdesc:gacbdb579370978fe07e4a863a84bd8bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback item state.  <br /></td></tr>
+<tr class="separator:gacbdb579370978fe07e4a863a84bd8bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafec540511e6d2e0a074a5bfb515c53b0" id="r_gafec540511e6d2e0a074a5bfb515c53b0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gafec540511e6d2e0a074a5bfb515c53b0">k_thread_access_grant</a>(thread, ...)&#160;&#160;&#160;	<a class="el" href="group__sys-util.html#ga1a2b2aa21d7cc37f33e6a62abd2ae340">FOR_EACH_FIXED_ARG</a>(k_object_access_grant, (;), thread, __VA_ARGS__)</td></tr>
+<tr class="memdesc:gafec540511e6d2e0a074a5bfb515c53b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grant a thread access to a set of kernel objects.  <br /></td></tr>
+<tr class="separator:gafec540511e6d2e0a074a5bfb515c53b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab3ced58648ca35788a40676e8478ecd2" id="r_gab3ced58648ca35788a40676e8478ecd2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gab3ced58648ca35788a40676e8478ecd2">K_THREAD_DEFINE</a>(name,  stack_size,  entry,  p1,  p2,  p3,  prio,  options,  delay)</td></tr>
+<tr class="memdesc:gab3ced58648ca35788a40676e8478ecd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statically define and initialize a thread.  <br /></td></tr>
+<tr class="separator:gab3ced58648ca35788a40676e8478ecd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae25853424ec969f8431862c46b3ec294" id="r_gae25853424ec969f8431862c46b3ec294"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gae25853424ec969f8431862c46b3ec294">K_KERNEL_THREAD_DEFINE</a>(name,  stack_size,  entry,  p1,  p2,  p3,  prio,  options,  delay)</td></tr>
+<tr class="memdesc:gae25853424ec969f8431862c46b3ec294"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statically define and initialize a thread intended to run only in kernel mode.  <br /></td></tr>
+<tr class="separator:gae25853424ec969f8431862c46b3ec294"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Definições de tipos</h2></td></tr>
+<tr class="memitem:gaf9f23a6ff9dae76af56f25b373e74c75" id="r_gaf9f23a6ff9dae76af56f25b373e74c75"><td class="memItemLeft" align="right" valign="top"><a id="gaf9f23a6ff9dae76af56f25b373e74c75" name="gaf9f23a6ff9dae76af56f25b373e74c75"></a>
+typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>k_thread_user_cb_t</b>) (const struct <a class="el" href="structk__thread.html">k_thread</a> *thread, void *user_data)</td></tr>
+<tr class="separator:gaf9f23a6ff9dae76af56f25b373e74c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:gae2596d56800769b06fc03c194a126a97" id="r_gae2596d56800769b06fc03c194a126a97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gae2596d56800769b06fc03c194a126a97">k_thread_foreach</a> (k_thread_user_cb_t user_cb, void *user_data)</td></tr>
+<tr class="memdesc:gae2596d56800769b06fc03c194a126a97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterate over all the threads in the system.  <br /></td></tr>
+<tr class="separator:gae2596d56800769b06fc03c194a126a97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30ef8b445a6c1b4a82651674dbb737fc" id="r_ga30ef8b445a6c1b4a82651674dbb737fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga30ef8b445a6c1b4a82651674dbb737fc">k_thread_foreach_unlocked</a> (k_thread_user_cb_t user_cb, void *user_data)</td></tr>
+<tr class="memdesc:ga30ef8b445a6c1b4a82651674dbb737fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterate over all the threads in the system without locking.  <br /></td></tr>
+<tr class="separator:ga30ef8b445a6c1b4a82651674dbb737fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadb7cbdb2fee7d80c726a34d49aca2d0a" id="r_gadb7cbdb2fee7d80c726a34d49aca2d0a"><td class="memItemLeft" align="right" valign="top">__syscall <a class="el" href="structz__thread__stack__element.html">k_thread_stack_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gadb7cbdb2fee7d80c726a34d49aca2d0a">k_thread_stack_alloc</a> (size_t size, int flags)</td></tr>
+<tr class="memdesc:gadb7cbdb2fee7d80c726a34d49aca2d0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dynamically allocate a thread stack.  <br /></td></tr>
+<tr class="separator:gadb7cbdb2fee7d80c726a34d49aca2d0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga011f0258f27dcbbb7fadeb80fdcd4f7b" id="r_ga011f0258f27dcbbb7fadeb80fdcd4f7b"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga011f0258f27dcbbb7fadeb80fdcd4f7b">k_thread_stack_free</a> (<a class="el" href="structz__thread__stack__element.html">k_thread_stack_t</a> *stack)</td></tr>
+<tr class="memdesc:ga011f0258f27dcbbb7fadeb80fdcd4f7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a dynamically allocated thread stack.  <br /></td></tr>
+<tr class="separator:ga011f0258f27dcbbb7fadeb80fdcd4f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab40cdc82a7074f97304f75698aa5bd90" id="r_gab40cdc82a7074f97304f75698aa5bd90"><td class="memItemLeft" align="right" valign="top">__syscall <a class="el" href="structk__thread.html">k_tid_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gab40cdc82a7074f97304f75698aa5bd90">k_thread_create</a> (struct <a class="el" href="structk__thread.html">k_thread</a> *new_thread, <a class="el" href="structz__thread__stack__element.html">k_thread_stack_t</a> *stack, size_t stack_size, k_thread_entry_t entry, void *p1, void *p2, void *p3, int prio, uint32_t options, <a class="el" href="structk__timeout__t.html">k_timeout_t</a> delay)</td></tr>
+<tr class="memdesc:gab40cdc82a7074f97304f75698aa5bd90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a thread.  <br /></td></tr>
+<tr class="separator:gab40cdc82a7074f97304f75698aa5bd90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3fbe1c8a5f3ef1c25382c7d6fca35764" id="r_ga3fbe1c8a5f3ef1c25382c7d6fca35764"><td class="memItemLeft" align="right" valign="top">FUNC_NORETURN void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga3fbe1c8a5f3ef1c25382c7d6fca35764">k_thread_user_mode_enter</a> (k_thread_entry_t entry, void *p1, void *p2, void *p3)</td></tr>
+<tr class="memdesc:ga3fbe1c8a5f3ef1c25382c7d6fca35764"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drop a thread's privileges permanently to user mode.  <br /></td></tr>
+<tr class="separator:ga3fbe1c8a5f3ef1c25382c7d6fca35764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga294da6b92e68d21298779e4e78597f56" id="r_ga294da6b92e68d21298779e4e78597f56"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga294da6b92e68d21298779e4e78597f56">k_thread_join</a> (struct <a class="el" href="structk__thread.html">k_thread</a> *thread, <a class="el" href="structk__timeout__t.html">k_timeout_t</a> timeout)</td></tr>
+<tr class="memdesc:ga294da6b92e68d21298779e4e78597f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sleep until a thread exits.  <br /></td></tr>
+<tr class="separator:ga294da6b92e68d21298779e4e78597f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa80b528751c674593556e02c72b9dd79" id="r_gaa80b528751c674593556e02c72b9dd79"><td class="memItemLeft" align="right" valign="top">__syscall int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gaa80b528751c674593556e02c72b9dd79">k_sleep</a> (<a class="el" href="structk__timeout__t.html">k_timeout_t</a> timeout)</td></tr>
+<tr class="memdesc:gaa80b528751c674593556e02c72b9dd79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Put the current thread to sleep.  <br /></td></tr>
+<tr class="separator:gaa80b528751c674593556e02c72b9dd79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7eac727537ca06786b809ff8046245f7" id="r_ga7eac727537ca06786b809ff8046245f7"><td class="memItemLeft" align="right" valign="top">__syscall int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga7eac727537ca06786b809ff8046245f7">k_usleep</a> (int32_t us)</td></tr>
+<tr class="memdesc:ga7eac727537ca06786b809ff8046245f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Put the current thread to sleep with microsecond resolution.  <br /></td></tr>
+<tr class="separator:ga7eac727537ca06786b809ff8046245f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8cfda8410f945ff33e4c04e79c29732d" id="r_ga8cfda8410f945ff33e4c04e79c29732d"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga8cfda8410f945ff33e4c04e79c29732d">k_busy_wait</a> (uint32_t usec_to_wait)</td></tr>
+<tr class="memdesc:ga8cfda8410f945ff33e4c04e79c29732d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cause the current thread to busy wait.  <br /></td></tr>
+<tr class="separator:ga8cfda8410f945ff33e4c04e79c29732d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga366b9daa0be65b0a69dbc9f146064b68" id="r_ga366b9daa0be65b0a69dbc9f146064b68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga366b9daa0be65b0a69dbc9f146064b68">k_can_yield</a> (void)</td></tr>
+<tr class="memdesc:ga366b9daa0be65b0a69dbc9f146064b68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether it is possible to yield in the current context.  <br /></td></tr>
+<tr class="separator:ga366b9daa0be65b0a69dbc9f146064b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga607c598f1317df65081464ff312376c0" id="r_ga607c598f1317df65081464ff312376c0"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga607c598f1317df65081464ff312376c0">k_yield</a> (void)</td></tr>
+<tr class="memdesc:ga607c598f1317df65081464ff312376c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Yield the current thread.  <br /></td></tr>
+<tr class="separator:ga607c598f1317df65081464ff312376c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3dbd77310f7ec4831c24f35ec8e305ac" id="r_ga3dbd77310f7ec4831c24f35ec8e305ac"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga3dbd77310f7ec4831c24f35ec8e305ac">k_wakeup</a> (<a class="el" href="structk__thread.html">k_tid_t</a> thread)</td></tr>
+<tr class="memdesc:ga3dbd77310f7ec4831c24f35ec8e305ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wake up a sleeping thread.  <br /></td></tr>
+<tr class="separator:ga3dbd77310f7ec4831c24f35ec8e305ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga591c734a8bfe0e6b6d3b1b2f1dad1458" id="r_ga591c734a8bfe0e6b6d3b1b2f1dad1458"><td class="memItemLeft" align="right" valign="top">__attribute_const__ __syscall <a class="el" href="structk__thread.html">k_tid_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga591c734a8bfe0e6b6d3b1b2f1dad1458">k_sched_current_thread_query</a> (void)</td></tr>
+<tr class="memdesc:ga591c734a8bfe0e6b6d3b1b2f1dad1458"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query thread ID of the current thread.  <br /></td></tr>
+<tr class="separator:ga591c734a8bfe0e6b6d3b1b2f1dad1458"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae38134f68e8c65adf30011e57b5d97ec" id="r_gae38134f68e8c65adf30011e57b5d97ec"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gae38134f68e8c65adf30011e57b5d97ec">k_thread_abort</a> (<a class="el" href="structk__thread.html">k_tid_t</a> thread)</td></tr>
+<tr class="memdesc:gae38134f68e8c65adf30011e57b5d97ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abort a thread.  <br /></td></tr>
+<tr class="separator:gae38134f68e8c65adf30011e57b5d97ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1b5352366681de1ff3d84630fd172803" id="r_ga1b5352366681de1ff3d84630fd172803"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga1b5352366681de1ff3d84630fd172803">k_thread_start</a> (<a class="el" href="structk__thread.html">k_tid_t</a> thread)</td></tr>
+<tr class="memdesc:ga1b5352366681de1ff3d84630fd172803"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start an inactive thread.  <br /></td></tr>
+<tr class="separator:ga1b5352366681de1ff3d84630fd172803"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9d6a8c656379d24dfc22bd5ddbb45cbf" id="r_ga9d6a8c656379d24dfc22bd5ddbb45cbf"><td class="memItemLeft" align="right" valign="top"><a id="ga9d6a8c656379d24dfc22bd5ddbb45cbf" name="ga9d6a8c656379d24dfc22bd5ddbb45cbf"></a>
+<a class="el" href="group__clock__apis.html#ga9832cb0adc2d1866420e5c370a0863e2">k_ticks_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>z_timeout_expires</b> (const struct <a class="el" href="struct__timeout.html">_timeout</a> *timeout)</td></tr>
+<tr class="separator:ga9d6a8c656379d24dfc22bd5ddbb45cbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3bedcd36a70c88d8d2819b5516cd90a0" id="r_ga3bedcd36a70c88d8d2819b5516cd90a0"><td class="memItemLeft" align="right" valign="top"><a id="ga3bedcd36a70c88d8d2819b5516cd90a0" name="ga3bedcd36a70c88d8d2819b5516cd90a0"></a>
+<a class="el" href="group__clock__apis.html#ga9832cb0adc2d1866420e5c370a0863e2">k_ticks_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>z_timeout_remaining</b> (const struct <a class="el" href="struct__timeout.html">_timeout</a> *timeout)</td></tr>
+<tr class="separator:ga3bedcd36a70c88d8d2819b5516cd90a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga152c728774e37824c4548ea04ebe8dbd" id="r_ga152c728774e37824c4548ea04ebe8dbd"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga152c728774e37824c4548ea04ebe8dbd">k_thread_priority_get</a> (<a class="el" href="structk__thread.html">k_tid_t</a> thread)</td></tr>
+<tr class="memdesc:ga152c728774e37824c4548ea04ebe8dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a thread's priority.  <br /></td></tr>
+<tr class="separator:ga152c728774e37824c4548ea04ebe8dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7f9901ebee3d98dfe64c1020ab7c72d6" id="r_ga7f9901ebee3d98dfe64c1020ab7c72d6"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga7f9901ebee3d98dfe64c1020ab7c72d6">k_thread_priority_set</a> (<a class="el" href="structk__thread.html">k_tid_t</a> thread, int prio)</td></tr>
+<tr class="memdesc:ga7f9901ebee3d98dfe64c1020ab7c72d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a thread's priority.  <br /></td></tr>
+<tr class="separator:ga7f9901ebee3d98dfe64c1020ab7c72d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf87e5e82ac7da597f8ca92bf21e5dc1a" id="r_gaf87e5e82ac7da597f8ca92bf21e5dc1a"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gaf87e5e82ac7da597f8ca92bf21e5dc1a">k_thread_suspend</a> (<a class="el" href="structk__thread.html">k_tid_t</a> thread)</td></tr>
+<tr class="memdesc:gaf87e5e82ac7da597f8ca92bf21e5dc1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Suspend a thread.  <br /></td></tr>
+<tr class="separator:gaf87e5e82ac7da597f8ca92bf21e5dc1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad65bdc6df98a6c17863e1e443c93e162" id="r_gad65bdc6df98a6c17863e1e443c93e162"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gad65bdc6df98a6c17863e1e443c93e162">k_thread_resume</a> (<a class="el" href="structk__thread.html">k_tid_t</a> thread)</td></tr>
+<tr class="memdesc:gad65bdc6df98a6c17863e1e443c93e162"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resume a suspended thread.  <br /></td></tr>
+<tr class="separator:gad65bdc6df98a6c17863e1e443c93e162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga877c1bfeffbf8f097d1656f9e10a66e8" id="r_ga877c1bfeffbf8f097d1656f9e10a66e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga877c1bfeffbf8f097d1656f9e10a66e8">k_sched_time_slice_set</a> (int32_t slice, int prio)</td></tr>
+<tr class="memdesc:ga877c1bfeffbf8f097d1656f9e10a66e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set time-slicing period and scope.  <br /></td></tr>
+<tr class="separator:ga877c1bfeffbf8f097d1656f9e10a66e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga563928f292a4134acd4142029b60e631" id="r_ga563928f292a4134acd4142029b60e631"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga563928f292a4134acd4142029b60e631">k_thread_time_slice_set</a> (struct <a class="el" href="structk__thread.html">k_thread</a> *th, int32_t slice_ticks, k_thread_timeslice_fn_t expired, void *data)</td></tr>
+<tr class="memdesc:ga563928f292a4134acd4142029b60e631"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set thread time slice.  <br /></td></tr>
+<tr class="separator:ga563928f292a4134acd4142029b60e631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4f0c5d0b9f279b12a4ad97db0c116a5f" id="r_ga4f0c5d0b9f279b12a4ad97db0c116a5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga4f0c5d0b9f279b12a4ad97db0c116a5f">k_sched_lock</a> (void)</td></tr>
+<tr class="memdesc:ga4f0c5d0b9f279b12a4ad97db0c116a5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock the scheduler.  <br /></td></tr>
+<tr class="separator:ga4f0c5d0b9f279b12a4ad97db0c116a5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7b26f64523cc4c36522cc828ccf85580" id="r_ga7b26f64523cc4c36522cc828ccf85580"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga7b26f64523cc4c36522cc828ccf85580">k_sched_unlock</a> (void)</td></tr>
+<tr class="memdesc:ga7b26f64523cc4c36522cc828ccf85580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlock the scheduler.  <br /></td></tr>
+<tr class="separator:ga7b26f64523cc4c36522cc828ccf85580"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafeb9c34627c337c7cca3e7ebf42918ac" id="r_gafeb9c34627c337c7cca3e7ebf42918ac"><td class="memItemLeft" align="right" valign="top">__syscall void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gafeb9c34627c337c7cca3e7ebf42918ac">k_thread_custom_data_set</a> (void *value)</td></tr>
+<tr class="memdesc:gafeb9c34627c337c7cca3e7ebf42918ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current thread's custom data.  <br /></td></tr>
+<tr class="separator:gafeb9c34627c337c7cca3e7ebf42918ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7a8f353a418582d05625e7e510cfe17d" id="r_ga7a8f353a418582d05625e7e510cfe17d"><td class="memItemLeft" align="right" valign="top">__syscall void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga7a8f353a418582d05625e7e510cfe17d">k_thread_custom_data_get</a> (void)</td></tr>
+<tr class="memdesc:ga7a8f353a418582d05625e7e510cfe17d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current thread's custom data.  <br /></td></tr>
+<tr class="separator:ga7a8f353a418582d05625e7e510cfe17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga11e4b3a1a58ec387b1037f2fba01c3c5" id="r_ga11e4b3a1a58ec387b1037f2fba01c3c5"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga11e4b3a1a58ec387b1037f2fba01c3c5">k_thread_name_set</a> (<a class="el" href="structk__thread.html">k_tid_t</a> thread, const char *str)</td></tr>
+<tr class="memdesc:ga11e4b3a1a58ec387b1037f2fba01c3c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current thread name.  <br /></td></tr>
+<tr class="separator:ga11e4b3a1a58ec387b1037f2fba01c3c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadebf45da56dee393164569742459dc0a" id="r_gadebf45da56dee393164569742459dc0a"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gadebf45da56dee393164569742459dc0a">k_thread_name_get</a> (<a class="el" href="structk__thread.html">k_tid_t</a> thread)</td></tr>
+<tr class="memdesc:gadebf45da56dee393164569742459dc0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get thread name.  <br /></td></tr>
+<tr class="separator:gadebf45da56dee393164569742459dc0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac6064361410c33e3f40706ba60741534" id="r_gac6064361410c33e3f40706ba60741534"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#gac6064361410c33e3f40706ba60741534">k_thread_name_copy</a> (<a class="el" href="structk__thread.html">k_tid_t</a> thread, char *buf, size_t size)</td></tr>
+<tr class="memdesc:gac6064361410c33e3f40706ba60741534"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy the thread name into a supplied buffer.  <br /></td></tr>
+<tr class="separator:gac6064361410c33e3f40706ba60741534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0c6af32096dc7ca391ffe2522bae4cb6" id="r_ga0c6af32096dc7ca391ffe2522bae4cb6"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__thread__apis.html#ga0c6af32096dc7ca391ffe2522bae4cb6">k_thread_state_str</a> (<a class="el" href="structk__thread.html">k_tid_t</a> thread_id, char *buf, size_t buf_size)</td></tr>
+<tr class="memdesc:ga0c6af32096dc7ca391ffe2522bae4cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get thread state string.  <br /></td></tr>
+<tr class="separator:ga0c6af32096dc7ca391ffe2522bae4cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<h2 class="groupheader">Documentação das macros</h2>
+<a id="gacbdb579370978fe07e4a863a84bd8bee" name="gacbdb579370978fe07e4a863a84bd8bee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacbdb579370978fe07e4a863a84bd8bee">&#9670;&#160;</a></span>K_CALLBACK_STATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define K_CALLBACK_STATE&#160;&#160;&#160;(<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(4))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback item state. </p>
+<p>This is a single bit of state reserved for "callback manager" utilities (p4wq initially) who need to track operations invoked from within a user-provided callback they have been invoked. Effectively it serves as a tiny bit of zero-overhead TLS data. </p>
+
+</div>
+</div>
+<a id="gaa1788a413a055745d1de71b4da7c2eb2" name="gaa1788a413a055745d1de71b4da7c2eb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa1788a413a055745d1de71b4da7c2eb2">&#9670;&#160;</a></span>K_INHERIT_PERMS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define K_INHERIT_PERMS&#160;&#160;&#160;(<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(3))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inherit Permissions. </p>
+<p>Indicates that the thread being created should inherit all kernel object permissions from the thread that created it. No effect if @kconfig{CONFIG_USERSPACE} is not enabled. </p>
+
+</div>
+</div>
+<a id="gae25853424ec969f8431862c46b3ec294" name="gae25853424ec969f8431862c46b3ec294"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae25853424ec969f8431862c46b3ec294">&#9670;&#160;</a></span>K_KERNEL_THREAD_DEFINE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define K_KERNEL_THREAD_DEFINE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">stack_size, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">entry, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">p1, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">p2, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">p3, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">prio, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">options, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">delay&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">    <a class="code hl_define" href="group__thread__stack__api.html#ga9e05e3cb5aa5b72d6f19e2f327313271">K_KERNEL_STACK_DEFINE</a>(_k_thread_stack_##name, stack_size);  \</div>
+<div class="line">    Z_THREAD_COMMON_DEFINE(name, stack_size, entry, p1, p2, p3, \</div>
+<div class="line">                   prio, options, delay)</div>
+<div class="ttc" id="agroup__thread__stack__api_html_ga9e05e3cb5aa5b72d6f19e2f327313271"><div class="ttname"><a href="group__thread__stack__api.html#ga9e05e3cb5aa5b72d6f19e2f327313271">K_KERNEL_STACK_DEFINE</a></div><div class="ttdeci">#define K_KERNEL_STACK_DEFINE(sym, size)</div><div class="ttdoc">Define a toplevel kernel stack memory region.</div><div class="ttdef"><b>Definição</b> thread_stack.h:214</div></div>
+</div><!-- fragment -->
+<p>Statically define and initialize a thread intended to run only in kernel mode. </p>
+<p>The thread may be scheduled for immediate execution or a delayed start.</p>
+<p>Thread options are architecture-specific, and can include K_ESSENTIAL, K_FP_REGS, and K_SSE_REGS. Multiple options may be specified by separating them using "|" (the logical OR operator).</p>
+<p>The ID of the thread can be accessed using:</p>
+<div class="fragment"><div class="line"><span class="keyword">extern</span> <span class="keyword">const</span> k_tid_t &lt;name&gt;; </div>
+</div><!-- fragment --><dl class="section note"><dt>Nota</dt><dd>Threads defined by this can only run in kernel mode, and cannot be transformed into user thread via <a class="el" href="group__thread__apis.html#ga3fbe1c8a5f3ef1c25382c7d6fca35764" title="Drop a thread&#39;s privileges permanently to user mode.">k_thread_user_mode_enter()</a>.</dd></dl>
+<dl class="section warning"><dt>Aviso</dt><dd>Depending on the architecture, the stack size (<code>stack_size</code>) may need to be multiples of CONFIG_MMU_PAGE_SIZE (if MMU) or in power-of-two size (if MPU).</dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of the thread. </td></tr>
+    <tr><td class="paramname">stack_size</td><td>Stack size in bytes. </td></tr>
+    <tr><td class="paramname">entry</td><td>Thread entry function. </td></tr>
+    <tr><td class="paramname">p1</td><td>1st entry point parameter. </td></tr>
+    <tr><td class="paramname">p2</td><td>2nd entry point parameter. </td></tr>
+    <tr><td class="paramname">p3</td><td>3rd entry point parameter. </td></tr>
+    <tr><td class="paramname">prio</td><td>Thread priority. </td></tr>
+    <tr><td class="paramname">options</td><td>Thread options. </td></tr>
+    <tr><td class="paramname">delay</td><td>Scheduling delay (in milliseconds), zero for no delay. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gafec540511e6d2e0a074a5bfb515c53b0" name="gafec540511e6d2e0a074a5bfb515c53b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafec540511e6d2e0a074a5bfb515c53b0">&#9670;&#160;</a></span>k_thread_access_grant</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define k_thread_access_grant</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">thread, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;	<a class="el" href="group__sys-util.html#ga1a2b2aa21d7cc37f33e6a62abd2ae340">FOR_EACH_FIXED_ARG</a>(k_object_access_grant, (;), thread, __VA_ARGS__)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Grant a thread access to a set of kernel objects. </p>
+<p>This is a convenience function. For the provided thread, grant access to the remaining arguments, which must be pointers to kernel objects.</p>
+<p>The thread object must be initialized (i.e. running). The objects don't need to be. Note that NULL shouldn't be passed as an argument.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>Thread to grant access to objects </td></tr>
+    <tr><td class="paramname">...</td><td>list of kernel object pointers </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gab3ced58648ca35788a40676e8478ecd2" name="gab3ced58648ca35788a40676e8478ecd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab3ced58648ca35788a40676e8478ecd2">&#9670;&#160;</a></span>K_THREAD_DEFINE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define K_THREAD_DEFINE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">stack_size, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">entry, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">p1, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">p2, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">p3, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">prio, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">options, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">delay&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">    K_THREAD_STACK_DEFINE(_k_thread_stack_##name, stack_size);   \</div>
+<div class="line">    Z_THREAD_COMMON_DEFINE(name, stack_size, entry, p1, p2, p3,  \</div>
+<div class="line">                   prio, options, delay)</div>
+</div><!-- fragment -->
+<p>Statically define and initialize a thread. </p>
+<p>The thread may be scheduled for immediate execution or a delayed start.</p>
+<p>Thread options are architecture-specific, and can include K_ESSENTIAL, K_FP_REGS, and K_SSE_REGS. Multiple options may be specified by separating them using "|" (the logical OR operator).</p>
+<p>The ID of the thread can be accessed using:</p>
+<div class="fragment"><div class="line"><span class="keyword">extern</span> <span class="keyword">const</span> k_tid_t &lt;name&gt;; </div>
+</div><!-- fragment --><dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of the thread. </td></tr>
+    <tr><td class="paramname">stack_size</td><td>Stack size in bytes. </td></tr>
+    <tr><td class="paramname">entry</td><td>Thread entry function. </td></tr>
+    <tr><td class="paramname">p1</td><td>1st entry point parameter. </td></tr>
+    <tr><td class="paramname">p2</td><td>2nd entry point parameter. </td></tr>
+    <tr><td class="paramname">p3</td><td>3rd entry point parameter. </td></tr>
+    <tr><td class="paramname">prio</td><td>Thread priority. </td></tr>
+    <tr><td class="paramname">options</td><td>Thread options. </td></tr>
+    <tr><td class="paramname">delay</td><td>Scheduling delay (in milliseconds), zero for no delay.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>Static threads with zero delay should not normally have MetaIRQ priority levels. This can preempt the system initialization handling (depending on the priority of the main thread) and cause surprising ordering side effects. It will not affect anything in the OS per se, but consider it bad practice. Use a <a class="el" href="group__sys__init.html#gaf507cc0613add8113c41896bd631254f" title="Register an initialization function.">SYS_INIT()</a> callback if you need to run code before entrance to the application main(). </dd></dl>
+
+</div>
+</div>
+<a id="gacb5340339892f22301e02697c6039ccc" name="gacb5340339892f22301e02697c6039ccc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacb5340339892f22301e02697c6039ccc">&#9670;&#160;</a></span>K_USER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define K_USER&#160;&#160;&#160;(<a class="el" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(2))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>user mode thread </p>
+<p>This thread has dropped from supervisor mode to user mode and consequently has additional restrictions </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação das funções</h2>
+<a id="ga8cfda8410f945ff33e4c04e79c29732d" name="ga8cfda8410f945ff33e4c04e79c29732d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8cfda8410f945ff33e4c04e79c29732d">&#9670;&#160;</a></span>k_busy_wait()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void k_busy_wait </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>usec_to_wait</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cause the current thread to busy wait. </p>
+<p>This routine causes the current thread to execute a "do nothing" loop for <em>usec_to_wait</em> microseconds.</p>
+<dl class="section note"><dt>Nota</dt><dd>The clock used for the microsecond-resolution delay here may be skewed relative to the clock used for system timeouts like k_sleep(). For example k_busy_wait(1000) may take slightly more or less time than k_sleep(K_MSEC(1)), with the offset dependent on clock tolerances.</dd>
+<dd>
+In case when @kconfig{CONFIG_SYSTEM_CLOCK_SLOPPY_IDLE} and @kconfig{CONFIG_PM} options are enabled, this function may not work. The timer/clock used for delay processing may be disabled/inactive. </dd></dl>
+
+</div>
+</div>
+<a id="ga366b9daa0be65b0a69dbc9f146064b68" name="ga366b9daa0be65b0a69dbc9f146064b68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga366b9daa0be65b0a69dbc9f146064b68">&#9670;&#160;</a></span>k_can_yield()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool k_can_yield </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check whether it is possible to yield in the current context. </p>
+<p>This routine checks whether the kernel is in a state where it is possible to yield or call blocking API's. It should be used by code that needs to yield to perform correctly, but can feasibly be called from contexts where that is not possible. For example in the PRE_KERNEL initialization step, or when being run from the idle thread.</p>
+<dl class="section return"><dt>Retorna</dt><dd>True if it is possible to yield in the current context, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ga591c734a8bfe0e6b6d3b1b2f1dad1458" name="ga591c734a8bfe0e6b6d3b1b2f1dad1458"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga591c734a8bfe0e6b6d3b1b2f1dad1458">&#9670;&#160;</a></span>k_sched_current_thread_query()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__attribute_const__ __syscall <a class="el" href="structk__thread.html">k_tid_t</a> k_sched_current_thread_query </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Query thread ID of the current thread. </p>
+<p>This unconditionally queries the kernel via a system call.</p>
+<dl class="section note"><dt>Nota</dt><dd>Use k_current_get() unless absolutely sure this is necessary. This should only be used directly where the thread local variable cannot be used or may contain invalid values if thread local storage (TLS) is enabled. If TLS is not enabled, this is the same as k_current_get().</dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>ID of current thread. </dd></dl>
+
+</div>
+</div>
+<a id="ga4f0c5d0b9f279b12a4ad97db0c116a5f" name="ga4f0c5d0b9f279b12a4ad97db0c116a5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4f0c5d0b9f279b12a4ad97db0c116a5f">&#9670;&#160;</a></span>k_sched_lock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void k_sched_lock </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lock the scheduler. </p>
+<p>This routine prevents the current thread from being preempted by another thread by instructing the scheduler to treat it as a cooperative thread. If the thread subsequently performs an operation that makes it unready, it will be context switched out in the normal manner. When the thread again becomes the current thread, its non-preemptible status is maintained.</p>
+<p>This routine can be called recursively.</p>
+<p>Owing to clever implementation details, scheduler locks are extremely fast for non-userspace threads (just one byte inc/decrement in the thread struct).</p>
+<dl class="section note"><dt>Nota</dt><dd>This works by elevating the thread priority temporarily to a cooperative priority, allowing cheap synchronization vs. other preemptible or cooperative threads running on the current CPU. It does not prevent preemption or asynchrony of other types. It does not prevent threads from running on other CPUs when CONFIG_SMP=y. It does not prevent interrupts from happening, nor does it prevent threads with MetaIRQ priorities from preempting the current thread. In general this is a historical API not well-suited to modern applications, use with care. </dd></dl>
+
+</div>
+</div>
+<a id="ga877c1bfeffbf8f097d1656f9e10a66e8" name="ga877c1bfeffbf8f097d1656f9e10a66e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga877c1bfeffbf8f097d1656f9e10a66e8">&#9670;&#160;</a></span>k_sched_time_slice_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void k_sched_time_slice_set </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>slice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>prio</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set time-slicing period and scope. </p>
+<p>This routine specifies how the scheduler will perform time slicing of preemptible threads.</p>
+<p>To enable time slicing, <em>slice</em> must be non-zero. The scheduler ensures that no thread runs for more than the specified time limit before other threads of that priority are given a chance to execute. Any thread whose priority is higher than <em>prio</em> is exempted, and may execute as long as desired without being preempted due to time slicing.</p>
+<p>Time slicing only limits the maximum amount of time a thread may continuously execute. Once the scheduler selects a thread for execution, there is no minimum guaranteed time the thread will execute before threads of greater or equal priority are scheduled.</p>
+<p>When the current thread is the only one of that priority eligible for execution, this routine has no effect; the thread is immediately rescheduled after the slice period expires.</p>
+<p>To disable timeslicing, set both <em>slice</em> and <em>prio</em> to zero.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">slice</td><td>Maximum time slice length (in milliseconds). </td></tr>
+    <tr><td class="paramname">prio</td><td>Highest thread priority level eligible for time slicing. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga7b26f64523cc4c36522cc828ccf85580" name="ga7b26f64523cc4c36522cc828ccf85580"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7b26f64523cc4c36522cc828ccf85580">&#9670;&#160;</a></span>k_sched_unlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void k_sched_unlock </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unlock the scheduler. </p>
+<p>This routine reverses the effect of a previous call to <a class="el" href="group__thread__apis.html#ga4f0c5d0b9f279b12a4ad97db0c116a5f" title="Lock the scheduler.">k_sched_lock()</a>. A thread must call the routine once for each time it called <a class="el" href="group__thread__apis.html#ga4f0c5d0b9f279b12a4ad97db0c116a5f" title="Lock the scheduler.">k_sched_lock()</a> before the thread becomes preemptible. </p>
+
+</div>
+</div>
+<a id="gaa80b528751c674593556e02c72b9dd79" name="gaa80b528751c674593556e02c72b9dd79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa80b528751c674593556e02c72b9dd79">&#9670;&#160;</a></span>k_sleep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int32_t k_sleep </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structk__timeout__t.html">k_timeout_t</a>&#160;</td>
+          <td class="paramname"><em>timeout</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Put the current thread to sleep. </p>
+<p>This routine puts the current thread to sleep for <em>duration</em>, specified as a <a class="el" href="structk__timeout__t.html" title="Kernel timeout type.">k_timeout_t</a> object.</p>
+<dl class="section note"><dt>Nota</dt><dd>if <em>timeout</em> is set to K_FOREVER then the thread is suspended.</dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">timeout</td><td>Desired duration of sleep.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Zero if the requested time has elapsed or the number of milliseconds left to sleep, if thread was woken up by k_wakeup call. </dd></dl>
+
+</div>
+</div>
+<a id="gae38134f68e8c65adf30011e57b5d97ec" name="gae38134f68e8c65adf30011e57b5d97ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae38134f68e8c65adf30011e57b5d97ec">&#9670;&#160;</a></span>k_thread_abort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void k_thread_abort </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structk__thread.html">k_tid_t</a>&#160;</td>
+          <td class="paramname"><em>thread</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Abort a thread. </p>
+<p>This routine permanently stops execution of <em>thread</em>. The thread is taken off all kernel queues it is part of (i.e. the ready queue, the timeout queue, or a kernel object wait queue). However, any kernel resources the thread might currently own (such as mutexes or memory blocks) are not released. It is the responsibility of the caller of this routine to ensure all necessary cleanup is performed.</p>
+<p>After k_thread_abort() returns, the thread is guaranteed not to be running or to become runnable anywhere on the system. Normally this is done via blocking the caller (in the same manner as k_thread_join()), but in interrupt context on SMP systems the implementation is required to spin for threads that are running on other CPUs.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>ID of thread to abort. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gab40cdc82a7074f97304f75698aa5bd90" name="gab40cdc82a7074f97304f75698aa5bd90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab40cdc82a7074f97304f75698aa5bd90">&#9670;&#160;</a></span>k_thread_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall <a class="el" href="structk__thread.html">k_tid_t</a> k_thread_create </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__thread.html">k_thread</a> *&#160;</td>
+          <td class="paramname"><em>new_thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structz__thread__stack__element.html">k_thread_stack_t</a> *&#160;</td>
+          <td class="paramname"><em>stack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>stack_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">k_thread_entry_t&#160;</td>
+          <td class="paramname"><em>entry</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>p2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>p3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>prio</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>options</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structk__timeout__t.html">k_timeout_t</a>&#160;</td>
+          <td class="paramname"><em>delay</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a thread. </p>
+<p>This routine initializes a thread, then schedules it for execution.</p>
+<p>The new thread may be scheduled for immediate execution or a delayed start. If the newly spawned thread does not have a delayed start the kernel scheduler may preempt the current thread to allow the new thread to execute.</p>
+<p>Thread options are architecture-specific, and can include K_ESSENTIAL, K_FP_REGS, and K_SSE_REGS. Multiple options may be specified by separating them using "|" (the logical OR operator).</p>
+<p>Stack objects passed to this function must be originally defined with either of these macros in order to be portable:</p>
+<ul>
+<li>K_THREAD_STACK_DEFINE() - For stacks that may support either user or supervisor threads.</li>
+<li><a class="el" href="group__thread__stack__api.html#ga9e05e3cb5aa5b72d6f19e2f327313271" title="Define a toplevel kernel stack memory region.">K_KERNEL_STACK_DEFINE()</a> - For stacks that may support supervisor threads only. These stacks use less memory if CONFIG_USERSPACE is enabled.</li>
+</ul>
+<p>The stack_size parameter has constraints. It must either be:</p>
+<ul>
+<li>The original size value passed to K_THREAD_STACK_DEFINE() or <a class="el" href="group__thread__stack__api.html#ga9e05e3cb5aa5b72d6f19e2f327313271" title="Define a toplevel kernel stack memory region.">K_KERNEL_STACK_DEFINE()</a></li>
+<li>The return value of K_THREAD_STACK_SIZEOF(stack) if the stack was defined with K_THREAD_STACK_DEFINE()</li>
+<li>The return value of K_KERNEL_STACK_SIZEOF(stack) if the stack was defined with <a class="el" href="group__thread__stack__api.html#ga9e05e3cb5aa5b72d6f19e2f327313271" title="Define a toplevel kernel stack memory region.">K_KERNEL_STACK_DEFINE()</a>.</li>
+</ul>
+<p>Using other values, or sizeof(stack) may produce undefined behavior.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_thread</td><td>Pointer to uninitialized struct <a class="el" href="structk__thread.html">k_thread</a> </td></tr>
+    <tr><td class="paramname">stack</td><td>Pointer to the stack space. </td></tr>
+    <tr><td class="paramname">stack_size</td><td>Stack size in bytes. </td></tr>
+    <tr><td class="paramname">entry</td><td>Thread entry function. </td></tr>
+    <tr><td class="paramname">p1</td><td>1st entry point parameter. </td></tr>
+    <tr><td class="paramname">p2</td><td>2nd entry point parameter. </td></tr>
+    <tr><td class="paramname">p3</td><td>3rd entry point parameter. </td></tr>
+    <tr><td class="paramname">prio</td><td>Thread priority. </td></tr>
+    <tr><td class="paramname">options</td><td>Thread options. </td></tr>
+    <tr><td class="paramname">delay</td><td>Scheduling delay, or K_NO_WAIT (for no delay).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>ID of new thread. </dd></dl>
+
+</div>
+</div>
+<a id="ga7a8f353a418582d05625e7e510cfe17d" name="ga7a8f353a418582d05625e7e510cfe17d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7a8f353a418582d05625e7e510cfe17d">&#9670;&#160;</a></span>k_thread_custom_data_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void * k_thread_custom_data_get </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get current thread's custom data. </p>
+<p>This routine returns the custom data for the current thread.</p>
+<dl class="section return"><dt>Retorna</dt><dd>Current custom data value. </dd></dl>
+
+</div>
+</div>
+<a id="gafeb9c34627c337c7cca3e7ebf42918ac" name="gafeb9c34627c337c7cca3e7ebf42918ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafeb9c34627c337c7cca3e7ebf42918ac">&#9670;&#160;</a></span>k_thread_custom_data_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void k_thread_custom_data_set </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set current thread's custom data. </p>
+<p>This routine sets the custom data for the current thread to @ value.</p>
+<p>Custom data is not used by the kernel itself, and is freely available for a thread to use as it sees fit. It can be used as a framework upon which to build thread-local storage.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>New custom data value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gae2596d56800769b06fc03c194a126a97" name="gae2596d56800769b06fc03c194a126a97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae2596d56800769b06fc03c194a126a97">&#9670;&#160;</a></span>k_thread_foreach()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void k_thread_foreach </td>
+          <td>(</td>
+          <td class="paramtype">k_thread_user_cb_t&#160;</td>
+          <td class="paramname"><em>user_cb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>user_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Iterate over all the threads in the system. </p>
+<p>This routine iterates over all the threads in the system and calls the user_cb function for each thread.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">user_cb</td><td>Pointer to the user callback function. </td></tr>
+    <tr><td class="paramname">user_data</td><td>Pointer to user data.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>@kconfig{CONFIG_THREAD_MONITOR} must be set for this function to be effective. </dd>
+<dd>
+This API uses k_spin_lock to protect the _kernel.threads list which means creation of new threads and terminations of existing threads are blocked until this API returns. </dd></dl>
+
+</div>
+</div>
+<a id="ga30ef8b445a6c1b4a82651674dbb737fc" name="ga30ef8b445a6c1b4a82651674dbb737fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga30ef8b445a6c1b4a82651674dbb737fc">&#9670;&#160;</a></span>k_thread_foreach_unlocked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void k_thread_foreach_unlocked </td>
+          <td>(</td>
+          <td class="paramtype">k_thread_user_cb_t&#160;</td>
+          <td class="paramname"><em>user_cb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>user_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Iterate over all the threads in the system without locking. </p>
+<p>This routine works exactly the same like <a class="el" href="group__thread__apis.html#gae2596d56800769b06fc03c194a126a97">k_thread_foreach</a> but unlocks interrupts when user_cb is executed.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">user_cb</td><td>Pointer to the user callback function. </td></tr>
+    <tr><td class="paramname">user_data</td><td>Pointer to user data.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>@kconfig{CONFIG_THREAD_MONITOR} must be set for this function to be effective. </dd>
+<dd>
+This API uses k_spin_lock only when accessing the _kernel.threads queue elements. It unlocks it during user callback function processing. If a new task is created when this <code>foreach</code> function is in progress, the added new task would not be included in the enumeration. If a task is aborted during this enumeration, there would be a race here and there is a possibility that this aborted task would be included in the enumeration. </dd>
+<dd>
+If the task is aborted and the memory occupied by its <code><a class="el" href="structk__thread.html">k_thread</a></code> structure is reused when this <code>k_thread_foreach_unlocked</code> is in progress it might even lead to the system behave unstable. This function may never return, as it would follow some <code>next</code> task pointers treating given pointer as a pointer to the <a class="el" href="structk__thread.html">k_thread</a> structure while it is something different right now. Do not reuse the memory that was occupied by <a class="el" href="structk__thread.html">k_thread</a> structure of aborted task if it was aborted after this function was called in any context. </dd></dl>
+
+</div>
+</div>
+<a id="ga294da6b92e68d21298779e4e78597f56" name="ga294da6b92e68d21298779e4e78597f56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga294da6b92e68d21298779e4e78597f56">&#9670;&#160;</a></span>k_thread_join()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int k_thread_join </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__thread.html">k_thread</a> *&#160;</td>
+          <td class="paramname"><em>thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structk__timeout__t.html">k_timeout_t</a>&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sleep until a thread exits. </p>
+<p>The caller will be put to sleep until the target thread exits, either due to being aborted, self-exiting, or taking a fatal error. This API returns immediately if the thread isn't running.</p>
+<p>This API may only be called from ISRs with a K_NO_WAIT timeout, where it can be useful as a predicate to detect when a thread has aborted.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>Thread to wait to exit </td></tr>
+    <tr><td class="paramname">timeout</td><td>upper bound time to wait for the thread to exit. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>success, target thread has exited or wasn't running </td></tr>
+    <tr><td class="paramname">-EBUSY</td><td>returned without waiting </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>waiting period timed out </td></tr>
+    <tr><td class="paramname">-EDEADLK</td><td>target thread is joining on the caller, or target thread is the caller </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gac6064361410c33e3f40706ba60741534" name="gac6064361410c33e3f40706ba60741534"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac6064361410c33e3f40706ba60741534">&#9670;&#160;</a></span>k_thread_name_copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int k_thread_name_copy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structk__thread.html">k_tid_t</a>&#160;</td>
+          <td class="paramname"><em>thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy the thread name into a supplied buffer. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>Thread to obtain name information </td></tr>
+    <tr><td class="paramname">buf</td><td>Destination buffer </td></tr>
+    <tr><td class="paramname">size</td><td>Destination buffer size </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">-ENOSPC</td><td>Destination buffer too small </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>Memory access error </td></tr>
+    <tr><td class="paramname">-ENOSYS</td><td>Thread name feature not enabled </td></tr>
+    <tr><td class="paramname">0</td><td>Success </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gadebf45da56dee393164569742459dc0a" name="gadebf45da56dee393164569742459dc0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadebf45da56dee393164569742459dc0a">&#9670;&#160;</a></span>k_thread_name_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * k_thread_name_get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structk__thread.html">k_tid_t</a>&#160;</td>
+          <td class="paramname"><em>thread</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get thread name. </p>
+<p>Get the name of a thread</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>Thread ID </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">Thread</td><td>name, or NULL if configuration not enabled </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga11e4b3a1a58ec387b1037f2fba01c3c5" name="ga11e4b3a1a58ec387b1037f2fba01c3c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga11e4b3a1a58ec387b1037f2fba01c3c5">&#9670;&#160;</a></span>k_thread_name_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int k_thread_name_set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structk__thread.html">k_tid_t</a>&#160;</td>
+          <td class="paramname"><em>thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set current thread name. </p>
+<p>Set the name of the thread to be used when @kconfig{CONFIG_THREAD_MONITOR} is enabled for tracing and debugging.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>Thread to set name, or NULL to set the current thread </td></tr>
+    <tr><td class="paramname">str</td><td>Name string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>Memory access error with supplied string </td></tr>
+    <tr><td class="paramname">-ENOSYS</td><td>Thread name configuration option not enabled </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>Thread name too long </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga152c728774e37824c4548ea04ebe8dbd" name="ga152c728774e37824c4548ea04ebe8dbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga152c728774e37824c4548ea04ebe8dbd">&#9670;&#160;</a></span>k_thread_priority_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int k_thread_priority_get </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structk__thread.html">k_tid_t</a>&#160;</td>
+          <td class="paramname"><em>thread</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get a thread's priority. </p>
+<p>This routine gets the priority of <em>thread</em>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>ID of thread whose priority is needed.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Priority of <em>thread</em>. </dd></dl>
+
+</div>
+</div>
+<a id="ga7f9901ebee3d98dfe64c1020ab7c72d6" name="ga7f9901ebee3d98dfe64c1020ab7c72d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7f9901ebee3d98dfe64c1020ab7c72d6">&#9670;&#160;</a></span>k_thread_priority_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void k_thread_priority_set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structk__thread.html">k_tid_t</a>&#160;</td>
+          <td class="paramname"><em>thread</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>prio</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set a thread's priority. </p>
+<p>This routine immediately changes the priority of <em>thread</em>.</p>
+<p>Rescheduling can occur immediately depending on the priority <em>thread</em> is set to:</p>
+<ul>
+<li>If its priority is raised above the priority of the caller of this function, and the caller is preemptible, <em>thread</em> will be scheduled in.</li>
+<li>If the caller operates on itself, it lowers its priority below that of other threads in the system, and the caller is preemptible, the thread of highest priority will be scheduled in.</li>
+</ul>
+<p>Priority can be assigned in the range of -CONFIG_NUM_COOP_PRIORITIES to CONFIG_NUM_PREEMPT_PRIORITIES-1, where -CONFIG_NUM_COOP_PRIORITIES is the highest priority.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>ID of thread whose priority is to be set. </td></tr>
+    <tr><td class="paramname">prio</td><td>New priority.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>Aviso</dt><dd>Changing the priority of a thread currently involved in mutex priority inheritance may result in undefined behavior. </dd></dl>
+
+</div>
+</div>
+<a id="gad65bdc6df98a6c17863e1e443c93e162" name="gad65bdc6df98a6c17863e1e443c93e162"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad65bdc6df98a6c17863e1e443c93e162">&#9670;&#160;</a></span>k_thread_resume()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void k_thread_resume </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structk__thread.html">k_tid_t</a>&#160;</td>
+          <td class="paramname"><em>thread</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resume a suspended thread. </p>
+<p>This routine allows the kernel scheduler to make <em>thread</em> the current thread, when it is next eligible for that role.</p>
+<p>If <em>thread</em> is not currently suspended, the routine has no effect.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>ID of thread to resume. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gadb7cbdb2fee7d80c726a34d49aca2d0a" name="gadb7cbdb2fee7d80c726a34d49aca2d0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadb7cbdb2fee7d80c726a34d49aca2d0a">&#9670;&#160;</a></span>k_thread_stack_alloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall <a class="el" href="structz__thread__stack__element.html">k_thread_stack_t</a> * k_thread_stack_alloc </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dynamically allocate a thread stack. </p>
+<p>Relevant stack creation flags include:</p><ul>
+<li><a class="el" href="group__thread__apis.html#gacb5340339892f22301e02697c6039ccc">K_USER</a> allocate a userspace thread (requires <code>CONFIG_USERSPACE=y</code>)</li>
+</ul>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Stack size in bytes. </td></tr>
+    <tr><td class="paramname">flags</td><td>Stack creation flags, or 0.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">the</td><td>allocated thread stack on success. </td></tr>
+    <tr><td class="paramname">NULL</td><td>on failure.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>Veja também</dt><dd>CONFIG_DYNAMIC_THREAD </dd></dl>
+
+</div>
+</div>
+<a id="ga011f0258f27dcbbb7fadeb80fdcd4f7b" name="ga011f0258f27dcbbb7fadeb80fdcd4f7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga011f0258f27dcbbb7fadeb80fdcd4f7b">&#9670;&#160;</a></span>k_thread_stack_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int k_thread_stack_free </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structz__thread__stack__element.html">k_thread_stack_t</a> *&#160;</td>
+          <td class="paramname"><em>stack</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Free a dynamically allocated thread stack. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stack</td><td>Pointer to the thread stack.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>on success. </td></tr>
+    <tr><td class="paramname">-EBUSY</td><td>if the thread stack is in use. </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>if <code>stack</code> is invalid. </td></tr>
+    <tr><td class="paramname">-ENOSYS</td><td>if dynamic thread stack allocation is disabled</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>Veja também</dt><dd>CONFIG_DYNAMIC_THREAD </dd></dl>
+
+</div>
+</div>
+<a id="ga1b5352366681de1ff3d84630fd172803" name="ga1b5352366681de1ff3d84630fd172803"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1b5352366681de1ff3d84630fd172803">&#9670;&#160;</a></span>k_thread_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void k_thread_start </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structk__thread.html">k_tid_t</a>&#160;</td>
+          <td class="paramname"><em>thread</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start an inactive thread. </p>
+<p>If a thread was created with K_FOREVER in the delay parameter, it will not be added to the scheduling queue until this function is called on it.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>thread to start </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0c6af32096dc7ca391ffe2522bae4cb6" name="ga0c6af32096dc7ca391ffe2522bae4cb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0c6af32096dc7ca391ffe2522bae4cb6">&#9670;&#160;</a></span>k_thread_state_str()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * k_thread_state_str </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structk__thread.html">k_tid_t</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>buf_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get thread state string. </p>
+<p>This routine generates a human friendly string containing the thread's state, and copies as much of it as possible into <em>buf</em>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_id</td><td>Thread ID </td></tr>
+    <tr><td class="paramname">buf</td><td>Buffer into which to copy state strings </td></tr>
+    <tr><td class="paramname">buf_size</td><td>Size of the buffer</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">Pointer</td><td>to <em>buf</em> if data was copied, else a pointer to "". </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaf87e5e82ac7da597f8ca92bf21e5dc1a" name="gaf87e5e82ac7da597f8ca92bf21e5dc1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf87e5e82ac7da597f8ca92bf21e5dc1a">&#9670;&#160;</a></span>k_thread_suspend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void k_thread_suspend </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structk__thread.html">k_tid_t</a>&#160;</td>
+          <td class="paramname"><em>thread</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Suspend a thread. </p>
+<p>This routine prevents the kernel scheduler from making <em>thread</em> the current thread. All other internal operations on <em>thread</em> are still performed; for example, kernel objects it is waiting on are still handed to it. Note that any existing timeouts (e.g. k_sleep(), or a timeout argument to k_sem_take() et. al.) will be canceled. On resume, the thread will begin running immediately and return from the blocked call.</p>
+<p>When the target thread is active on another CPU, the caller will block until the target thread is halted (suspended or aborted). But if the caller is in an interrupt context, it will spin waiting for that target thread active on another CPU to halt.</p>
+<p>If <em>thread</em> is already suspended, the routine has no effect.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>ID of thread to suspend. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga563928f292a4134acd4142029b60e631" name="ga563928f292a4134acd4142029b60e631"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga563928f292a4134acd4142029b60e631">&#9670;&#160;</a></span>k_thread_time_slice_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void k_thread_time_slice_set </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__thread.html">k_thread</a> *&#160;</td>
+          <td class="paramname"><em>th</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>slice_ticks</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">k_thread_timeslice_fn_t&#160;</td>
+          <td class="paramname"><em>expired</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set thread time slice. </p>
+<p>As for k_sched_time_slice_set, but (when CONFIG_TIMESLICE_PER_THREAD=y) sets the timeslice for a specific thread. When non-zero, this timeslice will take precedence over the global value.</p>
+<p>When such a thread's timeslice expires, the configured callback will be called before the thread is removed/re-added to the run queue. This callback will occur in interrupt context, and the specified thread is guaranteed to have been preempted by the currently-executing ISR. Such a callback is free to, for example, modify the thread priority or slice time for future execution, suspend the thread, etc...</p>
+<dl class="section note"><dt>Nota</dt><dd>Unlike the older API, the time slice parameter here is specified in ticks, not milliseconds. Ticks have always been the internal unit, and not all platforms have integer conversions between the two.</dd>
+<dd>
+Threads with a non-zero slice time set will be timesliced always, even if they are higher priority than the maximum timeslice priority set via <a class="el" href="group__thread__apis.html#ga877c1bfeffbf8f097d1656f9e10a66e8" title="Set time-slicing period and scope.">k_sched_time_slice_set()</a>.</dd>
+<dd>
+The callback notification for slice expiration happens, as it must, while the thread is still "current", and thus it happens before any registered timeouts at this tick. This has the somewhat confusing side effect that the tick time (c.f. k_uptime_get()) does not yet reflect the expired ticks. Applications wishing to make fine-grained timing decisions within this callback should use the cycle API, or derived facilities like <a class="el" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html#a82d886a1c911b39c1b47c32200cedac6" title="Get the runtime statistics of a thread.">k_thread_runtime_stats_get()</a>.</dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">th</td><td>A valid, initialized thread </td></tr>
+    <tr><td class="paramname">slice_ticks</td><td>Maximum timeslice, in ticks </td></tr>
+    <tr><td class="paramname">expired</td><td>Callback function called on slice expiration </td></tr>
+    <tr><td class="paramname">data</td><td>Parameter for the expiration handler </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga3fbe1c8a5f3ef1c25382c7d6fca35764" name="ga3fbe1c8a5f3ef1c25382c7d6fca35764"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3fbe1c8a5f3ef1c25382c7d6fca35764">&#9670;&#160;</a></span>k_thread_user_mode_enter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FUNC_NORETURN void k_thread_user_mode_enter </td>
+          <td>(</td>
+          <td class="paramtype">k_thread_entry_t&#160;</td>
+          <td class="paramname"><em>entry</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>p2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>p3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Drop a thread's privileges permanently to user mode. </p>
+<p>This allows a supervisor thread to be re-used as a user thread. This function does not return, but control will transfer to the provided entry point as if this was a new user thread.</p>
+<p>The implementation ensures that the stack buffer contents are erased. Any thread-local storage will be reverted to a pristine state.</p>
+<p>Memory domain membership, resource pool assignment, kernel object permissions, priority, and thread options are preserved.</p>
+<p>A common use of this function is to re-use the main thread as a user thread once all supervisor mode-only tasks have been completed.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entry</td><td>Function to start executing from </td></tr>
+    <tr><td class="paramname">p1</td><td>1st entry point parameter </td></tr>
+    <tr><td class="paramname">p2</td><td>2nd entry point parameter </td></tr>
+    <tr><td class="paramname">p3</td><td>3rd entry point parameter </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga7eac727537ca06786b809ff8046245f7" name="ga7eac727537ca06786b809ff8046245f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7eac727537ca06786b809ff8046245f7">&#9670;&#160;</a></span>k_usleep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int32_t k_usleep </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>us</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Put the current thread to sleep with microsecond resolution. </p>
+<p>This function is unlikely to work as expected without kernel tuning. In particular, because the lower bound on the duration of a sleep is the duration of a tick, @kconfig{CONFIG_SYS_CLOCK_TICKS_PER_SEC} must be adjusted to achieve the resolution desired. The implications of doing this must be understood before attempting to use k_usleep(). Use with caution.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">us</td><td>Number of microseconds to sleep.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Zero if the requested time has elapsed or the number of microseconds left to sleep, if thread was woken up by k_wakeup call. </dd></dl>
+
+</div>
+</div>
+<a id="ga3dbd77310f7ec4831c24f35ec8e305ac" name="ga3dbd77310f7ec4831c24f35ec8e305ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3dbd77310f7ec4831c24f35ec8e305ac">&#9670;&#160;</a></span>k_wakeup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void k_wakeup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structk__thread.html">k_tid_t</a>&#160;</td>
+          <td class="paramname"><em>thread</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wake up a sleeping thread. </p>
+<p>This routine prematurely wakes up <em>thread</em> from sleeping.</p>
+<p>If <em>thread</em> is not currently sleeping, the routine has no effect.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread</td><td>ID of thread to wake. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga607c598f1317df65081464ff312376c0" name="ga607c598f1317df65081464ff312376c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga607c598f1317df65081464ff312376c0">&#9670;&#160;</a></span>k_yield()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall void k_yield </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Yield the current thread. </p>
+<p>This routine causes the current thread to yield execution to another thread of the same or higher priority. If there are no other ready threads of the same or higher priority, the routine returns immediately. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

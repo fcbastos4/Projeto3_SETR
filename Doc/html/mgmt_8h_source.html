@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/mgmt/mcumgr/mgmt/mgmt.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_b22e92e240e215816b4a18258fade257.html">mgmt</a></li><li class="navelem"><a class="el" href="dir_3c972a23a02ad804d76387a7cbd62510.html">mcumgr</a></li><li class="navelem"><a class="el" href="dir_d9f2a302d883f6fe1349395b11e59fb8.html">mgmt</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">mgmt.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2018-2021 mcumgr authors</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2022-2023 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef H_MGMT_MGMT_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define H_MGMT_MGMT_</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="slist_8h.html">zephyr/sys/slist.h</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="mgmt_2mcumgr_2smp_2smp_8h.html">zephyr/mgmt/mcumgr/smp/smp.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;zephyr/mgmt/mcumgr/mgmt/mgmt_defines.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="group__mcumgr__mgmt__api.html#gab864f59d05ef49f9467d8d51e4e5cceb">   37</a></span><span class="keyword">typedef</span> <span class="keywordtype">void</span> *(*mgmt_alloc_rsp_fn)(<span class="keyword">const</span> <span class="keywordtype">void</span> *src_buf, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="group__mcumgr__mgmt__api.html#ga5e2522ac4e706b475b5f07c52339fe92">   47</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__mcumgr__mgmt__api.html#ga5e2522ac4e706b475b5f07c52339fe92">mgmt_reset_buf_fn</a>)(<span class="keywordtype">void</span> *buf, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#ifdef CONFIG_MCUMGR_SMP_VERBOSE_ERR_RESPONSE</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#define MGMT_CTXT_SET_RC_RSN(mc, rsn) ((mc-&gt;rc_rsn) = (rsn))</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#define MGMT_CTXT_RC_RSN(mc) ((mc)-&gt;rc_rsn)</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#define MGMT_CTXT_SET_RC_RSN(mc, rsn)</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#define MGMT_CTXT_RC_RSN(mc) NULL</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="group__mcumgr__mgmt__api.html#gafc0c331913cb89c099cd439915561c95">   66</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__mcumgr__mgmt__api.html#gafc0c331913cb89c099cd439915561c95">mgmt_handler_fn</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structsmp__streamer.html">smp_streamer</a> *ctxt);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="};">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structmgmt__handler.html">   71</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmgmt__handler.html">mgmt_handler</a> {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <a class="code hl_typedef" href="group__mcumgr__mgmt__api.html#gafc0c331913cb89c099cd439915561c95">mgmt_handler_fn</a> mh_read;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_typedef" href="group__mcumgr__mgmt__api.html#gafc0c331913cb89c099cd439915561c95">mgmt_handler_fn</a> mh_write;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#if IS_ENABLED(CONFIG_MCUMGR_MGMT_HANDLER_USER_DATA)</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> *user_data;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="};">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structmgmt__group.html">   82</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmgmt__group.html">mgmt_group</a> {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structmgmt__group.html#ac150809b03f73c4c2f94742504af772c">   84</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> <a class="code hl_variable" href="structmgmt__group.html#ac150809b03f73c4c2f94742504af772c">node</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structmgmt__group.html#a7a6e90e500716095b9a22e3f56edac03">   87</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmgmt__handler.html">mgmt_handler</a> *<a class="code hl_variable" href="structmgmt__group.html#a7a6e90e500716095b9a22e3f56edac03">mg_handlers</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    uint16_t mg_handlers_count;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structmgmt__group.html#a9d55dbf947096eed7cacfb9087d304d4">   91</a></span>    uint16_t <a class="code hl_variable" href="structmgmt__group.html#a9d55dbf947096eed7cacfb9087d304d4">mg_group_id</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#if IS_ENABLED(CONFIG_MCUMGR_SMP_SUPPORT_ORIGINAL_PROTOCOL)</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    smp_translate_error_fn mg_translate_error;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>};</div>
+</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="group__mcumgr__mgmt__api.html#ga70379f21faacddb5cc4a66f37a576ea0">  106</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__mcumgr__mgmt__api.html#ga70379f21faacddb5cc4a66f37a576ea0">mgmt_register_group</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmgmt__group.html">mgmt_group</a> *group);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="group__mcumgr__mgmt__api.html#ga87e98bdf47d1c7798098444f69ccf8b8">  113</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__mcumgr__mgmt__api.html#ga87e98bdf47d1c7798098444f69ccf8b8">mgmt_unregister_group</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structmgmt__group.html">mgmt_group</a> *group);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="group__mcumgr__mgmt__api.html#ga620862436fad440b9d2b9d8112be4ad1">  124</a></span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmgmt__handler.html">mgmt_handler</a> *<a class="code hl_function" href="group__mcumgr__mgmt__api.html#ga620862436fad440b9d2b9d8112be4ad1">mgmt_find_handler</a>(uint16_t group_id, uint16_t command_id);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="group__mcumgr__mgmt__api.html#gae88bc30026fbff6530179a94ba8f11ae">  134</a></span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmgmt__group.html">mgmt_group</a> *<a class="code hl_function" href="group__mcumgr__mgmt__api.html#gae88bc30026fbff6530179a94ba8f11ae">mgmt_find_group</a>(uint16_t group_id);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">#if IS_ENABLED(CONFIG_MCUMGR_SMP_SUPPORT_ORIGINAL_PROTOCOL)</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>smp_translate_error_fn mgmt_find_error_translation_function(uint16_t group_id);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>}</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">#endif </span><span class="comment">/* MGMT_MGMT_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__mcumgr__mgmt__api_html_ga5e2522ac4e706b475b5f07c52339fe92"><div class="ttname"><a href="group__mcumgr__mgmt__api.html#ga5e2522ac4e706b475b5f07c52339fe92">mgmt_reset_buf_fn</a></div><div class="ttdeci">void(* mgmt_reset_buf_fn)(void *buf, void *arg)</div><div class="ttdoc">Resets a buffer to a length of 0.</div><div class="ttdef"><b>Definição</b> mgmt.h:47</div></div>
+<div class="ttc" id="agroup__mcumgr__mgmt__api_html_ga620862436fad440b9d2b9d8112be4ad1"><div class="ttname"><a href="group__mcumgr__mgmt__api.html#ga620862436fad440b9d2b9d8112be4ad1">mgmt_find_handler</a></div><div class="ttdeci">const struct mgmt_handler * mgmt_find_handler(uint16_t group_id, uint16_t command_id)</div><div class="ttdoc">Finds a registered command handler.</div></div>
+<div class="ttc" id="agroup__mcumgr__mgmt__api_html_ga70379f21faacddb5cc4a66f37a576ea0"><div class="ttname"><a href="group__mcumgr__mgmt__api.html#ga70379f21faacddb5cc4a66f37a576ea0">mgmt_register_group</a></div><div class="ttdeci">void mgmt_register_group(struct mgmt_group *group)</div><div class="ttdoc">Registers a full command group.</div></div>
+<div class="ttc" id="agroup__mcumgr__mgmt__api_html_ga87e98bdf47d1c7798098444f69ccf8b8"><div class="ttname"><a href="group__mcumgr__mgmt__api.html#ga87e98bdf47d1c7798098444f69ccf8b8">mgmt_unregister_group</a></div><div class="ttdeci">void mgmt_unregister_group(struct mgmt_group *group)</div><div class="ttdoc">Unregisters a full command group.</div></div>
+<div class="ttc" id="agroup__mcumgr__mgmt__api_html_gae88bc30026fbff6530179a94ba8f11ae"><div class="ttname"><a href="group__mcumgr__mgmt__api.html#gae88bc30026fbff6530179a94ba8f11ae">mgmt_find_group</a></div><div class="ttdeci">const struct mgmt_group * mgmt_find_group(uint16_t group_id)</div><div class="ttdoc">Finds a registered command group.</div></div>
+<div class="ttc" id="agroup__mcumgr__mgmt__api_html_gafc0c331913cb89c099cd439915561c95"><div class="ttname"><a href="group__mcumgr__mgmt__api.html#gafc0c331913cb89c099cd439915561c95">mgmt_handler_fn</a></div><div class="ttdeci">int(* mgmt_handler_fn)(struct smp_streamer *ctxt)</div><div class="ttdoc">Processes a request and writes the corresponding response.</div><div class="ttdef"><b>Definição</b> mgmt.h:66</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="amgmt_2mcumgr_2smp_2smp_8h_html"><div class="ttname"><a href="mgmt_2mcumgr_2smp_2smp_8h.html">smp.h</a></div><div class="ttdoc">SMP - Simple Management Protocol.</div></div>
+<div class="ttc" id="aslist_8h_html"><div class="ttname"><a href="slist_8h.html">slist.h</a></div></div>
+<div class="ttc" id="astructmgmt__group_html"><div class="ttname"><a href="structmgmt__group.html">mgmt_group</a></div><div class="ttdoc">A collection of handlers for an entire command group.</div><div class="ttdef"><b>Definição</b> mgmt.h:82</div></div>
+<div class="ttc" id="astructmgmt__group_html_a7a6e90e500716095b9a22e3f56edac03"><div class="ttname"><a href="structmgmt__group.html#a7a6e90e500716095b9a22e3f56edac03">mgmt_group::mg_handlers</a></div><div class="ttdeci">const struct mgmt_handler * mg_handlers</div><div class="ttdef"><b>Definição</b> mgmt.h:87</div></div>
+<div class="ttc" id="astructmgmt__group_html_a9d55dbf947096eed7cacfb9087d304d4"><div class="ttname"><a href="structmgmt__group.html#a9d55dbf947096eed7cacfb9087d304d4">mgmt_group::mg_group_id</a></div><div class="ttdeci">uint16_t mg_group_id</div><div class="ttdef"><b>Definição</b> mgmt.h:91</div></div>
+<div class="ttc" id="astructmgmt__group_html_ac150809b03f73c4c2f94742504af772c"><div class="ttname"><a href="structmgmt__group.html#ac150809b03f73c4c2f94742504af772c">mgmt_group::node</a></div><div class="ttdeci">sys_snode_t node</div><div class="ttdef"><b>Definição</b> mgmt.h:84</div></div>
+<div class="ttc" id="astructmgmt__handler_html"><div class="ttname"><a href="structmgmt__handler.html">mgmt_handler</a></div><div class="ttdoc">Read handler and write handler for a single command ID.</div><div class="ttdef"><b>Definição</b> mgmt.h:71</div></div>
+<div class="ttc" id="astructsmp__streamer_html"><div class="ttname"><a href="structsmp__streamer.html">smp_streamer</a></div><div class="ttdoc">Decodes, encodes, and transmits SMP packets.</div><div class="ttdef"><b>Definição</b> smp.h:83</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/input/input_kbd_matrix.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_d14f5483bc7ae93563e6707005e95841.html">input</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">input_kbd_matrix.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright 2023 Google LLC</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_INPUT_KBD_MATRIX_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_INPUT_KBD_MATRIX_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">zephyr/sys/util.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="sys__clock_8h.html">zephyr/sys_clock.h</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="toolchain_8h.html">zephyr/toolchain.h</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#ga2f35f23d426f93f71057a31f612a88de">   24</a></span><span class="preprocessor">#define INPUT_KBD_MATRIX_COLUMN_DRIVE_NONE -1</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#ga6d27ba5612c09d80087e854b21fb9e65">   27</a></span><span class="preprocessor">#define INPUT_KBD_MATRIX_COLUMN_DRIVE_ALL  -2</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#ga80a384d2041dcee27d7940a1e408d82a">   30</a></span><span class="preprocessor">#define INPUT_KBD_MATRIX_SCAN_OCURRENCES 30U</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structinput__kbd__matrix__api.html">   35</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structinput__kbd__matrix__api.html">input_kbd_matrix_api</a> {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structinput__kbd__matrix__api.html#af8211d738527ac44876dd07869862f20">   46</a></span>    void (*<a class="code hl_variable" href="structinput__kbd__matrix__api.html#af8211d738527ac44876dd07869862f20">drive_column</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">int</span> col);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structinput__kbd__matrix__api.html#a59d44ce04949462e7033f0e149ded86f">   52</a></span>    int (*<a class="code hl_variable" href="structinput__kbd__matrix__api.html#a59d44ce04949462e7033f0e149ded86f">read_row</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structinput__kbd__matrix__api.html#aaae2b1eb357fb4b7f1881ef496d79560">   63</a></span>    void (*<a class="code hl_variable" href="structinput__kbd__matrix__api.html#aaae2b1eb357fb4b7f1881ef496d79560">set_detect_mode</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">bool</span> enabled);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>};</div>
+</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="};">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structinput__kbd__matrix__common__config.html">   71</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structinput__kbd__matrix__common__config.html">input_kbd_matrix_common_config</a> {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structinput__kbd__matrix__api.html">input_kbd_matrix_api</a> *api;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    uint8_t row_size;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    uint8_t col_size;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    uint32_t poll_period_us;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    uint32_t poll_timeout_ms;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    uint32_t debounce_down_ms;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    uint32_t debounce_up_ms;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    uint32_t settle_time_us;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">bool</span> ghostkey_check;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">/* extra data pointers */</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    uint8_t *matrix_stable_state;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    uint8_t *matrix_unstable_state;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    uint8_t *matrix_previous_state;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    uint8_t *matrix_new_state;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    uint8_t *scan_cycle_idx;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>};</div>
+</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#define INPUT_KBD_MATRIX_DATA_NAME(node_id, name) \</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">    _CONCAT(__input_kbd_matrix_, \</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">        _CONCAT(name, DEVICE_DT_NAME_GET(node_id)))</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="foldopen" id="foldopen00098" data-start="" data-end="">
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#gac1a4389b1afeab9c48a15c024bfb0cac">   98</a></span><span class="preprocessor">#define INPUT_KBD_MATRIX_DT_DEFINE_ROW_COL(node_id, _row_size, _col_size) \</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="preprocessor">    BUILD_ASSERT(IN_RANGE(_row_size, 1, 8), &quot;invalid row-size&quot;); \</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="preprocessor">    BUILD_ASSERT(IN_RANGE(_col_size, 1, UINT8_MAX), &quot;invalid col-size&quot;); \</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">    static uint8_t INPUT_KBD_MATRIX_DATA_NAME(node_id, stable_state)[_col_size]; \</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">    static uint8_t INPUT_KBD_MATRIX_DATA_NAME(node_id, unstable_state)[_col_size]; \</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">    static uint8_t INPUT_KBD_MATRIX_DATA_NAME(node_id, previous_state)[_col_size]; \</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">    static uint8_t INPUT_KBD_MATRIX_DATA_NAME(node_id, new_state)[_col_size]; \</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">    static uint8_t INPUT_KBD_MATRIX_DATA_NAME(node_id, scan_cycle_idx)[_row_size * _col_size];</span></div>
+</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="foldopen" id="foldopen00110" data-start="" data-end="">
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#ga512bea2ca97569f465074ca8f231a0a3">  110</a></span><span class="preprocessor">#define INPUT_KBD_MATRIX_DT_DEFINE(node_id) \</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">    INPUT_KBD_MATRIX_DT_DEFINE_ROW_COL( \</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">        node_id, DT_PROP(node_id, row_size), DT_PROP(node_id, col_size))</span></div>
+</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="foldopen" id="foldopen00122" data-start="" data-end="">
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#ga1d3fe52f10c75dc4c32c8583c05fb2a2">  122</a></span><span class="preprocessor">#define INPUT_KBD_MATRIX_DT_INST_DEFINE_ROW_COL(inst, row_size, col_size) \</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="preprocessor">    INPUT_KBD_MATRIX_DT_DEFINE_ROW_COL(DT_DRV_INST(inst), row_size, col_size)</span></div>
+</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="foldopen" id="foldopen00130" data-start="" data-end="">
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#gab3ea5b7d597574b32ced16604648a6d2">  130</a></span><span class="preprocessor">#define INPUT_KBD_MATRIX_DT_INST_DEFINE(inst) \</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">    INPUT_KBD_MATRIX_DT_DEFINE(DT_DRV_INST(inst))</span></div>
+</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="foldopen" id="foldopen00141" data-start="" data-end="">
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#ga5ad9141616b4a63068bfbe8004bba67d">  141</a></span><span class="preprocessor">#define INPUT_KBD_MATRIX_DT_COMMON_CONFIG_INIT_ROW_COL(node_id, _api, _row_size, _col_size) \</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">    { \</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">        .api = _api, \</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="preprocessor">        .row_size = _row_size, \</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="preprocessor">        .col_size = _col_size, \</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">        .poll_period_us = DT_PROP(node_id, poll_period_ms) * USEC_PER_MSEC, \</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">        .poll_timeout_ms = DT_PROP(node_id, poll_timeout_ms), \</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">        .debounce_down_ms = DT_PROP(node_id, debounce_down_ms), \</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">        .debounce_up_ms = DT_PROP(node_id, debounce_up_ms), \</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">        .settle_time_us = DT_PROP(node_id, settle_time_us), \</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">        .ghostkey_check = !DT_PROP(node_id, no_ghostkey_check), \</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">        \</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">        .matrix_stable_state = INPUT_KBD_MATRIX_DATA_NAME(node_id, stable_state), \</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor">        .matrix_unstable_state = INPUT_KBD_MATRIX_DATA_NAME(node_id, unstable_state), \</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">        .matrix_previous_state = INPUT_KBD_MATRIX_DATA_NAME(node_id, previous_state), \</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">        .matrix_new_state = INPUT_KBD_MATRIX_DATA_NAME(node_id, new_state), \</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">        .scan_cycle_idx = INPUT_KBD_MATRIX_DATA_NAME(node_id, scan_cycle_idx), \</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="foldopen" id="foldopen00166" data-start="" data-end="">
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#ga3281b4e5909a1c07d8190092bc31cb12">  166</a></span><span class="preprocessor">#define INPUT_KBD_MATRIX_DT_COMMON_CONFIG_INIT(node_id, api) \</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">    INPUT_KBD_MATRIX_DT_COMMON_CONFIG_INIT_ROW_COL( \</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">        node_id, api, DT_PROP(node_id, row_size), DT_PROP(node_id, col_size))</span></div>
+</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="foldopen" id="foldopen00179" data-start="" data-end="">
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#gac6baf9b284f0796cdd5dbcef338f9588">  179</a></span><span class="preprocessor">#define INPUT_KBD_MATRIX_DT_INST_COMMON_CONFIG_INIT_ROW_COL(inst, api, row_size, col_size) \</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">    INPUT_KBD_MATRIX_DT_COMMON_CONFIG_INIT_ROW_COL(DT_DRV_INST(inst), api, row_size, col_size)</span></div>
+</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="foldopen" id="foldopen00188" data-start="" data-end="">
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#gab19b4a8c66c5540b4e690459655f92fd">  188</a></span><span class="preprocessor">#define INPUT_KBD_MATRIX_DT_INST_COMMON_CONFIG_INIT(inst, api) \</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="preprocessor">    INPUT_KBD_MATRIX_DT_COMMON_CONFIG_INIT(DT_DRV_INST(inst), api)</span></div>
+</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="foldopen" id="foldopen00196" data-start="{" data-end="};">
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="structinput__kbd__matrix__common__data.html">  196</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structinput__kbd__matrix__common__data.html">input_kbd_matrix_common_data</a> {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="comment">/* Track previous cycles, used for debouncing. */</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    uint8_t scan_clk_cycle[<a class="code hl_define" href="group__input__kbd__matrix.html#ga80a384d2041dcee27d7940a1e408d82a">INPUT_KBD_MATRIX_SCAN_OCURRENCES</a>];</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    uint8_t scan_cycles_idx;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keyword">struct </span>k_sem poll_lock;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__thread.html">k_thread</a> thread;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <a class="code hl_define" href="group__thread__stack__api.html#ga600162959def399e70310b944834711f">K_KERNEL_STACK_MEMBER</a>(thread_stack,</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>                  CONFIG_INPUT_KBD_MATRIX_THREAD_STACK_SIZE);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>};</div>
+</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="foldopen" id="foldopen00215" data-start="" data-end="">
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#ga352d484344c93c30f5cad75551793377">  215</a></span><span class="preprocessor">#define INPUT_KBD_STRUCT_CHECK(config, data) \</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="preprocessor">    BUILD_ASSERT(offsetof(config, common) == 0, \</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="preprocessor">             &quot;struct input_kbd_matrix_common_config must be placed first&quot;); \</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="preprocessor">    BUILD_ASSERT(offsetof(data, common) == 0, \</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="preprocessor">             &quot;struct input_kbd_matrix_common_data must be placed first&quot;)</span></div>
+</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#gaf97b6ff410631f111d7c3a7aa7f64171">  229</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__input__kbd__matrix.html#gaf97b6ff410631f111d7c3a7aa7f64171">input_kbd_matrix_poll_start</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="group__input__kbd__matrix.html#ga938dc38da7e81e5a68b8b9dc585c4bab">  241</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__input__kbd__matrix.html#ga938dc38da7e81e5a68b8b9dc585c4bab">input_kbd_matrix_common_init</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_INPUT_KBD_MATRIX_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__input__kbd__matrix_html_ga80a384d2041dcee27d7940a1e408d82a"><div class="ttname"><a href="group__input__kbd__matrix.html#ga80a384d2041dcee27d7940a1e408d82a">INPUT_KBD_MATRIX_SCAN_OCURRENCES</a></div><div class="ttdeci">#define INPUT_KBD_MATRIX_SCAN_OCURRENCES</div><div class="ttdef"><b>Definição</b> input_kbd_matrix.h:30</div></div>
+<div class="ttc" id="agroup__input__kbd__matrix_html_ga938dc38da7e81e5a68b8b9dc585c4bab"><div class="ttname"><a href="group__input__kbd__matrix.html#ga938dc38da7e81e5a68b8b9dc585c4bab">input_kbd_matrix_common_init</a></div><div class="ttdeci">int input_kbd_matrix_common_init(const struct device *dev)</div><div class="ttdoc">Common function to initialize a keyboard matrix device at init time.</div></div>
+<div class="ttc" id="agroup__input__kbd__matrix_html_gaf97b6ff410631f111d7c3a7aa7f64171"><div class="ttname"><a href="group__input__kbd__matrix.html#gaf97b6ff410631f111d7c3a7aa7f64171">input_kbd_matrix_poll_start</a></div><div class="ttdeci">void input_kbd_matrix_poll_start(const struct device *dev)</div><div class="ttdoc">Start scanning the keyboard matrix.</div></div>
+<div class="ttc" id="agroup__thread__stack__api_html_ga600162959def399e70310b944834711f"><div class="ttname"><a href="group__thread__stack__api.html#ga600162959def399e70310b944834711f">K_KERNEL_STACK_MEMBER</a></div><div class="ttdeci">#define K_KERNEL_STACK_MEMBER(sym, size)</div><div class="ttdoc">Define an embedded stack memory region.</div><div class="ttdef"><b>Definição</b> thread_stack.h:279</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructinput__kbd__matrix__api_html"><div class="ttname"><a href="structinput__kbd__matrix__api.html">input_kbd_matrix_api</a></div><div class="ttdoc">Keyboard matrix internal APIs.</div><div class="ttdef"><b>Definição</b> input_kbd_matrix.h:35</div></div>
+<div class="ttc" id="astructinput__kbd__matrix__api_html_a59d44ce04949462e7033f0e149ded86f"><div class="ttname"><a href="structinput__kbd__matrix__api.html#a59d44ce04949462e7033f0e149ded86f">input_kbd_matrix_api::read_row</a></div><div class="ttdeci">int(* read_row)(const struct device *dev)</div><div class="ttdoc">Read the matrix row.</div><div class="ttdef"><b>Definição</b> input_kbd_matrix.h:52</div></div>
+<div class="ttc" id="astructinput__kbd__matrix__api_html_aaae2b1eb357fb4b7f1881ef496d79560"><div class="ttname"><a href="structinput__kbd__matrix__api.html#aaae2b1eb357fb4b7f1881ef496d79560">input_kbd_matrix_api::set_detect_mode</a></div><div class="ttdeci">void(* set_detect_mode)(const struct device *dev, bool enabled)</div><div class="ttdoc">Request to put the matrix in detection mode.</div><div class="ttdef"><b>Definição</b> input_kbd_matrix.h:63</div></div>
+<div class="ttc" id="astructinput__kbd__matrix__api_html_af8211d738527ac44876dd07869862f20"><div class="ttname"><a href="structinput__kbd__matrix__api.html#af8211d738527ac44876dd07869862f20">input_kbd_matrix_api::drive_column</a></div><div class="ttdeci">void(* drive_column)(const struct device *dev, int col)</div><div class="ttdoc">Request to drive a specific column.</div><div class="ttdef"><b>Definição</b> input_kbd_matrix.h:46</div></div>
+<div class="ttc" id="astructinput__kbd__matrix__common__config_html"><div class="ttname"><a href="structinput__kbd__matrix__common__config.html">input_kbd_matrix_common_config</a></div><div class="ttdoc">Common keyboard matrix config.</div><div class="ttdef"><b>Definição</b> input_kbd_matrix.h:71</div></div>
+<div class="ttc" id="astructinput__kbd__matrix__common__data_html"><div class="ttname"><a href="structinput__kbd__matrix__common__data.html">input_kbd_matrix_common_data</a></div><div class="ttdoc">Common keyboard matrix data.</div><div class="ttdef"><b>Definição</b> input_kbd_matrix.h:196</div></div>
+<div class="ttc" id="astructk__thread_html"><div class="ttname"><a href="structk__thread.html">k_thread</a></div><div class="ttdef"><b>Definição</b> thread.h:250</div></div>
+<div class="ttc" id="asys__clock_8h_html"><div class="ttname"><a href="sys__clock_8h.html">sys_clock.h</a></div><div class="ttdoc">Variables needed for system clock.</div></div>
+<div class="ttc" id="atoolchain_8h_html"><div class="ttname"><a href="toolchain_8h.html">toolchain.h</a></div><div class="ttdoc">Macros to abstract toolchain specific capabilities.</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Misc utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

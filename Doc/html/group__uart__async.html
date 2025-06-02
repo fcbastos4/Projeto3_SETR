@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Async UART API</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Estruturas de Dados</a> &#124;
+<a href="#typedef-members">Definições de tipos</a> &#124;
+<a href="#enum-members">Enumerações</a> &#124;
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle"><div class="title">Async UART API<div class="ingroups"><a class="el" href="group__uart__interface.html">UART Interface</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Diagrama de colaboração para Async UART API:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__uart__async.png" border="0" usemap="#agroup____uart____async" alt=""/></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Estruturas de Dados</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuart__event__tx.html">uart_event_tx</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART TX event data.  <a href="structuart__event__tx.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuart__event__rx.html">uart_event_rx</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART RX event data.  <a href="structuart__event__rx.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuart__event__rx__buf.html">uart_event_rx_buf</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART RX buffer released event data.  <a href="structuart__event__rx__buf.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuart__event__rx__stop.html">uart_event_rx_stop</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART RX stopped data.  <a href="structuart__event__rx__stop.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structuart__event.html">uart_event</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure containing information about current event.  <a href="structuart__event.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Definições de tipos</h2></td></tr>
+<tr class="memitem:ga7b90c86ad81b06e3e16dd466e29b1151" id="r_ga7b90c86ad81b06e3e16dd466e29b1151"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__async.html#ga7b90c86ad81b06e3e16dd466e29b1151">uart_callback_t</a>) (const struct <a class="el" href="structdevice.html">device</a> *dev, struct <a class="el" href="structuart__event.html">uart_event</a> *evt, void *user_data)</td></tr>
+<tr class="memdesc:ga7b90c86ad81b06e3e16dd466e29b1151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the application callback function signature for uart_callback_set() function.  <br /></td></tr>
+<tr class="separator:ga7b90c86ad81b06e3e16dd466e29b1151"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerações</h2></td></tr>
+<tr class="memitem:gaf0c9513cbafa36d86b4c83f2b6a03dcd" id="r_gaf0c9513cbafa36d86b4c83f2b6a03dcd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__async.html#gaf0c9513cbafa36d86b4c83f2b6a03dcd">uart_event_type</a> { <br />
+&#160;&#160;<a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda4b5cdf863d8b6e5cd7b58f611808a6e4">UART_TX_DONE</a>
+, <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda0abcf565ba1011815285bb3845f8d5a1">UART_TX_ABORTED</a>
+, <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda7c70c3a56f64602f3d808b46e7b047f7">UART_RX_RDY</a>
+, <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda0d250f372702526f1bce6d4dfe166abe">UART_RX_BUF_REQUEST</a>
+, <br />
+&#160;&#160;<a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcdab2d152bd84f659d4fc4060df29811b48">UART_RX_BUF_RELEASED</a>
+, <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcdaa8ff5629c002a61bc3bdf5baa2ebc203">UART_RX_DISABLED</a>
+, <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda05b81ddf74d208aeabace6ac90ae52dd">UART_RX_STOPPED</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:gaf0c9513cbafa36d86b4c83f2b6a03dcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Types of events passed to callback in UART_ASYNC_API.  <a href="group__uart__async.html#gaf0c9513cbafa36d86b4c83f2b6a03dcd">Mais...</a><br /></td></tr>
+<tr class="separator:gaf0c9513cbafa36d86b4c83f2b6a03dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:gaff50b47935f053d3bb43910ad142bdcd" id="r_gaff50b47935f053d3bb43910ad142bdcd"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__async.html#gaff50b47935f053d3bb43910ad142bdcd">uart_tx</a> (const struct <a class="el" href="structdevice.html">device</a> *dev, const uint8_t *buf, size_t len, int32_t timeout)</td></tr>
+<tr class="memdesc:gaff50b47935f053d3bb43910ad142bdcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send given number of bytes from buffer through UART.  <br /></td></tr>
+<tr class="separator:gaff50b47935f053d3bb43910ad142bdcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae78c2929dd7cb050d086c664bc2915d5" id="r_gae78c2929dd7cb050d086c664bc2915d5"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__async.html#gae78c2929dd7cb050d086c664bc2915d5">uart_tx_u16</a> (const struct <a class="el" href="structdevice.html">device</a> *dev, const uint16_t *buf, size_t len, int32_t timeout)</td></tr>
+<tr class="memdesc:gae78c2929dd7cb050d086c664bc2915d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send given number of datum from buffer through UART.  <br /></td></tr>
+<tr class="separator:gae78c2929dd7cb050d086c664bc2915d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga148efb074aaae8a76adcbeffbd0959eb" id="r_ga148efb074aaae8a76adcbeffbd0959eb"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__async.html#ga148efb074aaae8a76adcbeffbd0959eb">uart_tx_abort</a> (const struct <a class="el" href="structdevice.html">device</a> *dev)</td></tr>
+<tr class="memdesc:ga148efb074aaae8a76adcbeffbd0959eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abort current TX transmission.  <br /></td></tr>
+<tr class="separator:ga148efb074aaae8a76adcbeffbd0959eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga850e6705993f2f98e2877056f9668291" id="r_ga850e6705993f2f98e2877056f9668291"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__async.html#ga850e6705993f2f98e2877056f9668291">uart_rx_enable</a> (const struct <a class="el" href="structdevice.html">device</a> *dev, uint8_t *buf, size_t len, int32_t timeout)</td></tr>
+<tr class="memdesc:ga850e6705993f2f98e2877056f9668291"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start receiving data through UART.  <br /></td></tr>
+<tr class="separator:ga850e6705993f2f98e2877056f9668291"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad0f4b210576f81220ccdc94e12dca406" id="r_gad0f4b210576f81220ccdc94e12dca406"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__async.html#gad0f4b210576f81220ccdc94e12dca406">uart_rx_enable_u16</a> (const struct <a class="el" href="structdevice.html">device</a> *dev, uint16_t *buf, size_t len, int32_t timeout)</td></tr>
+<tr class="memdesc:gad0f4b210576f81220ccdc94e12dca406"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start receiving wide data through UART.  <br /></td></tr>
+<tr class="separator:gad0f4b210576f81220ccdc94e12dca406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga95ea3e7b8ce7df9c13048661e23fbb5a" id="r_ga95ea3e7b8ce7df9c13048661e23fbb5a"><td class="memItemLeft" align="right" valign="top">__syscall int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__uart__async.html#ga95ea3e7b8ce7df9c13048661e23fbb5a">uart_rx_disable</a> (const struct <a class="el" href="structdevice.html">device</a> *dev)</td></tr>
+<tr class="memdesc:ga95ea3e7b8ce7df9c13048661e23fbb5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable RX.  <br /></td></tr>
+<tr class="separator:ga95ea3e7b8ce7df9c13048661e23fbb5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<h2 class="groupheader">Documentação dos tipos</h2>
+<a id="ga7b90c86ad81b06e3e16dd466e29b1151" name="ga7b90c86ad81b06e3e16dd466e29b1151"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7b90c86ad81b06e3e16dd466e29b1151">&#9670;&#160;</a></span>uart_callback_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uart_callback_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define the application callback function signature for uart_callback_set() function. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance. </td></tr>
+    <tr><td class="paramname">evt</td><td>Pointer to <a class="el" href="structuart__event.html" title="Structure containing information about current event.">uart_event</a> instance. </td></tr>
+    <tr><td class="paramname">user_data</td><td>Pointer to data specified by user. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação dos valores da enumeração</h2>
+<a id="gaf0c9513cbafa36d86b4c83f2b6a03dcd" name="gaf0c9513cbafa36d86b4c83f2b6a03dcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf0c9513cbafa36d86b4c83f2b6a03dcd">&#9670;&#160;</a></span>uart_event_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__uart__async.html#gaf0c9513cbafa36d86b4c83f2b6a03dcd">uart_event_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Types of events passed to callback in UART_ASYNC_API. </p>
+<p>Receiving:</p><ol type="1">
+<li>To start receiving, uart_rx_enable has to be called with first buffer</li>
+<li>When receiving starts to current buffer, <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda0d250f372702526f1bce6d4dfe166abe" title="Driver requests next buffer for continuous reception.">UART_RX_BUF_REQUEST</a> will be generated, in response to that user can either:<ul>
+<li>Provide second buffer using uart_rx_buf_rsp, when first buffer is filled, receiving will automatically start to second buffer.</li>
+<li>Ignore the event, this way when current buffer is filled <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda7c70c3a56f64602f3d808b46e7b047f7" title="Received data is ready for processing.">UART_RX_RDY</a> event will be generated and receiving will be stopped.</li>
+</ul>
+</li>
+<li>If some data was received and timeout occurred <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda7c70c3a56f64602f3d808b46e7b047f7" title="Received data is ready for processing.">UART_RX_RDY</a> event will be generated. It can happen multiples times for the same buffer. RX timeout is counted from last byte received i.e. if no data was received, there won't be any timeout event.</li>
+<li><a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcdab2d152bd84f659d4fc4060df29811b48" title="Buffer is no longer used by UART driver.">UART_RX_BUF_RELEASED</a> event will be generated when the current buffer is no longer used by the driver. It will immediately follow <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda7c70c3a56f64602f3d808b46e7b047f7" title="Received data is ready for processing.">UART_RX_RDY</a> event. Depending on the implementation buffer may be released when it is completely or partially filled.</li>
+<li>If there was second buffer provided, it will become current buffer and we start again at point 2. If no second buffer was specified receiving is stopped and <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcdaa8ff5629c002a61bc3bdf5baa2ebc203" title="RX has been disabled and can be reenabled.">UART_RX_DISABLED</a> event is generated. After that whole process can be repeated.</li>
+</ol>
+<p>Any time during reception <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda05b81ddf74d208aeabace6ac90ae52dd" title="RX has stopped due to external event.">UART_RX_STOPPED</a> event can occur. if there is any data received, <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda7c70c3a56f64602f3d808b46e7b047f7" title="Received data is ready for processing.">UART_RX_RDY</a> event will be generated. It will be followed by <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcdab2d152bd84f659d4fc4060df29811b48" title="Buffer is no longer used by UART driver.">UART_RX_BUF_RELEASED</a> event for every buffer currently passed to driver and finally by <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcdaa8ff5629c002a61bc3bdf5baa2ebc203" title="RX has been disabled and can be reenabled.">UART_RX_DISABLED</a> event.</p>
+<p>Receiving can be disabled using uart_rx_disable, after calling that function, if there is any data received, <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda7c70c3a56f64602f3d808b46e7b047f7" title="Received data is ready for processing.">UART_RX_RDY</a> event will be generated. <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcdab2d152bd84f659d4fc4060df29811b48" title="Buffer is no longer used by UART driver.">UART_RX_BUF_RELEASED</a> event will be generated for every buffer currently passed to driver and finally <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcdaa8ff5629c002a61bc3bdf5baa2ebc203" title="RX has been disabled and can be reenabled.">UART_RX_DISABLED</a> event will occur.</p>
+<p>Transmitting:</p><ol type="1">
+<li>Transmitting starts by uart_tx function.</li>
+<li>If whole buffer was transmitted <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda4b5cdf863d8b6e5cd7b58f611808a6e4" title="Whole TX buffer was transmitted.">UART_TX_DONE</a> is generated. If timeout occurred <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda0abcf565ba1011815285bb3845f8d5a1" title="Transmitting aborted due to timeout or uart_tx_abort call.">UART_TX_ABORTED</a> will be generated.</li>
+</ol>
+<p>Transmitting can be aborted using uart_tx_abort, after calling that function <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda0abcf565ba1011815285bb3845f8d5a1" title="Transmitting aborted due to timeout or uart_tx_abort call.">UART_TX_ABORTED</a> event will be generated. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Valores de enumerações</th></tr><tr><td class="fieldname"><a id="ggaf0c9513cbafa36d86b4c83f2b6a03dcda4b5cdf863d8b6e5cd7b58f611808a6e4" name="ggaf0c9513cbafa36d86b4c83f2b6a03dcda4b5cdf863d8b6e5cd7b58f611808a6e4"></a>UART_TX_DONE&#160;</td><td class="fielddoc"><p>Whole TX buffer was transmitted. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf0c9513cbafa36d86b4c83f2b6a03dcda0abcf565ba1011815285bb3845f8d5a1" name="ggaf0c9513cbafa36d86b4c83f2b6a03dcda0abcf565ba1011815285bb3845f8d5a1"></a>UART_TX_ABORTED&#160;</td><td class="fielddoc"><p>Transmitting aborted due to timeout or uart_tx_abort call. </p>
+<p>When flow control is enabled, there is a possibility that TX transfer won't finish in the allotted time. Some data may have been transferred, information about it can be found in event data. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf0c9513cbafa36d86b4c83f2b6a03dcda7c70c3a56f64602f3d808b46e7b047f7" name="ggaf0c9513cbafa36d86b4c83f2b6a03dcda7c70c3a56f64602f3d808b46e7b047f7"></a>UART_RX_RDY&#160;</td><td class="fielddoc"><p>Received data is ready for processing. </p>
+<p>This event is generated in the following cases:</p><ul>
+<li>When RX timeout occurred, and data was stored in provided buffer. This can happen multiple times in the same buffer.</li>
+<li>When provided buffer is full.</li>
+<li>After uart_rx_disable().</li>
+<li>After stopping due to external event (<a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda05b81ddf74d208aeabace6ac90ae52dd" title="RX has stopped due to external event.">UART_RX_STOPPED</a>). </li>
+</ul>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf0c9513cbafa36d86b4c83f2b6a03dcda0d250f372702526f1bce6d4dfe166abe" name="ggaf0c9513cbafa36d86b4c83f2b6a03dcda0d250f372702526f1bce6d4dfe166abe"></a>UART_RX_BUF_REQUEST&#160;</td><td class="fielddoc"><p>Driver requests next buffer for continuous reception. </p>
+<p>This event is triggered when receiving has started for a new buffer, i.e. it's time to provide a next buffer for a seamless switchover to it. For continuous reliable receiving, user should provide another RX buffer in response to this event, using uart_rx_buf_rsp function</p>
+<p>If uart_rx_buf_rsp is not called before current buffer is filled up, receiving will stop. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf0c9513cbafa36d86b4c83f2b6a03dcdab2d152bd84f659d4fc4060df29811b48" name="ggaf0c9513cbafa36d86b4c83f2b6a03dcdab2d152bd84f659d4fc4060df29811b48"></a>UART_RX_BUF_RELEASED&#160;</td><td class="fielddoc"><p>Buffer is no longer used by UART driver. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf0c9513cbafa36d86b4c83f2b6a03dcdaa8ff5629c002a61bc3bdf5baa2ebc203" name="ggaf0c9513cbafa36d86b4c83f2b6a03dcdaa8ff5629c002a61bc3bdf5baa2ebc203"></a>UART_RX_DISABLED&#160;</td><td class="fielddoc"><p>RX has been disabled and can be reenabled. </p>
+<p>This event is generated whenever receiver has been stopped, disabled or finished its operation and can be enabled again using uart_rx_enable </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaf0c9513cbafa36d86b4c83f2b6a03dcda05b81ddf74d208aeabace6ac90ae52dd" name="ggaf0c9513cbafa36d86b4c83f2b6a03dcda05b81ddf74d208aeabace6ac90ae52dd"></a>UART_RX_STOPPED&#160;</td><td class="fielddoc"><p>RX has stopped due to external event. </p>
+<p>Reason is one of uart_rx_stop_reason. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação das funções</h2>
+<a id="ga95ea3e7b8ce7df9c13048661e23fbb5a" name="ga95ea3e7b8ce7df9c13048661e23fbb5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga95ea3e7b8ce7df9c13048661e23fbb5a">&#9670;&#160;</a></span>uart_rx_disable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int uart_rx_disable </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disable RX. </p>
+<p><a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcdab2d152bd84f659d4fc4060df29811b48" title="Buffer is no longer used by UART driver.">UART_RX_BUF_RELEASED</a> event will be generated for every buffer scheduled, after that <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcdaa8ff5629c002a61bc3bdf5baa2ebc203" title="RX has been disabled and can be reenabled.">UART_RX_DISABLED</a> event will be generated. Additionally, if there is any pending received data, the <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda7c70c3a56f64602f3d808b46e7b047f7" title="Received data is ready for processing.">UART_RX_RDY</a> event for that data will be generated before the <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcdab2d152bd84f659d4fc4060df29811b48" title="Buffer is no longer used by UART driver.">UART_RX_BUF_RELEASED</a> events.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>If successful. </td></tr>
+    <tr><td class="paramname">-ENOTSUP</td><td>If API is not enabled. </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>There is no active reception. </td></tr>
+    <tr><td class="paramname">-errno</td><td>Other negative errno value in case of failure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga850e6705993f2f98e2877056f9668291" name="ga850e6705993f2f98e2877056f9668291"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga850e6705993f2f98e2877056f9668291">&#9670;&#160;</a></span>uart_rx_enable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int uart_rx_enable </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start receiving data through UART. </p>
+<p>Function sets given buffer as first buffer for receiving and returns immediately. After that event handler, set using uart_callback_set, is called with <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda7c70c3a56f64602f3d808b46e7b047f7" title="Received data is ready for processing.">UART_RX_RDY</a> or <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda0d250f372702526f1bce6d4dfe166abe" title="Driver requests next buffer for continuous reception.">UART_RX_BUF_REQUEST</a> events.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance. </td></tr>
+    <tr><td class="paramname">buf</td><td>Pointer to receive buffer. </td></tr>
+    <tr><td class="paramname">len</td><td>Buffer length. </td></tr>
+    <tr><td class="paramname">timeout</td><td>Inactivity period after receiving at least a byte which triggers <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda7c70c3a56f64602f3d808b46e7b047f7" title="Received data is ready for processing.">UART_RX_RDY</a> event. Given in microseconds. <a class="el" href="group__timeutil__unit__apis.html#gad8743aaa97d3b2650908020ffb76ef0e">SYS_FOREVER_US</a> disables timeout. See <a class="el" href="group__uart__async.html#gaf0c9513cbafa36d86b4c83f2b6a03dcd">uart_event_type</a> for details.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>If successful. </td></tr>
+    <tr><td class="paramname">-ENOTSUP</td><td>If API is not enabled. </td></tr>
+    <tr><td class="paramname">-EBUSY</td><td>RX already in progress. </td></tr>
+    <tr><td class="paramname">-errno</td><td>Other negative errno value in case of failure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gad0f4b210576f81220ccdc94e12dca406" name="gad0f4b210576f81220ccdc94e12dca406"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad0f4b210576f81220ccdc94e12dca406">&#9670;&#160;</a></span>uart_rx_enable_u16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int uart_rx_enable_u16 </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start receiving wide data through UART. </p>
+<p>Function sets given buffer as first buffer for receiving and returns immediately. After that event handler, set using uart_callback_set, is called with <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda7c70c3a56f64602f3d808b46e7b047f7" title="Received data is ready for processing.">UART_RX_RDY</a> or <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda0d250f372702526f1bce6d4dfe166abe" title="Driver requests next buffer for continuous reception.">UART_RX_BUF_REQUEST</a> events.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance. </td></tr>
+    <tr><td class="paramname">buf</td><td>Pointer to wide data receive buffer. </td></tr>
+    <tr><td class="paramname">len</td><td>Buffer length. </td></tr>
+    <tr><td class="paramname">timeout</td><td>Inactivity period after receiving at least a byte which triggers <a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda7c70c3a56f64602f3d808b46e7b047f7" title="Received data is ready for processing.">UART_RX_RDY</a> event. Given in milliseconds. SYS_FOREVER_MS disables timeout. See <a class="el" href="group__uart__async.html#gaf0c9513cbafa36d86b4c83f2b6a03dcd">uart_event_type</a> for details.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>If successful. </td></tr>
+    <tr><td class="paramname">-ENOTSUP</td><td>If API is not enabled. </td></tr>
+    <tr><td class="paramname">-EBUSY</td><td>RX already in progress. </td></tr>
+    <tr><td class="paramname">-errno</td><td>Other negative errno value in case of failure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaff50b47935f053d3bb43910ad142bdcd" name="gaff50b47935f053d3bb43910ad142bdcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaff50b47935f053d3bb43910ad142bdcd">&#9670;&#160;</a></span>uart_tx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int uart_tx </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send given number of bytes from buffer through UART. </p>
+<p>Function returns immediately and event handler, set using uart_callback_set, is called after transfer is finished.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance. </td></tr>
+    <tr><td class="paramname">buf</td><td>Pointer to transmit buffer. </td></tr>
+    <tr><td class="paramname">len</td><td>Length of transmit buffer. </td></tr>
+    <tr><td class="paramname">timeout</td><td>Timeout in microseconds. Valid only if flow control is enabled. <a class="el" href="group__timeutil__unit__apis.html#gad8743aaa97d3b2650908020ffb76ef0e">SYS_FOREVER_US</a> disables timeout.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>If successful. </td></tr>
+    <tr><td class="paramname">-ENOTSUP</td><td>If API is not enabled. </td></tr>
+    <tr><td class="paramname">-EBUSY</td><td>If There is already an ongoing transfer. </td></tr>
+    <tr><td class="paramname">-errno</td><td>Other negative errno value in case of failure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga148efb074aaae8a76adcbeffbd0959eb" name="ga148efb074aaae8a76adcbeffbd0959eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga148efb074aaae8a76adcbeffbd0959eb">&#9670;&#160;</a></span>uart_tx_abort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int uart_tx_abort </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Abort current TX transmission. </p>
+<p><a class="el" href="group__uart__async.html#ggaf0c9513cbafa36d86b4c83f2b6a03dcda4b5cdf863d8b6e5cd7b58f611808a6e4" title="Whole TX buffer was transmitted.">UART_TX_DONE</a> event will be generated with amount of data sent.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>If successful. </td></tr>
+    <tr><td class="paramname">-ENOTSUP</td><td>If API is not enabled. </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>There is no active transmission. </td></tr>
+    <tr><td class="paramname">-errno</td><td>Other negative errno value in case of failure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gae78c2929dd7cb050d086c664bc2915d5" name="gae78c2929dd7cb050d086c664bc2915d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae78c2929dd7cb050d086c664bc2915d5">&#9670;&#160;</a></span>uart_tx_u16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__syscall int uart_tx_u16 </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Send given number of datum from buffer through UART. </p>
+<p>Function returns immediately and event handler, set using uart_callback_set, is called after transfer is finished.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>UART device instance. </td></tr>
+    <tr><td class="paramname">buf</td><td>Pointer to wide data transmit buffer. </td></tr>
+    <tr><td class="paramname">len</td><td>Length of wide data transmit buffer. </td></tr>
+    <tr><td class="paramname">timeout</td><td>Timeout in milliseconds. Valid only if flow control is enabled. SYS_FOREVER_MS disables timeout.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>If successful. </td></tr>
+    <tr><td class="paramname">-ENOTSUP</td><td>If API is not enabled. </td></tr>
+    <tr><td class="paramname">-EBUSY</td><td>If there is already an ongoing transfer. </td></tr>
+    <tr><td class="paramname">-errno</td><td>Other negative errno value in case of failure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

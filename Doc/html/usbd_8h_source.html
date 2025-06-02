@@ -1,0 +1,567 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/usb/usbd.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_31821c6dd8ee412b58986b1aca4338e2.html">usb</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">usbd.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="usbd_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2022 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_USBD_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define ZEPHYR_INCLUDE_USBD_H_</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="usb__ch9_8h.html">zephyr/usb/usb_ch9.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="net_2buf_8h.html">zephyr/net/buf.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="sys_2byteorder_8h.html">zephyr/sys/byteorder.h</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="slist_8h.html">zephyr/sys/slist.h</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;zephyr/logging/log.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;zephyr/sys/iterable_sections.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment"> * The USB Unicode bString is encoded in UTF16LE, which means it takes up</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment"> * twice the amount of bytes than the same string encoded in ASCII7.</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment"> * Use this macro to determine the length of the bString array.</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment"> * bString length without null character:</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment"> *   bString_length = (sizeof(initializer_string) - 1) * 2</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment"> * or:</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment"> *   bString_length = sizeof(initializer_string) * 2 - 2</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define USB_BSTRING_LENGTH(s)       (sizeof(s) * 2 - 2)</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment"> * The length of the string descriptor (bLength) is calculated from the</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment"> * size of the two octets bLength and bDescriptorType plus the</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment"> * length of the UTF16LE string:</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment"> *   bLength = 2 + bString_length</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment"> *   bLength = 2 + sizeof(initializer_string) * 2 - 2</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment"> *   bLength = sizeof(initializer_string) * 2</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment"> * Use this macro to determine the bLength of the string descriptor.</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define USB_STRING_DESCRIPTOR_LENGTH(s) (sizeof(s) * 2)</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">/* Used internally to keep descriptors in order */</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">enum</span> usbd_desc_usage_type {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    USBD_DUT_STRING_LANG,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    USBD_DUT_STRING_MANUFACTURER,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    USBD_DUT_STRING_PRODUCT,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    USBD_DUT_STRING_SERIAL_NUMBER,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    USBD_DUT_STRING_INTERFACE,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>};</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="foldopen" id="foldopen00075" data-start="{" data-end="};">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structusbd__desc__node.html">   75</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusbd__desc__node.html">usbd_desc_node</a> {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structusbd__desc__node.html#a9f1941cd036c01387d8ad9a4aceb595a">   77</a></span>    <a class="code hl_struct" href="struct__dnode.html">sys_dnode_t</a> <a class="code hl_variable" href="structusbd__desc__node.html#a9f1941cd036c01387d8ad9a4aceb595a">node</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structusbd__desc__node.html#a0705a86aa6d7f532eb6be794f2c60d06">   79</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structusbd__desc__node.html#a0705a86aa6d7f532eb6be794f2c60d06">idx</a> : 8;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structusbd__desc__node.html#a50e1b8db1dd6a4f3ca541394ad9d9adf">   81</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structusbd__desc__node.html#a50e1b8db1dd6a4f3ca541394ad9d9adf">utype</a> : 8;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structusbd__desc__node.html#a266d0936f7684f6a3047e2a6d1875458">   83</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structusbd__desc__node.html#a266d0936f7684f6a3047e2a6d1875458">utf16le</a> : 1;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structusbd__desc__node.html#a322537e0b35d0590ba0f4e19ae5bb3ac">   85</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structusbd__desc__node.html#a322537e0b35d0590ba0f4e19ae5bb3ac">custom_sn</a> : 1;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structusbd__desc__node.html#a4d4692341a7785b5a0af762b1810e80f">   87</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structusbd__desc__node.html#a4d4692341a7785b5a0af762b1810e80f">desc</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>};</div>
+</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="foldopen" id="foldopen00098" data-start="{" data-end="};">
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="structusbd__config__node.html">   98</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusbd__config__node.html">usbd_config_node</a> {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="structusbd__config__node.html#a003a8d9132b319f54583263c4da1e060">  100</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> <a class="code hl_variable" href="structusbd__config__node.html#a003a8d9132b319f54583263c4da1e060">node</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="structusbd__config__node.html#a55081d79ab3e6b41a091b3f65d7d2d87">  102</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structusbd__config__node.html#a55081d79ab3e6b41a091b3f65d7d2d87">desc</a>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="structusbd__config__node.html#a00493162af2344d3d39f834b4834ef78">  104</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga44658c336b634c03938a251cdc8134f8">sys_slist_t</a> <a class="code hl_variable" href="structusbd__config__node.html#a00493162af2344d3d39f834b4834ef78">class_list</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>};</div>
+</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">/* TODO: Kconfig option USBD_NUMOF_INTERFACES_MAX? */</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">#define USBD_NUMOF_INTERFACES_MAX   16U</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="foldopen" id="foldopen00116" data-start="{" data-end="};">
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga95fb708d8a54eaa3ce0acc4e65519bbc">  116</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__usbd__api.html#ga95fb708d8a54eaa3ce0acc4e65519bbc">usbd_ch9_state</a> {</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    USBD_STATE_DEFAULT = 0,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    USBD_STATE_ADDRESS,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    USBD_STATE_CONFIGURED,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>};</div>
+</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="foldopen" id="foldopen00126" data-start="{" data-end="};">
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structusbd__ch9__data.html">  126</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusbd__ch9__data.html">usbd_ch9_data</a> {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="structusbd__ch9__data.html#a85f96c69cede5b51c1f9739a4ae67f4d">  128</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structusb__setup__packet.html">usb_setup_packet</a> <a class="code hl_variable" href="structusbd__ch9__data.html#a85f96c69cede5b51c1f9739a4ae67f4d">setup</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="structusbd__ch9__data.html#a095a2a98f19ea40e8bd1bf65eed77dac">  130</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structusbd__ch9__data.html#a095a2a98f19ea40e8bd1bf65eed77dac">ctrl_type</a>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="structusbd__ch9__data.html#a70d1a1be0aab6167ca4f4580b9c65eff">  132</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__usbd__api.html#ga95fb708d8a54eaa3ce0acc4e65519bbc">usbd_ch9_state</a> <a class="code hl_variable" href="structusbd__ch9__data.html#a70d1a1be0aab6167ca4f4580b9c65eff">state</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="structusbd__ch9__data.html#a504360b7cb11240a2fda68344f2e3b62">  134</a></span>    uint32_t <a class="code hl_variable" href="structusbd__ch9__data.html#a504360b7cb11240a2fda68344f2e3b62">ep_halt</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="structusbd__ch9__data.html#a1f759fb0d758e50c4589b6b6b1fd2a24">  136</a></span>    uint8_t <a class="code hl_variable" href="structusbd__ch9__data.html#a1f759fb0d758e50c4589b6b6b1fd2a24">configuration</a>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="structusbd__ch9__data.html#aadf716b741b482929df3b33613c17273">  138</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structusbd__ch9__data.html#aadf716b741b482929df3b33613c17273">new_address</a>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="structusbd__ch9__data.html#aad529db4a4dcfd9d84face34abdaa465">  140</a></span>    uint8_t <a class="code hl_variable" href="structusbd__ch9__data.html#aad529db4a4dcfd9d84face34abdaa465">alternate</a>[USBD_NUMOF_INTERFACES_MAX];</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>};</div>
+</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="foldopen" id="foldopen00146" data-start="{" data-end="};">
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="structusbd__status.html">  146</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusbd__status.html">usbd_status</a> {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="structusbd__status.html#a78de12245d08ecc71e09d5519fe0e857">  148</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structusbd__status.html#a78de12245d08ecc71e09d5519fe0e857">initialized</a> : 1;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="structusbd__status.html#a2382fcb655fe51e0bcf83f85aa182ba3">  150</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structusbd__status.html#a2382fcb655fe51e0bcf83f85aa182ba3">enabled</a> : 1;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="structusbd__status.html#afb67cfda187e40229f842c93aa09f0ba">  152</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structusbd__status.html#afb67cfda187e40229f842c93aa09f0ba">suspended</a> : 1;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="structusbd__status.html#a113085892967cf7c9cb70131b320d61a">  154</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structusbd__status.html#a113085892967cf7c9cb70131b320d61a">rwup</a> : 1;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>};</div>
+</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="foldopen" id="foldopen00163" data-start="{" data-end="};">
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="structusbd__contex.html">  163</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> {</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="structusbd__contex.html#abba6950f90e08a227c5a124ba1cac794">  165</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structusbd__contex.html#abba6950f90e08a227c5a124ba1cac794">name</a>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="structusbd__contex.html#ac833ce3afb9a9d86c90f35bc33ef617f">  167</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__mutex.html">k_mutex</a> <a class="code hl_variable" href="structusbd__contex.html#ac833ce3afb9a9d86c90f35bc33ef617f">mutex</a>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="structusbd__contex.html#abe1919c4098622f9a87f4b2d4caf1c3b">  169</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_variable" href="structusbd__contex.html#abe1919c4098622f9a87f4b2d4caf1c3b">dev</a>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="structusbd__contex.html#a7f0d2d526faa553e3f520a58639d271a">  171</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structusbd__ch9__data.html">usbd_ch9_data</a> <a class="code hl_variable" href="structusbd__contex.html#a7f0d2d526faa553e3f520a58639d271a">ch9_data</a>;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="structusbd__contex.html#a4634c51ab958993e0d2c2cbb192cc105">  173</a></span>    <a class="code hl_struct" href="struct__dnode.html">sys_dlist_t</a> <a class="code hl_variable" href="structusbd__contex.html#a4634c51ab958993e0d2c2cbb192cc105">descriptors</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="structusbd__contex.html#abc0473af6584cd4d4040af7d5f1b522b">  175</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga44658c336b634c03938a251cdc8134f8">sys_slist_t</a> <a class="code hl_variable" href="structusbd__contex.html#abc0473af6584cd4d4040af7d5f1b522b">configs</a>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="structusbd__contex.html#ae190c2f4e20e91e9ad75ff81012b47c2">  177</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structusbd__status.html">usbd_status</a> <a class="code hl_variable" href="structusbd__contex.html#ae190c2f4e20e91e9ad75ff81012b47c2">status</a>;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="structusbd__contex.html#ad2984b7bd687e2c753c1c7497044e9d0">  179</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structusbd__contex.html#ad2984b7bd687e2c753c1c7497044e9d0">desc</a>;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>};</div>
+</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="foldopen" id="foldopen00185" data-start="{" data-end="};">
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="structusbd__cctx__vendor__req.html">  185</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusbd__cctx__vendor__req.html">usbd_cctx_vendor_req</a> {</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="structusbd__cctx__vendor__req.html#a2ddf3ce0c1c0a6d788b7ef30cf8d67ea">  187</a></span>    <span class="keyword">const</span> uint8_t *<a class="code hl_variable" href="structusbd__cctx__vendor__req.html#a2ddf3ce0c1c0a6d788b7ef30cf8d67ea">reqs</a>;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="structusbd__cctx__vendor__req.html#a3b5e99bff9dbfa023a4e6a5b4a69abd0">  189</a></span>    uint8_t <a class="code hl_variable" href="structusbd__cctx__vendor__req.html#a3b5e99bff9dbfa023a4e6a5b4a69abd0">len</a>;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>};</div>
+</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga588b9e156a49d3b0358bee185cdeebee">  193</a></span><span class="preprocessor">#define USBD_CCTX_REGISTERED        0</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a>;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="foldopen" id="foldopen00200" data-start="{" data-end="};">
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="structusbd__class__api.html">  200</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__api.html">usbd_class_api</a> {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="structusbd__class__api.html#a90d7370d6d58467b8516dc23fa85da6e">  202</a></span>    void (*<a class="code hl_variable" href="structusbd__class__api.html#a90d7370d6d58467b8516dc23fa85da6e">feature_halt</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> *<span class="keyword">const</span> node,</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>                 uint8_t ep, <span class="keywordtype">bool</span> halted);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="structusbd__class__api.html#adaa09908b17f85e97f39266f79cb32a8">  206</a></span>    void (*<a class="code hl_variable" href="structusbd__class__api.html#adaa09908b17f85e97f39266f79cb32a8">update</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> *<span class="keyword">const</span> node,</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>               uint8_t iface, uint8_t alternate);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="structusbd__class__api.html#a5c7fa1a0d05a8eab486e1ee61cc0b73f">  210</a></span>    int (*<a class="code hl_variable" href="structusbd__class__api.html#a5c7fa1a0d05a8eab486e1ee61cc0b73f">control_to_dev</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> *<span class="keyword">const</span> node,</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                  <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structusb__setup__packet.html">usb_setup_packet</a> *<span class="keyword">const</span> setup,</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>                  <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<span class="keyword">const</span> buf);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="structusbd__class__api.html#a5eac92c9ab6ebb6eb61c683f0b289e21">  215</a></span>    int (*<a class="code hl_variable" href="structusbd__class__api.html#a5eac92c9ab6ebb6eb61c683f0b289e21">control_to_host</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> *<span class="keyword">const</span> node,</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>                   <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structusb__setup__packet.html">usb_setup_packet</a> *<span class="keyword">const</span> setup,</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                   <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<span class="keyword">const</span> buf);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="structusbd__class__api.html#aff8426da1f7dd1f5fa5d27ce135bf0f8">  220</a></span>    int (*<a class="code hl_variable" href="structusbd__class__api.html#aff8426da1f7dd1f5fa5d27ce135bf0f8">request</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> *<span class="keyword">const</span> node,</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>               <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *buf, <span class="keywordtype">int</span> err);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="structusbd__class__api.html#a36bf045b23c0fda4865db2978c94b6d1">  224</a></span>    void (*<a class="code hl_variable" href="structusbd__class__api.html#a36bf045b23c0fda4865db2978c94b6d1">suspended</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> *<span class="keyword">const</span> node);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="structusbd__class__api.html#a26411223bbe266a1cb7015a7ccb5c100">  227</a></span>    void (*<a class="code hl_variable" href="structusbd__class__api.html#a26411223bbe266a1cb7015a7ccb5c100">resumed</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> *<span class="keyword">const</span> node);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="structusbd__class__api.html#a03585c10422b27cf7712cc88e99a5fc2">  230</a></span>    void (*<a class="code hl_variable" href="structusbd__class__api.html#a03585c10422b27cf7712cc88e99a5fc2">enable</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> *<span class="keyword">const</span> node);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="structusbd__class__api.html#a3e9c54c768d12341d242cdecd83e96bd">  233</a></span>    void (*<a class="code hl_variable" href="structusbd__class__api.html#a3e9c54c768d12341d242cdecd83e96bd">disable</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> *<span class="keyword">const</span> node);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="structusbd__class__api.html#a20ec6b44ddded48eadffc9a82115766e">  236</a></span>    int (*<a class="code hl_variable" href="structusbd__class__api.html#a20ec6b44ddded48eadffc9a82115766e">init</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> *<span class="keyword">const</span> node);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="structusbd__class__api.html#a11e02db41023c9a4d8e853d1eaddac00">  239</a></span>    void (*<a class="code hl_variable" href="structusbd__class__api.html#a11e02db41023c9a4d8e853d1eaddac00">shutdown</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> *<span class="keyword">const</span> node);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>};</div>
+</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="foldopen" id="foldopen00245" data-start="{" data-end="};">
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="structusbd__class__data.html">  245</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__data.html">usbd_class_data</a> {</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">  247</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<a class="code hl_variable" href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">uds_ctx</a>;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="structusbd__class__data.html#a5b63cc431c007291bf96196b0eefd6c2">  251</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structusbd__class__data.html#a5b63cc431c007291bf96196b0eefd6c2">desc</a>;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="structusbd__class__data.html#a32db83ecf80e1ac9e4d5deda54581deb">  253</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structusbd__cctx__vendor__req.html">usbd_cctx_vendor_req</a> *<a class="code hl_variable" href="structusbd__class__data.html#a32db83ecf80e1ac9e4d5deda54581deb">v_reqs</a>;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="structusbd__class__data.html#ab60dc9c68368c5c918ea6d23eacfaf60">  257</a></span>    uint32_t <a class="code hl_variable" href="structusbd__class__data.html#ab60dc9c68368c5c918ea6d23eacfaf60">ep_assigned</a>;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="structusbd__class__data.html#aad3c8f52393d6135532d25ee8f42950e">  261</a></span>    uint32_t <a class="code hl_variable" href="structusbd__class__data.html#aad3c8f52393d6135532d25ee8f42950e">ep_active</a>;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno"><a class="line" href="structusbd__class__data.html#ab41348dd230fa882efb8d39260447cb4">  263</a></span>    uint32_t <a class="code hl_variable" href="structusbd__class__data.html#ab41348dd230fa882efb8d39260447cb4">iface_bm</a>;</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="structusbd__class__data.html#a57718d5c32580352ad7bd49000d01d3b">  265</a></span>    atomic_t <a class="code hl_variable" href="structusbd__class__data.html#a57718d5c32580352ad7bd49000d01d3b">state</a>;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="structusbd__class__data.html#a10bb5b9af6098fbbc86fd00ef54e84e1">  267</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structusbd__class__data.html#a10bb5b9af6098fbbc86fd00ef54e84e1">priv</a>;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>};</div>
+</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="foldopen" id="foldopen00270" data-start="{" data-end="};">
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="structusbd__class__node.html">  270</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> {</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="structusbd__class__node.html#a1bdbe525e21ac5ea6eff30f6159a4406">  272</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> <a class="code hl_variable" href="structusbd__class__node.html#a1bdbe525e21ac5ea6eff30f6159a4406">node</a>;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno"><a class="line" href="structusbd__class__node.html#a06682f9e64f391985b08c5d884903992">  274</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structusbd__class__node.html#a06682f9e64f391985b08c5d884903992">name</a>;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno"><a class="line" href="structusbd__class__node.html#a276df79bf269b19875f1c497a36392fb">  276</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__api.html">usbd_class_api</a> *<a class="code hl_variable" href="structusbd__class__node.html#a276df79bf269b19875f1c497a36392fb">api</a>;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="structusbd__class__node.html#a53916906d5efce1eeb4024a7b3662553">  278</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structusbd__class__data.html">usbd_class_data</a> *<a class="code hl_variable" href="structusbd__class__node.html#a53916906d5efce1eeb4024a7b3662553">data</a>;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>};</div>
+</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="preprocessor">#define USBD_DEVICE_DEFINE(device_name, uhc_dev, vid, pid)      \</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="preprocessor">    static struct usb_device_descriptor             \</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="preprocessor">    desc_##device_name = {                      \</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="preprocessor">        .bLength = sizeof(struct usb_device_descriptor),    \</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="preprocessor">        .bDescriptorType = USB_DESC_DEVICE,         \</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="preprocessor">        .bcdUSB = sys_cpu_to_le16(USB_SRN_2_0),         \</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="preprocessor">        .bDeviceClass = USB_BCC_MISCELLANEOUS,          \</span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="preprocessor">        .bDeviceSubClass = 2,                   \</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span><span class="preprocessor">        .bDeviceProtocol = 1,                   \</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="preprocessor">        .bMaxPacketSize0 = USB_CONTROL_EP_MPS,          \</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="preprocessor">        .idVendor = vid,                    \</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="preprocessor">        .idProduct = pid,                   \</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="preprocessor">        .bcdDevice = sys_cpu_to_le16(USB_BCD_DRN),      \</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="preprocessor">        .iManufacturer = 0,                 \</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="preprocessor">        .iProduct = 0,                      \</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="preprocessor">        .iSerialNumber = 0,                 \</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="preprocessor">        .bNumConfigurations = 0,                \</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="preprocessor">    };                              \</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="preprocessor">    static STRUCT_SECTION_ITERABLE(usbd_contex, device_name) = {    \</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="preprocessor">        .name = STRINGIFY(device_name),             \</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="preprocessor">        .dev = uhc_dev,                     \</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="preprocessor">        .desc = &amp;desc_##device_name,                \</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="preprocessor">#define USBD_CONFIGURATION_DEFINE(name, attrib, power)          \</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="preprocessor">    static struct usb_cfg_descriptor                \</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="preprocessor">    cfg_desc_##name = {                     \</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="preprocessor">        .bLength = sizeof(struct usb_cfg_descriptor),       \</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="preprocessor">        .bDescriptorType = USB_DESC_CONFIGURATION,      \</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="preprocessor">        .wTotalLength = 0,                  \</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="preprocessor">        .bNumInterfaces = 0,                    \</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="preprocessor">        .bConfigurationValue = 1,               \</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="preprocessor">        .iConfiguration = 0,                    \</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="preprocessor">        .bmAttributes = USB_SCD_RESERVED | (attrib),        \</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="preprocessor">        .bMaxPower = (power),                   \</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="preprocessor">    };                              \</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="preprocessor">    BUILD_ASSERT((power) &lt; 256, &quot;Too much power&quot;);          \</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="preprocessor">    static struct usbd_config_node name = {             \</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="preprocessor">        .desc = &amp;cfg_desc_##name,               \</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
+<div class="foldopen" id="foldopen00335" data-start="" data-end="">
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="group__usbd__api.html#gaec816a27118bcb289ab4840fcd22888e">  335</a></span><span class="preprocessor">#define USBD_DESC_LANG_DEFINE(name)                 \</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="preprocessor">    static struct usb_string_descriptor             \</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="preprocessor">    string_desc_##name = {                      \</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="preprocessor">        .bLength = sizeof(struct usb_string_descriptor),    \</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="preprocessor">        .bDescriptorType = USB_DESC_STRING,         \</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="preprocessor">        .bString = sys_cpu_to_le16(0x0409),         \</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="preprocessor">    };                              \</span></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><span class="preprocessor">    static struct usbd_desc_node name = {               \</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="preprocessor">        .idx = 0,                       \</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span><span class="preprocessor">        .utype = USBD_DUT_STRING_LANG,              \</span></div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="preprocessor">        .desc = &amp;string_desc_##name,                \</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> </div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="preprocessor">#define USBD_DESC_STRING_DEFINE(d_name, d_string, d_utype)      \</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="preprocessor">    struct usb_string_descriptor_##d_name {             \</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="preprocessor">        uint8_t bLength;                    \</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="preprocessor">        uint8_t bDescriptorType;                \</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="preprocessor">        uint8_t bString[USB_BSTRING_LENGTH(d_string)];      \</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="preprocessor">    } __packed;                         \</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="preprocessor">    static struct usb_string_descriptor_##d_name            \</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="preprocessor">    string_desc_##d_name = {                    \</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="preprocessor">        .bLength = USB_STRING_DESCRIPTOR_LENGTH(d_string),  \</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="preprocessor">        .bDescriptorType = USB_DESC_STRING,         \</span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="preprocessor">        .bString = d_string,                    \</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="preprocessor">    };                              \</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="preprocessor">    static struct usbd_desc_node d_name = {             \</span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="preprocessor">        .utype = d_utype,                   \</span></div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="preprocessor">        .desc = &amp;string_desc_##d_name,              \</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="foldopen" id="foldopen00376" data-start="" data-end="">
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga18b1321daf1173a3cb0bc61a0d9beb34">  376</a></span><span class="preprocessor">#define USBD_DESC_MANUFACTURER_DEFINE(d_name, d_string)         \</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span><span class="preprocessor">    USBD_DESC_STRING_DEFINE(d_name, d_string, USBD_DUT_STRING_MANUFACTURER)</span></div>
+</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
+<div class="foldopen" id="foldopen00390" data-start="" data-end="">
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno"><a class="line" href="group__usbd__api.html#gaa5e43f9eac8f91d3896ea5e19baed031">  390</a></span><span class="preprocessor">#define USBD_DESC_PRODUCT_DEFINE(d_name, d_string)          \</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span><span class="preprocessor">    USBD_DESC_STRING_DEFINE(d_name, d_string, USBD_DUT_STRING_PRODUCT)</span></div>
+</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span> </div>
+<div class="foldopen" id="foldopen00405" data-start="" data-end="">
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga98e3b788b4bc38d0ac199a67fdc302d0">  405</a></span><span class="preprocessor">#define USBD_DESC_SERIAL_NUMBER_DEFINE(d_name, d_string)        \</span></div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span><span class="preprocessor">    USBD_DESC_STRING_DEFINE(d_name, d_string, USBD_DUT_STRING_SERIAL_NUMBER)</span></div>
+</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> </div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span><span class="preprocessor">#define USBD_DEFINE_CLASS(class_name, class_api, class_data)        \</span></div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span><span class="preprocessor">    static STRUCT_SECTION_ITERABLE(usbd_class_node, class_name) = { \</span></div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span><span class="preprocessor">        .name = STRINGIFY(class_name),              \</span></div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span><span class="preprocessor">        .api = class_api,                   \</span></div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span><span class="preprocessor">        .data = class_data,                 \</span></div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="foldopen" id="foldopen00420" data-start="" data-end="">
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga54ca08c74ae715281381d878f828727e">  420</a></span><span class="preprocessor">#define VENDOR_REQ_DEFINE(_reqs, _len) \</span></div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span><span class="preprocessor">    { \</span></div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span><span class="preprocessor">        .reqs = (const uint8_t *)(_reqs), \</span></div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span><span class="preprocessor">        .len = (_len), \</span></div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
+<div class="foldopen" id="foldopen00430" data-start="" data-end="">
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga464933a8332c11d15c92914aa1790e10">  430</a></span><span class="preprocessor">#define USBD_VENDOR_REQ(_reqs...) \</span></div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span><span class="preprocessor">    VENDOR_REQ_DEFINE(((uint8_t []) { _reqs }), \</span></div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span><span class="preprocessor">              sizeof((uint8_t []) { _reqs }))</span></div>
+</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> </div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span> </div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga0280dbaf6f15e4bc789279b8d93bfff8">  445</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga0280dbaf6f15e4bc789279b8d93bfff8">usbd_add_descriptor</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<a class="code hl_variable" href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">uds_ctx</a>,</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>            <span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__desc__node.html">usbd_desc_node</a> *dn);</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span> </div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno"><a class="line" href="group__usbd__api.html#gae1472960a22e84a49865639dff5816a0">  456</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#gae1472960a22e84a49865639dff5816a0">usbd_add_configuration</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<a class="code hl_variable" href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">uds_ctx</a>,</div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>               <span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__config__node.html">usbd_config_node</a> *cd);</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span> </div>
+<div class="line"><a id="l00479" name="l00479"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga3640cb8425961a8038c225e1daea34a3">  479</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga3640cb8425961a8038c225e1daea34a3">usbd_register_class</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<a class="code hl_variable" href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">uds_ctx</a>,</div>
+<div class="line"><a id="l00480" name="l00480"></a><span class="lineno">  480</span>            <span class="keyword">const</span> <span class="keywordtype">char</span> *name,</div>
+<div class="line"><a id="l00481" name="l00481"></a><span class="lineno">  481</span>            uint8_t cfg);</div>
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span> </div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno"><a class="line" href="group__usbd__api.html#gadf7cc0edc2d046f0b50e65fcc007f982">  496</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#gadf7cc0edc2d046f0b50e65fcc007f982">usbd_unregister_class</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<a class="code hl_variable" href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">uds_ctx</a>,</div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>              <span class="keyword">const</span> <span class="keywordtype">char</span> *name,</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>              uint8_t cfg);</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span> </div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno"><a class="line" href="group__usbd__api.html#gaf3cd6c12317f9d94ee98f2809d2a0e04">  513</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#gaf3cd6c12317f9d94ee98f2809d2a0e04">usbd_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<a class="code hl_variable" href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">uds_ctx</a>);</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span> </div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno"><a class="line" href="group__usbd__api.html#gaa7ee71917824e90177f61a86eb992817">  524</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#gaa7ee71917824e90177f61a86eb992817">usbd_enable</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<a class="code hl_variable" href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">uds_ctx</a>);</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span> </div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno"><a class="line" href="group__usbd__api.html#gaa3112af9fb2f5f1ee55cc71a64c6e369">  535</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#gaa3112af9fb2f5f1ee55cc71a64c6e369">usbd_disable</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<a class="code hl_variable" href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">uds_ctx</a>);</div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span> </div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno"><a class="line" href="group__usbd__api.html#gaa7656f656182e727531e531344c960df">  546</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#gaa7656f656182e727531e531344c960df">usbd_shutdown</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<span class="keyword">const</span> <a class="code hl_variable" href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">uds_ctx</a>);</div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span> </div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga0730043c2fd89b56db6e7457b639968d">  556</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga0730043c2fd89b56db6e7457b639968d">usbd_ep_set_halt</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<a class="code hl_variable" href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">uds_ctx</a>, uint8_t ep);</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span> </div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga197697880c7c625ea212893b2fe7ef8b">  566</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga197697880c7c625ea212893b2fe7ef8b">usbd_ep_clear_halt</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<a class="code hl_variable" href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">uds_ctx</a>, uint8_t ep);</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span> </div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga9292b393ef17fd61ea42b2f28fdd57ee">  576</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__usbd__api.html#ga9292b393ef17fd61ea42b2f28fdd57ee">usbd_ep_is_halted</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<a class="code hl_variable" href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">uds_ctx</a>, uint8_t ep);</div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span> </div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga59b0cb83b05e0a44db9c6a36171d524f">  589</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<a class="code hl_function" href="group__usbd__api.html#ga59b0cb83b05e0a44db9c6a36171d524f">usbd_ep_ctrl_buf_alloc</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<span class="keyword">const</span> uds_ctx,</div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>                       <span class="keyword">const</span> uint8_t ep, <span class="keyword">const</span> <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structnet__buf.html#a1522d81a002804223e25300a6961f527">size</a>);</div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span> </div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga940f38e4db1dfc7ba6514ecf95dc9e5b">  603</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<a class="code hl_function" href="group__usbd__api.html#ga940f38e4db1dfc7ba6514ecf95dc9e5b">usbd_ep_buf_alloc</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> *<span class="keyword">const</span> c_nd,</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span>                  <span class="keyword">const</span> uint8_t ep, <span class="keyword">const</span> <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structnet__buf.html#a1522d81a002804223e25300a6961f527">size</a>);</div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span> </div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga52acb4fb74e3737b446b6704c6925d70">  616</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga52acb4fb74e3737b446b6704c6925d70">usbd_ep_ctrl_enqueue</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<span class="keyword">const</span> uds_ctx,</div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span>             <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<span class="keyword">const</span> buf);</div>
+<div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span> </div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga19ecdc00918dbec14fdbcf847b6f4dce">  629</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga19ecdc00918dbec14fdbcf847b6f4dce">usbd_ep_enqueue</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__class__node.html">usbd_class_node</a> *<span class="keyword">const</span> c_nd,</div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>            <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<span class="keyword">const</span> buf);</div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span> </div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga0d1d7f59822674c201147b50a1dbdb96">  640</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga0d1d7f59822674c201147b50a1dbdb96">usbd_ep_dequeue</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *uds_ctx, <span class="keyword">const</span> uint8_t ep);</div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span> </div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga2bfd230a2e0b74954ebce112816e6193">  652</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga2bfd230a2e0b74954ebce112816e6193">usbd_ep_buf_free</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *uds_ctx, <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *buf);</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span> </div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga832e3147aba9297bad263b2a3817e1e4">  661</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__usbd__api.html#ga832e3147aba9297bad263b2a3817e1e4">usbd_is_suspended</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *uds_ctx);</div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span> </div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga4d440313da931d4504919b8fe2783419">  668</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga4d440313da931d4504919b8fe2783419">usbd_wakeup_request</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *uds_ctx);</div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span> </div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno"><a class="line" href="group__usbd__api.html#gaa191663f3703bd631e51009adbc22d87">  678</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#gaa191663f3703bd631e51009adbc22d87">usbd_device_set_bcd</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<span class="keyword">const</span> uds_ctx,</div>
+<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>             <span class="keyword">const</span> uint16_t bcd);</div>
+<div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span> </div>
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga791a561a3d96698a1a7337723adc8e53">  689</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga791a561a3d96698a1a7337723adc8e53">usbd_device_set_vid</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<span class="keyword">const</span> uds_ctx,</div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span>             <span class="keyword">const</span> uint16_t vid);</div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span> </div>
+<div class="line"><a id="l00700" name="l00700"></a><span class="lineno"><a class="line" href="group__usbd__api.html#gad3612c1c4276783df11b144e72662306">  700</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#gad3612c1c4276783df11b144e72662306">usbd_device_set_pid</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<span class="keyword">const</span> uds_ctx,</div>
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span>            <span class="keyword">const</span> uint16_t pid);</div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span> </div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga66854c0e21c24f4ee774dfa2920062d5">  711</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga66854c0e21c24f4ee774dfa2920062d5">usbd_device_set_class</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<span class="keyword">const</span> uds_ctx,</div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>              <span class="keyword">const</span> uint8_t value);</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span> </div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno"><a class="line" href="group__usbd__api.html#gac9138e156d3bbc311ac08fdc7831204b">  722</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#gac9138e156d3bbc311ac08fdc7831204b">usbd_device_set_subclass</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<span class="keyword">const</span> uds_ctx,</div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>                 <span class="keyword">const</span> uint8_t value);</div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span> </div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga6d3067a86d9a427557aff3e0bfd3aaf9">  733</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga6d3067a86d9a427557aff3e0bfd3aaf9">usbd_device_set_proto</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<span class="keyword">const</span> uds_ctx,</div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>              <span class="keyword">const</span> uint8_t value);</div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span> </div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga6488af53f4ed5355406ef319a8d1b195">  745</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga6488af53f4ed5355406ef319a8d1b195">usbd_config_attrib_rwup</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<span class="keyword">const</span> uds_ctx,</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>                <span class="keyword">const</span> uint8_t cfg, <span class="keyword">const</span> <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span> </div>
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno"><a class="line" href="group__usbd__api.html#ga7c8dd76553545c77ff6e0f4c41d33357">  757</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#ga7c8dd76553545c77ff6e0f4c41d33357">usbd_config_attrib_self</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<span class="keyword">const</span> uds_ctx,</div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>                <span class="keyword">const</span> uint8_t cfg, <span class="keyword">const</span> <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span> </div>
+<div class="line"><a id="l00769" name="l00769"></a><span class="lineno"><a class="line" href="group__usbd__api.html#gac907ba549e8d799a328cc992d76e3825">  769</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__usbd__api.html#gac907ba549e8d799a328cc992d76e3825">usbd_config_maxpower</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structusbd__contex.html">usbd_contex</a> *<span class="keyword">const</span> uds_ctx,</div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span>             <span class="keyword">const</span> uint8_t cfg, <span class="keyword">const</span> uint8_t power);</div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span>}</div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span> </div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_USBD_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga44658c336b634c03938a251cdc8134f8"><div class="ttname"><a href="group__single-linked-list__apis.html#ga44658c336b634c03938a251cdc8134f8">sys_slist_t</a></div><div class="ttdeci">struct _slist sys_slist_t</div><div class="ttdef"><b>Definição</b> slist.h:49</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga0280dbaf6f15e4bc789279b8d93bfff8"><div class="ttname"><a href="group__usbd__api.html#ga0280dbaf6f15e4bc789279b8d93bfff8">usbd_add_descriptor</a></div><div class="ttdeci">int usbd_add_descriptor(struct usbd_contex *uds_ctx, struct usbd_desc_node *dn)</div><div class="ttdoc">Add common USB descriptor.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga0730043c2fd89b56db6e7457b639968d"><div class="ttname"><a href="group__usbd__api.html#ga0730043c2fd89b56db6e7457b639968d">usbd_ep_set_halt</a></div><div class="ttdeci">int usbd_ep_set_halt(struct usbd_contex *uds_ctx, uint8_t ep)</div><div class="ttdoc">Halt endpoint.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga0d1d7f59822674c201147b50a1dbdb96"><div class="ttname"><a href="group__usbd__api.html#ga0d1d7f59822674c201147b50a1dbdb96">usbd_ep_dequeue</a></div><div class="ttdeci">int usbd_ep_dequeue(struct usbd_contex *uds_ctx, const uint8_t ep)</div><div class="ttdoc">Remove all USB device controller requests from endpoint queue.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga197697880c7c625ea212893b2fe7ef8b"><div class="ttname"><a href="group__usbd__api.html#ga197697880c7c625ea212893b2fe7ef8b">usbd_ep_clear_halt</a></div><div class="ttdeci">int usbd_ep_clear_halt(struct usbd_contex *uds_ctx, uint8_t ep)</div><div class="ttdoc">Clear endpoint halt.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga19ecdc00918dbec14fdbcf847b6f4dce"><div class="ttname"><a href="group__usbd__api.html#ga19ecdc00918dbec14fdbcf847b6f4dce">usbd_ep_enqueue</a></div><div class="ttdeci">int usbd_ep_enqueue(const struct usbd_class_node *const c_nd, struct net_buf *const buf)</div><div class="ttdoc">Queue USB device request.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga2bfd230a2e0b74954ebce112816e6193"><div class="ttname"><a href="group__usbd__api.html#ga2bfd230a2e0b74954ebce112816e6193">usbd_ep_buf_free</a></div><div class="ttdeci">int usbd_ep_buf_free(struct usbd_contex *uds_ctx, struct net_buf *buf)</div><div class="ttdoc">Free USB device request buffer.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga3640cb8425961a8038c225e1daea34a3"><div class="ttname"><a href="group__usbd__api.html#ga3640cb8425961a8038c225e1daea34a3">usbd_register_class</a></div><div class="ttdeci">int usbd_register_class(struct usbd_contex *uds_ctx, const char *name, uint8_t cfg)</div><div class="ttdoc">Register an USB class instance.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga4d440313da931d4504919b8fe2783419"><div class="ttname"><a href="group__usbd__api.html#ga4d440313da931d4504919b8fe2783419">usbd_wakeup_request</a></div><div class="ttdeci">int usbd_wakeup_request(struct usbd_contex *uds_ctx)</div><div class="ttdoc">Initiate the USB remote wakeup (TBD)</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga52acb4fb74e3737b446b6704c6925d70"><div class="ttname"><a href="group__usbd__api.html#ga52acb4fb74e3737b446b6704c6925d70">usbd_ep_ctrl_enqueue</a></div><div class="ttdeci">int usbd_ep_ctrl_enqueue(struct usbd_contex *const uds_ctx, struct net_buf *const buf)</div><div class="ttdoc">Queue USB device control request.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga59b0cb83b05e0a44db9c6a36171d524f"><div class="ttname"><a href="group__usbd__api.html#ga59b0cb83b05e0a44db9c6a36171d524f">usbd_ep_ctrl_buf_alloc</a></div><div class="ttdeci">struct net_buf * usbd_ep_ctrl_buf_alloc(struct usbd_contex *const uds_ctx, const uint8_t ep, const size_t size)</div><div class="ttdoc">Allocate buffer for USB device control request.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga6488af53f4ed5355406ef319a8d1b195"><div class="ttname"><a href="group__usbd__api.html#ga6488af53f4ed5355406ef319a8d1b195">usbd_config_attrib_rwup</a></div><div class="ttdeci">int usbd_config_attrib_rwup(struct usbd_contex *const uds_ctx, const uint8_t cfg, const bool enable)</div><div class="ttdoc">Setup USB device configuration attribute Remote Wakeup.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga66854c0e21c24f4ee774dfa2920062d5"><div class="ttname"><a href="group__usbd__api.html#ga66854c0e21c24f4ee774dfa2920062d5">usbd_device_set_class</a></div><div class="ttdeci">int usbd_device_set_class(struct usbd_contex *const uds_ctx, const uint8_t value)</div><div class="ttdoc">Set USB device descriptor value bDeviceClass.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga6d3067a86d9a427557aff3e0bfd3aaf9"><div class="ttname"><a href="group__usbd__api.html#ga6d3067a86d9a427557aff3e0bfd3aaf9">usbd_device_set_proto</a></div><div class="ttdeci">int usbd_device_set_proto(struct usbd_contex *const uds_ctx, const uint8_t value)</div><div class="ttdoc">Set USB device descriptor value bDeviceProtocol.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga791a561a3d96698a1a7337723adc8e53"><div class="ttname"><a href="group__usbd__api.html#ga791a561a3d96698a1a7337723adc8e53">usbd_device_set_vid</a></div><div class="ttdeci">int usbd_device_set_vid(struct usbd_contex *const uds_ctx, const uint16_t vid)</div><div class="ttdoc">Set USB device descriptor value idVendor.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga7c8dd76553545c77ff6e0f4c41d33357"><div class="ttname"><a href="group__usbd__api.html#ga7c8dd76553545c77ff6e0f4c41d33357">usbd_config_attrib_self</a></div><div class="ttdeci">int usbd_config_attrib_self(struct usbd_contex *const uds_ctx, const uint8_t cfg, const bool enable)</div><div class="ttdoc">Setup USB device configuration attribute Self-powered.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga832e3147aba9297bad263b2a3817e1e4"><div class="ttname"><a href="group__usbd__api.html#ga832e3147aba9297bad263b2a3817e1e4">usbd_is_suspended</a></div><div class="ttdeci">bool usbd_is_suspended(struct usbd_contex *uds_ctx)</div><div class="ttdoc">Checks whether the USB device controller is suspended.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga9292b393ef17fd61ea42b2f28fdd57ee"><div class="ttname"><a href="group__usbd__api.html#ga9292b393ef17fd61ea42b2f28fdd57ee">usbd_ep_is_halted</a></div><div class="ttdeci">bool usbd_ep_is_halted(struct usbd_contex *uds_ctx, uint8_t ep)</div><div class="ttdoc">Checks whether the endpoint is halted.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga940f38e4db1dfc7ba6514ecf95dc9e5b"><div class="ttname"><a href="group__usbd__api.html#ga940f38e4db1dfc7ba6514ecf95dc9e5b">usbd_ep_buf_alloc</a></div><div class="ttdeci">struct net_buf * usbd_ep_buf_alloc(const struct usbd_class_node *const c_nd, const uint8_t ep, const size_t size)</div><div class="ttdoc">Allocate buffer for USB device request.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_ga95fb708d8a54eaa3ce0acc4e65519bbc"><div class="ttname"><a href="group__usbd__api.html#ga95fb708d8a54eaa3ce0acc4e65519bbc">usbd_ch9_state</a></div><div class="ttdeci">usbd_ch9_state</div><div class="ttdef"><b>Definição</b> usbd.h:116</div></div>
+<div class="ttc" id="agroup__usbd__api_html_gaa191663f3703bd631e51009adbc22d87"><div class="ttname"><a href="group__usbd__api.html#gaa191663f3703bd631e51009adbc22d87">usbd_device_set_bcd</a></div><div class="ttdeci">int usbd_device_set_bcd(struct usbd_contex *const uds_ctx, const uint16_t bcd)</div><div class="ttdoc">Set USB device descriptor value bcdUSB.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_gaa3112af9fb2f5f1ee55cc71a64c6e369"><div class="ttname"><a href="group__usbd__api.html#gaa3112af9fb2f5f1ee55cc71a64c6e369">usbd_disable</a></div><div class="ttdeci">int usbd_disable(struct usbd_contex *uds_ctx)</div><div class="ttdoc">Disable the USB device support.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_gaa7656f656182e727531e531344c960df"><div class="ttname"><a href="group__usbd__api.html#gaa7656f656182e727531e531344c960df">usbd_shutdown</a></div><div class="ttdeci">int usbd_shutdown(struct usbd_contex *const uds_ctx)</div><div class="ttdoc">Shutdown the USB device support.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_gaa7ee71917824e90177f61a86eb992817"><div class="ttname"><a href="group__usbd__api.html#gaa7ee71917824e90177f61a86eb992817">usbd_enable</a></div><div class="ttdeci">int usbd_enable(struct usbd_contex *uds_ctx)</div><div class="ttdoc">Enable the USB device support and registered class instances.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_gac907ba549e8d799a328cc992d76e3825"><div class="ttname"><a href="group__usbd__api.html#gac907ba549e8d799a328cc992d76e3825">usbd_config_maxpower</a></div><div class="ttdeci">int usbd_config_maxpower(struct usbd_contex *const uds_ctx, const uint8_t cfg, const uint8_t power)</div><div class="ttdoc">Setup USB device configuration power consumption.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_gac9138e156d3bbc311ac08fdc7831204b"><div class="ttname"><a href="group__usbd__api.html#gac9138e156d3bbc311ac08fdc7831204b">usbd_device_set_subclass</a></div><div class="ttdeci">int usbd_device_set_subclass(struct usbd_contex *const uds_ctx, const uint8_t value)</div><div class="ttdoc">Set USB device descriptor value bDeviceSubClass.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_gad3612c1c4276783df11b144e72662306"><div class="ttname"><a href="group__usbd__api.html#gad3612c1c4276783df11b144e72662306">usbd_device_set_pid</a></div><div class="ttdeci">int usbd_device_set_pid(struct usbd_contex *const uds_ctx, const uint16_t pid)</div><div class="ttdoc">Set USB device descriptor value idProduct.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_gadf7cc0edc2d046f0b50e65fcc007f982"><div class="ttname"><a href="group__usbd__api.html#gadf7cc0edc2d046f0b50e65fcc007f982">usbd_unregister_class</a></div><div class="ttdeci">int usbd_unregister_class(struct usbd_contex *uds_ctx, const char *name, uint8_t cfg)</div><div class="ttdoc">Unregister an USB class instance.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_gae1472960a22e84a49865639dff5816a0"><div class="ttname"><a href="group__usbd__api.html#gae1472960a22e84a49865639dff5816a0">usbd_add_configuration</a></div><div class="ttdeci">int usbd_add_configuration(struct usbd_contex *uds_ctx, struct usbd_config_node *cd)</div><div class="ttdoc">Add a USB device configuration.</div></div>
+<div class="ttc" id="agroup__usbd__api_html_gaf3cd6c12317f9d94ee98f2809d2a0e04"><div class="ttname"><a href="group__usbd__api.html#gaf3cd6c12317f9d94ee98f2809d2a0e04">usbd_init</a></div><div class="ttdeci">int usbd_init(struct usbd_contex *uds_ctx)</div><div class="ttdoc">Initialize USB device.</div></div>
+<div class="ttc" id="anet_2buf_8h_html"><div class="ttname"><a href="net_2buf_8h.html">buf.h</a></div><div class="ttdoc">Buffer management.</div></div>
+<div class="ttc" id="aslist_8h_html"><div class="ttname"><a href="slist_8h.html">slist.h</a></div></div>
+<div class="ttc" id="astruct__dnode_html"><div class="ttname"><a href="struct__dnode.html">_dnode</a></div><div class="ttdef"><b>Definição</b> dlist.h:37</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructk__mutex_html"><div class="ttname"><a href="structk__mutex.html">k_mutex</a></div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:31</div></div>
+<div class="ttc" id="astructnet__buf_html"><div class="ttname"><a href="structnet__buf.html">net_buf</a></div><div class="ttdoc">Network buffer representation.</div><div class="ttdef"><b>Definição</b> buf.h:906</div></div>
+<div class="ttc" id="astructnet__buf_html_a1522d81a002804223e25300a6961f527"><div class="ttname"><a href="structnet__buf.html#a1522d81a002804223e25300a6961f527">net_buf::size</a></div><div class="ttdeci">uint16_t size</div><div class="ttdef"><b>Definição</b> buf.h:938</div></div>
+<div class="ttc" id="astructusb__setup__packet_html"><div class="ttname"><a href="structusb__setup__packet.html">usb_setup_packet</a></div><div class="ttdef"><b>Definição</b> usb_ch9.h:39</div></div>
+<div class="ttc" id="astructusbd__cctx__vendor__req_html"><div class="ttname"><a href="structusbd__cctx__vendor__req.html">usbd_cctx_vendor_req</a></div><div class="ttdoc">Vendor Requests Table.</div><div class="ttdef"><b>Definição</b> usbd.h:185</div></div>
+<div class="ttc" id="astructusbd__cctx__vendor__req_html_a2ddf3ce0c1c0a6d788b7ef30cf8d67ea"><div class="ttname"><a href="structusbd__cctx__vendor__req.html#a2ddf3ce0c1c0a6d788b7ef30cf8d67ea">usbd_cctx_vendor_req::reqs</a></div><div class="ttdeci">const uint8_t * reqs</div><div class="ttdef"><b>Definição</b> usbd.h:187</div></div>
+<div class="ttc" id="astructusbd__cctx__vendor__req_html_a3b5e99bff9dbfa023a4e6a5b4a69abd0"><div class="ttname"><a href="structusbd__cctx__vendor__req.html#a3b5e99bff9dbfa023a4e6a5b4a69abd0">usbd_cctx_vendor_req::len</a></div><div class="ttdeci">uint8_t len</div><div class="ttdef"><b>Definição</b> usbd.h:189</div></div>
+<div class="ttc" id="astructusbd__ch9__data_html"><div class="ttname"><a href="structusbd__ch9__data.html">usbd_ch9_data</a></div><div class="ttdef"><b>Definição</b> usbd.h:126</div></div>
+<div class="ttc" id="astructusbd__ch9__data_html_a095a2a98f19ea40e8bd1bf65eed77dac"><div class="ttname"><a href="structusbd__ch9__data.html#a095a2a98f19ea40e8bd1bf65eed77dac">usbd_ch9_data::ctrl_type</a></div><div class="ttdeci">int ctrl_type</div><div class="ttdef"><b>Definição</b> usbd.h:130</div></div>
+<div class="ttc" id="astructusbd__ch9__data_html_a1f759fb0d758e50c4589b6b6b1fd2a24"><div class="ttname"><a href="structusbd__ch9__data.html#a1f759fb0d758e50c4589b6b6b1fd2a24">usbd_ch9_data::configuration</a></div><div class="ttdeci">uint8_t configuration</div><div class="ttdef"><b>Definição</b> usbd.h:136</div></div>
+<div class="ttc" id="astructusbd__ch9__data_html_a504360b7cb11240a2fda68344f2e3b62"><div class="ttname"><a href="structusbd__ch9__data.html#a504360b7cb11240a2fda68344f2e3b62">usbd_ch9_data::ep_halt</a></div><div class="ttdeci">uint32_t ep_halt</div><div class="ttdef"><b>Definição</b> usbd.h:134</div></div>
+<div class="ttc" id="astructusbd__ch9__data_html_a70d1a1be0aab6167ca4f4580b9c65eff"><div class="ttname"><a href="structusbd__ch9__data.html#a70d1a1be0aab6167ca4f4580b9c65eff">usbd_ch9_data::state</a></div><div class="ttdeci">enum usbd_ch9_state state</div><div class="ttdef"><b>Definição</b> usbd.h:132</div></div>
+<div class="ttc" id="astructusbd__ch9__data_html_a85f96c69cede5b51c1f9739a4ae67f4d"><div class="ttname"><a href="structusbd__ch9__data.html#a85f96c69cede5b51c1f9739a4ae67f4d">usbd_ch9_data::setup</a></div><div class="ttdeci">struct usb_setup_packet setup</div><div class="ttdef"><b>Definição</b> usbd.h:128</div></div>
+<div class="ttc" id="astructusbd__ch9__data_html_aad529db4a4dcfd9d84face34abdaa465"><div class="ttname"><a href="structusbd__ch9__data.html#aad529db4a4dcfd9d84face34abdaa465">usbd_ch9_data::alternate</a></div><div class="ttdeci">uint8_t alternate[USBD_NUMOF_INTERFACES_MAX]</div><div class="ttdef"><b>Definição</b> usbd.h:140</div></div>
+<div class="ttc" id="astructusbd__ch9__data_html_aadf716b741b482929df3b33613c17273"><div class="ttname"><a href="structusbd__ch9__data.html#aadf716b741b482929df3b33613c17273">usbd_ch9_data::new_address</a></div><div class="ttdeci">bool new_address</div><div class="ttdef"><b>Definição</b> usbd.h:138</div></div>
+<div class="ttc" id="astructusbd__class__api_html"><div class="ttname"><a href="structusbd__class__api.html">usbd_class_api</a></div><div class="ttdoc">USB device support class instance API.</div><div class="ttdef"><b>Definição</b> usbd.h:200</div></div>
+<div class="ttc" id="astructusbd__class__api_html_a03585c10422b27cf7712cc88e99a5fc2"><div class="ttname"><a href="structusbd__class__api.html#a03585c10422b27cf7712cc88e99a5fc2">usbd_class_api::enable</a></div><div class="ttdeci">void(* enable)(struct usbd_class_node *const node)</div><div class="ttdef"><b>Definição</b> usbd.h:230</div></div>
+<div class="ttc" id="astructusbd__class__api_html_a11e02db41023c9a4d8e853d1eaddac00"><div class="ttname"><a href="structusbd__class__api.html#a11e02db41023c9a4d8e853d1eaddac00">usbd_class_api::shutdown</a></div><div class="ttdeci">void(* shutdown)(struct usbd_class_node *const node)</div><div class="ttdef"><b>Definição</b> usbd.h:239</div></div>
+<div class="ttc" id="astructusbd__class__api_html_a20ec6b44ddded48eadffc9a82115766e"><div class="ttname"><a href="structusbd__class__api.html#a20ec6b44ddded48eadffc9a82115766e">usbd_class_api::init</a></div><div class="ttdeci">int(* init)(struct usbd_class_node *const node)</div><div class="ttdef"><b>Definição</b> usbd.h:236</div></div>
+<div class="ttc" id="astructusbd__class__api_html_a26411223bbe266a1cb7015a7ccb5c100"><div class="ttname"><a href="structusbd__class__api.html#a26411223bbe266a1cb7015a7ccb5c100">usbd_class_api::resumed</a></div><div class="ttdeci">void(* resumed)(struct usbd_class_node *const node)</div><div class="ttdef"><b>Definição</b> usbd.h:227</div></div>
+<div class="ttc" id="astructusbd__class__api_html_a36bf045b23c0fda4865db2978c94b6d1"><div class="ttname"><a href="structusbd__class__api.html#a36bf045b23c0fda4865db2978c94b6d1">usbd_class_api::suspended</a></div><div class="ttdeci">void(* suspended)(struct usbd_class_node *const node)</div><div class="ttdef"><b>Definição</b> usbd.h:224</div></div>
+<div class="ttc" id="astructusbd__class__api_html_a3e9c54c768d12341d242cdecd83e96bd"><div class="ttname"><a href="structusbd__class__api.html#a3e9c54c768d12341d242cdecd83e96bd">usbd_class_api::disable</a></div><div class="ttdeci">void(* disable)(struct usbd_class_node *const node)</div><div class="ttdef"><b>Definição</b> usbd.h:233</div></div>
+<div class="ttc" id="astructusbd__class__api_html_a5c7fa1a0d05a8eab486e1ee61cc0b73f"><div class="ttname"><a href="structusbd__class__api.html#a5c7fa1a0d05a8eab486e1ee61cc0b73f">usbd_class_api::control_to_dev</a></div><div class="ttdeci">int(* control_to_dev)(struct usbd_class_node *const node, const struct usb_setup_packet *const setup, const struct net_buf *const buf)</div><div class="ttdef"><b>Definição</b> usbd.h:210</div></div>
+<div class="ttc" id="astructusbd__class__api_html_a5eac92c9ab6ebb6eb61c683f0b289e21"><div class="ttname"><a href="structusbd__class__api.html#a5eac92c9ab6ebb6eb61c683f0b289e21">usbd_class_api::control_to_host</a></div><div class="ttdeci">int(* control_to_host)(struct usbd_class_node *const node, const struct usb_setup_packet *const setup, struct net_buf *const buf)</div><div class="ttdef"><b>Definição</b> usbd.h:215</div></div>
+<div class="ttc" id="astructusbd__class__api_html_a90d7370d6d58467b8516dc23fa85da6e"><div class="ttname"><a href="structusbd__class__api.html#a90d7370d6d58467b8516dc23fa85da6e">usbd_class_api::feature_halt</a></div><div class="ttdeci">void(* feature_halt)(struct usbd_class_node *const node, uint8_t ep, bool halted)</div><div class="ttdef"><b>Definição</b> usbd.h:202</div></div>
+<div class="ttc" id="astructusbd__class__api_html_adaa09908b17f85e97f39266f79cb32a8"><div class="ttname"><a href="structusbd__class__api.html#adaa09908b17f85e97f39266f79cb32a8">usbd_class_api::update</a></div><div class="ttdeci">void(* update)(struct usbd_class_node *const node, uint8_t iface, uint8_t alternate)</div><div class="ttdef"><b>Definição</b> usbd.h:206</div></div>
+<div class="ttc" id="astructusbd__class__api_html_aff8426da1f7dd1f5fa5d27ce135bf0f8"><div class="ttname"><a href="structusbd__class__api.html#aff8426da1f7dd1f5fa5d27ce135bf0f8">usbd_class_api::request</a></div><div class="ttdeci">int(* request)(struct usbd_class_node *const node, struct net_buf *buf, int err)</div><div class="ttdef"><b>Definição</b> usbd.h:220</div></div>
+<div class="ttc" id="astructusbd__class__data_html"><div class="ttname"><a href="structusbd__class__data.html">usbd_class_data</a></div><div class="ttdoc">USB device support class data.</div><div class="ttdef"><b>Definição</b> usbd.h:245</div></div>
+<div class="ttc" id="astructusbd__class__data_html_a10bb5b9af6098fbbc86fd00ef54e84e1"><div class="ttname"><a href="structusbd__class__data.html#a10bb5b9af6098fbbc86fd00ef54e84e1">usbd_class_data::priv</a></div><div class="ttdeci">void * priv</div><div class="ttdef"><b>Definição</b> usbd.h:267</div></div>
+<div class="ttc" id="astructusbd__class__data_html_a32db83ecf80e1ac9e4d5deda54581deb"><div class="ttname"><a href="structusbd__class__data.html#a32db83ecf80e1ac9e4d5deda54581deb">usbd_class_data::v_reqs</a></div><div class="ttdeci">const struct usbd_cctx_vendor_req * v_reqs</div><div class="ttdef"><b>Definição</b> usbd.h:253</div></div>
+<div class="ttc" id="astructusbd__class__data_html_a57718d5c32580352ad7bd49000d01d3b"><div class="ttname"><a href="structusbd__class__data.html#a57718d5c32580352ad7bd49000d01d3b">usbd_class_data::state</a></div><div class="ttdeci">atomic_t state</div><div class="ttdef"><b>Definição</b> usbd.h:265</div></div>
+<div class="ttc" id="astructusbd__class__data_html_a5b63cc431c007291bf96196b0eefd6c2"><div class="ttname"><a href="structusbd__class__data.html#a5b63cc431c007291bf96196b0eefd6c2">usbd_class_data::desc</a></div><div class="ttdeci">void * desc</div><div class="ttdef"><b>Definição</b> usbd.h:251</div></div>
+<div class="ttc" id="astructusbd__class__data_html_aad3c8f52393d6135532d25ee8f42950e"><div class="ttname"><a href="structusbd__class__data.html#aad3c8f52393d6135532d25ee8f42950e">usbd_class_data::ep_active</a></div><div class="ttdeci">uint32_t ep_active</div><div class="ttdef"><b>Definição</b> usbd.h:261</div></div>
+<div class="ttc" id="astructusbd__class__data_html_ab41348dd230fa882efb8d39260447cb4"><div class="ttname"><a href="structusbd__class__data.html#ab41348dd230fa882efb8d39260447cb4">usbd_class_data::iface_bm</a></div><div class="ttdeci">uint32_t iface_bm</div><div class="ttdef"><b>Definição</b> usbd.h:263</div></div>
+<div class="ttc" id="astructusbd__class__data_html_ab60dc9c68368c5c918ea6d23eacfaf60"><div class="ttname"><a href="structusbd__class__data.html#ab60dc9c68368c5c918ea6d23eacfaf60">usbd_class_data::ep_assigned</a></div><div class="ttdeci">uint32_t ep_assigned</div><div class="ttdef"><b>Definição</b> usbd.h:257</div></div>
+<div class="ttc" id="astructusbd__class__data_html_af2560e7d2e9f4fcc70be0a13883594b1"><div class="ttname"><a href="structusbd__class__data.html#af2560e7d2e9f4fcc70be0a13883594b1">usbd_class_data::uds_ctx</a></div><div class="ttdeci">struct usbd_contex * uds_ctx</div><div class="ttdef"><b>Definição</b> usbd.h:247</div></div>
+<div class="ttc" id="astructusbd__class__node_html"><div class="ttname"><a href="structusbd__class__node.html">usbd_class_node</a></div><div class="ttdef"><b>Definição</b> usbd.h:270</div></div>
+<div class="ttc" id="astructusbd__class__node_html_a06682f9e64f391985b08c5d884903992"><div class="ttname"><a href="structusbd__class__node.html#a06682f9e64f391985b08c5d884903992">usbd_class_node::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definição</b> usbd.h:274</div></div>
+<div class="ttc" id="astructusbd__class__node_html_a1bdbe525e21ac5ea6eff30f6159a4406"><div class="ttname"><a href="structusbd__class__node.html#a1bdbe525e21ac5ea6eff30f6159a4406">usbd_class_node::node</a></div><div class="ttdeci">sys_snode_t node</div><div class="ttdef"><b>Definição</b> usbd.h:272</div></div>
+<div class="ttc" id="astructusbd__class__node_html_a276df79bf269b19875f1c497a36392fb"><div class="ttname"><a href="structusbd__class__node.html#a276df79bf269b19875f1c497a36392fb">usbd_class_node::api</a></div><div class="ttdeci">const struct usbd_class_api * api</div><div class="ttdef"><b>Definição</b> usbd.h:276</div></div>
+<div class="ttc" id="astructusbd__class__node_html_a53916906d5efce1eeb4024a7b3662553"><div class="ttname"><a href="structusbd__class__node.html#a53916906d5efce1eeb4024a7b3662553">usbd_class_node::data</a></div><div class="ttdeci">struct usbd_class_data * data</div><div class="ttdef"><b>Definição</b> usbd.h:278</div></div>
+<div class="ttc" id="astructusbd__config__node_html"><div class="ttname"><a href="structusbd__config__node.html">usbd_config_node</a></div><div class="ttdef"><b>Definição</b> usbd.h:98</div></div>
+<div class="ttc" id="astructusbd__config__node_html_a003a8d9132b319f54583263c4da1e060"><div class="ttname"><a href="structusbd__config__node.html#a003a8d9132b319f54583263c4da1e060">usbd_config_node::node</a></div><div class="ttdeci">sys_snode_t node</div><div class="ttdef"><b>Definição</b> usbd.h:100</div></div>
+<div class="ttc" id="astructusbd__config__node_html_a00493162af2344d3d39f834b4834ef78"><div class="ttname"><a href="structusbd__config__node.html#a00493162af2344d3d39f834b4834ef78">usbd_config_node::class_list</a></div><div class="ttdeci">sys_slist_t class_list</div><div class="ttdef"><b>Definição</b> usbd.h:104</div></div>
+<div class="ttc" id="astructusbd__config__node_html_a55081d79ab3e6b41a091b3f65d7d2d87"><div class="ttname"><a href="structusbd__config__node.html#a55081d79ab3e6b41a091b3f65d7d2d87">usbd_config_node::desc</a></div><div class="ttdeci">void * desc</div><div class="ttdef"><b>Definição</b> usbd.h:102</div></div>
+<div class="ttc" id="astructusbd__contex_html"><div class="ttname"><a href="structusbd__contex.html">usbd_contex</a></div><div class="ttdef"><b>Definição</b> usbd.h:163</div></div>
+<div class="ttc" id="astructusbd__contex_html_a4634c51ab958993e0d2c2cbb192cc105"><div class="ttname"><a href="structusbd__contex.html#a4634c51ab958993e0d2c2cbb192cc105">usbd_contex::descriptors</a></div><div class="ttdeci">sys_dlist_t descriptors</div><div class="ttdef"><b>Definição</b> usbd.h:173</div></div>
+<div class="ttc" id="astructusbd__contex_html_a7f0d2d526faa553e3f520a58639d271a"><div class="ttname"><a href="structusbd__contex.html#a7f0d2d526faa553e3f520a58639d271a">usbd_contex::ch9_data</a></div><div class="ttdeci">struct usbd_ch9_data ch9_data</div><div class="ttdef"><b>Definição</b> usbd.h:171</div></div>
+<div class="ttc" id="astructusbd__contex_html_abba6950f90e08a227c5a124ba1cac794"><div class="ttname"><a href="structusbd__contex.html#abba6950f90e08a227c5a124ba1cac794">usbd_contex::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definição</b> usbd.h:165</div></div>
+<div class="ttc" id="astructusbd__contex_html_abc0473af6584cd4d4040af7d5f1b522b"><div class="ttname"><a href="structusbd__contex.html#abc0473af6584cd4d4040af7d5f1b522b">usbd_contex::configs</a></div><div class="ttdeci">sys_slist_t configs</div><div class="ttdef"><b>Definição</b> usbd.h:175</div></div>
+<div class="ttc" id="astructusbd__contex_html_abe1919c4098622f9a87f4b2d4caf1c3b"><div class="ttname"><a href="structusbd__contex.html#abe1919c4098622f9a87f4b2d4caf1c3b">usbd_contex::dev</a></div><div class="ttdeci">const struct device * dev</div><div class="ttdef"><b>Definição</b> usbd.h:169</div></div>
+<div class="ttc" id="astructusbd__contex_html_ac833ce3afb9a9d86c90f35bc33ef617f"><div class="ttname"><a href="structusbd__contex.html#ac833ce3afb9a9d86c90f35bc33ef617f">usbd_contex::mutex</a></div><div class="ttdeci">struct k_mutex mutex</div><div class="ttdef"><b>Definição</b> usbd.h:167</div></div>
+<div class="ttc" id="astructusbd__contex_html_ad2984b7bd687e2c753c1c7497044e9d0"><div class="ttname"><a href="structusbd__contex.html#ad2984b7bd687e2c753c1c7497044e9d0">usbd_contex::desc</a></div><div class="ttdeci">void * desc</div><div class="ttdef"><b>Definição</b> usbd.h:179</div></div>
+<div class="ttc" id="astructusbd__contex_html_ae190c2f4e20e91e9ad75ff81012b47c2"><div class="ttname"><a href="structusbd__contex.html#ae190c2f4e20e91e9ad75ff81012b47c2">usbd_contex::status</a></div><div class="ttdeci">struct usbd_status status</div><div class="ttdef"><b>Definição</b> usbd.h:177</div></div>
+<div class="ttc" id="astructusbd__desc__node_html"><div class="ttname"><a href="structusbd__desc__node.html">usbd_desc_node</a></div><div class="ttdef"><b>Definição</b> usbd.h:75</div></div>
+<div class="ttc" id="astructusbd__desc__node_html_a0705a86aa6d7f532eb6be794f2c60d06"><div class="ttname"><a href="structusbd__desc__node.html#a0705a86aa6d7f532eb6be794f2c60d06">usbd_desc_node::idx</a></div><div class="ttdeci">unsigned int idx</div><div class="ttdef"><b>Definição</b> usbd.h:79</div></div>
+<div class="ttc" id="astructusbd__desc__node_html_a266d0936f7684f6a3047e2a6d1875458"><div class="ttname"><a href="structusbd__desc__node.html#a266d0936f7684f6a3047e2a6d1875458">usbd_desc_node::utf16le</a></div><div class="ttdeci">unsigned int utf16le</div><div class="ttdef"><b>Definição</b> usbd.h:83</div></div>
+<div class="ttc" id="astructusbd__desc__node_html_a322537e0b35d0590ba0f4e19ae5bb3ac"><div class="ttname"><a href="structusbd__desc__node.html#a322537e0b35d0590ba0f4e19ae5bb3ac">usbd_desc_node::custom_sn</a></div><div class="ttdeci">unsigned int custom_sn</div><div class="ttdef"><b>Definição</b> usbd.h:85</div></div>
+<div class="ttc" id="astructusbd__desc__node_html_a4d4692341a7785b5a0af762b1810e80f"><div class="ttname"><a href="structusbd__desc__node.html#a4d4692341a7785b5a0af762b1810e80f">usbd_desc_node::desc</a></div><div class="ttdeci">void * desc</div><div class="ttdef"><b>Definição</b> usbd.h:87</div></div>
+<div class="ttc" id="astructusbd__desc__node_html_a50e1b8db1dd6a4f3ca541394ad9d9adf"><div class="ttname"><a href="structusbd__desc__node.html#a50e1b8db1dd6a4f3ca541394ad9d9adf">usbd_desc_node::utype</a></div><div class="ttdeci">unsigned int utype</div><div class="ttdef"><b>Definição</b> usbd.h:81</div></div>
+<div class="ttc" id="astructusbd__desc__node_html_a9f1941cd036c01387d8ad9a4aceb595a"><div class="ttname"><a href="structusbd__desc__node.html#a9f1941cd036c01387d8ad9a4aceb595a">usbd_desc_node::node</a></div><div class="ttdeci">sys_dnode_t node</div><div class="ttdef"><b>Definição</b> usbd.h:77</div></div>
+<div class="ttc" id="astructusbd__status_html"><div class="ttname"><a href="structusbd__status.html">usbd_status</a></div><div class="ttdef"><b>Definição</b> usbd.h:146</div></div>
+<div class="ttc" id="astructusbd__status_html_a113085892967cf7c9cb70131b320d61a"><div class="ttname"><a href="structusbd__status.html#a113085892967cf7c9cb70131b320d61a">usbd_status::rwup</a></div><div class="ttdeci">unsigned int rwup</div><div class="ttdef"><b>Definição</b> usbd.h:154</div></div>
+<div class="ttc" id="astructusbd__status_html_a2382fcb655fe51e0bcf83f85aa182ba3"><div class="ttname"><a href="structusbd__status.html#a2382fcb655fe51e0bcf83f85aa182ba3">usbd_status::enabled</a></div><div class="ttdeci">unsigned int enabled</div><div class="ttdef"><b>Definição</b> usbd.h:150</div></div>
+<div class="ttc" id="astructusbd__status_html_a78de12245d08ecc71e09d5519fe0e857"><div class="ttname"><a href="structusbd__status.html#a78de12245d08ecc71e09d5519fe0e857">usbd_status::initialized</a></div><div class="ttdeci">unsigned int initialized</div><div class="ttdef"><b>Definição</b> usbd.h:148</div></div>
+<div class="ttc" id="astructusbd__status_html_afb67cfda187e40229f842c93aa09f0ba"><div class="ttname"><a href="structusbd__status.html#afb67cfda187e40229f842c93aa09f0ba">usbd_status::suspended</a></div><div class="ttdeci">unsigned int suspended</div><div class="ttdef"><b>Definição</b> usbd.h:152</div></div>
+<div class="ttc" id="asys_2byteorder_8h_html"><div class="ttname"><a href="sys_2byteorder_8h.html">byteorder.h</a></div><div class="ttdoc">Byte order helpers.</div></div>
+<div class="ttc" id="ausb__ch9_8h_html"><div class="ttname"><a href="usb__ch9_8h.html">usb_ch9.h</a></div><div class="ttdoc">USB Chapter 9 structures and definitions.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

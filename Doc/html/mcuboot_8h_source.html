@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/dfu/mcuboot.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_6980244c59c70c78383e534120ab983c.html">dfu</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">mcuboot.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="mcuboot_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2017 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2016 Linaro Limited</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DFU_MCUBOOT_H_</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DFU_MCUBOOT_H_</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#ifdef BOOT_SWAP_TYPE_NONE</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#if BOOT_SWAP_TYPE_NONE != 1 </span><span class="comment">/*ensure the same definition in MCUboot */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#error &quot;definition incompatible&quot;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#gabb6482b898e8307074d8aef01b1102b7">   43</a></span><span class="preprocessor">#define BOOT_SWAP_TYPE_NONE     1</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#ifdef BOOT_SWAP_TYPE_TEST</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#if BOOT_SWAP_TYPE_TEST != 2  </span><span class="comment">/*ensure the same definition in MCUboot */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#error &quot;definition incompatible&quot;</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#ga3aa4415c47231a120c4cab455ea0beef">   52</a></span><span class="preprocessor">#define BOOT_SWAP_TYPE_TEST     2</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#ifdef BOOT_SWAP_TYPE_PERM</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#if BOOT_SWAP_TYPE_PERM != 3  </span><span class="comment">/*ensure the same definition in MCUboot */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#error &quot;definition incompatible&quot;</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#ga09ebc9ba28e294e71388480bb9e4f677">   61</a></span><span class="preprocessor">#define BOOT_SWAP_TYPE_PERM     3</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#ifdef BOOT_SWAP_TYPE_REVERT</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#if BOOT_SWAP_TYPE_REVERT != 4  </span><span class="comment">/*ensure the same definition in MCUboot */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#error &quot;definition incompatible&quot;</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#ga8ca7bd765c6ab669db0774c0b0122494">   70</a></span><span class="preprocessor">#define BOOT_SWAP_TYPE_REVERT   4</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#ifdef BOOT_SWAP_TYPE_FAIL</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#if BOOT_SWAP_TYPE_FAIL != 5  </span><span class="comment">/*ensure the same definition in MCUboot */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#error &quot;definition incompatible&quot;</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#ga28cb43e6bfacdd285d95751cda80de13">   79</a></span><span class="preprocessor">#define BOOT_SWAP_TYPE_FAIL     5</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#define BOOT_IMG_VER_STRLEN_MAX 25  </span><span class="comment">/* 255.255.65535.4294967295\0 */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="foldopen" id="foldopen00092" data-start="{" data-end="};">
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structmcuboot__img__sem__ver.html">   92</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmcuboot__img__sem__ver.html">mcuboot_img_sem_ver</a> {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    uint8_t major;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    uint8_t minor;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    uint16_t revision;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    uint32_t build_num;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>};</div>
+</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="foldopen" id="foldopen00108" data-start="{" data-end="};">
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="structmcuboot__img__header__v1.html">  108</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmcuboot__img__header__v1.html">mcuboot_img_header_v1</a> {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structmcuboot__img__header__v1.html#a83a042079d850f383eef7a46cad14fa4">  110</a></span>    uint32_t <a class="code hl_variable" href="structmcuboot__img__header__v1.html#a83a042079d850f383eef7a46cad14fa4">image_size</a>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="structmcuboot__img__header__v1.html#a01dd3b50bb00accf4108b08c01df4e2b">  112</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structmcuboot__img__sem__ver.html">mcuboot_img_sem_ver</a> <a class="code hl_variable" href="structmcuboot__img__header__v1.html#a01dd3b50bb00accf4108b08c01df4e2b">sem_ver</a>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>};</div>
+</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="foldopen" id="foldopen00126" data-start="{" data-end="};">
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structmcuboot__img__header.html">  126</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmcuboot__img__header.html">mcuboot_img_header</a> {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="structmcuboot__img__header.html#ab5147e9586062d4dd5b381af13f1e82d">  132</a></span>    uint32_t <a class="code hl_variable" href="structmcuboot__img__header.html#ab5147e9586062d4dd5b381af13f1e82d">mcuboot_version</a>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="structmcuboot__img__header.html#aff12aff412ea774f96948e7db0b25009">  140</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structmcuboot__img__header__v1.html">mcuboot_img_header_v1</a> <a class="code hl_variable" href="structmcuboot__img__header.html#aff12aff412ea774f96948e7db0b25009">v1</a>;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="structmcuboot__img__header.html#a9d18c419ac2bca7cf2bd0e5d3851c8c0">  141</a></span>    } <a class="code hl_variable" href="structmcuboot__img__header.html#a9d18c419ac2bca7cf2bd0e5d3851c8c0">h</a>;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>};</div>
+</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#ga652ffad55e2917c62a62f6463935fe59">  158</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcuboot__api.html#ga652ffad55e2917c62a62f6463935fe59">boot_read_bank_header</a>(uint8_t area_id,</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>              <span class="keyword">struct</span> <a class="code hl_struct" href="structmcuboot__img__header.html">mcuboot_img_header</a> *header,</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>              <span class="keywordtype">size_t</span> header_size);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#ga2eadd700521a8b94dea3d3d04c9f5bd8">  176</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__mcuboot__api.html#ga2eadd700521a8b94dea3d3d04c9f5bd8">boot_is_img_confirmed</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#ga95ccc9e1c7460fec16b9ce9ac8ad7a72">  190</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcuboot__api.html#ga95ccc9e1c7460fec16b9ce9ac8ad7a72">boot_write_img_confirmed</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#gaa0f2410f520ef57e6d793c169639a6f8">  206</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcuboot__api.html#gaa0f2410f520ef57e6d793c169639a6f8">boot_write_img_confirmed_multi</a>(<span class="keywordtype">int</span> image_index);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#gaa0ce517ba1c0b21c4898762fab959b12">  214</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcuboot__api.html#gaa0ce517ba1c0b21c4898762fab959b12">mcuboot_swap_type</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#ga1e679c6fefe7deaaed9a2265ce69cf1e">  225</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcuboot__api.html#ga1e679c6fefe7deaaed9a2265ce69cf1e">mcuboot_swap_type_multi</a>(<span class="keywordtype">int</span> image_index);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#ga9ed69fcd1ebf57cc356ce2bb835853f7">  229</a></span><span class="preprocessor">#define BOOT_UPGRADE_TEST       0</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="preprocessor">#define BOOT_UPGRADE_PERMANENT  1</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#gad47f2356938a7b5acf8e0bbe4d9e4494">  242</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcuboot__api.html#gad47f2356938a7b5acf8e0bbe4d9e4494">boot_request_upgrade</a>(<span class="keywordtype">int</span> permanent);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#gae9e0e43663c3671aa4b4df6d30511d39">  256</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcuboot__api.html#gae9e0e43663c3671aa4b4df6d30511d39">boot_request_upgrade_multi</a>(<span class="keywordtype">int</span> image_index, <span class="keywordtype">int</span> permanent);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#ga03b691762d00e4cab6a5bd91979d8d80">  264</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__mcuboot__api.html#ga03b691762d00e4cab6a5bd91979d8d80">boot_erase_img_bank</a>(uint8_t area_id);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#ga6fa12d4058bbb78b7d8f35b436f0009c">  272</a></span>ssize_t <a class="code hl_function" href="group__mcuboot__api.html#ga6fa12d4058bbb78b7d8f35b436f0009c">boot_get_area_trailer_status_offset</a>(uint8_t area_id);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="group__mcuboot__api.html#ga7b4443f339f2935895f01dfb80c6b460">  281</a></span>ssize_t <a class="code hl_function" href="group__mcuboot__api.html#ga7b4443f339f2935895f01dfb80c6b460">boot_get_trailer_status_offset</a>(<span class="keywordtype">size_t</span> area_size);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>}</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="preprocessor">#endif  </span><span class="comment">/* ZEPHYR_INCLUDE_DFU_MCUBOOT_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__mcuboot__api_html_ga03b691762d00e4cab6a5bd91979d8d80"><div class="ttname"><a href="group__mcuboot__api.html#ga03b691762d00e4cab6a5bd91979d8d80">boot_erase_img_bank</a></div><div class="ttdeci">int boot_erase_img_bank(uint8_t area_id)</div><div class="ttdoc">Erase the image Bank.</div></div>
+<div class="ttc" id="agroup__mcuboot__api_html_ga1e679c6fefe7deaaed9a2265ce69cf1e"><div class="ttname"><a href="group__mcuboot__api.html#ga1e679c6fefe7deaaed9a2265ce69cf1e">mcuboot_swap_type_multi</a></div><div class="ttdeci">int mcuboot_swap_type_multi(int image_index)</div><div class="ttdoc">Determines the action, if any, that mcuboot will take on the next reboot.</div></div>
+<div class="ttc" id="agroup__mcuboot__api_html_ga2eadd700521a8b94dea3d3d04c9f5bd8"><div class="ttname"><a href="group__mcuboot__api.html#ga2eadd700521a8b94dea3d3d04c9f5bd8">boot_is_img_confirmed</a></div><div class="ttdeci">bool boot_is_img_confirmed(void)</div><div class="ttdoc">Check if the currently running image is confirmed as OK.</div></div>
+<div class="ttc" id="agroup__mcuboot__api_html_ga652ffad55e2917c62a62f6463935fe59"><div class="ttname"><a href="group__mcuboot__api.html#ga652ffad55e2917c62a62f6463935fe59">boot_read_bank_header</a></div><div class="ttdeci">int boot_read_bank_header(uint8_t area_id, struct mcuboot_img_header *header, size_t header_size)</div><div class="ttdoc">Read the MCUboot image header information from an image bank.</div></div>
+<div class="ttc" id="agroup__mcuboot__api_html_ga6fa12d4058bbb78b7d8f35b436f0009c"><div class="ttname"><a href="group__mcuboot__api.html#ga6fa12d4058bbb78b7d8f35b436f0009c">boot_get_area_trailer_status_offset</a></div><div class="ttdeci">ssize_t boot_get_area_trailer_status_offset(uint8_t area_id)</div><div class="ttdoc">Get the offset of the status in the image bank.</div></div>
+<div class="ttc" id="agroup__mcuboot__api_html_ga7b4443f339f2935895f01dfb80c6b460"><div class="ttname"><a href="group__mcuboot__api.html#ga7b4443f339f2935895f01dfb80c6b460">boot_get_trailer_status_offset</a></div><div class="ttdeci">ssize_t boot_get_trailer_status_offset(size_t area_size)</div><div class="ttdoc">Get the offset of the status from an image bank size.</div></div>
+<div class="ttc" id="agroup__mcuboot__api_html_ga95ccc9e1c7460fec16b9ce9ac8ad7a72"><div class="ttname"><a href="group__mcuboot__api.html#ga95ccc9e1c7460fec16b9ce9ac8ad7a72">boot_write_img_confirmed</a></div><div class="ttdeci">int boot_write_img_confirmed(void)</div><div class="ttdoc">Marks the currently running image as confirmed.</div></div>
+<div class="ttc" id="agroup__mcuboot__api_html_gaa0ce517ba1c0b21c4898762fab959b12"><div class="ttname"><a href="group__mcuboot__api.html#gaa0ce517ba1c0b21c4898762fab959b12">mcuboot_swap_type</a></div><div class="ttdeci">int mcuboot_swap_type(void)</div><div class="ttdoc">Determines the action, if any, that mcuboot will take on the next reboot.</div></div>
+<div class="ttc" id="agroup__mcuboot__api_html_gaa0f2410f520ef57e6d793c169639a6f8"><div class="ttname"><a href="group__mcuboot__api.html#gaa0f2410f520ef57e6d793c169639a6f8">boot_write_img_confirmed_multi</a></div><div class="ttdeci">int boot_write_img_confirmed_multi(int image_index)</div><div class="ttdoc">Marks the image with the given index in the primary slot as confirmed.</div></div>
+<div class="ttc" id="agroup__mcuboot__api_html_gad47f2356938a7b5acf8e0bbe4d9e4494"><div class="ttname"><a href="group__mcuboot__api.html#gad47f2356938a7b5acf8e0bbe4d9e4494">boot_request_upgrade</a></div><div class="ttdeci">int boot_request_upgrade(int permanent)</div><div class="ttdoc">Marks the image in slot 1 as pending. On the next reboot, the system will perform a boot of the slot ...</div></div>
+<div class="ttc" id="agroup__mcuboot__api_html_gae9e0e43663c3671aa4b4df6d30511d39"><div class="ttname"><a href="group__mcuboot__api.html#gae9e0e43663c3671aa4b4df6d30511d39">boot_request_upgrade_multi</a></div><div class="ttdeci">int boot_request_upgrade_multi(int image_index, int permanent)</div><div class="ttdoc">Marks the image with the given index in the secondary slot as pending. On the next reboot,...</div></div>
+<div class="ttc" id="astructmcuboot__img__header__v1_html"><div class="ttname"><a href="structmcuboot__img__header__v1.html">mcuboot_img_header_v1</a></div><div class="ttdoc">Model for the MCUboot image header as of version 1.</div><div class="ttdef"><b>Definição</b> mcuboot.h:108</div></div>
+<div class="ttc" id="astructmcuboot__img__header__v1_html_a01dd3b50bb00accf4108b08c01df4e2b"><div class="ttname"><a href="structmcuboot__img__header__v1.html#a01dd3b50bb00accf4108b08c01df4e2b">mcuboot_img_header_v1::sem_ver</a></div><div class="ttdeci">struct mcuboot_img_sem_ver sem_ver</div><div class="ttdef"><b>Definição</b> mcuboot.h:112</div></div>
+<div class="ttc" id="astructmcuboot__img__header__v1_html_a83a042079d850f383eef7a46cad14fa4"><div class="ttname"><a href="structmcuboot__img__header__v1.html#a83a042079d850f383eef7a46cad14fa4">mcuboot_img_header_v1::image_size</a></div><div class="ttdeci">uint32_t image_size</div><div class="ttdef"><b>Definição</b> mcuboot.h:110</div></div>
+<div class="ttc" id="astructmcuboot__img__header_html"><div class="ttname"><a href="structmcuboot__img__header.html">mcuboot_img_header</a></div><div class="ttdoc">Model for the MCUBoot image header.</div><div class="ttdef"><b>Definição</b> mcuboot.h:126</div></div>
+<div class="ttc" id="astructmcuboot__img__header_html_a9d18c419ac2bca7cf2bd0e5d3851c8c0"><div class="ttname"><a href="structmcuboot__img__header.html#a9d18c419ac2bca7cf2bd0e5d3851c8c0">mcuboot_img_header::h</a></div><div class="ttdeci">union mcuboot_img_header::@123 h</div></div>
+<div class="ttc" id="astructmcuboot__img__header_html_ab5147e9586062d4dd5b381af13f1e82d"><div class="ttname"><a href="structmcuboot__img__header.html#ab5147e9586062d4dd5b381af13f1e82d">mcuboot_img_header::mcuboot_version</a></div><div class="ttdeci">uint32_t mcuboot_version</div><div class="ttdef"><b>Definição</b> mcuboot.h:132</div></div>
+<div class="ttc" id="astructmcuboot__img__header_html_aff12aff412ea774f96948e7db0b25009"><div class="ttname"><a href="structmcuboot__img__header.html#aff12aff412ea774f96948e7db0b25009">mcuboot_img_header::v1</a></div><div class="ttdeci">struct mcuboot_img_header_v1 v1</div><div class="ttdef"><b>Definição</b> mcuboot.h:140</div></div>
+<div class="ttc" id="astructmcuboot__img__sem__ver_html"><div class="ttname"><a href="structmcuboot__img__sem__ver.html">mcuboot_img_sem_ver</a></div><div class="ttdoc">MCUboot image header representation for image version.</div><div class="ttdef"><b>Definição</b> mcuboot.h:92</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

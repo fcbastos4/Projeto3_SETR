@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/mbox.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">mbox.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2mbox_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Copyright (c) 2021 Carlo Caione &lt;ccaione@baylibre.com&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_MBOX_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_MBOX_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2mbox_8h.html">zephyr/devicetree/mbox.h</a>&gt;</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="foldopen" id="foldopen00080" data-start="{" data-end="};">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structmbox__msg.html">   80</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmbox__msg.html">mbox_msg</a> {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structmbox__msg.html#aa9b02c7a3b1620ca2c6ffa42528cfe0c">   82</a></span>    <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="structmbox__msg.html#aa9b02c7a3b1620ca2c6ffa42528cfe0c">data</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structmbox__msg.html#a9870d0667d97e4d4ab9ba985b75e1dc4">   85</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structmbox__msg.html#a9870d0667d97e4d4ab9ba985b75e1dc4">size</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="foldopen" id="foldopen00093" data-start="{" data-end="};">
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="structmbox__channel.html">   93</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structmbox__channel.html">mbox_channel</a> {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="structmbox__channel.html#a6fe03cc3209c832b295a2f7ff2ba7c63">   95</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_variable" href="structmbox__channel.html#a6fe03cc3209c832b295a2f7ff2ba7c63">dev</a>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="structmbox__channel.html#a0b8104fdbeca9badb76d7779b6e6f8e4">   98</a></span>    uint32_t <a class="code hl_variable" href="structmbox__channel.html#a0b8104fdbeca9badb76d7779b6e6f8e4">id</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>};</div>
+</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="foldopen" id="foldopen00125" data-start="" data-end="">
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="group__mbox__interface.html#ga9e02e3a523a63ff564ce2bb42c03aa1f">  125</a></span><span class="preprocessor">#define MBOX_DT_CHANNEL_GET(node_id, name)                  \</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">    {                                   \</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">        .dev = DEVICE_DT_GET(DT_MBOX_CTLR_BY_NAME(node_id, name)),  \</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">        .id = DT_MBOX_CHANNEL_BY_NAME(node_id, name),           \</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="group__mbox__interface.html#ga4cb393b04d8c3ee01f795bc98ddde2ae">  148</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__mbox__interface.html#ga4cb393b04d8c3ee01f795bc98ddde2ae">mbox_callback_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel,</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                <span class="keywordtype">void</span> *user_data, <span class="keyword">struct </span><a class="code hl_struct" href="structmbox__msg.html">mbox_msg</a> *<a class="code hl_variable" href="structmbox__msg.html#aa9b02c7a3b1620ca2c6ffa42528cfe0c">data</a>);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="group__mbox__interface.html#ga1a79bcdd1ed7612de9fbc72c5af35e3e">  164</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__mbox__interface.html#ga1a79bcdd1ed7612de9fbc72c5af35e3e">mbox_send_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel,</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>               <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmbox__msg.html">mbox_msg</a> *msg);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="group__mbox__interface.html#ga6c5390b649b1a510672c8c109f0f363c">  174</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__mbox__interface.html#ga6c5390b649b1a510672c8c109f0f363c">mbox_mtu_get_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="group__mbox__interface.html#ga14a2af82968f9185f13d39bd709abcbb">  191</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__mbox__interface.html#ga14a2af82968f9185f13d39bd709abcbb">mbox_register_callback_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                    uint32_t channel,</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>                    <a class="code hl_typedef" href="group__mbox__interface.html#ga4cb393b04d8c3ee01f795bc98ddde2ae">mbox_callback_t</a> cb,</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>                    <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="group__mbox__interface.html#ga85d77860581e68d036cccaf17981b1c9">  209</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__mbox__interface.html#ga85d77860581e68d036cccaf17981b1c9">mbox_set_enabled_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t channel, <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="group__mbox__interface.html#gaa2ba0939cd872198dd8ff4fd348f195f">  218</a></span><span class="keyword">typedef</span> uint32_t (*<a class="code hl_typedef" href="group__mbox__interface.html#gaa2ba0939cd872198dd8ff4fd348f195f">mbox_max_channels_get_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="foldopen" id="foldopen00220" data-start="{" data-end="};">
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="structmbox__driver__api.html">  220</a></span>__subsystem <span class="keyword">struct </span><a class="code hl_struct" href="structmbox__driver__api.html">mbox_driver_api</a> {</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <a class="code hl_typedef" href="group__mbox__interface.html#ga1a79bcdd1ed7612de9fbc72c5af35e3e">mbox_send_t</a> send;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <a class="code hl_typedef" href="group__mbox__interface.html#ga14a2af82968f9185f13d39bd709abcbb">mbox_register_callback_t</a> register_callback;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <a class="code hl_typedef" href="group__mbox__interface.html#ga6c5390b649b1a510672c8c109f0f363c">mbox_mtu_get_t</a> mtu_get;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <a class="code hl_typedef" href="group__mbox__interface.html#gaa2ba0939cd872198dd8ff4fd348f195f">mbox_max_channels_get_t</a> max_channels_get;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <a class="code hl_typedef" href="group__mbox__interface.html#ga85d77860581e68d036cccaf17981b1c9">mbox_set_enabled_t</a> set_enabled;</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>};</div>
+</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> mbox_init_channel(<span class="keyword">struct</span> <a class="code hl_struct" href="structmbox__channel.html">mbox_channel</a> *channel, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                     uint32_t ch_id)</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>{</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    channel-&gt;<a class="code hl_variable" href="structmbox__channel.html#a6fe03cc3209c832b295a2f7ff2ba7c63">dev</a> = dev;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    channel-&gt;<a class="code hl_variable" href="structmbox__channel.html#a0b8104fdbeca9badb76d7779b6e6f8e4">id</a> = ch_id;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>}</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno"><a class="line" href="group__mbox__interface.html#gace66615ed32a3cbd19a4d51b2cc84ed4">  266</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__mbox__interface.html#gace66615ed32a3cbd19a4d51b2cc84ed4">mbox_send</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmbox__channel.html">mbox_channel</a> *channel, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmbox__msg.html">mbox_msg</a> *msg);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_mbox_send(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmbox__channel.html">mbox_channel</a> *channel, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmbox__msg.html">mbox_msg</a> *msg)</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>{</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmbox__driver__api.html">mbox_driver_api</a> *api =</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmbox__driver__api.html">mbox_driver_api</a> *)channel-&gt;<a class="code hl_variable" href="structmbox__channel.html#a6fe03cc3209c832b295a2f7ff2ba7c63">dev</a>-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keywordflow">if</span> (api-&gt;send == NULL) {</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    }</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keywordflow">return</span> api-&gt;send(channel-&gt;dev, channel-&gt;id, msg);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>}</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> mbox_register_callback(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmbox__channel.html">mbox_channel</a> *channel,</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>                     <a class="code hl_typedef" href="group__mbox__interface.html#ga4cb393b04d8c3ee01f795bc98ddde2ae">mbox_callback_t</a> cb,</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>                     <span class="keywordtype">void</span> *user_data)</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>{</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmbox__driver__api.html">mbox_driver_api</a> *api =</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmbox__driver__api.html">mbox_driver_api</a> *)channel-&gt;<a class="code hl_variable" href="structmbox__channel.html#a6fe03cc3209c832b295a2f7ff2ba7c63">dev</a>-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="keywordflow">if</span> (api-&gt;register_callback == NULL) {</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    }</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <span class="keywordflow">return</span> api-&gt;register_callback(channel-&gt;dev, channel-&gt;id, cb, user_data);</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>}</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno"><a class="line" href="group__mbox__interface.html#gac5d3783a269cabb822a6ccd9718930c6">  327</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__mbox__interface.html#gac5d3783a269cabb822a6ccd9718930c6">mbox_mtu_get</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_mbox_mtu_get(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>{</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmbox__driver__api.html">mbox_driver_api</a> *api =</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmbox__driver__api.html">mbox_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    <span class="keywordflow">if</span> (api-&gt;mtu_get == NULL) {</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    }</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <span class="keywordflow">return</span> api-&gt;mtu_get(dev);</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>}</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno"><a class="line" href="group__mbox__interface.html#ga35187495923c1d999fc69f25d5460b34">  364</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__mbox__interface.html#ga35187495923c1d999fc69f25d5460b34">mbox_set_enabled</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmbox__channel.html">mbox_channel</a> *channel, <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_mbox_set_enabled(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmbox__channel.html">mbox_channel</a> *channel, <span class="keywordtype">bool</span> enable)</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>{</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmbox__driver__api.html">mbox_driver_api</a> *api =</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmbox__driver__api.html">mbox_driver_api</a> *)channel-&gt;<a class="code hl_variable" href="structmbox__channel.html#a6fe03cc3209c832b295a2f7ff2ba7c63">dev</a>-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span> </div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    <span class="keywordflow">if</span> (api-&gt;set_enabled == NULL) {</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    }</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span> </div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    <span class="keywordflow">return</span> api-&gt;set_enabled(channel-&gt;dev, channel-&gt;id, enable);</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>}</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno"><a class="line" href="group__mbox__interface.html#ga1ca2b99d69dc9664c8efa36bff1ba99c">  388</a></span>__syscall uint32_t <a class="code hl_function" href="group__mbox__interface.html#ga1ca2b99d69dc9664c8efa36bff1ba99c">mbox_max_channels_get</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span> </div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t z_impl_mbox_max_channels_get(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>{</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmbox__driver__api.html">mbox_driver_api</a> *api =</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structmbox__driver__api.html">mbox_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span> </div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    <span class="keywordflow">if</span> (api-&gt;max_channels_get == NULL) {</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>    }</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> </div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    <span class="keywordflow">return</span> api-&gt;max_channels_get(dev);</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>}</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>}</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span><span class="preprocessor">#include &lt;syscalls/mbox.h&gt;</span></div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span> </div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_MBOX_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__mbox__interface_html_ga14a2af82968f9185f13d39bd709abcbb"><div class="ttname"><a href="group__mbox__interface.html#ga14a2af82968f9185f13d39bd709abcbb">mbox_register_callback_t</a></div><div class="ttdeci">int(* mbox_register_callback_t)(const struct device *dev, uint32_t channel, mbox_callback_t cb, void *user_data)</div><div class="ttdoc">Callback API upon registration.</div><div class="ttdef"><b>Definição</b> mbox.h:191</div></div>
+<div class="ttc" id="agroup__mbox__interface_html_ga1a79bcdd1ed7612de9fbc72c5af35e3e"><div class="ttname"><a href="group__mbox__interface.html#ga1a79bcdd1ed7612de9fbc72c5af35e3e">mbox_send_t</a></div><div class="ttdeci">int(* mbox_send_t)(const struct device *dev, uint32_t channel, const struct mbox_msg *msg)</div><div class="ttdoc">Callback API to send MBOX messages.</div><div class="ttdef"><b>Definição</b> mbox.h:164</div></div>
+<div class="ttc" id="agroup__mbox__interface_html_ga1ca2b99d69dc9664c8efa36bff1ba99c"><div class="ttname"><a href="group__mbox__interface.html#ga1ca2b99d69dc9664c8efa36bff1ba99c">mbox_max_channels_get</a></div><div class="ttdeci">__syscall uint32_t mbox_max_channels_get(const struct device *dev)</div><div class="ttdoc">Return the maximum number of channels.</div></div>
+<div class="ttc" id="agroup__mbox__interface_html_ga35187495923c1d999fc69f25d5460b34"><div class="ttname"><a href="group__mbox__interface.html#ga35187495923c1d999fc69f25d5460b34">mbox_set_enabled</a></div><div class="ttdeci">__syscall int mbox_set_enabled(const struct mbox_channel *channel, bool enable)</div><div class="ttdoc">Enable (disable) interrupts and callbacks for inbound channels.</div></div>
+<div class="ttc" id="agroup__mbox__interface_html_ga4cb393b04d8c3ee01f795bc98ddde2ae"><div class="ttname"><a href="group__mbox__interface.html#ga4cb393b04d8c3ee01f795bc98ddde2ae">mbox_callback_t</a></div><div class="ttdeci">void(* mbox_callback_t)(const struct device *dev, uint32_t channel, void *user_data, struct mbox_msg *data)</div><div class="ttdoc">Callback API for incoming MBOX messages.</div><div class="ttdef"><b>Definição</b> mbox.h:148</div></div>
+<div class="ttc" id="agroup__mbox__interface_html_ga6c5390b649b1a510672c8c109f0f363c"><div class="ttname"><a href="group__mbox__interface.html#ga6c5390b649b1a510672c8c109f0f363c">mbox_mtu_get_t</a></div><div class="ttdeci">int(* mbox_mtu_get_t)(const struct device *dev)</div><div class="ttdoc">Callback API to get maximum data size.</div><div class="ttdef"><b>Definição</b> mbox.h:174</div></div>
+<div class="ttc" id="agroup__mbox__interface_html_ga85d77860581e68d036cccaf17981b1c9"><div class="ttname"><a href="group__mbox__interface.html#ga85d77860581e68d036cccaf17981b1c9">mbox_set_enabled_t</a></div><div class="ttdeci">int(* mbox_set_enabled_t)(const struct device *dev, uint32_t channel, bool enable)</div><div class="ttdoc">Callback API upon enablement of interrupts.</div><div class="ttdef"><b>Definição</b> mbox.h:209</div></div>
+<div class="ttc" id="agroup__mbox__interface_html_gaa2ba0939cd872198dd8ff4fd348f195f"><div class="ttname"><a href="group__mbox__interface.html#gaa2ba0939cd872198dd8ff4fd348f195f">mbox_max_channels_get_t</a></div><div class="ttdeci">uint32_t(* mbox_max_channels_get_t)(const struct device *dev)</div><div class="ttdoc">Callback API to get maximum number of channels.</div><div class="ttdef"><b>Definição</b> mbox.h:218</div></div>
+<div class="ttc" id="agroup__mbox__interface_html_gac5d3783a269cabb822a6ccd9718930c6"><div class="ttname"><a href="group__mbox__interface.html#gac5d3783a269cabb822a6ccd9718930c6">mbox_mtu_get</a></div><div class="ttdeci">__syscall int mbox_mtu_get(const struct device *dev)</div><div class="ttdoc">Return the maximum number of bytes possible in an outbound message.</div></div>
+<div class="ttc" id="agroup__mbox__interface_html_gace66615ed32a3cbd19a4d51b2cc84ed4"><div class="ttname"><a href="group__mbox__interface.html#gace66615ed32a3cbd19a4d51b2cc84ed4">mbox_send</a></div><div class="ttdeci">__syscall int mbox_send(const struct mbox_channel *channel, const struct mbox_msg *msg)</div><div class="ttdoc">Try to send a message over the MBOX device.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2mbox_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2mbox_8h.html">mbox.h</a></div><div class="ttdoc">MBOX Devicetree macro public API header file.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructmbox__channel_html"><div class="ttname"><a href="structmbox__channel.html">mbox_channel</a></div><div class="ttdoc">Provides a type to hold an MBOX channel.</div><div class="ttdef"><b>Definição</b> mbox.h:93</div></div>
+<div class="ttc" id="astructmbox__channel_html_a0b8104fdbeca9badb76d7779b6e6f8e4"><div class="ttname"><a href="structmbox__channel.html#a0b8104fdbeca9badb76d7779b6e6f8e4">mbox_channel::id</a></div><div class="ttdeci">uint32_t id</div><div class="ttdef"><b>Definição</b> mbox.h:98</div></div>
+<div class="ttc" id="astructmbox__channel_html_a6fe03cc3209c832b295a2f7ff2ba7c63"><div class="ttname"><a href="structmbox__channel.html#a6fe03cc3209c832b295a2f7ff2ba7c63">mbox_channel::dev</a></div><div class="ttdeci">const struct device * dev</div><div class="ttdef"><b>Definição</b> mbox.h:95</div></div>
+<div class="ttc" id="astructmbox__driver__api_html"><div class="ttname"><a href="structmbox__driver__api.html">mbox_driver_api</a></div><div class="ttdef"><b>Definição</b> mbox.h:220</div></div>
+<div class="ttc" id="astructmbox__msg_html"><div class="ttname"><a href="structmbox__msg.html">mbox_msg</a></div><div class="ttdoc">Message struct (to hold data and its size).</div><div class="ttdef"><b>Definição</b> mbox.h:80</div></div>
+<div class="ttc" id="astructmbox__msg_html_a9870d0667d97e4d4ab9ba985b75e1dc4"><div class="ttname"><a href="structmbox__msg.html#a9870d0667d97e4d4ab9ba985b75e1dc4">mbox_msg::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definição</b> mbox.h:85</div></div>
+<div class="ttc" id="astructmbox__msg_html_aa9b02c7a3b1620ca2c6ffa42528cfe0c"><div class="ttname"><a href="structmbox__msg.html#aa9b02c7a3b1620ca2c6ffa42528cfe0c">mbox_msg::data</a></div><div class="ttdeci">const void * data</div><div class="ttdef"><b>Definição</b> mbox.h:82</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

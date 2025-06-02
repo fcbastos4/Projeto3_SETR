@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/sys/bitarray.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_791a8e330d3bfcbb2b6e2254610c12ab.html">sys</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">bitarray.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="bitarray_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2021 Intel Corporation</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_SYS_BITARRAY_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_SYS_BITARRAY_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">zephyr/sys/util.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">struct </span>sys_bitarray {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">/* Number of bits */</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    uint32_t num_bits;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">/* Number of bundles */</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    uint32_t num_bundles;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">/* Bundle of bits */</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    uint32_t *bundles;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">/* Spinlock guarding access to this bit array */</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__spinlock.html">k_spinlock</a> lock;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">   48</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>sys_bitarray <a class="code hl_typedef" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="foldopen" id="foldopen00057" data-start="" data-end="">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#ga3f7cec952837c10dc3c6a6dd87bb03f4">   57</a></span><span class="preprocessor">#define _SYS_BITARRAY_DEFINE(name, total_bits, sba_mod)         \</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">    sba_mod uint32_t _sys_bitarray_bundles_##name           \</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">        [DIV_ROUND_UP(DIV_ROUND_UP(total_bits, 8),      \</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">                   sizeof(uint32_t))] = {0};        \</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">    sba_mod sys_bitarray_t name = {                 \</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">        .num_bits = total_bits,                 \</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">        .num_bundles = DIV_ROUND_UP(                \</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">            DIV_ROUND_UP(total_bits, 8), sizeof(uint32_t)), \</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">        .bundles = _sys_bitarray_bundles_##name,        \</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="foldopen" id="foldopen00074" data-start="" data-end="">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#gabbe958c6b995023665651e4aa050aa62">   74</a></span><span class="preprocessor">#define SYS_BITARRAY_DEFINE(name, total_bits)               \</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">    _SYS_BITARRAY_DEFINE(name, total_bits,)</span></div>
+</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="foldopen" id="foldopen00083" data-start="" data-end="">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#ga2c55680355b67fc25125299a35f604d1">   83</a></span><span class="preprocessor">#define SYS_BITARRAY_DEFINE_STATIC(name, total_bits)            \</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">    _SYS_BITARRAY_DEFINE(name, total_bits, static)</span></div>
+</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#ga5fe657e79fee3e111284e4184eb6b681">   96</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bitarray__apis.html#ga5fe657e79fee3e111284e4184eb6b681">sys_bitarray_set_bit</a>(<a class="code hl_typedef" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a> *bitarray, <span class="keywordtype">size_t</span> bit);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#ga795e8bf81f5717addf523cec124cde4e">  108</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bitarray__apis.html#ga795e8bf81f5717addf523cec124cde4e">sys_bitarray_clear_bit</a>(<a class="code hl_typedef" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a> *bitarray, <span class="keywordtype">size_t</span> bit);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#gae024ace00949fe8c565081e62818449d">  121</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bitarray__apis.html#gae024ace00949fe8c565081e62818449d">sys_bitarray_test_bit</a>(<a class="code hl_typedef" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a> *bitarray, <span class="keywordtype">size_t</span> bit, <span class="keywordtype">int</span> *val);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#gad1761b9eae8a1d9302893ce5f8591923">  134</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bitarray__apis.html#gad1761b9eae8a1d9302893ce5f8591923">sys_bitarray_test_and_set_bit</a>(<a class="code hl_typedef" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a> *bitarray, <span class="keywordtype">size_t</span> bit, <span class="keywordtype">int</span> *prev_val);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#ga40fa4d37f1fb2da8789f70de50c599d5">  147</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bitarray__apis.html#ga40fa4d37f1fb2da8789f70de50c599d5">sys_bitarray_test_and_clear_bit</a>(<a class="code hl_typedef" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a> *bitarray, <span class="keywordtype">size_t</span> bit, <span class="keywordtype">int</span> *prev_val);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#gac96766d9441a3b143aa386e2ac79ffd9">  168</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bitarray__apis.html#gac96766d9441a3b143aa386e2ac79ffd9">sys_bitarray_alloc</a>(<a class="code hl_typedef" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a> *bitarray, <span class="keywordtype">size_t</span> num_bits,</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>               <span class="keywordtype">size_t</span> *offset);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#gaf9a2c34896d3b1866a5a60f78d4166b0">  186</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bitarray__apis.html#gaf9a2c34896d3b1866a5a60f78d4166b0">sys_bitarray_free</a>(<a class="code hl_typedef" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a> *bitarray, <span class="keywordtype">size_t</span> num_bits,</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>              <span class="keywordtype">size_t</span> offset);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#ga2aa91a9be38b11e74dacbeb2fe5e6d6d">  202</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__bitarray__apis.html#ga2aa91a9be38b11e74dacbeb2fe5e6d6d">sys_bitarray_is_region_set</a>(<a class="code hl_typedef" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a> *bitarray, <span class="keywordtype">size_t</span> num_bits,</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>                <span class="keywordtype">size_t</span> offset);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#ga21cd833e7118f188ca3e06f8cfd13a49">  218</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__bitarray__apis.html#ga21cd833e7118f188ca3e06f8cfd13a49">sys_bitarray_is_region_cleared</a>(<a class="code hl_typedef" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a> *bitarray, <span class="keywordtype">size_t</span> num_bits,</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                    <span class="keywordtype">size_t</span> offset);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#ga94d1a547b9fe0a01d73acf4a5c4f308b">  235</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bitarray__apis.html#ga94d1a547b9fe0a01d73acf4a5c4f308b">sys_bitarray_set_region</a>(<a class="code hl_typedef" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a> *bitarray, <span class="keywordtype">size_t</span> num_bits,</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                <span class="keywordtype">size_t</span> offset);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#gad18590d2ab0bf251a59996620ed6e6bf">  260</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bitarray__apis.html#gad18590d2ab0bf251a59996620ed6e6bf">sys_bitarray_test_and_set_region</a>(<a class="code hl_typedef" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a> *bitarray, <span class="keywordtype">size_t</span> num_bits,</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>                     <span class="keywordtype">size_t</span> offset, <span class="keywordtype">bool</span> to_set);</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="group__bitarray__apis.html#gad13bb2c37d0889807e026dbac6a2872d">  277</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bitarray__apis.html#gad13bb2c37d0889807e026dbac6a2872d">sys_bitarray_clear_region</a>(<a class="code hl_typedef" href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a> *bitarray, <span class="keywordtype">size_t</span> num_bits,</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                  <span class="keywordtype">size_t</span> offset);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>}</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_SYS_BITARRAY_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__bitarray__apis_html_ga168a1da9ac2bee523bdc9778e94fd841"><div class="ttname"><a href="group__bitarray__apis.html#ga168a1da9ac2bee523bdc9778e94fd841">sys_bitarray_t</a></div><div class="ttdeci">struct sys_bitarray sys_bitarray_t</div><div class="ttdef"><b>Definição</b> bitarray.h:48</div></div>
+<div class="ttc" id="agroup__bitarray__apis_html_ga21cd833e7118f188ca3e06f8cfd13a49"><div class="ttname"><a href="group__bitarray__apis.html#ga21cd833e7118f188ca3e06f8cfd13a49">sys_bitarray_is_region_cleared</a></div><div class="ttdeci">bool sys_bitarray_is_region_cleared(sys_bitarray_t *bitarray, size_t num_bits, size_t offset)</div></div>
+<div class="ttc" id="agroup__bitarray__apis_html_ga2aa91a9be38b11e74dacbeb2fe5e6d6d"><div class="ttname"><a href="group__bitarray__apis.html#ga2aa91a9be38b11e74dacbeb2fe5e6d6d">sys_bitarray_is_region_set</a></div><div class="ttdeci">bool sys_bitarray_is_region_set(sys_bitarray_t *bitarray, size_t num_bits, size_t offset)</div></div>
+<div class="ttc" id="agroup__bitarray__apis_html_ga40fa4d37f1fb2da8789f70de50c599d5"><div class="ttname"><a href="group__bitarray__apis.html#ga40fa4d37f1fb2da8789f70de50c599d5">sys_bitarray_test_and_clear_bit</a></div><div class="ttdeci">int sys_bitarray_test_and_clear_bit(sys_bitarray_t *bitarray, size_t bit, int *prev_val)</div></div>
+<div class="ttc" id="agroup__bitarray__apis_html_ga5fe657e79fee3e111284e4184eb6b681"><div class="ttname"><a href="group__bitarray__apis.html#ga5fe657e79fee3e111284e4184eb6b681">sys_bitarray_set_bit</a></div><div class="ttdeci">int sys_bitarray_set_bit(sys_bitarray_t *bitarray, size_t bit)</div></div>
+<div class="ttc" id="agroup__bitarray__apis_html_ga795e8bf81f5717addf523cec124cde4e"><div class="ttname"><a href="group__bitarray__apis.html#ga795e8bf81f5717addf523cec124cde4e">sys_bitarray_clear_bit</a></div><div class="ttdeci">int sys_bitarray_clear_bit(sys_bitarray_t *bitarray, size_t bit)</div></div>
+<div class="ttc" id="agroup__bitarray__apis_html_ga94d1a547b9fe0a01d73acf4a5c4f308b"><div class="ttname"><a href="group__bitarray__apis.html#ga94d1a547b9fe0a01d73acf4a5c4f308b">sys_bitarray_set_region</a></div><div class="ttdeci">int sys_bitarray_set_region(sys_bitarray_t *bitarray, size_t num_bits, size_t offset)</div></div>
+<div class="ttc" id="agroup__bitarray__apis_html_gac96766d9441a3b143aa386e2ac79ffd9"><div class="ttname"><a href="group__bitarray__apis.html#gac96766d9441a3b143aa386e2ac79ffd9">sys_bitarray_alloc</a></div><div class="ttdeci">int sys_bitarray_alloc(sys_bitarray_t *bitarray, size_t num_bits, size_t *offset)</div></div>
+<div class="ttc" id="agroup__bitarray__apis_html_gad13bb2c37d0889807e026dbac6a2872d"><div class="ttname"><a href="group__bitarray__apis.html#gad13bb2c37d0889807e026dbac6a2872d">sys_bitarray_clear_region</a></div><div class="ttdeci">int sys_bitarray_clear_region(sys_bitarray_t *bitarray, size_t num_bits, size_t offset)</div></div>
+<div class="ttc" id="agroup__bitarray__apis_html_gad1761b9eae8a1d9302893ce5f8591923"><div class="ttname"><a href="group__bitarray__apis.html#gad1761b9eae8a1d9302893ce5f8591923">sys_bitarray_test_and_set_bit</a></div><div class="ttdeci">int sys_bitarray_test_and_set_bit(sys_bitarray_t *bitarray, size_t bit, int *prev_val)</div></div>
+<div class="ttc" id="agroup__bitarray__apis_html_gad18590d2ab0bf251a59996620ed6e6bf"><div class="ttname"><a href="group__bitarray__apis.html#gad18590d2ab0bf251a59996620ed6e6bf">sys_bitarray_test_and_set_region</a></div><div class="ttdeci">int sys_bitarray_test_and_set_region(sys_bitarray_t *bitarray, size_t num_bits, size_t offset, bool to_set)</div></div>
+<div class="ttc" id="agroup__bitarray__apis_html_gae024ace00949fe8c565081e62818449d"><div class="ttname"><a href="group__bitarray__apis.html#gae024ace00949fe8c565081e62818449d">sys_bitarray_test_bit</a></div><div class="ttdeci">int sys_bitarray_test_bit(sys_bitarray_t *bitarray, size_t bit, int *val)</div></div>
+<div class="ttc" id="agroup__bitarray__apis_html_gaf9a2c34896d3b1866a5a60f78d4166b0"><div class="ttname"><a href="group__bitarray__apis.html#gaf9a2c34896d3b1866a5a60f78d4166b0">sys_bitarray_free</a></div><div class="ttdeci">int sys_bitarray_free(sys_bitarray_t *bitarray, size_t num_bits, size_t offset)</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructk__spinlock_html"><div class="ttname"><a href="structk__spinlock.html">k_spinlock</a></div><div class="ttdoc">Kernel Spin Lock.</div><div class="ttdef"><b>Definição</b> spinlock.h:45</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Misc utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

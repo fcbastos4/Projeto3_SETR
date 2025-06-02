@@ -1,0 +1,419 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/w1.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">w1.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2w1_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2018 Roman Tataurov &lt;diytronic@yandex.ru&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2022 Thomas Stranger</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_W1_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_W1_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="crc_8h.html">zephyr/sys/crc.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="sys_2byteorder_8h.html">zephyr/sys/byteorder.h</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment"> * Count the number of slaves expected on the bus.</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment"> * This can be used to decide if the bus has a multidrop topology or</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment"> * only a single slave is present.</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment"> * There is a comma after each ordinal (including the last)</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment"> * Hence FOR_EACH adds &quot;+1&quot; once too often which has to be subtracted in the end.</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define F1(x) 1</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#define W1_SLAVE_COUNT(node_id) \</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">        (FOR_EACH(F1, (+), DT_SUPPORTS_DEP_ORDS(node_id)) - 1)</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#define W1_INST_SLAVE_COUNT(inst)  \</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">        (W1_SLAVE_COUNT(DT_DRV_INST(inst)))</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="foldopen" id="foldopen00053" data-start="{" data-end="};">
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="group__w1__interface.html#ga382989ef707709b5d26c40a394833612">   53</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__w1__interface.html#ga382989ef707709b5d26c40a394833612">w1_settings_type</a> {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="group__w1__interface.html#gga382989ef707709b5d26c40a394833612a788fee2803793832c58951d623d823d5">   57</a></span>    <a class="code hl_enumvalue" href="group__w1__interface.html#gga382989ef707709b5d26c40a394833612a788fee2803793832c58951d623d823d5">W1_SETTING_SPEED</a>,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="group__w1__interface.html#gga382989ef707709b5d26c40a394833612ae3293dfeaa3f1976e8cf57e694d5f811">   62</a></span>    <a class="code hl_enumvalue" href="group__w1__interface.html#gga382989ef707709b5d26c40a394833612ae3293dfeaa3f1976e8cf57e694d5f811">W1_SETTING_STRONG_PULLUP</a>,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__w1__interface.html#gga382989ef707709b5d26c40a394833612a814e27d05a04e027c52cb206aaf69b22">   67</a></span>    <a class="code hl_enumvalue" href="group__w1__interface.html#gga382989ef707709b5d26c40a394833612a814e27d05a04e027c52cb206aaf69b22">W1_SETINGS_TYPE_COUNT</a>,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>};</div>
+</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">struct </span>w1_master_config {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">/* Number of connected slaves */</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    uint16_t slave_count;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>};</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">struct </span>w1_master_data {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">/* The mutex used by w1_lock_bus and w1_unlock_bus methods */</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__mutex.html">k_mutex</a> bus_lock;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>};</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keyword">typedef</span> int (*w1_reset_bus_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="keyword">typedef</span> int (*w1_read_bit_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">typedef</span> int (*w1_write_bit_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">bool</span> bit);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keyword">typedef</span> int (*w1_read_byte_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keyword">typedef</span> int (*w1_write_byte_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> uint8_t byte);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">typedef</span> int (*w1_read_block_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t *buffer,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                   <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">typedef</span> int (*w1_write_block_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> uint8_t *buffer,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">typedef</span> size_t (*w1_get_slave_count_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="keyword">typedef</span> int (*w1_configure_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                  <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__w1__interface.html#ga382989ef707709b5d26c40a394833612">w1_settings_type</a> type, uint32_t value);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="keyword">typedef</span> int (*w1_change_bus_lock_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">bool</span> lock);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>__subsystem <span class="keyword">struct </span>w1_driver_api {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    w1_reset_bus_t reset_bus;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    w1_read_bit_t read_bit;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    w1_write_bit_t write_bit;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    w1_read_byte_t read_byte;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    w1_write_byte_t write_byte;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    w1_read_block_t read_block;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    w1_write_block_t write_block;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    w1_configure_t configure;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    w1_change_bus_lock_t change_bus_lock;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>};</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>__syscall <span class="keywordtype">int</span> w1_change_bus_lock(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">bool</span> lock);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_w1_change_bus_lock(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">bool</span> lock)</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>{</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">struct </span>w1_master_data *ctrl_data = (<span class="keyword">struct </span>w1_master_data *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">if</span> (api-&gt;change_bus_lock) {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keywordflow">return</span> api-&gt;change_bus_lock(dev, lock);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordflow">if</span> (lock) {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__mutex__apis.html#gaeff44f1e123d969f6aadac3a51885cff">k_mutex_lock</a>(&amp;ctrl_data-&gt;bus_lock, K_FOREVER);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__mutex__apis.html#ga4cf976aaecd33785f7899733236fdfb7">k_mutex_unlock</a>(&amp;ctrl_data-&gt;bus_lock);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    }</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>}</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> w1_lock_bus(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>{</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordflow">return</span> w1_change_bus_lock(dev, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>}</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> w1_unlock_bus(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>{</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordflow">return</span> w1_change_bus_lock(dev, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>}</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="group__w1__data__link.html#gaaa18816914b1bc5b37bef83bf1df19b9">  189</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__data__link.html#gaaa18816914b1bc5b37bef83bf1df19b9">w1_reset_bus</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_w1_reset_bus(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>{</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordflow">return</span> api-&gt;reset_bus(dev);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>}</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="group__w1__data__link.html#ga81abe3248a7d01d9c4dfbd49907cc253">  206</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__data__link.html#ga81abe3248a7d01d9c4dfbd49907cc253">w1_read_bit</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_w1_read_bit(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>{</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordflow">return</span> api-&gt;read_bit(dev);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>}</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="group__w1__data__link.html#gac676d8285f89020851cd873e930f4303">  224</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__data__link.html#gac676d8285f89020851cd873e930f4303">w1_write_bit</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> <span class="keywordtype">bool</span> bit);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_w1_write_bit(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">bool</span> bit)</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>{</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordflow">return</span> api-&gt;write_bit(dev, bit);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>}</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="group__w1__data__link.html#ga0094c15fdc399dd53287491d4bfb8da7">  241</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__data__link.html#ga0094c15fdc399dd53287491d4bfb8da7">w1_read_byte</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_w1_read_byte(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>{</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordflow">return</span> api-&gt;read_byte(dev);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>}</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno"><a class="line" href="group__w1__data__link.html#ga0fd18e955f3ff4b9d85b86b52341ad64">  259</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__data__link.html#ga0fd18e955f3ff4b9d85b86b52341ad64">w1_write_byte</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t <span class="keywordtype">byte</span>);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_w1_write_byte(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t <span class="keywordtype">byte</span>)</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>{</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keywordflow">return</span> api-&gt;write_byte(dev, <span class="keywordtype">byte</span>);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>}</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="group__w1__data__link.html#ga839f0fcdbff91fdd46109dbaba74c621">  278</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__data__link.html#ga839f0fcdbff91fdd46109dbaba74c621">w1_read_block</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t *buffer, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno"><a class="line" href="group__w1__data__link.html#ga67b0ba792666fab33358201f604444b0">  290</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__data__link.html#ga67b0ba792666fab33358201f604444b0">w1_write_block</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>                 <span class="keyword">const</span> uint8_t *buffer, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno"><a class="line" href="group__w1__data__link.html#ga6f8de59af9871c6189dd1da969ea930f">  301</a></span>__syscall <span class="keywordtype">size_t</span> <a class="code hl_function" href="group__w1__data__link.html#ga6f8de59af9871c6189dd1da969ea930f">w1_get_slave_count</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">size_t</span> z_impl_w1_get_slave_count(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>{</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <span class="keyword">const</span> <span class="keyword">struct </span>w1_master_config *ctrl_cfg =</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>w1_master_config *)dev-&gt;<a class="code hl_variable" href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">config</a>;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <span class="keywordflow">return</span> ctrl_cfg-&gt;slave_count;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>}</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="group__w1__data__link.html#gaf23f2b103f6f7da8689611b4896e8da2">  325</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__data__link.html#gaf23f2b103f6f7da8689611b4896e8da2">w1_configure</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>               <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__w1__interface.html#ga382989ef707709b5d26c40a394833612">w1_settings_type</a> type, uint32_t value);</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_w1_configure(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>                      <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__w1__interface.html#ga382989ef707709b5d26c40a394833612">w1_settings_type</a> type, uint32_t value)</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>{</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>w1_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="keywordflow">return</span> api-&gt;configure(dev, type, value);</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>}</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga9792cb2093e911a4722b7fa9457093dc">  356</a></span><span class="preprocessor">#define W1_CMD_SKIP_ROM         0xCC</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno"><a class="line" href="group__w1__network.html#gae97f7ecda699ccf9b63030f2af632bc8">  362</a></span><span class="preprocessor">#define W1_CMD_MATCH_ROM        0x55</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga31230559122289c179f01e09e3847830">  368</a></span><span class="preprocessor">#define W1_CMD_RESUME           0xA5</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga9e1a9a38889bf165370670c28778028b">  376</a></span><span class="preprocessor">#define W1_CMD_READ_ROM         0x33</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga57f17871edab0b771f2f664bf9bafb79">  382</a></span><span class="preprocessor">#define W1_CMD_SEARCH_ROM       0xF0</span></div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span> </div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno"><a class="line" href="group__w1__network.html#gafc7a257428c69bb4549c6cd05a928957">  388</a></span><span class="preprocessor">#define W1_CMD_SEARCH_ALARM     0xEC</span></div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span> </div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga8b61b2308f2681801894f24ea2c95b12">  394</a></span><span class="preprocessor">#define W1_CMD_OVERDRIVE_SKIP_ROM   0x3C</span></div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span> </div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga3e3f9fa70074188a2e489f34555b519b">  400</a></span><span class="preprocessor">#define W1_CMD_OVERDRIVE_MATCH_ROM  0x69</span></div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno"><a class="line" href="group__w1__network.html#gaa4ad8d9a3791fbca6c99d49b9793a002">  410</a></span><span class="preprocessor">#define W1_CRC8_SEED        0x00</span></div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno"><a class="line" href="group__w1__network.html#gabe56ffbe20c2ba7e0a5c87c8e36c45e5">  412</a></span><span class="preprocessor">#define W1_CRC8_POLYNOMIAL  0x8C</span></div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga324f30f17c6cd1b33650b58055a3a57f">  414</a></span><span class="preprocessor">#define W1_CRC16_SEED       0x0000</span></div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno"><a class="line" href="group__w1__network.html#gab94362fbf4eec5f115f93fc8976cff0d">  416</a></span><span class="preprocessor">#define W1_CRC16_POLYNOMIAL 0xa001</span></div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga909502b9b18c15a9ab0da8d3605e8c37">  421</a></span><span class="preprocessor">#define W1_SEARCH_ALL_FAMILIES      0x00</span></div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span> </div>
+<div class="foldopen" id="foldopen00424" data-start="" data-end="">
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga17770ecebad7170e9004afd9a7735c73">  424</a></span><span class="preprocessor">#define W1_ROM_INIT_ZERO                    \</span></div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span><span class="preprocessor">    {                           \</span></div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span><span class="preprocessor">        .family = 0, .serial = { 0 }, .crc = 0,     \</span></div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span> </div>
+<div class="foldopen" id="foldopen00432" data-start="{" data-end="};">
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno"><a class="line" href="structw1__rom.html">  432</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structw1__rom.html">w1_rom</a> {</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno"><a class="line" href="structw1__rom.html#adc7f4f9fca172392b11864a17424a14c">  439</a></span>    uint8_t <a class="code hl_variable" href="structw1__rom.html#adc7f4f9fca172392b11864a17424a14c">family</a>;</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno"><a class="line" href="structw1__rom.html#a134ee6d6e5e5eb711caf59449d11732e">  441</a></span>    uint8_t <a class="code hl_variable" href="structw1__rom.html#a134ee6d6e5e5eb711caf59449d11732e">serial</a>[6];</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno"><a class="line" href="structw1__rom.html#a73d85d7ce0ef671027c910b9b7a54165">  443</a></span>    uint8_t <a class="code hl_variable" href="structw1__rom.html#a73d85d7ce0ef671027c910b9b7a54165">crc</a>;</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>};</div>
+</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span> </div>
+<div class="foldopen" id="foldopen00452" data-start="{" data-end="};">
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno"><a class="line" href="structw1__slave__config.html">  452</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structw1__slave__config.html">w1_slave_config</a> {</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno"><a class="line" href="structw1__slave__config.html#a9f42fd1257483f308115ae02e6ef8596">  454</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structw1__rom.html">w1_rom</a> <a class="code hl_variable" href="structw1__slave__config.html#a9f42fd1257483f308115ae02e6ef8596">rom</a>;</div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno"><a class="line" href="structw1__slave__config.html#ab8a2d4522505416863fed561df22d058">  456</a></span>    uint32_t <a class="code hl_variable" href="structw1__slave__config.html#ab8a2d4522505416863fed561df22d058">overdrive</a> : 1;</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>    uint32_t res : 31;</div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>};</div>
+</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span> </div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga2f5540f2a86fd55edcd7a8ffecbfd786">  469</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__w1__network.html#ga2f5540f2a86fd55edcd7a8ffecbfd786">w1_search_callback_t</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structw1__rom.html">w1_rom</a> rom, void *user_data);</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span> </div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga93abefbd0e7067db474e6480301a0c4c">  488</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__network.html#ga93abefbd0e7067db474e6480301a0c4c">w1_read_rom</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structw1__rom.html">w1_rom</a> *rom);</div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span> </div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga53f34d64504498dbb194bc2119727908">  510</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__network.html#ga53f34d64504498dbb194bc2119727908">w1_match_rom</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structw1__slave__config.html">w1_slave_config</a> *config);</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span> </div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga67c815bb99b75c862a483d4f8556b24a">  524</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__network.html#ga67c815bb99b75c862a483d4f8556b24a">w1_resume_command</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span> </div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno"><a class="line" href="group__w1__network.html#gaba2be4e87ff472e90b705dbd73b913de">  541</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__network.html#gaba2be4e87ff472e90b705dbd73b913de">w1_skip_rom</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structw1__slave__config.html">w1_slave_config</a> *config);</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span> </div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno"><a class="line" href="group__w1__network.html#gaa0acc88fe02535a3d512b866b6d34b8a">  554</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__network.html#gaa0acc88fe02535a3d512b866b6d34b8a">w1_reset_select</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structw1__slave__config.html">w1_slave_config</a> *config);</div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span> </div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga1cf8c016ac66c3970f72fa1f409fa680">  573</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__network.html#ga1cf8c016ac66c3970f72fa1f409fa680">w1_write_read</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structw1__slave__config.html">w1_slave_config</a> *config,</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>          <span class="keyword">const</span> uint8_t *write_buf, <span class="keywordtype">size_t</span> write_len,</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>          uint8_t *read_buf, <span class="keywordtype">size_t</span> read_len);</div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span> </div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno"><a class="line" href="group__w1__network.html#ga80ec88dcc4f91a071304ae0408bbc5a6">  601</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__w1__network.html#ga80ec88dcc4f91a071304ae0408bbc5a6">w1_search_bus</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint8_t command,</div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span>                uint8_t <a class="code hl_variable" href="structw1__rom.html#adc7f4f9fca172392b11864a17424a14c">family</a>, <a class="code hl_typedef" href="group__w1__network.html#ga2f5540f2a86fd55edcd7a8ffecbfd786">w1_search_callback_t</a> callback,</div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>                <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span> </div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> w1_search_rom(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span>                <a class="code hl_typedef" href="group__w1__network.html#ga2f5540f2a86fd55edcd7a8ffecbfd786">w1_search_callback_t</a> callback, <span class="keywordtype">void</span> *user_data)</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>{</div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__w1__network.html#ga80ec88dcc4f91a071304ae0408bbc5a6">w1_search_bus</a>(dev, <a class="code hl_define" href="group__w1__network.html#ga57f17871edab0b771f2f664bf9bafb79">W1_CMD_SEARCH_ROM</a>, <a class="code hl_define" href="group__w1__network.html#ga909502b9b18c15a9ab0da8d3605e8c37">W1_SEARCH_ALL_FAMILIES</a>,</div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>                 callback, user_data);</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>}</div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span> </div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> w1_search_alarm(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>                  <a class="code hl_typedef" href="group__w1__network.html#ga2f5540f2a86fd55edcd7a8ffecbfd786">w1_search_callback_t</a> callback, <span class="keywordtype">void</span> *user_data)</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>{</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__w1__network.html#ga80ec88dcc4f91a071304ae0408bbc5a6">w1_search_bus</a>(dev, <a class="code hl_define" href="group__w1__network.html#gafc7a257428c69bb4549c6cd05a928957">W1_CMD_SEARCH_ALARM</a>, <a class="code hl_define" href="group__w1__network.html#ga909502b9b18c15a9ab0da8d3605e8c37">W1_SEARCH_ALL_FAMILIES</a>,</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>                 callback, user_data);</div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>}</div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span> </div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span><span class="keyword">static</span> <span class="keyword">inline</span> uint64_t w1_rom_to_uint64(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structw1__rom.html">w1_rom</a> *rom)</div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>{</div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span>    <span class="keywordflow">return</span> sys_get_be64((uint8_t *)rom);</div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>}</div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span> </div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> w1_uint64_to_rom(<span class="keyword">const</span> uint64_t rom64, <span class="keyword">struct</span> <a class="code hl_struct" href="structw1__rom.html">w1_rom</a> *rom)</div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>{</div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span>    sys_put_be64(rom64, (uint8_t *)rom);</div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>}</div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span> </div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t w1_crc8(<span class="keyword">const</span> uint8_t *src, <span class="keywordtype">size_t</span> len)</div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>{</div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__crc.html#gaa614e73ee7484ca0424fa7d14a54bbb6">crc8</a>(src, len, <a class="code hl_define" href="group__w1__network.html#gabe56ffbe20c2ba7e0a5c87c8e36c45e5">W1_CRC8_POLYNOMIAL</a>, <a class="code hl_define" href="group__w1__network.html#gaa4ad8d9a3791fbca6c99d49b9793a002">W1_CRC8_SEED</a>, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>}</div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span> </div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span><span class="keyword">static</span> <span class="keyword">inline</span> uint16_t w1_crc16(<span class="keyword">const</span> uint16_t seed, <span class="keyword">const</span> uint8_t *src,</div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span>                <span class="keyword">const</span> <span class="keywordtype">size_t</span> len)</div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span>{</div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__crc.html#gaccbcb5b80cf8deaac252474ecc6d9914">crc16_reflect</a>(<a class="code hl_define" href="group__w1__network.html#gab94362fbf4eec5f115f93fc8976cff0d">W1_CRC16_POLYNOMIAL</a>, seed, src, len);</div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>}</div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span> </div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>}</div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span> </div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span><span class="preprocessor">#include &lt;syscalls/w1.h&gt;</span></div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span> </div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_W1_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acrc_8h_html"><div class="ttname"><a href="crc_8h.html">crc.h</a></div><div class="ttdoc">CRC computation function.</div></div>
+<div class="ttc" id="agroup__crc_html_gaa614e73ee7484ca0424fa7d14a54bbb6"><div class="ttname"><a href="group__crc.html#gaa614e73ee7484ca0424fa7d14a54bbb6">crc8</a></div><div class="ttdeci">uint8_t crc8(const uint8_t *src, size_t len, uint8_t polynomial, uint8_t initial_value, bool reversed)</div><div class="ttdoc">Generic function for computing CRC 8.</div></div>
+<div class="ttc" id="agroup__crc_html_gaccbcb5b80cf8deaac252474ecc6d9914"><div class="ttname"><a href="group__crc.html#gaccbcb5b80cf8deaac252474ecc6d9914">crc16_reflect</a></div><div class="ttdeci">uint16_t crc16_reflect(uint16_t poly, uint16_t seed, const uint8_t *src, size_t len)</div><div class="ttdoc">Generic function for computing a CRC-16 with input and output reflection.</div></div>
+<div class="ttc" id="agroup__mutex__apis_html_ga4cf976aaecd33785f7899733236fdfb7"><div class="ttname"><a href="group__mutex__apis.html#ga4cf976aaecd33785f7899733236fdfb7">k_mutex_unlock</a></div><div class="ttdeci">__syscall int k_mutex_unlock(struct k_mutex *mutex)</div><div class="ttdoc">Unlock a mutex.</div></div>
+<div class="ttc" id="agroup__mutex__apis_html_gaeff44f1e123d969f6aadac3a51885cff"><div class="ttname"><a href="group__mutex__apis.html#gaeff44f1e123d969f6aadac3a51885cff">k_mutex_lock</a></div><div class="ttdeci">__syscall int k_mutex_lock(struct k_mutex *mutex, k_timeout_t timeout)</div><div class="ttdoc">Lock a mutex.</div></div>
+<div class="ttc" id="agroup__w1__data__link_html_ga0094c15fdc399dd53287491d4bfb8da7"><div class="ttname"><a href="group__w1__data__link.html#ga0094c15fdc399dd53287491d4bfb8da7">w1_read_byte</a></div><div class="ttdeci">__syscall int w1_read_byte(const struct device *dev)</div><div class="ttdoc">Read a single byte from the 1-Wire bus.</div></div>
+<div class="ttc" id="agroup__w1__data__link_html_ga0fd18e955f3ff4b9d85b86b52341ad64"><div class="ttname"><a href="group__w1__data__link.html#ga0fd18e955f3ff4b9d85b86b52341ad64">w1_write_byte</a></div><div class="ttdeci">__syscall int w1_write_byte(const struct device *dev, uint8_t byte)</div><div class="ttdoc">Write a single byte to the 1-Wire bus.</div></div>
+<div class="ttc" id="agroup__w1__data__link_html_ga67b0ba792666fab33358201f604444b0"><div class="ttname"><a href="group__w1__data__link.html#ga67b0ba792666fab33358201f604444b0">w1_write_block</a></div><div class="ttdeci">__syscall int w1_write_block(const struct device *dev, const uint8_t *buffer, size_t len)</div><div class="ttdoc">Write a block of data from the 1-Wire bus.</div></div>
+<div class="ttc" id="agroup__w1__data__link_html_ga6f8de59af9871c6189dd1da969ea930f"><div class="ttname"><a href="group__w1__data__link.html#ga6f8de59af9871c6189dd1da969ea930f">w1_get_slave_count</a></div><div class="ttdeci">__syscall size_t w1_get_slave_count(const struct device *dev)</div><div class="ttdoc">Get the number of slaves on the bus.</div></div>
+<div class="ttc" id="agroup__w1__data__link_html_ga81abe3248a7d01d9c4dfbd49907cc253"><div class="ttname"><a href="group__w1__data__link.html#ga81abe3248a7d01d9c4dfbd49907cc253">w1_read_bit</a></div><div class="ttdeci">__syscall int w1_read_bit(const struct device *dev)</div><div class="ttdoc">Read a single bit from the 1-Wire bus.</div></div>
+<div class="ttc" id="agroup__w1__data__link_html_ga839f0fcdbff91fdd46109dbaba74c621"><div class="ttname"><a href="group__w1__data__link.html#ga839f0fcdbff91fdd46109dbaba74c621">w1_read_block</a></div><div class="ttdeci">__syscall int w1_read_block(const struct device *dev, uint8_t *buffer, size_t len)</div><div class="ttdoc">Read a block of data from the 1-Wire bus.</div></div>
+<div class="ttc" id="agroup__w1__data__link_html_gaaa18816914b1bc5b37bef83bf1df19b9"><div class="ttname"><a href="group__w1__data__link.html#gaaa18816914b1bc5b37bef83bf1df19b9">w1_reset_bus</a></div><div class="ttdeci">__syscall int w1_reset_bus(const struct device *dev)</div><div class="ttdoc">Reset the 1-Wire bus to prepare slaves for communication.</div></div>
+<div class="ttc" id="agroup__w1__data__link_html_gac676d8285f89020851cd873e930f4303"><div class="ttname"><a href="group__w1__data__link.html#gac676d8285f89020851cd873e930f4303">w1_write_bit</a></div><div class="ttdeci">__syscall int w1_write_bit(const struct device *dev, const bool bit)</div><div class="ttdoc">Write a single bit to the 1-Wire bus.</div></div>
+<div class="ttc" id="agroup__w1__data__link_html_gaf23f2b103f6f7da8689611b4896e8da2"><div class="ttname"><a href="group__w1__data__link.html#gaf23f2b103f6f7da8689611b4896e8da2">w1_configure</a></div><div class="ttdeci">__syscall int w1_configure(const struct device *dev, enum w1_settings_type type, uint32_t value)</div><div class="ttdoc">Configure parameters of the 1-Wire master.</div></div>
+<div class="ttc" id="agroup__w1__interface_html_ga382989ef707709b5d26c40a394833612"><div class="ttname"><a href="group__w1__interface.html#ga382989ef707709b5d26c40a394833612">w1_settings_type</a></div><div class="ttdeci">w1_settings_type</div><div class="ttdoc">Defines the 1-Wire master settings types, which are runtime configurable.</div><div class="ttdef"><b>Definição</b> w1.h:53</div></div>
+<div class="ttc" id="agroup__w1__interface_html_gga382989ef707709b5d26c40a394833612a788fee2803793832c58951d623d823d5"><div class="ttname"><a href="group__w1__interface.html#gga382989ef707709b5d26c40a394833612a788fee2803793832c58951d623d823d5">W1_SETTING_SPEED</a></div><div class="ttdeci">@ W1_SETTING_SPEED</div><div class="ttdef"><b>Definição</b> w1.h:57</div></div>
+<div class="ttc" id="agroup__w1__interface_html_gga382989ef707709b5d26c40a394833612a814e27d05a04e027c52cb206aaf69b22"><div class="ttname"><a href="group__w1__interface.html#gga382989ef707709b5d26c40a394833612a814e27d05a04e027c52cb206aaf69b22">W1_SETINGS_TYPE_COUNT</a></div><div class="ttdeci">@ W1_SETINGS_TYPE_COUNT</div><div class="ttdef"><b>Definição</b> w1.h:67</div></div>
+<div class="ttc" id="agroup__w1__interface_html_gga382989ef707709b5d26c40a394833612ae3293dfeaa3f1976e8cf57e694d5f811"><div class="ttname"><a href="group__w1__interface.html#gga382989ef707709b5d26c40a394833612ae3293dfeaa3f1976e8cf57e694d5f811">W1_SETTING_STRONG_PULLUP</a></div><div class="ttdeci">@ W1_SETTING_STRONG_PULLUP</div><div class="ttdef"><b>Definição</b> w1.h:62</div></div>
+<div class="ttc" id="agroup__w1__network_html_ga1cf8c016ac66c3970f72fa1f409fa680"><div class="ttname"><a href="group__w1__network.html#ga1cf8c016ac66c3970f72fa1f409fa680">w1_write_read</a></div><div class="ttdeci">int w1_write_read(const struct device *dev, const struct w1_slave_config *config, const uint8_t *write_buf, size_t write_len, uint8_t *read_buf, size_t read_len)</div><div class="ttdoc">Write then read data from the 1-Wire slave with matching ROM.</div></div>
+<div class="ttc" id="agroup__w1__network_html_ga2f5540f2a86fd55edcd7a8ffecbfd786"><div class="ttname"><a href="group__w1__network.html#ga2f5540f2a86fd55edcd7a8ffecbfd786">w1_search_callback_t</a></div><div class="ttdeci">void(* w1_search_callback_t)(struct w1_rom rom, void *user_data)</div><div class="ttdoc">Define the application callback handler function signature for searches.</div><div class="ttdef"><b>Definição</b> w1.h:469</div></div>
+<div class="ttc" id="agroup__w1__network_html_ga53f34d64504498dbb194bc2119727908"><div class="ttname"><a href="group__w1__network.html#ga53f34d64504498dbb194bc2119727908">w1_match_rom</a></div><div class="ttdeci">int w1_match_rom(const struct device *dev, const struct w1_slave_config *config)</div><div class="ttdoc">Select a specific slave by broadcasting a selected ROM.</div></div>
+<div class="ttc" id="agroup__w1__network_html_ga57f17871edab0b771f2f664bf9bafb79"><div class="ttname"><a href="group__w1__network.html#ga57f17871edab0b771f2f664bf9bafb79">W1_CMD_SEARCH_ROM</a></div><div class="ttdeci">#define W1_CMD_SEARCH_ROM</div><div class="ttdef"><b>Definição</b> w1.h:382</div></div>
+<div class="ttc" id="agroup__w1__network_html_ga67c815bb99b75c862a483d4f8556b24a"><div class="ttname"><a href="group__w1__network.html#ga67c815bb99b75c862a483d4f8556b24a">w1_resume_command</a></div><div class="ttdeci">int w1_resume_command(const struct device *dev)</div><div class="ttdoc">Select the slave last addressed with a Match ROM or Search ROM commnad.</div></div>
+<div class="ttc" id="agroup__w1__network_html_ga80ec88dcc4f91a071304ae0408bbc5a6"><div class="ttname"><a href="group__w1__network.html#ga80ec88dcc4f91a071304ae0408bbc5a6">w1_search_bus</a></div><div class="ttdeci">__syscall int w1_search_bus(const struct device *dev, uint8_t command, uint8_t family, w1_search_callback_t callback, void *user_data)</div><div class="ttdoc">Search 1-wire slaves on the bus.</div></div>
+<div class="ttc" id="agroup__w1__network_html_ga909502b9b18c15a9ab0da8d3605e8c37"><div class="ttname"><a href="group__w1__network.html#ga909502b9b18c15a9ab0da8d3605e8c37">W1_SEARCH_ALL_FAMILIES</a></div><div class="ttdeci">#define W1_SEARCH_ALL_FAMILIES</div><div class="ttdef"><b>Definição</b> w1.h:421</div></div>
+<div class="ttc" id="agroup__w1__network_html_ga93abefbd0e7067db474e6480301a0c4c"><div class="ttname"><a href="group__w1__network.html#ga93abefbd0e7067db474e6480301a0c4c">w1_read_rom</a></div><div class="ttdeci">int w1_read_rom(const struct device *dev, struct w1_rom *rom)</div><div class="ttdoc">Read Peripheral 64-bit ROM.</div></div>
+<div class="ttc" id="agroup__w1__network_html_gaa0acc88fe02535a3d512b866b6d34b8a"><div class="ttname"><a href="group__w1__network.html#gaa0acc88fe02535a3d512b866b6d34b8a">w1_reset_select</a></div><div class="ttdeci">int w1_reset_select(const struct device *dev, const struct w1_slave_config *config)</div><div class="ttdoc">In single drop configurations use Skip Select command, otherweise use Match ROM command.</div></div>
+<div class="ttc" id="agroup__w1__network_html_gaa4ad8d9a3791fbca6c99d49b9793a002"><div class="ttname"><a href="group__w1__network.html#gaa4ad8d9a3791fbca6c99d49b9793a002">W1_CRC8_SEED</a></div><div class="ttdeci">#define W1_CRC8_SEED</div><div class="ttdef"><b>Definição</b> w1.h:410</div></div>
+<div class="ttc" id="agroup__w1__network_html_gab94362fbf4eec5f115f93fc8976cff0d"><div class="ttname"><a href="group__w1__network.html#gab94362fbf4eec5f115f93fc8976cff0d">W1_CRC16_POLYNOMIAL</a></div><div class="ttdeci">#define W1_CRC16_POLYNOMIAL</div><div class="ttdef"><b>Definição</b> w1.h:416</div></div>
+<div class="ttc" id="agroup__w1__network_html_gaba2be4e87ff472e90b705dbd73b913de"><div class="ttname"><a href="group__w1__network.html#gaba2be4e87ff472e90b705dbd73b913de">w1_skip_rom</a></div><div class="ttdeci">int w1_skip_rom(const struct device *dev, const struct w1_slave_config *config)</div><div class="ttdoc">Select all slaves regardless of ROM.</div></div>
+<div class="ttc" id="agroup__w1__network_html_gabe56ffbe20c2ba7e0a5c87c8e36c45e5"><div class="ttname"><a href="group__w1__network.html#gabe56ffbe20c2ba7e0a5c87c8e36c45e5">W1_CRC8_POLYNOMIAL</a></div><div class="ttdeci">#define W1_CRC8_POLYNOMIAL</div><div class="ttdef"><b>Definição</b> w1.h:412</div></div>
+<div class="ttc" id="agroup__w1__network_html_gafc7a257428c69bb4549c6cd05a928957"><div class="ttname"><a href="group__w1__network.html#gafc7a257428c69bb4549c6cd05a928957">W1_CMD_SEARCH_ALARM</a></div><div class="ttdeci">#define W1_CMD_SEARCH_ALARM</div><div class="ttdef"><b>Definição</b> w1.h:388</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a27573cbd10ee145f8bb1396242b27a3e"><div class="ttname"><a href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">device::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definição</b> device.h:395</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructdevice_html_aca2d801eb15996cf1c74dc65cfa651fc"><div class="ttname"><a href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">device::config</a></div><div class="ttdeci">const void * config</div><div class="ttdef"><b>Definição</b> device.h:389</div></div>
+<div class="ttc" id="astructk__mutex_html"><div class="ttname"><a href="structk__mutex.html">k_mutex</a></div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:31</div></div>
+<div class="ttc" id="astructw1__rom_html"><div class="ttname"><a href="structw1__rom.html">w1_rom</a></div><div class="ttdoc">w1_rom struct.</div><div class="ttdef"><b>Definição</b> w1.h:432</div></div>
+<div class="ttc" id="astructw1__rom_html_a134ee6d6e5e5eb711caf59449d11732e"><div class="ttname"><a href="structw1__rom.html#a134ee6d6e5e5eb711caf59449d11732e">w1_rom::serial</a></div><div class="ttdeci">uint8_t serial[6]</div><div class="ttdef"><b>Definição</b> w1.h:441</div></div>
+<div class="ttc" id="astructw1__rom_html_a73d85d7ce0ef671027c910b9b7a54165"><div class="ttname"><a href="structw1__rom.html#a73d85d7ce0ef671027c910b9b7a54165">w1_rom::crc</a></div><div class="ttdeci">uint8_t crc</div><div class="ttdef"><b>Definição</b> w1.h:443</div></div>
+<div class="ttc" id="astructw1__rom_html_adc7f4f9fca172392b11864a17424a14c"><div class="ttname"><a href="structw1__rom.html#adc7f4f9fca172392b11864a17424a14c">w1_rom::family</a></div><div class="ttdeci">uint8_t family</div><div class="ttdoc">The 1-Wire family code identifying the slave device type.</div><div class="ttdef"><b>Definição</b> w1.h:439</div></div>
+<div class="ttc" id="astructw1__slave__config_html"><div class="ttname"><a href="structw1__slave__config.html">w1_slave_config</a></div><div class="ttdoc">Node specific 1-wire configuration struct.</div><div class="ttdef"><b>Definição</b> w1.h:452</div></div>
+<div class="ttc" id="astructw1__slave__config_html_a9f42fd1257483f308115ae02e6ef8596"><div class="ttname"><a href="structw1__slave__config.html#a9f42fd1257483f308115ae02e6ef8596">w1_slave_config::rom</a></div><div class="ttdeci">struct w1_rom rom</div><div class="ttdef"><b>Definição</b> w1.h:454</div></div>
+<div class="ttc" id="astructw1__slave__config_html_ab8a2d4522505416863fed561df22d058"><div class="ttname"><a href="structw1__slave__config.html#ab8a2d4522505416863fed561df22d058">w1_slave_config::overdrive</a></div><div class="ttdeci">uint32_t overdrive</div><div class="ttdef"><b>Definição</b> w1.h:456</div></div>
+<div class="ttc" id="asys_2byteorder_8h_html"><div class="ttname"><a href="sys_2byteorder_8h.html">byteorder.h</a></div><div class="ttdoc">Byte order helpers.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

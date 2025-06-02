@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/i3c/target_device.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_fde9829581448aa2eaf128a45a28098a.html">i3c</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">target_device.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright 2022 Intel Corporation</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_I3C_TARGET_DEVICE_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_I3C_TARGET_DEVICE_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">zephyr/sys/util.h</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">struct </span>i3c_driver_api;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structi3c__config__target.html">   34</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__config__target.html">i3c_config_target</a> {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structi3c__config__target.html#abbfb2e5c4d061b60f3e0f92ee17f4ee7">   39</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structi3c__config__target.html#abbfb2e5c4d061b60f3e0f92ee17f4ee7">enable</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structi3c__config__target.html#ab5345d23ba2afffbf48010e7edff3c26">   47</a></span>    uint8_t <a class="code hl_variable" href="structi3c__config__target.html#ab5345d23ba2afffbf48010e7edff3c26">static_addr</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structi3c__config__target.html#a62e1b1a3dff6cc570ecccdfcfc6b196d">   50</a></span>    uint64_t <a class="code hl_variable" href="structi3c__config__target.html#a62e1b1a3dff6cc570ecccdfcfc6b196d">pid</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="structi3c__config__target.html#a2ad289658811d142ba9091574acf485b">   58</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structi3c__config__target.html#a2ad289658811d142ba9091574acf485b">pid_random</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structi3c__config__target.html#a1d0b97d6428e471bcf9b6945da947b36">   61</a></span>    uint8_t <a class="code hl_variable" href="structi3c__config__target.html#a1d0b97d6428e471bcf9b6945da947b36">bcr</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structi3c__config__target.html#afaa68c94b35f512a597b35752db8d66e">   64</a></span>    uint8_t <a class="code hl_variable" href="structi3c__config__target.html#afaa68c94b35f512a597b35752db8d66e">dcr</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structi3c__config__target.html#a4339c8dd33b17ce8363bf28177411830">   67</a></span>    uint16_t <a class="code hl_variable" href="structi3c__config__target.html#a4339c8dd33b17ce8363bf28177411830">max_read_len</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structi3c__config__target.html#aca4dc4aa873ca447d06e573d485ab854">   70</a></span>    uint16_t <a class="code hl_variable" href="structi3c__config__target.html#aca4dc4aa873ca447d06e573d485ab854">max_write_len</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structi3c__config__target.html#a78a74f81e632a428db59803b55239419">   78</a></span>    uint8_t <a class="code hl_variable" href="structi3c__config__target.html#a78a74f81e632a428db59803b55239419">supported_hdr</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};</div>
+</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="foldopen" id="foldopen00092" data-start="{" data-end="};">
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structi3c__target__config.html">   92</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__target__config.html">i3c_target_config</a> {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="structi3c__target__config.html#a4e0fc180a85b4ec2f9fc5d3f3b8e030b">   94</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> <a class="code hl_variable" href="structi3c__target__config.html#a4e0fc180a85b4ec2f9fc5d3f3b8e030b">node</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="structi3c__target__config.html#ae27fb5be1c29a3f7a38955d5954f1bf6">  100</a></span>    uint8_t <a class="code hl_variable" href="structi3c__target__config.html#ae27fb5be1c29a3f7a38955d5954f1bf6">flags</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="structi3c__target__config.html#a89b7f8bd52beec7dd733ab6dd1111758">  103</a></span>    uint8_t <a class="code hl_variable" href="structi3c__target__config.html#a89b7f8bd52beec7dd733ab6dd1111758">address</a>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="structi3c__target__config.html#a43ed9a3679d54f7bb91dade34a5897b6">  106</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structi3c__target__callbacks.html">i3c_target_callbacks</a> *<a class="code hl_variable" href="structi3c__target__config.html#a43ed9a3679d54f7bb91dade34a5897b6">callbacks</a>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>};</div>
+</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="foldopen" id="foldopen00109" data-start="{" data-end="};">
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="structi3c__target__callbacks.html">  109</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__target__callbacks.html">i3c_target_callbacks</a> {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structi3c__target__callbacks.html#ad9e51587a8f86f08d065071d28241ee2">  126</a></span>    int (*<a class="code hl_variable" href="structi3c__target__callbacks.html#ad9e51587a8f86f08d065071d28241ee2">write_requested_cb</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structi3c__target__config.html">i3c_target_config</a> *config);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="structi3c__target__callbacks.html#a7288f143d19ad306616e25e68ffedc03">  147</a></span>    int (*<a class="code hl_variable" href="structi3c__target__callbacks.html#a7288f143d19ad306616e25e68ffedc03">write_received_cb</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structi3c__target__config.html">i3c_target_config</a> *config,</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                 uint8_t val);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="structi3c__target__callbacks.html#ac72e0bab1eeff6995983f90f6d934749">  170</a></span>    int (*<a class="code hl_variable" href="structi3c__target__callbacks.html#ac72e0bab1eeff6995983f90f6d934749">read_requested_cb</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structi3c__target__config.html">i3c_target_config</a> *config,</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>                 uint8_t *val);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="structi3c__target__callbacks.html#ae53661cfa98a3b58a9702fef28234c30">  193</a></span>    int (*<a class="code hl_variable" href="structi3c__target__callbacks.html#ae53661cfa98a3b58a9702fef28234c30">read_processed_cb</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structi3c__target__config.html">i3c_target_config</a> *config,</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>                 uint8_t *val);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="structi3c__target__callbacks.html#a15a1bacdd10c0d6803fbd24f1a1a3323">  211</a></span>    int (*<a class="code hl_variable" href="structi3c__target__callbacks.html#a15a1bacdd10c0d6803fbd24f1a1a3323">stop_cb</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structi3c__target__config.html">i3c_target_config</a> *config);</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>};</div>
+</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="foldopen" id="foldopen00214" data-start="{" data-end="};">
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="structi3c__target__driver__api.html">  214</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structi3c__target__driver__api.html">i3c_target_driver_api</a> {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    int (*driver_register)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    int (*driver_unregister)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>};</div>
+</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i3c_target_tx_write(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>                      uint8_t *buf, uint16_t len)</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>{</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i3c_driver_api *api =</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>i3c_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordflow">if</span> (api-&gt;target_tx_write == NULL) {</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    }</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordflow">return</span> api-&gt;target_tx_write(dev, buf, len);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>}</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i3c_target_register(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>                      <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__target__config.html">i3c_target_config</a> *cfg)</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>{</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i3c_driver_api *api =</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>i3c_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <span class="keywordflow">if</span> (api-&gt;target_register == NULL) {</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    }</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="keywordflow">return</span> api-&gt;target_register(dev, cfg);</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>}</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> i3c_target_unregister(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>                    <span class="keyword">struct</span> <a class="code hl_struct" href="structi3c__target__config.html">i3c_target_config</a> *cfg)</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>{</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <span class="keyword">const</span> <span class="keyword">struct </span>i3c_driver_api *api =</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>i3c_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="keywordflow">if</span> (api-&gt;target_unregister == NULL) {</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    }</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="keywordflow">return</span> api-&gt;target_unregister(dev, cfg);</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>}</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>}</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_I3C_TARGET_DEVICE_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructi3c__config__target_html"><div class="ttname"><a href="structi3c__config__target.html">i3c_config_target</a></div><div class="ttdoc">Configuration parameters for I3C hardware to act as target device.</div><div class="ttdef"><b>Definição</b> target_device.h:34</div></div>
+<div class="ttc" id="astructi3c__config__target_html_a1d0b97d6428e471bcf9b6945da947b36"><div class="ttname"><a href="structi3c__config__target.html#a1d0b97d6428e471bcf9b6945da947b36">i3c_config_target::bcr</a></div><div class="ttdeci">uint8_t bcr</div><div class="ttdef"><b>Definição</b> target_device.h:61</div></div>
+<div class="ttc" id="astructi3c__config__target_html_a2ad289658811d142ba9091574acf485b"><div class="ttname"><a href="structi3c__config__target.html#a2ad289658811d142ba9091574acf485b">i3c_config_target::pid_random</a></div><div class="ttdeci">bool pid_random</div><div class="ttdef"><b>Definição</b> target_device.h:58</div></div>
+<div class="ttc" id="astructi3c__config__target_html_a4339c8dd33b17ce8363bf28177411830"><div class="ttname"><a href="structi3c__config__target.html#a4339c8dd33b17ce8363bf28177411830">i3c_config_target::max_read_len</a></div><div class="ttdeci">uint16_t max_read_len</div><div class="ttdef"><b>Definição</b> target_device.h:67</div></div>
+<div class="ttc" id="astructi3c__config__target_html_a62e1b1a3dff6cc570ecccdfcfc6b196d"><div class="ttname"><a href="structi3c__config__target.html#a62e1b1a3dff6cc570ecccdfcfc6b196d">i3c_config_target::pid</a></div><div class="ttdeci">uint64_t pid</div><div class="ttdef"><b>Definição</b> target_device.h:50</div></div>
+<div class="ttc" id="astructi3c__config__target_html_a78a74f81e632a428db59803b55239419"><div class="ttname"><a href="structi3c__config__target.html#a78a74f81e632a428db59803b55239419">i3c_config_target::supported_hdr</a></div><div class="ttdeci">uint8_t supported_hdr</div><div class="ttdef"><b>Definição</b> target_device.h:78</div></div>
+<div class="ttc" id="astructi3c__config__target_html_ab5345d23ba2afffbf48010e7edff3c26"><div class="ttname"><a href="structi3c__config__target.html#ab5345d23ba2afffbf48010e7edff3c26">i3c_config_target::static_addr</a></div><div class="ttdeci">uint8_t static_addr</div><div class="ttdef"><b>Definição</b> target_device.h:47</div></div>
+<div class="ttc" id="astructi3c__config__target_html_abbfb2e5c4d061b60f3e0f92ee17f4ee7"><div class="ttname"><a href="structi3c__config__target.html#abbfb2e5c4d061b60f3e0f92ee17f4ee7">i3c_config_target::enable</a></div><div class="ttdeci">bool enable</div><div class="ttdef"><b>Definição</b> target_device.h:39</div></div>
+<div class="ttc" id="astructi3c__config__target_html_aca4dc4aa873ca447d06e573d485ab854"><div class="ttname"><a href="structi3c__config__target.html#aca4dc4aa873ca447d06e573d485ab854">i3c_config_target::max_write_len</a></div><div class="ttdeci">uint16_t max_write_len</div><div class="ttdef"><b>Definição</b> target_device.h:70</div></div>
+<div class="ttc" id="astructi3c__config__target_html_afaa68c94b35f512a597b35752db8d66e"><div class="ttname"><a href="structi3c__config__target.html#afaa68c94b35f512a597b35752db8d66e">i3c_config_target::dcr</a></div><div class="ttdeci">uint8_t dcr</div><div class="ttdef"><b>Definição</b> target_device.h:64</div></div>
+<div class="ttc" id="astructi3c__target__callbacks_html"><div class="ttname"><a href="structi3c__target__callbacks.html">i3c_target_callbacks</a></div><div class="ttdef"><b>Definição</b> target_device.h:109</div></div>
+<div class="ttc" id="astructi3c__target__callbacks_html_a15a1bacdd10c0d6803fbd24f1a1a3323"><div class="ttname"><a href="structi3c__target__callbacks.html#a15a1bacdd10c0d6803fbd24f1a1a3323">i3c_target_callbacks::stop_cb</a></div><div class="ttdeci">int(* stop_cb)(struct i3c_target_config *config)</div><div class="ttdoc">Function called when a stop condition is observed after a start condition addressed to a particular d...</div><div class="ttdef"><b>Definição</b> target_device.h:211</div></div>
+<div class="ttc" id="astructi3c__target__callbacks_html_a7288f143d19ad306616e25e68ffedc03"><div class="ttname"><a href="structi3c__target__callbacks.html#a7288f143d19ad306616e25e68ffedc03">i3c_target_callbacks::write_received_cb</a></div><div class="ttdeci">int(* write_received_cb)(struct i3c_target_config *config, uint8_t val)</div><div class="ttdoc">Function called when a write to the device is continued.</div><div class="ttdef"><b>Definição</b> target_device.h:147</div></div>
+<div class="ttc" id="astructi3c__target__callbacks_html_ac72e0bab1eeff6995983f90f6d934749"><div class="ttname"><a href="structi3c__target__callbacks.html#ac72e0bab1eeff6995983f90f6d934749">i3c_target_callbacks::read_requested_cb</a></div><div class="ttdeci">int(* read_requested_cb)(struct i3c_target_config *config, uint8_t *val)</div><div class="ttdoc">Function called when a read from the device is initiated.</div><div class="ttdef"><b>Definição</b> target_device.h:170</div></div>
+<div class="ttc" id="astructi3c__target__callbacks_html_ad9e51587a8f86f08d065071d28241ee2"><div class="ttname"><a href="structi3c__target__callbacks.html#ad9e51587a8f86f08d065071d28241ee2">i3c_target_callbacks::write_requested_cb</a></div><div class="ttdeci">int(* write_requested_cb)(struct i3c_target_config *config)</div><div class="ttdoc">Function called when a write to the device is initiated.</div><div class="ttdef"><b>Definição</b> target_device.h:126</div></div>
+<div class="ttc" id="astructi3c__target__callbacks_html_ae53661cfa98a3b58a9702fef28234c30"><div class="ttname"><a href="structi3c__target__callbacks.html#ae53661cfa98a3b58a9702fef28234c30">i3c_target_callbacks::read_processed_cb</a></div><div class="ttdeci">int(* read_processed_cb)(struct i3c_target_config *config, uint8_t *val)</div><div class="ttdoc">Function called when a read from the device is continued.</div><div class="ttdef"><b>Definição</b> target_device.h:193</div></div>
+<div class="ttc" id="astructi3c__target__config_html"><div class="ttname"><a href="structi3c__target__config.html">i3c_target_config</a></div><div class="ttdoc">Structure describing a device that supports the I3C target API.</div><div class="ttdef"><b>Definição</b> target_device.h:92</div></div>
+<div class="ttc" id="astructi3c__target__config_html_a43ed9a3679d54f7bb91dade34a5897b6"><div class="ttname"><a href="structi3c__target__config.html#a43ed9a3679d54f7bb91dade34a5897b6">i3c_target_config::callbacks</a></div><div class="ttdeci">const struct i3c_target_callbacks * callbacks</div><div class="ttdef"><b>Definição</b> target_device.h:106</div></div>
+<div class="ttc" id="astructi3c__target__config_html_a4e0fc180a85b4ec2f9fc5d3f3b8e030b"><div class="ttname"><a href="structi3c__target__config.html#a4e0fc180a85b4ec2f9fc5d3f3b8e030b">i3c_target_config::node</a></div><div class="ttdeci">sys_snode_t node</div><div class="ttdef"><b>Definição</b> target_device.h:94</div></div>
+<div class="ttc" id="astructi3c__target__config_html_a89b7f8bd52beec7dd733ab6dd1111758"><div class="ttname"><a href="structi3c__target__config.html#a89b7f8bd52beec7dd733ab6dd1111758">i3c_target_config::address</a></div><div class="ttdeci">uint8_t address</div><div class="ttdef"><b>Definição</b> target_device.h:103</div></div>
+<div class="ttc" id="astructi3c__target__config_html_ae27fb5be1c29a3f7a38955d5954f1bf6"><div class="ttname"><a href="structi3c__target__config.html#ae27fb5be1c29a3f7a38955d5954f1bf6">i3c_target_config::flags</a></div><div class="ttdeci">uint8_t flags</div><div class="ttdef"><b>Definição</b> target_device.h:100</div></div>
+<div class="ttc" id="astructi3c__target__driver__api_html"><div class="ttname"><a href="structi3c__target__driver__api.html">i3c_target_driver_api</a></div><div class="ttdef"><b>Definição</b> target_device.h:214</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Misc utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

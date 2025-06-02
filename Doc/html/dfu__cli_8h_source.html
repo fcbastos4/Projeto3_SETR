@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/bluetooth/mesh/dfu_cli.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_54c0620e537f2166dbbc1b051adfe8cd.html">bluetooth</a></li><li class="navelem"><a class="el" href="dir_20041068832b9a39a164f78830c074f0.html">mesh</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">dfu_cli.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="dfu__cli_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#ga2967b89e8fc3b848b70e493f6e821761">    1</a></span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2020 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_BLUETOOTH_MESH_DFU_CLI_H__</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define ZEPHYR_INCLUDE_BLUETOOTH_MESH_DFU_CLI_H__</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="access_8h.html">zephyr/bluetooth/mesh/access.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;zephyr/bluetooth/mesh/blob_cli.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;zephyr/bluetooth/mesh/dfu.h&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="" data-end="">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#ga0b10a95f9b7c806bfd8649280f535c96">   36</a></span><span class="preprocessor">#define BT_MESH_DFU_CLI_INIT(_handlers)                                        \</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">    {                                                                      \</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">        .cb = _handlers,                                               \</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">        .blob = { .cb = &amp;_bt_mesh_dfu_cli_blob_handlers },             \</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00048" data-start="" data-end="">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#gadee3710bb46d907a51232ca42cca7c2d">   48</a></span><span class="preprocessor">#define BT_MESH_MODEL_DFU_CLI(_cli)                                            \</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">    BT_MESH_MODEL_BLOB_CLI(&amp;(_cli)-&gt;blob),                                 \</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">    BT_MESH_MODEL_CB(BT_MESH_MODEL_ID_DFU_CLI, _bt_mesh_dfu_cli_op, NULL,  \</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">             _cli, &amp;_bt_mesh_dfu_cli_cb)</span></div>
+</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="};">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target.html">   54</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__target.html">bt_mesh_dfu_target</a> {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target.html#a96393388212d4bffd8fb00c82e58d364">   56</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__blob__target.html">bt_mesh_blob_target</a> <a class="code hl_variable" href="structbt__mesh__dfu__target.html#a96393388212d4bffd8fb00c82e58d364">blob</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target.html#a986a58915c0b0ab509ddbbbe475976d2">   58</a></span>    uint8_t <a class="code hl_variable" href="structbt__mesh__dfu__target.html#a986a58915c0b0ab509ddbbbe475976d2">img_idx</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target.html#a3d18d0ae1d0902cf84402b090a9aaa99">   60</a></span>    uint8_t <a class="code hl_variable" href="structbt__mesh__dfu__target.html#a3d18d0ae1d0902cf84402b090a9aaa99">effect</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target.html#a4ad51f9dc3fdb39afeef55e4cd22b968">   62</a></span>    uint8_t <a class="code hl_variable" href="structbt__mesh__dfu__target.html#a4ad51f9dc3fdb39afeef55e4cd22b968">status</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target.html#a43730ff708da06fe31e801adf7a79c0e">   64</a></span>    uint8_t <a class="code hl_variable" href="structbt__mesh__dfu__target.html#a43730ff708da06fe31e801adf7a79c0e">phase</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>};</div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="foldopen" id="foldopen00068" data-start="{" data-end="};">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__metadata__status.html">   68</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__metadata__status.html">bt_mesh_dfu_metadata_status</a> {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__metadata__status.html#a1d41b76b66acadc20f7f9ec1f4bc8b9b">   70</a></span>    uint8_t <a class="code hl_variable" href="structbt__mesh__dfu__metadata__status.html#a1d41b76b66acadc20f7f9ec1f4bc8b9b">idx</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__metadata__status.html#ae7ad71649f295142e48863b6d884b966">   72</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__bt__mesh__dfu.html#ga9e627a3c15de782faa11ef6c4ec5e05d">bt_mesh_dfu_status</a> <a class="code hl_variable" href="structbt__mesh__dfu__metadata__status.html#ae7ad71649f295142e48863b6d884b966">status</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__metadata__status.html#a299723f7176938b2900cfdae4550965c">   74</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__bt__mesh__dfu.html#gae7d7ef4ed1e65e5f8e1641a9c00bb7e8">bt_mesh_dfu_effect</a> <a class="code hl_variable" href="structbt__mesh__dfu__metadata__status.html#a299723f7176938b2900cfdae4550965c">effect</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>};</div>
+</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="};">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target__status.html">   78</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__target__status.html">bt_mesh_dfu_target_status</a> {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target__status.html#a25b2198ad4970d50707ff7994c9d1415">   80</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__bt__mesh__dfu.html#ga9e627a3c15de782faa11ef6c4ec5e05d">bt_mesh_dfu_status</a> <a class="code hl_variable" href="structbt__mesh__dfu__target__status.html#a25b2198ad4970d50707ff7994c9d1415">status</a>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target__status.html#aedbbfc07a68e60236901a3c79377fe65">   82</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__bt__mesh__dfu.html#ga99919dcee1e41bc74bd59e33bec2ded2">bt_mesh_dfu_phase</a> <a class="code hl_variable" href="structbt__mesh__dfu__target__status.html#aedbbfc07a68e60236901a3c79377fe65">phase</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target__status.html#aef5cbadbdd7b4b006dc304cd94c1bca4">   84</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__bt__mesh__dfu.html#gae7d7ef4ed1e65e5f8e1641a9c00bb7e8">bt_mesh_dfu_effect</a> <a class="code hl_variable" href="structbt__mesh__dfu__target__status.html#aef5cbadbdd7b4b006dc304cd94c1bca4">effect</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target__status.html#a2848ad866fbd437164b73a7504b75518">   86</a></span>    uint64_t <a class="code hl_variable" href="structbt__mesh__dfu__target__status.html#a2848ad866fbd437164b73a7504b75518">blob_id</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target__status.html#aedbd5c0a04460656d0a78eb49fd047b2">   88</a></span>    uint8_t <a class="code hl_variable" href="structbt__mesh__dfu__target__status.html#aedbd5c0a04460656d0a78eb49fd047b2">img_idx</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target__status.html#ab2e77b63918bb9a735a4ab20a4ca9333">   90</a></span>    uint8_t <a class="code hl_variable" href="structbt__mesh__dfu__target__status.html#ab2e77b63918bb9a735a4ab20a4ca9333">ttl</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__target__status.html#a13505201dbafeff54c0b35b445fd4f85">  105</a></span>    uint16_t <a class="code hl_variable" href="structbt__mesh__dfu__target__status.html#a13505201dbafeff54c0b35b445fd4f85">timeout_base</a>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>};</div>
+</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__bt__mesh__dfu.html#ga82475cb72f2ea8b60e70d6987eca2ff6">bt_mesh_dfu_iter</a> (*<a class="code hl_typedef" href="group__bt__mesh__dfu__cli.html#ga2967b89e8fc3b848b70e493f6e821761">bt_mesh_dfu_img_cb_t</a>)(</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli, <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__msg__ctx.html">bt_mesh_msg_ctx</a> *ctx, uint8_t idx,</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    uint8_t total, <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__img.html">bt_mesh_dfu_img</a> *img, <span class="keywordtype">void</span> *cb_data);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="foldopen" id="foldopen00130" data-start="{" data-end="};">
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli__cb.html">  130</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__cli__cb.html">bt_mesh_dfu_cli_cb</a> {</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli__cb.html#ad2abfdf93f23cecd30e12241bb064a7f">  137</a></span>    void (*<a class="code hl_variable" href="structbt__mesh__dfu__cli__cb.html#ad2abfdf93f23cecd30e12241bb064a7f">suspended</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli__cb.html#aa3c8985490a6b2bd6fcd81dff0132060">  147</a></span>    void (*<a class="code hl_variable" href="structbt__mesh__dfu__cli__cb.html#aa3c8985490a6b2bd6fcd81dff0132060">ended</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli,</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>              <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__bt__mesh__dfu.html#ga9e627a3c15de782faa11ef6c4ec5e05d">bt_mesh_dfu_status</a> reason);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli__cb.html#a6f580db9629d81f72c79d00a5aea2de4">  157</a></span>    void (*<a class="code hl_variable" href="structbt__mesh__dfu__cli__cb.html#a6f580db9629d81f72c79d00a5aea2de4">applied</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli__cb.html#a32b20280b2196437bad6d85edc017c63">  166</a></span>    void (*<a class="code hl_variable" href="structbt__mesh__dfu__cli__cb.html#a32b20280b2196437bad6d85edc017c63">confirmed</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli__cb.html#ab4d00147b1e525f392d09d5545de2465">  176</a></span>    void (*<a class="code hl_variable" href="structbt__mesh__dfu__cli__cb.html#ab4d00147b1e525f392d09d5545de2465">lost_target</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli,</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__target.html">bt_mesh_dfu_target</a> *target);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>};</div>
+</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="foldopen" id="foldopen00184" data-start="{" data-end="};">
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli.html">  184</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> {</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli.html#a18d31020aba939826aa34060a4a28121">  186</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__cli__cb.html">bt_mesh_dfu_cli_cb</a> *<a class="code hl_variable" href="structbt__mesh__dfu__cli.html#a18d31020aba939826aa34060a4a28121">cb</a>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli.html#a945b5c9f70086ca57d3ee77704ece6fd">  188</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__blob__cli.html">bt_mesh_blob_cli</a> <a class="code hl_variable" href="structbt__mesh__dfu__cli.html#a945b5c9f70086ca57d3ee77704ece6fd">blob</a>;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="comment">/* runtime state */</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    uint32_t op;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model.html">bt_mesh_model</a> *mod;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__slot.html">bt_mesh_dfu_slot</a> *slot;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__blob__io.html">bt_mesh_blob_io</a> *io;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__blob__xfer.html">bt_mesh_blob_xfer</a> blob;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        uint8_t state;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        uint8_t flags;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    } xfer;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        uint8_t ttl;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        uint8_t type;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        uint8_t img_cnt;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        uint16_t addr;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keyword">struct </span>k_sem sem;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        <span class="keywordtype">void</span> *params;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        <a class="code hl_typedef" href="group__bt__mesh__dfu__cli.html#ga2967b89e8fc3b848b70e493f6e821761">bt_mesh_dfu_img_cb_t</a> img_cb;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    } req;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>};</div>
+</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="foldopen" id="foldopen00215" data-start="{" data-end="};">
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli__xfer__blob__params.html">  215</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__cli__xfer__blob__params.html">bt_mesh_dfu_cli_xfer_blob_params</a> {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="comment">/* Logarithmic representation of the block size. */</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    uint8_t block_size_log;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli__xfer__blob__params.html#a1015b239306bd5eb1c9648b5c1d59481">  219</a></span>    uint16_t <a class="code hl_variable" href="structbt__mesh__dfu__cli__xfer__blob__params.html#a1015b239306bd5eb1c9648b5c1d59481">chunk_size</a>;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>};</div>
+</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="foldopen" id="foldopen00223" data-start="{" data-end="};">
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli__xfer.html">  223</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__cli__xfer.html">bt_mesh_dfu_cli_xfer</a> {</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli__xfer.html#adece8c0e0cec2262a7066b27636fc46e">  225</a></span>    uint64_t <a class="code hl_variable" href="structbt__mesh__dfu__cli__xfer.html#adece8c0e0cec2262a7066b27636fc46e">blob_id</a>;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli__xfer.html#a3c25a54eb4e557d749a9fb1ba66aecb4">  227</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__slot.html">bt_mesh_dfu_slot</a> *<a class="code hl_variable" href="structbt__mesh__dfu__cli__xfer.html#a3c25a54eb4e557d749a9fb1ba66aecb4">slot</a>;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli__xfer.html#a6608f683fd94e12f7c3ef5f3de7ec248">  229</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__bt__mesh__blob.html#gae0cb28c0e50d02f6e003062457053618">bt_mesh_blob_xfer_mode</a> <a class="code hl_variable" href="structbt__mesh__dfu__cli__xfer.html#a6608f683fd94e12f7c3ef5f3de7ec248">mode</a>;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="structbt__mesh__dfu__cli__xfer.html#a2c4feacc090dace0986e533257f9b291">  233</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__dfu__cli__xfer__blob__params.html">bt_mesh_dfu_cli_xfer_blob_params</a> *<a class="code hl_variable" href="structbt__mesh__dfu__cli__xfer.html#a2c4feacc090dace0986e533257f9b291">blob_params</a>;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>};</div>
+</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#ga20764694315adb4f846dcff20f377417">  252</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__dfu__cli.html#ga20764694315adb4f846dcff20f377417">bt_mesh_dfu_cli_send</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli,</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>             <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__blob__cli__inputs.html">bt_mesh_blob_cli_inputs</a> *inputs,</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>             <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__blob__io.html">bt_mesh_blob_io</a> *io,</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>             <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__cli__xfer.html">bt_mesh_dfu_cli_xfer</a> *xfer);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#gaa1ed22da058839c9f3234ce2e41eda32">  263</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__dfu__cli.html#gaa1ed22da058839c9f3234ce2e41eda32">bt_mesh_dfu_cli_suspend</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli);</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#ga0011fb5c03e6e8c2babfb677d528033b">  271</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__dfu__cli.html#ga0011fb5c03e6e8c2babfb677d528033b">bt_mesh_dfu_cli_resume</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli);</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#ga4c7353f45a6e33884844fd9d2f443750">  283</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__dfu__cli.html#ga4c7353f45a6e33884844fd9d2f443750">bt_mesh_dfu_cli_cancel</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli,</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>               <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__msg__ctx.html">bt_mesh_msg_ctx</a> *ctx);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#ga2904ba992a00ee9fba6704c1efc8f074">  295</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__dfu__cli.html#ga2904ba992a00ee9fba6704c1efc8f074">bt_mesh_dfu_cli_apply</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#gaf76f0cdb5c6b0df12ddb495c718c3c93">  310</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__dfu__cli.html#gaf76f0cdb5c6b0df12ddb495c718c3c93">bt_mesh_dfu_cli_confirm</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli);</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#ga073c5bc227040f1f33e7b3f2fe69a309">  319</a></span>uint8_t <a class="code hl_function" href="group__bt__mesh__dfu__cli.html#ga073c5bc227040f1f33e7b3f2fe69a309">bt_mesh_dfu_cli_progress</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#gad6308700322d96676635bcf0b70c74f7">  328</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__bt__mesh__dfu__cli.html#gad6308700322d96676635bcf0b70c74f7">bt_mesh_dfu_cli_is_busy</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli);</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#ga4c33f9457d4f367760a51a771dfd2671">  348</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__dfu__cli.html#ga4c33f9457d4f367760a51a771dfd2671">bt_mesh_dfu_cli_imgs_get</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli,</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__msg__ctx.html">bt_mesh_msg_ctx</a> *ctx,</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>                 <a class="code hl_typedef" href="group__bt__mesh__dfu__cli.html#ga2967b89e8fc3b848b70e493f6e821761">bt_mesh_dfu_img_cb_t</a> cb, <span class="keywordtype">void</span> *cb_data,</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>                 uint8_t max_count);</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#ga20b3e7d3d3640149a20d698a6aa7dca5">  368</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__dfu__cli.html#ga20b3e7d3d3640149a20d698a6aa7dca5">bt_mesh_dfu_cli_metadata_check</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli,</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>                   <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__msg__ctx.html">bt_mesh_msg_ctx</a> *ctx, uint8_t img_idx,</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>                   <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__slot.html">bt_mesh_dfu_slot</a> *slot,</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>                   <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__metadata__status.html">bt_mesh_dfu_metadata_status</a> *rsp);</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#gab754da11705a2d6a24ec828aa7862579">  381</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bt__mesh__dfu__cli.html#gab754da11705a2d6a24ec828aa7862579">bt_mesh_dfu_cli_status_get</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a> *cli,</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>                   <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__msg__ctx.html">bt_mesh_msg_ctx</a> *ctx,</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>                   <span class="keyword">struct</span> <a class="code hl_struct" href="structbt__mesh__dfu__target__status.html">bt_mesh_dfu_target_status</a> *rsp);</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> </div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#ga3dd10bd1e8673973fd6db98d3ebda354">  389</a></span>int32_t <a class="code hl_function" href="group__bt__mesh__dfu__cli.html#ga3dd10bd1e8673973fd6db98d3ebda354">bt_mesh_dfu_cli_timeout_get</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno"><a class="line" href="group__bt__mesh__dfu__cli.html#ga603adf5b40b6e382c9035c9f2bad99a9">  395</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__bt__mesh__dfu__cli.html#ga603adf5b40b6e382c9035c9f2bad99a9">bt_mesh_dfu_cli_timeout_set</a>(int32_t timeout);</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span> </div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__blob__cli__cb.html">bt_mesh_blob_cli_cb</a> _bt_mesh_dfu_cli_blob_handlers;</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model__cb.html">bt_mesh_model_cb</a> _bt_mesh_dfu_cli_cb;</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structbt__mesh__model__op.html">bt_mesh_model_op</a> _bt_mesh_dfu_cli_op[];</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>}</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span> </div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_BLUETOOTH_MESH_DFU_CLI_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span> </div>
+<div class="ttc" id="aaccess_8h_html"><div class="ttname"><a href="access_8h.html">access.h</a></div><div class="ttdoc">Access layer APIs.</div></div>
+<div class="ttc" id="agroup__bt__mesh__blob_html_gae0cb28c0e50d02f6e003062457053618"><div class="ttname"><a href="group__bt__mesh__blob.html#gae0cb28c0e50d02f6e003062457053618">bt_mesh_blob_xfer_mode</a></div><div class="ttdeci">bt_mesh_blob_xfer_mode</div><div class="ttdef"><b>Definição</b> blob.h:29</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_ga0011fb5c03e6e8c2babfb677d528033b"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#ga0011fb5c03e6e8c2babfb677d528033b">bt_mesh_dfu_cli_resume</a></div><div class="ttdeci">int bt_mesh_dfu_cli_resume(struct bt_mesh_dfu_cli *cli)</div><div class="ttdoc">Resume the suspended transfer.</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_ga073c5bc227040f1f33e7b3f2fe69a309"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#ga073c5bc227040f1f33e7b3f2fe69a309">bt_mesh_dfu_cli_progress</a></div><div class="ttdeci">uint8_t bt_mesh_dfu_cli_progress(struct bt_mesh_dfu_cli *cli)</div><div class="ttdoc">Get progress as a percentage of completion.</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_ga20764694315adb4f846dcff20f377417"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#ga20764694315adb4f846dcff20f377417">bt_mesh_dfu_cli_send</a></div><div class="ttdeci">int bt_mesh_dfu_cli_send(struct bt_mesh_dfu_cli *cli, const struct bt_mesh_blob_cli_inputs *inputs, const struct bt_mesh_blob_io *io, const struct bt_mesh_dfu_cli_xfer *xfer)</div><div class="ttdoc">Start distributing a DFU.</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_ga20b3e7d3d3640149a20d698a6aa7dca5"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#ga20b3e7d3d3640149a20d698a6aa7dca5">bt_mesh_dfu_cli_metadata_check</a></div><div class="ttdeci">int bt_mesh_dfu_cli_metadata_check(struct bt_mesh_dfu_cli *cli, struct bt_mesh_msg_ctx *ctx, uint8_t img_idx, const struct bt_mesh_dfu_slot *slot, struct bt_mesh_dfu_metadata_status *rsp)</div><div class="ttdoc">Perform a metadata check for the given DFU image slot.</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_ga2904ba992a00ee9fba6704c1efc8f074"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#ga2904ba992a00ee9fba6704c1efc8f074">bt_mesh_dfu_cli_apply</a></div><div class="ttdeci">int bt_mesh_dfu_cli_apply(struct bt_mesh_dfu_cli *cli)</div><div class="ttdoc">Apply the completed DFU transfer.</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_ga2967b89e8fc3b848b70e493f6e821761"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#ga2967b89e8fc3b848b70e493f6e821761">bt_mesh_dfu_img_cb_t</a></div><div class="ttdeci">enum bt_mesh_dfu_iter(* bt_mesh_dfu_img_cb_t)(struct bt_mesh_dfu_cli *cli, struct bt_mesh_msg_ctx *ctx, uint8_t idx, uint8_t total, const struct bt_mesh_dfu_img *img, void *cb_data)</div><div class="ttdoc">DFU image callback.</div><div class="ttdef"><b>Definição</b> dfu_cli.h:125</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_ga3dd10bd1e8673973fd6db98d3ebda354"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#ga3dd10bd1e8673973fd6db98d3ebda354">bt_mesh_dfu_cli_timeout_get</a></div><div class="ttdeci">int32_t bt_mesh_dfu_cli_timeout_get(void)</div><div class="ttdoc">Get the current procedure timeout value.</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_ga4c33f9457d4f367760a51a771dfd2671"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#ga4c33f9457d4f367760a51a771dfd2671">bt_mesh_dfu_cli_imgs_get</a></div><div class="ttdeci">int bt_mesh_dfu_cli_imgs_get(struct bt_mesh_dfu_cli *cli, struct bt_mesh_msg_ctx *ctx, bt_mesh_dfu_img_cb_t cb, void *cb_data, uint8_t max_count)</div><div class="ttdoc">Perform a DFU image list request.</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_ga4c7353f45a6e33884844fd9d2f443750"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#ga4c7353f45a6e33884844fd9d2f443750">bt_mesh_dfu_cli_cancel</a></div><div class="ttdeci">int bt_mesh_dfu_cli_cancel(struct bt_mesh_dfu_cli *cli, struct bt_mesh_msg_ctx *ctx)</div><div class="ttdoc">Cancel a DFU transfer.</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_ga603adf5b40b6e382c9035c9f2bad99a9"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#ga603adf5b40b6e382c9035c9f2bad99a9">bt_mesh_dfu_cli_timeout_set</a></div><div class="ttdeci">void bt_mesh_dfu_cli_timeout_set(int32_t timeout)</div><div class="ttdoc">Set the procedure timeout value.</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_gaa1ed22da058839c9f3234ce2e41eda32"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#gaa1ed22da058839c9f3234ce2e41eda32">bt_mesh_dfu_cli_suspend</a></div><div class="ttdeci">int bt_mesh_dfu_cli_suspend(struct bt_mesh_dfu_cli *cli)</div><div class="ttdoc">Suspend a DFU transfer.</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_gab754da11705a2d6a24ec828aa7862579"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#gab754da11705a2d6a24ec828aa7862579">bt_mesh_dfu_cli_status_get</a></div><div class="ttdeci">int bt_mesh_dfu_cli_status_get(struct bt_mesh_dfu_cli *cli, struct bt_mesh_msg_ctx *ctx, struct bt_mesh_dfu_target_status *rsp)</div><div class="ttdoc">Get the status of a Target node.</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_gad6308700322d96676635bcf0b70c74f7"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#gad6308700322d96676635bcf0b70c74f7">bt_mesh_dfu_cli_is_busy</a></div><div class="ttdeci">bool bt_mesh_dfu_cli_is_busy(struct bt_mesh_dfu_cli *cli)</div><div class="ttdoc">Check whether a DFU transfer is in progress.</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu__cli_html_gaf76f0cdb5c6b0df12ddb495c718c3c93"><div class="ttname"><a href="group__bt__mesh__dfu__cli.html#gaf76f0cdb5c6b0df12ddb495c718c3c93">bt_mesh_dfu_cli_confirm</a></div><div class="ttdeci">int bt_mesh_dfu_cli_confirm(struct bt_mesh_dfu_cli *cli)</div><div class="ttdoc">Confirm that the active transfer has been applied on the Target nodes.</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu_html_ga82475cb72f2ea8b60e70d6987eca2ff6"><div class="ttname"><a href="group__bt__mesh__dfu.html#ga82475cb72f2ea8b60e70d6987eca2ff6">bt_mesh_dfu_iter</a></div><div class="ttdeci">bt_mesh_dfu_iter</div><div class="ttdef"><b>Definição</b> dfu.h:128</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu_html_ga99919dcee1e41bc74bd59e33bec2ded2"><div class="ttname"><a href="group__bt__mesh__dfu.html#ga99919dcee1e41bc74bd59e33bec2ded2">bt_mesh_dfu_phase</a></div><div class="ttdeci">bt_mesh_dfu_phase</div><div class="ttdef"><b>Definição</b> dfu.h:42</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu_html_ga9e627a3c15de782faa11ef6c4ec5e05d"><div class="ttname"><a href="group__bt__mesh__dfu.html#ga9e627a3c15de782faa11ef6c4ec5e05d">bt_mesh_dfu_status</a></div><div class="ttdeci">bt_mesh_dfu_status</div><div class="ttdef"><b>Definição</b> dfu.h:79</div></div>
+<div class="ttc" id="agroup__bt__mesh__dfu_html_gae7d7ef4ed1e65e5f8e1641a9c00bb7e8"><div class="ttname"><a href="group__bt__mesh__dfu.html#gae7d7ef4ed1e65e5f8e1641a9c00bb7e8">bt_mesh_dfu_effect</a></div><div class="ttdeci">bt_mesh_dfu_effect</div><div class="ttdef"><b>Definição</b> dfu.h:108</div></div>
+<div class="ttc" id="astructbt__mesh__blob__cli__cb_html"><div class="ttname"><a href="structbt__mesh__blob__cli__cb.html">bt_mesh_blob_cli_cb</a></div><div class="ttdef"><b>Definição</b> blob_cli.h:190</div></div>
+<div class="ttc" id="astructbt__mesh__blob__cli__inputs_html"><div class="ttname"><a href="structbt__mesh__blob__cli__inputs.html">bt_mesh_blob_cli_inputs</a></div><div class="ttdef"><b>Definição</b> blob_cli.h:104</div></div>
+<div class="ttc" id="astructbt__mesh__blob__cli_html"><div class="ttname"><a href="structbt__mesh__blob__cli.html">bt_mesh_blob_cli</a></div><div class="ttdef"><b>Definição</b> blob_cli.h:289</div></div>
+<div class="ttc" id="astructbt__mesh__blob__io_html"><div class="ttname"><a href="structbt__mesh__blob__io.html">bt_mesh_blob_io</a></div><div class="ttdef"><b>Definição</b> blob.h:145</div></div>
+<div class="ttc" id="astructbt__mesh__blob__target_html"><div class="ttname"><a href="structbt__mesh__blob__target.html">bt_mesh_blob_target</a></div><div class="ttdef"><b>Definição</b> blob_cli.h:49</div></div>
+<div class="ttc" id="astructbt__mesh__blob__xfer_html"><div class="ttname"><a href="structbt__mesh__blob__xfer.html">bt_mesh_blob_xfer</a></div><div class="ttdef"><b>Definição</b> blob.h:123</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli__cb_html"><div class="ttname"><a href="structbt__mesh__dfu__cli__cb.html">bt_mesh_dfu_cli_cb</a></div><div class="ttdef"><b>Definição</b> dfu_cli.h:130</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli__cb_html_a32b20280b2196437bad6d85edc017c63"><div class="ttname"><a href="structbt__mesh__dfu__cli__cb.html#a32b20280b2196437bad6d85edc017c63">bt_mesh_dfu_cli_cb::confirmed</a></div><div class="ttdeci">void(* confirmed)(struct bt_mesh_dfu_cli *cli)</div><div class="ttdoc">DFU transfer confirmed on all active Target nodes.</div><div class="ttdef"><b>Definição</b> dfu_cli.h:166</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli__cb_html_a6f580db9629d81f72c79d00a5aea2de4"><div class="ttname"><a href="structbt__mesh__dfu__cli__cb.html#a6f580db9629d81f72c79d00a5aea2de4">bt_mesh_dfu_cli_cb::applied</a></div><div class="ttdeci">void(* applied)(struct bt_mesh_dfu_cli *cli)</div><div class="ttdoc">DFU transfer applied on all active Target nodes.</div><div class="ttdef"><b>Definição</b> dfu_cli.h:157</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli__cb_html_aa3c8985490a6b2bd6fcd81dff0132060"><div class="ttname"><a href="structbt__mesh__dfu__cli__cb.html#aa3c8985490a6b2bd6fcd81dff0132060">bt_mesh_dfu_cli_cb::ended</a></div><div class="ttdeci">void(* ended)(struct bt_mesh_dfu_cli *cli, enum bt_mesh_dfu_status reason)</div><div class="ttdoc">DFU ended.</div><div class="ttdef"><b>Definição</b> dfu_cli.h:147</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli__cb_html_ab4d00147b1e525f392d09d5545de2465"><div class="ttname"><a href="structbt__mesh__dfu__cli__cb.html#ab4d00147b1e525f392d09d5545de2465">bt_mesh_dfu_cli_cb::lost_target</a></div><div class="ttdeci">void(* lost_target)(struct bt_mesh_dfu_cli *cli, struct bt_mesh_dfu_target *target)</div><div class="ttdoc">DFU Target node was lost.</div><div class="ttdef"><b>Definição</b> dfu_cli.h:176</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli__cb_html_ad2abfdf93f23cecd30e12241bb064a7f"><div class="ttname"><a href="structbt__mesh__dfu__cli__cb.html#ad2abfdf93f23cecd30e12241bb064a7f">bt_mesh_dfu_cli_cb::suspended</a></div><div class="ttdeci">void(* suspended)(struct bt_mesh_dfu_cli *cli)</div><div class="ttdoc">BLOB transfer is suspended.</div><div class="ttdef"><b>Definição</b> dfu_cli.h:137</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli__xfer__blob__params_html"><div class="ttname"><a href="structbt__mesh__dfu__cli__xfer__blob__params.html">bt_mesh_dfu_cli_xfer_blob_params</a></div><div class="ttdef"><b>Definição</b> dfu_cli.h:215</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli__xfer__blob__params_html_a1015b239306bd5eb1c9648b5c1d59481"><div class="ttname"><a href="structbt__mesh__dfu__cli__xfer__blob__params.html#a1015b239306bd5eb1c9648b5c1d59481">bt_mesh_dfu_cli_xfer_blob_params::chunk_size</a></div><div class="ttdeci">uint16_t chunk_size</div><div class="ttdef"><b>Definição</b> dfu_cli.h:219</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli__xfer_html"><div class="ttname"><a href="structbt__mesh__dfu__cli__xfer.html">bt_mesh_dfu_cli_xfer</a></div><div class="ttdef"><b>Definição</b> dfu_cli.h:223</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli__xfer_html_a2c4feacc090dace0986e533257f9b291"><div class="ttname"><a href="structbt__mesh__dfu__cli__xfer.html#a2c4feacc090dace0986e533257f9b291">bt_mesh_dfu_cli_xfer::blob_params</a></div><div class="ttdeci">const struct bt_mesh_dfu_cli_xfer_blob_params * blob_params</div><div class="ttdef"><b>Definição</b> dfu_cli.h:233</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli__xfer_html_a3c25a54eb4e557d749a9fb1ba66aecb4"><div class="ttname"><a href="structbt__mesh__dfu__cli__xfer.html#a3c25a54eb4e557d749a9fb1ba66aecb4">bt_mesh_dfu_cli_xfer::slot</a></div><div class="ttdeci">const struct bt_mesh_dfu_slot * slot</div><div class="ttdef"><b>Definição</b> dfu_cli.h:227</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli__xfer_html_a6608f683fd94e12f7c3ef5f3de7ec248"><div class="ttname"><a href="structbt__mesh__dfu__cli__xfer.html#a6608f683fd94e12f7c3ef5f3de7ec248">bt_mesh_dfu_cli_xfer::mode</a></div><div class="ttdeci">enum bt_mesh_blob_xfer_mode mode</div><div class="ttdef"><b>Definição</b> dfu_cli.h:229</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli__xfer_html_adece8c0e0cec2262a7066b27636fc46e"><div class="ttname"><a href="structbt__mesh__dfu__cli__xfer.html#adece8c0e0cec2262a7066b27636fc46e">bt_mesh_dfu_cli_xfer::blob_id</a></div><div class="ttdeci">uint64_t blob_id</div><div class="ttdef"><b>Definição</b> dfu_cli.h:225</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli_html"><div class="ttname"><a href="structbt__mesh__dfu__cli.html">bt_mesh_dfu_cli</a></div><div class="ttdef"><b>Definição</b> dfu_cli.h:184</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli_html_a18d31020aba939826aa34060a4a28121"><div class="ttname"><a href="structbt__mesh__dfu__cli.html#a18d31020aba939826aa34060a4a28121">bt_mesh_dfu_cli::cb</a></div><div class="ttdeci">const struct bt_mesh_dfu_cli_cb * cb</div><div class="ttdef"><b>Definição</b> dfu_cli.h:186</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__cli_html_a945b5c9f70086ca57d3ee77704ece6fd"><div class="ttname"><a href="structbt__mesh__dfu__cli.html#a945b5c9f70086ca57d3ee77704ece6fd">bt_mesh_dfu_cli::blob</a></div><div class="ttdeci">struct bt_mesh_blob_cli blob</div><div class="ttdef"><b>Definição</b> dfu_cli.h:188</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__img_html"><div class="ttname"><a href="structbt__mesh__dfu__img.html">bt_mesh_dfu_img</a></div><div class="ttdef"><b>Definição</b> dfu.h:140</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__metadata__status_html"><div class="ttname"><a href="structbt__mesh__dfu__metadata__status.html">bt_mesh_dfu_metadata_status</a></div><div class="ttdef"><b>Definição</b> dfu_cli.h:68</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__metadata__status_html_a1d41b76b66acadc20f7f9ec1f4bc8b9b"><div class="ttname"><a href="structbt__mesh__dfu__metadata__status.html#a1d41b76b66acadc20f7f9ec1f4bc8b9b">bt_mesh_dfu_metadata_status::idx</a></div><div class="ttdeci">uint8_t idx</div><div class="ttdef"><b>Definição</b> dfu_cli.h:70</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__metadata__status_html_a299723f7176938b2900cfdae4550965c"><div class="ttname"><a href="structbt__mesh__dfu__metadata__status.html#a299723f7176938b2900cfdae4550965c">bt_mesh_dfu_metadata_status::effect</a></div><div class="ttdeci">enum bt_mesh_dfu_effect effect</div><div class="ttdef"><b>Definição</b> dfu_cli.h:74</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__metadata__status_html_ae7ad71649f295142e48863b6d884b966"><div class="ttname"><a href="structbt__mesh__dfu__metadata__status.html#ae7ad71649f295142e48863b6d884b966">bt_mesh_dfu_metadata_status::status</a></div><div class="ttdeci">enum bt_mesh_dfu_status status</div><div class="ttdef"><b>Definição</b> dfu_cli.h:72</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__slot_html"><div class="ttname"><a href="structbt__mesh__dfu__slot.html">bt_mesh_dfu_slot</a></div><div class="ttdef"><b>Definição</b> dfu.h:152</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target__status_html"><div class="ttname"><a href="structbt__mesh__dfu__target__status.html">bt_mesh_dfu_target_status</a></div><div class="ttdef"><b>Definição</b> dfu_cli.h:78</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target__status_html_a13505201dbafeff54c0b35b445fd4f85"><div class="ttname"><a href="structbt__mesh__dfu__target__status.html#a13505201dbafeff54c0b35b445fd4f85">bt_mesh_dfu_target_status::timeout_base</a></div><div class="ttdeci">uint16_t timeout_base</div><div class="ttdef"><b>Definição</b> dfu_cli.h:105</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target__status_html_a25b2198ad4970d50707ff7994c9d1415"><div class="ttname"><a href="structbt__mesh__dfu__target__status.html#a25b2198ad4970d50707ff7994c9d1415">bt_mesh_dfu_target_status::status</a></div><div class="ttdeci">enum bt_mesh_dfu_status status</div><div class="ttdef"><b>Definição</b> dfu_cli.h:80</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target__status_html_a2848ad866fbd437164b73a7504b75518"><div class="ttname"><a href="structbt__mesh__dfu__target__status.html#a2848ad866fbd437164b73a7504b75518">bt_mesh_dfu_target_status::blob_id</a></div><div class="ttdeci">uint64_t blob_id</div><div class="ttdef"><b>Definição</b> dfu_cli.h:86</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target__status_html_ab2e77b63918bb9a735a4ab20a4ca9333"><div class="ttname"><a href="structbt__mesh__dfu__target__status.html#ab2e77b63918bb9a735a4ab20a4ca9333">bt_mesh_dfu_target_status::ttl</a></div><div class="ttdeci">uint8_t ttl</div><div class="ttdef"><b>Definição</b> dfu_cli.h:90</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target__status_html_aedbbfc07a68e60236901a3c79377fe65"><div class="ttname"><a href="structbt__mesh__dfu__target__status.html#aedbbfc07a68e60236901a3c79377fe65">bt_mesh_dfu_target_status::phase</a></div><div class="ttdeci">enum bt_mesh_dfu_phase phase</div><div class="ttdef"><b>Definição</b> dfu_cli.h:82</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target__status_html_aedbd5c0a04460656d0a78eb49fd047b2"><div class="ttname"><a href="structbt__mesh__dfu__target__status.html#aedbd5c0a04460656d0a78eb49fd047b2">bt_mesh_dfu_target_status::img_idx</a></div><div class="ttdeci">uint8_t img_idx</div><div class="ttdef"><b>Definição</b> dfu_cli.h:88</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target__status_html_aef5cbadbdd7b4b006dc304cd94c1bca4"><div class="ttname"><a href="structbt__mesh__dfu__target__status.html#aef5cbadbdd7b4b006dc304cd94c1bca4">bt_mesh_dfu_target_status::effect</a></div><div class="ttdeci">enum bt_mesh_dfu_effect effect</div><div class="ttdef"><b>Definição</b> dfu_cli.h:84</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target_html"><div class="ttname"><a href="structbt__mesh__dfu__target.html">bt_mesh_dfu_target</a></div><div class="ttdef"><b>Definição</b> dfu_cli.h:54</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target_html_a3d18d0ae1d0902cf84402b090a9aaa99"><div class="ttname"><a href="structbt__mesh__dfu__target.html#a3d18d0ae1d0902cf84402b090a9aaa99">bt_mesh_dfu_target::effect</a></div><div class="ttdeci">uint8_t effect</div><div class="ttdef"><b>Definição</b> dfu_cli.h:60</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target_html_a43730ff708da06fe31e801adf7a79c0e"><div class="ttname"><a href="structbt__mesh__dfu__target.html#a43730ff708da06fe31e801adf7a79c0e">bt_mesh_dfu_target::phase</a></div><div class="ttdeci">uint8_t phase</div><div class="ttdef"><b>Definição</b> dfu_cli.h:64</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target_html_a4ad51f9dc3fdb39afeef55e4cd22b968"><div class="ttname"><a href="structbt__mesh__dfu__target.html#a4ad51f9dc3fdb39afeef55e4cd22b968">bt_mesh_dfu_target::status</a></div><div class="ttdeci">uint8_t status</div><div class="ttdef"><b>Definição</b> dfu_cli.h:62</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target_html_a96393388212d4bffd8fb00c82e58d364"><div class="ttname"><a href="structbt__mesh__dfu__target.html#a96393388212d4bffd8fb00c82e58d364">bt_mesh_dfu_target::blob</a></div><div class="ttdeci">struct bt_mesh_blob_target blob</div><div class="ttdef"><b>Definição</b> dfu_cli.h:56</div></div>
+<div class="ttc" id="astructbt__mesh__dfu__target_html_a986a58915c0b0ab509ddbbbe475976d2"><div class="ttname"><a href="structbt__mesh__dfu__target.html#a986a58915c0b0ab509ddbbbe475976d2">bt_mesh_dfu_target::img_idx</a></div><div class="ttdeci">uint8_t img_idx</div><div class="ttdef"><b>Definição</b> dfu_cli.h:58</div></div>
+<div class="ttc" id="astructbt__mesh__model__cb_html"><div class="ttname"><a href="structbt__mesh__model__cb.html">bt_mesh_model_cb</a></div><div class="ttdef"><b>Definição</b> access.h:803</div></div>
+<div class="ttc" id="astructbt__mesh__model__op_html"><div class="ttname"><a href="structbt__mesh__model__op.html">bt_mesh_model_op</a></div><div class="ttdef"><b>Definição</b> access.h:359</div></div>
+<div class="ttc" id="astructbt__mesh__model_html"><div class="ttname"><a href="structbt__mesh__model.html">bt_mesh_model</a></div><div class="ttdef"><b>Definição</b> access.h:881</div></div>
+<div class="ttc" id="astructbt__mesh__msg__ctx_html"><div class="ttname"><a href="structbt__mesh__msg__ctx.html">bt_mesh_msg_ctx</a></div><div class="ttdef"><b>Definição</b> msg.h:76</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

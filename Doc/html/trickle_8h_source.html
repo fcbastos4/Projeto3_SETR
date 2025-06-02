@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/net/trickle.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_e87a4ba8d8d39971580ab67f13eff592.html">net</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">trickle.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="trickle_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Copyright (c) 2016 Intel Corporation</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_NET_TRICKLE_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define ZEPHYR_INCLUDE_NET_TRICKLE_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="net__core_8h.html">zephyr/net/net_core.h</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__trickle.html">net_trickle</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__trickle.html#ga36e3856ac2e9b596984d4817e580ef42">   45</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__trickle.html#ga36e3856ac2e9b596984d4817e580ef42">net_trickle_cb_t</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structnet__trickle.html">net_trickle</a> *trickle,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                 <span class="keywordtype">bool</span> do_suppress, <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="foldopen" id="foldopen00053" data-start="{" data-end="};">
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structnet__trickle.html">   53</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__trickle.html">net_trickle</a> {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structnet__trickle.html#aaf14e013a0fa74488a26cd7ff476f6e7">   54</a></span>    uint32_t <a class="code hl_variable" href="structnet__trickle.html#aaf14e013a0fa74488a26cd7ff476f6e7">Imin</a>;      </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structnet__trickle.html#a01ffd968b645bb66db67c759520298aa">   55</a></span>    uint8_t <a class="code hl_variable" href="structnet__trickle.html#a01ffd968b645bb66db67c759520298aa">Imax</a>;       </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structnet__trickle.html#a7c3399e45f85874cec48434d605066d9">   56</a></span>    uint8_t <a class="code hl_variable" href="structnet__trickle.html#a7c3399e45f85874cec48434d605066d9">k</a>;      </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="structnet__trickle.html#a6186d8e41cce5193851587d1c72162ea">   58</a></span>    uint32_t <a class="code hl_variable" href="structnet__trickle.html#a6186d8e41cce5193851587d1c72162ea">I</a>;     </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structnet__trickle.html#aab8a98c8a918528db6f2ddec85df4796">   59</a></span>    uint32_t <a class="code hl_variable" href="structnet__trickle.html#aab8a98c8a918528db6f2ddec85df4796">Istart</a>;    </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structnet__trickle.html#aaa03f7763e6bd335b932896ee4433b3b">   60</a></span>    uint8_t <a class="code hl_variable" href="structnet__trickle.html#aaa03f7763e6bd335b932896ee4433b3b">c</a>;      </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structnet__trickle.html#ae9f7ecd9b9730cd1c232ead5d21fec05">   62</a></span>    uint32_t <a class="code hl_variable" href="structnet__trickle.html#ae9f7ecd9b9730cd1c232ead5d21fec05">Imax_abs</a>;  </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">bool</span> double_to;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a> timer;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structnet__trickle.html#a63a3cbf019c99def91e3a9dde7c2f9b4">   66</a></span>    <a class="code hl_typedef" href="group__trickle.html#ga36e3856ac2e9b596984d4817e580ef42">net_trickle_cb_t</a> <a class="code hl_variable" href="structnet__trickle.html#a63a3cbf019c99def91e3a9dde7c2f9b4">cb</a>;    </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span> *user_data;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>};</div>
+</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">#define NET_TRICKLE_INFINITE_REDUNDANCY 0</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="group__trickle.html#gac412d65ad2a8483920de32c1e0ae6be5">   84</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__trickle.html#gac412d65ad2a8483920de32c1e0ae6be5">net_trickle_create</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__trickle.html">net_trickle</a> *trickle,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>               uint32_t Imin,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>               uint8_t Imax,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>               uint8_t k);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="group__trickle.html#ga6674fac118a187320d73dc742f0e216f">   99</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__trickle.html#ga6674fac118a187320d73dc742f0e216f">net_trickle_start</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__trickle.html">net_trickle</a> *trickle,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>              <a class="code hl_typedef" href="group__trickle.html#ga36e3856ac2e9b596984d4817e580ef42">net_trickle_cb_t</a> cb,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>              <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="group__trickle.html#ga8477e45a95abccfb714e3f3369686c6d">  110</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__trickle.html#ga8477e45a95abccfb714e3f3369686c6d">net_trickle_stop</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__trickle.html">net_trickle</a> *trickle);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="group__trickle.html#gacefb4b5ba518fd1e3f776df012998a9b">  118</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__trickle.html#gacefb4b5ba518fd1e3f776df012998a9b">net_trickle_consistency</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__trickle.html">net_trickle</a> *trickle);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="group__trickle.html#gad0815f9368a17532c8b5293a122cd8a9">  126</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__trickle.html#gad0815f9368a17532c8b5293a122cd8a9">net_trickle_inconsistency</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__trickle.html">net_trickle</a> *trickle);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_trickle_is_running(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__trickle.html">net_trickle</a> *trickle)</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>{</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    NET_ASSERT(trickle);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordflow">return</span> trickle-&gt;<a class="code hl_variable" href="structnet__trickle.html#a6186d8e41cce5193851587d1c72162ea">I</a> != 0U;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>}</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>}</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_NET_TRICKLE_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__trickle_html_ga36e3856ac2e9b596984d4817e580ef42"><div class="ttname"><a href="group__trickle.html#ga36e3856ac2e9b596984d4817e580ef42">net_trickle_cb_t</a></div><div class="ttdeci">void(* net_trickle_cb_t)(struct net_trickle *trickle, bool do_suppress, void *user_data)</div><div class="ttdoc">Trickle timer callback.</div><div class="ttdef"><b>Definição</b> trickle.h:45</div></div>
+<div class="ttc" id="agroup__trickle_html_ga6674fac118a187320d73dc742f0e216f"><div class="ttname"><a href="group__trickle.html#ga6674fac118a187320d73dc742f0e216f">net_trickle_start</a></div><div class="ttdeci">int net_trickle_start(struct net_trickle *trickle, net_trickle_cb_t cb, void *user_data)</div><div class="ttdoc">Start a Trickle timer.</div></div>
+<div class="ttc" id="agroup__trickle_html_ga8477e45a95abccfb714e3f3369686c6d"><div class="ttname"><a href="group__trickle.html#ga8477e45a95abccfb714e3f3369686c6d">net_trickle_stop</a></div><div class="ttdeci">int net_trickle_stop(struct net_trickle *trickle)</div><div class="ttdoc">Stop a Trickle timer.</div></div>
+<div class="ttc" id="agroup__trickle_html_gac412d65ad2a8483920de32c1e0ae6be5"><div class="ttname"><a href="group__trickle.html#gac412d65ad2a8483920de32c1e0ae6be5">net_trickle_create</a></div><div class="ttdeci">int net_trickle_create(struct net_trickle *trickle, uint32_t Imin, uint8_t Imax, uint8_t k)</div><div class="ttdoc">Create a Trickle timer.</div></div>
+<div class="ttc" id="agroup__trickle_html_gacefb4b5ba518fd1e3f776df012998a9b"><div class="ttname"><a href="group__trickle.html#gacefb4b5ba518fd1e3f776df012998a9b">net_trickle_consistency</a></div><div class="ttdeci">void net_trickle_consistency(struct net_trickle *trickle)</div><div class="ttdoc">To be called by the protocol handler when it hears a consistent network transmission.</div></div>
+<div class="ttc" id="agroup__trickle_html_gad0815f9368a17532c8b5293a122cd8a9"><div class="ttname"><a href="group__trickle.html#gad0815f9368a17532c8b5293a122cd8a9">net_trickle_inconsistency</a></div><div class="ttdeci">void net_trickle_inconsistency(struct net_trickle *trickle)</div><div class="ttdoc">To be called by the protocol handler when it hears an inconsistent network transmission.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="anet__core_8h_html"><div class="ttname"><a href="net__core_8h.html">net_core.h</a></div><div class="ttdoc">Network core definitions.</div></div>
+<div class="ttc" id="astructk__work__delayable_html"><div class="ttname"><a href="structk__work__delayable.html">k_work_delayable</a></div><div class="ttdoc">A structure used to submit work after a delay.</div><div class="ttdef"><b>Definição</b> kernel.h:3894</div></div>
+<div class="ttc" id="astructnet__trickle_html"><div class="ttname"><a href="structnet__trickle.html">net_trickle</a></div><div class="ttdef"><b>Definição</b> trickle.h:53</div></div>
+<div class="ttc" id="astructnet__trickle_html_a01ffd968b645bb66db67c759520298aa"><div class="ttname"><a href="structnet__trickle.html#a01ffd968b645bb66db67c759520298aa">net_trickle::Imax</a></div><div class="ttdeci">uint8_t Imax</div><div class="ttdef"><b>Definição</b> trickle.h:55</div></div>
+<div class="ttc" id="astructnet__trickle_html_a6186d8e41cce5193851587d1c72162ea"><div class="ttname"><a href="structnet__trickle.html#a6186d8e41cce5193851587d1c72162ea">net_trickle::I</a></div><div class="ttdeci">uint32_t I</div><div class="ttdef"><b>Definição</b> trickle.h:58</div></div>
+<div class="ttc" id="astructnet__trickle_html_a63a3cbf019c99def91e3a9dde7c2f9b4"><div class="ttname"><a href="structnet__trickle.html#a63a3cbf019c99def91e3a9dde7c2f9b4">net_trickle::cb</a></div><div class="ttdeci">net_trickle_cb_t cb</div><div class="ttdef"><b>Definição</b> trickle.h:66</div></div>
+<div class="ttc" id="astructnet__trickle_html_a7c3399e45f85874cec48434d605066d9"><div class="ttname"><a href="structnet__trickle.html#a7c3399e45f85874cec48434d605066d9">net_trickle::k</a></div><div class="ttdeci">uint8_t k</div><div class="ttdef"><b>Definição</b> trickle.h:56</div></div>
+<div class="ttc" id="astructnet__trickle_html_aaa03f7763e6bd335b932896ee4433b3b"><div class="ttname"><a href="structnet__trickle.html#aaa03f7763e6bd335b932896ee4433b3b">net_trickle::c</a></div><div class="ttdeci">uint8_t c</div><div class="ttdef"><b>Definição</b> trickle.h:60</div></div>
+<div class="ttc" id="astructnet__trickle_html_aab8a98c8a918528db6f2ddec85df4796"><div class="ttname"><a href="structnet__trickle.html#aab8a98c8a918528db6f2ddec85df4796">net_trickle::Istart</a></div><div class="ttdeci">uint32_t Istart</div><div class="ttdef"><b>Definição</b> trickle.h:59</div></div>
+<div class="ttc" id="astructnet__trickle_html_aaf14e013a0fa74488a26cd7ff476f6e7"><div class="ttname"><a href="structnet__trickle.html#aaf14e013a0fa74488a26cd7ff476f6e7">net_trickle::Imin</a></div><div class="ttdeci">uint32_t Imin</div><div class="ttdef"><b>Definição</b> trickle.h:54</div></div>
+<div class="ttc" id="astructnet__trickle_html_ae9f7ecd9b9730cd1c232ead5d21fec05"><div class="ttname"><a href="structnet__trickle.html#ae9f7ecd9b9730cd1c232ead5d21fec05">net_trickle::Imax_abs</a></div><div class="ttdeci">uint32_t Imax_abs</div><div class="ttdef"><b>Definição</b> trickle.h:62</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

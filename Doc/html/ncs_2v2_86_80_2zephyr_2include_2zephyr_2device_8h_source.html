@@ -1,0 +1,519 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/device.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">device.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2015 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DEVICE_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DEVICE_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="devicetree_8h.html">zephyr/devicetree.h</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;zephyr/init.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="sections_8h.html">zephyr/linker/sections.h</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;zephyr/sys/device_mmio.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;zephyr/sys/iterable_sections.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">zephyr/sys/util.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="toolchain_8h.html">zephyr/toolchain.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#define Z_DEVICE_DEPS_SEP INT16_MIN</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define Z_DEVICE_DEPS_ENDS INT16_MAX</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#define Z_DEVICE_IS_MUTABLE(node_id)                                                               \</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">    COND_CODE_1(IS_ENABLED(CONFIG_DEVICE_MUTABLE), (DT_PROP(node_id, zephyr_mutable)), (0))</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">   65</a></span><span class="keyword">typedef</span> int16_t <a class="code hl_typedef" href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">device_handle_t</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="group__device__model.html#ga4dd918c3a59b8afa185a4851165d2ca0">   68</a></span><span class="preprocessor">#define DEVICE_HANDLE_NULL 0</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="group__device__model.html#ga430eb7530aeb3cff5708b55f9b571eb9">   89</a></span><span class="preprocessor">#define DEVICE_NAME_GET(dev_id) _CONCAT(__device_, dev_id)</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">/* Node paths can exceed the maximum size supported by</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment"> * device_get_binding() in user mode; this macro synthesizes a unique</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment"> * dev_id from a devicetree node while staying within this maximum</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment"> * size.</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment"> * The ordinal used in this name can be mapped to the path by</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment"> * examining zephyr/include/generated/devicetree_generated.h.</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="preprocessor">#define Z_DEVICE_DT_DEV_ID(node_id) _CONCAT(dts_ord_, DT_DEP_ORD(node_id))</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="foldopen" id="foldopen00131" data-start="" data-end="">
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="group__device__model.html#gac12521f4d900e8947aac45c1b228366d">  131</a></span><span class="preprocessor">#define DEVICE_DEFINE(dev_id, name, init_fn, pm, data, config, level, prio,    \</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="preprocessor">              api)                                                     \</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">    Z_DEVICE_STATE_DEFINE(dev_id);                                         \</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">    Z_DEVICE_DEFINE(DT_INVALID_NODE, dev_id, name, init_fn, pm, data,      \</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">            config, level, prio, api,                              \</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">            &amp;Z_DEVICE_STATE_NAME(dev_id))</span></div>
+</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="foldopen" id="foldopen00149" data-start="" data-end="">
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="group__device__model.html#gad864d7a50ee45285dacd68be1e5a49ce">  149</a></span><span class="preprocessor">#define DEVICE_DT_NAME(node_id)                                                \</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">    DT_PROP_OR(node_id, label, DT_NODE_FULL_NAME(node_id))</span></div>
+</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="foldopen" id="foldopen00182" data-start="" data-end="">
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="group__device__model.html#gac49e26fbe91a14307d5ea08d41561dd1">  182</a></span><span class="preprocessor">#define DEVICE_DT_DEFINE(node_id, init_fn, pm, data, config, level, prio, api, \</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">             ...)                                                  \</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="preprocessor">    Z_DEVICE_STATE_DEFINE(Z_DEVICE_DT_DEV_ID(node_id));                    \</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="preprocessor">    Z_DEVICE_DEFINE(node_id, Z_DEVICE_DT_DEV_ID(node_id),                  \</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="preprocessor">            DEVICE_DT_NAME(node_id), init_fn, pm, data, config,    \</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="preprocessor">            level, prio, api,                                      \</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">            &amp;Z_DEVICE_STATE_NAME(Z_DEVICE_DT_DEV_ID(node_id)),     \</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="preprocessor">            __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="foldopen" id="foldopen00199" data-start="" data-end="">
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="group__device__model.html#gada5ba4aca9e0662ccebb2232c7256419">  199</a></span><span class="preprocessor">#define DEVICE_DT_INST_DEFINE(inst, ...)                                       \</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">    DEVICE_DT_DEFINE(DT_DRV_INST(inst), __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="group__device__model.html#ga8ebbf17ef805817aa638f36f177a1a0e">  216</a></span><span class="preprocessor">#define DEVICE_DT_NAME_GET(node_id) DEVICE_NAME_GET(Z_DEVICE_DT_DEV_ID(node_id))</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="group__device__model.html#ga9a65996ce21f43acb7db061e23b48ec7">  233</a></span><span class="preprocessor">#define DEVICE_DT_GET(node_id) (&amp;DEVICE_DT_NAME_GET(node_id))</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="group__device__model.html#ga9165e550ae175ce305eafe33390af78b">  244</a></span><span class="preprocessor">#define DEVICE_DT_INST_GET(inst) DEVICE_DT_GET(DT_DRV_INST(inst))</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="foldopen" id="foldopen00262" data-start="" data-end="">
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="group__device__model.html#gaadf3ffb63df544eb3de356ab2c5e9e3c">  262</a></span><span class="preprocessor">#define DEVICE_DT_GET_ANY(compat)                                              \</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="preprocessor">    COND_CODE_1(DT_HAS_COMPAT_STATUS_OKAY(compat),                         \</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="preprocessor">            (DEVICE_DT_GET(DT_COMPAT_GET_ANY_STATUS_OKAY(compat))),    \</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="preprocessor">            (NULL))</span></div>
+</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
+<div class="foldopen" id="foldopen00283" data-start="" data-end="">
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="group__device__model.html#ga39c760429534ef9ae77f3d996987cd2b">  283</a></span><span class="preprocessor">#define DEVICE_DT_GET_ONE(compat)                                              \</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="preprocessor">    COND_CODE_1(DT_HAS_COMPAT_STATUS_OKAY(compat),                         \</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="preprocessor">            (DEVICE_DT_GET(DT_COMPAT_GET_ANY_STATUS_OKAY(compat))),    \</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="preprocessor">            (ZERO_OR_COMPILE_ERROR(0)))</span></div>
+</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="foldopen" id="foldopen00298" data-start="" data-end="">
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno"><a class="line" href="group__device__model.html#ga6ce1dbfda6847ca6c3858712e9b41989">  298</a></span><span class="preprocessor">#define DEVICE_DT_GET_OR_NULL(node_id)                                         \</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="preprocessor">    COND_CODE_1(DT_NODE_HAS_STATUS(node_id, okay),                         \</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="preprocessor">            (DEVICE_DT_GET(node_id)), (NULL))</span></div>
+</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno"><a class="line" href="group__device__model.html#gaf9403e7eb573a30d2dfaed357f4ef3f4">  312</a></span><span class="preprocessor">#define DEVICE_GET(dev_id) (&amp;DEVICE_NAME_GET(dev_id))</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="foldopen" id="foldopen00328" data-start="" data-end="">
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno"><a class="line" href="group__device__model.html#ga4e763eae14dcd41d599c485410ac2983">  328</a></span><span class="preprocessor">#define DEVICE_DECLARE(dev_id)                                                 \</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="preprocessor">    static const struct device DEVICE_NAME_GET(dev_id)</span></div>
+</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="foldopen" id="foldopen00338" data-start="" data-end="">
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno"><a class="line" href="group__device__model.html#gad829bbf36723e8cb6c3df8f996a908be">  338</a></span><span class="preprocessor">#define DEVICE_INIT_DT_GET(node_id)                                            \</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="preprocessor">    (&amp;Z_INIT_ENTRY_NAME(DEVICE_DT_NAME_GET(node_id)))</span></div>
+</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno"><a class="line" href="group__device__model.html#ga7b7d3030fea734304c61665e75191cc0">  348</a></span><span class="preprocessor">#define DEVICE_INIT_GET(dev_id) (&amp;Z_INIT_ENTRY_NAME(DEVICE_NAME_GET(dev_id)))</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="foldopen" id="foldopen00358" data-start="{" data-end="};">
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno"><a class="line" href="structdevice__state.html">  358</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structdevice__state.html">device_state</a> {</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno"><a class="line" href="structdevice__state.html#a4895f511a9246d27a378253ab82e263e">  366</a></span>    uint8_t <a class="code hl_variable" href="structdevice__state.html#a4895f511a9246d27a378253ab82e263e">init_res</a>;</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> </div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno"><a class="line" href="structdevice__state.html#a26bb28bbe4c17c4f0e496d2b04d4a3ad">  371</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structdevice__state.html#a26bb28bbe4c17c4f0e496d2b04d4a3ad">initialized</a> : 1;</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>};</div>
+</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="keyword">struct </span><a class="code hl_struct" href="structpm__device.html">pm_device</a>;</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span> </div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span><span class="preprocessor">#ifdef CONFIG_DEVICE_DEPS_DYNAMIC</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span><span class="preprocessor">#define Z_DEVICE_DEPS_CONST</span></div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span><span class="preprocessor">#define Z_DEVICE_DEPS_CONST const</span></div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span> </div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span><span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> {</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structdevice.html#a6f58564fbeb4652754181052899f1787">name</a>;</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno"><a class="line" href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">  389</a></span>    <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">config</a>;</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno"><a class="line" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">  391</a></span>    <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno"><a class="line" href="structdevice.html#abe18f600adc4ab760963928477cc944e">  393</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structdevice__state.html">device_state</a> *<a class="code hl_variable" href="structdevice.html#abe18f600adc4ab760963928477cc944e">state</a>;</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno"><a class="line" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">  395</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span><span class="preprocessor">#if defined(CONFIG_DEVICE_DEPS) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>    Z_DEVICE_DEPS_CONST <a class="code hl_typedef" href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">device_handle_t</a> *deps;</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_DEVICE_DEPS */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span><span class="preprocessor">#if defined(CONFIG_PM_DEVICE) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structpm__device.html">pm_device</a> *pm;</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>};</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span> </div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span><span class="keyword">static</span> <span class="keyword">inline</span> <a class="code hl_typedef" href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">device_handle_t</a> device_handle_get(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>{</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>    <a class="code hl_typedef" href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">device_handle_t</a> ret = <a class="code hl_define" href="group__device__model.html#ga4dd918c3a59b8afa185a4851165d2ca0">DEVICE_HANDLE_NULL</a>;</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    <a class="code hl_define" href="group__iterable__section__apis.html#ga4d61ce2fdd6e8d2881038e521d7aed54">STRUCT_SECTION_START_EXTERN</a>(<a class="code hl_struct" href="structdevice.html">device</a>);</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span> </div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    <span class="comment">/* TODO: If/when devices can be constructed that are not part of the</span></div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span><span class="comment">     * fixed sequence we&#39;ll need another solution.</span></div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>    <span class="keywordflow">if</span> (dev != NULL) {</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>        ret = 1 + (<a class="code hl_typedef" href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">device_handle_t</a>)(dev - <a class="code hl_define" href="group__iterable__section__apis.html#ga53b4dd9b989b54d62254b425a23620f0">STRUCT_SECTION_START</a>(<a class="code hl_struct" href="structdevice.html">device</a>));</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>    }</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>}</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span> </div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>device_from_handle(<a class="code hl_typedef" href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">device_handle_t</a> dev_handle)</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>{</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>    <a class="code hl_define" href="group__iterable__section__apis.html#ga4d61ce2fdd6e8d2881038e521d7aed54">STRUCT_SECTION_START_EXTERN</a>(<a class="code hl_struct" href="structdevice.html">device</a>);</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev = NULL;</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>    <span class="keywordtype">size_t</span> numdev;</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span> </div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>    <a class="code hl_define" href="group__iterable__section__apis.html#ga5f3ecbd953df825cadb2d08f55bc505c">STRUCT_SECTION_COUNT</a>(<a class="code hl_struct" href="structdevice.html">device</a>, &amp;numdev);</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span> </div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>    <span class="keywordflow">if</span> ((dev_handle &gt; 0) &amp;&amp; ((<span class="keywordtype">size_t</span>)dev_handle &lt;= numdev)) {</div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>        dev = &amp;<a class="code hl_define" href="group__iterable__section__apis.html#ga53b4dd9b989b54d62254b425a23620f0">STRUCT_SECTION_START</a>(<a class="code hl_struct" href="structdevice.html">device</a>)[dev_handle - 1];</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>    }</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span> </div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>    <span class="keywordflow">return</span> dev;</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>}</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span> </div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span><span class="preprocessor">#if defined(CONFIG_DEVICE_DEPS) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span> </div>
+<div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span><span class="keyword">typedef</span> int (*device_visitor_callback_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span>                     <span class="keywordtype">void</span> *context);</div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span> </div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_typedef" href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">device_handle_t</a> *</div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>device_required_handles_get(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">size_t</span> *count)</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>{</div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">device_handle_t</a> *rv = dev-&gt;deps;</div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span> </div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>    <span class="keywordflow">if</span> (rv != NULL) {</div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>        <span class="keywordtype">size_t</span> i = 0;</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span> </div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>        <span class="keywordflow">while</span> ((rv[i] != Z_DEVICE_DEPS_ENDS) &amp;&amp;</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>               (rv[i] != Z_DEVICE_DEPS_SEP)) {</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>            ++i;</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>        }</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>        *count = i;</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>    }</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span> </div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>    <span class="keywordflow">return</span> rv;</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>}</div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span> </div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_typedef" href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">device_handle_t</a> *</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>device_injected_handles_get(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">size_t</span> *count)</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>{</div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">device_handle_t</a> *rv = dev-&gt;deps;</div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>    <span class="keywordtype">size_t</span> region = 0;</div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>    <span class="keywordtype">size_t</span> i = 0;</div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span> </div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>    <span class="keywordflow">if</span> (rv != NULL) {</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>        <span class="comment">/* Fast forward to injected devices */</span></div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>        <span class="keywordflow">while</span> (region != 1) {</div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>            <span class="keywordflow">if</span> (*rv == Z_DEVICE_DEPS_SEP) {</div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>                region++;</div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>            }</div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>            rv++;</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>        }</div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>        <span class="keywordflow">while</span> ((rv[i] != Z_DEVICE_DEPS_ENDS) &amp;&amp;</div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>               (rv[i] != Z_DEVICE_DEPS_SEP)) {</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>            ++i;</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>        }</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>        *count = i;</div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>    }</div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span> </div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>    <span class="keywordflow">return</span> rv;</div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>}</div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span> </div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_typedef" href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">device_handle_t</a> *</div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>device_supported_handles_get(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">size_t</span> *count)</div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>{</div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>    <span class="keyword">const</span> <a class="code hl_typedef" href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">device_handle_t</a> *rv = dev-&gt;deps;</div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>    <span class="keywordtype">size_t</span> region = 0;</div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>    <span class="keywordtype">size_t</span> i = 0;</div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span> </div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>    <span class="keywordflow">if</span> (rv != NULL) {</div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>        <span class="comment">/* Fast forward to supporting devices */</span></div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span>        <span class="keywordflow">while</span> (region != 2) {</div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span>            <span class="keywordflow">if</span> (*rv == Z_DEVICE_DEPS_SEP) {</div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>                region++;</div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>            }</div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span>            rv++;</div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>        }</div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span>        <span class="comment">/* Count supporting devices.</span></div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span><span class="comment">         * Trailing NULL&#39;s can be injected by gen_device_deps.py due to</span></div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span><span class="comment">         * CONFIG_PM_DEVICE_POWER_DOMAIN_DYNAMIC_NUM</span></div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>        <span class="keywordflow">while</span> ((rv[i] != Z_DEVICE_DEPS_ENDS) &amp;&amp;</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span>               (rv[i] != <a class="code hl_define" href="group__device__model.html#ga4dd918c3a59b8afa185a4851165d2ca0">DEVICE_HANDLE_NULL</a>)) {</div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span>            ++i;</div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>        }</div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>        *count = i;</div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>    }</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span> </div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span>    <span class="keywordflow">return</span> rv;</div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span>}</div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span> </div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span><span class="keywordtype">int</span> device_required_foreach(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>                device_visitor_callback_t visitor_cb,</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>                <span class="keywordtype">void</span> *context);</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span> </div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span><span class="keywordtype">int</span> device_supported_foreach(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>                 device_visitor_callback_t visitor_cb,</div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>                 <span class="keywordtype">void</span> *context);</div>
+<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span> </div>
+<div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_DEVICE_DEPS */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span> </div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno"><a class="line" href="group__device__model.html#ga00971cdc88985b673fb102273e84a40e">  702</a></span>__syscall <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_function" href="group__device__model.html#ga00971cdc88985b673fb102273e84a40e">device_get_binding</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structdevice.html#a6f58564fbeb4652754181052899f1787">name</a>);</div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span> </div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno"><a class="line" href="group__device__model.html#ga8e999d3cbb249d45453eed404e4a582f">  712</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="group__device__model.html#ga8e999d3cbb249d45453eed404e4a582f">z_device_get_all_static</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> **devices);</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span> </div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno"><a class="line" href="group__device__model.html#ga1693473cdf1b06c191333b8078c5d02d">  728</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__device__model.html#ga1693473cdf1b06c191333b8078c5d02d">z_device_is_ready</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span> </div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno"><a class="line" href="group__device__model.html#ga0b9e6357f7cfdab3b5ad119b9b549de7">  746</a></span>__syscall <span class="keywordtype">bool</span> <a class="code hl_function" href="group__device__model.html#ga0b9e6357f7cfdab3b5ad119b9b549de7">device_is_ready</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span> </div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> z_impl_device_is_ready(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span>{</div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__device__model.html#ga1693473cdf1b06c191333b8078c5d02d">z_device_is_ready</a>(dev);</div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>}</div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span> </div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span><span class="preprocessor">#define Z_DEVICE_STATE_NAME(dev_id) _CONCAT(__devstate_, dev_id)</span></div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span> </div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span><span class="preprocessor">#define Z_DEVICE_STATE_DEFINE(dev_id)                                          \</span></div>
+<div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span><span class="preprocessor">    static Z_DECL_ALIGN(struct device_state) Z_DEVICE_STATE_NAME(dev_id)   \</span></div>
+<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span><span class="preprocessor">        __attribute__((__section__(&quot;.z_devstate&quot;)))</span></div>
+<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span> </div>
+<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span><span class="preprocessor">#if defined(CONFIG_DEVICE_DEPS) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span> </div>
+<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span><span class="preprocessor">#define Z_DEVICE_DEPS_NAME(dev_id) _CONCAT(__devicedeps_, dev_id)</span></div>
+<div class="line"><a id="l00783" name="l00783"></a><span class="lineno">  783</span> </div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span><span class="preprocessor">#define Z_DEVICE_EXTRA_DEPS(...)                                            \</span></div>
+<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span><span class="preprocessor">    FOR_EACH_NONEMPTY_TERM(IDENTITY, (,), __VA_ARGS__)</span></div>
+<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span> </div>
+<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span><span class="preprocessor">#define Z_DEVICE_DEPS_SECTION                                               \</span></div>
+<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span><span class="preprocessor">    __attribute__((__section__(&quot;.__device_deps_pass1&quot;)))</span></div>
+<div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span> </div>
+<div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span><span class="preprocessor">#define Z_DEVICE_DEPS_EXTERN extern</span></div>
+<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span><span class="preprocessor">#define Z_DEVICE_DEPS_EXTERN</span></div>
+<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span> </div>
+<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span><span class="preprocessor">#define Z_DEVICE_DEPS_DEFINE(node_id, dev_id, ...)                             \</span></div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span><span class="preprocessor">    extern Z_DEVICE_DEPS_CONST device_handle_t Z_DEVICE_DEPS_NAME(         \</span></div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span><span class="preprocessor">        dev_id)[];                                                     \</span></div>
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span><span class="preprocessor">    Z_DEVICE_DEPS_CONST Z_DECL_ALIGN(device_handle_t)                      \</span></div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span><span class="preprocessor">    Z_DEVICE_DEPS_SECTION Z_DEVICE_DEPS_EXTERN __weak                      \</span></div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span><span class="preprocessor">        Z_DEVICE_DEPS_NAME(dev_id)[] = {                               \</span></div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span><span class="preprocessor">        COND_CODE_1(                                                   \</span></div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span><span class="preprocessor">            DT_NODE_EXISTS(node_id),                               \</span></div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span><span class="preprocessor">            (DT_DEP_ORD(node_id), DT_REQUIRES_DEP_ORDS(node_id)),  \</span></div>
+<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span><span class="preprocessor">            (DEVICE_HANDLE_NULL,))                             \</span></div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span><span class="preprocessor">        Z_DEVICE_DEPS_SEP,                                             \</span></div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span><span class="preprocessor">        Z_DEVICE_EXTRA_DEPS(__VA_ARGS__)                           \</span></div>
+<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span><span class="preprocessor">        Z_DEVICE_DEPS_SEP,                                             \</span></div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span><span class="preprocessor">        COND_CODE_1(DT_NODE_EXISTS(node_id),                           \</span></div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span><span class="preprocessor">                (DT_SUPPORTS_DEP_ORDS(node_id)), ())           \</span></div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span> </div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_DEVICE_DEPS */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span> </div>
+<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span><span class="preprocessor">#define Z_DEVICE_INIT_SUB_PRIO(node_id)                                        \</span></div>
+<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span><span class="preprocessor">    COND_CODE_1(DT_NODE_EXISTS(node_id),                                   \</span></div>
+<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span><span class="preprocessor">            (DT_DEP_ORD_STR_SORTABLE(node_id)), (0))</span></div>
+<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span> </div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span><span class="preprocessor">#define Z_DEVICE_MAX_NAME_LEN 48U</span></div>
+<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span> </div>
+<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span><span class="preprocessor">#define Z_DEVICE_NAME_CHECK(name)                                              \</span></div>
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span><span class="preprocessor">    BUILD_ASSERT(sizeof(Z_STRINGIFY(name)) &lt;= Z_DEVICE_MAX_NAME_LEN,       \</span></div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span><span class="preprocessor">                Z_STRINGIFY(DEVICE_NAME_GET(name)) &quot; too long&quot;)</span></div>
+<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span> </div>
+<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span><span class="preprocessor">#define Z_DEVICE_INIT(name_, pm_, data_, config_, api_, state_, deps_)         \</span></div>
+<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span><span class="preprocessor">    {                                                                      \</span></div>
+<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span><span class="preprocessor">        .name = name_,                                                 \</span></div>
+<div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span><span class="preprocessor">        .config = (config_),                                           \</span></div>
+<div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span><span class="preprocessor">        .api = (api_),                                                 \</span></div>
+<div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span><span class="preprocessor">        .state = (state_),                                             \</span></div>
+<div class="line"><a id="l00901" name="l00901"></a><span class="lineno">  901</span><span class="preprocessor">        .data = (data_),                                               \</span></div>
+<div class="line"><a id="l00902" name="l00902"></a><span class="lineno">  902</span><span class="preprocessor">        IF_ENABLED(CONFIG_DEVICE_DEPS, (.deps = (deps_),))         \</span></div>
+<div class="line"><a id="l00903" name="l00903"></a><span class="lineno">  903</span><span class="preprocessor">        IF_ENABLED(CONFIG_PM_DEVICE, (.pm = (pm_),))               \</span></div>
+<div class="line"><a id="l00904" name="l00904"></a><span class="lineno">  904</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span> </div>
+<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span><span class="preprocessor">#define Z_DEVICE_SECTION_NAME(level, prio)                                     \</span></div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span><span class="preprocessor">    _CONCAT(INIT_LEVEL_ORD(level), _##prio)</span></div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span> </div>
+<div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span><span class="preprocessor">#define Z_DEVICE_BASE_DEFINE(node_id, dev_id, name, pm, data, config, level, prio, api, state,     \</span></div>
+<div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span><span class="preprocessor">                 deps)                                                                 \</span></div>
+<div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span><span class="preprocessor">    COND_CODE_1(DT_NODE_EXISTS(node_id), (), (static))                                         \</span></div>
+<div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span><span class="preprocessor">    COND_CODE_1(Z_DEVICE_IS_MUTABLE(node_id), (), (const))                                     \</span></div>
+<div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span><span class="preprocessor">    STRUCT_SECTION_ITERABLE_NAMED_ALTERNATE(                                                   \</span></div>
+<div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span><span class="preprocessor">        device, COND_CODE_1(Z_DEVICE_IS_MUTABLE(node_id), (device_mutable), (device)),     \</span></div>
+<div class="line"><a id="l00937" name="l00937"></a><span class="lineno">  937</span><span class="preprocessor">        Z_DEVICE_SECTION_NAME(level, prio), DEVICE_NAME_GET(dev_id)) =                     \</span></div>
+<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span><span class="preprocessor">        Z_DEVICE_INIT(name, pm, data, config, api, state, deps)</span></div>
+<div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span> </div>
+<div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span><span class="comment">/* deprecated device initialization levels */</span></div>
+<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span><span class="preprocessor">#define Z_DEVICE_LEVEL_DEPRECATED_EARLY                                        \</span></div>
+<div class="line"><a id="l00942" name="l00942"></a><span class="lineno">  942</span><span class="preprocessor">    __WARN(&quot;EARLY device driver level is deprecated&quot;)</span></div>
+<div class="line"><a id="l00943" name="l00943"></a><span class="lineno">  943</span><span class="preprocessor">#define Z_DEVICE_LEVEL_DEPRECATED_PRE_KERNEL_1</span></div>
+<div class="line"><a id="l00944" name="l00944"></a><span class="lineno">  944</span><span class="preprocessor">#define Z_DEVICE_LEVEL_DEPRECATED_PRE_KERNEL_2</span></div>
+<div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span><span class="preprocessor">#define Z_DEVICE_LEVEL_DEPRECATED_POST_KERNEL</span></div>
+<div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span><span class="preprocessor">#define Z_DEVICE_LEVEL_DEPRECATED_APPLICATION                                  \</span></div>
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span><span class="preprocessor">    __WARN(&quot;APPLICATION device driver level is deprecated&quot;)</span></div>
+<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span><span class="preprocessor">#define Z_DEVICE_LEVEL_DEPRECATED_SMP                                          \</span></div>
+<div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span><span class="preprocessor">    __WARN(&quot;SMP device driver level is deprecated&quot;)</span></div>
+<div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span> </div>
+<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span><span class="preprocessor">#define Z_DEVICE_LEVEL_CHECK_DEPRECATED_LEVEL(level)                           \</span></div>
+<div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span><span class="preprocessor">    Z_DEVICE_LEVEL_DEPRECATED_##level</span></div>
+<div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span> </div>
+<div class="line"><a id="l00969" name="l00969"></a><span class="lineno">  969</span><span class="preprocessor">#define Z_DEVICE_INIT_ENTRY_DEFINE(node_id, dev_id, init_fn_, level, prio)                         \</span></div>
+<div class="line"><a id="l00970" name="l00970"></a><span class="lineno">  970</span><span class="preprocessor">    Z_DEVICE_LEVEL_CHECK_DEPRECATED_LEVEL(level)                                               \</span></div>
+<div class="line"><a id="l00971" name="l00971"></a><span class="lineno">  971</span><span class="preprocessor">                                                                                                   \</span></div>
+<div class="line"><a id="l00972" name="l00972"></a><span class="lineno">  972</span><span class="preprocessor">    static const Z_DECL_ALIGN(struct init_entry) __used __noasan Z_INIT_ENTRY_SECTION(         \</span></div>
+<div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span><span class="preprocessor">        level, prio, Z_DEVICE_INIT_SUB_PRIO(node_id))                                      \</span></div>
+<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span><span class="preprocessor">        Z_INIT_ENTRY_NAME(DEVICE_NAME_GET(dev_id)) = {                                     \</span></div>
+<div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span><span class="preprocessor">            .init_fn = {COND_CODE_1(Z_DEVICE_IS_MUTABLE(node_id), (.dev_rw), (.dev)) = \</span></div>
+<div class="line"><a id="l00976" name="l00976"></a><span class="lineno">  976</span><span class="preprocessor">                        (init_fn_)},                                           \</span></div>
+<div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span><span class="preprocessor">            {                                                                          \</span></div>
+<div class="line"><a id="l00978" name="l00978"></a><span class="lineno">  978</span><span class="preprocessor">                COND_CODE_1(Z_DEVICE_IS_MUTABLE(node_id), (.dev_rw), (.dev)) =     \</span></div>
+<div class="line"><a id="l00979" name="l00979"></a><span class="lineno">  979</span><span class="preprocessor">                    &amp;DEVICE_NAME_GET(dev_id),                                  \</span></div>
+<div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span><span class="preprocessor">            },                                                                         \</span></div>
+<div class="line"><a id="l00981" name="l00981"></a><span class="lineno">  981</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00982" name="l00982"></a><span class="lineno">  982</span> </div>
+<div class="line"><a id="l01004" name="l01004"></a><span class="lineno"> 1004</span><span class="preprocessor">#define Z_DEVICE_DEFINE(node_id, dev_id, name, init_fn, pm, data, config,      \</span></div>
+<div class="line"><a id="l01005" name="l01005"></a><span class="lineno"> 1005</span><span class="preprocessor">            level, prio, api, state, ...)                          \</span></div>
+<div class="line"><a id="l01006" name="l01006"></a><span class="lineno"> 1006</span><span class="preprocessor">    Z_DEVICE_NAME_CHECK(name);                                             \</span></div>
+<div class="line"><a id="l01007" name="l01007"></a><span class="lineno"> 1007</span><span class="preprocessor">                                                                               \</span></div>
+<div class="line"><a id="l01008" name="l01008"></a><span class="lineno"> 1008</span><span class="preprocessor">    IF_ENABLED(CONFIG_DEVICE_DEPS,                                         \</span></div>
+<div class="line"><a id="l01009" name="l01009"></a><span class="lineno"> 1009</span><span class="preprocessor">           (Z_DEVICE_DEPS_DEFINE(node_id, dev_id, __VA_ARGS__);))      \</span></div>
+<div class="line"><a id="l01010" name="l01010"></a><span class="lineno"> 1010</span><span class="preprocessor">                                                                               \</span></div>
+<div class="line"><a id="l01011" name="l01011"></a><span class="lineno"> 1011</span><span class="preprocessor">    Z_DEVICE_BASE_DEFINE(node_id, dev_id, name, pm, data, config, level,   \</span></div>
+<div class="line"><a id="l01012" name="l01012"></a><span class="lineno"> 1012</span><span class="preprocessor">                 prio, api, state, Z_DEVICE_DEPS_NAME(dev_id));    \</span></div>
+<div class="line"><a id="l01013" name="l01013"></a><span class="lineno"> 1013</span><span class="preprocessor">                                                                               \</span></div>
+<div class="line"><a id="l01014" name="l01014"></a><span class="lineno"> 1014</span><span class="preprocessor">    Z_DEVICE_INIT_ENTRY_DEFINE(node_id, dev_id, init_fn, level, prio)</span></div>
+<div class="line"><a id="l01015" name="l01015"></a><span class="lineno"> 1015</span> </div>
+<div class="line"><a id="l01026" name="l01026"></a><span class="lineno"> 1026</span><span class="preprocessor">#define Z_MAYBE_DEVICE_DECLARE_INTERNAL(node_id)                                                   \</span></div>
+<div class="line"><a id="l01027" name="l01027"></a><span class="lineno"> 1027</span><span class="preprocessor">    extern COND_CODE_1(Z_DEVICE_IS_MUTABLE(node_id), (),                                       \</span></div>
+<div class="line"><a id="l01028" name="l01028"></a><span class="lineno"> 1028</span><span class="preprocessor">               (const)) struct device DEVICE_DT_NAME_GET(node_id);</span></div>
+<div class="line"><a id="l01029" name="l01029"></a><span class="lineno"> 1029</span> </div>
+<div class="line"><a id="l01030" name="l01030"></a><span class="lineno"> 1030</span><a class="code hl_define" href="group__devicetree-generic-foreach.html#ga926f68202042c9db05390e628787f916">DT_FOREACH_STATUS_OKAY_NODE</a>(Z_MAYBE_DEVICE_DECLARE_INTERNAL)</div>
+<div class="line"><a id="l01031" name="l01031"></a><span class="lineno"> 1031</span> </div>
+<div class="line"><a id="l01032" name="l01032"></a><span class="lineno"> 1032</span> </div>
+<div class="line"><a id="l01034" name="l01034"></a><span class="lineno"> 1034</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l01035" name="l01035"></a><span class="lineno"> 1035</span>}</div>
+<div class="line"><a id="l01036" name="l01036"></a><span class="lineno"> 1036</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01037" name="l01037"></a><span class="lineno"> 1037</span> </div>
+<div class="line"><a id="l01038" name="l01038"></a><span class="lineno"> 1038</span><span class="preprocessor">#include &lt;syscalls/device.h&gt;</span></div>
+<div class="line"><a id="l01039" name="l01039"></a><span class="lineno"> 1039</span> </div>
+<div class="line"><a id="l01040" name="l01040"></a><span class="lineno"> 1040</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DEVICE_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adevicetree_8h_html"><div class="ttname"><a href="devicetree_8h.html">devicetree.h</a></div><div class="ttdoc">Devicetree main header.</div></div>
+<div class="ttc" id="agroup__device__model_html_ga00971cdc88985b673fb102273e84a40e"><div class="ttname"><a href="group__device__model.html#ga00971cdc88985b673fb102273e84a40e">device_get_binding</a></div><div class="ttdeci">__syscall const struct device * device_get_binding(const char *name)</div><div class="ttdoc">Get a device reference from its device::name field.</div></div>
+<div class="ttc" id="agroup__device__model_html_ga0b9e6357f7cfdab3b5ad119b9b549de7"><div class="ttname"><a href="group__device__model.html#ga0b9e6357f7cfdab3b5ad119b9b549de7">device_is_ready</a></div><div class="ttdeci">__syscall bool device_is_ready(const struct device *dev)</div><div class="ttdoc">Verify that a device is ready for use.</div></div>
+<div class="ttc" id="agroup__device__model_html_ga1693473cdf1b06c191333b8078c5d02d"><div class="ttname"><a href="group__device__model.html#ga1693473cdf1b06c191333b8078c5d02d">z_device_is_ready</a></div><div class="ttdeci">bool z_device_is_ready(const struct device *dev)</div><div class="ttdoc">Verify that a device is ready for use.</div></div>
+<div class="ttc" id="agroup__device__model_html_ga21415b8e9967ecd2c3d3d3b1724f93c3"><div class="ttname"><a href="group__device__model.html#ga21415b8e9967ecd2c3d3d3b1724f93c3">device_handle_t</a></div><div class="ttdeci">int16_t device_handle_t</div><div class="ttdoc">Type used to represent a &quot;handle&quot; for a device.</div><div class="ttdef"><b>Definição</b> device.h:65</div></div>
+<div class="ttc" id="agroup__device__model_html_ga4dd918c3a59b8afa185a4851165d2ca0"><div class="ttname"><a href="group__device__model.html#ga4dd918c3a59b8afa185a4851165d2ca0">DEVICE_HANDLE_NULL</a></div><div class="ttdeci">#define DEVICE_HANDLE_NULL</div><div class="ttdoc">Flag value used to identify an unknown device.</div><div class="ttdef"><b>Definição</b> device.h:68</div></div>
+<div class="ttc" id="agroup__device__model_html_ga8e999d3cbb249d45453eed404e4a582f"><div class="ttname"><a href="group__device__model.html#ga8e999d3cbb249d45453eed404e4a582f">z_device_get_all_static</a></div><div class="ttdeci">size_t z_device_get_all_static(const struct device **devices)</div><div class="ttdoc">Get access to the static array of static devices.</div></div>
+<div class="ttc" id="agroup__devicetree-generic-foreach_html_ga926f68202042c9db05390e628787f916"><div class="ttname"><a href="group__devicetree-generic-foreach.html#ga926f68202042c9db05390e628787f916">DT_FOREACH_STATUS_OKAY_NODE</a></div><div class="ttdeci">#define DT_FOREACH_STATUS_OKAY_NODE(fn)</div><div class="ttdoc">Invokes fn for every status okay node in the tree.</div><div class="ttdef"><b>Definição</b> devicetree.h:2570</div></div>
+<div class="ttc" id="agroup__iterable__section__apis_html_ga4d61ce2fdd6e8d2881038e521d7aed54"><div class="ttname"><a href="group__iterable__section__apis.html#ga4d61ce2fdd6e8d2881038e521d7aed54">STRUCT_SECTION_START_EXTERN</a></div><div class="ttdeci">#define STRUCT_SECTION_START_EXTERN(struct_type)</div><div class="ttdoc">iterable section extern for start symbol for a struct</div><div class="ttdef"><b>Definição</b> iterable_sections.h:159</div></div>
+<div class="ttc" id="agroup__iterable__section__apis_html_ga53b4dd9b989b54d62254b425a23620f0"><div class="ttname"><a href="group__iterable__section__apis.html#ga53b4dd9b989b54d62254b425a23620f0">STRUCT_SECTION_START</a></div><div class="ttdeci">#define STRUCT_SECTION_START(struct_type)</div><div class="ttdoc">iterable section start symbol for a struct type</div><div class="ttdef"><b>Definição</b> iterable_sections.h:149</div></div>
+<div class="ttc" id="agroup__iterable__section__apis_html_ga5f3ecbd953df825cadb2d08f55bc505c"><div class="ttname"><a href="group__iterable__section__apis.html#ga5f3ecbd953df825cadb2d08f55bc505c">STRUCT_SECTION_COUNT</a></div><div class="ttdeci">#define STRUCT_SECTION_COUNT(struct_type, dst)</div><div class="ttdoc">Count elements in a section.</div><div class="ttdef"><b>Definição</b> iterable_sections.h:291</div></div>
+<div class="ttc" id="asections_8h_html"><div class="ttname"><a href="sections_8h.html">sections.h</a></div><div class="ttdoc">Definitions of various linker Sections.</div></div>
+<div class="ttc" id="astructdevice__state_html"><div class="ttname"><a href="structdevice__state.html">device_state</a></div><div class="ttdoc">Runtime device dynamic structure (in RAM) per driver instance.</div><div class="ttdef"><b>Definição</b> device.h:358</div></div>
+<div class="ttc" id="astructdevice__state_html_a26bb28bbe4c17c4f0e496d2b04d4a3ad"><div class="ttname"><a href="structdevice__state.html#a26bb28bbe4c17c4f0e496d2b04d4a3ad">device_state::initialized</a></div><div class="ttdeci">bool initialized</div><div class="ttdef"><b>Definição</b> device.h:371</div></div>
+<div class="ttc" id="astructdevice__state_html_a4895f511a9246d27a378253ab82e263e"><div class="ttname"><a href="structdevice__state.html#a4895f511a9246d27a378253ab82e263e">device_state::init_res</a></div><div class="ttdeci">uint8_t init_res</div><div class="ttdef"><b>Definição</b> device.h:366</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a27573cbd10ee145f8bb1396242b27a3e"><div class="ttname"><a href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">device::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definição</b> device.h:395</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructdevice_html_a6f58564fbeb4652754181052899f1787"><div class="ttname"><a href="structdevice.html#a6f58564fbeb4652754181052899f1787">device::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:36</div></div>
+<div class="ttc" id="astructdevice_html_abe18f600adc4ab760963928477cc944e"><div class="ttname"><a href="structdevice.html#abe18f600adc4ab760963928477cc944e">device::state</a></div><div class="ttdeci">struct device_state * state</div><div class="ttdef"><b>Definição</b> device.h:393</div></div>
+<div class="ttc" id="astructdevice_html_aca2d801eb15996cf1c74dc65cfa651fc"><div class="ttname"><a href="structdevice.html#aca2d801eb15996cf1c74dc65cfa651fc">device::config</a></div><div class="ttdeci">const void * config</div><div class="ttdef"><b>Definição</b> device.h:389</div></div>
+<div class="ttc" id="astructpm__device_html"><div class="ttname"><a href="structpm__device.html">pm_device</a></div><div class="ttdoc">Device PM info.</div><div class="ttdef"><b>Definição</b> device.h:126</div></div>
+<div class="ttc" id="atoolchain_8h_html"><div class="ttname"><a href="toolchain_8h.html">toolchain.h</a></div><div class="ttdoc">Macros to abstract toolchain specific capabilities.</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Misc utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

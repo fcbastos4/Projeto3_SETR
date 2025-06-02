@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/net/socket_select.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_e87a4ba8d8d39971580ab67f13eff592.html">net</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">socket_select.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2019 Linaro Limited</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_NET_SOCKET_SELECT_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_NET_SOCKET_SELECT_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="toolchain_8h.html">zephyr/toolchain.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;zephyr/net/socket_types.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structzsock__fd__set.html">   24</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    uint32_t bitset[(CONFIG_POSIX_MAX_FDS + 31) / 32];</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>} <a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a>;</div>
+</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__bsd__sockets.html#ga1fac3bbd64e172a92ebc376c8f45facd">   45</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__bsd__sockets.html#ga1fac3bbd64e172a92ebc376c8f45facd">zsock_select</a>(<span class="keywordtype">int</span> nfds, <a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *readfds,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>               <a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *writefds,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>               <a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *exceptfds,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>               <span class="keyword">struct</span> zsock_timeval *timeout);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="group__bsd__sockets.html#ga5c88da69b8d9401d3ae02495056f7e23">   51</a></span><span class="preprocessor">#define ZSOCK_FD_SETSIZE (sizeof(((zsock_fd_set *)0)-&gt;bitset) * 8)</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="group__bsd__sockets.html#gae9c3555c2fc74b8a88ea5909a2d02afb">   65</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__bsd__sockets.html#gae9c3555c2fc74b8a88ea5909a2d02afb">ZSOCK_FD_ZERO</a>(<a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *set);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="group__bsd__sockets.html#ga24808b7adec4970eb0981b24e9313aab">   79</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__bsd__sockets.html#ga24808b7adec4970eb0981b24e9313aab">ZSOCK_FD_ISSET</a>(<span class="keywordtype">int</span> fd, <a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *set);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="group__bsd__sockets.html#gadcc17ac3947722e684a543e055b8c1e5">   93</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__bsd__sockets.html#gadcc17ac3947722e684a543e055b8c1e5">ZSOCK_FD_CLR</a>(<span class="keywordtype">int</span> fd, <a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *set);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="group__bsd__sockets.html#ga9a6044b408c0ef80336e957cd47d5f25">  107</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__bsd__sockets.html#ga9a6044b408c0ef80336e957cd47d5f25">ZSOCK_FD_SET</a>(<span class="keywordtype">int</span> fd, <a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *set);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="preprocessor">#ifdef CONFIG_NET_SOCKETS_POSIX_NAMES</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#define fd_set zsock_fd_set</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">#define FD_SETSIZE ZSOCK_FD_SETSIZE</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> select(<span class="keywordtype">int</span> nfds, <a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *readfds,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>             <a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *writefds, <a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *exceptfds,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>             <span class="keyword">struct</span> timeval *timeout)</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>{</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__bsd__sockets.html#ga1fac3bbd64e172a92ebc376c8f45facd">zsock_select</a>(nfds, readfds, writefds, exceptfds, timeout);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>}</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> FD_ZERO(<a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *set)</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>{</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <a class="code hl_function" href="group__bsd__sockets.html#gae9c3555c2fc74b8a88ea5909a2d02afb">ZSOCK_FD_ZERO</a>(set);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>}</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> FD_ISSET(<span class="keywordtype">int</span> fd, <a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *set)</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>{</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__bsd__sockets.html#ga24808b7adec4970eb0981b24e9313aab">ZSOCK_FD_ISSET</a>(fd, set);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>}</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> FD_CLR(<span class="keywordtype">int</span> fd, <a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *set)</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>{</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <a class="code hl_function" href="group__bsd__sockets.html#gadcc17ac3947722e684a543e055b8c1e5">ZSOCK_FD_CLR</a>(fd, set);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>}</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> FD_SET(<span class="keywordtype">int</span> fd, <a class="code hl_struct" href="structzsock__fd__set.html">zsock_fd_set</a> *set)</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>{</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <a class="code hl_function" href="group__bsd__sockets.html#ga9a6044b408c0ef80336e957cd47d5f25">ZSOCK_FD_SET</a>(fd, set);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>}</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_SOCKETS_POSIX_NAMES */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>}</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">#include &lt;syscalls/socket_select.h&gt;</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_NET_SOCKET_SELECT_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__bsd__sockets_html_ga1fac3bbd64e172a92ebc376c8f45facd"><div class="ttname"><a href="group__bsd__sockets.html#ga1fac3bbd64e172a92ebc376c8f45facd">zsock_select</a></div><div class="ttdeci">__syscall int zsock_select(int nfds, zsock_fd_set *readfds, zsock_fd_set *writefds, zsock_fd_set *exceptfds, struct zsock_timeval *timeout)</div><div class="ttdoc">Legacy function to poll multiple sockets for events.</div></div>
+<div class="ttc" id="agroup__bsd__sockets_html_ga24808b7adec4970eb0981b24e9313aab"><div class="ttname"><a href="group__bsd__sockets.html#ga24808b7adec4970eb0981b24e9313aab">ZSOCK_FD_ISSET</a></div><div class="ttdeci">int ZSOCK_FD_ISSET(int fd, zsock_fd_set *set)</div><div class="ttdoc">Check whether socket is a member of fd_set.</div></div>
+<div class="ttc" id="agroup__bsd__sockets_html_ga9a6044b408c0ef80336e957cd47d5f25"><div class="ttname"><a href="group__bsd__sockets.html#ga9a6044b408c0ef80336e957cd47d5f25">ZSOCK_FD_SET</a></div><div class="ttdeci">void ZSOCK_FD_SET(int fd, zsock_fd_set *set)</div><div class="ttdoc">Add socket to fd_set.</div></div>
+<div class="ttc" id="agroup__bsd__sockets_html_gadcc17ac3947722e684a543e055b8c1e5"><div class="ttname"><a href="group__bsd__sockets.html#gadcc17ac3947722e684a543e055b8c1e5">ZSOCK_FD_CLR</a></div><div class="ttdeci">void ZSOCK_FD_CLR(int fd, zsock_fd_set *set)</div><div class="ttdoc">Remove socket from fd_set.</div></div>
+<div class="ttc" id="agroup__bsd__sockets_html_gae9c3555c2fc74b8a88ea5909a2d02afb"><div class="ttname"><a href="group__bsd__sockets.html#gae9c3555c2fc74b8a88ea5909a2d02afb">ZSOCK_FD_ZERO</a></div><div class="ttdeci">void ZSOCK_FD_ZERO(zsock_fd_set *set)</div><div class="ttdoc">Initialize (clear) fd_set.</div></div>
+<div class="ttc" id="astructzsock__fd__set_html"><div class="ttname"><a href="structzsock__fd__set.html">zsock_fd_set</a></div><div class="ttdef"><b>Definição</b> socket_select.h:24</div></div>
+<div class="ttc" id="atoolchain_8h_html"><div class="ttname"><a href="toolchain_8h.html">toolchain.h</a></div><div class="ttdoc">Macros to abstract toolchain specific capabilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

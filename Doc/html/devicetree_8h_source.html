@@ -1,0 +1,1093 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/devicetree.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">devicetree.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="devicetree_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2020 Nordic Semiconductor</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * Copyright (c) 2020, Linaro Ltd.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> * Not a generated file. Feel free to modify.</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifndef DEVICETREE_H</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#define DEVICETREE_H</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;devicetree_generated.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="irq__multilevel_8h.html">zephyr/irq_multilevel.h</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#if !defined(_LINKER) &amp;&amp; !defined(_ASMLANGUAGE)</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">zephyr/sys/util.h</a>&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment"> * Property suffixes</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment"> * -----------------</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment"> * These are the optional parts that come after the _P_&lt;property&gt;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment"> * part in DT_N_&lt;path-id&gt;_P_&lt;property-id&gt; macros, or the &quot;prop-suf&quot;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment"> * nonterminal in the DT guide&#39;s macros.bnf file.</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment"> * Before adding new ones, check this list to avoid conflicts. If any</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment"> * are missing from this list, please add them. It should be complete.</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment"> * _ENUM_IDX: property&#39;s value as an index into bindings enum</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment"> * _ENUM_VAL_&lt;val&gt;_EXISTS property&#39;s value as a token exists</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment"> * _ENUM_TOKEN: property&#39;s value as a token into bindings enum (string</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment"> *              enum values are identifiers) [deprecated, use _STRING_TOKEN]</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment"> * _ENUM_UPPER_TOKEN: like _ENUM_TOKEN, but uppercased [deprecated, use</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment"> *            _STRING_UPPER_TOKEN]</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment"> * _EXISTS: property is defined</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment"> * _FOREACH_PROP_ELEM: helper for &quot;iterating&quot; over values in the property</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment"> * _FOREACH_PROP_ELEM_VARGS: foreach functions with variable number of arguments</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment"> * _IDX_&lt;i&gt;: logical index into property</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment"> * _IDX_&lt;i&gt;_EXISTS: logical index into property is defined</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment"> * _IDX_&lt;i&gt;_PH: phandle array&#39;s phandle by index (or phandle, phandles)</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"> * _IDX_&lt;i&gt;_STRING_TOKEN: string array element value as a token</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment"> * _IDX_&lt;i&gt;_STRING_UPPER_TOKEN: string array element value as a uppercased token</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"> * _IDX &lt;i&gt;_STRING_UNQUOTED: string array element value as a sequence of tokens, with no quotes</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"> * _IDX_&lt;i&gt;_VAL_&lt;val&gt;: phandle array&#39;s specifier value by index</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment"> * _IDX_&lt;i&gt;_VAL_&lt;val&gt;_EXISTS: cell value exists, by index</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment"> * _LEN: property logical length</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment"> * _NAME_&lt;name&gt;_PH: phandle array&#39;s phandle by name</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment"> * _NAME_&lt;name&gt;_VAL_&lt;val&gt;: phandle array&#39;s property specifier by name</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment"> * _NAME_&lt;name&gt;_VAL_&lt;val&gt;_EXISTS: cell value exists, by name</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment"> * _STRING_TOKEN: string property&#39;s value as a token</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment"> * _STRING_UPPER_TOKEN: like _STRING_TOKEN, but uppercased</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment"> * _STRING_UNQUOTED: string property&#39;s value as a sequence of tokens, with no quotes</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#ga710cc4455dd7e738f43f750153163855">   85</a></span><span class="preprocessor">#define DT_INVALID_NODE _</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#gad65aa36621281687b22fa5d72db33e86">   90</a></span><span class="preprocessor">#define DT_ROOT DT_N</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#ga015b4819473797982e83cae497697086">  142</a></span><span class="preprocessor">#define DT_PATH(...) DT_PATH_INTERNAL(__VA_ARGS__)</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#gab7d23294a6bf7fd44a98b48ec47d8a79">  198</a></span><span class="preprocessor">#define DT_NODELABEL(label) DT_CAT(DT_N_NODELABEL_, label)</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#gaa49e19bbc39dc0d6f16b78a5d02482c9">  238</a></span><span class="preprocessor">#define DT_ALIAS(alias) DT_CAT(DT_N_ALIAS_, alias)</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#gae199b930cb21ff38dab284a696093ead">  334</a></span><span class="preprocessor">#define DT_INST(inst, compat) UTIL_CAT(DT_N_INST, DT_DASH(inst, compat))</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#ga3ac56d491510275ee1321446796ab63b">  359</a></span><span class="preprocessor">#define DT_PARENT(node_id) UTIL_CAT(node_id, _PARENT)</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span> </div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#gaa4eccf276a426cbbc6e440d72b692753">  384</a></span><span class="preprocessor">#define DT_GPARENT(node_id) DT_PARENT(DT_PARENT(node_id))</span></div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span> </div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#ga88259608f4e9083ccc2e9ca5ec2c212e">  421</a></span><span class="preprocessor">#define DT_CHILD(node_id, child) UTIL_CAT(node_id, DT_S_PREFIX(child))</span></div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span> </div>
+<div class="foldopen" id="foldopen00464" data-start="" data-end="">
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#ga4858c378b098dcb7c35de1db25442acc">  464</a></span><span class="preprocessor">#define DT_COMPAT_GET_ANY_STATUS_OKAY(compat)           \</span></div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span><span class="preprocessor">    COND_CODE_1(DT_HAS_COMPAT_STATUS_OKAY(compat),  \</span></div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span><span class="preprocessor">            (DT_INST(0, compat)),       \</span></div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span><span class="preprocessor">            (DT_INVALID_NODE))</span></div>
+</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span> </div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#gacd79818b99724d834e3bb7ae74ee02cf">  496</a></span><span class="preprocessor">#define DT_NODE_PATH(node_id) DT_CAT(node_id, _PATH)</span></div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span> </div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#ga8a8ab5d12fe59787433d1add94fb1667">  522</a></span><span class="preprocessor">#define DT_NODE_FULL_NAME(node_id) DT_CAT(node_id, _FULL_NAME)</span></div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span> </div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#ga34452788d4fed1fce3e6650d61246866">  550</a></span><span class="preprocessor">#define DT_NODE_CHILD_IDX(node_id) DT_CAT(node_id, _CHILD_IDX)</span></div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span> </div>
+<div class="foldopen" id="foldopen00572" data-start="" data-end="">
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno"><a class="line" href="group__devicetree-generic-id.html#ga977d0ad58626e3ab906064fdcdace5e6">  572</a></span><span class="preprocessor">#define DT_SAME_NODE(node_id1, node_id2) \</span></div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span><span class="preprocessor">    (DT_DEP_ORD(node_id1) == (DT_DEP_ORD(node_id2)))</span></div>
+</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span> </div>
+<div class="line"><a id="l00615" name="l00615"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga8e1fd9ebacd85d2013df027d041d506b">  615</a></span><span class="preprocessor">#define DT_PROP(node_id, prop) DT_CAT3(node_id, _P_, prop)</span></div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span> </div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gaa7f5afcedd1f54be79a5337e8e28a5b6">  649</a></span><span class="preprocessor">#define DT_PROP_LEN(node_id, prop) DT_CAT4(node_id, _P_, prop, _LEN)</span></div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span> </div>
+<div class="foldopen" id="foldopen00665" data-start="" data-end="">
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gabd2d8a9242818c7a9bf981114c912d75">  665</a></span><span class="preprocessor">#define DT_PROP_LEN_OR(node_id, prop, default_value) \</span></div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span><span class="preprocessor">    COND_CODE_1(DT_NODE_HAS_PROP(node_id, prop), \</span></div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span><span class="preprocessor">            (DT_PROP_LEN(node_id, prop)), (default_value))</span></div>
+</div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span> </div>
+<div class="foldopen" id="foldopen00689" data-start="" data-end="">
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga479dfc704087eea7e7c5af42ae98576c">  689</a></span><span class="preprocessor">#define DT_PROP_HAS_IDX(node_id, prop, idx) \</span></div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span><span class="preprocessor">    IS_ENABLED(DT_CAT6(node_id, _P_, prop, _IDX_, idx, _EXISTS))</span></div>
+</div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span> </div>
+<div class="foldopen" id="foldopen00724" data-start="" data-end="">
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gae46c100aecd299eaea51e033890d9a58">  724</a></span><span class="preprocessor">#define DT_PROP_HAS_NAME(node_id, prop, name) \</span></div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span><span class="preprocessor">    IS_ENABLED(DT_CAT6(node_id, _P_, prop, _NAME_, name, _EXISTS))</span></div>
+</div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span> </div>
+<div class="foldopen" id="foldopen00761" data-start="" data-end="">
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga52ad691ea4cae633ca702020e939d461">  761</a></span><span class="preprocessor">#define DT_PROP_BY_IDX(node_id, prop, idx) \</span></div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span><span class="preprocessor">    DT_CAT5(node_id, _P_, prop, _IDX_, idx)</span></div>
+</div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span> </div>
+<div class="foldopen" id="foldopen00777" data-start="" data-end="">
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga5e5bfc9b1a6627b3f73014329e96340f">  777</a></span><span class="preprocessor">#define DT_PROP_OR(node_id, prop, default_value) \</span></div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span><span class="preprocessor">    COND_CODE_1(DT_NODE_HAS_PROP(node_id, prop), \</span></div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span><span class="preprocessor">            (DT_PROP(node_id, prop)), (default_value))</span></div>
+</div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span> </div>
+<div class="line"><a id="l00790" name="l00790"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga89070ef089930290ce31788b5b3b84e5">  790</a></span><span class="preprocessor">#define DT_LABEL(node_id) DT_PROP(node_id, label) __DEPRECATED_MACRO</span></div>
+<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span> </div>
+<div class="line"><a id="l00832" name="l00832"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga6c1a3b93e30429c1c69a7e2d8fe2d840">  832</a></span><span class="preprocessor">#define DT_ENUM_IDX(node_id, prop) DT_CAT4(node_id, _P_, prop, _ENUM_IDX)</span></div>
+<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span> </div>
+<div class="foldopen" id="foldopen00848" data-start="" data-end="">
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gac3616e3aa1a025235032786de8d31576">  848</a></span><span class="preprocessor">#define DT_ENUM_IDX_OR(node_id, prop, default_idx_value) \</span></div>
+<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span><span class="preprocessor">    COND_CODE_1(DT_NODE_HAS_PROP(node_id, prop), \</span></div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span><span class="preprocessor">            (DT_ENUM_IDX(node_id, prop)), (default_idx_value))</span></div>
+</div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span> </div>
+<div class="foldopen" id="foldopen00860" data-start="" data-end="">
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga72e66a2b7a159d8b6210ef9be015c955">  860</a></span><span class="preprocessor">#define DT_ENUM_HAS_VALUE(node_id, prop, value) \</span></div>
+<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span><span class="preprocessor">    IS_ENABLED(DT_CAT6(node_id, _P_, prop, _ENUM_VAL_, value, _EXISTS))</span></div>
+</div>
+<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span> </div>
+<div class="foldopen" id="foldopen00922" data-start="" data-end="">
+<div class="line"><a id="l00922" name="l00922"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga5995350cc7fd2d12ef7daa2487d1db54">  922</a></span><span class="preprocessor">#define DT_STRING_TOKEN(node_id, prop) \</span></div>
+<div class="line"><a id="l00923" name="l00923"></a><span class="lineno">  923</span><span class="preprocessor">    DT_CAT4(node_id, _P_, prop, _STRING_TOKEN)</span></div>
+</div>
+<div class="line"><a id="l00924" name="l00924"></a><span class="lineno">  924</span> </div>
+<div class="foldopen" id="foldopen00938" data-start="" data-end="">
+<div class="line"><a id="l00938" name="l00938"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga5c7c7f82abd34403d4e9a6e0c5703e4c">  938</a></span><span class="preprocessor">#define DT_STRING_TOKEN_OR(node_id, prop, default_value) \</span></div>
+<div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span><span class="preprocessor">    COND_CODE_1(DT_NODE_HAS_PROP(node_id, prop), \</span></div>
+<div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span><span class="preprocessor">        (DT_STRING_TOKEN(node_id, prop)), (default_value))</span></div>
+</div>
+<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span> </div>
+<div class="foldopen" id="foldopen00999" data-start="" data-end="">
+<div class="line"><a id="l00999" name="l00999"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gae0b5e2b6633a98ead17ec20d3494658f">  999</a></span><span class="preprocessor">#define DT_STRING_UPPER_TOKEN(node_id, prop) \</span></div>
+<div class="line"><a id="l01000" name="l01000"></a><span class="lineno"> 1000</span><span class="preprocessor">    DT_CAT4(node_id, _P_, prop, _STRING_UPPER_TOKEN)</span></div>
+</div>
+<div class="line"><a id="l01001" name="l01001"></a><span class="lineno"> 1001</span> </div>
+<div class="foldopen" id="foldopen01016" data-start="" data-end="">
+<div class="line"><a id="l01016" name="l01016"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gab79f5274c82d025d805ec94d2935c9b9"> 1016</a></span><span class="preprocessor">#define DT_STRING_UPPER_TOKEN_OR(node_id, prop, default_value) \</span></div>
+<div class="line"><a id="l01017" name="l01017"></a><span class="lineno"> 1017</span><span class="preprocessor">    COND_CODE_1(DT_NODE_HAS_PROP(node_id, prop), \</span></div>
+<div class="line"><a id="l01018" name="l01018"></a><span class="lineno"> 1018</span><span class="preprocessor">        (DT_STRING_UPPER_TOKEN(node_id, prop)), (default_value))</span></div>
+</div>
+<div class="line"><a id="l01019" name="l01019"></a><span class="lineno"> 1019</span> </div>
+<div class="foldopen" id="foldopen01060" data-start="" data-end="">
+<div class="line"><a id="l01060" name="l01060"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gad71ae303ce20e116a75c23ca552c2225"> 1060</a></span><span class="preprocessor">#define DT_STRING_UNQUOTED(node_id, prop) \</span></div>
+<div class="line"><a id="l01061" name="l01061"></a><span class="lineno"> 1061</span><span class="preprocessor">    DT_CAT4(node_id, _P_, prop, _STRING_UNQUOTED)</span></div>
+</div>
+<div class="line"><a id="l01062" name="l01062"></a><span class="lineno"> 1062</span> </div>
+<div class="foldopen" id="foldopen01077" data-start="" data-end="">
+<div class="line"><a id="l01077" name="l01077"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gad9fefdcc15e991ba526300cd20f7c2fa"> 1077</a></span><span class="preprocessor">#define DT_STRING_UNQUOTED_OR(node_id, prop, default_value) \</span></div>
+<div class="line"><a id="l01078" name="l01078"></a><span class="lineno"> 1078</span><span class="preprocessor">    COND_CODE_1(DT_NODE_HAS_PROP(node_id, prop), \</span></div>
+<div class="line"><a id="l01079" name="l01079"></a><span class="lineno"> 1079</span><span class="preprocessor">        (DT_STRING_UNQUOTED(node_id, prop)), (default_value))</span></div>
+</div>
+<div class="line"><a id="l01080" name="l01080"></a><span class="lineno"> 1080</span> </div>
+<div class="foldopen" id="foldopen01128" data-start="" data-end="">
+<div class="line"><a id="l01128" name="l01128"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga583e5e2e3c897f1095073e6192061d3a"> 1128</a></span><span class="preprocessor">#define DT_STRING_TOKEN_BY_IDX(node_id, prop, idx) \</span></div>
+<div class="line"><a id="l01129" name="l01129"></a><span class="lineno"> 1129</span><span class="preprocessor">    DT_CAT6(node_id, _P_, prop, _IDX_, idx, _STRING_TOKEN)</span></div>
+</div>
+<div class="line"><a id="l01130" name="l01130"></a><span class="lineno"> 1130</span> </div>
+<div class="foldopen" id="foldopen01178" data-start="" data-end="">
+<div class="line"><a id="l01178" name="l01178"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga73105b3402fbd6f82274a8b4a2ca6b35"> 1178</a></span><span class="preprocessor">#define DT_STRING_UPPER_TOKEN_BY_IDX(node_id, prop, idx) \</span></div>
+<div class="line"><a id="l01179" name="l01179"></a><span class="lineno"> 1179</span><span class="preprocessor">    DT_CAT6(node_id, _P_, prop, _IDX_, idx, _STRING_UPPER_TOKEN)</span></div>
+</div>
+<div class="line"><a id="l01180" name="l01180"></a><span class="lineno"> 1180</span> </div>
+<div class="foldopen" id="foldopen01221" data-start="" data-end="">
+<div class="line"><a id="l01221" name="l01221"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga3736709d70fdcb00bf305fd500f9ab64"> 1221</a></span><span class="preprocessor">#define DT_STRING_UNQUOTED_BY_IDX(node_id, prop, idx) \</span></div>
+<div class="line"><a id="l01222" name="l01222"></a><span class="lineno"> 1222</span><span class="preprocessor">    DT_CAT4(node_id, _P_, prop##_IDX_##idx, _STRING_UNQUOTED)</span></div>
+</div>
+<div class="line"><a id="l01223" name="l01223"></a><span class="lineno"> 1223</span> </div>
+<div class="line"><a id="l01224" name="l01224"></a><span class="lineno"> 1224</span><span class="comment">/*</span></div>
+<div class="line"><a id="l01225" name="l01225"></a><span class="lineno"> 1225</span><span class="comment"> * phandle properties</span></div>
+<div class="line"><a id="l01226" name="l01226"></a><span class="lineno"> 1226</span><span class="comment"> *</span></div>
+<div class="line"><a id="l01227" name="l01227"></a><span class="lineno"> 1227</span><span class="comment"> * These are special-cased to manage the impedance mismatch between</span></div>
+<div class="line"><a id="l01228" name="l01228"></a><span class="lineno"> 1228</span><span class="comment"> * phandles, which are just uint32_t node properties that only make sense</span></div>
+<div class="line"><a id="l01229" name="l01229"></a><span class="lineno"> 1229</span><span class="comment"> * within the tree itself, and C values.</span></div>
+<div class="line"><a id="l01230" name="l01230"></a><span class="lineno"> 1230</span><span class="comment"> */</span></div>
+<div class="line"><a id="l01231" name="l01231"></a><span class="lineno"> 1231</span> </div>
+<div class="foldopen" id="foldopen01277" data-start="" data-end="">
+<div class="line"><a id="l01277" name="l01277"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gaeba973992914d493cff5506ecf86a00d"> 1277</a></span><span class="preprocessor">#define DT_PROP_BY_PHANDLE_IDX(node_id, phs, idx, prop) \</span></div>
+<div class="line"><a id="l01278" name="l01278"></a><span class="lineno"> 1278</span><span class="preprocessor">    DT_PROP(DT_PHANDLE_BY_IDX(node_id, phs, idx), prop)</span></div>
+</div>
+<div class="line"><a id="l01279" name="l01279"></a><span class="lineno"> 1279</span> </div>
+<div class="foldopen" id="foldopen01299" data-start="" data-end="">
+<div class="line"><a id="l01299" name="l01299"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gad1c6a6544eac7bc77c1ed4aebd15df2b"> 1299</a></span><span class="preprocessor">#define DT_PROP_BY_PHANDLE_IDX_OR(node_id, phs, idx, prop, default_value) \</span></div>
+<div class="line"><a id="l01300" name="l01300"></a><span class="lineno"> 1300</span><span class="preprocessor">    DT_PROP_OR(DT_PHANDLE_BY_IDX(node_id, phs, idx), prop, default_value)</span></div>
+</div>
+<div class="line"><a id="l01301" name="l01301"></a><span class="lineno"> 1301</span> </div>
+<div class="foldopen" id="foldopen01313" data-start="" data-end="">
+<div class="line"><a id="l01313" name="l01313"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gabc1b099dda97fb03a9259a8b21fc04d2"> 1313</a></span><span class="preprocessor">#define DT_PROP_BY_PHANDLE(node_id, ph, prop) \</span></div>
+<div class="line"><a id="l01314" name="l01314"></a><span class="lineno"> 1314</span><span class="preprocessor">    DT_PROP_BY_PHANDLE_IDX(node_id, ph, 0, prop)</span></div>
+</div>
+<div class="line"><a id="l01315" name="l01315"></a><span class="lineno"> 1315</span> </div>
+<div class="foldopen" id="foldopen01370" data-start="" data-end="">
+<div class="line"><a id="l01370" name="l01370"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga118b63fd22c20ef940ac2fa073c126ed"> 1370</a></span><span class="preprocessor">#define DT_PHA_BY_IDX(node_id, pha, idx, cell) \</span></div>
+<div class="line"><a id="l01371" name="l01371"></a><span class="lineno"> 1371</span><span class="preprocessor">    DT_CAT7(node_id, _P_, pha, _IDX_, idx, _VAL_, cell)</span></div>
+</div>
+<div class="line"><a id="l01372" name="l01372"></a><span class="lineno"> 1372</span> </div>
+<div class="foldopen" id="foldopen01396" data-start="" data-end="">
+<div class="line"><a id="l01396" name="l01396"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gad830ed96dbc4f7dac3455153e0a944d6"> 1396</a></span><span class="preprocessor">#define DT_PHA_BY_IDX_OR(node_id, pha, idx, cell, default_value) \</span></div>
+<div class="line"><a id="l01397" name="l01397"></a><span class="lineno"> 1397</span><span class="preprocessor">    DT_PROP_OR(node_id, pha##_IDX_##idx##_VAL_##cell, default_value)</span></div>
+</div>
+<div class="line"><a id="l01398" name="l01398"></a><span class="lineno"> 1398</span> </div>
+<div class="line"><a id="l01406" name="l01406"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gacef5921973a55433161fe0be3f8f628d"> 1406</a></span><span class="preprocessor">#define DT_PHA(node_id, pha, cell) DT_PHA_BY_IDX(node_id, pha, 0, cell)</span></div>
+<div class="line"><a id="l01407" name="l01407"></a><span class="lineno"> 1407</span> </div>
+<div class="foldopen" id="foldopen01422" data-start="" data-end="">
+<div class="line"><a id="l01422" name="l01422"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga886559b058b24164b62ab95215d860bd"> 1422</a></span><span class="preprocessor">#define DT_PHA_OR(node_id, pha, cell, default_value) \</span></div>
+<div class="line"><a id="l01423" name="l01423"></a><span class="lineno"> 1423</span><span class="preprocessor">    DT_PHA_BY_IDX_OR(node_id, pha, 0, cell, default_value)</span></div>
+</div>
+<div class="line"><a id="l01424" name="l01424"></a><span class="lineno"> 1424</span> </div>
+<div class="foldopen" id="foldopen01465" data-start="" data-end="">
+<div class="line"><a id="l01465" name="l01465"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#gae469615356a867c49416da15bdc44a26"> 1465</a></span><span class="preprocessor">#define DT_PHA_BY_NAME(node_id, pha, name, cell) \</span></div>
+<div class="line"><a id="l01466" name="l01466"></a><span class="lineno"> 1466</span><span class="preprocessor">    DT_CAT7(node_id, _P_, pha, _NAME_, name, _VAL_, cell)</span></div>
+</div>
+<div class="line"><a id="l01467" name="l01467"></a><span class="lineno"> 1467</span> </div>
+<div class="foldopen" id="foldopen01489" data-start="" data-end="">
+<div class="line"><a id="l01489" name="l01489"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga79cda6ca70cc1e27b034ad096d4f4401"> 1489</a></span><span class="preprocessor">#define DT_PHA_BY_NAME_OR(node_id, pha, name, cell, default_value) \</span></div>
+<div class="line"><a id="l01490" name="l01490"></a><span class="lineno"> 1490</span><span class="preprocessor">    DT_PROP_OR(node_id, pha##_NAME_##name##_VAL_##cell, default_value)</span></div>
+</div>
+<div class="line"><a id="l01491" name="l01491"></a><span class="lineno"> 1491</span> </div>
+<div class="foldopen" id="foldopen01539" data-start="" data-end="">
+<div class="line"><a id="l01539" name="l01539"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga65c90d2d96255b8569c5b869b637c2fd"> 1539</a></span><span class="preprocessor">#define DT_PHANDLE_BY_NAME(node_id, pha, name) \</span></div>
+<div class="line"><a id="l01540" name="l01540"></a><span class="lineno"> 1540</span><span class="preprocessor">    DT_CAT6(node_id, _P_, pha, _NAME_, name, _PH)</span></div>
+</div>
+<div class="line"><a id="l01541" name="l01541"></a><span class="lineno"> 1541</span> </div>
+<div class="foldopen" id="foldopen01591" data-start="" data-end="">
+<div class="line"><a id="l01591" name="l01591"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga8ff163c240878a988d29d727671671de"> 1591</a></span><span class="preprocessor">#define DT_PHANDLE_BY_IDX(node_id, prop, idx) \</span></div>
+<div class="line"><a id="l01592" name="l01592"></a><span class="lineno"> 1592</span><span class="preprocessor">    DT_CAT6(node_id, _P_, prop, _IDX_, idx, _PH)</span></div>
+</div>
+<div class="line"><a id="l01593" name="l01593"></a><span class="lineno"> 1593</span> </div>
+<div class="line"><a id="l01605" name="l01605"></a><span class="lineno"><a class="line" href="group__devicetree-generic-prop.html#ga7bd77c49472ba4547d87f00f40fd7171"> 1605</a></span><span class="preprocessor">#define DT_PHANDLE(node_id, prop) DT_PHANDLE_BY_IDX(node_id, prop, 0)</span></div>
+<div class="line"><a id="l01606" name="l01606"></a><span class="lineno"> 1606</span> </div>
+<div class="line"><a id="l01653" name="l01653"></a><span class="lineno"><a class="line" href="group__devicetree-ranges-prop.html#ga784cff5ee4c0439c429cc3c26c4410fc"> 1653</a></span><span class="preprocessor">#define DT_NUM_RANGES(node_id) DT_CAT(node_id, _RANGES_NUM)</span></div>
+<div class="line"><a id="l01654" name="l01654"></a><span class="lineno"> 1654</span> </div>
+<div class="foldopen" id="foldopen01707" data-start="" data-end="">
+<div class="line"><a id="l01707" name="l01707"></a><span class="lineno"><a class="line" href="group__devicetree-ranges-prop.html#gac6f54058c58b06935bd2deae9f1ec2db"> 1707</a></span><span class="preprocessor">#define DT_RANGES_HAS_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l01708" name="l01708"></a><span class="lineno"> 1708</span><span class="preprocessor">    IS_ENABLED(DT_CAT4(node_id, _RANGES_IDX_, idx, _EXISTS))</span></div>
+</div>
+<div class="line"><a id="l01709" name="l01709"></a><span class="lineno"> 1709</span> </div>
+<div class="foldopen" id="foldopen01762" data-start="" data-end="">
+<div class="line"><a id="l01762" name="l01762"></a><span class="lineno"><a class="line" href="group__devicetree-ranges-prop.html#ga3730c9176911bd8cc762f447eb020ecd"> 1762</a></span><span class="preprocessor">#define DT_RANGES_HAS_CHILD_BUS_FLAGS_AT_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l01763" name="l01763"></a><span class="lineno"> 1763</span><span class="preprocessor">    IS_ENABLED(DT_CAT4(node_id, _RANGES_IDX_, idx, _VAL_CHILD_BUS_FLAGS_EXISTS))</span></div>
+</div>
+<div class="line"><a id="l01764" name="l01764"></a><span class="lineno"> 1764</span> </div>
+<div class="foldopen" id="foldopen01802" data-start="" data-end="">
+<div class="line"><a id="l01802" name="l01802"></a><span class="lineno"><a class="line" href="group__devicetree-ranges-prop.html#ga32a9c873d3ec1f5d7922c38eaafd1af8"> 1802</a></span><span class="preprocessor">#define DT_RANGES_CHILD_BUS_FLAGS_BY_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l01803" name="l01803"></a><span class="lineno"> 1803</span><span class="preprocessor">    DT_CAT4(node_id, _RANGES_IDX_, idx, _VAL_CHILD_BUS_FLAGS)</span></div>
+</div>
+<div class="line"><a id="l01804" name="l01804"></a><span class="lineno"> 1804</span> </div>
+<div class="foldopen" id="foldopen01851" data-start="" data-end="">
+<div class="line"><a id="l01851" name="l01851"></a><span class="lineno"><a class="line" href="group__devicetree-ranges-prop.html#ga449940559213086b15151ec00e46607d"> 1851</a></span><span class="preprocessor">#define DT_RANGES_CHILD_BUS_ADDRESS_BY_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l01852" name="l01852"></a><span class="lineno"> 1852</span><span class="preprocessor">    DT_CAT4(node_id, _RANGES_IDX_, idx, _VAL_CHILD_BUS_ADDRESS)</span></div>
+</div>
+<div class="line"><a id="l01853" name="l01853"></a><span class="lineno"> 1853</span> </div>
+<div class="foldopen" id="foldopen01900" data-start="" data-end="">
+<div class="line"><a id="l01900" name="l01900"></a><span class="lineno"><a class="line" href="group__devicetree-ranges-prop.html#ga48d493ad616438ace2396c0312a242ba"> 1900</a></span><span class="preprocessor">#define DT_RANGES_PARENT_BUS_ADDRESS_BY_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l01901" name="l01901"></a><span class="lineno"> 1901</span><span class="preprocessor">    DT_CAT4(node_id, _RANGES_IDX_, idx, _VAL_PARENT_BUS_ADDRESS)</span></div>
+</div>
+<div class="line"><a id="l01902" name="l01902"></a><span class="lineno"> 1902</span> </div>
+<div class="foldopen" id="foldopen01949" data-start="" data-end="">
+<div class="line"><a id="l01949" name="l01949"></a><span class="lineno"><a class="line" href="group__devicetree-ranges-prop.html#ga52677a5bc86f9132a09b6bc37153afb2"> 1949</a></span><span class="preprocessor">#define DT_RANGES_LENGTH_BY_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l01950" name="l01950"></a><span class="lineno"> 1950</span><span class="preprocessor">    DT_CAT4(node_id, _RANGES_IDX_, idx, _VAL_LENGTH)</span></div>
+</div>
+<div class="line"><a id="l01951" name="l01951"></a><span class="lineno"> 1951</span> </div>
+<div class="foldopen" id="foldopen01991" data-start="" data-end="">
+<div class="line"><a id="l01991" name="l01991"></a><span class="lineno"><a class="line" href="group__devicetree-ranges-prop.html#ga4c71a8adcfe6c53b480775510c92a632"> 1991</a></span><span class="preprocessor">#define DT_FOREACH_RANGE(node_id, fn) \</span></div>
+<div class="line"><a id="l01992" name="l01992"></a><span class="lineno"> 1992</span><span class="preprocessor">    DT_CAT(node_id, _FOREACH_RANGE)(fn)</span></div>
+</div>
+<div class="line"><a id="l01993" name="l01993"></a><span class="lineno"> 1993</span> </div>
+<div class="foldopen" id="foldopen02039" data-start="" data-end="">
+<div class="line"><a id="l02039" name="l02039"></a><span class="lineno"><a class="line" href="group__devicetree-generic-vendor.html#gafcd6cc682b573d61c7e28c8e3bafc747"> 2039</a></span><span class="preprocessor">#define DT_NODE_VENDOR_BY_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l02040" name="l02040"></a><span class="lineno"> 2040</span><span class="preprocessor">    DT_CAT3(node_id, _COMPAT_VENDOR_IDX_, idx)</span></div>
+</div>
+<div class="line"><a id="l02041" name="l02041"></a><span class="lineno"> 2041</span> </div>
+<div class="foldopen" id="foldopen02054" data-start="" data-end="">
+<div class="line"><a id="l02054" name="l02054"></a><span class="lineno"><a class="line" href="group__devicetree-generic-vendor.html#gabfa4130fa24457c457961caa7e2c6276"> 2054</a></span><span class="preprocessor">#define DT_NODE_VENDOR_HAS_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l02055" name="l02055"></a><span class="lineno"> 2055</span><span class="preprocessor">    IS_ENABLED(DT_CAT4(node_id, _COMPAT_VENDOR_IDX_, idx, _EXISTS))</span></div>
+</div>
+<div class="line"><a id="l02056" name="l02056"></a><span class="lineno"> 2056</span> </div>
+<div class="foldopen" id="foldopen02071" data-start="" data-end="">
+<div class="line"><a id="l02071" name="l02071"></a><span class="lineno"><a class="line" href="group__devicetree-generic-vendor.html#gaa71b1152516847d51582b9b23c472f3d"> 2071</a></span><span class="preprocessor">#define DT_NODE_VENDOR_BY_IDX_OR(node_id, idx, default_value) \</span></div>
+<div class="line"><a id="l02072" name="l02072"></a><span class="lineno"> 2072</span><span class="preprocessor">    COND_CODE_1(DT_NODE_VENDOR_HAS_IDX(node_id, idx), \</span></div>
+<div class="line"><a id="l02073" name="l02073"></a><span class="lineno"> 2073</span><span class="preprocessor">            (DT_NODE_VENDOR_BY_IDX(node_id, idx)), (default_value))</span></div>
+</div>
+<div class="line"><a id="l02074" name="l02074"></a><span class="lineno"> 2074</span> </div>
+<div class="foldopen" id="foldopen02083" data-start="" data-end="">
+<div class="line"><a id="l02083" name="l02083"></a><span class="lineno"><a class="line" href="group__devicetree-generic-vendor.html#gad91ad9294d36eb151c96e719f1a5b0ef"> 2083</a></span><span class="preprocessor">#define DT_NODE_VENDOR_OR(node_id, default_value) \</span></div>
+<div class="line"><a id="l02084" name="l02084"></a><span class="lineno"> 2084</span><span class="preprocessor">    DT_NODE_VENDOR_BY_IDX_OR(node_id, 0, default_value)</span></div>
+</div>
+<div class="line"><a id="l02085" name="l02085"></a><span class="lineno"> 2085</span> </div>
+<div class="foldopen" id="foldopen02115" data-start="" data-end="">
+<div class="line"><a id="l02115" name="l02115"></a><span class="lineno"><a class="line" href="group__devicetree-generic-vendor.html#gae4bbd66726d930d878588f9bb9f4d500"> 2115</a></span><span class="preprocessor">#define DT_NODE_MODEL_BY_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l02116" name="l02116"></a><span class="lineno"> 2116</span><span class="preprocessor">    DT_CAT3(node_id, _COMPAT_MODEL_IDX_, idx)</span></div>
+</div>
+<div class="line"><a id="l02117" name="l02117"></a><span class="lineno"> 2117</span> </div>
+<div class="foldopen" id="foldopen02130" data-start="" data-end="">
+<div class="line"><a id="l02130" name="l02130"></a><span class="lineno"><a class="line" href="group__devicetree-generic-vendor.html#ga2ff3c91b22fae081d00d96964f465aa2"> 2130</a></span><span class="preprocessor">#define DT_NODE_MODEL_HAS_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l02131" name="l02131"></a><span class="lineno"> 2131</span><span class="preprocessor">    IS_ENABLED(DT_CAT4(node_id, _COMPAT_MODEL_IDX_, idx, _EXISTS))</span></div>
+</div>
+<div class="line"><a id="l02132" name="l02132"></a><span class="lineno"> 2132</span> </div>
+<div class="foldopen" id="foldopen02147" data-start="" data-end="">
+<div class="line"><a id="l02147" name="l02147"></a><span class="lineno"><a class="line" href="group__devicetree-generic-vendor.html#ga98a2ff981359088e2e995017791176b1"> 2147</a></span><span class="preprocessor">#define DT_NODE_MODEL_BY_IDX_OR(node_id, idx, default_value) \</span></div>
+<div class="line"><a id="l02148" name="l02148"></a><span class="lineno"> 2148</span><span class="preprocessor">    COND_CODE_1(DT_NODE_MODEL_HAS_IDX(node_id, idx), \</span></div>
+<div class="line"><a id="l02149" name="l02149"></a><span class="lineno"> 2149</span><span class="preprocessor">            (DT_NODE_MODEL_BY_IDX(node_id, idx)), (default_value))</span></div>
+</div>
+<div class="line"><a id="l02150" name="l02150"></a><span class="lineno"> 2150</span> </div>
+<div class="foldopen" id="foldopen02159" data-start="" data-end="">
+<div class="line"><a id="l02159" name="l02159"></a><span class="lineno"><a class="line" href="group__devicetree-generic-vendor.html#ga239f5fc9f6f33cf83e6c7ebfeef15d0f"> 2159</a></span><span class="preprocessor">#define DT_NODE_MODEL_OR(node_id, default_value) \</span></div>
+<div class="line"><a id="l02160" name="l02160"></a><span class="lineno"> 2160</span><span class="preprocessor">    DT_NODE_MODEL_BY_IDX_OR(node_id, 0, default_value)</span></div>
+</div>
+<div class="line"><a id="l02161" name="l02161"></a><span class="lineno"> 2161</span> </div>
+<div class="line"><a id="l02179" name="l02179"></a><span class="lineno"><a class="line" href="group__devicetree-reg-prop.html#ga6cdd22b6a2881b09ed63d9d262566a0a"> 2179</a></span><span class="preprocessor">#define DT_NUM_REGS(node_id) DT_CAT(node_id, _REG_NUM)</span></div>
+<div class="line"><a id="l02180" name="l02180"></a><span class="lineno"> 2180</span> </div>
+<div class="foldopen" id="foldopen02192" data-start="" data-end="">
+<div class="line"><a id="l02192" name="l02192"></a><span class="lineno"><a class="line" href="group__devicetree-reg-prop.html#ga59aa43231678d08eeac6e5b344048f02"> 2192</a></span><span class="preprocessor">#define DT_REG_HAS_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l02193" name="l02193"></a><span class="lineno"> 2193</span><span class="preprocessor">    IS_ENABLED(DT_CAT4(node_id, _REG_IDX_, idx, _EXISTS))</span></div>
+</div>
+<div class="line"><a id="l02194" name="l02194"></a><span class="lineno"> 2194</span> </div>
+<div class="foldopen" id="foldopen02201" data-start="" data-end="">
+<div class="line"><a id="l02201" name="l02201"></a><span class="lineno"><a class="line" href="group__devicetree-reg-prop.html#gac540b00bb12d0662f6aefe6ac0cff243"> 2201</a></span><span class="preprocessor">#define DT_REG_ADDR_BY_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l02202" name="l02202"></a><span class="lineno"> 2202</span><span class="preprocessor">    DT_CAT4(node_id, _REG_IDX_, idx, _VAL_ADDRESS)</span></div>
+</div>
+<div class="line"><a id="l02203" name="l02203"></a><span class="lineno"> 2203</span> </div>
+<div class="foldopen" id="foldopen02215" data-start="" data-end="">
+<div class="line"><a id="l02215" name="l02215"></a><span class="lineno"><a class="line" href="group__devicetree-reg-prop.html#ga9a703d688e4b983689b8579e0e7d9f48"> 2215</a></span><span class="preprocessor">#define DT_REG_SIZE_BY_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l02216" name="l02216"></a><span class="lineno"> 2216</span><span class="preprocessor">    DT_CAT4(node_id, _REG_IDX_, idx, _VAL_SIZE)</span></div>
+</div>
+<div class="line"><a id="l02217" name="l02217"></a><span class="lineno"> 2217</span> </div>
+<div class="line"><a id="l02225" name="l02225"></a><span class="lineno"><a class="line" href="group__devicetree-reg-prop.html#gac6d8279c32351ced4c0ac7f32270974e"> 2225</a></span><span class="preprocessor">#define DT_REG_ADDR(node_id) DT_REG_ADDR_BY_IDX(node_id, 0)</span></div>
+<div class="line"><a id="l02226" name="l02226"></a><span class="lineno"> 2226</span> </div>
+<div class="line"><a id="l02237" name="l02237"></a><span class="lineno"><a class="line" href="group__devicetree-reg-prop.html#gaf77354db552821a865b93f709b25e410"> 2237</a></span><span class="preprocessor">#define DT_REG_ADDR_U64(node_id) DT_U64_C(DT_REG_ADDR(node_id))</span></div>
+<div class="line"><a id="l02238" name="l02238"></a><span class="lineno"> 2238</span> </div>
+<div class="line"><a id="l02246" name="l02246"></a><span class="lineno"><a class="line" href="group__devicetree-reg-prop.html#gad223efc6c77d008e55c3588953e85bfb"> 2246</a></span><span class="preprocessor">#define DT_REG_SIZE(node_id) DT_REG_SIZE_BY_IDX(node_id, 0)</span></div>
+<div class="line"><a id="l02247" name="l02247"></a><span class="lineno"> 2247</span> </div>
+<div class="foldopen" id="foldopen02254" data-start="" data-end="">
+<div class="line"><a id="l02254" name="l02254"></a><span class="lineno"><a class="line" href="group__devicetree-reg-prop.html#gaeb5863e878bbd3a362e17616403da692"> 2254</a></span><span class="preprocessor">#define DT_REG_ADDR_BY_NAME(node_id, name) \</span></div>
+<div class="line"><a id="l02255" name="l02255"></a><span class="lineno"> 2255</span><span class="preprocessor">    DT_CAT4(node_id, _REG_NAME_, name, _VAL_ADDRESS)</span></div>
+</div>
+<div class="line"><a id="l02256" name="l02256"></a><span class="lineno"> 2256</span> </div>
+<div class="foldopen" id="foldopen02269" data-start="" data-end="">
+<div class="line"><a id="l02269" name="l02269"></a><span class="lineno"><a class="line" href="group__devicetree-reg-prop.html#gaf03f1b5518ff146d6de986f867fcc2c8"> 2269</a></span><span class="preprocessor">#define DT_REG_ADDR_BY_NAME_U64(node_id, name) \</span></div>
+<div class="line"><a id="l02270" name="l02270"></a><span class="lineno"> 2270</span><span class="preprocessor">    DT_U64_C(DT_REG_ADDR_BY_NAME(node_id, name))</span></div>
+</div>
+<div class="line"><a id="l02271" name="l02271"></a><span class="lineno"> 2271</span> </div>
+<div class="foldopen" id="foldopen02278" data-start="" data-end="">
+<div class="line"><a id="l02278" name="l02278"></a><span class="lineno"><a class="line" href="group__devicetree-reg-prop.html#ga042988feb27e58989baa7abb4930409e"> 2278</a></span><span class="preprocessor">#define DT_REG_SIZE_BY_NAME(node_id, name) \</span></div>
+<div class="line"><a id="l02279" name="l02279"></a><span class="lineno"> 2279</span><span class="preprocessor">    DT_CAT4(node_id, _REG_NAME_, name, _VAL_SIZE)</span></div>
+</div>
+<div class="line"><a id="l02280" name="l02280"></a><span class="lineno"> 2280</span> </div>
+<div class="line"><a id="l02299" name="l02299"></a><span class="lineno"><a class="line" href="group__devicetree-interrupts-prop.html#ga2985e5d55d2d9dbbbe93ba855d5db320"> 2299</a></span><span class="preprocessor">#define DT_NUM_IRQS(node_id) DT_CAT(node_id, _IRQ_NUM)</span></div>
+<div class="line"><a id="l02300" name="l02300"></a><span class="lineno"> 2300</span> </div>
+<div class="foldopen" id="foldopen02311" data-start="" data-end="">
+<div class="line"><a id="l02311" name="l02311"></a><span class="lineno"><a class="line" href="group__devicetree-interrupts-prop.html#ga238a290dc6cea9479104ff8f95de1c4c"> 2311</a></span><span class="preprocessor">#define DT_IRQ_HAS_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l02312" name="l02312"></a><span class="lineno"> 2312</span><span class="preprocessor">    IS_ENABLED(DT_CAT4(node_id, _IRQ_IDX_, idx, _EXISTS))</span></div>
+</div>
+<div class="line"><a id="l02313" name="l02313"></a><span class="lineno"> 2313</span> </div>
+<div class="foldopen" id="foldopen02324" data-start="" data-end="">
+<div class="line"><a id="l02324" name="l02324"></a><span class="lineno"><a class="line" href="group__devicetree-interrupts-prop.html#ga739ebdd4bd01d6b7beb75d915174206f"> 2324</a></span><span class="preprocessor">#define DT_IRQ_HAS_CELL_AT_IDX(node_id, idx, cell) \</span></div>
+<div class="line"><a id="l02325" name="l02325"></a><span class="lineno"> 2325</span><span class="preprocessor">    IS_ENABLED(DT_CAT6(node_id, _IRQ_IDX_, idx, _VAL_, cell, _EXISTS))</span></div>
+</div>
+<div class="line"><a id="l02326" name="l02326"></a><span class="lineno"> 2326</span> </div>
+<div class="line"><a id="l02334" name="l02334"></a><span class="lineno"><a class="line" href="group__devicetree-interrupts-prop.html#gab9c94ee39db7913598a755c6172fe036"> 2334</a></span><span class="preprocessor">#define DT_IRQ_HAS_CELL(node_id, cell) DT_IRQ_HAS_CELL_AT_IDX(node_id, 0, cell)</span></div>
+<div class="line"><a id="l02335" name="l02335"></a><span class="lineno"> 2335</span> </div>
+<div class="foldopen" id="foldopen02345" data-start="" data-end="">
+<div class="line"><a id="l02345" name="l02345"></a><span class="lineno"><a class="line" href="group__devicetree-interrupts-prop.html#ga1c757ff5e4d15f1b3020b30f72c0dd5d"> 2345</a></span><span class="preprocessor">#define DT_IRQ_HAS_NAME(node_id, name) \</span></div>
+<div class="line"><a id="l02346" name="l02346"></a><span class="lineno"> 2346</span><span class="preprocessor">    IS_ENABLED(DT_CAT4(node_id, _IRQ_NAME_, name, _VAL_irq_EXISTS))</span></div>
+</div>
+<div class="line"><a id="l02347" name="l02347"></a><span class="lineno"> 2347</span> </div>
+<div class="foldopen" id="foldopen02383" data-start="" data-end="">
+<div class="line"><a id="l02383" name="l02383"></a><span class="lineno"><a class="line" href="group__devicetree-interrupts-prop.html#ga3779b2115eac60ab32adfc8d212e973f"> 2383</a></span><span class="preprocessor">#define DT_IRQ_BY_IDX(node_id, idx, cell)   \</span></div>
+<div class="line"><a id="l02384" name="l02384"></a><span class="lineno"> 2384</span><span class="preprocessor">    DT_CAT5(node_id, _IRQ_IDX_, idx, _VAL_, cell)</span></div>
+</div>
+<div class="line"><a id="l02385" name="l02385"></a><span class="lineno"> 2385</span> </div>
+<div class="foldopen" id="foldopen02401" data-start="" data-end="">
+<div class="line"><a id="l02401" name="l02401"></a><span class="lineno"><a class="line" href="group__devicetree-interrupts-prop.html#ga904917c0a407343ef0185e9e6fe96812"> 2401</a></span><span class="preprocessor">#define DT_IRQ_BY_NAME(node_id, name, cell) \</span></div>
+<div class="line"><a id="l02402" name="l02402"></a><span class="lineno"> 2402</span><span class="preprocessor">    DT_CAT5(node_id, _IRQ_NAME_, name, _VAL_, cell)</span></div>
+</div>
+<div class="line"><a id="l02403" name="l02403"></a><span class="lineno"> 2403</span> </div>
+<div class="line"><a id="l02411" name="l02411"></a><span class="lineno"><a class="line" href="group__devicetree-interrupts-prop.html#gabf60fbd528d300a26c0b4e66fe80a53f"> 2411</a></span><span class="preprocessor">#define DT_IRQ(node_id, cell) DT_IRQ_BY_IDX(node_id, 0, cell)</span></div>
+<div class="line"><a id="l02412" name="l02412"></a><span class="lineno"> 2412</span> </div>
+<div class="line"><a id="l02417" name="l02417"></a><span class="lineno"> 2417</span><span class="comment">/* DT helper macro to get interrupt-parent node  */</span></div>
+<div class="line"><a id="l02418" name="l02418"></a><span class="lineno"> 2418</span><span class="preprocessor">#define DT_PARENT_INTC_INTERNAL(node_id) DT_PROP(node_id, interrupt_parent)</span></div>
+<div class="line"><a id="l02419" name="l02419"></a><span class="lineno"> 2419</span><span class="comment">/* DT helper macro to get the node&#39;s interrupt grandparent node  */</span></div>
+<div class="line"><a id="l02420" name="l02420"></a><span class="lineno"> 2420</span><span class="preprocessor">#define DT_GPARENT_INTC_INTERNAL(node_id) DT_PARENT_INTC_INTERNAL(DT_PARENT_INTC_INTERNAL(node_id))</span></div>
+<div class="line"><a id="l02421" name="l02421"></a><span class="lineno"> 2421</span><span class="comment">/* DT helper macro to check if a node is an interrupt controller */</span></div>
+<div class="line"><a id="l02422" name="l02422"></a><span class="lineno"> 2422</span><span class="preprocessor">#define DT_IS_INTC_INTERNAL(node_id) DT_NODE_HAS_PROP(node_id, interrupt_controller)</span></div>
+<div class="line"><a id="l02423" name="l02423"></a><span class="lineno"> 2423</span><span class="comment">/* DT helper macro to check if the node has a parent interrupt controller */</span></div>
+<div class="line"><a id="l02424" name="l02424"></a><span class="lineno"> 2424</span><span class="preprocessor">#define DT_HAS_PARENT_INTC_INTERNAL(node_id)                                                       \</span></div>
+<div class="line"><a id="l02425" name="l02425"></a><span class="lineno"> 2425</span><span class="preprocessor">    </span><span class="comment">/* node has `interrupt-parent`? */</span><span class="preprocessor">                                                         \</span></div>
+<div class="line"><a id="l02426" name="l02426"></a><span class="lineno"> 2426</span><span class="preprocessor">    IF_ENABLED(DT_NODE_HAS_PROP(node_id, interrupt_parent),                                    \</span></div>
+<div class="line"><a id="l02427" name="l02427"></a><span class="lineno"> 2427</span><span class="preprocessor">           </span><span class="comment">/* `interrupt-parent` node is an interrupt controller? */</span><span class="preprocessor">                       \</span></div>
+<div class="line"><a id="l02428" name="l02428"></a><span class="lineno"> 2428</span><span class="preprocessor">           (IF_ENABLED(DT_IS_INTC_INTERNAL(DT_PARENT_INTC_INTERNAL(node_id)),              \</span></div>
+<div class="line"><a id="l02429" name="l02429"></a><span class="lineno"> 2429</span><span class="preprocessor">                   </span><span class="comment">/* `interrupt-parent` node has interrupt cell(s) ? 1 : 0 */</span><span class="preprocessor">         \</span></div>
+<div class="line"><a id="l02430" name="l02430"></a><span class="lineno"> 2430</span><span class="preprocessor">                   (COND_CODE_0(DT_NUM_IRQS(DT_PARENT_INTC_INTERNAL(node_id)), (0),    \</span></div>
+<div class="line"><a id="l02431" name="l02431"></a><span class="lineno"> 2431</span><span class="preprocessor">                        (1))))))</span></div>
+<div class="line"><a id="l02432" name="l02432"></a><span class="lineno"> 2432</span><span class="comment">/* DT helper macro to check if the node has a grandparent interrupt controller */</span></div>
+<div class="line"><a id="l02433" name="l02433"></a><span class="lineno"> 2433</span><span class="preprocessor">#define DT_HAS_GPARENT_INTC_INTERNAL(node_id)                                                      \</span></div>
+<div class="line"><a id="l02434" name="l02434"></a><span class="lineno"> 2434</span><span class="preprocessor">    IF_ENABLED(DT_HAS_PARENT_INTC_INTERNAL(node_id),                                           \</span></div>
+<div class="line"><a id="l02435" name="l02435"></a><span class="lineno"> 2435</span><span class="preprocessor">           (DT_HAS_PARENT_INTC_INTERNAL(DT_PARENT_INTC_INTERNAL(node_id))))</span></div>
+<div class="line"><a id="l02436" name="l02436"></a><span class="lineno"> 2436</span> </div>
+<div class="line"><a id="l02441" name="l02441"></a><span class="lineno"> 2441</span><span class="preprocessor">#define DT_IRQN_BY_IDX_INTERNAL(node_id, idx) DT_IRQ_BY_IDX(node_id, idx, irq)</span></div>
+<div class="line"><a id="l02442" name="l02442"></a><span class="lineno"> 2442</span> </div>
+<div class="line"><a id="l02443" name="l02443"></a><span class="lineno"> 2443</span><span class="comment">/* DT helper macro to get the node&#39;s parent intc&#39;s (only) irq number */</span></div>
+<div class="line"><a id="l02444" name="l02444"></a><span class="lineno"> 2444</span><span class="preprocessor">#define DT_PARENT_INTC_IRQN_INTERNAL(node_id) DT_IRQ(DT_PARENT_INTC_INTERNAL(node_id), irq)</span></div>
+<div class="line"><a id="l02445" name="l02445"></a><span class="lineno"> 2445</span><span class="comment">/* DT helper macro to get the node&#39;s grandparent intc&#39;s (only) irq number */</span></div>
+<div class="line"><a id="l02446" name="l02446"></a><span class="lineno"> 2446</span><span class="preprocessor">#define DT_GPARENT_INTC_IRQN_INTERNAL(node_id) DT_IRQ(DT_GPARENT_INTC_INTERNAL(node_id), irq)</span></div>
+<div class="line"><a id="l02447" name="l02447"></a><span class="lineno"> 2447</span> </div>
+<div class="line"><a id="l02448" name="l02448"></a><span class="lineno"> 2448</span><span class="comment">/* DT helper macro to encode a node&#39;s IRQN to level 2 according to the multi-level scheme */</span></div>
+<div class="line"><a id="l02449" name="l02449"></a><span class="lineno"> 2449</span><span class="preprocessor">#define DT_IRQN_L2_INTERNAL(node_id, idx)                                                          \</span></div>
+<div class="line"><a id="l02450" name="l02450"></a><span class="lineno"> 2450</span><span class="preprocessor">    (IRQ_TO_L2(DT_IRQN_BY_IDX_INTERNAL(node_id, idx)) |                            \</span></div>
+<div class="line"><a id="l02451" name="l02451"></a><span class="lineno"> 2451</span><span class="preprocessor">     DT_PARENT_INTC_IRQN_INTERNAL(node_id))</span></div>
+<div class="line"><a id="l02452" name="l02452"></a><span class="lineno"> 2452</span><span class="comment">/* DT helper macro to encode a node&#39;s IRQN to level 3 according to the multi-level scheme */</span></div>
+<div class="line"><a id="l02453" name="l02453"></a><span class="lineno"> 2453</span><span class="preprocessor">#define DT_IRQN_L3_INTERNAL(node_id, idx)                                                          \</span></div>
+<div class="line"><a id="l02454" name="l02454"></a><span class="lineno"> 2454</span><span class="preprocessor">    (IRQ_TO_L3(DT_IRQN_BY_IDX_INTERNAL(node_id, idx)) |                            \</span></div>
+<div class="line"><a id="l02455" name="l02455"></a><span class="lineno"> 2455</span><span class="preprocessor">     IRQ_TO_L2(DT_PARENT_INTC_IRQN_INTERNAL(node_id)) |                            \</span></div>
+<div class="line"><a id="l02456" name="l02456"></a><span class="lineno"> 2456</span><span class="preprocessor">     DT_GPARENT_INTC_IRQN_INTERNAL(node_id))</span></div>
+<div class="line"><a id="l02461" name="l02461"></a><span class="lineno"> 2461</span><span class="preprocessor">#define DT_MULTI_LEVEL_IRQN_INTERNAL(node_id, idx)                                                 \</span></div>
+<div class="line"><a id="l02462" name="l02462"></a><span class="lineno"> 2462</span><span class="preprocessor">    COND_CODE_1(DT_HAS_GPARENT_INTC_INTERNAL(node_id), (DT_IRQN_L3_INTERNAL(node_id, idx)),    \</span></div>
+<div class="line"><a id="l02463" name="l02463"></a><span class="lineno"> 2463</span><span class="preprocessor">            (COND_CODE_1(DT_HAS_PARENT_INTC_INTERNAL(node_id),                             \</span></div>
+<div class="line"><a id="l02464" name="l02464"></a><span class="lineno"> 2464</span><span class="preprocessor">                 (DT_IRQN_L2_INTERNAL(node_id, idx)),                              \</span></div>
+<div class="line"><a id="l02465" name="l02465"></a><span class="lineno"> 2465</span><span class="preprocessor">                 (DT_IRQN_BY_IDX_INTERNAL(node_id, idx)))))</span></div>
+<div class="line"><a id="l02466" name="l02466"></a><span class="lineno"> 2466</span> </div>
+<div class="foldopen" id="foldopen02479" data-start="" data-end="">
+<div class="line"><a id="l02479" name="l02479"></a><span class="lineno"><a class="line" href="group__devicetree-interrupts-prop.html#gaad6d6b27ea731a05a186a5dde8757698"> 2479</a></span><span class="preprocessor">#define DT_IRQN_BY_IDX(node_id, idx)                                                               \</span></div>
+<div class="line"><a id="l02480" name="l02480"></a><span class="lineno"> 2480</span><span class="preprocessor">    COND_CODE_1(IS_ENABLED(CONFIG_MULTI_LEVEL_INTERRUPTS),                                     \</span></div>
+<div class="line"><a id="l02481" name="l02481"></a><span class="lineno"> 2481</span><span class="preprocessor">            (DT_MULTI_LEVEL_IRQN_INTERNAL(node_id, idx)),                                  \</span></div>
+<div class="line"><a id="l02482" name="l02482"></a><span class="lineno"> 2482</span><span class="preprocessor">            (DT_IRQN_BY_IDX_INTERNAL(node_id, idx)))</span></div>
+</div>
+<div class="line"><a id="l02483" name="l02483"></a><span class="lineno"> 2483</span> </div>
+<div class="line"><a id="l02494" name="l02494"></a><span class="lineno"><a class="line" href="group__devicetree-interrupts-prop.html#ga5e00c208388736ce9b5bc0088a77cd95"> 2494</a></span><span class="preprocessor">#define DT_IRQN(node_id) DT_IRQN_BY_IDX(node_id, 0)</span></div>
+<div class="line"><a id="l02495" name="l02495"></a><span class="lineno"> 2495</span> </div>
+<div class="line"><a id="l02514" name="l02514"></a><span class="lineno"><a class="line" href="group__devicetree-generic-chosen.html#ga3412d0acecffa828984cf9e2c89889ed"> 2514</a></span><span class="preprocessor">#define DT_CHOSEN(prop) DT_CAT(DT_CHOSEN_, prop)</span></div>
+<div class="line"><a id="l02515" name="l02515"></a><span class="lineno"> 2515</span> </div>
+<div class="line"><a id="l02522" name="l02522"></a><span class="lineno"><a class="line" href="group__devicetree-generic-chosen.html#ga9df6bacab5f579284f5f3c1e4856cd15"> 2522</a></span><span class="preprocessor">#define DT_HAS_CHOSEN(prop) IS_ENABLED(DT_CAT3(DT_CHOSEN_, prop, _EXISTS))</span></div>
+<div class="line"><a id="l02523" name="l02523"></a><span class="lineno"> 2523</span> </div>
+<div class="line"><a id="l02543" name="l02543"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#gad27b29ae71a3d3294984fd3bc721121d"> 2543</a></span><span class="preprocessor">#define DT_FOREACH_NODE(fn) DT_FOREACH_HELPER(fn)</span></div>
+<div class="line"><a id="l02544" name="l02544"></a><span class="lineno"> 2544</span> </div>
+<div class="line"><a id="l02557" name="l02557"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#ga4e708120bf839568b1215a6c21c54eed"> 2557</a></span><span class="preprocessor">#define DT_FOREACH_NODE_VARGS(fn, ...) DT_FOREACH_VARGS_HELPER(fn, __VA_ARGS__)</span></div>
+<div class="line"><a id="l02558" name="l02558"></a><span class="lineno"> 2558</span> </div>
+<div class="line"><a id="l02570" name="l02570"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#ga926f68202042c9db05390e628787f916"> 2570</a></span><span class="preprocessor">#define DT_FOREACH_STATUS_OKAY_NODE(fn) DT_FOREACH_OKAY_HELPER(fn)</span></div>
+<div class="line"><a id="l02571" name="l02571"></a><span class="lineno"> 2571</span> </div>
+<div class="line"><a id="l02586" name="l02586"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#ga9aa3ee2b90a4ec30621597f4d1448c51"> 2586</a></span><span class="preprocessor">#define DT_FOREACH_STATUS_OKAY_NODE_VARGS(fn, ...) DT_FOREACH_OKAY_VARGS_HELPER(fn, __VA_ARGS__)</span></div>
+<div class="line"><a id="l02587" name="l02587"></a><span class="lineno"> 2587</span> </div>
+<div class="foldopen" id="foldopen02631" data-start="" data-end="">
+<div class="line"><a id="l02631" name="l02631"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#ga2f4eead8e8190110f5c0eb353e6a408f"> 2631</a></span><span class="preprocessor">#define DT_FOREACH_CHILD(node_id, fn) \</span></div>
+<div class="line"><a id="l02632" name="l02632"></a><span class="lineno"> 2632</span><span class="preprocessor">    DT_CAT(node_id, _FOREACH_CHILD)(fn)</span></div>
+</div>
+<div class="line"><a id="l02633" name="l02633"></a><span class="lineno"> 2633</span> </div>
+<div class="foldopen" id="foldopen02674" data-start="" data-end="">
+<div class="line"><a id="l02674" name="l02674"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#ga1fbeb335d66745803dbf7a185bf10afc"> 2674</a></span><span class="preprocessor">#define DT_FOREACH_CHILD_SEP(node_id, fn, sep) \</span></div>
+<div class="line"><a id="l02675" name="l02675"></a><span class="lineno"> 2675</span><span class="preprocessor">    DT_CAT(node_id, _FOREACH_CHILD_SEP)(fn, sep)</span></div>
+</div>
+<div class="line"><a id="l02676" name="l02676"></a><span class="lineno"> 2676</span> </div>
+<div class="foldopen" id="foldopen02692" data-start="" data-end="">
+<div class="line"><a id="l02692" name="l02692"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#gae7461e9fa4687bf88cdd7c76f30986de"> 2692</a></span><span class="preprocessor">#define DT_FOREACH_CHILD_VARGS(node_id, fn, ...) \</span></div>
+<div class="line"><a id="l02693" name="l02693"></a><span class="lineno"> 2693</span><span class="preprocessor">    DT_CAT(node_id, _FOREACH_CHILD_VARGS)(fn, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l02694" name="l02694"></a><span class="lineno"> 2694</span> </div>
+<div class="foldopen" id="foldopen02710" data-start="" data-end="">
+<div class="line"><a id="l02710" name="l02710"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#ga0042485aef7caaa48fa252b76a6629aa"> 2710</a></span><span class="preprocessor">#define DT_FOREACH_CHILD_SEP_VARGS(node_id, fn, sep, ...) \</span></div>
+<div class="line"><a id="l02711" name="l02711"></a><span class="lineno"> 2711</span><span class="preprocessor">    DT_CAT(node_id, _FOREACH_CHILD_SEP_VARGS)(fn, sep, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l02712" name="l02712"></a><span class="lineno"> 2712</span> </div>
+<div class="foldopen" id="foldopen02728" data-start="" data-end="">
+<div class="line"><a id="l02728" name="l02728"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#gae907df926b94f1da52b1ab701392f3bd"> 2728</a></span><span class="preprocessor">#define DT_FOREACH_CHILD_STATUS_OKAY(node_id, fn) \</span></div>
+<div class="line"><a id="l02729" name="l02729"></a><span class="lineno"> 2729</span><span class="preprocessor">    DT_CAT(node_id, _FOREACH_CHILD_STATUS_OKAY)(fn)</span></div>
+</div>
+<div class="line"><a id="l02730" name="l02730"></a><span class="lineno"> 2730</span> </div>
+<div class="foldopen" id="foldopen02747" data-start="" data-end="">
+<div class="line"><a id="l02747" name="l02747"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#ga97414c01ebbb6df5ee2862c0ee9d44ce"> 2747</a></span><span class="preprocessor">#define DT_FOREACH_CHILD_STATUS_OKAY_SEP(node_id, fn, sep) \</span></div>
+<div class="line"><a id="l02748" name="l02748"></a><span class="lineno"> 2748</span><span class="preprocessor">    DT_CAT(node_id, _FOREACH_CHILD_STATUS_OKAY_SEP)(fn, sep)</span></div>
+</div>
+<div class="line"><a id="l02749" name="l02749"></a><span class="lineno"> 2749</span> </div>
+<div class="foldopen" id="foldopen02769" data-start="" data-end="">
+<div class="line"><a id="l02769" name="l02769"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#ga8bbf6992e5f90d8a28035ea6211dd2a3"> 2769</a></span><span class="preprocessor">#define DT_FOREACH_CHILD_STATUS_OKAY_VARGS(node_id, fn, ...) \</span></div>
+<div class="line"><a id="l02770" name="l02770"></a><span class="lineno"> 2770</span><span class="preprocessor">    DT_CAT(node_id, _FOREACH_CHILD_STATUS_OKAY_VARGS)(fn, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l02771" name="l02771"></a><span class="lineno"> 2771</span> </div>
+<div class="foldopen" id="foldopen02790" data-start="" data-end="">
+<div class="line"><a id="l02790" name="l02790"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#gaf46c1ac296f0d6c9388c3ca6fb4ca5cd"> 2790</a></span><span class="preprocessor">#define DT_FOREACH_CHILD_STATUS_OKAY_SEP_VARGS(node_id, fn, sep, ...) \</span></div>
+<div class="line"><a id="l02791" name="l02791"></a><span class="lineno"> 2791</span><span class="preprocessor">    DT_CAT(node_id, _FOREACH_CHILD_STATUS_OKAY_SEP_VARGS)(fn, sep, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l02792" name="l02792"></a><span class="lineno"> 2792</span> </div>
+<div class="foldopen" id="foldopen02843" data-start="" data-end="">
+<div class="line"><a id="l02843" name="l02843"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#ga118a0477ab297a1bda9e16acf556babc"> 2843</a></span><span class="preprocessor">#define DT_FOREACH_PROP_ELEM(node_id, prop, fn)     \</span></div>
+<div class="line"><a id="l02844" name="l02844"></a><span class="lineno"> 2844</span><span class="preprocessor">    DT_CAT4(node_id, _P_, prop, _FOREACH_PROP_ELEM)(fn)</span></div>
+</div>
+<div class="line"><a id="l02845" name="l02845"></a><span class="lineno"> 2845</span> </div>
+<div class="foldopen" id="foldopen02888" data-start="" data-end="">
+<div class="line"><a id="l02888" name="l02888"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#ga72d0b6859b4fc61cde518aee118d9ed8"> 2888</a></span><span class="preprocessor">#define DT_FOREACH_PROP_ELEM_SEP(node_id, prop, fn, sep) \</span></div>
+<div class="line"><a id="l02889" name="l02889"></a><span class="lineno"> 2889</span><span class="preprocessor">    DT_CAT4(node_id, _P_, prop, _FOREACH_PROP_ELEM_SEP)(fn, sep)</span></div>
+</div>
+<div class="line"><a id="l02890" name="l02890"></a><span class="lineno"> 2890</span> </div>
+<div class="foldopen" id="foldopen02911" data-start="" data-end="">
+<div class="line"><a id="l02911" name="l02911"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#gaae36970d49c860414374c76e136a9607"> 2911</a></span><span class="preprocessor">#define DT_FOREACH_PROP_ELEM_VARGS(node_id, prop, fn, ...)      \</span></div>
+<div class="line"><a id="l02912" name="l02912"></a><span class="lineno"> 2912</span><span class="preprocessor">    DT_CAT4(node_id, _P_, prop, _FOREACH_PROP_ELEM_VARGS)(fn, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l02913" name="l02913"></a><span class="lineno"> 2913</span> </div>
+<div class="foldopen" id="foldopen02930" data-start="" data-end="">
+<div class="line"><a id="l02930" name="l02930"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#ga29120ee8718b889273dc2649ab25438f"> 2930</a></span><span class="preprocessor">#define DT_FOREACH_PROP_ELEM_SEP_VARGS(node_id, prop, fn, sep, ...) \</span></div>
+<div class="line"><a id="l02931" name="l02931"></a><span class="lineno"> 2931</span><span class="preprocessor">    DT_CAT4(node_id, _P_, prop, _FOREACH_PROP_ELEM_SEP_VARGS)(  \</span></div>
+<div class="line"><a id="l02932" name="l02932"></a><span class="lineno"> 2932</span><span class="preprocessor">        fn, sep, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l02933" name="l02933"></a><span class="lineno"> 2933</span> </div>
+<div class="foldopen" id="foldopen02987" data-start="" data-end="">
+<div class="line"><a id="l02987" name="l02987"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#ga52b34316d269cc8d8ef2244d3ca460b8"> 2987</a></span><span class="preprocessor">#define DT_FOREACH_STATUS_OKAY(compat, fn)              \</span></div>
+<div class="line"><a id="l02988" name="l02988"></a><span class="lineno"> 2988</span><span class="preprocessor">    COND_CODE_1(DT_HAS_COMPAT_STATUS_OKAY(compat),          \</span></div>
+<div class="line"><a id="l02989" name="l02989"></a><span class="lineno"> 2989</span><span class="preprocessor">            (UTIL_CAT(DT_FOREACH_OKAY_, compat)(fn)),   \</span></div>
+<div class="line"><a id="l02990" name="l02990"></a><span class="lineno"> 2990</span><span class="preprocessor">            ())</span></div>
+</div>
+<div class="line"><a id="l02991" name="l02991"></a><span class="lineno"> 2991</span> </div>
+<div class="foldopen" id="foldopen03036" data-start="" data-end="">
+<div class="line"><a id="l03036" name="l03036"></a><span class="lineno"><a class="line" href="group__devicetree-generic-foreach.html#ga99cf30d6cf4847ed99ba7d81ad2b49d0"> 3036</a></span><span class="preprocessor">#define DT_FOREACH_STATUS_OKAY_VARGS(compat, fn, ...)           \</span></div>
+<div class="line"><a id="l03037" name="l03037"></a><span class="lineno"> 3037</span><span class="preprocessor">    COND_CODE_1(DT_HAS_COMPAT_STATUS_OKAY(compat),          \</span></div>
+<div class="line"><a id="l03038" name="l03038"></a><span class="lineno"> 3038</span><span class="preprocessor">            (UTIL_CAT(DT_FOREACH_OKAY_VARGS_,           \</span></div>
+<div class="line"><a id="l03039" name="l03039"></a><span class="lineno"> 3039</span><span class="preprocessor">                  compat)(fn, __VA_ARGS__)),        \</span></div>
+<div class="line"><a id="l03040" name="l03040"></a><span class="lineno"> 3040</span><span class="preprocessor">            ())</span></div>
+</div>
+<div class="line"><a id="l03041" name="l03041"></a><span class="lineno"> 3041</span> </div>
+<div class="line"><a id="l03066" name="l03066"></a><span class="lineno"><a class="line" href="group__devicetree-generic-exist.html#ga9d5cf40051d042b853f6b0088fd4500a"> 3066</a></span><span class="preprocessor">#define DT_NODE_EXISTS(node_id) IS_ENABLED(DT_CAT(node_id, _EXISTS))</span></div>
+<div class="line"><a id="l03067" name="l03067"></a><span class="lineno"> 3067</span> </div>
+<div class="foldopen" id="foldopen03089" data-start="" data-end="">
+<div class="line"><a id="l03089" name="l03089"></a><span class="lineno"><a class="line" href="group__devicetree-generic-exist.html#ga3b769d8105c7679e1d0575a1e7f1f653"> 3089</a></span><span class="preprocessor">#define DT_NODE_HAS_STATUS(node_id, status) \</span></div>
+<div class="line"><a id="l03090" name="l03090"></a><span class="lineno"> 3090</span><span class="preprocessor">    DT_NODE_HAS_STATUS_INTERNAL(node_id, status)</span></div>
+</div>
+<div class="line"><a id="l03091" name="l03091"></a><span class="lineno"> 3091</span> </div>
+<div class="foldopen" id="foldopen03111" data-start="" data-end="">
+<div class="line"><a id="l03111" name="l03111"></a><span class="lineno"><a class="line" href="group__devicetree-generic-exist.html#ga916e11b66fdaab46e93c25241b62b52a"> 3111</a></span><span class="preprocessor">#define DT_HAS_COMPAT_STATUS_OKAY(compat) \</span></div>
+<div class="line"><a id="l03112" name="l03112"></a><span class="lineno"> 3112</span><span class="preprocessor">    IS_ENABLED(DT_CAT(DT_COMPAT_HAS_OKAY_, compat))</span></div>
+</div>
+<div class="line"><a id="l03113" name="l03113"></a><span class="lineno"> 3113</span> </div>
+<div class="foldopen" id="foldopen03120" data-start="" data-end="">
+<div class="line"><a id="l03120" name="l03120"></a><span class="lineno"><a class="line" href="group__devicetree-generic-exist.html#ga45c268d7f0d604a72dc0bcf5cd0733b0"> 3120</a></span><span class="preprocessor">#define DT_NUM_INST_STATUS_OKAY(compat)         \</span></div>
+<div class="line"><a id="l03121" name="l03121"></a><span class="lineno"> 3121</span><span class="preprocessor">    UTIL_AND(DT_HAS_COMPAT_STATUS_OKAY(compat),     \</span></div>
+<div class="line"><a id="l03122" name="l03122"></a><span class="lineno"> 3122</span><span class="preprocessor">         UTIL_CAT(DT_N_INST, DT_DASH(compat, NUM_OKAY)))</span></div>
+</div>
+<div class="line"><a id="l03123" name="l03123"></a><span class="lineno"> 3123</span> </div>
+<div class="foldopen" id="foldopen03151" data-start="" data-end="">
+<div class="line"><a id="l03151" name="l03151"></a><span class="lineno"><a class="line" href="group__devicetree-generic-exist.html#gad8912ba5db980713e72257472ded3ced"> 3151</a></span><span class="preprocessor">#define DT_NODE_HAS_COMPAT(node_id, compat) \</span></div>
+<div class="line"><a id="l03152" name="l03152"></a><span class="lineno"> 3152</span><span class="preprocessor">    IS_ENABLED(DT_CAT3(node_id, _COMPAT_MATCHES_, compat))</span></div>
+</div>
+<div class="line"><a id="l03153" name="l03153"></a><span class="lineno"> 3153</span> </div>
+<div class="foldopen" id="foldopen03168" data-start="" data-end="">
+<div class="line"><a id="l03168" name="l03168"></a><span class="lineno"><a class="line" href="group__devicetree-generic-exist.html#ga9bf6258fbeb0c5cd1fd15b9c9be9228a"> 3168</a></span><span class="preprocessor">#define DT_NODE_HAS_COMPAT_STATUS(node_id, compat, status) \</span></div>
+<div class="line"><a id="l03169" name="l03169"></a><span class="lineno"> 3169</span><span class="preprocessor">    DT_NODE_HAS_COMPAT(node_id, compat) &amp;&amp; DT_NODE_HAS_STATUS(node_id, status)</span></div>
+</div>
+<div class="line"><a id="l03170" name="l03170"></a><span class="lineno"> 3170</span> </div>
+<div class="foldopen" id="foldopen03184" data-start="" data-end="">
+<div class="line"><a id="l03184" name="l03184"></a><span class="lineno"><a class="line" href="group__devicetree-generic-exist.html#gacce67bf20541cd2d07d8540058964692"> 3184</a></span><span class="preprocessor">#define DT_NODE_HAS_PROP(node_id, prop) \</span></div>
+<div class="line"><a id="l03185" name="l03185"></a><span class="lineno"> 3185</span><span class="preprocessor">    IS_ENABLED(DT_CAT4(node_id, _P_, prop, _EXISTS))</span></div>
+</div>
+<div class="line"><a id="l03186" name="l03186"></a><span class="lineno"> 3186</span> </div>
+<div class="line"><a id="l03187" name="l03187"></a><span class="lineno"> 3187</span> </div>
+<div class="foldopen" id="foldopen03204" data-start="" data-end="">
+<div class="line"><a id="l03204" name="l03204"></a><span class="lineno"><a class="line" href="group__devicetree-generic-exist.html#gacfbd6a2cb3038e5aba1e2216d65ebc78"> 3204</a></span><span class="preprocessor">#define DT_PHA_HAS_CELL_AT_IDX(node_id, pha, idx, cell)             \</span></div>
+<div class="line"><a id="l03205" name="l03205"></a><span class="lineno"> 3205</span><span class="preprocessor">    IS_ENABLED(DT_CAT8(node_id, _P_, pha,               \</span></div>
+<div class="line"><a id="l03206" name="l03206"></a><span class="lineno"> 3206</span><span class="preprocessor">               _IDX_, idx, _VAL_, cell, _EXISTS))</span></div>
+</div>
+<div class="line"><a id="l03207" name="l03207"></a><span class="lineno"> 3207</span> </div>
+<div class="foldopen" id="foldopen03217" data-start="" data-end="">
+<div class="line"><a id="l03217" name="l03217"></a><span class="lineno"><a class="line" href="group__devicetree-generic-exist.html#gaece280102681cbadf318c5dabfb3d719"> 3217</a></span><span class="preprocessor">#define DT_PHA_HAS_CELL(node_id, pha, cell) \</span></div>
+<div class="line"><a id="l03218" name="l03218"></a><span class="lineno"> 3218</span><span class="preprocessor">    DT_PHA_HAS_CELL_AT_IDX(node_id, pha, 0, cell)</span></div>
+</div>
+<div class="line"><a id="l03219" name="l03219"></a><span class="lineno"> 3219</span> </div>
+<div class="line"><a id="l03261" name="l03261"></a><span class="lineno"><a class="line" href="group__devicetree-generic-bus.html#ga1082d31ac2dafdf9e085d4c23f2169dc"> 3261</a></span><span class="preprocessor">#define DT_BUS(node_id) DT_CAT(node_id, _BUS)</span></div>
+<div class="line"><a id="l03262" name="l03262"></a><span class="lineno"> 3262</span> </div>
+<div class="line"><a id="l03271" name="l03271"></a><span class="lineno"><a class="line" href="group__devicetree-generic-bus.html#gafad22db654acc60d743571832533aa9c"> 3271</a></span><span class="preprocessor">#define DT_BUS_LABEL(node_id) DT_PROP(DT_BUS(node_id), label) __DEPRECATED_MACRO</span></div>
+<div class="line"><a id="l03272" name="l03272"></a><span class="lineno"> 3272</span> </div>
+<div class="line"><a id="l03301" name="l03301"></a><span class="lineno"><a class="line" href="group__devicetree-generic-bus.html#gabe5eea44ff838c11dc5b75f9ec2a9317"> 3301</a></span><span class="preprocessor">#define DT_ON_BUS(node_id, bus) IS_ENABLED(DT_CAT3(node_id, _BUS_, bus))</span></div>
+<div class="line"><a id="l03302" name="l03302"></a><span class="lineno"> 3302</span> </div>
+<div class="line"><a id="l03319" name="l03319"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga219f413efba2f4c0151468b9a25a8dc1"> 3319</a></span><span class="preprocessor">#define DT_DRV_INST(inst) DT_INST(inst, DT_DRV_COMPAT)</span></div>
+<div class="line"><a id="l03320" name="l03320"></a><span class="lineno"> 3320</span> </div>
+<div class="line"><a id="l03328" name="l03328"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga176760ce1a019020b5465eebd4f44ff5"> 3328</a></span><span class="preprocessor">#define DT_INST_PARENT(inst) DT_PARENT(DT_DRV_INST(inst))</span></div>
+<div class="line"><a id="l03329" name="l03329"></a><span class="lineno"> 3329</span> </div>
+<div class="line"><a id="l03337" name="l03337"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga5c68d697534682988a51a343abed05c9"> 3337</a></span><span class="preprocessor">#define DT_INST_GPARENT(inst) DT_GPARENT(DT_DRV_INST(inst))</span></div>
+<div class="line"><a id="l03338" name="l03338"></a><span class="lineno"> 3338</span> </div>
+<div class="foldopen" id="foldopen03348" data-start="" data-end="">
+<div class="line"><a id="l03348" name="l03348"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaaa4bfec30b277e0a8e2b0285a988d61d"> 3348</a></span><span class="preprocessor">#define DT_INST_CHILD(inst, child) \</span></div>
+<div class="line"><a id="l03349" name="l03349"></a><span class="lineno"> 3349</span><span class="preprocessor">    DT_CHILD(DT_DRV_INST(inst), child)</span></div>
+</div>
+<div class="line"><a id="l03350" name="l03350"></a><span class="lineno"> 3350</span> </div>
+<div class="foldopen" id="foldopen03365" data-start="" data-end="">
+<div class="line"><a id="l03365" name="l03365"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga98f3fccc6f3004f72c3602a5f2b3a08e"> 3365</a></span><span class="preprocessor">#define DT_INST_FOREACH_CHILD(inst, fn) \</span></div>
+<div class="line"><a id="l03366" name="l03366"></a><span class="lineno"> 3366</span><span class="preprocessor">    DT_FOREACH_CHILD(DT_DRV_INST(inst), fn)</span></div>
+</div>
+<div class="line"><a id="l03367" name="l03367"></a><span class="lineno"> 3367</span> </div>
+<div class="foldopen" id="foldopen03381" data-start="" data-end="">
+<div class="line"><a id="l03381" name="l03381"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gae8d01eb2d6a576246f225a5cbbec34e5"> 3381</a></span><span class="preprocessor">#define DT_INST_FOREACH_CHILD_SEP(inst, fn, sep) \</span></div>
+<div class="line"><a id="l03382" name="l03382"></a><span class="lineno"> 3382</span><span class="preprocessor">    DT_FOREACH_CHILD_SEP(DT_DRV_INST(inst), fn, sep)</span></div>
+</div>
+<div class="line"><a id="l03383" name="l03383"></a><span class="lineno"> 3383</span> </div>
+<div class="foldopen" id="foldopen03399" data-start="" data-end="">
+<div class="line"><a id="l03399" name="l03399"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga455cb42d31b575d79f8cbbebbd353651"> 3399</a></span><span class="preprocessor">#define DT_INST_FOREACH_CHILD_VARGS(inst, fn, ...) \</span></div>
+<div class="line"><a id="l03400" name="l03400"></a><span class="lineno"> 3400</span><span class="preprocessor">    DT_FOREACH_CHILD_VARGS(DT_DRV_INST(inst), fn, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l03401" name="l03401"></a><span class="lineno"> 3401</span> </div>
+<div class="foldopen" id="foldopen03416" data-start="" data-end="">
+<div class="line"><a id="l03416" name="l03416"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gac70fcf3052d9dfa949d7e197fece1413"> 3416</a></span><span class="preprocessor">#define DT_INST_FOREACH_CHILD_SEP_VARGS(inst, fn, sep, ...) \</span></div>
+<div class="line"><a id="l03417" name="l03417"></a><span class="lineno"> 3417</span><span class="preprocessor">    DT_FOREACH_CHILD_SEP_VARGS(DT_DRV_INST(inst), fn, sep, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l03418" name="l03418"></a><span class="lineno"> 3418</span> </div>
+<div class="foldopen" id="foldopen03430" data-start="" data-end="">
+<div class="line"><a id="l03430" name="l03430"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gad416dd269b1af1e392ef81397b9bc814"> 3430</a></span><span class="preprocessor">#define DT_INST_FOREACH_CHILD_STATUS_OKAY(inst, fn) \</span></div>
+<div class="line"><a id="l03431" name="l03431"></a><span class="lineno"> 3431</span><span class="preprocessor">    DT_FOREACH_CHILD_STATUS_OKAY(DT_DRV_INST(inst), fn)</span></div>
+</div>
+<div class="line"><a id="l03432" name="l03432"></a><span class="lineno"> 3432</span> </div>
+<div class="foldopen" id="foldopen03447" data-start="" data-end="">
+<div class="line"><a id="l03447" name="l03447"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gae28554827ab7aaac3578ef07747a589d"> 3447</a></span><span class="preprocessor">#define DT_INST_FOREACH_CHILD_STATUS_OKAY_SEP(inst, fn, sep) \</span></div>
+<div class="line"><a id="l03448" name="l03448"></a><span class="lineno"> 3448</span><span class="preprocessor">    DT_FOREACH_CHILD_STATUS_OKAY_SEP(DT_DRV_INST(inst), fn, sep)</span></div>
+</div>
+<div class="line"><a id="l03449" name="l03449"></a><span class="lineno"> 3449</span> </div>
+<div class="foldopen" id="foldopen03463" data-start="" data-end="">
+<div class="line"><a id="l03463" name="l03463"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gac6dd19b2b6e603c11701cd07daec73d3"> 3463</a></span><span class="preprocessor">#define DT_INST_FOREACH_CHILD_STATUS_OKAY_VARGS(inst, fn, ...) \</span></div>
+<div class="line"><a id="l03464" name="l03464"></a><span class="lineno"> 3464</span><span class="preprocessor">    DT_FOREACH_CHILD_STATUS_OKAY_VARGS(DT_DRV_INST(inst), fn, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l03465" name="l03465"></a><span class="lineno"> 3465</span> </div>
+<div class="foldopen" id="foldopen03481" data-start="" data-end="">
+<div class="line"><a id="l03481" name="l03481"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga236cca0984f1c701c9b4855111c6cb29"> 3481</a></span><span class="preprocessor">#define DT_INST_FOREACH_CHILD_STATUS_OKAY_SEP_VARGS(inst, fn, sep, ...) \</span></div>
+<div class="line"><a id="l03482" name="l03482"></a><span class="lineno"> 3482</span><span class="preprocessor">    DT_FOREACH_CHILD_STATUS_OKAY_SEP_VARGS(DT_DRV_INST(inst), fn, sep, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l03483" name="l03483"></a><span class="lineno"> 3483</span> </div>
+<div class="foldopen" id="foldopen03490" data-start="" data-end="">
+<div class="line"><a id="l03490" name="l03490"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga866d6c28eb7a72ba9831c7ee1ecb98d2"> 3490</a></span><span class="preprocessor">#define DT_INST_ENUM_IDX(inst, prop) \</span></div>
+<div class="line"><a id="l03491" name="l03491"></a><span class="lineno"> 3491</span><span class="preprocessor">    DT_ENUM_IDX(DT_DRV_INST(inst), prop)</span></div>
+</div>
+<div class="line"><a id="l03492" name="l03492"></a><span class="lineno"> 3492</span> </div>
+<div class="foldopen" id="foldopen03501" data-start="" data-end="">
+<div class="line"><a id="l03501" name="l03501"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gafbf64148f9171ffd322f7689297e0da8"> 3501</a></span><span class="preprocessor">#define DT_INST_ENUM_IDX_OR(inst, prop, default_idx_value) \</span></div>
+<div class="line"><a id="l03502" name="l03502"></a><span class="lineno"> 3502</span><span class="preprocessor">    DT_ENUM_IDX_OR(DT_DRV_INST(inst), prop, default_idx_value)</span></div>
+</div>
+<div class="line"><a id="l03503" name="l03503"></a><span class="lineno"> 3503</span> </div>
+<div class="foldopen" id="foldopen03512" data-start="" data-end="">
+<div class="line"><a id="l03512" name="l03512"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga80b0321efd592a63e39400e5327bb601"> 3512</a></span><span class="preprocessor">#define DT_INST_ENUM_HAS_VALUE(inst, prop, value) \</span></div>
+<div class="line"><a id="l03513" name="l03513"></a><span class="lineno"> 3513</span><span class="preprocessor">    DT_ENUM_HAS_VALUE(DT_DRV_INST(inst), prop, value)</span></div>
+</div>
+<div class="line"><a id="l03514" name="l03514"></a><span class="lineno"> 3514</span> </div>
+<div class="line"><a id="l03521" name="l03521"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga9dce2e631b2a94804e8f2bcc76c6eff8"> 3521</a></span><span class="preprocessor">#define DT_INST_PROP(inst, prop) DT_PROP(DT_DRV_INST(inst), prop)</span></div>
+<div class="line"><a id="l03522" name="l03522"></a><span class="lineno"> 3522</span> </div>
+<div class="line"><a id="l03529" name="l03529"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga9471df75ff3c4f8d2298bb69c581b365"> 3529</a></span><span class="preprocessor">#define DT_INST_PROP_LEN(inst, prop) DT_PROP_LEN(DT_DRV_INST(inst), prop)</span></div>
+<div class="line"><a id="l03530" name="l03530"></a><span class="lineno"> 3530</span> </div>
+<div class="foldopen" id="foldopen03540" data-start="" data-end="">
+<div class="line"><a id="l03540" name="l03540"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga2c51745f8d51b1d9cdfb1cde69911d48"> 3540</a></span><span class="preprocessor">#define DT_INST_PROP_HAS_IDX(inst, prop, idx) \</span></div>
+<div class="line"><a id="l03541" name="l03541"></a><span class="lineno"> 3541</span><span class="preprocessor">    DT_PROP_HAS_IDX(DT_DRV_INST(inst), prop, idx)</span></div>
+</div>
+<div class="line"><a id="l03542" name="l03542"></a><span class="lineno"> 3542</span> </div>
+<div class="foldopen" id="foldopen03551" data-start="" data-end="">
+<div class="line"><a id="l03551" name="l03551"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga75e13dcdbcc51da1334fa14653411dd8"> 3551</a></span><span class="preprocessor">#define DT_INST_PROP_HAS_NAME(inst, prop, name) \</span></div>
+<div class="line"><a id="l03552" name="l03552"></a><span class="lineno"> 3552</span><span class="preprocessor">    DT_PROP_HAS_NAME(DT_DRV_INST(inst), prop, name)</span></div>
+</div>
+<div class="line"><a id="l03553" name="l03553"></a><span class="lineno"> 3553</span> </div>
+<div class="foldopen" id="foldopen03561" data-start="" data-end="">
+<div class="line"><a id="l03561" name="l03561"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga5b60f4ed4f5dadc5dd425f5905f23b00"> 3561</a></span><span class="preprocessor">#define DT_INST_PROP_BY_IDX(inst, prop, idx) \</span></div>
+<div class="line"><a id="l03562" name="l03562"></a><span class="lineno"> 3562</span><span class="preprocessor">    DT_PROP_BY_IDX(DT_DRV_INST(inst), prop, idx)</span></div>
+</div>
+<div class="line"><a id="l03563" name="l03563"></a><span class="lineno"> 3563</span> </div>
+<div class="foldopen" id="foldopen03571" data-start="" data-end="">
+<div class="line"><a id="l03571" name="l03571"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaa51bd8f5b016244e0256b3ed9aceee7f"> 3571</a></span><span class="preprocessor">#define DT_INST_PROP_OR(inst, prop, default_value) \</span></div>
+<div class="line"><a id="l03572" name="l03572"></a><span class="lineno"> 3572</span><span class="preprocessor">    DT_PROP_OR(DT_DRV_INST(inst), prop, default_value)</span></div>
+</div>
+<div class="line"><a id="l03573" name="l03573"></a><span class="lineno"> 3573</span> </div>
+<div class="foldopen" id="foldopen03581" data-start="" data-end="">
+<div class="line"><a id="l03581" name="l03581"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga9be8fdcc8c4032748b47f497efa19173"> 3581</a></span><span class="preprocessor">#define DT_INST_PROP_LEN_OR(inst, prop, default_value) \</span></div>
+<div class="line"><a id="l03582" name="l03582"></a><span class="lineno"> 3582</span><span class="preprocessor">    DT_PROP_LEN_OR(DT_DRV_INST(inst), prop, default_value)</span></div>
+</div>
+<div class="line"><a id="l03583" name="l03583"></a><span class="lineno"> 3583</span> </div>
+<div class="line"><a id="l03590" name="l03590"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaeb831ef33bb82335027cc762ecf5dfb1"> 3590</a></span><span class="preprocessor">#define DT_INST_LABEL(inst) DT_INST_PROP(inst, label) __DEPRECATED_MACRO</span></div>
+<div class="line"><a id="l03591" name="l03591"></a><span class="lineno"> 3591</span> </div>
+<div class="foldopen" id="foldopen03601" data-start="" data-end="">
+<div class="line"><a id="l03601" name="l03601"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga8e8c72187ce0d47fd24e4585f3d48484"> 3601</a></span><span class="preprocessor">#define DT_INST_STRING_TOKEN(inst, prop) \</span></div>
+<div class="line"><a id="l03602" name="l03602"></a><span class="lineno"> 3602</span><span class="preprocessor">    DT_STRING_TOKEN(DT_DRV_INST(inst), prop)</span></div>
+</div>
+<div class="line"><a id="l03603" name="l03603"></a><span class="lineno"> 3603</span> </div>
+<div class="foldopen" id="foldopen03611" data-start="" data-end="">
+<div class="line"><a id="l03611" name="l03611"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga0487d19ae023acb9b0eb613317f31aa5"> 3611</a></span><span class="preprocessor">#define DT_INST_STRING_UPPER_TOKEN(inst, prop) \</span></div>
+<div class="line"><a id="l03612" name="l03612"></a><span class="lineno"> 3612</span><span class="preprocessor">    DT_STRING_UPPER_TOKEN(DT_DRV_INST(inst), prop)</span></div>
+</div>
+<div class="line"><a id="l03613" name="l03613"></a><span class="lineno"> 3613</span> </div>
+<div class="foldopen" id="foldopen03622" data-start="" data-end="">
+<div class="line"><a id="l03622" name="l03622"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga1c4fc4c808113cb6e0d7b54af9869228"> 3622</a></span><span class="preprocessor">#define DT_INST_STRING_UNQUOTED(inst, prop) \</span></div>
+<div class="line"><a id="l03623" name="l03623"></a><span class="lineno"> 3623</span><span class="preprocessor">    DT_STRING_UNQUOTED(DT_DRV_INST(inst), prop)</span></div>
+</div>
+<div class="line"><a id="l03624" name="l03624"></a><span class="lineno"> 3624</span> </div>
+<div class="foldopen" id="foldopen03632" data-start="" data-end="">
+<div class="line"><a id="l03632" name="l03632"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gae1c28cbd9c1869112d2ae5c7ddf00b97"> 3632</a></span><span class="preprocessor">#define DT_INST_STRING_TOKEN_BY_IDX(inst, prop, idx) \</span></div>
+<div class="line"><a id="l03633" name="l03633"></a><span class="lineno"> 3633</span><span class="preprocessor">    DT_STRING_TOKEN_BY_IDX(DT_DRV_INST(inst), prop, idx)</span></div>
+</div>
+<div class="line"><a id="l03634" name="l03634"></a><span class="lineno"> 3634</span> </div>
+<div class="foldopen" id="foldopen03642" data-start="" data-end="">
+<div class="line"><a id="l03642" name="l03642"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga4ceceec8375d70b40a4dec1a8ab5ee29"> 3642</a></span><span class="preprocessor">#define DT_INST_STRING_UPPER_TOKEN_BY_IDX(inst, prop, idx) \</span></div>
+<div class="line"><a id="l03643" name="l03643"></a><span class="lineno"> 3643</span><span class="preprocessor">    DT_STRING_UPPER_TOKEN_BY_IDX(DT_DRV_INST(inst), prop, idx)</span></div>
+</div>
+<div class="line"><a id="l03644" name="l03644"></a><span class="lineno"> 3644</span> </div>
+<div class="foldopen" id="foldopen03652" data-start="" data-end="">
+<div class="line"><a id="l03652" name="l03652"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gac5768077e2a3d14a69efc653cfc59d5d"> 3652</a></span><span class="preprocessor">#define DT_INST_STRING_UNQUOTED_BY_IDX(inst, prop, idx) \</span></div>
+<div class="line"><a id="l03653" name="l03653"></a><span class="lineno"> 3653</span><span class="preprocessor">    DT_STRING_UNQUOTED_BY_IDX(DT_DRV_INST(inst), prop, idx)</span></div>
+</div>
+<div class="line"><a id="l03654" name="l03654"></a><span class="lineno"> 3654</span> </div>
+<div class="foldopen" id="foldopen03663" data-start="" data-end="">
+<div class="line"><a id="l03663" name="l03663"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga1f26b1c5b6c7a8c3c02c09d72a00afa5"> 3663</a></span><span class="preprocessor">#define DT_INST_PROP_BY_PHANDLE(inst, ph, prop) \</span></div>
+<div class="line"><a id="l03664" name="l03664"></a><span class="lineno"> 3664</span><span class="preprocessor">    DT_INST_PROP_BY_PHANDLE_IDX(inst, ph, 0, prop)</span></div>
+</div>
+<div class="line"><a id="l03665" name="l03665"></a><span class="lineno"> 3665</span> </div>
+<div class="foldopen" id="foldopen03677" data-start="" data-end="">
+<div class="line"><a id="l03677" name="l03677"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gad027963bdf159942cf6fb28b04e8d48e"> 3677</a></span><span class="preprocessor">#define DT_INST_PROP_BY_PHANDLE_IDX(inst, phs, idx, prop) \</span></div>
+<div class="line"><a id="l03678" name="l03678"></a><span class="lineno"> 3678</span><span class="preprocessor">    DT_PROP_BY_PHANDLE_IDX(DT_DRV_INST(inst), phs, idx, prop)</span></div>
+</div>
+<div class="line"><a id="l03679" name="l03679"></a><span class="lineno"> 3679</span> </div>
+<div class="foldopen" id="foldopen03688" data-start="" data-end="">
+<div class="line"><a id="l03688" name="l03688"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaac886e11906d628acad1d73ed3a64018"> 3688</a></span><span class="preprocessor">#define DT_INST_PHA_BY_IDX(inst, pha, idx, cell) \</span></div>
+<div class="line"><a id="l03689" name="l03689"></a><span class="lineno"> 3689</span><span class="preprocessor">    DT_PHA_BY_IDX(DT_DRV_INST(inst), pha, idx, cell)</span></div>
+</div>
+<div class="line"><a id="l03690" name="l03690"></a><span class="lineno"> 3690</span> </div>
+<div class="foldopen" id="foldopen03700" data-start="" data-end="">
+<div class="line"><a id="l03700" name="l03700"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga3db4c00e072bd93fa92e36907b2b5e86"> 3700</a></span><span class="preprocessor">#define DT_INST_PHA_BY_IDX_OR(inst, pha, idx, cell, default_value) \</span></div>
+<div class="line"><a id="l03701" name="l03701"></a><span class="lineno"> 3701</span><span class="preprocessor">    DT_PHA_BY_IDX_OR(DT_DRV_INST(inst), pha, idx, cell, default_value)</span></div>
+</div>
+<div class="line"><a id="l03702" name="l03702"></a><span class="lineno"> 3702</span> </div>
+<div class="line"><a id="l03711" name="l03711"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga0de189f14fa7dd38a99382b7f2adbff8"> 3711</a></span><span class="preprocessor">#define DT_INST_PHA(inst, pha, cell) DT_INST_PHA_BY_IDX(inst, pha, 0, cell)</span></div>
+<div class="line"><a id="l03712" name="l03712"></a><span class="lineno"> 3712</span> </div>
+<div class="foldopen" id="foldopen03721" data-start="" data-end="">
+<div class="line"><a id="l03721" name="l03721"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga491ad421602e41c4295bac61b595fc94"> 3721</a></span><span class="preprocessor">#define DT_INST_PHA_OR(inst, pha, cell, default_value) \</span></div>
+<div class="line"><a id="l03722" name="l03722"></a><span class="lineno"> 3722</span><span class="preprocessor">    DT_INST_PHA_BY_IDX_OR(inst, pha, 0, cell, default_value)</span></div>
+</div>
+<div class="line"><a id="l03723" name="l03723"></a><span class="lineno"> 3723</span> </div>
+<div class="foldopen" id="foldopen03733" data-start="" data-end="">
+<div class="line"><a id="l03733" name="l03733"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga25418914c5190df10c842744aa967dc8"> 3733</a></span><span class="preprocessor">#define DT_INST_PHA_BY_NAME(inst, pha, name, cell) \</span></div>
+<div class="line"><a id="l03734" name="l03734"></a><span class="lineno"> 3734</span><span class="preprocessor">    DT_PHA_BY_NAME(DT_DRV_INST(inst), pha, name, cell)</span></div>
+</div>
+<div class="line"><a id="l03735" name="l03735"></a><span class="lineno"> 3735</span> </div>
+<div class="foldopen" id="foldopen03745" data-start="" data-end="">
+<div class="line"><a id="l03745" name="l03745"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaaebc5c643b60319f7e767e46ca226729"> 3745</a></span><span class="preprocessor">#define DT_INST_PHA_BY_NAME_OR(inst, pha, name, cell, default_value) \</span></div>
+<div class="line"><a id="l03746" name="l03746"></a><span class="lineno"> 3746</span><span class="preprocessor">    DT_PHA_BY_NAME_OR(DT_DRV_INST(inst), pha, name, cell, default_value)</span></div>
+</div>
+<div class="line"><a id="l03747" name="l03747"></a><span class="lineno"> 3747</span> </div>
+<div class="foldopen" id="foldopen03756" data-start="" data-end="">
+<div class="line"><a id="l03756" name="l03756"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga64d8ddaad8b2d3852e30686d3adf6551"> 3756</a></span><span class="preprocessor">#define DT_INST_PHANDLE_BY_NAME(inst, pha, name) \</span></div>
+<div class="line"><a id="l03757" name="l03757"></a><span class="lineno"> 3757</span><span class="preprocessor">    DT_PHANDLE_BY_NAME(DT_DRV_INST(inst), pha, name) \</span></div>
+<div class="line"><a id="l03758" name="l03758"></a><span class="lineno"> 3758</span><span class="preprocessor"></span> </div>
+</div>
+<div class="foldopen" id="foldopen03768" data-start="" data-end="">
+<div class="line"><a id="l03768" name="l03768"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga10d93a1f9a9f5e225508c4c383654b1c"> 3768</a></span><span class="preprocessor">#define DT_INST_PHANDLE_BY_IDX(inst, prop, idx) \</span></div>
+<div class="line"><a id="l03769" name="l03769"></a><span class="lineno"> 3769</span><span class="preprocessor">    DT_PHANDLE_BY_IDX(DT_DRV_INST(inst), prop, idx)</span></div>
+</div>
+<div class="line"><a id="l03770" name="l03770"></a><span class="lineno"> 3770</span> </div>
+<div class="line"><a id="l03779" name="l03779"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga81c10f478c86e5a4c18eb7a990447137"> 3779</a></span><span class="preprocessor">#define DT_INST_PHANDLE(inst, prop) DT_INST_PHANDLE_BY_IDX(inst, prop, 0)</span></div>
+<div class="line"><a id="l03780" name="l03780"></a><span class="lineno"> 3780</span> </div>
+<div class="line"><a id="l03788" name="l03788"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga26bbff9ebaed549140d2530a0b99e8a4"> 3788</a></span><span class="preprocessor">#define DT_INST_REG_HAS_IDX(inst, idx) DT_REG_HAS_IDX(DT_DRV_INST(inst), idx)</span></div>
+<div class="line"><a id="l03789" name="l03789"></a><span class="lineno"> 3789</span> </div>
+<div class="line"><a id="l03796" name="l03796"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga0fe0403821883598da6cfad4f3962115"> 3796</a></span><span class="preprocessor">#define DT_INST_REG_ADDR_BY_IDX(inst, idx) DT_REG_ADDR_BY_IDX(DT_DRV_INST(inst), idx)</span></div>
+<div class="line"><a id="l03797" name="l03797"></a><span class="lineno"> 3797</span> </div>
+<div class="foldopen" id="foldopen03804" data-start="" data-end="">
+<div class="line"><a id="l03804" name="l03804"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gab1152c9f069c69b0269c1a4e744b9dd9"> 3804</a></span><span class="preprocessor">#define DT_INST_REG_SIZE_BY_IDX(inst, idx) \</span></div>
+<div class="line"><a id="l03805" name="l03805"></a><span class="lineno"> 3805</span><span class="preprocessor">    DT_REG_SIZE_BY_IDX(DT_DRV_INST(inst), idx)</span></div>
+</div>
+<div class="line"><a id="l03806" name="l03806"></a><span class="lineno"> 3806</span> </div>
+<div class="foldopen" id="foldopen03813" data-start="" data-end="">
+<div class="line"><a id="l03813" name="l03813"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga722d6f7b97136aa9229242e4ba7dd25c"> 3813</a></span><span class="preprocessor">#define DT_INST_REG_ADDR_BY_NAME(inst, name) \</span></div>
+<div class="line"><a id="l03814" name="l03814"></a><span class="lineno"> 3814</span><span class="preprocessor">    DT_REG_ADDR_BY_NAME(DT_DRV_INST(inst), name)</span></div>
+</div>
+<div class="line"><a id="l03815" name="l03815"></a><span class="lineno"> 3815</span> </div>
+<div class="foldopen" id="foldopen03828" data-start="" data-end="">
+<div class="line"><a id="l03828" name="l03828"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga8af83c4c65e607b93aa60a690295d625"> 3828</a></span><span class="preprocessor">#define DT_INST_REG_ADDR_BY_NAME_U64(inst, name) \</span></div>
+<div class="line"><a id="l03829" name="l03829"></a><span class="lineno"> 3829</span><span class="preprocessor">    DT_U64_C(DT_INST_REG_ADDR_BY_NAME(inst, name))</span></div>
+</div>
+<div class="line"><a id="l03830" name="l03830"></a><span class="lineno"> 3830</span> </div>
+<div class="foldopen" id="foldopen03837" data-start="" data-end="">
+<div class="line"><a id="l03837" name="l03837"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaf82457c5dcfef7eeba074afb95d48714"> 3837</a></span><span class="preprocessor">#define DT_INST_REG_SIZE_BY_NAME(inst, name) \</span></div>
+<div class="line"><a id="l03838" name="l03838"></a><span class="lineno"> 3838</span><span class="preprocessor">    DT_REG_SIZE_BY_NAME(DT_DRV_INST(inst), name)</span></div>
+</div>
+<div class="line"><a id="l03839" name="l03839"></a><span class="lineno"> 3839</span> </div>
+<div class="line"><a id="l03845" name="l03845"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gafde8fa67b94ac959ba2e24b44b3386a7"> 3845</a></span><span class="preprocessor">#define DT_INST_REG_ADDR(inst) DT_INST_REG_ADDR_BY_IDX(inst, 0)</span></div>
+<div class="line"><a id="l03846" name="l03846"></a><span class="lineno"> 3846</span> </div>
+<div class="line"><a id="l03858" name="l03858"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaba47dcabd8754eda87e35efd7289f976"> 3858</a></span><span class="preprocessor">#define DT_INST_REG_ADDR_U64(inst) DT_U64_C(DT_INST_REG_ADDR(inst))</span></div>
+<div class="line"><a id="l03859" name="l03859"></a><span class="lineno"> 3859</span> </div>
+<div class="line"><a id="l03865" name="l03865"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaa7cea29435e1db59470302abb5ee88dd"> 3865</a></span><span class="preprocessor">#define DT_INST_REG_SIZE(inst) DT_INST_REG_SIZE_BY_IDX(inst, 0)</span></div>
+<div class="line"><a id="l03866" name="l03866"></a><span class="lineno"> 3866</span> </div>
+<div class="foldopen" id="foldopen03874" data-start="" data-end="">
+<div class="line"><a id="l03874" name="l03874"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gad0d69a61ad842aa1dc3a5d4a304c3f2f"> 3874</a></span><span class="preprocessor">#define DT_INST_IRQ_BY_IDX(inst, idx, cell) \</span></div>
+<div class="line"><a id="l03875" name="l03875"></a><span class="lineno"> 3875</span><span class="preprocessor">    DT_IRQ_BY_IDX(DT_DRV_INST(inst), idx, cell)</span></div>
+</div>
+<div class="line"><a id="l03876" name="l03876"></a><span class="lineno"> 3876</span> </div>
+<div class="foldopen" id="foldopen03884" data-start="" data-end="">
+<div class="line"><a id="l03884" name="l03884"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga1ff6f24f9c97d4b611e4bf50ce5175d3"> 3884</a></span><span class="preprocessor">#define DT_INST_IRQ_BY_NAME(inst, name, cell) \</span></div>
+<div class="line"><a id="l03885" name="l03885"></a><span class="lineno"> 3885</span><span class="preprocessor">    DT_IRQ_BY_NAME(DT_DRV_INST(inst), name, cell)</span></div>
+</div>
+<div class="line"><a id="l03886" name="l03886"></a><span class="lineno"> 3886</span> </div>
+<div class="line"><a id="l03893" name="l03893"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga789eb58422bab7b3a79b487c4a8a82d6"> 3893</a></span><span class="preprocessor">#define DT_INST_IRQ(inst, cell) DT_INST_IRQ_BY_IDX(inst, 0, cell)</span></div>
+<div class="line"><a id="l03894" name="l03894"></a><span class="lineno"> 3894</span> </div>
+<div class="line"><a id="l03900" name="l03900"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga4e5a5f20f5dd9ea4cfda61def2c16ed3"> 3900</a></span><span class="preprocessor">#define DT_INST_IRQN(inst) DT_IRQN(DT_DRV_INST(inst))</span></div>
+<div class="line"><a id="l03901" name="l03901"></a><span class="lineno"> 3901</span> </div>
+<div class="line"><a id="l03908" name="l03908"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaeb0c023f53ed87a6707bbca8ba05ce45"> 3908</a></span><span class="preprocessor">#define DT_INST_IRQN_BY_IDX(inst, idx) DT_IRQN_BY_IDX(DT_DRV_INST(inst), idx)</span></div>
+<div class="line"><a id="l03909" name="l03909"></a><span class="lineno"> 3909</span> </div>
+<div class="line"><a id="l03915" name="l03915"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gacecb46743315738dcd9a0765ea78276a"> 3915</a></span><span class="preprocessor">#define DT_INST_BUS(inst) DT_BUS(DT_DRV_INST(inst))</span></div>
+<div class="line"><a id="l03916" name="l03916"></a><span class="lineno"> 3916</span> </div>
+<div class="line"><a id="l03925" name="l03925"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga84075816197097491784f0cabbd07b76"> 3925</a></span><span class="preprocessor">#define DT_INST_BUS_LABEL(inst) DT_BUS_LABEL(DT_DRV_INST(inst)) __DEPRECATED_MACRO</span></div>
+<div class="line"><a id="l03926" name="l03926"></a><span class="lineno"> 3926</span> </div>
+<div class="line"><a id="l03934" name="l03934"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga7a29bda946b399a7af92ec9cd09b4e98"> 3934</a></span><span class="preprocessor">#define DT_INST_ON_BUS(inst, bus) DT_ON_BUS(DT_DRV_INST(inst), bus)</span></div>
+<div class="line"><a id="l03935" name="l03935"></a><span class="lineno"> 3935</span> </div>
+<div class="foldopen" id="foldopen03945" data-start="" data-end="">
+<div class="line"><a id="l03945" name="l03945"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga79fd00d1ece5538f7705c241ab869ea8"> 3945</a></span><span class="preprocessor">#define DT_INST_STRING_TOKEN_OR(inst, name, default_value) \</span></div>
+<div class="line"><a id="l03946" name="l03946"></a><span class="lineno"> 3946</span><span class="preprocessor">    DT_STRING_TOKEN_OR(DT_DRV_INST(inst), name, default_value)</span></div>
+</div>
+<div class="line"><a id="l03947" name="l03947"></a><span class="lineno"> 3947</span> </div>
+<div class="foldopen" id="foldopen03956" data-start="" data-end="">
+<div class="line"><a id="l03956" name="l03956"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga72981780b2ede73c49ef9e5a7c6247c2"> 3956</a></span><span class="preprocessor">#define DT_INST_STRING_UPPER_TOKEN_OR(inst, name, default_value) \</span></div>
+<div class="line"><a id="l03957" name="l03957"></a><span class="lineno"> 3957</span><span class="preprocessor">    DT_STRING_UPPER_TOKEN_OR(DT_DRV_INST(inst), name, default_value)</span></div>
+</div>
+<div class="line"><a id="l03958" name="l03958"></a><span class="lineno"> 3958</span> </div>
+<div class="foldopen" id="foldopen03967" data-start="" data-end="">
+<div class="line"><a id="l03967" name="l03967"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga56bc0c0a46f6be421082119604cde643"> 3967</a></span><span class="preprocessor">#define DT_INST_STRING_UNQUOTED_OR(inst, name, default_value) \</span></div>
+<div class="line"><a id="l03968" name="l03968"></a><span class="lineno"> 3968</span><span class="preprocessor">    DT_STRING_UNQUOTED_OR(DT_DRV_INST(inst), name, default_value)</span></div>
+</div>
+<div class="line"><a id="l03969" name="l03969"></a><span class="lineno"> 3969</span> </div>
+<div class="line"><a id="l03970" name="l03970"></a><span class="lineno"> 3970</span><span class="comment">/*</span></div>
+<div class="line"><a id="l03971" name="l03971"></a><span class="lineno"> 3971</span><span class="comment"> * @brief Test if any enabled node with the given compatible is on</span></div>
+<div class="line"><a id="l03972" name="l03972"></a><span class="lineno"> 3972</span><span class="comment"> *        the given bus type</span></div>
+<div class="line"><a id="l03973" name="l03973"></a><span class="lineno"> 3973</span><span class="comment"> *</span></div>
+<div class="line"><a id="l03974" name="l03974"></a><span class="lineno"> 3974</span><span class="comment"> * This is like DT_ANY_INST_ON_BUS_STATUS_OKAY(), except it can also</span></div>
+<div class="line"><a id="l03975" name="l03975"></a><span class="lineno"> 3975</span><span class="comment"> * be useful for handling multiple compatibles in single source file.</span></div>
+<div class="line"><a id="l03976" name="l03976"></a><span class="lineno"> 3976</span><span class="comment"> *</span></div>
+<div class="line"><a id="l03977" name="l03977"></a><span class="lineno"> 3977</span><span class="comment"> * Example devicetree overlay:</span></div>
+<div class="line"><a id="l03978" name="l03978"></a><span class="lineno"> 3978</span><span class="comment"> *</span></div>
+<div class="line"><a id="l03979" name="l03979"></a><span class="lineno"> 3979</span><span class="comment"> * @code{.dts}</span></div>
+<div class="line"><a id="l03980" name="l03980"></a><span class="lineno"> 3980</span><span class="comment"> *     &amp;i2c0 {</span></div>
+<div class="line"><a id="l03981" name="l03981"></a><span class="lineno"> 3981</span><span class="comment"> *            temp: temperature-sensor@76 {</span></div>
+<div class="line"><a id="l03982" name="l03982"></a><span class="lineno"> 3982</span><span class="comment"> *                     compatible = &quot;vnd,some-sensor&quot;;</span></div>
+<div class="line"><a id="l03983" name="l03983"></a><span class="lineno"> 3983</span><span class="comment"> *                     reg = &lt;0x76&gt;;</span></div>
+<div class="line"><a id="l03984" name="l03984"></a><span class="lineno"> 3984</span><span class="comment"> *            };</span></div>
+<div class="line"><a id="l03985" name="l03985"></a><span class="lineno"> 3985</span><span class="comment"> *     };</span></div>
+<div class="line"><a id="l03986" name="l03986"></a><span class="lineno"> 3986</span><span class="comment"> * @endcode</span></div>
+<div class="line"><a id="l03987" name="l03987"></a><span class="lineno"> 3987</span><span class="comment"> *</span></div>
+<div class="line"><a id="l03988" name="l03988"></a><span class="lineno"> 3988</span><span class="comment"> * Example usage, assuming `i2c0` is an I2C bus controller node, and</span></div>
+<div class="line"><a id="l03989" name="l03989"></a><span class="lineno"> 3989</span><span class="comment"> * therefore `temp` is on an I2C bus:</span></div>
+<div class="line"><a id="l03990" name="l03990"></a><span class="lineno"> 3990</span><span class="comment"> *</span></div>
+<div class="line"><a id="l03991" name="l03991"></a><span class="lineno"> 3991</span><span class="comment"> * @code{.c}</span></div>
+<div class="line"><a id="l03992" name="l03992"></a><span class="lineno"> 3992</span><span class="comment"> *     DT_HAS_COMPAT_ON_BUS_STATUS_OKAY(vnd_some_sensor, i2c) // 1</span></div>
+<div class="line"><a id="l03993" name="l03993"></a><span class="lineno"> 3993</span><span class="comment"> * @endcode</span></div>
+<div class="line"><a id="l03994" name="l03994"></a><span class="lineno"> 3994</span><span class="comment"> *</span></div>
+<div class="line"><a id="l03995" name="l03995"></a><span class="lineno"> 3995</span><span class="comment"> * @param compat lowercase-and-underscores compatible, without quotes</span></div>
+<div class="line"><a id="l03996" name="l03996"></a><span class="lineno"> 3996</span><span class="comment"> * @param bus a binding&#39;s bus type as a C token, lowercased and without quotes</span></div>
+<div class="line"><a id="l03997" name="l03997"></a><span class="lineno"> 3997</span><span class="comment"> * @return 1 if any enabled node with that compatible is on that bus type,</span></div>
+<div class="line"><a id="l03998" name="l03998"></a><span class="lineno"> 3998</span><span class="comment"> *         0 otherwise</span></div>
+<div class="line"><a id="l03999" name="l03999"></a><span class="lineno"> 3999</span><span class="comment"> */</span></div>
+<div class="line"><a id="l04000" name="l04000"></a><span class="lineno"> 4000</span><span class="preprocessor">#define DT_HAS_COMPAT_ON_BUS_STATUS_OKAY(compat, bus) \</span></div>
+<div class="line"><a id="l04001" name="l04001"></a><span class="lineno"> 4001</span><span class="preprocessor">    IS_ENABLED(UTIL_CAT(DT_CAT(DT_COMPAT_, compat), _BUS_##bus))</span></div>
+<div class="line"><a id="l04002" name="l04002"></a><span class="lineno"> 4002</span> </div>
+<div class="foldopen" id="foldopen04035" data-start="" data-end="">
+<div class="line"><a id="l04035" name="l04035"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaa4ff1fe4242399fbd667fbee7e98040a"> 4035</a></span><span class="preprocessor">#define DT_ANY_INST_ON_BUS_STATUS_OKAY(bus) \</span></div>
+<div class="line"><a id="l04036" name="l04036"></a><span class="lineno"> 4036</span><span class="preprocessor">    DT_HAS_COMPAT_ON_BUS_STATUS_OKAY(DT_DRV_COMPAT, bus)</span></div>
+</div>
+<div class="line"><a id="l04037" name="l04037"></a><span class="lineno"> 4037</span> </div>
+<div class="foldopen" id="foldopen04082" data-start="" data-end="">
+<div class="line"><a id="l04082" name="l04082"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaf2a45df474090b0403dffe1b7b82b735"> 4082</a></span><span class="preprocessor">#define DT_ANY_INST_HAS_PROP_STATUS_OKAY(prop) \</span></div>
+<div class="line"><a id="l04083" name="l04083"></a><span class="lineno"> 4083</span><span class="preprocessor">    (DT_INST_FOREACH_STATUS_OKAY_VARGS(DT_INST_NODE_HAS_PROP_AND_OR, prop) 0)</span></div>
+</div>
+<div class="line"><a id="l04084" name="l04084"></a><span class="lineno"> 4084</span> </div>
+<div class="foldopen" id="foldopen04150" data-start="" data-end="">
+<div class="line"><a id="l04150" name="l04150"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaeac7ed0f4a6820a6e5d7dadb6d62d6e7"> 4150</a></span><span class="preprocessor">#define DT_INST_FOREACH_STATUS_OKAY(fn) \</span></div>
+<div class="line"><a id="l04151" name="l04151"></a><span class="lineno"> 4151</span><span class="preprocessor">    COND_CODE_1(DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT),   \</span></div>
+<div class="line"><a id="l04152" name="l04152"></a><span class="lineno"> 4152</span><span class="preprocessor">            (UTIL_CAT(DT_FOREACH_OKAY_INST_,        \</span></div>
+<div class="line"><a id="l04153" name="l04153"></a><span class="lineno"> 4153</span><span class="preprocessor">                  DT_DRV_COMPAT)(fn)),      \</span></div>
+<div class="line"><a id="l04154" name="l04154"></a><span class="lineno"> 4154</span><span class="preprocessor">            ())</span></div>
+</div>
+<div class="line"><a id="l04155" name="l04155"></a><span class="lineno"> 4155</span> </div>
+<div class="foldopen" id="foldopen04167" data-start="" data-end="">
+<div class="line"><a id="l04167" name="l04167"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga1b9fd4b9c37a23e52e69ea23f7aedb38"> 4167</a></span><span class="preprocessor">#define DT_INST_FOREACH_STATUS_OKAY_VARGS(fn, ...) \</span></div>
+<div class="line"><a id="l04168" name="l04168"></a><span class="lineno"> 4168</span><span class="preprocessor">    COND_CODE_1(DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT),   \</span></div>
+<div class="line"><a id="l04169" name="l04169"></a><span class="lineno"> 4169</span><span class="preprocessor">            (UTIL_CAT(DT_FOREACH_OKAY_INST_VARGS_,  \</span></div>
+<div class="line"><a id="l04170" name="l04170"></a><span class="lineno"> 4170</span><span class="preprocessor">                  DT_DRV_COMPAT)(fn, __VA_ARGS__)), \</span></div>
+<div class="line"><a id="l04171" name="l04171"></a><span class="lineno"> 4171</span><span class="preprocessor">            ())</span></div>
+</div>
+<div class="line"><a id="l04172" name="l04172"></a><span class="lineno"> 4172</span> </div>
+<div class="foldopen" id="foldopen04183" data-start="" data-end="">
+<div class="line"><a id="l04183" name="l04183"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaf163f2f85b3893ca46c87f0fcbe65255"> 4183</a></span><span class="preprocessor">#define DT_INST_FOREACH_PROP_ELEM(inst, prop, fn) \</span></div>
+<div class="line"><a id="l04184" name="l04184"></a><span class="lineno"> 4184</span><span class="preprocessor">    DT_FOREACH_PROP_ELEM(DT_DRV_INST(inst), prop, fn)</span></div>
+</div>
+<div class="line"><a id="l04185" name="l04185"></a><span class="lineno"> 4185</span> </div>
+<div class="foldopen" id="foldopen04198" data-start="" data-end="">
+<div class="line"><a id="l04198" name="l04198"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga08de2f0ba1a6ec395f198e06c5f52373"> 4198</a></span><span class="preprocessor">#define DT_INST_FOREACH_PROP_ELEM_SEP(inst, prop, fn, sep) \</span></div>
+<div class="line"><a id="l04199" name="l04199"></a><span class="lineno"> 4199</span><span class="preprocessor">    DT_FOREACH_PROP_ELEM_SEP(DT_DRV_INST(inst), prop, fn, sep)</span></div>
+</div>
+<div class="line"><a id="l04200" name="l04200"></a><span class="lineno"> 4200</span> </div>
+<div class="foldopen" id="foldopen04215" data-start="" data-end="">
+<div class="line"><a id="l04215" name="l04215"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga31b9022f7add3d77417b78ed67d544e3"> 4215</a></span><span class="preprocessor">#define DT_INST_FOREACH_PROP_ELEM_VARGS(inst, prop, fn, ...) \</span></div>
+<div class="line"><a id="l04216" name="l04216"></a><span class="lineno"> 4216</span><span class="preprocessor">    DT_FOREACH_PROP_ELEM_VARGS(DT_DRV_INST(inst), prop, fn, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l04217" name="l04217"></a><span class="lineno"> 4217</span> </div>
+<div class="foldopen" id="foldopen04235" data-start="" data-end="">
+<div class="line"><a id="l04235" name="l04235"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#ga41b9dfd3519809bfc3c1c500780d6a2d"> 4235</a></span><span class="preprocessor">#define DT_INST_FOREACH_PROP_ELEM_SEP_VARGS(inst, prop, fn, sep, ...)       \</span></div>
+<div class="line"><a id="l04236" name="l04236"></a><span class="lineno"> 4236</span><span class="preprocessor">    DT_FOREACH_PROP_ELEM_SEP_VARGS(DT_DRV_INST(inst), prop, fn, sep,    \</span></div>
+<div class="line"><a id="l04237" name="l04237"></a><span class="lineno"> 4237</span><span class="preprocessor">                       __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l04238" name="l04238"></a><span class="lineno"> 4238</span> </div>
+<div class="foldopen" id="foldopen04245" data-start="" data-end="">
+<div class="line"><a id="l04245" name="l04245"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaa03419e2d9c887a81e16e96b5947bccb"> 4245</a></span><span class="preprocessor">#define DT_INST_NODE_HAS_PROP(inst, prop) \</span></div>
+<div class="line"><a id="l04246" name="l04246"></a><span class="lineno"> 4246</span><span class="preprocessor">    DT_NODE_HAS_PROP(DT_DRV_INST(inst), prop)</span></div>
+</div>
+<div class="line"><a id="l04247" name="l04247"></a><span class="lineno"> 4247</span> </div>
+<div class="foldopen" id="foldopen04258" data-start="" data-end="">
+<div class="line"><a id="l04258" name="l04258"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gae054b89701ec9fae577320fb7b9cae1e"> 4258</a></span><span class="preprocessor">#define DT_INST_PHA_HAS_CELL_AT_IDX(inst, pha, idx, cell) \</span></div>
+<div class="line"><a id="l04259" name="l04259"></a><span class="lineno"> 4259</span><span class="preprocessor">    DT_PHA_HAS_CELL_AT_IDX(DT_DRV_INST(inst), pha, idx, cell)</span></div>
+</div>
+<div class="line"><a id="l04260" name="l04260"></a><span class="lineno"> 4260</span> </div>
+<div class="foldopen" id="foldopen04270" data-start="" data-end="">
+<div class="line"><a id="l04270" name="l04270"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gab8083dae430aeb93a967bbf98aa9eefc"> 4270</a></span><span class="preprocessor">#define DT_INST_PHA_HAS_CELL(inst, pha, cell) \</span></div>
+<div class="line"><a id="l04271" name="l04271"></a><span class="lineno"> 4271</span><span class="preprocessor">    DT_INST_PHA_HAS_CELL_AT_IDX(inst, pha, 0, cell)</span></div>
+</div>
+<div class="line"><a id="l04272" name="l04272"></a><span class="lineno"> 4272</span> </div>
+<div class="line"><a id="l04280" name="l04280"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gabb45132ef78818512c02bdf1f5a38068"> 4280</a></span><span class="preprocessor">#define DT_INST_IRQ_HAS_IDX(inst, idx) DT_IRQ_HAS_IDX(DT_DRV_INST(inst), idx)</span></div>
+<div class="line"><a id="l04281" name="l04281"></a><span class="lineno"> 4281</span> </div>
+<div class="foldopen" id="foldopen04290" data-start="" data-end="">
+<div class="line"><a id="l04290" name="l04290"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gab176ff07912cea915c811406e8f5e386"> 4290</a></span><span class="preprocessor">#define DT_INST_IRQ_HAS_CELL_AT_IDX(inst, idx, cell) \</span></div>
+<div class="line"><a id="l04291" name="l04291"></a><span class="lineno"> 4291</span><span class="preprocessor">    DT_IRQ_HAS_CELL_AT_IDX(DT_DRV_INST(inst), idx, cell)</span></div>
+</div>
+<div class="line"><a id="l04292" name="l04292"></a><span class="lineno"> 4292</span> </div>
+<div class="foldopen" id="foldopen04300" data-start="" data-end="">
+<div class="line"><a id="l04300" name="l04300"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gabec43df3451bd917120b283d76c57054"> 4300</a></span><span class="preprocessor">#define DT_INST_IRQ_HAS_CELL(inst, cell) \</span></div>
+<div class="line"><a id="l04301" name="l04301"></a><span class="lineno"> 4301</span><span class="preprocessor">    DT_INST_IRQ_HAS_CELL_AT_IDX(inst, 0, cell)</span></div>
+</div>
+<div class="line"><a id="l04302" name="l04302"></a><span class="lineno"> 4302</span> </div>
+<div class="foldopen" id="foldopen04309" data-start="" data-end="">
+<div class="line"><a id="l04309" name="l04309"></a><span class="lineno"><a class="line" href="group__devicetree-inst.html#gaa038ffc9b4f5c897a4a9e6d0e9836ffd"> 4309</a></span><span class="preprocessor">#define DT_INST_IRQ_HAS_NAME(inst, name) \</span></div>
+<div class="line"><a id="l04310" name="l04310"></a><span class="lineno"> 4310</span><span class="preprocessor">    DT_IRQ_HAS_NAME(DT_DRV_INST(inst), name)</span></div>
+</div>
+<div class="line"><a id="l04311" name="l04311"></a><span class="lineno"> 4311</span> </div>
+<div class="line"><a id="l04318" name="l04318"></a><span class="lineno"> 4318</span><span class="preprocessor">#define DT_PATH_INTERNAL(...) \</span></div>
+<div class="line"><a id="l04319" name="l04319"></a><span class="lineno"> 4319</span><span class="preprocessor">    UTIL_CAT(DT_ROOT, MACRO_MAP_CAT(DT_S_PREFIX, __VA_ARGS__))</span></div>
+<div class="line"><a id="l04325" name="l04325"></a><span class="lineno"> 4325</span><span class="preprocessor">#define DT_S_PREFIX(name) _S_##name</span></div>
+<div class="line"><a id="l04326" name="l04326"></a><span class="lineno"> 4326</span> </div>
+<div class="line"><a id="l04341" name="l04341"></a><span class="lineno"> 4341</span><span class="preprocessor">#define DT_CAT(a1, a2) a1 ## a2</span></div>
+<div class="line"><a id="l04343" name="l04343"></a><span class="lineno"> 4343</span><span class="preprocessor">#define DT_CAT3(a1, a2, a3) a1 ## a2 ## a3</span></div>
+<div class="line"><a id="l04345" name="l04345"></a><span class="lineno"> 4345</span><span class="preprocessor">#define DT_CAT4(a1, a2, a3, a4) a1 ## a2 ## a3 ## a4</span></div>
+<div class="line"><a id="l04347" name="l04347"></a><span class="lineno"> 4347</span><span class="preprocessor">#define DT_CAT5(a1, a2, a3, a4, a5) a1 ## a2 ## a3 ## a4 ## a5</span></div>
+<div class="line"><a id="l04349" name="l04349"></a><span class="lineno"> 4349</span><span class="preprocessor">#define DT_CAT6(a1, a2, a3, a4, a5, a6) a1 ## a2 ## a3 ## a4 ## a5 ## a6</span></div>
+<div class="line"><a id="l04351" name="l04351"></a><span class="lineno"> 4351</span><span class="preprocessor">#define DT_CAT7(a1, a2, a3, a4, a5, a6, a7) \</span></div>
+<div class="line"><a id="l04352" name="l04352"></a><span class="lineno"> 4352</span><span class="preprocessor">    a1 ## a2 ## a3 ## a4 ## a5 ## a6 ## a7</span></div>
+<div class="line"><a id="l04354" name="l04354"></a><span class="lineno"> 4354</span><span class="preprocessor">#define DT_CAT8(a1, a2, a3, a4, a5, a6, a7, a8) \</span></div>
+<div class="line"><a id="l04355" name="l04355"></a><span class="lineno"> 4355</span><span class="preprocessor">    a1 ## a2 ## a3 ## a4 ## a5 ## a6 ## a7 ## a8</span></div>
+<div class="line"><a id="l04356" name="l04356"></a><span class="lineno"> 4356</span><span class="comment">/*</span></div>
+<div class="line"><a id="l04357" name="l04357"></a><span class="lineno"> 4357</span><span class="comment"> * If you need to define a bigger DT_CATN(), do so here. Don&#39;t leave</span></div>
+<div class="line"><a id="l04358" name="l04358"></a><span class="lineno"> 4358</span><span class="comment"> * any &quot;holes&quot; of undefined macros, please.</span></div>
+<div class="line"><a id="l04359" name="l04359"></a><span class="lineno"> 4359</span><span class="comment"> */</span></div>
+<div class="line"><a id="l04360" name="l04360"></a><span class="lineno"> 4360</span> </div>
+<div class="line"><a id="l04362" name="l04362"></a><span class="lineno"> 4362</span><span class="preprocessor">#define DT_DASH(...) MACRO_MAP_CAT(DT_DASH_PREFIX, __VA_ARGS__)</span></div>
+<div class="line"><a id="l04364" name="l04364"></a><span class="lineno"> 4364</span><span class="preprocessor">#define DT_DASH_PREFIX(name) _##name</span></div>
+<div class="line"><a id="l04366" name="l04366"></a><span class="lineno"> 4366</span><span class="preprocessor">#define DT_NODE_HAS_STATUS_INTERNAL(node_id, status) \</span></div>
+<div class="line"><a id="l04367" name="l04367"></a><span class="lineno"> 4367</span><span class="preprocessor">    IS_ENABLED(DT_CAT3(node_id, _STATUS_, status))</span></div>
+<div class="line"><a id="l04368" name="l04368"></a><span class="lineno"> 4368</span> </div>
+<div class="line"><a id="l04370" name="l04370"></a><span class="lineno"> 4370</span><span class="preprocessor">#define DT_INST_NODE_HAS_PROP_AND_OR(inst, prop) \</span></div>
+<div class="line"><a id="l04371" name="l04371"></a><span class="lineno"> 4371</span><span class="preprocessor">    DT_INST_NODE_HAS_PROP(inst, prop) ||</span></div>
+<div class="line"><a id="l04372" name="l04372"></a><span class="lineno"> 4372</span> </div>
+<div class="line"><a id="l04377" name="l04377"></a><span class="lineno"> 4377</span><span class="preprocessor">#if defined(_LINKER) || defined(_ASMLANGUAGE)</span></div>
+<div class="line"><a id="l04378" name="l04378"></a><span class="lineno"> 4378</span><span class="preprocessor">#define DT_U64_C(_v) (_v)</span></div>
+<div class="line"><a id="l04379" name="l04379"></a><span class="lineno"> 4379</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l04380" name="l04380"></a><span class="lineno"> 4380</span><span class="preprocessor">#define DT_U64_C(_v) UINT64_C(_v)</span></div>
+<div class="line"><a id="l04381" name="l04381"></a><span class="lineno"> 4381</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l04382" name="l04382"></a><span class="lineno"> 4382</span> </div>
+<div class="line"><a id="l04385" name="l04385"></a><span class="lineno"> 4385</span><span class="comment">/* have these last so they have access to all previously defined macros */</span></div>
+<div class="line"><a id="l04386" name="l04386"></a><span class="lineno"> 4386</span><span class="preprocessor">#include &lt;<a class="code" href="io-channels_8h.html">zephyr/devicetree/io-channels.h</a>&gt;</span></div>
+<div class="line"><a id="l04387" name="l04387"></a><span class="lineno"> 4387</span><span class="preprocessor">#include &lt;<a class="code" href="clocks_8h.html">zephyr/devicetree/clocks.h</a>&gt;</span></div>
+<div class="line"><a id="l04388" name="l04388"></a><span class="lineno"> 4388</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2gpio_8h.html">zephyr/devicetree/gpio.h</a>&gt;</span></div>
+<div class="line"><a id="l04389" name="l04389"></a><span class="lineno"> 4389</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2spi_8h.html">zephyr/devicetree/spi.h</a>&gt;</span></div>
+<div class="line"><a id="l04390" name="l04390"></a><span class="lineno"> 4390</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2dma_8h.html">zephyr/devicetree/dma.h</a>&gt;</span></div>
+<div class="line"><a id="l04391" name="l04391"></a><span class="lineno"> 4391</span><span class="preprocessor">#include &lt;<a class="code" href="pwms_8h.html">zephyr/devicetree/pwms.h</a>&gt;</span></div>
+<div class="line"><a id="l04392" name="l04392"></a><span class="lineno"> 4392</span><span class="preprocessor">#include &lt;<a class="code" href="fixed-partitions_8h.html">zephyr/devicetree/fixed-partitions.h</a>&gt;</span></div>
+<div class="line"><a id="l04393" name="l04393"></a><span class="lineno"> 4393</span><span class="preprocessor">#include &lt;<a class="code" href="ordinals_8h.html">zephyr/devicetree/ordinals.h</a>&gt;</span></div>
+<div class="line"><a id="l04394" name="l04394"></a><span class="lineno"> 4394</span><span class="preprocessor">#include &lt;<a class="code" href="devicetree_2pinctrl_8h.html">zephyr/devicetree/pinctrl.h</a>&gt;</span></div>
+<div class="line"><a id="l04395" name="l04395"></a><span class="lineno"> 4395</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2can_8h.html">zephyr/devicetree/can.h</a>&gt;</span></div>
+<div class="line"><a id="l04396" name="l04396"></a><span class="lineno"> 4396</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2reset_8h.html">zephyr/devicetree/reset.h</a>&gt;</span></div>
+<div class="line"><a id="l04397" name="l04397"></a><span class="lineno"> 4397</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2mbox_8h.html">zephyr/devicetree/mbox.h</a>&gt;</span></div>
+<div class="line"><a id="l04398" name="l04398"></a><span class="lineno"> 4398</span> </div>
+<div class="line"><a id="l04399" name="l04399"></a><span class="lineno"> 4399</span><span class="preprocessor">#endif </span><span class="comment">/* DEVICETREE_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aclocks_8h_html"><div class="ttname"><a href="clocks_8h.html">clocks.h</a></div><div class="ttdoc">Clocks Devicetree macro public API header file.</div></div>
+<div class="ttc" id="adevicetree_2pinctrl_8h_html"><div class="ttname"><a href="devicetree_2pinctrl_8h.html">pinctrl.h</a></div><div class="ttdoc">Devicetree pin control helpers.</div></div>
+<div class="ttc" id="afixed-partitions_8h_html"><div class="ttname"><a href="fixed-partitions_8h.html">fixed-partitions.h</a></div><div class="ttdoc">Flash Devicetree macro public API header file.</div></div>
+<div class="ttc" id="aio-channels_8h_html"><div class="ttname"><a href="io-channels_8h.html">io-channels.h</a></div><div class="ttdoc">IO channels devicetree macro public API header file.</div></div>
+<div class="ttc" id="airq__multilevel_8h_html"><div class="ttname"><a href="irq__multilevel_8h.html">irq_multilevel.h</a></div><div class="ttdoc">Public interface for multi-level interrupts.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2can_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2can_8h.html">can.h</a></div><div class="ttdoc">CAN devicetree macro public API header file.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2dma_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2dma_8h.html">dma.h</a></div><div class="ttdoc">DMA Devicetree macro public API header file.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2gpio_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">GPIO Devicetree macro public API header file.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2mbox_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2mbox_8h.html">mbox.h</a></div><div class="ttdoc">MBOX Devicetree macro public API header file.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2reset_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2reset_8h.html">reset.h</a></div><div class="ttdoc">Reset Controller Devicetree macro public API header file.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2spi_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2devicetree_2spi_8h.html">spi.h</a></div><div class="ttdoc">SPI Devicetree macro public API header file.</div></div>
+<div class="ttc" id="aordinals_8h_html"><div class="ttname"><a href="ordinals_8h.html">ordinals.h</a></div><div class="ttdoc">Devicetree node dependency ordinals.</div></div>
+<div class="ttc" id="apwms_8h_html"><div class="ttname"><a href="pwms_8h.html">pwms.h</a></div><div class="ttdoc">PWMs Devicetree macro public API header file.</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Misc utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

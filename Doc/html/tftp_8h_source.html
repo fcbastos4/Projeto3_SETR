@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/net/tftp.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_e87a4ba8d8d39971580ab67f13eff592.html">net</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">tftp.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="tftp_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2020 InnBlue</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_NET_TFTP_H_</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define ZEPHYR_INCLUDE_NET_TFTP_H_</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2socket_8h.html">zephyr/net/socket.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="group__tftp__client.html#ga762c61f0d58a300c91f7577f65574dd5">   31</a></span><span class="preprocessor">#define TFTP_BLOCK_SIZE          512</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="group__tftp__client.html#ga0dbc6adc4cb9be4ea86fce61846c2089">   37</a></span><span class="preprocessor">#define TFTP_HEADER_SIZE         4</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="group__tftp__client.html#ga4387f92c6327823d655d8aa4f1c65beb">   40</a></span><span class="preprocessor">#define TFTPC_MAX_BUF_SIZE       (TFTP_BLOCK_SIZE + TFTP_HEADER_SIZE)</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="group__tftp__client.html#ga40d1c46aafbf6ea66daa5937ceb1152f">   46</a></span><span class="preprocessor">#define TFTPC_SUCCESS             0 </span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="group__tftp__client.html#gac8b5e1f02de73c8cd42849ea0229eed2">   47</a></span><span class="preprocessor">#define TFTPC_DUPLICATE_DATA     -1 </span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="group__tftp__client.html#ga5ac8121d18b8eceffe281281aca1b700">   48</a></span><span class="preprocessor">#define TFTPC_BUFFER_OVERFLOW    -2 </span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__tftp__client.html#ga30ad373e8531ba675165bb61620c9a07">   49</a></span><span class="preprocessor">#define TFTPC_UNKNOWN_FAILURE    -3 </span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="group__tftp__client.html#ga75729dcb0b640a6fcb2079151cd74f51">   50</a></span><span class="preprocessor">#define TFTPC_REMOTE_ERROR       -4 </span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="group__tftp__client.html#ga514eaf5d77587b8719801157adf20566">   51</a></span><span class="preprocessor">#define TFTPC_RETRIES_EXHAUSTED  -5 </span></div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="};">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="group__tftp__client.html#ga1ee3d814c6fbaf5570eb5fd9605af7ea">   60</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__tftp__client.html#ga1ee3d814c6fbaf5570eb5fd9605af7ea">tftp_evt_type</a> {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="group__tftp__client.html#gga1ee3d814c6fbaf5570eb5fd9605af7eaa7bd0226d62c9b49a8381705bc1d5875d">   66</a></span>    <a class="code hl_enumvalue" href="group__tftp__client.html#gga1ee3d814c6fbaf5570eb5fd9605af7eaa7bd0226d62c9b49a8381705bc1d5875d">TFTP_EVT_DATA</a>,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_enumvalue" href="group__tftp__client.html#gga1ee3d814c6fbaf5570eb5fd9605af7eaa317d58f986f6f2f65b44fdaa5b655eb3">TFTP_EVT_ERROR</a></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="group__tftp__client.html#gga1ee3d814c6fbaf5570eb5fd9605af7eaa317d58f986f6f2f65b44fdaa5b655eb3">   74</a></span>};</div>
+</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="foldopen" id="foldopen00077" data-start="{" data-end="};">
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structtftp__data__param.html">   77</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structtftp__data__param.html">tftp_data_param</a> {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structtftp__data__param.html#a93f666944e8f20bd3a0e1320452913db">   78</a></span>    uint8_t *<a class="code hl_variable" href="structtftp__data__param.html#a93f666944e8f20bd3a0e1320452913db">data_ptr</a>;         </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structtftp__data__param.html#a704c20ab3177a3d53df21fc9ef64d084">   79</a></span>    uint32_t <a class="code hl_variable" href="structtftp__data__param.html#a704c20ab3177a3d53df21fc9ef64d084">len</a>;              </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>};</div>
+</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="};">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structtftp__error__param.html">   83</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structtftp__error__param.html">tftp_error_param</a> {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structtftp__error__param.html#a725f1d2b8b8848febacf4888a0b55611">   84</a></span>    <span class="keywordtype">char</span> *<a class="code hl_variable" href="structtftp__error__param.html#a725f1d2b8b8848febacf4888a0b55611">msg</a>;                 </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structtftp__error__param.html#aa8766ec6c9e92c9383b0dbbafe8a0f43">   85</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structtftp__error__param.html#aa8766ec6c9e92c9383b0dbbafe8a0f43">code</a>;                  </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="foldopen" id="foldopen00092" data-start="{" data-end="};">
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="uniontftp__evt__param.html">   92</a></span><span class="keyword">union </span><a class="code hl_union" href="uniontftp__evt__param.html">tftp_evt_param</a> {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="uniontftp__evt__param.html#a7bec7cd5512f25699fe6b733458e9128">   94</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structtftp__data__param.html">tftp_data_param</a> <a class="code hl_variable" href="uniontftp__evt__param.html#a7bec7cd5512f25699fe6b733458e9128">data</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="uniontftp__evt__param.html#a489485b84fa3e559b3065258cabfb205">   97</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structtftp__error__param.html">tftp_error_param</a> <a class="code hl_variable" href="uniontftp__evt__param.html#a489485b84fa3e559b3065258cabfb205">error</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>};</div>
+</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="foldopen" id="foldopen00101" data-start="{" data-end="};">
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="structtftp__evt.html">  101</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structtftp__evt.html">tftp_evt</a> {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="structtftp__evt.html#a2d622d9eb3ee0547b47a1330ad9cc412">  103</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__tftp__client.html#ga1ee3d814c6fbaf5570eb5fd9605af7ea">tftp_evt_type</a> <a class="code hl_variable" href="structtftp__evt.html#a2d622d9eb3ee0547b47a1330ad9cc412">type</a>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="structtftp__evt.html#a37154f19c66ae09a200f4d8d6c2941ca">  106</a></span>    <span class="keyword">union </span><a class="code hl_union" href="uniontftp__evt__param.html">tftp_evt_param</a> <a class="code hl_variable" href="structtftp__evt.html#a37154f19c66ae09a200f4d8d6c2941ca">param</a>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>};</div>
+</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="group__tftp__client.html#gade26a3c3f0e81a832c05c179b793cc76">  117</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__tftp__client.html#gade26a3c3f0e81a832c05c179b793cc76">tftp_callback_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structtftp__evt.html">tftp_evt</a> *evt);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="foldopen" id="foldopen00126" data-start="{" data-end="};">
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structtftpc.html">  126</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structtftpc.html">tftpc</a> {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="structtftpc.html#a8ff9317a6bbdfac895cb1e408ae72cd9">  128</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsockaddr.html">sockaddr</a> <a class="code hl_variable" href="structtftpc.html#a8ff9317a6bbdfac895cb1e408ae72cd9">server</a>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="structtftpc.html#a39a04978a6cf3826ef19993989400b60">  131</a></span>    <a class="code hl_typedef" href="group__tftp__client.html#gade26a3c3f0e81a832c05c179b793cc76">tftp_callback_t</a> <a class="code hl_variable" href="structtftpc.html#a39a04978a6cf3826ef19993989400b60">callback</a>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="structtftpc.html#a4b13f441a26207705e5a1a766ca17838">  134</a></span>    uint8_t <a class="code hl_variable" href="structtftpc.html#a4b13f441a26207705e5a1a766ca17838">tftp_buf</a>[<a class="code hl_define" href="group__tftp__client.html#ga4387f92c6327823d655d8aa4f1c65beb">TFTPC_MAX_BUF_SIZE</a>];</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>};</div>
+</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="group__tftp__client.html#ga067de19b4089fbd2c2e49e925b73cfb0">  153</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__tftp__client.html#ga067de19b4089fbd2c2e49e925b73cfb0">tftp_get</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structtftpc.html">tftpc</a> *client,</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>         <span class="keyword">const</span> <span class="keywordtype">char</span> *remote_file, <span class="keyword">const</span> <span class="keywordtype">char</span> *mode);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="group__tftp__client.html#ga692f6a51f2ecd5c3d673ff64f59294b9">  173</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__tftp__client.html#ga692f6a51f2ecd5c3d673ff64f59294b9">tftp_put</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structtftpc.html">tftpc</a> *client,</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>         <span class="keyword">const</span> <span class="keywordtype">char</span> *remote_file, <span class="keyword">const</span> <span class="keywordtype">char</span> *mode,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>         <span class="keyword">const</span> uint8_t *user_buf, uint32_t user_buf_size);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>}</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_NET_TFTP_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="ttc" id="agroup__tftp__client_html_ga067de19b4089fbd2c2e49e925b73cfb0"><div class="ttname"><a href="group__tftp__client.html#ga067de19b4089fbd2c2e49e925b73cfb0">tftp_get</a></div><div class="ttdeci">int tftp_get(struct tftpc *client, const char *remote_file, const char *mode)</div><div class="ttdoc">This function gets data from a &quot;file&quot; on the remote server.</div></div>
+<div class="ttc" id="agroup__tftp__client_html_ga1ee3d814c6fbaf5570eb5fd9605af7ea"><div class="ttname"><a href="group__tftp__client.html#ga1ee3d814c6fbaf5570eb5fd9605af7ea">tftp_evt_type</a></div><div class="ttdeci">tftp_evt_type</div><div class="ttdoc">TFTP Asynchronous Events notified to the application from the module through the callback registered ...</div><div class="ttdef"><b>Definição</b> tftp.h:60</div></div>
+<div class="ttc" id="agroup__tftp__client_html_ga4387f92c6327823d655d8aa4f1c65beb"><div class="ttname"><a href="group__tftp__client.html#ga4387f92c6327823d655d8aa4f1c65beb">TFTPC_MAX_BUF_SIZE</a></div><div class="ttdeci">#define TFTPC_MAX_BUF_SIZE</div><div class="ttdef"><b>Definição</b> tftp.h:40</div></div>
+<div class="ttc" id="agroup__tftp__client_html_ga692f6a51f2ecd5c3d673ff64f59294b9"><div class="ttname"><a href="group__tftp__client.html#ga692f6a51f2ecd5c3d673ff64f59294b9">tftp_put</a></div><div class="ttdeci">int tftp_put(struct tftpc *client, const char *remote_file, const char *mode, const uint8_t *user_buf, uint32_t user_buf_size)</div><div class="ttdoc">This function puts data to a &quot;file&quot; on the remote server.</div></div>
+<div class="ttc" id="agroup__tftp__client_html_gade26a3c3f0e81a832c05c179b793cc76"><div class="ttname"><a href="group__tftp__client.html#gade26a3c3f0e81a832c05c179b793cc76">tftp_callback_t</a></div><div class="ttdeci">void(* tftp_callback_t)(const struct tftp_evt *evt)</div><div class="ttdoc">TFTP event notification callback registered by the application.</div><div class="ttdef"><b>Definição</b> tftp.h:117</div></div>
+<div class="ttc" id="agroup__tftp__client_html_gga1ee3d814c6fbaf5570eb5fd9605af7eaa317d58f986f6f2f65b44fdaa5b655eb3"><div class="ttname"><a href="group__tftp__client.html#gga1ee3d814c6fbaf5570eb5fd9605af7eaa317d58f986f6f2f65b44fdaa5b655eb3">TFTP_EVT_ERROR</a></div><div class="ttdeci">@ TFTP_EVT_ERROR</div><div class="ttdef"><b>Definição</b> tftp.h:73</div></div>
+<div class="ttc" id="agroup__tftp__client_html_gga1ee3d814c6fbaf5570eb5fd9605af7eaa7bd0226d62c9b49a8381705bc1d5875d"><div class="ttname"><a href="group__tftp__client.html#gga1ee3d814c6fbaf5570eb5fd9605af7eaa7bd0226d62c9b49a8381705bc1d5875d">TFTP_EVT_DATA</a></div><div class="ttdeci">@ TFTP_EVT_DATA</div><div class="ttdef"><b>Definição</b> tftp.h:66</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2net_2socket_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2socket_8h.html">socket.h</a></div><div class="ttdoc">BSD Sockets compatible API definitions.</div></div>
+<div class="ttc" id="astructsockaddr_html"><div class="ttname"><a href="structsockaddr.html">sockaddr</a></div><div class="ttdef"><b>Definição</b> net_ip.h:347</div></div>
+<div class="ttc" id="astructtftp__data__param_html"><div class="ttname"><a href="structtftp__data__param.html">tftp_data_param</a></div><div class="ttdoc">Parameters for data event.</div><div class="ttdef"><b>Definição</b> tftp.h:77</div></div>
+<div class="ttc" id="astructtftp__data__param_html_a704c20ab3177a3d53df21fc9ef64d084"><div class="ttname"><a href="structtftp__data__param.html#a704c20ab3177a3d53df21fc9ef64d084">tftp_data_param::len</a></div><div class="ttdeci">uint32_t len</div><div class="ttdef"><b>Definição</b> tftp.h:79</div></div>
+<div class="ttc" id="astructtftp__data__param_html_a93f666944e8f20bd3a0e1320452913db"><div class="ttname"><a href="structtftp__data__param.html#a93f666944e8f20bd3a0e1320452913db">tftp_data_param::data_ptr</a></div><div class="ttdeci">uint8_t * data_ptr</div><div class="ttdef"><b>Definição</b> tftp.h:78</div></div>
+<div class="ttc" id="astructtftp__error__param_html"><div class="ttname"><a href="structtftp__error__param.html">tftp_error_param</a></div><div class="ttdoc">Parameters for error event.</div><div class="ttdef"><b>Definição</b> tftp.h:83</div></div>
+<div class="ttc" id="astructtftp__error__param_html_a725f1d2b8b8848febacf4888a0b55611"><div class="ttname"><a href="structtftp__error__param.html#a725f1d2b8b8848febacf4888a0b55611">tftp_error_param::msg</a></div><div class="ttdeci">char * msg</div><div class="ttdef"><b>Definição</b> tftp.h:84</div></div>
+<div class="ttc" id="astructtftp__error__param_html_aa8766ec6c9e92c9383b0dbbafe8a0f43"><div class="ttname"><a href="structtftp__error__param.html#aa8766ec6c9e92c9383b0dbbafe8a0f43">tftp_error_param::code</a></div><div class="ttdeci">int code</div><div class="ttdef"><b>Definição</b> tftp.h:85</div></div>
+<div class="ttc" id="astructtftp__evt_html"><div class="ttname"><a href="structtftp__evt.html">tftp_evt</a></div><div class="ttdoc">Defines TFTP asynchronous event notified to the application.</div><div class="ttdef"><b>Definição</b> tftp.h:101</div></div>
+<div class="ttc" id="astructtftp__evt_html_a2d622d9eb3ee0547b47a1330ad9cc412"><div class="ttname"><a href="structtftp__evt.html#a2d622d9eb3ee0547b47a1330ad9cc412">tftp_evt::type</a></div><div class="ttdeci">enum tftp_evt_type type</div><div class="ttdef"><b>Definição</b> tftp.h:103</div></div>
+<div class="ttc" id="astructtftp__evt_html_a37154f19c66ae09a200f4d8d6c2941ca"><div class="ttname"><a href="structtftp__evt.html#a37154f19c66ae09a200f4d8d6c2941ca">tftp_evt::param</a></div><div class="ttdeci">union tftp_evt_param param</div><div class="ttdef"><b>Definição</b> tftp.h:106</div></div>
+<div class="ttc" id="astructtftpc_html"><div class="ttname"><a href="structtftpc.html">tftpc</a></div><div class="ttdoc">TFTP client definition to maintain information relevant to the client.</div><div class="ttdef"><b>Definição</b> tftp.h:126</div></div>
+<div class="ttc" id="astructtftpc_html_a39a04978a6cf3826ef19993989400b60"><div class="ttname"><a href="structtftpc.html#a39a04978a6cf3826ef19993989400b60">tftpc::callback</a></div><div class="ttdeci">tftp_callback_t callback</div><div class="ttdef"><b>Definição</b> tftp.h:131</div></div>
+<div class="ttc" id="astructtftpc_html_a4b13f441a26207705e5a1a766ca17838"><div class="ttname"><a href="structtftpc.html#a4b13f441a26207705e5a1a766ca17838">tftpc::tftp_buf</a></div><div class="ttdeci">uint8_t tftp_buf[TFTPC_MAX_BUF_SIZE]</div><div class="ttdef"><b>Definição</b> tftp.h:134</div></div>
+<div class="ttc" id="astructtftpc_html_a8ff9317a6bbdfac895cb1e408ae72cd9"><div class="ttname"><a href="structtftpc.html#a8ff9317a6bbdfac895cb1e408ae72cd9">tftpc::server</a></div><div class="ttdeci">struct sockaddr server</div><div class="ttdef"><b>Definição</b> tftp.h:128</div></div>
+<div class="ttc" id="auniontftp__evt__param_html"><div class="ttname"><a href="uniontftp__evt__param.html">tftp_evt_param</a></div><div class="ttdoc">Defines event parameters notified along with asynchronous events to the application.</div><div class="ttdef"><b>Definição</b> tftp.h:92</div></div>
+<div class="ttc" id="auniontftp__evt__param_html_a489485b84fa3e559b3065258cabfb205"><div class="ttname"><a href="uniontftp__evt__param.html#a489485b84fa3e559b3065258cabfb205">tftp_evt_param::error</a></div><div class="ttdeci">struct tftp_error_param error</div><div class="ttdef"><b>Definição</b> tftp.h:97</div></div>
+<div class="ttc" id="auniontftp__evt__param_html_a7bec7cd5512f25699fe6b733458e9128"><div class="ttname"><a href="uniontftp__evt__param.html#a7bec7cd5512f25699fe6b733458e9128">tftp_evt_param::data</a></div><div class="ttdeci">struct tftp_data_param data</div><div class="ttdef"><b>Definição</b> tftp.h:94</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

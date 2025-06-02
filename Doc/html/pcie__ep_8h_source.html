@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/pcie/endpoint/pcie_ep.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_788a9880ebb5eeb5807f257361732b7b.html">pcie</a></li><li class="navelem"><a class="el" href="dir_1b1520848b6f2f26680f641c5dfbd2ff.html">endpoint</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">pcie_ep.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="pcie__ep_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * Copyright 2020 Broadcom</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_PCIE_EP_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_PCIE_EP_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;zephyr/init.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510b">   21</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510b">pcie_ob_mem_type</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510ba52b8bd55168f44c7c4a6a3d36824d286">   22</a></span>    <a class="code hl_enumvalue" href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510ba52b8bd55168f44c7c4a6a3d36824d286">PCIE_OB_ANYMEM</a>,  </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510ba5312fb052e8dafaab224a4b554292e74">   23</a></span>    <a class="code hl_enumvalue" href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510ba5312fb052e8dafaab224a4b554292e74">PCIE_OB_LOWMEM</a>,  </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510ba13da19c9fa1732e72fa8add58da33ebb">   24</a></span>    <a class="code hl_enumvalue" href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510ba13da19c9fa1732e72fa8add58da33ebb">PCIE_OB_HIGHMEM</a>, </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>};</div>
+</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800">   27</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800">pci_ep_irq_type</a> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800ad90da0a62096ef8a4fc7d230afd0d44d">   28</a></span>    <a class="code hl_enumvalue" href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800ad90da0a62096ef8a4fc7d230afd0d44d">PCIE_EP_IRQ_LEGACY</a>, </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800a267b658ad2587fd0d57664197daeb318">   29</a></span>    <a class="code hl_enumvalue" href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800a267b658ad2587fd0d57664197daeb318">PCIE_EP_IRQ_MSI</a>,    </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800a55cad2c5812c9c7c14476ff000199ad4">   30</a></span>    <a class="code hl_enumvalue" href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800a55cad2c5812c9c7c14476ff000199ad4">PCIE_EP_IRQ_MSIX</a>,   </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
+</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#acd2605f2fb5676ded5f125712681d458">   33</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#acd2605f2fb5676ded5f125712681d458">xfer_direction</a> {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#acd2605f2fb5676ded5f125712681d458af2c2a8166d85d21e036a4a2015df803e">   34</a></span>    <a class="code hl_enumvalue" href="pcie__ep_8h.html#acd2605f2fb5676ded5f125712681d458af2c2a8166d85d21e036a4a2015df803e">HOST_TO_DEVICE</a>,     </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#acd2605f2fb5676ded5f125712681d458a4c419a2c450c4d954c3768631870480a">   35</a></span>    <a class="code hl_enumvalue" href="pcie__ep_8h.html#acd2605f2fb5676ded5f125712681d458a4c419a2c450c4d954c3768631870480a">DEVICE_TO_HOST</a>,     </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
+</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cd">   38</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cd">pcie_reset</a> {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cda532057b4dab53d2e86701394ead62ea7">   39</a></span>    <a class="code hl_enumvalue" href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cda532057b4dab53d2e86701394ead62ea7">PCIE_PERST</a>, </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cda7d94ae3f1fbdd486102559a450f01dee">   40</a></span>    <a class="code hl_enumvalue" href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cda7d94ae3f1fbdd486102559a450f01dee">PCIE_PERST_INB</a>, </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cda6dcb2d2f5ad3624bda5ca25d2e38a47a">   41</a></span>    <a class="code hl_enumvalue" href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cda6dcb2d2f5ad3624bda5ca25d2e38a47a">PCIE_FLR</a>,   </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    PCIE_RESET_MAX</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#af83085eb5819572854d919e5813253bf">   57</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="pcie__ep_8h.html#af83085eb5819572854d919e5813253bf">pcie_ep_reset_callback_t</a>)(<span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="};">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structpcie__ep__driver__api.html">   59</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    int (*conf_read)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t offset,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>             uint32_t *data);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    void (*conf_write)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t offset,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>               uint32_t data);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    int (*map_addr)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint64_t pcie_addr,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            uint64_t *mapped_addr, uint32_t size,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            <span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510b">pcie_ob_mem_type</a> ob_mem_type);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    void (*unmap_addr)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint64_t mapped_addr);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    int (*raise_irq)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>             <span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800">pci_ep_irq_type</a> irq_type,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>             uint32_t irq_num);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    int (*register_reset_cb)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                 <span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cd">pcie_reset</a> reset,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                 <a class="code hl_typedef" href="pcie__ep_8h.html#af83085eb5819572854d919e5813253bf">pcie_ep_reset_callback_t</a> cb, <span class="keywordtype">void</span> *arg);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    int (*dma_xfer)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint64_t mapped_addr,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            uintptr_t local_addr, uint32_t size,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            <span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#acd2605f2fb5676ded5f125712681d458">xfer_direction</a> dir);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>};</div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> pcie_ep_conf_read(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                    uint32_t offset, uint32_t *<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>)</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>{</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *api =</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">return</span> api-&gt;conf_read(dev, offset, data);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> pcie_ep_conf_write(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                      uint32_t offset, uint32_t data)</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>{</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *api =</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    api-&gt;conf_write(dev, offset, data);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>}</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> pcie_ep_map_addr(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                   uint64_t pcie_addr,</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>                   uint64_t *mapped_addr, uint32_t size,</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>                   <span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510b">pcie_ob_mem_type</a> ob_mem_type)</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>{</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *api =</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>            (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordflow">return</span> api-&gt;map_addr(dev, pcie_addr, mapped_addr, size, ob_mem_type);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>}</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> pcie_ep_unmap_addr(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>                      uint64_t mapped_addr)</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>{</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *api =</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>            (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    api-&gt;unmap_addr(dev, mapped_addr);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>}</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> pcie_ep_raise_irq(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>                    <span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800">pci_ep_irq_type</a> irq_type,</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                    uint32_t irq_num)</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>{</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *api =</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>            (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">return</span> api-&gt;raise_irq(dev, irq_type, irq_num);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>}</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> pcie_ep_register_reset_cb(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>                        <span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cd">pcie_reset</a> reset,</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>                        <a class="code hl_typedef" href="pcie__ep_8h.html#af83085eb5819572854d919e5813253bf">pcie_ep_reset_callback_t</a> cb,</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                        <span class="keywordtype">void</span> *arg)</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>{</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *api =</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keywordflow">if</span> (api-&gt;register_reset_cb) {</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <span class="keywordflow">return</span> api-&gt;register_reset_cb(dev, reset, cb, arg);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    }</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>}</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> pcie_ep_dma_xfer(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                   uint64_t mapped_addr,</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                   uintptr_t local_addr, uint32_t size,</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                   <span class="keyword">const</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#acd2605f2fb5676ded5f125712681d458">xfer_direction</a> dir)</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>{</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *api =</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>            (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="keywordflow">if</span> (api-&gt;dma_xfer) {</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>        <span class="keywordflow">return</span> api-&gt;dma_xfer(dev, mapped_addr, local_addr, size, dir);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    }</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>}</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#ac7e46d51c49ce6cb6b0c7ad7f8010292">  279</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="pcie__ep_8h.html#ac7e46d51c49ce6cb6b0c7ad7f8010292">pcie_ep_xfer_data_memcpy</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint64_t pcie_addr,</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>                 uintptr_t *local_addr, uint32_t size,</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>                 <span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510b">pcie_ob_mem_type</a> ob_mem_type,</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>                 <span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#acd2605f2fb5676ded5f125712681d458">xfer_direction</a> dir);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno"><a class="line" href="pcie__ep_8h.html#acfe495f60e94341e88cc267a879918fc">  301</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="pcie__ep_8h.html#acfe495f60e94341e88cc267a879918fc">pcie_ep_xfer_data_dma</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint64_t pcie_addr,</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>              uintptr_t *local_addr, uint32_t size,</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>              <span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510b">pcie_ob_mem_type</a> ob_mem_type,</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>              <span class="keyword">enum</span> <a class="code hl_enumeration" href="pcie__ep_8h.html#acd2605f2fb5676ded5f125712681d458">xfer_direction</a> dir);</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_PCIE_EP_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="apcie__ep_8h_html_a7b0f0f4693b7d11b973bfd62ac1b35cd"><div class="ttname"><a href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cd">pcie_reset</a></div><div class="ttdeci">pcie_reset</div><div class="ttdef"><b>Definição</b> pcie_ep.h:38</div></div>
+<div class="ttc" id="apcie__ep_8h_html_a7b0f0f4693b7d11b973bfd62ac1b35cda532057b4dab53d2e86701394ead62ea7"><div class="ttname"><a href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cda532057b4dab53d2e86701394ead62ea7">PCIE_PERST</a></div><div class="ttdeci">@ PCIE_PERST</div><div class="ttdef"><b>Definição</b> pcie_ep.h:39</div></div>
+<div class="ttc" id="apcie__ep_8h_html_a7b0f0f4693b7d11b973bfd62ac1b35cda6dcb2d2f5ad3624bda5ca25d2e38a47a"><div class="ttname"><a href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cda6dcb2d2f5ad3624bda5ca25d2e38a47a">PCIE_FLR</a></div><div class="ttdeci">@ PCIE_FLR</div><div class="ttdef"><b>Definição</b> pcie_ep.h:41</div></div>
+<div class="ttc" id="apcie__ep_8h_html_a7b0f0f4693b7d11b973bfd62ac1b35cda7d94ae3f1fbdd486102559a450f01dee"><div class="ttname"><a href="pcie__ep_8h.html#a7b0f0f4693b7d11b973bfd62ac1b35cda7d94ae3f1fbdd486102559a450f01dee">PCIE_PERST_INB</a></div><div class="ttdeci">@ PCIE_PERST_INB</div><div class="ttdef"><b>Definição</b> pcie_ep.h:40</div></div>
+<div class="ttc" id="apcie__ep_8h_html_aa7c51648c5a1663dd4dec689727a510b"><div class="ttname"><a href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510b">pcie_ob_mem_type</a></div><div class="ttdeci">pcie_ob_mem_type</div><div class="ttdef"><b>Definição</b> pcie_ep.h:21</div></div>
+<div class="ttc" id="apcie__ep_8h_html_aa7c51648c5a1663dd4dec689727a510ba13da19c9fa1732e72fa8add58da33ebb"><div class="ttname"><a href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510ba13da19c9fa1732e72fa8add58da33ebb">PCIE_OB_HIGHMEM</a></div><div class="ttdeci">@ PCIE_OB_HIGHMEM</div><div class="ttdef"><b>Definição</b> pcie_ep.h:24</div></div>
+<div class="ttc" id="apcie__ep_8h_html_aa7c51648c5a1663dd4dec689727a510ba52b8bd55168f44c7c4a6a3d36824d286"><div class="ttname"><a href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510ba52b8bd55168f44c7c4a6a3d36824d286">PCIE_OB_ANYMEM</a></div><div class="ttdeci">@ PCIE_OB_ANYMEM</div><div class="ttdef"><b>Definição</b> pcie_ep.h:22</div></div>
+<div class="ttc" id="apcie__ep_8h_html_aa7c51648c5a1663dd4dec689727a510ba5312fb052e8dafaab224a4b554292e74"><div class="ttname"><a href="pcie__ep_8h.html#aa7c51648c5a1663dd4dec689727a510ba5312fb052e8dafaab224a4b554292e74">PCIE_OB_LOWMEM</a></div><div class="ttdeci">@ PCIE_OB_LOWMEM</div><div class="ttdef"><b>Definição</b> pcie_ep.h:23</div></div>
+<div class="ttc" id="apcie__ep_8h_html_aba0e572125869b246d4968ee164f3800"><div class="ttname"><a href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800">pci_ep_irq_type</a></div><div class="ttdeci">pci_ep_irq_type</div><div class="ttdef"><b>Definição</b> pcie_ep.h:27</div></div>
+<div class="ttc" id="apcie__ep_8h_html_aba0e572125869b246d4968ee164f3800a267b658ad2587fd0d57664197daeb318"><div class="ttname"><a href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800a267b658ad2587fd0d57664197daeb318">PCIE_EP_IRQ_MSI</a></div><div class="ttdeci">@ PCIE_EP_IRQ_MSI</div><div class="ttdef"><b>Definição</b> pcie_ep.h:29</div></div>
+<div class="ttc" id="apcie__ep_8h_html_aba0e572125869b246d4968ee164f3800a55cad2c5812c9c7c14476ff000199ad4"><div class="ttname"><a href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800a55cad2c5812c9c7c14476ff000199ad4">PCIE_EP_IRQ_MSIX</a></div><div class="ttdeci">@ PCIE_EP_IRQ_MSIX</div><div class="ttdef"><b>Definição</b> pcie_ep.h:30</div></div>
+<div class="ttc" id="apcie__ep_8h_html_aba0e572125869b246d4968ee164f3800ad90da0a62096ef8a4fc7d230afd0d44d"><div class="ttname"><a href="pcie__ep_8h.html#aba0e572125869b246d4968ee164f3800ad90da0a62096ef8a4fc7d230afd0d44d">PCIE_EP_IRQ_LEGACY</a></div><div class="ttdeci">@ PCIE_EP_IRQ_LEGACY</div><div class="ttdef"><b>Definição</b> pcie_ep.h:28</div></div>
+<div class="ttc" id="apcie__ep_8h_html_ac7e46d51c49ce6cb6b0c7ad7f8010292"><div class="ttname"><a href="pcie__ep_8h.html#ac7e46d51c49ce6cb6b0c7ad7f8010292">pcie_ep_xfer_data_memcpy</a></div><div class="ttdeci">int pcie_ep_xfer_data_memcpy(const struct device *dev, uint64_t pcie_addr, uintptr_t *local_addr, uint32_t size, enum pcie_ob_mem_type ob_mem_type, enum xfer_direction dir)</div><div class="ttdoc">Data transfer using memcpy.</div></div>
+<div class="ttc" id="apcie__ep_8h_html_acd2605f2fb5676ded5f125712681d458"><div class="ttname"><a href="pcie__ep_8h.html#acd2605f2fb5676ded5f125712681d458">xfer_direction</a></div><div class="ttdeci">xfer_direction</div><div class="ttdef"><b>Definição</b> pcie_ep.h:33</div></div>
+<div class="ttc" id="apcie__ep_8h_html_acd2605f2fb5676ded5f125712681d458a4c419a2c450c4d954c3768631870480a"><div class="ttname"><a href="pcie__ep_8h.html#acd2605f2fb5676ded5f125712681d458a4c419a2c450c4d954c3768631870480a">DEVICE_TO_HOST</a></div><div class="ttdeci">@ DEVICE_TO_HOST</div><div class="ttdef"><b>Definição</b> pcie_ep.h:35</div></div>
+<div class="ttc" id="apcie__ep_8h_html_acd2605f2fb5676ded5f125712681d458af2c2a8166d85d21e036a4a2015df803e"><div class="ttname"><a href="pcie__ep_8h.html#acd2605f2fb5676ded5f125712681d458af2c2a8166d85d21e036a4a2015df803e">HOST_TO_DEVICE</a></div><div class="ttdeci">@ HOST_TO_DEVICE</div><div class="ttdef"><b>Definição</b> pcie_ep.h:34</div></div>
+<div class="ttc" id="apcie__ep_8h_html_acfe495f60e94341e88cc267a879918fc"><div class="ttname"><a href="pcie__ep_8h.html#acfe495f60e94341e88cc267a879918fc">pcie_ep_xfer_data_dma</a></div><div class="ttdeci">int pcie_ep_xfer_data_dma(const struct device *dev, uint64_t pcie_addr, uintptr_t *local_addr, uint32_t size, enum pcie_ob_mem_type ob_mem_type, enum xfer_direction dir)</div><div class="ttdoc">Data transfer using system DMA.</div></div>
+<div class="ttc" id="apcie__ep_8h_html_af83085eb5819572854d919e5813253bf"><div class="ttname"><a href="pcie__ep_8h.html#af83085eb5819572854d919e5813253bf">pcie_ep_reset_callback_t</a></div><div class="ttdeci">void(* pcie_ep_reset_callback_t)(void *arg)</div><div class="ttdoc">Callback API for PCIe reset interrupts.</div><div class="ttdef"><b>Definição</b> pcie_ep.h:57</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a27573cbd10ee145f8bb1396242b27a3e"><div class="ttname"><a href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">device::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definição</b> device.h:395</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructpcie__ep__driver__api_html"><div class="ttname"><a href="structpcie__ep__driver__api.html">pcie_ep_driver_api</a></div><div class="ttdef"><b>Definição</b> pcie_ep.h:59</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

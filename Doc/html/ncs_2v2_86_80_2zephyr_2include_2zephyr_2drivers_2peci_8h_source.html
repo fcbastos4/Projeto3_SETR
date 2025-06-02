@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/peci.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">peci.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2peci_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2020 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_PECI_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_PECI_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;errno.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="group__peci__interface.html#ga76ad37d4317b48311cf23cf516549544">   34</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__peci__interface.html#ga76ad37d4317b48311cf23cf516549544">peci_error_code</a> {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    PECI_GENERAL_SENSOR_ERROR    = 0x8000,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    PECI_UNDERFLOW_SENSOR_ERROR  = 0x8002,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    PECI_OVERFLOW_SENSOR_ERROR   = 0x8003,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
+</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="group__peci__interface.html#gacd243f64973f7bdcc8c999dc14ed2bd6">   43</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__peci__interface.html#gacd243f64973f7bdcc8c999dc14ed2bd6">peci_command_code</a> {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    PECI_CMD_PING                = 0x00,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    PECI_CMD_GET_TEMP0           = 0x01,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    PECI_CMD_GET_TEMP1           = 0x02,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    PECI_CMD_RD_PCI_CFG0         = 0x61,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    PECI_CMD_RD_PCI_CFG1         = 0x62,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    PECI_CMD_WR_PCI_CFG0         = 0x65,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    PECI_CMD_WR_PCI_CFG1         = 0x66,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    PECI_CMD_RD_PKG_CFG0         = 0xA1,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    PECI_CMD_RD_PKG_CFG1         = 0xA,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    PECI_CMD_WR_PKG_CFG0         = 0xA5,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    PECI_CMD_WR_PKG_CFG1         = 0xA6,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    PECI_CMD_RD_IAMSR0           = 0xB1,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    PECI_CMD_RD_IAMSR1           = 0xB2,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    PECI_CMD_WR_IAMSR0           = 0xB5,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    PECI_CMD_WR_IAMSR1           = 0xB6,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    PECI_CMD_RD_PCI_CFG_LOCAL0   = 0xE1,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    PECI_CMD_RD_PCI_CFG_LOCAL1   = 0xE2,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    PECI_CMD_WR_PCI_CFG_LOCAL0   = 0xE5,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    PECI_CMD_WR_PCI_CFG_LOCAL1   = 0xE6,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    PECI_CMD_GET_DIB             = 0xF7,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>};</div>
+</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#define PECI_CC_RSP_SUCCESS              (0x40U)</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">#define PECI_CC_RSP_TIMEOUT              (0x80U)</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#define PECI_CC_OUT_OF_RESOURCES_TIMEOUT (0x81U)</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#define PECI_CC_RESOURCES_LOWPWR_TIMEOUT (0x82U)</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#define PECI_CC_ILLEGAL_REQUEST          (0x90U)</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#define PECI_PING_WR_LEN               (0U)</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#define PECI_PING_RD_LEN               (0U)</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">#define PECI_PING_LEN                  (3U)</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#define PECI_GET_DIB_WR_LEN            (1U)</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#define PECI_GET_DIB_RD_LEN            (8U)</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#define PECI_GET_DIB_CMD_LEN           (4U)</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#define PECI_GET_DIB_DEVINFO           (0U)</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#define PECI_GET_DIB_REVNUM            (1U)</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">#define PECI_GET_DIB_DOMAIN_BIT_MASK   (0x4U)</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">#define PECI_GET_DIB_MAJOR_REV_MASK    0xF0</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="preprocessor">#define PECI_GET_DIB_MINOR_REV_MASK    0x0F</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#define PECI_GET_TEMP_WR_LEN           (1U)</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">#define PECI_GET_TEMP_RD_LEN           (2U)</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">#define PECI_GET_TEMP_CMD_LEN          (4U)</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#define PECI_GET_TEMP_LSB              (0U)</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">#define PECI_GET_TEMP_MSB              (1U)</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="preprocessor">#define PECI_GET_TEMP_ERR_MSB          (0x80U)</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">#define PECI_GET_TEMP_ERR_LSB_GENERAL  (0x0U)</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#define PECI_GET_TEMP_ERR_LSB_RES      (0x1U)</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">#define PECI_GET_TEMP_ERR_LSB_TEMP_LO  (0x2U)</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#define PECI_GET_TEMP_ERR_LSB_TEMP_HI  (0x3U)</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#define PECI_RD_PKG_WR_LEN             (5U)</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="preprocessor">#define PECI_RD_PKG_LEN_BYTE           (2U)</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#define PECI_RD_PKG_LEN_WORD           (3U)</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="preprocessor">#define PECI_RD_PKG_LEN_DWORD          (5U)</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">#define PECI_RD_PKG_CMD_LEN            (8U)</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">#define PECI_WR_PKG_RD_LEN              (1U)</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="preprocessor">#define PECI_WR_PKG_LEN_BYTE            (7U)</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">#define PECI_WR_PKG_LEN_WORD            (8U)</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">#define PECI_WR_PKG_LEN_DWORD           (10U)</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">#define PECI_WR_PKG_CMD_LEN             (9U)</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">#define PECI_RD_IAMSR_WR_LEN            (5U)</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">#define PECI_RD_IAMSR_LEN_BYTE          (2U)</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="preprocessor">#define PECI_RD_IAMSR_LEN_WORD          (3U)</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="preprocessor">#define PECI_RD_IAMSR_LEN_DWORD         (5U)</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">#define PECI_RD_IAMSR_LEN_QWORD         (9U)</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">#define PECI_RD_IAMSR_CMD_LEN           (8U)</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor">#define PECI_WR_IAMSR_RD_LEN            (1U)</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">#define PECI_WR_IAMSR_LEN_BYTE          (7U)</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">#define PECI_WR_IAMSR_LEN_WORD          (8U)</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">#define PECI_WR_IAMSR_LEN_DWORD         (10U)</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">#define PECI_WR_IAMSR_LEN_QWORD         (14U)</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">#define PECI_WR_IAMSR_CMD_LEN           (9U)</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">#define PECI_RD_PCICFG_WR_LEN           (6U)</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">#define PECI_RD_PCICFG_LEN_BYTE         (2U)</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">#define PECI_RD_PCICFG_LEN_WORD         (3U)</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#define PECI_RD_PCICFG_LEN_DWORD        (5U)</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="preprocessor">#define PECI_RD_PCICFG_CMD_LEN          (9U)</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="preprocessor">#define PECI_WR_PCICFG_RD_LEN           (1U)</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="preprocessor">#define PECI_WR_PCICFG_LEN_BYTE         (8U)</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">#define PECI_WR_PCICFG_LEN_WORD         (9U)</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">#define PECI_WR_PCICFG_LEN_DWORD        (11U)</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#define PECI_WR_PCICFG_CMD_LEN          (10U)</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">#define PECI_RD_PCICFGL_WR_LEN          (5U)</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="preprocessor">#define PECI_RD_PCICFGL_RD_LEN_BYTE     (2U)</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="preprocessor">#define PECI_RD_PCICFGL_RD_LEN_WORD     (3U)</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="preprocessor">#define PECI_RD_PCICFGL_RD_LEN_DWORD    (5U)</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="preprocessor">#define PECI_RD_PCICFGL_CMD_LEN         (8U)</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">#define PECI_WR_PCICFGL_RD_LEN          (1U)</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">#define PECI_WR_PCICFGL_WR_LEN_BYTE     (7U)</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="preprocessor">#define PECI_WR_PCICFGL_WR_LEN_WORD     (8U)</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="preprocessor">#define PECI_WR_PCICFGL_WR_LEN_DWORD    (10U)</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="preprocessor">#define PECI_WR_PCICFGL_CMD_LEN         (9U)</span></div>
+<div class="foldopen" id="foldopen00209" data-start="{" data-end="};">
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="structpeci__buf.html">  209</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structpeci__buf.html">peci_buf</a> {</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="structpeci__buf.html#aca55975957106666161da358b7f85db6">  213</a></span>    uint8_t *<a class="code hl_variable" href="structpeci__buf.html#aca55975957106666161da358b7f85db6">buf</a>;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="structpeci__buf.html#a8e3fd0ef3f9141113214b89bb589a5e9">  221</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structpeci__buf.html#a8e3fd0ef3f9141113214b89bb589a5e9">len</a>;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>};</div>
+</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="foldopen" id="foldopen00227" data-start="{" data-end="};">
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="structpeci__msg.html">  227</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structpeci__msg.html">peci_msg</a> {</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="structpeci__msg.html#aa4d6785fc79059dc7e8574010bc29e4c">  229</a></span>    uint8_t <a class="code hl_variable" href="structpeci__msg.html#aa4d6785fc79059dc7e8574010bc29e4c">addr</a>;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="structpeci__msg.html#a10b270f4669c85a85c6e8f1bef7671e8">  231</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__peci__interface.html#gacd243f64973f7bdcc8c999dc14ed2bd6">peci_command_code</a> <a class="code hl_variable" href="structpeci__msg.html#a10b270f4669c85a85c6e8f1bef7671e8">cmd_code</a>;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="structpeci__msg.html#a22e435e110d261b8ecd5180d118ffd2d">  233</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structpeci__buf.html">peci_buf</a> <a class="code hl_variable" href="structpeci__msg.html#a22e435e110d261b8ecd5180d118ffd2d">tx_buffer</a>;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="structpeci__msg.html#abea62e39ca0ac59fca47c2f08a72f1e8">  235</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structpeci__buf.html">peci_buf</a> <a class="code hl_variable" href="structpeci__msg.html#abea62e39ca0ac59fca47c2f08a72f1e8">rx_buffer</a>;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="structpeci__msg.html#a0449f151c62e672553d7d60480e1b995">  237</a></span>    uint8_t <a class="code hl_variable" href="structpeci__msg.html#a0449f151c62e672553d7d60480e1b995">flags</a>;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>};</div>
+</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="keyword">typedef</span> int (*peci_config_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t bitrate);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="keyword">typedef</span> int (*peci_transfer_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct </span><a class="code hl_struct" href="structpeci__msg.html">peci_msg</a> *msg);</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="keyword">typedef</span> int (*peci_disable_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="keyword">typedef</span> int (*peci_enable_t)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>__subsystem <span class="keyword">struct </span>peci_driver_api {</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    peci_config_t config;</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    peci_disable_t disable;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    peci_enable_t enable;</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    peci_transfer_t transfer;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>};</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="group__peci__interface.html#gac2877cfcc5c179849e2d3b40de11d628">  272</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__peci__interface.html#gac2877cfcc5c179849e2d3b40de11d628">peci_config</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint32_t bitrate);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_peci_config(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                     uint32_t bitrate)</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>{</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keyword">struct </span>peci_driver_api *api;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    api = (<span class="keyword">struct </span>peci_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordflow">return</span> api-&gt;config(dev, bitrate);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>}</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno"><a class="line" href="group__peci__interface.html#ga99b9d88d17c9928b9d6192d636d6bfda">  291</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__peci__interface.html#ga99b9d88d17c9928b9d6192d636d6bfda">peci_enable</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_peci_enable(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>{</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keyword">struct </span>peci_driver_api *api;</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    api = (<span class="keyword">struct </span>peci_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="keywordflow">return</span> api-&gt;enable(dev);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>}</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno"><a class="line" href="group__peci__interface.html#ga18155d01f2c159927fbe5cd7e0dfb4ef">  309</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__peci__interface.html#ga18155d01f2c159927fbe5cd7e0dfb4ef">peci_disable</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_peci_disable(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>{</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="keyword">struct </span>peci_driver_api *api;</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    api = (<span class="keyword">struct </span>peci_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="keywordflow">return</span> api-&gt;disable(dev);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>}</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno"><a class="line" href="group__peci__interface.html#gad2d0952179e3087e666dc16e55bb0a11">  329</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__peci__interface.html#gad2d0952179e3087e666dc16e55bb0a11">peci_transfer</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structpeci__msg.html">peci_msg</a> *msg);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_peci_transfer(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>                       <span class="keyword">struct</span> <a class="code hl_struct" href="structpeci__msg.html">peci_msg</a> *msg)</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>{</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    <span class="keyword">struct </span>peci_driver_api *api;</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    api = (<span class="keyword">struct </span>peci_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    <span class="keywordflow">return</span> api-&gt;transfer(dev, msg);</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>}</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>}</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="preprocessor">#include &lt;syscalls/peci.h&gt;</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_PECI_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__peci__interface_html_ga18155d01f2c159927fbe5cd7e0dfb4ef"><div class="ttname"><a href="group__peci__interface.html#ga18155d01f2c159927fbe5cd7e0dfb4ef">peci_disable</a></div><div class="ttdeci">__syscall int peci_disable(const struct device *dev)</div><div class="ttdoc">Disable PECI interface.</div></div>
+<div class="ttc" id="agroup__peci__interface_html_ga76ad37d4317b48311cf23cf516549544"><div class="ttname"><a href="group__peci__interface.html#ga76ad37d4317b48311cf23cf516549544">peci_error_code</a></div><div class="ttdeci">peci_error_code</div><div class="ttdoc">PECI error codes.</div><div class="ttdef"><b>Definição</b> peci.h:34</div></div>
+<div class="ttc" id="agroup__peci__interface_html_ga99b9d88d17c9928b9d6192d636d6bfda"><div class="ttname"><a href="group__peci__interface.html#ga99b9d88d17c9928b9d6192d636d6bfda">peci_enable</a></div><div class="ttdeci">__syscall int peci_enable(const struct device *dev)</div><div class="ttdoc">Enable PECI interface.</div></div>
+<div class="ttc" id="agroup__peci__interface_html_gac2877cfcc5c179849e2d3b40de11d628"><div class="ttname"><a href="group__peci__interface.html#gac2877cfcc5c179849e2d3b40de11d628">peci_config</a></div><div class="ttdeci">__syscall int peci_config(const struct device *dev, uint32_t bitrate)</div><div class="ttdoc">Configures the PECI interface.</div></div>
+<div class="ttc" id="agroup__peci__interface_html_gacd243f64973f7bdcc8c999dc14ed2bd6"><div class="ttname"><a href="group__peci__interface.html#gacd243f64973f7bdcc8c999dc14ed2bd6">peci_command_code</a></div><div class="ttdeci">peci_command_code</div><div class="ttdoc">PECI commands.</div><div class="ttdef"><b>Definição</b> peci.h:43</div></div>
+<div class="ttc" id="agroup__peci__interface_html_gad2d0952179e3087e666dc16e55bb0a11"><div class="ttname"><a href="group__peci__interface.html#gad2d0952179e3087e666dc16e55bb0a11">peci_transfer</a></div><div class="ttdeci">__syscall int peci_transfer(const struct device *dev, struct peci_msg *msg)</div><div class="ttdoc">Performs a PECI transaction.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructpeci__buf_html"><div class="ttname"><a href="structpeci__buf.html">peci_buf</a></div><div class="ttdoc">PECI buffer structure.</div><div class="ttdef"><b>Definição</b> peci.h:209</div></div>
+<div class="ttc" id="astructpeci__buf_html_a8e3fd0ef3f9141113214b89bb589a5e9"><div class="ttname"><a href="structpeci__buf.html#a8e3fd0ef3f9141113214b89bb589a5e9">peci_buf::len</a></div><div class="ttdeci">size_t len</div><div class="ttdef"><b>Definição</b> peci.h:221</div></div>
+<div class="ttc" id="astructpeci__buf_html_aca55975957106666161da358b7f85db6"><div class="ttname"><a href="structpeci__buf.html#aca55975957106666161da358b7f85db6">peci_buf::buf</a></div><div class="ttdeci">uint8_t * buf</div><div class="ttdef"><b>Definição</b> peci.h:213</div></div>
+<div class="ttc" id="astructpeci__msg_html"><div class="ttname"><a href="structpeci__msg.html">peci_msg</a></div><div class="ttdoc">PECI transaction packet format.</div><div class="ttdef"><b>Definição</b> peci.h:227</div></div>
+<div class="ttc" id="astructpeci__msg_html_a0449f151c62e672553d7d60480e1b995"><div class="ttname"><a href="structpeci__msg.html#a0449f151c62e672553d7d60480e1b995">peci_msg::flags</a></div><div class="ttdeci">uint8_t flags</div><div class="ttdef"><b>Definição</b> peci.h:237</div></div>
+<div class="ttc" id="astructpeci__msg_html_a10b270f4669c85a85c6e8f1bef7671e8"><div class="ttname"><a href="structpeci__msg.html#a10b270f4669c85a85c6e8f1bef7671e8">peci_msg::cmd_code</a></div><div class="ttdeci">enum peci_command_code cmd_code</div><div class="ttdef"><b>Definição</b> peci.h:231</div></div>
+<div class="ttc" id="astructpeci__msg_html_a22e435e110d261b8ecd5180d118ffd2d"><div class="ttname"><a href="structpeci__msg.html#a22e435e110d261b8ecd5180d118ffd2d">peci_msg::tx_buffer</a></div><div class="ttdeci">struct peci_buf tx_buffer</div><div class="ttdef"><b>Definição</b> peci.h:233</div></div>
+<div class="ttc" id="astructpeci__msg_html_aa4d6785fc79059dc7e8574010bc29e4c"><div class="ttname"><a href="structpeci__msg.html#aa4d6785fc79059dc7e8574010bc29e4c">peci_msg::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdef"><b>Definição</b> peci.h:229</div></div>
+<div class="ttc" id="astructpeci__msg_html_abea62e39ca0ac59fca47c2f08a72f1e8"><div class="ttname"><a href="structpeci__msg.html#abea62e39ca0ac59fca47c2f08a72f1e8">peci_msg::rx_buffer</a></div><div class="ttdeci">struct peci_buf rx_buffer</div><div class="ttdef"><b>Definição</b> peci.h:235</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

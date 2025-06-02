@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/crypto/cipher.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_8a1c93b3f36828ec5fd152f449a8c210.html">crypto</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">cipher.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="cipher_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2016 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_CRYPTO_CIPHER_H_</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#define ZEPHYR_INCLUDE_CRYPTO_CIPHER_H_</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">zephyr/sys/util.h</a>&gt;</span></div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="group__crypto__cipher.html#gaa43d9907b508cb28c649aaa524d84424">   29</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__crypto__cipher.html#gaa43d9907b508cb28c649aaa524d84424">cipher_algo</a> {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    CRYPTO_CIPHER_ALGO_AES = 1,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
+</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="group__crypto__cipher.html#ga1db3a5604bff0669672af4457aaaee21">   34</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__crypto__cipher.html#ga1db3a5604bff0669672af4457aaaee21">cipher_op</a> {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    CRYPTO_CIPHER_OP_DECRYPT = 0,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    CRYPTO_CIPHER_OP_ENCRYPT = 1,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>};</div>
+</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="group__crypto__cipher.html#gaeedaf8017f8d6518f7dedef365bbae43">   44</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__crypto__cipher.html#gaeedaf8017f8d6518f7dedef365bbae43">cipher_mode</a> {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    CRYPTO_CIPHER_MODE_ECB = 1,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    CRYPTO_CIPHER_MODE_CBC = 2,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    CRYPTO_CIPHER_MODE_CTR = 3,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    CRYPTO_CIPHER_MODE_CCM = 4,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    CRYPTO_CIPHER_MODE_GCM = 5,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
+</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">/* Forward declarations */</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">struct </span><a class="code hl_struct" href="structcipher__aead__pkt.html">cipher_aead_pkt</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">struct </span><a class="code hl_struct" href="structcipher__ctx.html">cipher_ctx</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">struct </span><a class="code hl_struct" href="structcipher__pkt.html">cipher_pkt</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">typedef</span> int (*block_op_t)(<span class="keyword">struct </span><a class="code hl_struct" href="structcipher__ctx.html">cipher_ctx</a> *ctx, <span class="keyword">struct </span><a class="code hl_struct" href="structcipher__pkt.html">cipher_pkt</a> *pkt);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">/* Function signatures for encryption/ decryption using standard cipher modes</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"> * like  CBC, CTR, CCM.</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">typedef</span> int (*cbc_op_t)(<span class="keyword">struct </span><a class="code hl_struct" href="structcipher__ctx.html">cipher_ctx</a> *ctx, <span class="keyword">struct </span><a class="code hl_struct" href="structcipher__pkt.html">cipher_pkt</a> *pkt,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            uint8_t *iv);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">typedef</span> int (*ctr_op_t)(<span class="keyword">struct </span><a class="code hl_struct" href="structcipher__ctx.html">cipher_ctx</a> *ctx, <span class="keyword">struct </span><a class="code hl_struct" href="structcipher__pkt.html">cipher_pkt</a> *pkt,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            uint8_t *ctr);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">typedef</span> int (*ccm_op_t)(<span class="keyword">struct </span><a class="code hl_struct" href="structcipher__ctx.html">cipher_ctx</a> *ctx, <span class="keyword">struct </span><a class="code hl_struct" href="structcipher__aead__pkt.html">cipher_aead_pkt</a> *pkt,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>             uint8_t *nonce);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">typedef</span> int (*gcm_op_t)(<span class="keyword">struct </span><a class="code hl_struct" href="structcipher__ctx.html">cipher_ctx</a> *ctx, <span class="keyword">struct </span><a class="code hl_struct" href="structcipher__aead__pkt.html">cipher_aead_pkt</a> *pkt,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>             uint8_t *nonce);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="};">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structcipher__ops.html">   74</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcipher__ops.html">cipher_ops</a> {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__crypto__cipher.html#gaeedaf8017f8d6518f7dedef365bbae43">cipher_mode</a> <a class="code hl_enumeration" href="group__crypto__cipher.html#gaeedaf8017f8d6518f7dedef365bbae43">cipher_mode</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        block_op_t  block_crypt_hndlr;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        cbc_op_t    cbc_crypt_hndlr;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        ctr_op_t    ctr_crypt_hndlr;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        ccm_op_t    ccm_crypt_hndlr;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        gcm_op_t    gcm_crypt_hndlr;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    };</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>};</div>
+</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="foldopen" id="foldopen00087" data-start="{" data-end="};">
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structccm__params.html">   87</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structccm__params.html">ccm_params</a> {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    uint16_t tag_len;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    uint16_t nonce_len;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>};</div>
+</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="foldopen" id="foldopen00092" data-start="{" data-end="};">
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structctr__params.html">   92</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structctr__params.html">ctr_params</a> {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="comment">/* CTR mode counter is a split counter composed of iv and counter</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">     * such that ivlen + ctr_len = keylen</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    uint32_t ctr_len;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>};</div>
+</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="foldopen" id="foldopen00099" data-start="{" data-end="};">
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="structgcm__params.html">   99</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structgcm__params.html">gcm_params</a> {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    uint16_t tag_len;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    uint16_t nonce_len;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>};</div>
+</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="foldopen" id="foldopen00110" data-start="{" data-end="};">
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structcipher__ctx.html">  110</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcipher__ctx.html">cipher_ctx</a> {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="structcipher__ctx.html#ae3eb86d5be42450b761f89114723b682">  116</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structcipher__ops.html">cipher_ops</a> <a class="code hl_variable" href="structcipher__ctx.html#ae3eb86d5be42450b761f89114723b682">ops</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="comment">/* Cryptographic key to be used in this session */</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        uint8_t *bit_stream;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="comment">/* For cases where  key is protected and is not</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment">         * available to caller</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment">         */</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keywordtype">void</span> *handle;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structcipher__ctx.html#a2977c93b4d17dd9cf9e8dda243b98e45">  126</a></span>    } <a class="code hl_variable" href="structcipher__ctx.html#a2977c93b4d17dd9cf9e8dda243b98e45">key</a>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="structcipher__ctx.html#a44842ea8ece2aaea4d757137cdb67b52">  131</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_variable" href="structcipher__ctx.html#a44842ea8ece2aaea4d757137cdb67b52">device</a>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="structcipher__ctx.html#a624cf985cf35b3aa8681c3892fd67429">  140</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structcipher__ctx.html#a624cf985cf35b3aa8681c3892fd67429">drv_sessn_state</a>;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="structcipher__ctx.html#a0439c7f7c300a59296d353e76132c028">  146</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structcipher__ctx.html#a0439c7f7c300a59296d353e76132c028">app_sessn_state</a>;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structccm__params.html">ccm_params</a> ccm_info;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structctr__params.html">ctr_params</a> ctr_info;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structgcm__params.html">gcm_params</a> gcm_info;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="structcipher__ctx.html#a76e6bc13dcb2405302963ac74dc6285b">  156</a></span>    } <a class="code hl_variable" href="structcipher__ctx.html#a76e6bc13dcb2405302963ac74dc6285b">mode_params</a>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="structcipher__ctx.html#a10dbfc431a748118c186099c249ed5e4">  161</a></span>    uint16_t  <a class="code hl_variable" href="structcipher__ctx.html#a10dbfc431a748118c186099c249ed5e4">keylen</a>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="structcipher__ctx.html#a5745811b9b08e6df51f9b8f8b14ceae7">  169</a></span>    uint16_t <a class="code hl_variable" href="structcipher__ctx.html#a5745811b9b08e6df51f9b8f8b14ceae7">flags</a>;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>};</div>
+</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="foldopen" id="foldopen00180" data-start="{" data-end="};">
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="structcipher__pkt.html">  180</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcipher__pkt.html">cipher_pkt</a> {</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="structcipher__pkt.html#a56d2de56d9efc153032eb7f6503748ba">  183</a></span>    uint8_t *<a class="code hl_variable" href="structcipher__pkt.html#a56d2de56d9efc153032eb7f6503748ba">in_buf</a>;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="structcipher__pkt.html#ac5c98e7edafb4b61e01f707c785afbea">  186</a></span>    <span class="keywordtype">int</span>  <a class="code hl_variable" href="structcipher__pkt.html#ac5c98e7edafb4b61e01f707c785afbea">in_len</a>;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="structcipher__pkt.html#ab95bae428d3d3c80b1b8ee6ea03a05d0">  192</a></span>    uint8_t *<a class="code hl_variable" href="structcipher__pkt.html#ab95bae428d3d3c80b1b8ee6ea03a05d0">out_buf</a>;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="structcipher__pkt.html#a6e51f941334e87cc966f5a37e783d1fc">  197</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structcipher__pkt.html#a6e51f941334e87cc966f5a37e783d1fc">out_buf_max</a>;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="structcipher__pkt.html#abc9588a5f84f9daa13ce4aec965f0a91">  202</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structcipher__pkt.html#abc9588a5f84f9daa13ce4aec965f0a91">out_len</a>;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="structcipher__pkt.html#a26fb877d705580648da03ce95264d100">  208</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structcipher__ctx.html">cipher_ctx</a> *<a class="code hl_variable" href="structcipher__pkt.html#a26fb877d705580648da03ce95264d100">ctx</a>;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>};</div>
+</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="foldopen" id="foldopen00217" data-start="{" data-end="};">
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="structcipher__aead__pkt.html">  217</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcipher__aead__pkt.html">cipher_aead_pkt</a> {</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="comment">/* IO buffers for encryption. This has to be supplied by the app. */</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structcipher__pkt.html">cipher_pkt</a> *pkt;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="structcipher__aead__pkt.html#a1b00939c8409041b8202ae90ee01a41c">  224</a></span>    uint8_t *<a class="code hl_variable" href="structcipher__aead__pkt.html#a1b00939c8409041b8202ae90ee01a41c">ad</a>;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="structcipher__aead__pkt.html#a2964d6ffbe02b7088be9a2d5c21a2f9c">  227</a></span>    uint32_t <a class="code hl_variable" href="structcipher__aead__pkt.html#a2964d6ffbe02b7088be9a2d5c21a2f9c">ad_len</a>;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="structcipher__aead__pkt.html#a3c7a3e72c7d21ec574dd777ac0bdf3c4">  233</a></span>    uint8_t *<a class="code hl_variable" href="structcipher__aead__pkt.html#a3c7a3e72c7d21ec574dd777ac0bdf3c4">tag</a>;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>};</div>
+</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment">/* Prototype for the application function to be invoked by the crypto driver</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="comment"> * on completion of an async request. The app may get the session context</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="comment"> * via the pkt-&gt;ctx field. For CCM ops the encompassing AEAD packet may be</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment"> * accessed via container_of(). The type of a packet can be determined via</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="comment"> * pkt-&gt;ctx.ops.mode .</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="keyword">typedef</span> void (*cipher_completion_cb)(<span class="keyword">struct </span><a class="code hl_struct" href="structcipher__pkt.html">cipher_pkt</a> *completed, <span class="keywordtype">int</span> status);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_CRYPTO_CIPHER_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__crypto__cipher_html_ga1db3a5604bff0669672af4457aaaee21"><div class="ttname"><a href="group__crypto__cipher.html#ga1db3a5604bff0669672af4457aaaee21">cipher_op</a></div><div class="ttdeci">cipher_op</div><div class="ttdef"><b>Definição</b> cipher.h:34</div></div>
+<div class="ttc" id="agroup__crypto__cipher_html_gaa43d9907b508cb28c649aaa524d84424"><div class="ttname"><a href="group__crypto__cipher.html#gaa43d9907b508cb28c649aaa524d84424">cipher_algo</a></div><div class="ttdeci">cipher_algo</div><div class="ttdef"><b>Definição</b> cipher.h:29</div></div>
+<div class="ttc" id="agroup__crypto__cipher_html_gaeedaf8017f8d6518f7dedef365bbae43"><div class="ttname"><a href="group__crypto__cipher.html#gaeedaf8017f8d6518f7dedef365bbae43">cipher_mode</a></div><div class="ttdeci">cipher_mode</div><div class="ttdef"><b>Definição</b> cipher.h:44</div></div>
+<div class="ttc" id="astructccm__params_html"><div class="ttname"><a href="structccm__params.html">ccm_params</a></div><div class="ttdef"><b>Definição</b> cipher.h:87</div></div>
+<div class="ttc" id="astructcipher__aead__pkt_html"><div class="ttname"><a href="structcipher__aead__pkt.html">cipher_aead_pkt</a></div><div class="ttdef"><b>Definição</b> cipher.h:217</div></div>
+<div class="ttc" id="astructcipher__aead__pkt_html_a1b00939c8409041b8202ae90ee01a41c"><div class="ttname"><a href="structcipher__aead__pkt.html#a1b00939c8409041b8202ae90ee01a41c">cipher_aead_pkt::ad</a></div><div class="ttdeci">uint8_t * ad</div><div class="ttdef"><b>Definição</b> cipher.h:224</div></div>
+<div class="ttc" id="astructcipher__aead__pkt_html_a2964d6ffbe02b7088be9a2d5c21a2f9c"><div class="ttname"><a href="structcipher__aead__pkt.html#a2964d6ffbe02b7088be9a2d5c21a2f9c">cipher_aead_pkt::ad_len</a></div><div class="ttdeci">uint32_t ad_len</div><div class="ttdef"><b>Definição</b> cipher.h:227</div></div>
+<div class="ttc" id="astructcipher__aead__pkt_html_a3c7a3e72c7d21ec574dd777ac0bdf3c4"><div class="ttname"><a href="structcipher__aead__pkt.html#a3c7a3e72c7d21ec574dd777ac0bdf3c4">cipher_aead_pkt::tag</a></div><div class="ttdeci">uint8_t * tag</div><div class="ttdef"><b>Definição</b> cipher.h:233</div></div>
+<div class="ttc" id="astructcipher__ctx_html"><div class="ttname"><a href="structcipher__ctx.html">cipher_ctx</a></div><div class="ttdef"><b>Definição</b> cipher.h:110</div></div>
+<div class="ttc" id="astructcipher__ctx_html_a0439c7f7c300a59296d353e76132c028"><div class="ttname"><a href="structcipher__ctx.html#a0439c7f7c300a59296d353e76132c028">cipher_ctx::app_sessn_state</a></div><div class="ttdeci">void * app_sessn_state</div><div class="ttdef"><b>Definição</b> cipher.h:146</div></div>
+<div class="ttc" id="astructcipher__ctx_html_a10dbfc431a748118c186099c249ed5e4"><div class="ttname"><a href="structcipher__ctx.html#a10dbfc431a748118c186099c249ed5e4">cipher_ctx::keylen</a></div><div class="ttdeci">uint16_t keylen</div><div class="ttdef"><b>Definição</b> cipher.h:161</div></div>
+<div class="ttc" id="astructcipher__ctx_html_a2977c93b4d17dd9cf9e8dda243b98e45"><div class="ttname"><a href="structcipher__ctx.html#a2977c93b4d17dd9cf9e8dda243b98e45">cipher_ctx::key</a></div><div class="ttdeci">union cipher_ctx::@117 key</div></div>
+<div class="ttc" id="astructcipher__ctx_html_a44842ea8ece2aaea4d757137cdb67b52"><div class="ttname"><a href="structcipher__ctx.html#a44842ea8ece2aaea4d757137cdb67b52">cipher_ctx::device</a></div><div class="ttdeci">const struct device * device</div><div class="ttdef"><b>Definição</b> cipher.h:131</div></div>
+<div class="ttc" id="astructcipher__ctx_html_a5745811b9b08e6df51f9b8f8b14ceae7"><div class="ttname"><a href="structcipher__ctx.html#a5745811b9b08e6df51f9b8f8b14ceae7">cipher_ctx::flags</a></div><div class="ttdeci">uint16_t flags</div><div class="ttdef"><b>Definição</b> cipher.h:169</div></div>
+<div class="ttc" id="astructcipher__ctx_html_a624cf985cf35b3aa8681c3892fd67429"><div class="ttname"><a href="structcipher__ctx.html#a624cf985cf35b3aa8681c3892fd67429">cipher_ctx::drv_sessn_state</a></div><div class="ttdeci">void * drv_sessn_state</div><div class="ttdef"><b>Definição</b> cipher.h:140</div></div>
+<div class="ttc" id="astructcipher__ctx_html_a76e6bc13dcb2405302963ac74dc6285b"><div class="ttname"><a href="structcipher__ctx.html#a76e6bc13dcb2405302963ac74dc6285b">cipher_ctx::mode_params</a></div><div class="ttdeci">union cipher_ctx::@118 mode_params</div></div>
+<div class="ttc" id="astructcipher__ctx_html_ae3eb86d5be42450b761f89114723b682"><div class="ttname"><a href="structcipher__ctx.html#ae3eb86d5be42450b761f89114723b682">cipher_ctx::ops</a></div><div class="ttdeci">struct cipher_ops ops</div><div class="ttdef"><b>Definição</b> cipher.h:116</div></div>
+<div class="ttc" id="astructcipher__ops_html"><div class="ttname"><a href="structcipher__ops.html">cipher_ops</a></div><div class="ttdef"><b>Definição</b> cipher.h:74</div></div>
+<div class="ttc" id="astructcipher__pkt_html"><div class="ttname"><a href="structcipher__pkt.html">cipher_pkt</a></div><div class="ttdef"><b>Definição</b> cipher.h:180</div></div>
+<div class="ttc" id="astructcipher__pkt_html_a26fb877d705580648da03ce95264d100"><div class="ttname"><a href="structcipher__pkt.html#a26fb877d705580648da03ce95264d100">cipher_pkt::ctx</a></div><div class="ttdeci">struct cipher_ctx * ctx</div><div class="ttdef"><b>Definição</b> cipher.h:208</div></div>
+<div class="ttc" id="astructcipher__pkt_html_a56d2de56d9efc153032eb7f6503748ba"><div class="ttname"><a href="structcipher__pkt.html#a56d2de56d9efc153032eb7f6503748ba">cipher_pkt::in_buf</a></div><div class="ttdeci">uint8_t * in_buf</div><div class="ttdef"><b>Definição</b> cipher.h:183</div></div>
+<div class="ttc" id="astructcipher__pkt_html_a6e51f941334e87cc966f5a37e783d1fc"><div class="ttname"><a href="structcipher__pkt.html#a6e51f941334e87cc966f5a37e783d1fc">cipher_pkt::out_buf_max</a></div><div class="ttdeci">int out_buf_max</div><div class="ttdef"><b>Definição</b> cipher.h:197</div></div>
+<div class="ttc" id="astructcipher__pkt_html_ab95bae428d3d3c80b1b8ee6ea03a05d0"><div class="ttname"><a href="structcipher__pkt.html#ab95bae428d3d3c80b1b8ee6ea03a05d0">cipher_pkt::out_buf</a></div><div class="ttdeci">uint8_t * out_buf</div><div class="ttdef"><b>Definição</b> cipher.h:192</div></div>
+<div class="ttc" id="astructcipher__pkt_html_abc9588a5f84f9daa13ce4aec965f0a91"><div class="ttname"><a href="structcipher__pkt.html#abc9588a5f84f9daa13ce4aec965f0a91">cipher_pkt::out_len</a></div><div class="ttdeci">int out_len</div><div class="ttdef"><b>Definição</b> cipher.h:202</div></div>
+<div class="ttc" id="astructcipher__pkt_html_ac5c98e7edafb4b61e01f707c785afbea"><div class="ttname"><a href="structcipher__pkt.html#ac5c98e7edafb4b61e01f707c785afbea">cipher_pkt::in_len</a></div><div class="ttdeci">int in_len</div><div class="ttdef"><b>Definição</b> cipher.h:186</div></div>
+<div class="ttc" id="astructctr__params_html"><div class="ttname"><a href="structctr__params.html">ctr_params</a></div><div class="ttdef"><b>Definição</b> cipher.h:92</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructgcm__params_html"><div class="ttname"><a href="structgcm__params.html">gcm_params</a></div><div class="ttdef"><b>Definição</b> cipher.h:99</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Misc utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

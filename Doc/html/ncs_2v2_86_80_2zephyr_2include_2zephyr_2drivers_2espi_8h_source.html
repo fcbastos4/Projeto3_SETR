@@ -1,0 +1,711 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/espi.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">espi.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2espi_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2019 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_ESPI_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define ZEPHYR_INCLUDE_ESPI_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;errno.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;zephyr/sys/__assert.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="slist_8h.html">zephyr/sys/slist.h</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="group__espi__interface.html#ga0d7c61f1f4ec611d0c8a67ba73e2b4f0">   36</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#ga0d7c61f1f4ec611d0c8a67ba73e2b4f0">espi_io_mode</a> {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    ESPI_IO_MODE_SINGLE_LINE = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(0),</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    ESPI_IO_MODE_DUAL_LINES = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(1),</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    ESPI_IO_MODE_QUAD_LINES = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(2),</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
+</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00102" data-start="{" data-end="};">
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="group__espi__interface.html#gafaa3f7d54503c901ab23bd79a7f8a755">  102</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#gafaa3f7d54503c901ab23bd79a7f8a755">espi_channel</a> {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    ESPI_CHANNEL_PERIPHERAL = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(0),</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    ESPI_CHANNEL_VWIRE      = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(1),</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    ESPI_CHANNEL_OOB        = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(2),</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    ESPI_CHANNEL_FLASH      = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(3),</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>};</div>
+</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="foldopen" id="foldopen00114" data-start="{" data-end="};">
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="group__espi__interface.html#ga36ac3fbf9813f78bad90f047e1eb1128">  114</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#ga36ac3fbf9813f78bad90f047e1eb1128">espi_bus_event</a> {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    ESPI_BUS_RESET                      = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(0),</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    ESPI_BUS_EVENT_CHANNEL_READY        = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(1),</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    ESPI_BUS_EVENT_VWIRE_RECEIVED       = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(2),</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    ESPI_BUS_EVENT_OOB_RECEIVED         = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(3),</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    ESPI_BUS_PERIPHERAL_NOTIFICATION    = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(4),</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    ESPI_BUS_SAF_NOTIFICATION           = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(5),</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>};</div>
+</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="foldopen" id="foldopen00128" data-start="{" data-end="};">
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="group__espi__interface.html#gac55098842dd9d181144ac4b4122a610e">  128</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#gac55098842dd9d181144ac4b4122a610e">espi_pc_event</a> {</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    ESPI_PC_EVT_BUS_CHANNEL_READY = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(0),</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    ESPI_PC_EVT_BUS_MASTER_ENABLE = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(1),</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>};</div>
+</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#define ESPI_PERIPHERAL_INDEX_0  0ul</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#define ESPI_PERIPHERAL_INDEX_1  1ul</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">#define ESPI_PERIPHERAL_INDEX_2  2ul</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">#define ESPI_SLAVE_TO_MASTER     0ul</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">#define ESPI_MASTER_TO_SLAVE     1ul</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="preprocessor">#define ESPI_VWIRE_SRC_ID0       0ul</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="preprocessor">#define ESPI_VWIRE_SRC_ID1       1ul</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">#define ESPI_VWIRE_SRC_ID2       2ul</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">#define ESPI_VWIRE_SRC_ID3       3ul</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">#define ESPI_VWIRE_SRC_ID_MAX    4ul</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">#define ESPI_PERIPHERAL_NODATA   0ul</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">#define E8042_START_OPCODE      0x50</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">#define E8042_MAX_OPCODE        0x5F</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">#define EACPI_START_OPCODE      0x60</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">#define EACPI_MAX_OPCODE        0x6F</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">#define ECUSTOM_START_OPCODE    0xF0</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">#define ECUSTOM_MAX_OPCODE      0xFF</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="foldopen" id="foldopen00169" data-start="{" data-end="};">
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="group__espi__interface.html#ga2629a5518a94f031419eeccd05f07373">  169</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#ga2629a5518a94f031419eeccd05f07373">espi_virtual_peripheral</a> {</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    ESPI_PERIPHERAL_UART,</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    ESPI_PERIPHERAL_8042_KBC,</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    ESPI_PERIPHERAL_HOST_IO,</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    ESPI_PERIPHERAL_DEBUG_PORT80,</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    ESPI_PERIPHERAL_HOST_IO_PVT,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="preprocessor">#if defined(CONFIG_ESPI_PERIPHERAL_EC_HOST_CMD)</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    ESPI_PERIPHERAL_EC_HOST_CMD,</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_ESPI_PERIPHERAL_EC_HOST_CMD */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>};</div>
+</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="foldopen" id="foldopen00183" data-start="{" data-end="};">
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="group__espi__interface.html#ga3e52615f244d7fa8ccda495ab8ec8a5b">  183</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#ga3e52615f244d7fa8ccda495ab8ec8a5b">espi_cycle_type</a> {</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    ESPI_CYCLE_MEMORY_READ32,</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    ESPI_CYCLE_MEMORY_READ64,</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    ESPI_CYCLE_MEMORY_WRITE32,</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    ESPI_CYCLE_MEMORY_WRITE64,</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    ESPI_CYCLE_MESSAGE_NODATA,</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    ESPI_CYCLE_MESSAGE_DATA,</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    ESPI_CYCLE_OK_COMPLETION_NODATA,</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    ESPI_CYCLE_OKCOMPLETION_DATA,</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    ESPI_CYCLE_NOK_COMPLETION_NODATA,</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>};</div>
+</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="foldopen" id="foldopen00199" data-start="{" data-end="};">
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="group__espi__interface.html#gab65a0951a8912d9de398cfec0aef7d35">  199</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#gab65a0951a8912d9de398cfec0aef7d35">espi_vwire_signal</a> {</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="comment">/* Virtual wires that can only be send from master to slave */</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    ESPI_VWIRE_SIGNAL_SLP_S3,</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    ESPI_VWIRE_SIGNAL_SLP_S4,</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    ESPI_VWIRE_SIGNAL_SLP_S5,</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    ESPI_VWIRE_SIGNAL_OOB_RST_WARN,</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    ESPI_VWIRE_SIGNAL_PLTRST,</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    ESPI_VWIRE_SIGNAL_SUS_STAT,</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    ESPI_VWIRE_SIGNAL_NMIOUT,</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    ESPI_VWIRE_SIGNAL_SMIOUT,</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    ESPI_VWIRE_SIGNAL_HOST_RST_WARN,</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    ESPI_VWIRE_SIGNAL_SLP_A,</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    ESPI_VWIRE_SIGNAL_SUS_PWRDN_ACK,</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    ESPI_VWIRE_SIGNAL_SUS_WARN,</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    ESPI_VWIRE_SIGNAL_SLP_WLAN,</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    ESPI_VWIRE_SIGNAL_SLP_LAN,</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    ESPI_VWIRE_SIGNAL_HOST_C10,</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    ESPI_VWIRE_SIGNAL_DNX_WARN,</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="comment">/* Virtual wires that can only be sent from slave to master */</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    ESPI_VWIRE_SIGNAL_PME,</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    ESPI_VWIRE_SIGNAL_WAKE,</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    ESPI_VWIRE_SIGNAL_OOB_RST_ACK,</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    ESPI_VWIRE_SIGNAL_SLV_BOOT_STS,</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    ESPI_VWIRE_SIGNAL_ERR_NON_FATAL,</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    ESPI_VWIRE_SIGNAL_ERR_FATAL,</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    ESPI_VWIRE_SIGNAL_SLV_BOOT_DONE,</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    ESPI_VWIRE_SIGNAL_HOST_RST_ACK,</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    ESPI_VWIRE_SIGNAL_RST_CPU_INIT,</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="comment">/* System management interrupt */</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    ESPI_VWIRE_SIGNAL_SMI,</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="comment">/* System control interrupt */</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    ESPI_VWIRE_SIGNAL_SCI,</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    ESPI_VWIRE_SIGNAL_DNX_ACK,</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    ESPI_VWIRE_SIGNAL_SUS_ACK,</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment">     * Virtual wire GPIOs that can be sent from slave to master for</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment">     * platform specific usage.</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    ESPI_VWIRE_SIGNAL_SLV_GPIO_0,</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    ESPI_VWIRE_SIGNAL_SLV_GPIO_1,</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    ESPI_VWIRE_SIGNAL_SLV_GPIO_2,</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    ESPI_VWIRE_SIGNAL_SLV_GPIO_3,</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    ESPI_VWIRE_SIGNAL_SLV_GPIO_4,</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    ESPI_VWIRE_SIGNAL_SLV_GPIO_5,</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    ESPI_VWIRE_SIGNAL_SLV_GPIO_6,</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    ESPI_VWIRE_SIGNAL_SLV_GPIO_7,</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    ESPI_VWIRE_SIGNAL_SLV_GPIO_8,</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    ESPI_VWIRE_SIGNAL_SLV_GPIO_9,</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    ESPI_VWIRE_SIGNAL_SLV_GPIO_10,</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    ESPI_VWIRE_SIGNAL_SLV_GPIO_11,</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="comment">/* Number of Virtual Wires */</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    ESPI_VWIRE_SIGNAL_COUNT</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>};</div>
+</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="comment">/* USB-C port over current */</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="preprocessor">#define ESPI_VWIRE_SIGNAL_OCB_0 ESPI_VWIRE_SIGNAL_SLV_GPIO_0</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="preprocessor">#define ESPI_VWIRE_SIGNAL_OCB_1 ESPI_VWIRE_SIGNAL_SLV_GPIO_1</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="preprocessor">#define ESPI_VWIRE_SIGNAL_OCB_2 ESPI_VWIRE_SIGNAL_SLV_GPIO_2</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="preprocessor">#define ESPI_VWIRE_SIGNAL_OCB_3 ESPI_VWIRE_SIGNAL_SLV_GPIO_3</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="comment">/* eSPI LPC peripherals. */</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="keyword">enum</span> lpc_peripheral_opcode {</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="comment">/* Read transactions */</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    E8042_OBF_HAS_CHAR = 0x50,</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    E8042_IBF_HAS_CHAR,</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="comment">/* Write transactions */</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    E8042_WRITE_KB_CHAR,</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    E8042_WRITE_MB_CHAR,</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="comment">/* Write transactions without input parameters */</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    E8042_RESUME_IRQ,</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    E8042_PAUSE_IRQ,</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    E8042_CLEAR_OBF,</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <span class="comment">/* Status transactions */</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    E8042_READ_KB_STS,</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    E8042_SET_FLAG,</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    E8042_CLEAR_FLAG,</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="comment">/* ACPI read transactions */</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    EACPI_OBF_HAS_CHAR = EACPI_START_OPCODE,</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    EACPI_IBF_HAS_CHAR,</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="comment">/* ACPI write transactions */</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    EACPI_WRITE_CHAR,</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="comment">/* ACPI status transactions */</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    EACPI_READ_STS,</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    EACPI_WRITE_STS,</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="preprocessor">#if defined(CONFIG_ESPI_PERIPHERAL_ACPI_SHM_REGION)</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <span class="comment">/* Shared memory region support to return the ACPI response data */</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    EACPI_GET_SHARED_MEMORY,</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_ESPI_PERIPHERAL_ACPI_SHM_REGION */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="preprocessor">#if defined(CONFIG_ESPI_PERIPHERAL_CUSTOM_OPCODE)</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="comment">/* Other customized transactions */</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    ECUSTOM_HOST_SUBS_INTERRUPT_EN = ECUSTOM_START_OPCODE,</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    ECUSTOM_HOST_CMD_GET_PARAM_MEMORY,</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    ECUSTOM_HOST_CMD_GET_PARAM_MEMORY_SIZE,</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    ECUSTOM_HOST_CMD_SEND_RESULT,</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_ESPI_PERIPHERAL_CUSTOM_OPCODE */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>};</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="comment">/* KBC 8042 event: Input Buffer Full */</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="preprocessor">#define HOST_KBC_EVT_IBF BIT(0)</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="comment">/* KBC 8042 event: Output Buffer Empty */</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="preprocessor">#define HOST_KBC_EVT_OBE BIT(1)</span></div>
+<div class="foldopen" id="foldopen00304" data-start="{" data-end="};">
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno"><a class="line" href="structespi__evt__data__kbc.html">  304</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structespi__evt__data__kbc.html">espi_evt_data_kbc</a> {</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    uint32_t type:8;</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    uint32_t data:8;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    uint32_t evt:8;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    uint32_t reserved:8;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>};</div>
+</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
+<div class="foldopen" id="foldopen00314" data-start="{" data-end="};">
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno"><a class="line" href="structespi__evt__data__acpi.html">  314</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structespi__evt__data__acpi.html">espi_evt_data_acpi</a> {</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    uint32_t type:8;</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    uint32_t data:8;</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    uint32_t reserved:16;</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>};</div>
+</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
+<div class="foldopen" id="foldopen00323" data-start="{" data-end="};">
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno"><a class="line" href="structespi__event.html">  323</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structespi__event.html">espi_event</a> {</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="structespi__event.html#acac75eb1d2b384aa337a5240825b635f">  325</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#ga36ac3fbf9813f78bad90f047e1eb1128">espi_bus_event</a> <a class="code hl_variable" href="structespi__event.html#acac75eb1d2b384aa337a5240825b635f">evt_type</a>;</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno"><a class="line" href="structespi__event.html#aea36925bd3f599c1481c9cc867795c33">  327</a></span>    uint32_t <a class="code hl_variable" href="structespi__event.html#aea36925bd3f599c1481c9cc867795c33">evt_details</a>;</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno"><a class="line" href="structespi__event.html#aa0491cbed5bec091721dfa14898b7277">  329</a></span>    uint32_t <a class="code hl_variable" href="structespi__event.html#aa0491cbed5bec091721dfa14898b7277">evt_data</a>;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>};</div>
+</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="foldopen" id="foldopen00335" data-start="{" data-end="};">
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="structespi__cfg.html">  335</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structespi__cfg.html">espi_cfg</a> {</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno"><a class="line" href="structespi__cfg.html#a75175c60a31c3a88c83772b99c2a5c34">  337</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#ga0d7c61f1f4ec611d0c8a67ba73e2b4f0">espi_io_mode</a> <a class="code hl_variable" href="structespi__cfg.html#a75175c60a31c3a88c83772b99c2a5c34">io_caps</a>;</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno"><a class="line" href="structespi__cfg.html#abb24c88ecc977d8116973d44a7e7cb94">  339</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#gafaa3f7d54503c901ab23bd79a7f8a755">espi_channel</a> <a class="code hl_variable" href="structespi__cfg.html#abb24c88ecc977d8116973d44a7e7cb94">channel_caps</a>;</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno"><a class="line" href="structespi__cfg.html#aed88dd6fc8028a7c281260e7fa29ce21">  341</a></span>    uint8_t <a class="code hl_variable" href="structespi__cfg.html#aed88dd6fc8028a7c281260e7fa29ce21">max_freq</a>;</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>};</div>
+</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span> </div>
+<div class="foldopen" id="foldopen00347" data-start="{" data-end="};">
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="structespi__request__packet.html">  347</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structespi__request__packet.html">espi_request_packet</a> {</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#ga3e52615f244d7fa8ccda495ab8ec8a5b">espi_cycle_type</a> cycle_type;</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    uint8_t tag;</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    uint16_t len;</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    uint32_t address;</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    uint8_t *data;</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>};</div>
+</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
+<div class="foldopen" id="foldopen00358" data-start="{" data-end="};">
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno"><a class="line" href="structespi__oob__packet.html">  358</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structespi__oob__packet.html">espi_oob_packet</a> {</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    uint8_t *buf;</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    uint16_t len;</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>};</div>
+</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span> </div>
+<div class="foldopen" id="foldopen00366" data-start="{" data-end="};">
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno"><a class="line" href="structespi__flash__packet.html">  366</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structespi__flash__packet.html">espi_flash_packet</a> {</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    uint8_t *buf;</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    uint32_t flash_addr;</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    uint16_t len;</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>};</div>
+</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="keyword">struct </span>espi_callback;</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno"><a class="line" href="group__espi__interface.html#ga30c892463e0da5c58e7e7a3f7e7145a8">  383</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__espi__interface.html#ga30c892463e0da5c58e7e7a3f7e7145a8">espi_callback_handler_t</a>) (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>                     <span class="keyword">struct </span>espi_callback *cb,</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>                     <span class="keyword">struct </span><a class="code hl_struct" href="structespi__event.html">espi_event</a> espi_evt);</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span> </div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span><span class="keyword">struct </span>espi_callback {</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> node;</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span> </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    <a class="code hl_typedef" href="group__espi__interface.html#ga30c892463e0da5c58e7e7a3f7e7145a8">espi_callback_handler_t</a> handler;</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#ga36ac3fbf9813f78bad90f047e1eb1128">espi_bus_event</a> evt_type;</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>};</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span><span class="keyword">typedef</span> int (*espi_api_config)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct </span><a class="code hl_struct" href="structespi__cfg.html">espi_cfg</a> *cfg);</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span><span class="keyword">typedef</span> bool (*espi_api_get_channel_status)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>                        <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#gafaa3f7d54503c901ab23bd79a7f8a755">espi_channel</a> ch);</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span><span class="comment">/* Logical Channel 0 APIs */</span></div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span><span class="keyword">typedef</span> int (*espi_api_read_request)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>                     <span class="keyword">struct </span><a class="code hl_struct" href="structespi__request__packet.html">espi_request_packet</a> *req);</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span><span class="keyword">typedef</span> int (*espi_api_write_request)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>                      <span class="keyword">struct </span><a class="code hl_struct" href="structespi__request__packet.html">espi_request_packet</a> *req);</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span><span class="keyword">typedef</span> int (*espi_api_lpc_read_request)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>                     <span class="keyword">enum</span> lpc_peripheral_opcode op,</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>                     uint32_t *<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>);</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span><span class="keyword">typedef</span> int (*espi_api_lpc_write_request)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>                      <span class="keyword">enum</span> lpc_peripheral_opcode op,</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>                      uint32_t *<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>);</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span><span class="comment">/* Logical Channel 1 APIs */</span></div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span><span class="keyword">typedef</span> int (*espi_api_send_vwire)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>                   <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#gab65a0951a8912d9de398cfec0aef7d35">espi_vwire_signal</a> vw,</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>                   uint8_t level);</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span><span class="keyword">typedef</span> int (*espi_api_receive_vwire)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>                      <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#gab65a0951a8912d9de398cfec0aef7d35">espi_vwire_signal</a> vw,</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>                      uint8_t *level);</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span><span class="comment">/* Logical Channel 2 APIs */</span></div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span><span class="keyword">typedef</span> int (*espi_api_send_oob)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>                 <span class="keyword">struct </span><a class="code hl_struct" href="structespi__oob__packet.html">espi_oob_packet</a> *pckt);</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span><span class="keyword">typedef</span> int (*espi_api_receive_oob)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>                    <span class="keyword">struct </span><a class="code hl_struct" href="structespi__oob__packet.html">espi_oob_packet</a> *pckt);</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span><span class="comment">/* Logical Channel 3 APIs */</span></div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span><span class="keyword">typedef</span> int (*espi_api_flash_read)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>                   <span class="keyword">struct </span><a class="code hl_struct" href="structespi__flash__packet.html">espi_flash_packet</a> *pckt);</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span><span class="keyword">typedef</span> int (*espi_api_flash_write)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>                    <span class="keyword">struct </span><a class="code hl_struct" href="structespi__flash__packet.html">espi_flash_packet</a> *pckt);</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span><span class="keyword">typedef</span> int (*espi_api_flash_erase)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>                    <span class="keyword">struct </span><a class="code hl_struct" href="structespi__flash__packet.html">espi_flash_packet</a> *pckt);</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span><span class="comment">/* Callbacks and traffic intercept */</span></div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span><span class="keyword">typedef</span> int (*espi_api_manage_callback)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>                    <span class="keyword">struct </span>espi_callback *callback,</div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>                    <span class="keywordtype">bool</span> set);</div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span> </div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>__subsystem <span class="keyword">struct </span>espi_driver_api {</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>    espi_api_config config;</div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>    espi_api_get_channel_status get_channel_status;</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>    espi_api_read_request read_request;</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>    espi_api_write_request write_request;</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>    espi_api_lpc_read_request read_lpc_request;</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>    espi_api_lpc_write_request write_lpc_request;</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>    espi_api_send_vwire send_vwire;</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>    espi_api_receive_vwire receive_vwire;</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>    espi_api_send_oob send_oob;</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>    espi_api_receive_oob receive_oob;</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>    espi_api_flash_read <a class="code hl_function" href="group__flash__interface.html#gadd3c03f4dd0e8c9a1bc26dfbb8faa2ed">flash_read</a>;</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>    espi_api_flash_write <a class="code hl_function" href="group__flash__interface.html#ga5f3c031499e7d4ed5f08fb47b6c6cb67">flash_write</a>;</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>    espi_api_flash_erase <a class="code hl_function" href="group__flash__interface.html#ga8f2b0d23d301f737179f56db1dffaf9f">flash_erase</a>;</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>    espi_api_manage_callback manage_callback;</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>};</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span> </div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno"><a class="line" href="group__espi__interface.html#ga4a331cf29acad111e0fb25ca4acbce47">  527</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__espi__interface.html#ga4a331cf29acad111e0fb25ca4acbce47">espi_config</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__cfg.html">espi_cfg</a> *cfg);</div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span> </div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_espi_config(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>                     <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__cfg.html">espi_cfg</a> *cfg)</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>{</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span> </div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>    <span class="keywordflow">return</span> api-&gt;config(dev, cfg);</div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>}</div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span> </div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno"><a class="line" href="group__espi__interface.html#ga5017aee1219df4da99aab4e29dfa2530">  550</a></span>__syscall <span class="keywordtype">bool</span> <a class="code hl_function" href="group__espi__interface.html#ga5017aee1219df4da99aab4e29dfa2530">espi_get_channel_status</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>                       <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#gafaa3f7d54503c901ab23bd79a7f8a755">espi_channel</a> ch);</div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span> </div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> z_impl_espi_get_channel_status(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>                          <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#gafaa3f7d54503c901ab23bd79a7f8a755">espi_channel</a> ch)</div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>{</div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span> </div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>    <span class="keywordflow">return</span> api-&gt;get_channel_status(dev, ch);</div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>}</div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span> </div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno"><a class="line" href="group__espi__interface.html#ga0a84164ba3f5d0bb165c8fe4bf51a916">  576</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__espi__interface.html#ga0a84164ba3f5d0bb165c8fe4bf51a916">espi_read_request</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>                <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__request__packet.html">espi_request_packet</a> *req);</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span> </div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_espi_read_request(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>                       <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__request__packet.html">espi_request_packet</a> *req)</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>{</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span> </div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>    <span class="keywordflow">if</span> (!api-&gt;read_request) {</div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>    }</div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span> </div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>    <span class="keywordflow">return</span> api-&gt;read_request(dev, req);</div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>}</div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span> </div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno"><a class="line" href="group__espi__interface.html#gaa72d82d6b72739cbc89674be6e1ed2d2">  606</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__espi__interface.html#gaa72d82d6b72739cbc89674be6e1ed2d2">espi_write_request</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__request__packet.html">espi_request_packet</a> *req);</div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span> </div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_espi_write_request(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span>                        <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__request__packet.html">espi_request_packet</a> *req)</div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span>{</div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span> </div>
+<div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span>    <span class="keywordflow">if</span> (!api-&gt;write_request) {</div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span>    }</div>
+<div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span> </div>
+<div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span>    <span class="keywordflow">return</span> api-&gt;write_request(dev, req);</div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span>}</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span> </div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno"><a class="line" href="group__espi__interface.html#ga623287f86eab140e13715ceb8e7a9849">  638</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__espi__interface.html#ga623287f86eab140e13715ceb8e7a9849">espi_read_lpc_request</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span>                    <span class="keyword">enum</span> lpc_peripheral_opcode op,</div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span>                    uint32_t *data);</div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span> </div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_espi_read_lpc_request(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>                           <span class="keyword">enum</span> lpc_peripheral_opcode op,</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>                           uint32_t *data)</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>{</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span> </div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>    <span class="keywordflow">if</span> (!api-&gt;read_lpc_request) {</div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>    }</div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span> </div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>    <span class="keywordflow">return</span> api-&gt;read_lpc_request(dev, op, data);</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>}</div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span> </div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno"><a class="line" href="group__espi__interface.html#ga2fac7f641018e844dc8a8e73418391ff">  671</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__espi__interface.html#ga2fac7f641018e844dc8a8e73418391ff">espi_write_lpc_request</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span>                     <span class="keyword">enum</span> lpc_peripheral_opcode op,</div>
+<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>                     uint32_t *data);</div>
+<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span> </div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_espi_write_lpc_request(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span>                        <span class="keyword">enum</span> lpc_peripheral_opcode op,</div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>                        uint32_t *data)</div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>{</div>
+<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span> </div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span>    <span class="keywordflow">if</span> (!api-&gt;write_lpc_request) {</div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>    }</div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span> </div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>    <span class="keywordflow">return</span> api-&gt;write_lpc_request(dev, op, data);</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>}</div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span> </div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno"><a class="line" href="group__espi__interface.html#ga213e88fc7290417db086e3cb03253817">  702</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__espi__interface.html#ga213e88fc7290417db086e3cb03253817">espi_send_vwire</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span>                  <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#gab65a0951a8912d9de398cfec0aef7d35">espi_vwire_signal</a> signal,</div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span>                  uint8_t level);</div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span> </div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_espi_send_vwire(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>                     <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#gab65a0951a8912d9de398cfec0aef7d35">espi_vwire_signal</a> signal,</div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>                     uint8_t level)</div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>{</div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span> </div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span>    <span class="keywordflow">return</span> api-&gt;send_vwire(dev, signal, level);</div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span>}</div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span> </div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno"><a class="line" href="group__espi__interface.html#gaf334e36c2b3653100bce9cdba949cc06">  728</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__espi__interface.html#gaf334e36c2b3653100bce9cdba949cc06">espi_receive_vwire</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>                 <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#gab65a0951a8912d9de398cfec0aef7d35">espi_vwire_signal</a> signal,</div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>                 uint8_t *level);</div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span> </div>
+<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_espi_receive_vwire(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>                        <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#gab65a0951a8912d9de398cfec0aef7d35">espi_vwire_signal</a> signal,</div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>                        uint8_t *level)</div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>{</div>
+<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span> </div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span>    <span class="keywordflow">return</span> api-&gt;receive_vwire(dev, signal, level);</div>
+<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>}</div>
+<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span> </div>
+<div class="line"><a id="l00753" name="l00753"></a><span class="lineno"><a class="line" href="group__espi__interface.html#gaec305a1fb15047d0fbe97900528ce193">  753</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__espi__interface.html#gaec305a1fb15047d0fbe97900528ce193">espi_send_oob</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span>                <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__oob__packet.html">espi_oob_packet</a> *pckt);</div>
+<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span> </div>
+<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_espi_send_oob(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span>                       <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__oob__packet.html">espi_oob_packet</a> *pckt)</div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>{</div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span> </div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span>    <span class="keywordflow">if</span> (!api-&gt;send_oob) {</div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>    }</div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span> </div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span>    <span class="keywordflow">return</span> api-&gt;send_oob(dev, pckt);</div>
+<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span>}</div>
+<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span> </div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno"><a class="line" href="group__espi__interface.html#gad0f20a224ac42c56ba5418a47dc1926e">  780</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__espi__interface.html#gad0f20a224ac42c56ba5418a47dc1926e">espi_receive_oob</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span>                   <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__oob__packet.html">espi_oob_packet</a> *pckt);</div>
+<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span> </div>
+<div class="line"><a id="l00783" name="l00783"></a><span class="lineno">  783</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_espi_receive_oob(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>                      <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__oob__packet.html">espi_oob_packet</a> *pckt)</div>
+<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span>{</div>
+<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span> </div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span>    <span class="keywordflow">if</span> (!api-&gt;receive_oob) {</div>
+<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span>    }</div>
+<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span> </div>
+<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span>    <span class="keywordflow">return</span> api-&gt;receive_oob(dev, pckt);</div>
+<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span>}</div>
+<div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span> </div>
+<div class="line"><a id="l00809" name="l00809"></a><span class="lineno"><a class="line" href="group__espi__interface.html#gad688691c0ddc81eb5264422fc02db1ec">  809</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__espi__interface.html#gad688691c0ddc81eb5264422fc02db1ec">espi_read_flash</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>                  <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__flash__packet.html">espi_flash_packet</a> *pckt);</div>
+<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span> </div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_espi_read_flash(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>                     <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__flash__packet.html">espi_flash_packet</a> *pckt)</div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>{</div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span> </div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>    <span class="keywordflow">if</span> (!api-&gt;flash_read) {</div>
+<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span>    }</div>
+<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span> </div>
+<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span>    <span class="keywordflow">return</span> api-&gt;flash_read(dev, pckt);</div>
+<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span>}</div>
+<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span> </div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno"><a class="line" href="group__espi__interface.html#gaa1b77f7807eb4e7e2cc8e53ff91f348f">  838</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__espi__interface.html#gaa1b77f7807eb4e7e2cc8e53ff91f348f">espi_write_flash</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span>                   <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__flash__packet.html">espi_flash_packet</a> *pckt);</div>
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span> </div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_espi_write_flash(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>                      <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__flash__packet.html">espi_flash_packet</a> *pckt)</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>{</div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span> </div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span>    <span class="keywordflow">if</span> (!api-&gt;flash_write) {</div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>    }</div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span> </div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span>    <span class="keywordflow">return</span> api-&gt;flash_write(dev, pckt);</div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span>}</div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span> </div>
+<div class="line"><a id="l00867" name="l00867"></a><span class="lineno"><a class="line" href="group__espi__interface.html#gab834cdbd9c1df1261e4499e46f3eba22">  867</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__espi__interface.html#gab834cdbd9c1df1261e4499e46f3eba22">espi_flash_erase</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span>                   <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__flash__packet.html">espi_flash_packet</a> *pckt);</div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span> </div>
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_espi_flash_erase(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>                      <span class="keyword">struct</span> <a class="code hl_struct" href="structespi__flash__packet.html">espi_flash_packet</a> *pckt)</div>
+<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>{</div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span> </div>
+<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>    <span class="keywordflow">if</span> (!api-&gt;flash_erase) {</div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span>    }</div>
+<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span> </div>
+<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span>    <span class="keywordflow">return</span> api-&gt;flash_erase(dev, pckt);</div>
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>}</div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span> </div>
+<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> espi_init_callback(<span class="keyword">struct</span> espi_callback *callback,</div>
+<div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span>                      <a class="code hl_typedef" href="group__espi__interface.html#ga30c892463e0da5c58e7e7a3f7e7145a8">espi_callback_handler_t</a> handler,</div>
+<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span>                      <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__espi__interface.html#ga36ac3fbf9813f78bad90f047e1eb1128">espi_bus_event</a> evt_type)</div>
+<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span>{</div>
+<div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span>    __ASSERT(callback, <span class="stringliteral">&quot;Callback pointer should not be NULL&quot;</span>);</div>
+<div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span>    __ASSERT(handler, <span class="stringliteral">&quot;Callback handler pointer should not be NULL&quot;</span>);</div>
+<div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span> </div>
+<div class="line"><a id="l00960" name="l00960"></a><span class="lineno">  960</span>    callback-&gt;handler = handler;</div>
+<div class="line"><a id="l00961" name="l00961"></a><span class="lineno">  961</span>    callback-&gt;evt_type = evt_type;</div>
+<div class="line"><a id="l00962" name="l00962"></a><span class="lineno">  962</span>}</div>
+<div class="line"><a id="l00963" name="l00963"></a><span class="lineno">  963</span> </div>
+<div class="line"><a id="l00976" name="l00976"></a><span class="lineno">  976</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> espi_add_callback(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span>                    <span class="keyword">struct</span> espi_callback *callback)</div>
+<div class="line"><a id="l00978" name="l00978"></a><span class="lineno">  978</span>{</div>
+<div class="line"><a id="l00979" name="l00979"></a><span class="lineno">  979</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00981" name="l00981"></a><span class="lineno">  981</span> </div>
+<div class="line"><a id="l00982" name="l00982"></a><span class="lineno">  982</span>    <span class="keywordflow">if</span> (!api-&gt;manage_callback) {</div>
+<div class="line"><a id="l00983" name="l00983"></a><span class="lineno">  983</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00984" name="l00984"></a><span class="lineno">  984</span>    }</div>
+<div class="line"><a id="l00985" name="l00985"></a><span class="lineno">  985</span> </div>
+<div class="line"><a id="l00986" name="l00986"></a><span class="lineno">  986</span>    <span class="keywordflow">return</span> api-&gt;manage_callback(dev, callback, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00987" name="l00987"></a><span class="lineno">  987</span>}</div>
+<div class="line"><a id="l00988" name="l00988"></a><span class="lineno">  988</span> </div>
+<div class="line"><a id="l01005" name="l01005"></a><span class="lineno"> 1005</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> espi_remove_callback(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l01006" name="l01006"></a><span class="lineno"> 1006</span>                       <span class="keyword">struct</span> espi_callback *callback)</div>
+<div class="line"><a id="l01007" name="l01007"></a><span class="lineno"> 1007</span>{</div>
+<div class="line"><a id="l01008" name="l01008"></a><span class="lineno"> 1008</span>    <span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *api =</div>
+<div class="line"><a id="l01009" name="l01009"></a><span class="lineno"> 1009</span>        (<span class="keyword">const</span> <span class="keyword">struct </span>espi_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l01010" name="l01010"></a><span class="lineno"> 1010</span> </div>
+<div class="line"><a id="l01011" name="l01011"></a><span class="lineno"> 1011</span>    <span class="keywordflow">if</span> (!api-&gt;manage_callback) {</div>
+<div class="line"><a id="l01012" name="l01012"></a><span class="lineno"> 1012</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l01013" name="l01013"></a><span class="lineno"> 1013</span>    }</div>
+<div class="line"><a id="l01014" name="l01014"></a><span class="lineno"> 1014</span> </div>
+<div class="line"><a id="l01015" name="l01015"></a><span class="lineno"> 1015</span>    <span class="keywordflow">return</span> api-&gt;manage_callback(dev, callback, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l01016" name="l01016"></a><span class="lineno"> 1016</span>}</div>
+<div class="line"><a id="l01017" name="l01017"></a><span class="lineno"> 1017</span> </div>
+<div class="line"><a id="l01018" name="l01018"></a><span class="lineno"> 1018</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l01019" name="l01019"></a><span class="lineno"> 1019</span>}</div>
+<div class="line"><a id="l01020" name="l01020"></a><span class="lineno"> 1020</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01021" name="l01021"></a><span class="lineno"> 1021</span> </div>
+<div class="line"><a id="l01025" name="l01025"></a><span class="lineno"> 1025</span><span class="preprocessor">#include &lt;syscalls/espi.h&gt;</span></div>
+<div class="line"><a id="l01026" name="l01026"></a><span class="lineno"> 1026</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_ESPI_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__espi__interface_html_ga0a84164ba3f5d0bb165c8fe4bf51a916"><div class="ttname"><a href="group__espi__interface.html#ga0a84164ba3f5d0bb165c8fe4bf51a916">espi_read_request</a></div><div class="ttdeci">__syscall int espi_read_request(const struct device *dev, struct espi_request_packet *req)</div><div class="ttdoc">Sends memory, I/O or message read request over eSPI.</div></div>
+<div class="ttc" id="agroup__espi__interface_html_ga0d7c61f1f4ec611d0c8a67ba73e2b4f0"><div class="ttname"><a href="group__espi__interface.html#ga0d7c61f1f4ec611d0c8a67ba73e2b4f0">espi_io_mode</a></div><div class="ttdeci">espi_io_mode</div><div class="ttdoc">eSPI I/O mode capabilities</div><div class="ttdef"><b>Definição</b> espi.h:36</div></div>
+<div class="ttc" id="agroup__espi__interface_html_ga213e88fc7290417db086e3cb03253817"><div class="ttname"><a href="group__espi__interface.html#ga213e88fc7290417db086e3cb03253817">espi_send_vwire</a></div><div class="ttdeci">__syscall int espi_send_vwire(const struct device *dev, enum espi_vwire_signal signal, uint8_t level)</div><div class="ttdoc">Sends system/platform signal as a virtual wire packet.</div></div>
+<div class="ttc" id="agroup__espi__interface_html_ga2629a5518a94f031419eeccd05f07373"><div class="ttname"><a href="group__espi__interface.html#ga2629a5518a94f031419eeccd05f07373">espi_virtual_peripheral</a></div><div class="ttdeci">espi_virtual_peripheral</div><div class="ttdoc">eSPI peripheral notification type.</div><div class="ttdef"><b>Definição</b> espi.h:169</div></div>
+<div class="ttc" id="agroup__espi__interface_html_ga2fac7f641018e844dc8a8e73418391ff"><div class="ttname"><a href="group__espi__interface.html#ga2fac7f641018e844dc8a8e73418391ff">espi_write_lpc_request</a></div><div class="ttdeci">__syscall int espi_write_lpc_request(const struct device *dev, enum lpc_peripheral_opcode op, uint32_t *data)</div><div class="ttdoc">Writes data to a LPC peripheral which generates an eSPI transaction.</div></div>
+<div class="ttc" id="agroup__espi__interface_html_ga30c892463e0da5c58e7e7a3f7e7145a8"><div class="ttname"><a href="group__espi__interface.html#ga30c892463e0da5c58e7e7a3f7e7145a8">espi_callback_handler_t</a></div><div class="ttdeci">void(* espi_callback_handler_t)(const struct device *dev, struct espi_callback *cb, struct espi_event espi_evt)</div><div class="ttdoc">Define the application callback handler function signature.</div><div class="ttdef"><b>Definição</b> espi.h:383</div></div>
+<div class="ttc" id="agroup__espi__interface_html_ga36ac3fbf9813f78bad90f047e1eb1128"><div class="ttname"><a href="group__espi__interface.html#ga36ac3fbf9813f78bad90f047e1eb1128">espi_bus_event</a></div><div class="ttdeci">espi_bus_event</div><div class="ttdoc">eSPI bus event.</div><div class="ttdef"><b>Definição</b> espi.h:114</div></div>
+<div class="ttc" id="agroup__espi__interface_html_ga3e52615f244d7fa8ccda495ab8ec8a5b"><div class="ttname"><a href="group__espi__interface.html#ga3e52615f244d7fa8ccda495ab8ec8a5b">espi_cycle_type</a></div><div class="ttdeci">espi_cycle_type</div><div class="ttdoc">eSPI cycle types supported over eSPI peripheral channel</div><div class="ttdef"><b>Definição</b> espi.h:183</div></div>
+<div class="ttc" id="agroup__espi__interface_html_ga4a331cf29acad111e0fb25ca4acbce47"><div class="ttname"><a href="group__espi__interface.html#ga4a331cf29acad111e0fb25ca4acbce47">espi_config</a></div><div class="ttdeci">__syscall int espi_config(const struct device *dev, struct espi_cfg *cfg)</div><div class="ttdoc">Configure operation of a eSPI controller.</div></div>
+<div class="ttc" id="agroup__espi__interface_html_ga5017aee1219df4da99aab4e29dfa2530"><div class="ttname"><a href="group__espi__interface.html#ga5017aee1219df4da99aab4e29dfa2530">espi_get_channel_status</a></div><div class="ttdeci">__syscall bool espi_get_channel_status(const struct device *dev, enum espi_channel ch)</div><div class="ttdoc">Query to see if it a channel is ready.</div></div>
+<div class="ttc" id="agroup__espi__interface_html_ga623287f86eab140e13715ceb8e7a9849"><div class="ttname"><a href="group__espi__interface.html#ga623287f86eab140e13715ceb8e7a9849">espi_read_lpc_request</a></div><div class="ttdeci">__syscall int espi_read_lpc_request(const struct device *dev, enum lpc_peripheral_opcode op, uint32_t *data)</div><div class="ttdoc">Reads SOC data from a LPC peripheral with information updated over eSPI.</div></div>
+<div class="ttc" id="agroup__espi__interface_html_gaa1b77f7807eb4e7e2cc8e53ff91f348f"><div class="ttname"><a href="group__espi__interface.html#gaa1b77f7807eb4e7e2cc8e53ff91f348f">espi_write_flash</a></div><div class="ttdeci">__syscall int espi_write_flash(const struct device *dev, struct espi_flash_packet *pckt)</div><div class="ttdoc">Sends a write request packet for shared flash.</div></div>
+<div class="ttc" id="agroup__espi__interface_html_gaa72d82d6b72739cbc89674be6e1ed2d2"><div class="ttname"><a href="group__espi__interface.html#gaa72d82d6b72739cbc89674be6e1ed2d2">espi_write_request</a></div><div class="ttdeci">__syscall int espi_write_request(const struct device *dev, struct espi_request_packet *req)</div><div class="ttdoc">Sends memory, I/O or message write request over eSPI.</div></div>
+<div class="ttc" id="agroup__espi__interface_html_gab65a0951a8912d9de398cfec0aef7d35"><div class="ttname"><a href="group__espi__interface.html#gab65a0951a8912d9de398cfec0aef7d35">espi_vwire_signal</a></div><div class="ttdeci">espi_vwire_signal</div><div class="ttdoc">eSPI system platform signals that can be send or receive through virtual wire channel</div><div class="ttdef"><b>Definição</b> espi.h:199</div></div>
+<div class="ttc" id="agroup__espi__interface_html_gab834cdbd9c1df1261e4499e46f3eba22"><div class="ttname"><a href="group__espi__interface.html#gab834cdbd9c1df1261e4499e46f3eba22">espi_flash_erase</a></div><div class="ttdeci">__syscall int espi_flash_erase(const struct device *dev, struct espi_flash_packet *pckt)</div><div class="ttdoc">Sends a write request packet for shared flash.</div></div>
+<div class="ttc" id="agroup__espi__interface_html_gac55098842dd9d181144ac4b4122a610e"><div class="ttname"><a href="group__espi__interface.html#gac55098842dd9d181144ac4b4122a610e">espi_pc_event</a></div><div class="ttdeci">espi_pc_event</div><div class="ttdoc">eSPI peripheral channel events.</div><div class="ttdef"><b>Definição</b> espi.h:128</div></div>
+<div class="ttc" id="agroup__espi__interface_html_gad0f20a224ac42c56ba5418a47dc1926e"><div class="ttname"><a href="group__espi__interface.html#gad0f20a224ac42c56ba5418a47dc1926e">espi_receive_oob</a></div><div class="ttdeci">__syscall int espi_receive_oob(const struct device *dev, struct espi_oob_packet *pckt)</div><div class="ttdoc">Receives SMBus transaction (out-of-band) packet from eSPI bus.</div></div>
+<div class="ttc" id="agroup__espi__interface_html_gad688691c0ddc81eb5264422fc02db1ec"><div class="ttname"><a href="group__espi__interface.html#gad688691c0ddc81eb5264422fc02db1ec">espi_read_flash</a></div><div class="ttdeci">__syscall int espi_read_flash(const struct device *dev, struct espi_flash_packet *pckt)</div><div class="ttdoc">Sends a read request packet for shared flash.</div></div>
+<div class="ttc" id="agroup__espi__interface_html_gaec305a1fb15047d0fbe97900528ce193"><div class="ttname"><a href="group__espi__interface.html#gaec305a1fb15047d0fbe97900528ce193">espi_send_oob</a></div><div class="ttdeci">__syscall int espi_send_oob(const struct device *dev, struct espi_oob_packet *pckt)</div><div class="ttdoc">Sends SMBus transaction (out-of-band) packet over eSPI bus.</div></div>
+<div class="ttc" id="agroup__espi__interface_html_gaf334e36c2b3653100bce9cdba949cc06"><div class="ttname"><a href="group__espi__interface.html#gaf334e36c2b3653100bce9cdba949cc06">espi_receive_vwire</a></div><div class="ttdeci">__syscall int espi_receive_vwire(const struct device *dev, enum espi_vwire_signal signal, uint8_t *level)</div><div class="ttdoc">Retrieves level status for a signal encapsulated in a virtual wire.</div></div>
+<div class="ttc" id="agroup__espi__interface_html_gafaa3f7d54503c901ab23bd79a7f8a755"><div class="ttname"><a href="group__espi__interface.html#gafaa3f7d54503c901ab23bd79a7f8a755">espi_channel</a></div><div class="ttdeci">espi_channel</div><div class="ttdoc">eSPI channel.</div><div class="ttdef"><b>Definição</b> espi.h:102</div></div>
+<div class="ttc" id="agroup__flash__interface_html_ga5f3c031499e7d4ed5f08fb47b6c6cb67"><div class="ttname"><a href="group__flash__interface.html#ga5f3c031499e7d4ed5f08fb47b6c6cb67">flash_write</a></div><div class="ttdeci">__syscall int flash_write(const struct device *dev, off_t offset, const void *data, size_t len)</div><div class="ttdoc">Write buffer into flash memory.</div></div>
+<div class="ttc" id="agroup__flash__interface_html_ga8f2b0d23d301f737179f56db1dffaf9f"><div class="ttname"><a href="group__flash__interface.html#ga8f2b0d23d301f737179f56db1dffaf9f">flash_erase</a></div><div class="ttdeci">__syscall int flash_erase(const struct device *dev, off_t offset, size_t size)</div><div class="ttdoc">Erase part or all of a flash memory.</div></div>
+<div class="ttc" id="agroup__flash__interface_html_gadd3c03f4dd0e8c9a1bc26dfbb8faa2ed"><div class="ttname"><a href="group__flash__interface.html#gadd3c03f4dd0e8c9a1bc26dfbb8faa2ed">flash_read</a></div><div class="ttdeci">__syscall int flash_read(const struct device *dev, off_t offset, void *data, size_t len)</div><div class="ttdoc">Read data from flash.</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="agroup__sys-util_html_ga3a8ea58898cb58fc96013383d39f482c"><div class="ttname"><a href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a></div><div class="ttdeci">#define BIT(n)</div><div class="ttdoc">Unsigned integer with bit position n set (signed in assembly language).</div><div class="ttdef"><b>Definição</b> util_macro.h:44</div></div>
+<div class="ttc" id="aslist_8h_html"><div class="ttname"><a href="slist_8h.html">slist.h</a></div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a27573cbd10ee145f8bb1396242b27a3e"><div class="ttname"><a href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">device::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definição</b> device.h:395</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructespi__cfg_html"><div class="ttname"><a href="structespi__cfg.html">espi_cfg</a></div><div class="ttdoc">eSPI bus configuration parameters</div><div class="ttdef"><b>Definição</b> espi.h:335</div></div>
+<div class="ttc" id="astructespi__cfg_html_a75175c60a31c3a88c83772b99c2a5c34"><div class="ttname"><a href="structespi__cfg.html#a75175c60a31c3a88c83772b99c2a5c34">espi_cfg::io_caps</a></div><div class="ttdeci">enum espi_io_mode io_caps</div><div class="ttdef"><b>Definição</b> espi.h:337</div></div>
+<div class="ttc" id="astructespi__cfg_html_abb24c88ecc977d8116973d44a7e7cb94"><div class="ttname"><a href="structespi__cfg.html#abb24c88ecc977d8116973d44a7e7cb94">espi_cfg::channel_caps</a></div><div class="ttdeci">enum espi_channel channel_caps</div><div class="ttdef"><b>Definição</b> espi.h:339</div></div>
+<div class="ttc" id="astructespi__cfg_html_aed88dd6fc8028a7c281260e7fa29ce21"><div class="ttname"><a href="structespi__cfg.html#aed88dd6fc8028a7c281260e7fa29ce21">espi_cfg::max_freq</a></div><div class="ttdeci">uint8_t max_freq</div><div class="ttdef"><b>Definição</b> espi.h:341</div></div>
+<div class="ttc" id="astructespi__event_html"><div class="ttname"><a href="structespi__event.html">espi_event</a></div><div class="ttdoc">eSPI event</div><div class="ttdef"><b>Definição</b> espi.h:323</div></div>
+<div class="ttc" id="astructespi__event_html_aa0491cbed5bec091721dfa14898b7277"><div class="ttname"><a href="structespi__event.html#aa0491cbed5bec091721dfa14898b7277">espi_event::evt_data</a></div><div class="ttdeci">uint32_t evt_data</div><div class="ttdef"><b>Definição</b> espi.h:329</div></div>
+<div class="ttc" id="astructespi__event_html_acac75eb1d2b384aa337a5240825b635f"><div class="ttname"><a href="structespi__event.html#acac75eb1d2b384aa337a5240825b635f">espi_event::evt_type</a></div><div class="ttdeci">enum espi_bus_event evt_type</div><div class="ttdef"><b>Definição</b> espi.h:325</div></div>
+<div class="ttc" id="astructespi__event_html_aea36925bd3f599c1481c9cc867795c33"><div class="ttname"><a href="structespi__event.html#aea36925bd3f599c1481c9cc867795c33">espi_event::evt_details</a></div><div class="ttdeci">uint32_t evt_details</div><div class="ttdef"><b>Definição</b> espi.h:327</div></div>
+<div class="ttc" id="astructespi__evt__data__acpi_html"><div class="ttname"><a href="structespi__evt__data__acpi.html">espi_evt_data_acpi</a></div><div class="ttdoc">Bit field definition of evt_data in struct espi_event for ACPI.</div><div class="ttdef"><b>Definição</b> espi.h:314</div></div>
+<div class="ttc" id="astructespi__evt__data__kbc_html"><div class="ttname"><a href="structespi__evt__data__kbc.html">espi_evt_data_kbc</a></div><div class="ttdoc">Bit field definition of evt_data in struct espi_event for KBC.</div><div class="ttdef"><b>Definição</b> espi.h:304</div></div>
+<div class="ttc" id="astructespi__flash__packet_html"><div class="ttname"><a href="structespi__flash__packet.html">espi_flash_packet</a></div><div class="ttdoc">eSPI flash transactions packet format</div><div class="ttdef"><b>Definição</b> espi.h:366</div></div>
+<div class="ttc" id="astructespi__oob__packet_html"><div class="ttname"><a href="structespi__oob__packet.html">espi_oob_packet</a></div><div class="ttdoc">eSPI out-of-band transaction packet format</div><div class="ttdef"><b>Definição</b> espi.h:358</div></div>
+<div class="ttc" id="astructespi__request__packet_html"><div class="ttname"><a href="structespi__request__packet.html">espi_request_packet</a></div><div class="ttdoc">eSPI peripheral request packet format</div><div class="ttdef"><b>Definição</b> espi.h:347</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

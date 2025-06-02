@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/sensor/ccs811.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_b83550166953e14393252d2d007944f0.html">sensor</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ccs811.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ccs811_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2018 Peter Bigot Consulting, LLC</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_SENSOR_CCS811_H_</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_SENSOR_CCS811_H_</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h.html">zephyr/drivers/sensor.h</a>&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">/* Status register fields */</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define CCS811_STATUS_ERROR             BIT(0)</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#define CCS811_STATUS_DATA_READY        BIT(3)</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#define CCS811_STATUS_APP_VALID         BIT(4)</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#define CCS811_STATUS_FW_MODE           BIT(7)</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">/* Error register fields */</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#define CCS811_ERROR_WRITE_REG_INVALID  BIT(0)</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#define CCS811_ERROR_READ_REG_INVALID   BIT(1)</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#define CCS811_ERROR_MEASMODE_INVALID   BIT(2)</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#define CCS811_ERROR_MAX_RESISTANCE     BIT(3)</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#define CCS811_ERROR_HEATER_FAULT       BIT(4)</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#define CCS811_ERROR_HEATER_SUPPLY      BIT(5)</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">/* Measurement mode constants */</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#define CCS811_MODE_IDLE                0x00</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#define CCS811_MODE_IAQ_1SEC            0x10</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define CCS811_MODE_IAQ_10SEC           0x20</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#define CCS811_MODE_IAQ_60SEC           0x30</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#define CCS811_MODE_IAQ_250MSEC         0x40</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#define CCS811_MODE_MSK                 0x70</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="};">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structccs811__result__type.html">   48</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structccs811__result__type.html">ccs811_result_type</a> {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structccs811__result__type.html#a07b71c653136f3afb9d8e0d594cf7c24">   50</a></span>    uint16_t <a class="code hl_variable" href="structccs811__result__type.html#a07b71c653136f3afb9d8e0d594cf7c24">co2</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structccs811__result__type.html#ad3fef69b83fa1f67f0a3cf7ab1f36f12">   56</a></span>    uint16_t <a class="code hl_variable" href="structccs811__result__type.html#ad3fef69b83fa1f67f0a3cf7ab1f36f12">voc</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structccs811__result__type.html#a5ddde08ed2992dcd24a283f781775da2">   59</a></span>    uint16_t <a class="code hl_variable" href="structccs811__result__type.html#a5ddde08ed2992dcd24a283f781775da2">raw</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structccs811__result__type.html#adf50f8b7e4eb0b45b61a00fb4e2ae8f5">   62</a></span>    uint8_t <a class="code hl_variable" href="structccs811__result__type.html#adf50f8b7e4eb0b45b61a00fb4e2ae8f5">status</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structccs811__result__type.html#a00426f8ba17dcbf696b70a5adb6ff5a4">   69</a></span>    uint8_t <a class="code hl_variable" href="structccs811__result__type.html#a00426f8ba17dcbf696b70a5adb6ff5a4">error</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
+</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="ccs811_8h.html#a96979437b70cdab86a9a09a6e8876c0b">   83</a></span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structccs811__result__type.html">ccs811_result_type</a> *<a class="code hl_function" href="ccs811_8h.html#a96979437b70cdab86a9a09a6e8876c0b">ccs811_result</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="foldopen" id="foldopen00091" data-start="{" data-end="};">
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structccs811__configver__type.html">   91</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structccs811__configver__type.html">ccs811_configver_type</a> {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    uint16_t fw_boot_version;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    uint16_t fw_app_version;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    uint8_t hw_version;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    uint8_t mode;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>};</div>
+</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="ccs811_8h.html#a89d51f90a25cfa3437eed843f0f3da20">  107</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="ccs811_8h.html#a89d51f90a25cfa3437eed843f0f3da20">ccs811_configver_fetch</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>               <span class="keyword">struct</span> <a class="code hl_struct" href="structccs811__configver__type.html">ccs811_configver_type</a> *ptr);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="ccs811_8h.html#a313fc541226b986eb098b88355c75ab0">  124</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="ccs811_8h.html#a313fc541226b986eb098b88355c75ab0">ccs811_baseline_fetch</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="ccs811_8h.html#af6ed9f060f3bda5e867a772caf8cd333">  138</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="ccs811_8h.html#af6ed9f060f3bda5e867a772caf8cd333">ccs811_baseline_update</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t baseline);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="ccs811_8h.html#ac50d59a4f6ed8af7b62cb381c2aa7b22">  154</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="ccs811_8h.html#ac50d59a4f6ed8af7b62cb381c2aa7b22">ccs811_envdata_update</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>              <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsensor__value.html">sensor_value</a> *<a class="code hl_variable" href="cmd__proc_8h.html#a0ac2a299549fcca3cd14e4c1ac2087d2">temperature</a>,</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>              <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsensor__value.html">sensor_value</a> *humidity);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>}</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_SENSOR_CCS811_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="accs811_8h_html_a313fc541226b986eb098b88355c75ab0"><div class="ttname"><a href="ccs811_8h.html#a313fc541226b986eb098b88355c75ab0">ccs811_baseline_fetch</a></div><div class="ttdeci">int ccs811_baseline_fetch(const struct device *dev)</div><div class="ttdoc">Fetch the current value of the BASELINE register.</div></div>
+<div class="ttc" id="accs811_8h_html_a89d51f90a25cfa3437eed843f0f3da20"><div class="ttname"><a href="ccs811_8h.html#a89d51f90a25cfa3437eed843f0f3da20">ccs811_configver_fetch</a></div><div class="ttdeci">int ccs811_configver_fetch(const struct device *dev, struct ccs811_configver_type *ptr)</div><div class="ttdoc">Fetch operating mode and version information.</div></div>
+<div class="ttc" id="accs811_8h_html_a96979437b70cdab86a9a09a6e8876c0b"><div class="ttname"><a href="ccs811_8h.html#a96979437b70cdab86a9a09a6e8876c0b">ccs811_result</a></div><div class="ttdeci">const struct ccs811_result_type * ccs811_result(const struct device *dev)</div><div class="ttdoc">Access storage for the most recent data read from the sensor.</div></div>
+<div class="ttc" id="accs811_8h_html_ac50d59a4f6ed8af7b62cb381c2aa7b22"><div class="ttname"><a href="ccs811_8h.html#ac50d59a4f6ed8af7b62cb381c2aa7b22">ccs811_envdata_update</a></div><div class="ttdeci">int ccs811_envdata_update(const struct device *dev, const struct sensor_value *temperature, const struct sensor_value *humidity)</div><div class="ttdoc">Update the ENV_DATA register.</div></div>
+<div class="ttc" id="accs811_8h_html_af6ed9f060f3bda5e867a772caf8cd333"><div class="ttname"><a href="ccs811_8h.html#af6ed9f060f3bda5e867a772caf8cd333">ccs811_baseline_update</a></div><div class="ttdeci">int ccs811_baseline_update(const struct device *dev, uint16_t baseline)</div><div class="ttdoc">Update the BASELINE register.</div></div>
+<div class="ttc" id="acmd__proc_8h_html_a0ac2a299549fcca3cd14e4c1ac2087d2"><div class="ttname"><a href="cmd__proc_8h.html#a0ac2a299549fcca3cd14e4c1ac2087d2">temperature</a></div><div class="ttdeci">int temperature</div><div class="ttdoc">Temperatura atual lida do sensor.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sensor_8h.html">sensor.h</a></div><div class="ttdoc">Public APIs for the sensor driver.</div></div>
+<div class="ttc" id="astructccs811__configver__type_html"><div class="ttname"><a href="structccs811__configver__type.html">ccs811_configver_type</a></div><div class="ttdoc">Get information about static CCS811 state.</div><div class="ttdef"><b>Definição</b> ccs811.h:91</div></div>
+<div class="ttc" id="astructccs811__result__type_html"><div class="ttname"><a href="structccs811__result__type.html">ccs811_result_type</a></div><div class="ttdoc">Information collected from the sensor on each fetch.</div><div class="ttdef"><b>Definição</b> ccs811.h:48</div></div>
+<div class="ttc" id="astructccs811__result__type_html_a00426f8ba17dcbf696b70a5adb6ff5a4"><div class="ttname"><a href="structccs811__result__type.html#a00426f8ba17dcbf696b70a5adb6ff5a4">ccs811_result_type::error</a></div><div class="ttdeci">uint8_t error</div><div class="ttdef"><b>Definição</b> ccs811.h:69</div></div>
+<div class="ttc" id="astructccs811__result__type_html_a07b71c653136f3afb9d8e0d594cf7c24"><div class="ttname"><a href="structccs811__result__type.html#a07b71c653136f3afb9d8e0d594cf7c24">ccs811_result_type::co2</a></div><div class="ttdeci">uint16_t co2</div><div class="ttdef"><b>Definição</b> ccs811.h:50</div></div>
+<div class="ttc" id="astructccs811__result__type_html_a5ddde08ed2992dcd24a283f781775da2"><div class="ttname"><a href="structccs811__result__type.html#a5ddde08ed2992dcd24a283f781775da2">ccs811_result_type::raw</a></div><div class="ttdeci">uint16_t raw</div><div class="ttdef"><b>Definição</b> ccs811.h:59</div></div>
+<div class="ttc" id="astructccs811__result__type_html_ad3fef69b83fa1f67f0a3cf7ab1f36f12"><div class="ttname"><a href="structccs811__result__type.html#ad3fef69b83fa1f67f0a3cf7ab1f36f12">ccs811_result_type::voc</a></div><div class="ttdeci">uint16_t voc</div><div class="ttdef"><b>Definição</b> ccs811.h:56</div></div>
+<div class="ttc" id="astructccs811__result__type_html_adf50f8b7e4eb0b45b61a00fb4e2ae8f5"><div class="ttname"><a href="structccs811__result__type.html#adf50f8b7e4eb0b45b61a00fb4e2ae8f5">ccs811_result_type::status</a></div><div class="ttdeci">uint8_t status</div><div class="ttdef"><b>Definição</b> ccs811.h:62</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructsensor__value_html"><div class="ttname"><a href="structsensor__value.html">sensor_value</a></div><div class="ttdoc">Representation of a sensor readout value.</div><div class="ttdef"><b>Definição</b> sensor.h:49</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

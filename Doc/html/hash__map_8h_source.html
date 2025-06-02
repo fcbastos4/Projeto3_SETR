@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/sys/hash_map.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_791a8e330d3bfcbb2b6e2254610c12ab.html">sys</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">hash_map.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="hash__map_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2022 Meta</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_SYS_HASH_MAP_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define ZEPHYR_INCLUDE_SYS_HASH_MAP_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="hash__map__api_8h.html">zephyr/sys/hash_map_api.h</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;<a class="code" href="hash__map__cxx_8h.html">zephyr/sys/hash_map_cxx.h</a>&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;<a class="code" href="hash__map__oa__lp_8h.html">zephyr/sys/hash_map_oa_lp.h</a>&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;<a class="code" href="hash__map__sc_8h.html">zephyr/sys/hash_map_sc.h</a>&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00046" data-start="" data-end="">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="group__hashmap__apis.html#gab21c79f226ca02c0225014c77f5b53d6">   46</a></span><span class="preprocessor">#define SYS_HASHMAP_DEFINE_ADVANCED(_name, _api, _config_type, _data_type, _hash_func,             \</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">                    _alloc_func, ...)                                              \</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">    const struct _config_type _name##_config = __VA_ARGS__;                                    \</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">    struct _data_type _name##_data;                                                            \</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">    struct sys_hashmap _name = {                                                               \</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">        .api = (const struct sys_hashmap_api *)(_api),                                     \</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">        .config = (const struct sys_hashmap_config *)&amp;_name##_config,                      \</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">        .data = (struct sys_hashmap_data *)&amp;_name##_data,                                  \</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">        .hash_func = (_hash_func),                                                         \</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">        .alloc_func = (_alloc_func),                                                       \</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="foldopen" id="foldopen00074" data-start="" data-end="">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="group__hashmap__apis.html#gacd16dd5377fe160a2154053ba20fcbd7">   74</a></span><span class="preprocessor">#define SYS_HASHMAP_DEFINE_STATIC_ADVANCED(_name, _api, _config_type, _data_type, _hash_func,      \</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">                       _alloc_func, ...)                                       \</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">    static const struct _config_type _name##_config = __VA_ARGS__;                             \</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">    static struct _data_type _name##_data;                                                     \</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">    static struct sys_hashmap _name = {                                                        \</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">        .api = (const struct sys_hashmap_api *)(_api),                                     \</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">        .config = (const struct sys_hashmap_config *)&amp;_name##_config,                      \</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">        .data = (struct sys_hashmap_data *)&amp;_name##_data,                                  \</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">        .hash_func = (_hash_func),                                                         \</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">        .alloc_func = (_alloc_func),                                                       \</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="group__hashmap__apis.html#ga2d2eb11eccb9a9040a1b5e0b6529d500">   93</a></span><span class="preprocessor">#define SYS_HASHMAP_DEFINE(_name) SYS_HASHMAP_DEFAULT_DEFINE(_name)</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="group__hashmap__apis.html#ga5e653d2dad44c32b42dfd15107f6ba3c">  102</a></span><span class="preprocessor">#define SYS_HASHMAP_DEFINE_STATIC(_name) SYS_HASHMAP_DEFAULT_DEFINE_STATIC(_name)</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment"> * A safe wrapper for realloc(), invariant of which libc provides it.</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> *sys_hashmap_default_allocator(<span class="keywordtype">void</span> *ptr, <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>{</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">if</span> (size == 0) {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        free(ptr);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    }</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordflow">return</span> realloc(ptr, size);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>}</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="group__hashmap__apis.html#gadcb3c72b93993222ebfe8a5e58389308">  118</a></span><span class="preprocessor">#define SYS_HASHMAP_DEFAULT_ALLOCATOR sys_hashmap_default_allocator</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="group__hashmap__apis.html#ga2f1e3b37ac9eb4c939883b1696c87b86">  121</a></span><span class="preprocessor">#define SYS_HASHMAP_DEFAULT_LOAD_FACTOR 75</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="foldopen" id="foldopen00124" data-start="{" data-end="};">
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="structsys__hashmap.html">  124</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structsys__hashmap.html">sys_hashmap</a> {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structsys__hashmap.html#a88b8b0e3773a5f388bd5362b7283c5a9">  126</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structsys__hashmap__api.html">sys_hashmap_api</a> *<a class="code hl_variable" href="structsys__hashmap.html#a88b8b0e3773a5f388bd5362b7283c5a9">api</a>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="structsys__hashmap.html#ae52ee56fa68b011dc388a1ef0a01a7d2">  128</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structsys__hashmap__config.html">sys_hashmap_config</a> *<a class="code hl_variable" href="structsys__hashmap.html#ae52ee56fa68b011dc388a1ef0a01a7d2">config</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="structsys__hashmap.html#a405d543f6015d0defa362e4285b0d6cd">  130</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsys__hashmap__data.html">sys_hashmap_data</a> *<a class="code hl_variable" href="structsys__hashmap.html#a405d543f6015d0defa362e4285b0d6cd">data</a>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="structsys__hashmap.html#a56028566cb14b8722503e527445bbfc9">  132</a></span>    <a class="code hl_typedef" href="group__hash__functions.html#ga2566ca73d30b47ae66659e26fc985fad">sys_hash_func32_t</a> <a class="code hl_variable" href="structsys__hashmap.html#a56028566cb14b8722503e527445bbfc9">hash_func</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="structsys__hashmap.html#ad1cf742360a600ee20c89d68ea42b3f8">  134</a></span>    <a class="code hl_typedef" href="group__hashmap__apis.html#ga813a4f65e3672651ef37c06dccdcfebc">sys_hashmap_allocator_t</a> <a class="code hl_variable" href="structsys__hashmap.html#ad1cf742360a600ee20c89d68ea42b3f8">alloc_func</a>;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>};</div>
+</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> sys_hashmap_foreach(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsys__hashmap.html">sys_hashmap</a> *map, <a class="code hl_typedef" href="group__hashmap__apis.html#ga6e813ebb133febdcac0bd2e6b552a0d1">sys_hashmap_callback_t</a> cb,</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>                       <span class="keywordtype">void</span> *cookie)</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>{</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsys__hashmap__iterator.html">sys_hashmap_iterator</a> it = {0};</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordflow">for</span> (<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>-&gt;<a class="code hl_variable" href="structsys__hashmap.html#a88b8b0e3773a5f388bd5362b7283c5a9">api</a>-&gt;<a class="code hl_variable" href="structsys__hashmap__api.html#a1487c726730c010f286609d5cc77a109">iter</a>(<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>, &amp;it); sys_hashmap_iterator_has_next(&amp;it);) {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        it.<a class="code hl_variable" href="structsys__hashmap__iterator.html#a8c79527ba05d0dcfe2f13e0fe387efa4">next</a>(&amp;it);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        cb(it.<a class="code hl_variable" href="structsys__hashmap__iterator.html#a47684d01a30deca036f58b98b845e958">key</a>, it.<a class="code hl_variable" href="structsys__hashmap__iterator.html#a9987d100e22822f07182278cbb431b24">value</a>, cookie);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>}</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> sys_hashmap_clear(<span class="keyword">struct</span> <a class="code hl_struct" href="structsys__hashmap.html">sys_hashmap</a> *<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>, <a class="code hl_typedef" href="group__hashmap__apis.html#ga6e813ebb133febdcac0bd2e6b552a0d1">sys_hashmap_callback_t</a> cb,</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>                     <span class="keywordtype">void</span> *cookie)</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>{</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>-&gt;<a class="code hl_variable" href="structsys__hashmap.html#a88b8b0e3773a5f388bd5362b7283c5a9">api</a>-&gt;<a class="code hl_variable" href="structsys__hashmap__api.html#a7b39c2920e8a65d7c4e01912a3ea4136">clear</a>(<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>, cb, cookie);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>}</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> sys_hashmap_insert(<span class="keyword">struct</span> <a class="code hl_struct" href="structsys__hashmap.html">sys_hashmap</a> *<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>, uint64_t <a class="code hl_variable" href="structsys__hashmap__iterator.html#a47684d01a30deca036f58b98b845e958">key</a>, uint64_t <a class="code hl_variable" href="structsys__hashmap__iterator.html#a9987d100e22822f07182278cbb431b24">value</a>,</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>                     uint64_t *old_value)</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>{</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>-&gt;<a class="code hl_variable" href="structsys__hashmap.html#a88b8b0e3773a5f388bd5362b7283c5a9">api</a>-&gt;<a class="code hl_variable" href="structsys__hashmap__api.html#acdf4df23107858b3a1d891b3ce437dad">insert</a>(<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>, <a class="code hl_variable" href="structsys__hashmap__iterator.html#a47684d01a30deca036f58b98b845e958">key</a>, <a class="code hl_variable" href="structsys__hashmap__iterator.html#a9987d100e22822f07182278cbb431b24">value</a>, old_value);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>}</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> sys_hashmap_remove(<span class="keyword">struct</span> <a class="code hl_struct" href="structsys__hashmap.html">sys_hashmap</a> *<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>, uint64_t <a class="code hl_variable" href="structsys__hashmap__iterator.html#a47684d01a30deca036f58b98b845e958">key</a>, uint64_t *<a class="code hl_variable" href="structsys__hashmap__iterator.html#a9987d100e22822f07182278cbb431b24">value</a>)</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>{</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>-&gt;<a class="code hl_variable" href="structsys__hashmap.html#a88b8b0e3773a5f388bd5362b7283c5a9">api</a>-&gt;<a class="code hl_variable" href="structsys__hashmap__api.html#a20443bacc5669e724ac74573539f0fb7">remove</a>(<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>, <a class="code hl_variable" href="structsys__hashmap__iterator.html#a47684d01a30deca036f58b98b845e958">key</a>, <a class="code hl_variable" href="structsys__hashmap__iterator.html#a9987d100e22822f07182278cbb431b24">value</a>);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>}</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> sys_hashmap_get(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsys__hashmap.html">sys_hashmap</a> *<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>, uint64_t <a class="code hl_variable" href="structsys__hashmap__iterator.html#a47684d01a30deca036f58b98b845e958">key</a>, uint64_t *<a class="code hl_variable" href="structsys__hashmap__iterator.html#a9987d100e22822f07182278cbb431b24">value</a>)</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>{</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>-&gt;<a class="code hl_variable" href="structsys__hashmap.html#a88b8b0e3773a5f388bd5362b7283c5a9">api</a>-&gt;<a class="code hl_variable" href="structsys__hashmap__api.html#af014aabea50f5b0568316104986de41d">get</a>(<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>, <a class="code hl_variable" href="structsys__hashmap__iterator.html#a47684d01a30deca036f58b98b845e958">key</a>, <a class="code hl_variable" href="structsys__hashmap__iterator.html#a9987d100e22822f07182278cbb431b24">value</a>);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>}</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> sys_hashmap_contains_key(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsys__hashmap.html">sys_hashmap</a> *<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>, uint64_t <a class="code hl_variable" href="structsys__hashmap__iterator.html#a47684d01a30deca036f58b98b845e958">key</a>)</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>{</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keywordflow">return</span> sys_hashmap_get(<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>, <a class="code hl_variable" href="structsys__hashmap__iterator.html#a47684d01a30deca036f58b98b845e958">key</a>, NULL);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>}</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">size_t</span> sys_hashmap_size(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsys__hashmap.html">sys_hashmap</a> *<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>)</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>{</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>-&gt;<a class="code hl_variable" href="structsys__hashmap.html#a405d543f6015d0defa362e4285b0d6cd">data</a>-&gt;<a class="code hl_variable" href="structsys__hashmap__data.html#ac453e2dc52f989617feebedc6eeb2929">size</a>;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>}</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> sys_hashmap_is_empty(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsys__hashmap.html">sys_hashmap</a> *<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>)</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>{</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>-&gt;<a class="code hl_variable" href="structsys__hashmap.html#a405d543f6015d0defa362e4285b0d6cd">data</a>-&gt;<a class="code hl_variable" href="structsys__hashmap__data.html#ac453e2dc52f989617feebedc6eeb2929">size</a> == 0;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>}</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t sys_hashmap_load_factor(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsys__hashmap.html">sys_hashmap</a> *<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>)</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>{</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>-&gt;<a class="code hl_variable" href="structsys__hashmap.html#a405d543f6015d0defa362e4285b0d6cd">data</a>-&gt;<a class="code hl_variable" href="structsys__hashmap__data.html#a79892de2c54612860f0dd48bce88aeea">n_buckets</a> == 0) {</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    }</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordflow">return</span> (<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>-&gt;<a class="code hl_variable" href="structsys__hashmap.html#a405d543f6015d0defa362e4285b0d6cd">data</a>-&gt;<a class="code hl_variable" href="structsys__hashmap__data.html#ac453e2dc52f989617feebedc6eeb2929">size</a> * 100) / <a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>-&gt;<a class="code hl_variable" href="structsys__hashmap.html#a405d543f6015d0defa362e4285b0d6cd">data</a>-&gt;<a class="code hl_variable" href="structsys__hashmap__data.html#a79892de2c54612860f0dd48bce88aeea">n_buckets</a>;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>}</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">size_t</span> sys_hashmap_num_buckets(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsys__hashmap.html">sys_hashmap</a> *<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>)</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>{</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>-&gt;<a class="code hl_variable" href="structsys__hashmap.html#a405d543f6015d0defa362e4285b0d6cd">data</a>-&gt;<a class="code hl_variable" href="structsys__hashmap__data.html#a79892de2c54612860f0dd48bce88aeea">n_buckets</a>;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>}</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> sys_hashmap_should_rehash(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsys__hashmap.html">sys_hashmap</a> *<a class="code hl_variable" href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">map</a>, <span class="keywordtype">bool</span> grow,</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>                         <span class="keywordtype">size_t</span> num_reserved, <span class="keywordtype">size_t</span> *new_num_buckets)</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>{</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structsys__hashmap__iterator.html#a4145137c2d1c95a7658902287cea2096">size</a>;</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="keywordtype">bool</span> should_grow;</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="keywordtype">size_t</span> n_buckets;</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    <span class="keywordtype">bool</span> should_shrink;</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> shrink = !grow;</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsys__hashmap__oa__lp__data.html">sys_hashmap_oa_lp_data</a> *<span class="keyword">const</span> data = (<span class="keyword">struct </span><a class="code hl_struct" href="structsys__hashmap__oa__lp__data.html">sys_hashmap_oa_lp_data</a> *)map-&gt;<a class="code hl_variable" href="structsys__hashmap.html#a405d543f6015d0defa362e4285b0d6cd">data</a>;</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structsys__hashmap__config.html">sys_hashmap_config</a> *<span class="keyword">const</span> config = map-&gt;<a class="code hl_variable" href="structsys__hashmap.html#ae52ee56fa68b011dc388a1ef0a01a7d2">config</a>;</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="comment">/* All branchless calculations, so very cache-friendly */</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="comment">/* calculate new size */</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    size = data-&gt;size;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    size += grow;</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="comment">/* maximum size imposed by the implementation */</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    __ASSERT_NO_MSG(size &lt; SIZE_MAX / 100);</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    <span class="comment">/* calculate new number of buckets */</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    n_buckets = data-&gt;n_buckets;</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    <span class="comment">/* initial number of buckets */</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    n_buckets += grow * (size == 1) * config-&gt;<a class="code hl_variable" href="structsys__hashmap__config.html#a0a9911024bfc4c55f4a1fc179eaa6e10">initial_n_buckets</a>;</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <span class="comment">/* grow at a rate of 2x */</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    n_buckets &lt;&lt;= grow * (size != 1);</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    <span class="comment">/* shrink at a rate of 2x */</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    n_buckets &gt;&gt;= shrink;</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    <span class="comment">/* shrink to zero if empty */</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    n_buckets *= (size != 0);</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    __ASSERT_NO_MSG(new_num_buckets != NULL);</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    __ASSERT_NO_MSG(new_num_buckets != &amp;data-&gt;n_buckets);</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    *new_num_buckets = n_buckets;</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    should_grow =</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        grow &amp;&amp; (data-&gt;n_buckets == 0 ||</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>             (size + num_reserved) * 100 / data-&gt;n_buckets &gt; map-&gt;<a class="code hl_variable" href="structsys__hashmap.html#ae52ee56fa68b011dc388a1ef0a01a7d2">config</a>-&gt;<a class="code hl_variable" href="structsys__hashmap__config.html#a5a8683d82932ae397b92722269385baa">load_factor</a>);</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>    should_shrink =</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>        shrink &amp;&amp; (n_buckets == 0 || (size * 100) / n_buckets &lt;= map-&gt;config-&gt;load_factor);</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    <span class="keywordflow">return</span> should_grow || should_shrink;</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>}</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>}</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_SYS_HASH_MAP_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__hash__functions_html_ga2566ca73d30b47ae66659e26fc985fad"><div class="ttname"><a href="group__hash__functions.html#ga2566ca73d30b47ae66659e26fc985fad">sys_hash_func32_t</a></div><div class="ttdeci">uint32_t(* sys_hash_func32_t)(const void *str, size_t n)</div><div class="ttdoc">32-bit Hash function interface</div><div class="ttdef"><b>Definição</b> hash_function.h:41</div></div>
+<div class="ttc" id="agroup__hashmap__apis_html_ga6e813ebb133febdcac0bd2e6b552a0d1"><div class="ttname"><a href="group__hashmap__apis.html#ga6e813ebb133febdcac0bd2e6b552a0d1">sys_hashmap_callback_t</a></div><div class="ttdeci">void(* sys_hashmap_callback_t)(uint64_t key, uint64_t value, void *cookie)</div><div class="ttdoc">Callback interface for sys_hashmap.</div><div class="ttdef"><b>Definição</b> hash_map_api.h:106</div></div>
+<div class="ttc" id="agroup__hashmap__apis_html_ga813a4f65e3672651ef37c06dccdcfebc"><div class="ttname"><a href="group__hashmap__apis.html#ga813a4f65e3672651ef37c06dccdcfebc">sys_hashmap_allocator_t</a></div><div class="ttdeci">void *(* sys_hashmap_allocator_t)(void *ptr, size_t new_size)</div><div class="ttdoc">Allocator interface for sys_hashmap.</div><div class="ttdef"><b>Definição</b> hash_map_api.h:84</div></div>
+<div class="ttc" id="ahash__map__api_8h_html"><div class="ttname"><a href="hash__map__api_8h.html">hash_map_api.h</a></div></div>
+<div class="ttc" id="ahash__map__cxx_8h_html"><div class="ttname"><a href="hash__map__cxx_8h.html">hash_map_cxx.h</a></div><div class="ttdoc">C++ Hashmap.</div></div>
+<div class="ttc" id="ahash__map__oa__lp_8h_html"><div class="ttname"><a href="hash__map__oa__lp_8h.html">hash_map_oa_lp.h</a></div><div class="ttdoc">Open-Addressing / Linear Probe Hashmap Implementation.</div></div>
+<div class="ttc" id="ahash__map__sc_8h_html"><div class="ttname"><a href="hash__map__sc_8h.html">hash_map_sc.h</a></div><div class="ttdoc">Separate Chaining Hashmap Implementation.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructsys__hashmap__api_html"><div class="ttname"><a href="structsys__hashmap__api.html">sys_hashmap_api</a></div><div class="ttdoc">Generic Hashmap API.</div><div class="ttdef"><b>Definição</b> hash_map_api.h:168</div></div>
+<div class="ttc" id="astructsys__hashmap__api_html_a1487c726730c010f286609d5cc77a109"><div class="ttname"><a href="structsys__hashmap__api.html#a1487c726730c010f286609d5cc77a109">sys_hashmap_api::iter</a></div><div class="ttdeci">sys_hashmap_iterator_t iter</div><div class="ttdef"><b>Definição</b> hash_map_api.h:170</div></div>
+<div class="ttc" id="astructsys__hashmap__api_html_a20443bacc5669e724ac74573539f0fb7"><div class="ttname"><a href="structsys__hashmap__api.html#a20443bacc5669e724ac74573539f0fb7">sys_hashmap_api::remove</a></div><div class="ttdeci">sys_hashmap_remove_t remove</div><div class="ttdef"><b>Definição</b> hash_map_api.h:176</div></div>
+<div class="ttc" id="astructsys__hashmap__api_html_a7b39c2920e8a65d7c4e01912a3ea4136"><div class="ttname"><a href="structsys__hashmap__api.html#a7b39c2920e8a65d7c4e01912a3ea4136">sys_hashmap_api::clear</a></div><div class="ttdeci">sys_hashmap_clear_t clear</div><div class="ttdef"><b>Definição</b> hash_map_api.h:172</div></div>
+<div class="ttc" id="astructsys__hashmap__api_html_acdf4df23107858b3a1d891b3ce437dad"><div class="ttname"><a href="structsys__hashmap__api.html#acdf4df23107858b3a1d891b3ce437dad">sys_hashmap_api::insert</a></div><div class="ttdeci">sys_hashmap_insert_t insert</div><div class="ttdef"><b>Definição</b> hash_map_api.h:174</div></div>
+<div class="ttc" id="astructsys__hashmap__api_html_af014aabea50f5b0568316104986de41d"><div class="ttname"><a href="structsys__hashmap__api.html#af014aabea50f5b0568316104986de41d">sys_hashmap_api::get</a></div><div class="ttdeci">sys_hashmap_get_t get</div><div class="ttdef"><b>Definição</b> hash_map_api.h:178</div></div>
+<div class="ttc" id="astructsys__hashmap__config_html"><div class="ttname"><a href="structsys__hashmap__config.html">sys_hashmap_config</a></div><div class="ttdoc">Generic Hashmap configuration.</div><div class="ttdef"><b>Definição</b> hash_map_api.h:197</div></div>
+<div class="ttc" id="astructsys__hashmap__config_html_a0a9911024bfc4c55f4a1fc179eaa6e10"><div class="ttname"><a href="structsys__hashmap__config.html#a0a9911024bfc4c55f4a1fc179eaa6e10">sys_hashmap_config::initial_n_buckets</a></div><div class="ttdeci">uint8_t initial_n_buckets</div><div class="ttdef"><b>Definição</b> hash_map_api.h:203</div></div>
+<div class="ttc" id="astructsys__hashmap__config_html_a5a8683d82932ae397b92722269385baa"><div class="ttname"><a href="structsys__hashmap__config.html#a5a8683d82932ae397b92722269385baa">sys_hashmap_config::load_factor</a></div><div class="ttdeci">uint8_t load_factor</div><div class="ttdef"><b>Definição</b> hash_map_api.h:201</div></div>
+<div class="ttc" id="astructsys__hashmap__data_html"><div class="ttname"><a href="structsys__hashmap__data.html">sys_hashmap_data</a></div><div class="ttdoc">Generic Hashmap data.</div><div class="ttdef"><b>Definição</b> hash_map_api.h:225</div></div>
+<div class="ttc" id="astructsys__hashmap__data_html_a79892de2c54612860f0dd48bce88aeea"><div class="ttname"><a href="structsys__hashmap__data.html#a79892de2c54612860f0dd48bce88aeea">sys_hashmap_data::n_buckets</a></div><div class="ttdeci">size_t n_buckets</div><div class="ttdef"><b>Definição</b> hash_map_api.h:229</div></div>
+<div class="ttc" id="astructsys__hashmap__data_html_ac453e2dc52f989617feebedc6eeb2929"><div class="ttname"><a href="structsys__hashmap__data.html#ac453e2dc52f989617feebedc6eeb2929">sys_hashmap_data::size</a></div><div class="ttdeci">size_t size</div><div class="ttdef"><b>Definição</b> hash_map_api.h:231</div></div>
+<div class="ttc" id="astructsys__hashmap__iterator_html"><div class="ttname"><a href="structsys__hashmap__iterator.html">sys_hashmap_iterator</a></div><div class="ttdoc">Generic Hashmap iterator interface.</div><div class="ttdef"><b>Definição</b> hash_map_api.h:44</div></div>
+<div class="ttc" id="astructsys__hashmap__iterator_html_a0e868afd37b06566caff62be0fd4290c"><div class="ttname"><a href="structsys__hashmap__iterator.html#a0e868afd37b06566caff62be0fd4290c">sys_hashmap_iterator::map</a></div><div class="ttdeci">const struct sys_hashmap * map</div><div class="ttdef"><b>Definição</b> hash_map_api.h:46</div></div>
+<div class="ttc" id="astructsys__hashmap__iterator_html_a4145137c2d1c95a7658902287cea2096"><div class="ttname"><a href="structsys__hashmap__iterator.html#a4145137c2d1c95a7658902287cea2096">sys_hashmap_iterator::size</a></div><div class="ttdeci">const size_t size</div><div class="ttdef"><b>Definição</b> hash_map_api.h:56</div></div>
+<div class="ttc" id="astructsys__hashmap__iterator_html_a47684d01a30deca036f58b98b845e958"><div class="ttname"><a href="structsys__hashmap__iterator.html#a47684d01a30deca036f58b98b845e958">sys_hashmap_iterator::key</a></div><div class="ttdeci">uint64_t key</div><div class="ttdef"><b>Definição</b> hash_map_api.h:52</div></div>
+<div class="ttc" id="astructsys__hashmap__iterator_html_a8c79527ba05d0dcfe2f13e0fe387efa4"><div class="ttname"><a href="structsys__hashmap__iterator.html#a8c79527ba05d0dcfe2f13e0fe387efa4">sys_hashmap_iterator::next</a></div><div class="ttdeci">void(* next)(struct sys_hashmap_iterator *it)</div><div class="ttdef"><b>Definição</b> hash_map_api.h:48</div></div>
+<div class="ttc" id="astructsys__hashmap__iterator_html_a9987d100e22822f07182278cbb431b24"><div class="ttname"><a href="structsys__hashmap__iterator.html#a9987d100e22822f07182278cbb431b24">sys_hashmap_iterator::value</a></div><div class="ttdeci">uint64_t value</div><div class="ttdef"><b>Definição</b> hash_map_api.h:54</div></div>
+<div class="ttc" id="astructsys__hashmap__oa__lp__data_html"><div class="ttname"><a href="structsys__hashmap__oa__lp__data.html">sys_hashmap_oa_lp_data</a></div><div class="ttdef"><b>Definição</b> hash_map_oa_lp.h:27</div></div>
+<div class="ttc" id="astructsys__hashmap_html"><div class="ttname"><a href="structsys__hashmap.html">sys_hashmap</a></div><div class="ttdoc">Generic Hashmap.</div><div class="ttdef"><b>Definição</b> hash_map.h:124</div></div>
+<div class="ttc" id="astructsys__hashmap_html_a405d543f6015d0defa362e4285b0d6cd"><div class="ttname"><a href="structsys__hashmap.html#a405d543f6015d0defa362e4285b0d6cd">sys_hashmap::data</a></div><div class="ttdeci">struct sys_hashmap_data * data</div><div class="ttdef"><b>Definição</b> hash_map.h:130</div></div>
+<div class="ttc" id="astructsys__hashmap_html_a56028566cb14b8722503e527445bbfc9"><div class="ttname"><a href="structsys__hashmap.html#a56028566cb14b8722503e527445bbfc9">sys_hashmap::hash_func</a></div><div class="ttdeci">sys_hash_func32_t hash_func</div><div class="ttdef"><b>Definição</b> hash_map.h:132</div></div>
+<div class="ttc" id="astructsys__hashmap_html_a88b8b0e3773a5f388bd5362b7283c5a9"><div class="ttname"><a href="structsys__hashmap.html#a88b8b0e3773a5f388bd5362b7283c5a9">sys_hashmap::api</a></div><div class="ttdeci">const struct sys_hashmap_api * api</div><div class="ttdef"><b>Definição</b> hash_map.h:126</div></div>
+<div class="ttc" id="astructsys__hashmap_html_ad1cf742360a600ee20c89d68ea42b3f8"><div class="ttname"><a href="structsys__hashmap.html#ad1cf742360a600ee20c89d68ea42b3f8">sys_hashmap::alloc_func</a></div><div class="ttdeci">sys_hashmap_allocator_t alloc_func</div><div class="ttdef"><b>Definição</b> hash_map.h:134</div></div>
+<div class="ttc" id="astructsys__hashmap_html_ae52ee56fa68b011dc388a1ef0a01a7d2"><div class="ttname"><a href="structsys__hashmap.html#ae52ee56fa68b011dc388a1ef0a01a7d2">sys_hashmap::config</a></div><div class="ttdeci">const struct sys_hashmap_config * config</div><div class="ttdef"><b>Definição</b> hash_map.h:128</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

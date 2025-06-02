@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/emul.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">emul.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2020 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright 2020 Google LLC</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_EMUL_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_EMUL_H_</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">struct </span><a class="code hl_struct" href="structemul.html">emul</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">/* #includes required after forward-declaration of struct emul later defined in this header. */</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;<a class="code" href="devicetree_8h.html">zephyr/devicetree.h</a>&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;<a class="code" href="espi__emul_8h.html">zephyr/drivers/espi_emul.h</a>&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;<a class="code" href="i2c__emul_8h.html">zephyr/drivers/i2c_emul.h</a>&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;<a class="code" href="spi__emul_8h.html">zephyr/drivers/spi_emul.h</a>&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;zephyr/sys/iterable_sections.h&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="group__io__emulators.html#ga39b7a9438507b0be95038fe9464762aa">   35</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__io__emulators.html#ga39b7a9438507b0be95038fe9464762aa">emul_bus_type</a> {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    EMUL_BUS_TYPE_I2C,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    EMUL_BUS_TYPE_ESPI,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    EMUL_BUS_TYPE_SPI,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
+</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structemul__link__for__bus.html">   44</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structemul__link__for__bus.html">emul_link_for_bus</a> {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
+</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="};">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structemul__list__for__bus.html">   49</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structemul__list__for__bus.html">emul_list_for_bus</a> {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structemul__list__for__bus.html#a4cd116abd8480895312564dcdf3f2e03">   51</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structemul__link__for__bus.html">emul_link_for_bus</a> *<a class="code hl_variable" href="structemul__list__for__bus.html#a4cd116abd8480895312564dcdf3f2e03">children</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structemul__list__for__bus.html#abcfe7bc6d82a16959c3d89b8598a8563">   53</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structemul__list__for__bus.html#abcfe7bc6d82a16959c3d89b8598a8563">num_children</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>};</div>
+</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="group__io__emulators.html#gaa6129de6e0edef345242559a3dac3a50">   63</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__io__emulators.html#gaa6129de6e0edef345242559a3dac3a50">emul_init_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structemul.html">emul</a> *<a class="code hl_struct" href="structemul.html">emul</a>, <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *parent);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="};">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structemul.html">   69</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structemul.html">emul</a> {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structemul.html#a5ec4e292613d2d79d6bd57fe6cd5b41b">   71</a></span>    <a class="code hl_typedef" href="group__io__emulators.html#gaa6129de6e0edef345242559a3dac3a50">emul_init_t</a> <a class="code hl_variable" href="structemul.html#a5ec4e292613d2d79d6bd57fe6cd5b41b">init</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structemul.html#a4159ce815a6b4022bf35cbd0d0102bba">   73</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_variable" href="structemul.html#a4159ce815a6b4022bf35cbd0d0102bba">dev</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structemul.html#ae6f86e44a6b28296528d607124f4b812">   75</a></span>    <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="structemul.html#ae6f86e44a6b28296528d607124f4b812">cfg</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structemul.html#a82f3fcaf221cd329ef1b6cb93cc7c8e6">   77</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structemul.html#a82f3fcaf221cd329ef1b6cb93cc7c8e6">data</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structemul.html#a92a4811a8656b8f0c3f3c7873918da3c">   79</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__io__emulators.html#ga39b7a9438507b0be95038fe9464762aa">emul_bus_type</a> <a class="code hl_variable" href="structemul.html#a92a4811a8656b8f0c3f3c7873918da3c">bus_type</a>;</div>
+<div class="foldopen" id="foldopen00081" data-start="{" data-end="};">
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="unionemul_1_1bus.html">   81</a></span>    <span class="keyword">union </span><a class="code hl_union" href="unionemul_1_1bus.html">bus</a> {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structi2c__emul.html">i2c_emul</a> *i2c;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structespi__emul.html">espi_emul</a> *espi;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structspi__emul.html">spi_emul</a> *spi;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    } <a class="code hl_union" href="unionemul_1_1bus.html">bus</a>;</div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structemul.html#ac7e90a7ff00a0c08836821c7d49b7dea">   87</a></span>    <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="structemul.html#ac7e90a7ff00a0c08836821c7d49b7dea">backend_api</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>};</div>
+</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="group__io__emulators.html#gac1638c8cad48dab50f9ebc83592236db">   95</a></span><span class="preprocessor">#define EMUL_DT_NAME_GET(node_id) _CONCAT(__emulreg_, node_id)</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">/* Get a unique identifier based on the given _dev_node_id&#39;s reg property and</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment"> * the bus its on. Intended for use in other internal macros when declaring {bus}_emul</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment"> * structs in peripheral emulators.</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">#define Z_EMUL_REG_BUS_IDENTIFIER(_dev_node_id) (_CONCAT(_CONCAT(__emulreg_, _dev_node_id), _bus))</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">/* Conditionally places text based on what bus _dev_node_id is on. */</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#define Z_EMUL_BUS(_dev_node_id, _i2c, _espi, _spi)                                                \</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">    COND_CODE_1(DT_ON_BUS(_dev_node_id, i2c), (_i2c),                                          \</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">            (COND_CODE_1(DT_ON_BUS(_dev_node_id, espi), (_espi),                           \</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">                 (COND_CODE_1(DT_ON_BUS(_dev_node_id, spi), (_spi), (-EINVAL))))))</span></div>
+<div class="foldopen" id="foldopen00122" data-start="" data-end="">
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="group__io__emulators.html#gad6292e3cd7f17a3600be396777f304c8">  122</a></span><span class="preprocessor">#define EMUL_DT_DEFINE(node_id, init_fn, data_ptr, cfg_ptr, bus_api, _backend_api)                 \</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="preprocessor">    static struct Z_EMUL_BUS(node_id, i2c_emul, espi_emul, spi_emul)                           \</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">        Z_EMUL_REG_BUS_IDENTIFIER(node_id) = {                                             \</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">            .api = bus_api,                                                            \</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">            .Z_EMUL_BUS(node_id, addr, chipsel, chipsel) = DT_REG_ADDR(node_id),       \</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">    };                                                                                         \</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">    const STRUCT_SECTION_ITERABLE(emul, EMUL_DT_NAME_GET(node_id))                             \</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">    __used = {                                                                                 \</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="preprocessor">        .init = (init_fn),                                                                 \</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">        .dev = DEVICE_DT_GET(node_id),                                                     \</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="preprocessor">        .cfg = (cfg_ptr),                                                                  \</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">        .data = (data_ptr),                                                                \</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">        .bus_type = Z_EMUL_BUS(node_id, EMUL_BUS_TYPE_I2C, EMUL_BUS_TYPE_ESPI,             \</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">                       EMUL_BUS_TYPE_SPI),                                         \</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">        .bus = {.Z_EMUL_BUS(node_id, i2c, espi, spi) =                                     \</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">                &amp;(Z_EMUL_REG_BUS_IDENTIFIER(node_id))},                            \</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">        .backend_api = (_backend_api),                                                     \</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">    };</span></div>
+</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="group__io__emulators.html#gafe7f4912bcffed1366ce07d024a4f977">  149</a></span><span class="preprocessor">#define EMUL_DT_INST_DEFINE(inst, ...) EMUL_DT_DEFINE(DT_DRV_INST(inst), __VA_ARGS__)</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="group__io__emulators.html#ga300d997df388118ae380e79b972f85cf">  165</a></span><span class="preprocessor">#define EMUL_DT_GET(node_id) (&amp;EMUL_DT_NAME_GET(node_id))</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="group__io__emulators.html#gad587b2852a182e1a7fdcb3b056d898f1">  174</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__io__emulators.html#gad587b2852a182e1a7fdcb3b056d898f1">emul_init_for_bus</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="group__io__emulators.html#gaad94c1e07998417cb9aa06d03be3b280">  188</a></span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structemul.html">emul</a> *<a class="code hl_function" href="group__io__emulators.html#gaad94c1e07998417cb9aa06d03be3b280">emul_get_binding</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *name);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">#define Z_MAYBE_EMUL_DECLARE_INTERNAL(node_id) extern const struct emul EMUL_DT_NAME_GET(node_id);</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><a class="code hl_define" href="group__devicetree-generic-foreach.html#ga926f68202042c9db05390e628787f916">DT_FOREACH_STATUS_OKAY_NODE</a>(Z_MAYBE_EMUL_DECLARE_INTERNAL);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>}</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_EMUL_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adevicetree_8h_html"><div class="ttname"><a href="devicetree_8h.html">devicetree.h</a></div><div class="ttdoc">Devicetree main header.</div></div>
+<div class="ttc" id="aespi__emul_8h_html"><div class="ttname"><a href="espi__emul_8h.html">espi_emul.h</a></div><div class="ttdoc">Public APIs for the eSPI emulation drivers.</div></div>
+<div class="ttc" id="agroup__devicetree-generic-foreach_html_ga926f68202042c9db05390e628787f916"><div class="ttname"><a href="group__devicetree-generic-foreach.html#ga926f68202042c9db05390e628787f916">DT_FOREACH_STATUS_OKAY_NODE</a></div><div class="ttdeci">#define DT_FOREACH_STATUS_OKAY_NODE(fn)</div><div class="ttdoc">Invokes fn for every status okay node in the tree.</div><div class="ttdef"><b>Definição</b> devicetree.h:2570</div></div>
+<div class="ttc" id="agroup__io__emulators_html_ga39b7a9438507b0be95038fe9464762aa"><div class="ttname"><a href="group__io__emulators.html#ga39b7a9438507b0be95038fe9464762aa">emul_bus_type</a></div><div class="ttdeci">emul_bus_type</div><div class="ttdef"><b>Definição</b> emul.h:35</div></div>
+<div class="ttc" id="agroup__io__emulators_html_gaa6129de6e0edef345242559a3dac3a50"><div class="ttname"><a href="group__io__emulators.html#gaa6129de6e0edef345242559a3dac3a50">emul_init_t</a></div><div class="ttdeci">int(* emul_init_t)(const struct emul *emul, const struct device *parent)</div><div class="ttdef"><b>Definição</b> emul.h:63</div></div>
+<div class="ttc" id="agroup__io__emulators_html_gaad94c1e07998417cb9aa06d03be3b280"><div class="ttname"><a href="group__io__emulators.html#gaad94c1e07998417cb9aa06d03be3b280">emul_get_binding</a></div><div class="ttdeci">const struct emul * emul_get_binding(const char *name)</div><div class="ttdoc">Retrieve the emul structure for an emulator by name.</div></div>
+<div class="ttc" id="agroup__io__emulators_html_gad587b2852a182e1a7fdcb3b056d898f1"><div class="ttname"><a href="group__io__emulators.html#gad587b2852a182e1a7fdcb3b056d898f1">emul_init_for_bus</a></div><div class="ttdeci">int emul_init_for_bus(const struct device *dev)</div><div class="ttdoc">Set up a list of emulators.</div></div>
+<div class="ttc" id="ai2c__emul_8h_html"><div class="ttname"><a href="i2c__emul_8h.html">i2c_emul.h</a></div><div class="ttdoc">Public APIs for the I2C emulation drivers.</div></div>
+<div class="ttc" id="aspi__emul_8h_html"><div class="ttname"><a href="spi__emul_8h.html">spi_emul.h</a></div><div class="ttdoc">Public APIs for the SPI emulation drivers.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructemul__link__for__bus_html"><div class="ttname"><a href="structemul__link__for__bus.html">emul_link_for_bus</a></div><div class="ttdef"><b>Definição</b> emul.h:44</div></div>
+<div class="ttc" id="astructemul__list__for__bus_html"><div class="ttname"><a href="structemul__list__for__bus.html">emul_list_for_bus</a></div><div class="ttdef"><b>Definição</b> emul.h:49</div></div>
+<div class="ttc" id="astructemul__list__for__bus_html_a4cd116abd8480895312564dcdf3f2e03"><div class="ttname"><a href="structemul__list__for__bus.html#a4cd116abd8480895312564dcdf3f2e03">emul_list_for_bus::children</a></div><div class="ttdeci">const struct emul_link_for_bus * children</div><div class="ttdef"><b>Definição</b> emul.h:51</div></div>
+<div class="ttc" id="astructemul__list__for__bus_html_abcfe7bc6d82a16959c3d89b8598a8563"><div class="ttname"><a href="structemul__list__for__bus.html#abcfe7bc6d82a16959c3d89b8598a8563">emul_list_for_bus::num_children</a></div><div class="ttdeci">unsigned int num_children</div><div class="ttdef"><b>Definição</b> emul.h:53</div></div>
+<div class="ttc" id="astructemul_html"><div class="ttname"><a href="structemul.html">emul</a></div><div class="ttdef"><b>Definição</b> emul.h:69</div></div>
+<div class="ttc" id="astructemul_html_a4159ce815a6b4022bf35cbd0d0102bba"><div class="ttname"><a href="structemul.html#a4159ce815a6b4022bf35cbd0d0102bba">emul::dev</a></div><div class="ttdeci">const struct device * dev</div><div class="ttdef"><b>Definição</b> emul.h:73</div></div>
+<div class="ttc" id="astructemul_html_a5ec4e292613d2d79d6bd57fe6cd5b41b"><div class="ttname"><a href="structemul.html#a5ec4e292613d2d79d6bd57fe6cd5b41b">emul::init</a></div><div class="ttdeci">emul_init_t init</div><div class="ttdef"><b>Definição</b> emul.h:71</div></div>
+<div class="ttc" id="astructemul_html_a82f3fcaf221cd329ef1b6cb93cc7c8e6"><div class="ttname"><a href="structemul.html#a82f3fcaf221cd329ef1b6cb93cc7c8e6">emul::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definição</b> emul.h:77</div></div>
+<div class="ttc" id="astructemul_html_a92a4811a8656b8f0c3f3c7873918da3c"><div class="ttname"><a href="structemul.html#a92a4811a8656b8f0c3f3c7873918da3c">emul::bus_type</a></div><div class="ttdeci">enum emul_bus_type bus_type</div><div class="ttdef"><b>Definição</b> emul.h:79</div></div>
+<div class="ttc" id="astructemul_html_ac7e90a7ff00a0c08836821c7d49b7dea"><div class="ttname"><a href="structemul.html#ac7e90a7ff00a0c08836821c7d49b7dea">emul::backend_api</a></div><div class="ttdeci">const void * backend_api</div><div class="ttdef"><b>Definição</b> emul.h:87</div></div>
+<div class="ttc" id="astructemul_html_ae6f86e44a6b28296528d607124f4b812"><div class="ttname"><a href="structemul.html#ae6f86e44a6b28296528d607124f4b812">emul::cfg</a></div><div class="ttdeci">const void * cfg</div><div class="ttdef"><b>Definição</b> emul.h:75</div></div>
+<div class="ttc" id="astructespi__emul_html"><div class="ttname"><a href="structespi__emul.html">espi_emul</a></div><div class="ttdef"><b>Definição</b> espi_emul.h:111</div></div>
+<div class="ttc" id="astructi2c__emul_html"><div class="ttname"><a href="structi2c__emul.html">i2c_emul</a></div><div class="ttdef"><b>Definição</b> i2c_emul.h:36</div></div>
+<div class="ttc" id="astructspi__emul_html"><div class="ttname"><a href="structspi__emul.html">spi_emul</a></div><div class="ttdef"><b>Definição</b> spi_emul.h:37</div></div>
+<div class="ttc" id="aunionemul_1_1bus_html"><div class="ttname"><a href="unionemul_1_1bus.html">emul::bus</a></div><div class="ttdef"><b>Definição</b> emul.h:81</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

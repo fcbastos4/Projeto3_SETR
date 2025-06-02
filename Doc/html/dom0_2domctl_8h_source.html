@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/xen/dom0/domctl.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_74565a87202682df1272cc90e9d5d2ef.html">xen</a></li><li class="navelem"><a class="el" href="dir_7ec34bf49ac1f45219222e8b9ef04113.html">dom0</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">domctl.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* SPDX-License-Identifier: Apache-2.0 */</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2023 EPAM Systems</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef __XEN_DOM0_DOMCTL_H__</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define __XEN_DOM0_DOMCTL_H__</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;zephyr/xen/generic.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;zephyr/xen/public/domctl.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;zephyr/xen/public/xen.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keywordtype">int</span> <a class="code hl_struct" href="structxen__domctl__scheduler__op.html">xen_domctl_scheduler_op</a>(<span class="keywordtype">int</span> domid, <span class="keyword">struct</span> <a class="code hl_struct" href="structxen__domctl__scheduler__op.html">xen_domctl_scheduler_op</a> *sched_op);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keywordtype">int</span> xen_domctl_pausedomain(<span class="keywordtype">int</span> domid);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keywordtype">int</span> xen_domctl_unpausedomain(<span class="keywordtype">int</span> domid);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keywordtype">int</span> xen_domctl_resumedomain(<span class="keywordtype">int</span> domid);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keywordtype">int</span> xen_domctl_getvcpucontext(<span class="keywordtype">int</span> domid, <span class="keywordtype">int</span> vcpu, vcpu_guest_context_t *ctxt);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keywordtype">int</span> xen_domctl_setvcpucontext(<span class="keywordtype">int</span> domid, <span class="keywordtype">int</span> vcpu, vcpu_guest_context_t *ctxt);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keywordtype">int</span> <a class="code hl_struct" href="structxen__domctl__getdomaininfo.html">xen_domctl_getdomaininfo</a>(<span class="keywordtype">int</span> domid, <a class="code hl_struct" href="structxen__domctl__getdomaininfo.html">xen_domctl_getdomaininfo_t</a> *dom_info);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordtype">int</span> xen_domctl_set_paging_mempool_size(<span class="keywordtype">int</span> domid, uint64_t size_mb);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keywordtype">int</span> <a class="code hl_struct" href="structxen__domctl__max__mem.html">xen_domctl_max_mem</a>(<span class="keywordtype">int</span> domid, uint64_t max_memkb);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keywordtype">int</span> xen_domctl_set_address_size(<span class="keywordtype">int</span> domid, <span class="keywordtype">int</span> addr_size);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keywordtype">int</span> <a class="code hl_struct" href="structxen__domctl__iomem__permission.html">xen_domctl_iomem_permission</a>(<span class="keywordtype">int</span> domid, uint64_t first_mfn,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                uint64_t nr_mfns, uint8_t allow_access);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keywordtype">int</span> <a class="code hl_struct" href="structxen__domctl__memory__mapping.html">xen_domctl_memory_mapping</a>(<span class="keywordtype">int</span> domid, uint64_t first_gfn, uint64_t first_mfn,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                  uint64_t nr_mfns, uint32_t add_mapping);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keywordtype">int</span> xen_domctl_assign_dt_device(<span class="keywordtype">int</span> domid, <span class="keywordtype">char</span> *dtdev_path);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keywordtype">int</span> <a class="code hl_struct" href="structxen__domctl__bind__pt__irq.html">xen_domctl_bind_pt_irq</a>(<span class="keywordtype">int</span> domid, uint32_t machine_irq, uint8_t irq_type, uint8_t bus,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>               uint8_t <a class="code hl_struct" href="structdevice.html">device</a>, uint8_t intx, uint8_t isa_irq, uint16_t spi);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keywordtype">int</span> <a class="code hl_struct" href="structxen__domctl__max__vcpus.html">xen_domctl_max_vcpus</a>(<span class="keywordtype">int</span> domid, <span class="keywordtype">int</span> max_vcpus);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keywordtype">int</span> <a class="code hl_struct" href="structxen__domctl__createdomain.html">xen_domctl_createdomain</a>(<span class="keywordtype">int</span> domid, <span class="keyword">struct</span> <a class="code hl_struct" href="structxen__domctl__createdomain.html">xen_domctl_createdomain</a> *config);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keywordtype">int</span> <a class="code hl_struct" href="structxen__domctl__cacheflush.html">xen_domctl_cacheflush</a>(<span class="keywordtype">int</span> domid,  <span class="keyword">struct</span> <a class="code hl_struct" href="structxen__domctl__cacheflush.html">xen_domctl_cacheflush</a> *cacheflush);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordtype">int</span> xen_domctl_destroydomain(<span class="keywordtype">int</span> domid);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#endif </span><span class="comment">/* __XEN_DOM0_DOMCTL_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructxen__domctl__bind__pt__irq_html"><div class="ttname"><a href="structxen__domctl__bind__pt__irq.html">xen_domctl_bind_pt_irq</a></div><div class="ttdef"><b>Definição</b> domctl.h:341</div></div>
+<div class="ttc" id="astructxen__domctl__cacheflush_html"><div class="ttname"><a href="structxen__domctl__cacheflush.html">xen_domctl_cacheflush</a></div><div class="ttdef"><b>Definição</b> domctl.h:397</div></div>
+<div class="ttc" id="astructxen__domctl__createdomain_html"><div class="ttname"><a href="structxen__domctl__createdomain.html">xen_domctl_createdomain</a></div><div class="ttdef"><b>Definição</b> domctl.h:31</div></div>
+<div class="ttc" id="astructxen__domctl__getdomaininfo_html"><div class="ttname"><a href="structxen__domctl__getdomaininfo.html">xen_domctl_getdomaininfo</a></div><div class="ttdef"><b>Definição</b> domctl.h:98</div></div>
+<div class="ttc" id="astructxen__domctl__iomem__permission_html"><div class="ttname"><a href="structxen__domctl__iomem__permission.html">xen_domctl_iomem_permission</a></div><div class="ttdef"><b>Definição</b> domctl.h:285</div></div>
+<div class="ttc" id="astructxen__domctl__max__mem_html"><div class="ttname"><a href="structxen__domctl__max__mem.html">xen_domctl_max_mem</a></div><div class="ttdef"><b>Definição</b> domctl.h:185</div></div>
+<div class="ttc" id="astructxen__domctl__max__vcpus_html"><div class="ttname"><a href="structxen__domctl__max__vcpus.html">xen_domctl_max_vcpus</a></div><div class="ttdef"><b>Definição</b> domctl.h:206</div></div>
+<div class="ttc" id="astructxen__domctl__memory__mapping_html"><div class="ttname"><a href="structxen__domctl__memory__mapping.html">xen_domctl_memory_mapping</a></div><div class="ttdef"><b>Definição</b> domctl.h:385</div></div>
+<div class="ttc" id="astructxen__domctl__scheduler__op_html"><div class="ttname"><a href="structxen__domctl__scheduler__op.html">xen_domctl_scheduler_op</a></div><div class="ttdef"><b>Definição</b> domctl.h:264</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

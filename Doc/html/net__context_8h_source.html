@@ -1,0 +1,743 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/net/net_context.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_e87a4ba8d8d39971580ab67f13eff592.html">net</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">net_context.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="net__context_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Copyright (c) 2016 Intel Corporation</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * Copyright (c) 2021 Nordic Semiconductor</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_NET_NET_CONTEXT_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define ZEPHYR_INCLUDE_NET_NET_CONTEXT_H_</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;zephyr/sys/atomic.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__ip_8h.html">zephyr/net/net_ip.h</a>&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__if_8h.html">zephyr/net/net_if.h</a>&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;<a class="code" href="net__stats_8h.html">zephyr/net/net_stats.h</a>&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="group__net__context.html#ga5e2f5fcc08863a4090bc04040ee88d29">   36</a></span><span class="preprocessor">#define NET_CONTEXT_IN_USE BIT(0)</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="group__net__context.html#ga62753cf9e6218d37e65f8b461bf8c8dd">   39</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__net__context.html#ga62753cf9e6218d37e65f8b461bf8c8dd">net_context_state</a> {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    NET_CONTEXT_IDLE = 0,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    NET_CONTEXT_UNCONNECTED = 0,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    NET_CONTEXT_CONFIGURING = 1,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    NET_CONTEXT_CONNECTING = 1,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    NET_CONTEXT_READY = 2,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    NET_CONTEXT_CONNECTED = 2,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    NET_CONTEXT_LISTENING = 3,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>};</div>
+</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="group__net__context.html#gac8f6e3a16d52e8e376c38eec0ed8a940">   54</a></span><span class="preprocessor">#define NET_CONTEXT_FAMILY (BIT(3) | BIT(4) | BIT(5))</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="group__net__context.html#gac9b4cf9beecaac5bf05db3111c803678">   57</a></span><span class="preprocessor">#define NET_CONTEXT_TYPE   (BIT(6) | BIT(7))</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="group__net__context.html#ga84206421e8f2e1eb114d393f0c81428b">   60</a></span><span class="preprocessor">#define NET_CONTEXT_REMOTE_ADDR_SET  BIT(8)</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="group__net__context.html#gae4bfc7d561f99a5c50fa725496dfd69e">   63</a></span><span class="preprocessor">#define NET_CONTEXT_ACCEPTING_SOCK  BIT(9)</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="group__net__context.html#ga90385e51999494c0d530c97b57a01865">   66</a></span><span class="preprocessor">#define NET_CONTEXT_CLOSING_SOCK  BIT(10)</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">/* Context is bound to a specific interface */</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#define NET_CONTEXT_BOUND_TO_IFACE BIT(11)</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__context.html">net_context</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="group__net__context.html#ga05b4ae7d57bb4e472c637aea912b08cd">   93</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__net__context.html#ga05b4ae7d57bb4e472c637aea912b08cd">net_context_recv_cb_t</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                      <span class="keyword">struct </span><a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                      <span class="keyword">union </span>net_ip_header *ip_hdr,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                      <span class="keyword">union </span>net_proto_header *proto_hdr,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                      <span class="keywordtype">int</span> status,</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                      <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="group__net__context.html#ga52a4a30637d02d7fb2fe058e8314d309">  114</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__net__context.html#ga52a4a30637d02d7fb2fe058e8314d309">net_context_send_cb_t</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                      <span class="keywordtype">int</span> status,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                      <span class="keywordtype">void</span> *<a class="code hl_variable" href="structnet__context.html#a1679e131dd6626bc210f23938df3fbcb">user_data</a>);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="group__net__context.html#ga344a062c4a75edb9bf69cbf5e93df1fa">  134</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__net__context.html#ga344a062c4a75edb9bf69cbf5e93df1fa">net_tcp_accept_cb_t</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structnet__context.html">net_context</a> *new_context,</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                    <span class="keyword">struct </span><a class="code hl_struct" href="structsockaddr.html">sockaddr</a> *addr,</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                    <a class="code hl_typedef" href="group__ip__4__6.html#gacf0ed818b0a3c85ff6a9206679d6d91a">socklen_t</a> addrlen,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                    <span class="keywordtype">int</span> status,</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                    <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="group__net__context.html#gaaa12e95831b1de08379fd907e47c550a">  161</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__net__context.html#gaaa12e95831b1de08379fd907e47c550a">net_context_connect_cb_t</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                     <span class="keywordtype">int</span> status,</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                     <span class="keywordtype">void</span> *<a class="code hl_variable" href="structnet__context.html#a1679e131dd6626bc210f23938df3fbcb">user_data</a>);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="comment">/* The net_pkt_get_slab_func_t is here in order to avoid circular</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment"> * dependency between net_pkt.h and net_context.h</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="keyword">typedef</span> <span class="keyword">struct </span>k_mem_slab *(*net_pkt_get_slab_func_t)(void);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment">/* The net_pkt_get_pool_func_t is here in order to avoid circular</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="comment"> * dependency between net_pkt.h and net_context.h</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf__pool.html">net_buf_pool</a> *(*net_pkt_get_pool_func_t)(void);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="keyword">struct </span>net_tcp;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="keyword">struct </span>net_conn_handle;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="foldopen" id="foldopen00201" data-start="{" data-end="};">
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="structnet__context.html">  201</a></span>__net_socket <span class="keyword">struct </span><a class="code hl_struct" href="structnet__context.html">net_context</a> {</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="structnet__context.html#a2c6f6d484e8744ec97aa966d6f0079c7">  204</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structnet__context.html#a2c6f6d484e8744ec97aa966d6f0079c7">fifo_reserved</a>;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="structnet__context.html#a1679e131dd6626bc210f23938df3fbcb">  208</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structnet__context.html#a1679e131dd6626bc210f23938df3fbcb">user_data</a>;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="structnet__context.html#a0ae23462dcc7f84c95e0cc69dfeb6d5a">  212</a></span>    atomic_t <a class="code hl_variable" href="structnet__context.html#a0ae23462dcc7f84c95e0cc69dfeb6d5a">refcount</a>;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="structnet__context.html#a730e72866e94ed1695010b50c618a281">  216</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__mutex.html">k_mutex</a> <a class="code hl_variable" href="structnet__context.html#a730e72866e94ed1695010b50c618a281">lock</a>;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="structnet__context.html#a7ed765f4d8b9cdc0fbd080287215f955">  221</a></span>    <span class="keyword">struct </span>sockaddr_ptr <a class="code hl_variable" href="structnet__context.html#a7ed765f4d8b9cdc0fbd080287215f955">local</a>;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="structnet__context.html#a4a58fc21990e3c3ddb5ebf77c8212b9c">  226</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsockaddr.html">sockaddr</a> <a class="code hl_variable" href="structnet__context.html#a4a58fc21990e3c3ddb5ebf77c8212b9c">remote</a>;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="structnet__context.html#abd8ff1b4826535df911d2af14b46e312">  229</a></span>    <span class="keyword">struct </span>net_conn_handle *<a class="code hl_variable" href="structnet__context.html#abd8ff1b4826535df911d2af14b46e312">conn_handler</a>;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="structnet__context.html#af551b252faf29ee6018d4bd783c5f2b4">  234</a></span>    <a class="code hl_typedef" href="group__net__context.html#ga05b4ae7d57bb4e472c637aea912b08cd">net_context_recv_cb_t</a> <a class="code hl_variable" href="structnet__context.html#af551b252faf29ee6018d4bd783c5f2b4">recv_cb</a>;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="structnet__context.html#a38c83746c8b2fcddf187a20299d6eb3c">  239</a></span>    <a class="code hl_typedef" href="group__net__context.html#ga52a4a30637d02d7fb2fe058e8314d309">net_context_send_cb_t</a> <a class="code hl_variable" href="structnet__context.html#a38c83746c8b2fcddf187a20299d6eb3c">send_cb</a>;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="structnet__context.html#abc30f85e6016901b1d6fbb771b07370d">  244</a></span>    <a class="code hl_typedef" href="group__net__context.html#gaaa12e95831b1de08379fd907e47c550a">net_context_connect_cb_t</a> <a class="code hl_variable" href="structnet__context.html#abc30f85e6016901b1d6fbb771b07370d">connect_cb</a>;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="preprocessor">#if defined(CONFIG_NET_CONTEXT_NET_PKT_POOL)</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <a class="code hl_typedef" href="group__net__context.html#ga4b416b76a61cde0b89c14d98a213110e">net_pkt_get_slab_func_t</a> tx_slab;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <a class="code hl_typedef" href="group__net__context.html#ga5444bb49ec9cfbee2ca3f85186b7551d">net_pkt_get_pool_func_t</a> data_pool;</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_CONTEXT_NET_PKT_POOL */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="preprocessor">#if defined(CONFIG_NET_TCP)</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keywordtype">void</span> *tcp;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_TCP */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="preprocessor">#if defined(CONFIG_NET_CONTEXT_SYNC_RECV)</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keyword">struct </span>k_sem recv_data_wait;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_CONTEXT_SYNC_RECV */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="preprocessor">#if defined(CONFIG_NET_SOCKETS)</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keywordtype">void</span> *socket_data;</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structk__fifo.html">k_fifo</a> recv_q;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structk__fifo.html">k_fifo</a> accept_q;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    };</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structk__condvar.html">k_condvar</a> recv;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structk__mutex.html">k_mutex</a> *lock;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    } cond;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_SOCKETS */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="preprocessor">#if defined(CONFIG_NET_OFFLOAD)</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="keywordtype">void</span> *offload_context;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_OFFLOAD */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="preprocessor">#if defined(CONFIG_NET_SOCKETS_CAN)</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <span class="keywordtype">int</span> can_filter_id;</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_SOCKETS_CAN */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="preprocessor">#if defined(CONFIG_NET_CONTEXT_PRIORITY)</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>        uint8_t priority;</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="preprocessor">#if defined(CONFIG_NET_CONTEXT_TXTIME)</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>        <span class="keywordtype">bool</span> txtime;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="preprocessor">#if defined(CONFIG_SOCKS)</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>        <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>            <span class="keyword">struct </span><a class="code hl_struct" href="structsockaddr.html">sockaddr</a> addr;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>            <a class="code hl_typedef" href="group__ip__4__6.html#gacf0ed818b0a3c85ff6a9206679d6d91a">socklen_t</a> addrlen;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        } proxy;</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="preprocessor">#if defined(CONFIG_NET_CONTEXT_RCVTIMEO)</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        <a class="code hl_struct" href="structk__timeout__t.html">k_timeout_t</a> rcvtimeo;</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="preprocessor">#if defined(CONFIG_NET_CONTEXT_SNDTIMEO)</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        <a class="code hl_struct" href="structk__timeout__t.html">k_timeout_t</a> sndtimeo;</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="preprocessor">#if defined(CONFIG_NET_CONTEXT_RCVBUF)</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>        uint16_t rcvbuf;</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="preprocessor">#if defined(CONFIG_NET_CONTEXT_SNDBUF)</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        uint16_t sndbuf;</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="preprocessor">#if defined(CONFIG_NET_CONTEXT_DSCP_ECN)</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>        uint8_t dscp_ecn;</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="preprocessor">#if defined(CONFIG_NET_CONTEXT_REUSEADDR)</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>        <span class="keywordtype">bool</span> reuseaddr;</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="preprocessor">#if defined(CONFIG_NET_CONTEXT_REUSEPORT)</span></div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>        <span class="keywordtype">bool</span> reuseport;</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="preprocessor">#if defined(CONFIG_NET_IPV4_MAPPING_TO_IPV6)</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>        <span class="keywordtype">bool</span> ipv6_v6only;</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="structnet__context.html#a7f2b2ccc57881adec723e20a500d6774">  335</a></span>    } <a class="code hl_variable" href="structnet__context.html#a7f2b2ccc57881adec723e20a500d6774">options</a>;</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno"><a class="line" href="structnet__context.html#abfb04fc163636498f72b29aa12087e19">  338</a></span>    uint16_t <a class="code hl_variable" href="structnet__context.html#abfb04fc163636498f72b29aa12087e19">proto</a>;</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno"><a class="line" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">  341</a></span>    uint16_t <a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a>;</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno"><a class="line" href="structnet__context.html#ad71d151e1e9e35b934949482066f1947">  344</a></span>    int8_t <a class="code hl_variable" href="structnet__context.html#ad71d151e1e9e35b934949482066f1947">iface</a>;</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        uint8_t ipv6_hop_limit;</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>        uint8_t ipv4_ttl;</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    };</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span> </div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="preprocessor">#if defined(CONFIG_SOCKS)</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>    <span class="keywordtype">bool</span> proxy_enabled;</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>};</div>
+</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_context_is_used(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>{</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> </div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    <span class="keywordflow">return</span> context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> &amp; <a class="code hl_define" href="group__net__context.html#ga5e2f5fcc08863a4090bc04040ee88d29">NET_CONTEXT_IN_USE</a>;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>}</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_context_is_bound_to_iface(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>{</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    <span class="keywordflow">return</span> context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> &amp; NET_CONTEXT_BOUND_TO_IFACE;</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>}</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_context_is_accepting(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>{</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>    <span class="keywordflow">return</span> context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> &amp; <a class="code hl_define" href="group__net__context.html#gae4bfc7d561f99a5c50fa725496dfd69e">NET_CONTEXT_ACCEPTING_SOCK</a>;</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>}</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span> </div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_set_accepting(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>                         <span class="keywordtype">bool</span> accepting)</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>{</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span> </div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>    <span class="keywordflow">if</span> (accepting) {</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>        context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> |= <a class="code hl_define" href="group__net__context.html#gae4bfc7d561f99a5c50fa725496dfd69e">NET_CONTEXT_ACCEPTING_SOCK</a>;</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>        context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> &amp;= ~NET_CONTEXT_ACCEPTING_SOCK;</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>    }</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>}</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_context_is_closing(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>{</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    <span class="keywordflow">return</span> context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> &amp; <a class="code hl_define" href="group__net__context.html#ga90385e51999494c0d530c97b57a01865">NET_CONTEXT_CLOSING_SOCK</a>;</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>}</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_set_closing(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>                       <span class="keywordtype">bool</span> closing)</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>{</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span> </div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    <span class="keywordflow">if</span> (closing) {</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>        context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> |= <a class="code hl_define" href="group__net__context.html#ga90385e51999494c0d530c97b57a01865">NET_CONTEXT_CLOSING_SOCK</a>;</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>        context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> &amp;= ~NET_CONTEXT_CLOSING_SOCK;</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>    }</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>}</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span><span class="preprocessor">#define NET_CONTEXT_STATE_SHIFT 1</span></div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span><span class="preprocessor">#define NET_CONTEXT_STATE_MASK 0x03</span></div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span> </div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span><span class="keyword">static</span> <span class="keyword">inline</span></div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__net__context.html#ga62753cf9e6218d37e65f8b461bf8c8dd">net_context_state</a> net_context_get_state(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>{</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span> </div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>    <span class="keywordflow">return</span> (<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__net__context.html#ga62753cf9e6218d37e65f8b461bf8c8dd">net_context_state</a>)</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>        ((context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> &gt;&gt; NET_CONTEXT_STATE_SHIFT) &amp;</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>        NET_CONTEXT_STATE_MASK);</div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>}</div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span> </div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_set_state(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>                     <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__net__context.html#ga62753cf9e6218d37e65f8b461bf8c8dd">net_context_state</a> state)</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>{</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span> </div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>    context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> &amp;= ~(NET_CONTEXT_STATE_MASK &lt;&lt; NET_CONTEXT_STATE_SHIFT);</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>    context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> |= ((state &amp; NET_CONTEXT_STATE_MASK) &lt;&lt;</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>               NET_CONTEXT_STATE_SHIFT);</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>}</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span> </div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span><span class="keyword">static</span> <span class="keyword">inline</span> <a class="code hl_typedef" href="group__ip__4__6.html#ga2d9e094abb99ebd0874373edf1c45eda">sa_family_t</a> net_context_get_family(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>{</div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span> </div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span>    <span class="keywordflow">return</span> ((context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> &amp; <a class="code hl_define" href="group__net__context.html#gac8f6e3a16d52e8e376c38eec0ed8a940">NET_CONTEXT_FAMILY</a>) &gt;&gt; 3);</div>
+<div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>}</div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span> </div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_set_family(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>                      <a class="code hl_typedef" href="group__ip__4__6.html#ga2d9e094abb99ebd0874373edf1c45eda">sa_family_t</a> family)</div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>{</div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>    uint8_t flag = 0U;</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span> </div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span> </div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>    <span class="keywordflow">if</span> (family == <a class="code hl_define" href="group__ip__4__6.html#gae77ae24b14b7b7f294f3e04121173f12">AF_UNSPEC</a> || family == <a class="code hl_define" href="group__ip__4__6.html#ga9930604d0e32588eae76f43ca38e7826">AF_INET</a> || family == <a class="code hl_define" href="group__ip__4__6.html#gaa03706b2738b9a58d4985dfbe99e1bac">AF_INET6</a> ||</div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>        family == <a class="code hl_define" href="group__ip__4__6.html#gaa89aa4cd481fe17260c3f5d493cc23f5">AF_PACKET</a> || family == <a class="code hl_define" href="group__ip__4__6.html#ga546620c7e758f003b24b7fdae4f97bd4">AF_CAN</a>) {</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>        <span class="comment">/* Family is in BIT(4), BIT(5) and BIT(6) */</span></div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>        flag = family &lt;&lt; 3;</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>    }</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span> </div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>    context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> |= flag;</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>}</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span> </div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span><span class="keyword">static</span> <span class="keyword">inline</span></div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ip__4__6.html#gaaab4268707dbe08348b98fb028e7aa5c">net_sock_type</a> net_context_get_type(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>{</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span> </div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>    <span class="keywordflow">return</span> (<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ip__4__6.html#gaaab4268707dbe08348b98fb028e7aa5c">net_sock_type</a>)((context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> &amp; <a class="code hl_define" href="group__net__context.html#gac9b4cf9beecaac5bf05db3111c803678">NET_CONTEXT_TYPE</a>) &gt;&gt; 6);</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>}</div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span> </div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_set_type(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>                    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ip__4__6.html#gaaab4268707dbe08348b98fb028e7aa5c">net_sock_type</a> type)</div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>{</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>    uint16_t flag = 0U;</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> </div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span> </div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>    <span class="keywordflow">if</span> (type == <a class="code hl_enumvalue" href="group__ip__4__6.html#ggaaab4268707dbe08348b98fb028e7aa5ca006b373a518eeeb717573f91e70d7fcc">SOCK_DGRAM</a> || type == <a class="code hl_enumvalue" href="group__ip__4__6.html#ggaaab4268707dbe08348b98fb028e7aa5cae3b7fb9487113a31d403b23aaeaad424">SOCK_STREAM</a> || type == <a class="code hl_enumvalue" href="group__ip__4__6.html#ggaaab4268707dbe08348b98fb028e7aa5cad78d54561daf9c4a7cda0ce115e3f231">SOCK_RAW</a>) {</div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>        <span class="comment">/* Type is in BIT(6) and BIT(7)*/</span></div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>        flag = type &lt;&lt; 6;</div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>    }</div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span> </div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>    context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> |= flag;</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>}</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span> </div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span><span class="preprocessor">#if defined(CONFIG_NET_SOCKETS_CAN)</span></div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_set_can_filter_id(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>                         <span class="keywordtype">int</span> filter_id)</div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>{</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span> </div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>    context-&gt;can_filter_id = filter_id;</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>}</div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_set_can_filter_id(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>                         <span class="keywordtype">int</span> filter_id)</div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>{</div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>    ARG_UNUSED(context);</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>    ARG_UNUSED(filter_id);</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>}</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span> </div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span><span class="preprocessor">#if defined(CONFIG_NET_SOCKETS_CAN)</span></div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> net_context_get_can_filter_id(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>{</div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span> </div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span>    <span class="keywordflow">return</span> context-&gt;can_filter_id;</div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span>}</div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> net_context_get_can_filter_id(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>{</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span>    ARG_UNUSED(context);</div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span> </div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>    <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>}</div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span> </div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span><span class="keyword">static</span> <span class="keyword">inline</span> uint16_t net_context_get_proto(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span>{</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>    <span class="keywordflow">return</span> context-&gt;<a class="code hl_variable" href="structnet__context.html#abfb04fc163636498f72b29aa12087e19">proto</a>;</div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span>}</div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span> </div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_set_proto(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>                     uint16_t proto)</div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span>{</div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span>    context-&gt;<a class="code hl_variable" href="structnet__context.html#abfb04fc163636498f72b29aa12087e19">proto</a> = proto;</div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span>}</div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span> </div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span><span class="keyword">static</span> <span class="keyword">inline</span></div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__if.html">net_if</a> *net_context_get_iface(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>{</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span> </div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__net__if.html#ga8b008203fa46ca5861f772f62f6155c2">net_if_get_by_index</a>(context-&gt;<a class="code hl_variable" href="structnet__context.html#ad71d151e1e9e35b934949482066f1947">iface</a>);</div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>}</div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> </div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_set_iface(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>                     <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface)</div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span>{</div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>    NET_ASSERT(iface);</div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span> </div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span>    context-&gt;<a class="code hl_variable" href="structnet__context.html#ad71d151e1e9e35b934949482066f1947">iface</a> = <a class="code hl_function" href="group__net__if.html#ga02445f6c61f0d29f56ac0ef59e025630">net_if_get_by_iface</a>(iface);</div>
+<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>}</div>
+<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span> </div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_bind_iface(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>                      <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__if.html">net_if</a> *iface)</div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>{</div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>    NET_ASSERT(iface);</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span> </div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>    context-&gt;<a class="code hl_variable" href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">flags</a> |= NET_CONTEXT_BOUND_TO_IFACE;</div>
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span>    net_context_set_iface(context, iface);</div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span>}</div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span> </div>
+<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t net_context_get_ipv4_ttl(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span>{</div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span>    <span class="keywordflow">return</span> context-&gt;ipv4_ttl;</div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>}</div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span> </div>
+<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_set_ipv4_ttl(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span>                        uint8_t ttl)</div>
+<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span>{</div>
+<div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span>    context-&gt;ipv4_ttl = ttl;</div>
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span>}</div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span> </div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t net_context_get_ipv6_hop_limit(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span>{</div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span>    <span class="keywordflow">return</span> context-&gt;ipv6_hop_limit;</div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span>}</div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span> </div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_set_ipv6_hop_limit(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>                          uint8_t hop_limit)</div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span>{</div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>    context-&gt;ipv6_hop_limit = hop_limit;</div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>}</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span> </div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span><span class="preprocessor">#if defined(CONFIG_SOCKS)</span></div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_set_proxy_enabled(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span>                         <span class="keywordtype">bool</span> enable)</div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>{</div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>    context-&gt;proxy_enabled = enable;</div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span>}</div>
+<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span> </div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_context_is_proxy_enabled(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span>{</div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>    <span class="keywordflow">return</span> context-&gt;proxy_enabled;</div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span>}</div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> net_context_set_proxy_enabled(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span>                         <span class="keywordtype">bool</span> enable)</div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span>{</div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>    ARG_UNUSED(context);</div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>    ARG_UNUSED(enable);</div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>}</div>
+<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span> </div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> net_context_is_proxy_enabled(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context)</div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>{</div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>}</div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span> </div>
+<div class="line"><a id="l00756" name="l00756"></a><span class="lineno"><a class="line" href="group__net__context.html#gae21d27ce120ab72b58b1c20ec1d7ceff">  756</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#gae21d27ce120ab72b58b1c20ec1d7ceff">net_context_get</a>(<a class="code hl_typedef" href="group__ip__4__6.html#ga2d9e094abb99ebd0874373edf1c45eda">sa_family_t</a> family,</div>
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span>            <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ip__4__6.html#gaaab4268707dbe08348b98fb028e7aa5c">net_sock_type</a> type,</div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>            uint16_t ip_proto,</div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>            <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> **context);</div>
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span> </div>
+<div class="line"><a id="l00774" name="l00774"></a><span class="lineno"><a class="line" href="group__net__context.html#ga1d6b64e302c546db589c661f4b6bda98">  774</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#ga1d6b64e302c546db589c661f4b6bda98">net_context_put</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context);</div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span> </div>
+<div class="line"><a id="l00788" name="l00788"></a><span class="lineno"><a class="line" href="group__net__context.html#ga4c0ef9540a0d7e800c4529274f5c22f4">  788</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#ga4c0ef9540a0d7e800c4529274f5c22f4">net_context_ref</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context);</div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span> </div>
+<div class="line"><a id="l00803" name="l00803"></a><span class="lineno"><a class="line" href="group__net__context.html#ga0d391690d9d6972ce6f4baedeab64b11">  803</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#ga0d391690d9d6972ce6f4baedeab64b11">net_context_unref</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context);</div>
+<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span> </div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span><span class="preprocessor">#if defined(CONFIG_NET_IPV4)</span></div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span><span class="keywordtype">int</span> net_context_create_ipv4_new(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span>                <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt,</div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>                <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structin__addr.html">in_addr</a> *src,</div>
+<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span>                <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structin__addr.html">in_addr</a> *dst);</div>
+<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> net_context_create_ipv4_new(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span>                          <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt,</div>
+<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span>                          <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structin__addr.html">in_addr</a> *src,</div>
+<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span>                          <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structin__addr.html">in_addr</a> *dst)</div>
+<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span>{</div>
+<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span>    <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span>}</div>
+<div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_IPV4 */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span> </div>
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span><span class="preprocessor">#if defined(CONFIG_NET_IPV6)</span></div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span><span class="keywordtype">int</span> net_context_create_ipv6_new(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>                <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt,</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>                <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structin6__addr.html">in6_addr</a> *src,</div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>                <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structin6__addr.html">in6_addr</a> *dst);</div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> net_context_create_ipv6_new(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span>                          <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt,</div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span>                          <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structin6__addr.html">in6_addr</a> *src,</div>
+<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>                          <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structin6__addr.html">in6_addr</a> *dst)</div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span>{</div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span>    <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span>}</div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_IPV6 */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span> </div>
+<div class="line"><a id="l00866" name="l00866"></a><span class="lineno"><a class="line" href="group__net__context.html#ga0fb749331a4f21148ca5a7f364f241b9">  866</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#ga0fb749331a4f21148ca5a7f364f241b9">net_context_bind</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span>             <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsockaddr.html">sockaddr</a> *addr,</div>
+<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span>             <a class="code hl_typedef" href="group__ip__4__6.html#gacf0ed818b0a3c85ff6a9206679d6d91a">socklen_t</a> addrlen);</div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span> </div>
+<div class="line"><a id="l00880" name="l00880"></a><span class="lineno"><a class="line" href="group__net__context.html#ga3803c0d738fbb9d786f401aacc10a4d3">  880</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#ga3803c0d738fbb9d786f401aacc10a4d3">net_context_listen</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>               <span class="keywordtype">int</span> backlog);</div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span> </div>
+<div class="line"><a id="l00911" name="l00911"></a><span class="lineno"><a class="line" href="group__net__context.html#ga56b2c5fc3f6a97664944cae1c1eb5dad">  911</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#ga56b2c5fc3f6a97664944cae1c1eb5dad">net_context_connect</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span>            <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsockaddr.html">sockaddr</a> *addr,</div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span>            <a class="code hl_typedef" href="group__ip__4__6.html#gacf0ed818b0a3c85ff6a9206679d6d91a">socklen_t</a> addrlen,</div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span>            <a class="code hl_typedef" href="group__net__context.html#gaaa12e95831b1de08379fd907e47c550a">net_context_connect_cb_t</a> cb,</div>
+<div class="line"><a id="l00915" name="l00915"></a><span class="lineno">  915</span>            <a class="code hl_struct" href="structk__timeout__t.html">k_timeout_t</a> timeout,</div>
+<div class="line"><a id="l00916" name="l00916"></a><span class="lineno">  916</span>            <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00917" name="l00917"></a><span class="lineno">  917</span> </div>
+<div class="line"><a id="l00943" name="l00943"></a><span class="lineno"><a class="line" href="group__net__context.html#ga1b056999d9ab8f2d3b3c0f4788f36cdd">  943</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#ga1b056999d9ab8f2d3b3c0f4788f36cdd">net_context_accept</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00944" name="l00944"></a><span class="lineno">  944</span>               <a class="code hl_typedef" href="group__net__context.html#ga344a062c4a75edb9bf69cbf5e93df1fa">net_tcp_accept_cb_t</a> cb,</div>
+<div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span>               <a class="code hl_struct" href="structk__timeout__t.html">k_timeout_t</a> timeout,</div>
+<div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span>               <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span> </div>
+<div class="line"><a id="l00967" name="l00967"></a><span class="lineno"><a class="line" href="group__net__context.html#gac793e1def18200416e3f679067c56ab3">  967</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#gac793e1def18200416e3f679067c56ab3">net_context_send</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00968" name="l00968"></a><span class="lineno">  968</span>             <span class="keyword">const</span> <span class="keywordtype">void</span> *buf,</div>
+<div class="line"><a id="l00969" name="l00969"></a><span class="lineno">  969</span>             <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a id="l00970" name="l00970"></a><span class="lineno">  970</span>             <a class="code hl_typedef" href="group__net__context.html#ga52a4a30637d02d7fb2fe058e8314d309">net_context_send_cb_t</a> cb,</div>
+<div class="line"><a id="l00971" name="l00971"></a><span class="lineno">  971</span>             <a class="code hl_struct" href="structk__timeout__t.html">k_timeout_t</a> timeout,</div>
+<div class="line"><a id="l00972" name="l00972"></a><span class="lineno">  972</span>             <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span> </div>
+<div class="line"><a id="l00995" name="l00995"></a><span class="lineno"><a class="line" href="group__net__context.html#gafb0230083b9bdc85c21752d9efb6fb10">  995</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#gafb0230083b9bdc85c21752d9efb6fb10">net_context_sendto</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l00996" name="l00996"></a><span class="lineno">  996</span>               <span class="keyword">const</span> <span class="keywordtype">void</span> *buf,</div>
+<div class="line"><a id="l00997" name="l00997"></a><span class="lineno">  997</span>               <span class="keywordtype">size_t</span> len,</div>
+<div class="line"><a id="l00998" name="l00998"></a><span class="lineno">  998</span>               <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsockaddr.html">sockaddr</a> *dst_addr,</div>
+<div class="line"><a id="l00999" name="l00999"></a><span class="lineno">  999</span>               <a class="code hl_typedef" href="group__ip__4__6.html#gacf0ed818b0a3c85ff6a9206679d6d91a">socklen_t</a> addrlen,</div>
+<div class="line"><a id="l01000" name="l01000"></a><span class="lineno"> 1000</span>               <a class="code hl_typedef" href="group__net__context.html#ga52a4a30637d02d7fb2fe058e8314d309">net_context_send_cb_t</a> cb,</div>
+<div class="line"><a id="l01001" name="l01001"></a><span class="lineno"> 1001</span>               <a class="code hl_struct" href="structk__timeout__t.html">k_timeout_t</a> timeout,</div>
+<div class="line"><a id="l01002" name="l01002"></a><span class="lineno"> 1002</span>               <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l01003" name="l01003"></a><span class="lineno"> 1003</span> </div>
+<div class="line"><a id="l01022" name="l01022"></a><span class="lineno"><a class="line" href="group__net__context.html#ga437f04b1629542d2fcf43a15003dcac0"> 1022</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#ga437f04b1629542d2fcf43a15003dcac0">net_context_sendmsg</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l01023" name="l01023"></a><span class="lineno"> 1023</span>            <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structmsghdr.html">msghdr</a> *<a class="code hl_struct" href="structmsghdr.html">msghdr</a>,</div>
+<div class="line"><a id="l01024" name="l01024"></a><span class="lineno"> 1024</span>            <span class="keywordtype">int</span> flags,</div>
+<div class="line"><a id="l01025" name="l01025"></a><span class="lineno"> 1025</span>            <a class="code hl_typedef" href="group__net__context.html#ga52a4a30637d02d7fb2fe058e8314d309">net_context_send_cb_t</a> cb,</div>
+<div class="line"><a id="l01026" name="l01026"></a><span class="lineno"> 1026</span>            <a class="code hl_struct" href="structk__timeout__t.html">k_timeout_t</a> timeout,</div>
+<div class="line"><a id="l01027" name="l01027"></a><span class="lineno"> 1027</span>            <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l01028" name="l01028"></a><span class="lineno"> 1028</span> </div>
+<div class="line"><a id="l01065" name="l01065"></a><span class="lineno"><a class="line" href="group__net__context.html#ga74f919185f8af074c2d90aa04733dd2a"> 1065</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#ga74f919185f8af074c2d90aa04733dd2a">net_context_recv</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l01066" name="l01066"></a><span class="lineno"> 1066</span>             <a class="code hl_typedef" href="group__net__context.html#ga05b4ae7d57bb4e472c637aea912b08cd">net_context_recv_cb_t</a> cb,</div>
+<div class="line"><a id="l01067" name="l01067"></a><span class="lineno"> 1067</span>             <a class="code hl_struct" href="structk__timeout__t.html">k_timeout_t</a> timeout,</div>
+<div class="line"><a id="l01068" name="l01068"></a><span class="lineno"> 1068</span>             <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l01069" name="l01069"></a><span class="lineno"> 1069</span> </div>
+<div class="line"><a id="l01090" name="l01090"></a><span class="lineno"><a class="line" href="group__net__context.html#gab3cc2a13e24f9c263bc40cc87d752a9f"> 1090</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#gab3cc2a13e24f9c263bc40cc87d752a9f">net_context_update_recv_wnd</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l01091" name="l01091"></a><span class="lineno"> 1091</span>                int32_t delta);</div>
+<div class="line"><a id="l01092" name="l01092"></a><span class="lineno"> 1092</span> </div>
+<div class="line"><a id="l01093" name="l01093"></a><span class="lineno"> 1093</span><span class="keyword">enum</span> net_context_option {</div>
+<div class="line"><a id="l01094" name="l01094"></a><span class="lineno"> 1094</span>    NET_OPT_PRIORITY    = 1,</div>
+<div class="line"><a id="l01095" name="l01095"></a><span class="lineno"> 1095</span>    NET_OPT_TXTIME      = 2,</div>
+<div class="line"><a id="l01096" name="l01096"></a><span class="lineno"> 1096</span>    NET_OPT_SOCKS5      = 3,</div>
+<div class="line"><a id="l01097" name="l01097"></a><span class="lineno"> 1097</span>    NET_OPT_RCVTIMEO        = 4,</div>
+<div class="line"><a id="l01098" name="l01098"></a><span class="lineno"> 1098</span>    NET_OPT_SNDTIMEO        = 5,</div>
+<div class="line"><a id="l01099" name="l01099"></a><span class="lineno"> 1099</span>    NET_OPT_RCVBUF      = 6,</div>
+<div class="line"><a id="l01100" name="l01100"></a><span class="lineno"> 1100</span>    NET_OPT_SNDBUF      = 7,</div>
+<div class="line"><a id="l01101" name="l01101"></a><span class="lineno"> 1101</span>    NET_OPT_DSCP_ECN    = 8,</div>
+<div class="line"><a id="l01102" name="l01102"></a><span class="lineno"> 1102</span>    NET_OPT_REUSEADDR   = 9,</div>
+<div class="line"><a id="l01103" name="l01103"></a><span class="lineno"> 1103</span>    NET_OPT_REUSEPORT   = 10,</div>
+<div class="line"><a id="l01104" name="l01104"></a><span class="lineno"> 1104</span>    NET_OPT_IPV6_V6ONLY = 11,</div>
+<div class="line"><a id="l01105" name="l01105"></a><span class="lineno"> 1105</span>};</div>
+<div class="line"><a id="l01106" name="l01106"></a><span class="lineno"> 1106</span> </div>
+<div class="line"><a id="l01117" name="l01117"></a><span class="lineno"><a class="line" href="group__net__context.html#gabd932d5ded649f9a8c8bab40810e9eae"> 1117</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#gabd932d5ded649f9a8c8bab40810e9eae">net_context_set_option</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l01118" name="l01118"></a><span class="lineno"> 1118</span>               <span class="keyword">enum</span> net_context_option option,</div>
+<div class="line"><a id="l01119" name="l01119"></a><span class="lineno"> 1119</span>               <span class="keyword">const</span> <span class="keywordtype">void</span> *value, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l01120" name="l01120"></a><span class="lineno"> 1120</span> </div>
+<div class="line"><a id="l01131" name="l01131"></a><span class="lineno"><a class="line" href="group__net__context.html#gaeec55aee0a2029f8877a953ea137f39c"> 1131</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__net__context.html#gaeec55aee0a2029f8877a953ea137f39c">net_context_get_option</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l01132" name="l01132"></a><span class="lineno"> 1132</span>               <span class="keyword">enum</span> net_context_option option,</div>
+<div class="line"><a id="l01133" name="l01133"></a><span class="lineno"> 1133</span>               <span class="keywordtype">void</span> *value, <span class="keywordtype">size_t</span> *len);</div>
+<div class="line"><a id="l01134" name="l01134"></a><span class="lineno"> 1134</span> </div>
+<div class="line"><a id="l01142" name="l01142"></a><span class="lineno"><a class="line" href="group__net__context.html#ga01db89fc7d7bf125fb4958e956dba4ec"> 1142</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__net__context.html#ga01db89fc7d7bf125fb4958e956dba4ec">net_context_cb_t</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structnet__context.html">net_context</a> *context, <span class="keywordtype">void</span> *<a class="code hl_variable" href="structnet__context.html#a1679e131dd6626bc210f23938df3fbcb">user_data</a>);</div>
+<div class="line"><a id="l01143" name="l01143"></a><span class="lineno"> 1143</span> </div>
+<div class="line"><a id="l01151" name="l01151"></a><span class="lineno"><a class="line" href="group__net__context.html#gabb751f7d213d00f8eec72a67f4ce3491"> 1151</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__net__context.html#gabb751f7d213d00f8eec72a67f4ce3491">net_context_foreach</a>(<a class="code hl_typedef" href="group__net__context.html#ga01db89fc7d7bf125fb4958e956dba4ec">net_context_cb_t</a> cb, <span class="keywordtype">void</span> *<a class="code hl_variable" href="structnet__context.html#a1679e131dd6626bc210f23938df3fbcb">user_data</a>);</div>
+<div class="line"><a id="l01152" name="l01152"></a><span class="lineno"> 1152</span> </div>
+<div class="line"><a id="l01173" name="l01173"></a><span class="lineno"> 1173</span><span class="preprocessor">#if defined(CONFIG_NET_CONTEXT_NET_PKT_POOL)</span></div>
+<div class="line"><a id="l01174" name="l01174"></a><span class="lineno"> 1174</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_define" href="group__net__context.html#gadde93ce383a4c5b0f450db1eaa0dfd4d">net_context_setup_pools</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__context.html">net_context</a> *context,</div>
+<div class="line"><a id="l01175" name="l01175"></a><span class="lineno"> 1175</span>                       <a class="code hl_typedef" href="group__net__context.html#ga4b416b76a61cde0b89c14d98a213110e">net_pkt_get_slab_func_t</a> tx_slab,</div>
+<div class="line"><a id="l01176" name="l01176"></a><span class="lineno"> 1176</span>                       <a class="code hl_typedef" href="group__net__context.html#ga5444bb49ec9cfbee2ca3f85186b7551d">net_pkt_get_pool_func_t</a> data_pool)</div>
+<div class="line"><a id="l01177" name="l01177"></a><span class="lineno"> 1177</span>{</div>
+<div class="line"><a id="l01178" name="l01178"></a><span class="lineno"> 1178</span>    NET_ASSERT(context);</div>
+<div class="line"><a id="l01179" name="l01179"></a><span class="lineno"> 1179</span> </div>
+<div class="line"><a id="l01180" name="l01180"></a><span class="lineno"> 1180</span>    context-&gt;tx_slab = tx_slab;</div>
+<div class="line"><a id="l01181" name="l01181"></a><span class="lineno"> 1181</span>    context-&gt;data_pool = data_pool;</div>
+<div class="line"><a id="l01182" name="l01182"></a><span class="lineno"> 1182</span>}</div>
+<div class="line"><a id="l01183" name="l01183"></a><span class="lineno"> 1183</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l01184" name="l01184"></a><span class="lineno"><a class="line" href="group__net__context.html#gadde93ce383a4c5b0f450db1eaa0dfd4d"> 1184</a></span><span class="preprocessor">#define net_context_setup_pools(context, tx_pool, data_pool)</span></div>
+<div class="line"><a id="l01185" name="l01185"></a><span class="lineno"> 1185</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01186" name="l01186"></a><span class="lineno"> 1186</span> </div>
+<div class="line"><a id="l01200" name="l01200"></a><span class="lineno"><a class="line" href="group__net__context.html#ga64c7442eeaa3ed82e54f50d2b30d67a0"> 1200</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__net__context.html#ga64c7442eeaa3ed82e54f50d2b30d67a0">net_context_port_in_use</a>(<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__ip__4__6.html#gaf06819bf427cc58be1229b27b373ca31">net_ip_protocol</a> ip_proto,</div>
+<div class="line"><a id="l01201" name="l01201"></a><span class="lineno"> 1201</span>    uint16_t local_port, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structsockaddr.html">sockaddr</a> *local_addr);</div>
+<div class="line"><a id="l01202" name="l01202"></a><span class="lineno"> 1202</span> </div>
+<div class="line"><a id="l01203" name="l01203"></a><span class="lineno"> 1203</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l01204" name="l01204"></a><span class="lineno"> 1204</span>}</div>
+<div class="line"><a id="l01205" name="l01205"></a><span class="lineno"> 1205</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l01206" name="l01206"></a><span class="lineno"> 1206</span> </div>
+<div class="line"><a id="l01211" name="l01211"></a><span class="lineno"> 1211</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_NET_NET_CONTEXT_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__ip__4__6_html_ga2d9e094abb99ebd0874373edf1c45eda"><div class="ttname"><a href="group__ip__4__6.html#ga2d9e094abb99ebd0874373edf1c45eda">sa_family_t</a></div><div class="ttdeci">unsigned short int sa_family_t</div><div class="ttdef"><b>Definição</b> net_ip.h:164</div></div>
+<div class="ttc" id="agroup__ip__4__6_html_ga546620c7e758f003b24b7fdae4f97bd4"><div class="ttname"><a href="group__ip__4__6.html#ga546620c7e758f003b24b7fdae4f97bd4">AF_CAN</a></div><div class="ttdeci">#define AF_CAN</div><div class="ttdef"><b>Definição</b> net_ip.h:56</div></div>
+<div class="ttc" id="agroup__ip__4__6_html_ga9930604d0e32588eae76f43ca38e7826"><div class="ttname"><a href="group__ip__4__6.html#ga9930604d0e32588eae76f43ca38e7826">AF_INET</a></div><div class="ttdeci">#define AF_INET</div><div class="ttdef"><b>Definição</b> net_ip.h:53</div></div>
+<div class="ttc" id="agroup__ip__4__6_html_gaa03706b2738b9a58d4985dfbe99e1bac"><div class="ttname"><a href="group__ip__4__6.html#gaa03706b2738b9a58d4985dfbe99e1bac">AF_INET6</a></div><div class="ttdeci">#define AF_INET6</div><div class="ttdef"><b>Definição</b> net_ip.h:54</div></div>
+<div class="ttc" id="agroup__ip__4__6_html_gaa89aa4cd481fe17260c3f5d493cc23f5"><div class="ttname"><a href="group__ip__4__6.html#gaa89aa4cd481fe17260c3f5d493cc23f5">AF_PACKET</a></div><div class="ttdeci">#define AF_PACKET</div><div class="ttdef"><b>Definição</b> net_ip.h:55</div></div>
+<div class="ttc" id="agroup__ip__4__6_html_gaaab4268707dbe08348b98fb028e7aa5c"><div class="ttname"><a href="group__ip__4__6.html#gaaab4268707dbe08348b98fb028e7aa5c">net_sock_type</a></div><div class="ttdeci">net_sock_type</div><div class="ttdef"><b>Definição</b> net_ip.h:84</div></div>
+<div class="ttc" id="agroup__ip__4__6_html_gacf0ed818b0a3c85ff6a9206679d6d91a"><div class="ttname"><a href="group__ip__4__6.html#gacf0ed818b0a3c85ff6a9206679d6d91a">socklen_t</a></div><div class="ttdeci">size_t socklen_t</div><div class="ttdef"><b>Definição</b> net_ip.h:168</div></div>
+<div class="ttc" id="agroup__ip__4__6_html_gae77ae24b14b7b7f294f3e04121173f12"><div class="ttname"><a href="group__ip__4__6.html#gae77ae24b14b7b7f294f3e04121173f12">AF_UNSPEC</a></div><div class="ttdeci">#define AF_UNSPEC</div><div class="ttdef"><b>Definição</b> net_ip.h:52</div></div>
+<div class="ttc" id="agroup__ip__4__6_html_gaf06819bf427cc58be1229b27b373ca31"><div class="ttname"><a href="group__ip__4__6.html#gaf06819bf427cc58be1229b27b373ca31">net_ip_protocol</a></div><div class="ttdeci">net_ip_protocol</div><div class="ttdef"><b>Definição</b> net_ip.h:62</div></div>
+<div class="ttc" id="agroup__ip__4__6_html_ggaaab4268707dbe08348b98fb028e7aa5ca006b373a518eeeb717573f91e70d7fcc"><div class="ttname"><a href="group__ip__4__6.html#ggaaab4268707dbe08348b98fb028e7aa5ca006b373a518eeeb717573f91e70d7fcc">SOCK_DGRAM</a></div><div class="ttdeci">@ SOCK_DGRAM</div><div class="ttdef"><b>Definição</b> net_ip.h:86</div></div>
+<div class="ttc" id="agroup__ip__4__6_html_ggaaab4268707dbe08348b98fb028e7aa5cad78d54561daf9c4a7cda0ce115e3f231"><div class="ttname"><a href="group__ip__4__6.html#ggaaab4268707dbe08348b98fb028e7aa5cad78d54561daf9c4a7cda0ce115e3f231">SOCK_RAW</a></div><div class="ttdeci">@ SOCK_RAW</div><div class="ttdef"><b>Definição</b> net_ip.h:87</div></div>
+<div class="ttc" id="agroup__ip__4__6_html_ggaaab4268707dbe08348b98fb028e7aa5cae3b7fb9487113a31d403b23aaeaad424"><div class="ttname"><a href="group__ip__4__6.html#ggaaab4268707dbe08348b98fb028e7aa5cae3b7fb9487113a31d403b23aaeaad424">SOCK_STREAM</a></div><div class="ttdeci">@ SOCK_STREAM</div><div class="ttdef"><b>Definição</b> net_ip.h:85</div></div>
+<div class="ttc" id="agroup__net__context_html_ga01db89fc7d7bf125fb4958e956dba4ec"><div class="ttname"><a href="group__net__context.html#ga01db89fc7d7bf125fb4958e956dba4ec">net_context_cb_t</a></div><div class="ttdeci">void(* net_context_cb_t)(struct net_context *context, void *user_data)</div><div class="ttdoc">Callback used while iterating over network contexts.</div><div class="ttdef"><b>Definição</b> net_context.h:1142</div></div>
+<div class="ttc" id="agroup__net__context_html_ga05b4ae7d57bb4e472c637aea912b08cd"><div class="ttname"><a href="group__net__context.html#ga05b4ae7d57bb4e472c637aea912b08cd">net_context_recv_cb_t</a></div><div class="ttdeci">void(* net_context_recv_cb_t)(struct net_context *context, struct net_pkt *pkt, union net_ip_header *ip_hdr, union net_proto_header *proto_hdr, int status, void *user_data)</div><div class="ttdoc">Network data receive callback.</div><div class="ttdef"><b>Definição</b> net_context.h:93</div></div>
+<div class="ttc" id="agroup__net__context_html_ga0d391690d9d6972ce6f4baedeab64b11"><div class="ttname"><a href="group__net__context.html#ga0d391690d9d6972ce6f4baedeab64b11">net_context_unref</a></div><div class="ttdeci">int net_context_unref(struct net_context *context)</div><div class="ttdoc">Decrement the reference count to a network context.</div></div>
+<div class="ttc" id="agroup__net__context_html_ga0fb749331a4f21148ca5a7f364f241b9"><div class="ttname"><a href="group__net__context.html#ga0fb749331a4f21148ca5a7f364f241b9">net_context_bind</a></div><div class="ttdeci">int net_context_bind(struct net_context *context, const struct sockaddr *addr, socklen_t addrlen)</div><div class="ttdoc">Assign a socket a local address.</div></div>
+<div class="ttc" id="agroup__net__context_html_ga1b056999d9ab8f2d3b3c0f4788f36cdd"><div class="ttname"><a href="group__net__context.html#ga1b056999d9ab8f2d3b3c0f4788f36cdd">net_context_accept</a></div><div class="ttdeci">int net_context_accept(struct net_context *context, net_tcp_accept_cb_t cb, k_timeout_t timeout, void *user_data)</div><div class="ttdoc">Accept a network connection attempt.</div></div>
+<div class="ttc" id="agroup__net__context_html_ga1d6b64e302c546db589c661f4b6bda98"><div class="ttname"><a href="group__net__context.html#ga1d6b64e302c546db589c661f4b6bda98">net_context_put</a></div><div class="ttdeci">int net_context_put(struct net_context *context)</div><div class="ttdoc">Close and unref a network context.</div></div>
+<div class="ttc" id="agroup__net__context_html_ga344a062c4a75edb9bf69cbf5e93df1fa"><div class="ttname"><a href="group__net__context.html#ga344a062c4a75edb9bf69cbf5e93df1fa">net_tcp_accept_cb_t</a></div><div class="ttdeci">void(* net_tcp_accept_cb_t)(struct net_context *new_context, struct sockaddr *addr, socklen_t addrlen, int status, void *user_data)</div><div class="ttdoc">Accept callback.</div><div class="ttdef"><b>Definição</b> net_context.h:134</div></div>
+<div class="ttc" id="agroup__net__context_html_ga3803c0d738fbb9d786f401aacc10a4d3"><div class="ttname"><a href="group__net__context.html#ga3803c0d738fbb9d786f401aacc10a4d3">net_context_listen</a></div><div class="ttdeci">int net_context_listen(struct net_context *context, int backlog)</div><div class="ttdoc">Mark the context as a listening one.</div></div>
+<div class="ttc" id="agroup__net__context_html_ga437f04b1629542d2fcf43a15003dcac0"><div class="ttname"><a href="group__net__context.html#ga437f04b1629542d2fcf43a15003dcac0">net_context_sendmsg</a></div><div class="ttdeci">int net_context_sendmsg(struct net_context *context, const struct msghdr *msghdr, int flags, net_context_send_cb_t cb, k_timeout_t timeout, void *user_data)</div><div class="ttdoc">Send data in iovec to a peer specified in msghdr struct.</div></div>
+<div class="ttc" id="agroup__net__context_html_ga4b416b76a61cde0b89c14d98a213110e"><div class="ttname"><a href="group__net__context.html#ga4b416b76a61cde0b89c14d98a213110e">net_pkt_get_slab_func_t</a></div><div class="ttdeci">struct k_mem_slab *(* net_pkt_get_slab_func_t)(void)</div><div class="ttdoc">Function that is called to get the slab that is used for net_pkt allocations.</div><div class="ttdef"><b>Definição</b> net_context.h:176</div></div>
+<div class="ttc" id="agroup__net__context_html_ga4c0ef9540a0d7e800c4529274f5c22f4"><div class="ttname"><a href="group__net__context.html#ga4c0ef9540a0d7e800c4529274f5c22f4">net_context_ref</a></div><div class="ttdeci">int net_context_ref(struct net_context *context)</div><div class="ttdoc">Take a reference count to a net_context, preventing destruction.</div></div>
+<div class="ttc" id="agroup__net__context_html_ga52a4a30637d02d7fb2fe058e8314d309"><div class="ttname"><a href="group__net__context.html#ga52a4a30637d02d7fb2fe058e8314d309">net_context_send_cb_t</a></div><div class="ttdeci">void(* net_context_send_cb_t)(struct net_context *context, int status, void *user_data)</div><div class="ttdoc">Network data send callback.</div><div class="ttdef"><b>Definição</b> net_context.h:114</div></div>
+<div class="ttc" id="agroup__net__context_html_ga5444bb49ec9cfbee2ca3f85186b7551d"><div class="ttname"><a href="group__net__context.html#ga5444bb49ec9cfbee2ca3f85186b7551d">net_pkt_get_pool_func_t</a></div><div class="ttdeci">struct net_buf_pool *(* net_pkt_get_pool_func_t)(void)</div><div class="ttdoc">Function that is called to get the pool that is used for net_buf allocations.</div><div class="ttdef"><b>Definição</b> net_context.h:189</div></div>
+<div class="ttc" id="agroup__net__context_html_ga56b2c5fc3f6a97664944cae1c1eb5dad"><div class="ttname"><a href="group__net__context.html#ga56b2c5fc3f6a97664944cae1c1eb5dad">net_context_connect</a></div><div class="ttdeci">int net_context_connect(struct net_context *context, const struct sockaddr *addr, socklen_t addrlen, net_context_connect_cb_t cb, k_timeout_t timeout, void *user_data)</div><div class="ttdoc">Create a network connection.</div></div>
+<div class="ttc" id="agroup__net__context_html_ga5e2f5fcc08863a4090bc04040ee88d29"><div class="ttname"><a href="group__net__context.html#ga5e2f5fcc08863a4090bc04040ee88d29">NET_CONTEXT_IN_USE</a></div><div class="ttdeci">#define NET_CONTEXT_IN_USE</div><div class="ttdef"><b>Definição</b> net_context.h:36</div></div>
+<div class="ttc" id="agroup__net__context_html_ga62753cf9e6218d37e65f8b461bf8c8dd"><div class="ttname"><a href="group__net__context.html#ga62753cf9e6218d37e65f8b461bf8c8dd">net_context_state</a></div><div class="ttdeci">net_context_state</div><div class="ttdef"><b>Definição</b> net_context.h:39</div></div>
+<div class="ttc" id="agroup__net__context_html_ga64c7442eeaa3ed82e54f50d2b30d67a0"><div class="ttname"><a href="group__net__context.html#ga64c7442eeaa3ed82e54f50d2b30d67a0">net_context_port_in_use</a></div><div class="ttdeci">bool net_context_port_in_use(enum net_ip_protocol ip_proto, uint16_t local_port, const struct sockaddr *local_addr)</div><div class="ttdoc">Check if a port is in use (bound)</div></div>
+<div class="ttc" id="agroup__net__context_html_ga74f919185f8af074c2d90aa04733dd2a"><div class="ttname"><a href="group__net__context.html#ga74f919185f8af074c2d90aa04733dd2a">net_context_recv</a></div><div class="ttdeci">int net_context_recv(struct net_context *context, net_context_recv_cb_t cb, k_timeout_t timeout, void *user_data)</div><div class="ttdoc">Receive network data from a peer specified by context.</div></div>
+<div class="ttc" id="agroup__net__context_html_ga90385e51999494c0d530c97b57a01865"><div class="ttname"><a href="group__net__context.html#ga90385e51999494c0d530c97b57a01865">NET_CONTEXT_CLOSING_SOCK</a></div><div class="ttdeci">#define NET_CONTEXT_CLOSING_SOCK</div><div class="ttdef"><b>Definição</b> net_context.h:66</div></div>
+<div class="ttc" id="agroup__net__context_html_gaaa12e95831b1de08379fd907e47c550a"><div class="ttname"><a href="group__net__context.html#gaaa12e95831b1de08379fd907e47c550a">net_context_connect_cb_t</a></div><div class="ttdeci">void(* net_context_connect_cb_t)(struct net_context *context, int status, void *user_data)</div><div class="ttdoc">Connection callback.</div><div class="ttdef"><b>Definição</b> net_context.h:161</div></div>
+<div class="ttc" id="agroup__net__context_html_gab3cc2a13e24f9c263bc40cc87d752a9f"><div class="ttname"><a href="group__net__context.html#gab3cc2a13e24f9c263bc40cc87d752a9f">net_context_update_recv_wnd</a></div><div class="ttdeci">int net_context_update_recv_wnd(struct net_context *context, int32_t delta)</div><div class="ttdoc">Update TCP receive window for context.</div></div>
+<div class="ttc" id="agroup__net__context_html_gabb751f7d213d00f8eec72a67f4ce3491"><div class="ttname"><a href="group__net__context.html#gabb751f7d213d00f8eec72a67f4ce3491">net_context_foreach</a></div><div class="ttdeci">void net_context_foreach(net_context_cb_t cb, void *user_data)</div><div class="ttdoc">Go through all the network connections and call callback for each network context.</div></div>
+<div class="ttc" id="agroup__net__context_html_gabd932d5ded649f9a8c8bab40810e9eae"><div class="ttname"><a href="group__net__context.html#gabd932d5ded649f9a8c8bab40810e9eae">net_context_set_option</a></div><div class="ttdeci">int net_context_set_option(struct net_context *context, enum net_context_option option, const void *value, size_t len)</div><div class="ttdoc">Set an connection option for this context.</div></div>
+<div class="ttc" id="agroup__net__context_html_gac793e1def18200416e3f679067c56ab3"><div class="ttname"><a href="group__net__context.html#gac793e1def18200416e3f679067c56ab3">net_context_send</a></div><div class="ttdeci">int net_context_send(struct net_context *context, const void *buf, size_t len, net_context_send_cb_t cb, k_timeout_t timeout, void *user_data)</div><div class="ttdoc">Send data to a peer.</div></div>
+<div class="ttc" id="agroup__net__context_html_gac8f6e3a16d52e8e376c38eec0ed8a940"><div class="ttname"><a href="group__net__context.html#gac8f6e3a16d52e8e376c38eec0ed8a940">NET_CONTEXT_FAMILY</a></div><div class="ttdeci">#define NET_CONTEXT_FAMILY</div><div class="ttdef"><b>Definição</b> net_context.h:54</div></div>
+<div class="ttc" id="agroup__net__context_html_gac9b4cf9beecaac5bf05db3111c803678"><div class="ttname"><a href="group__net__context.html#gac9b4cf9beecaac5bf05db3111c803678">NET_CONTEXT_TYPE</a></div><div class="ttdeci">#define NET_CONTEXT_TYPE</div><div class="ttdef"><b>Definição</b> net_context.h:57</div></div>
+<div class="ttc" id="agroup__net__context_html_gadde93ce383a4c5b0f450db1eaa0dfd4d"><div class="ttname"><a href="group__net__context.html#gadde93ce383a4c5b0f450db1eaa0dfd4d">net_context_setup_pools</a></div><div class="ttdeci">#define net_context_setup_pools(context, tx_pool, data_pool)</div><div class="ttdoc">Set custom network buffer pools for context send operations.</div><div class="ttdef"><b>Definição</b> net_context.h:1184</div></div>
+<div class="ttc" id="agroup__net__context_html_gae21d27ce120ab72b58b1c20ec1d7ceff"><div class="ttname"><a href="group__net__context.html#gae21d27ce120ab72b58b1c20ec1d7ceff">net_context_get</a></div><div class="ttdeci">int net_context_get(sa_family_t family, enum net_sock_type type, uint16_t ip_proto, struct net_context **context)</div><div class="ttdoc">Get network context.</div></div>
+<div class="ttc" id="agroup__net__context_html_gae4bfc7d561f99a5c50fa725496dfd69e"><div class="ttname"><a href="group__net__context.html#gae4bfc7d561f99a5c50fa725496dfd69e">NET_CONTEXT_ACCEPTING_SOCK</a></div><div class="ttdeci">#define NET_CONTEXT_ACCEPTING_SOCK</div><div class="ttdef"><b>Definição</b> net_context.h:63</div></div>
+<div class="ttc" id="agroup__net__context_html_gaeec55aee0a2029f8877a953ea137f39c"><div class="ttname"><a href="group__net__context.html#gaeec55aee0a2029f8877a953ea137f39c">net_context_get_option</a></div><div class="ttdeci">int net_context_get_option(struct net_context *context, enum net_context_option option, void *value, size_t *len)</div><div class="ttdoc">Get connection option value for this context.</div></div>
+<div class="ttc" id="agroup__net__context_html_gafb0230083b9bdc85c21752d9efb6fb10"><div class="ttname"><a href="group__net__context.html#gafb0230083b9bdc85c21752d9efb6fb10">net_context_sendto</a></div><div class="ttdeci">int net_context_sendto(struct net_context *context, const void *buf, size_t len, const struct sockaddr *dst_addr, socklen_t addrlen, net_context_send_cb_t cb, k_timeout_t timeout, void *user_data)</div><div class="ttdoc">Send data to a peer specified by address.</div></div>
+<div class="ttc" id="agroup__net__if_html_ga02445f6c61f0d29f56ac0ef59e025630"><div class="ttname"><a href="group__net__if.html#ga02445f6c61f0d29f56ac0ef59e025630">net_if_get_by_iface</a></div><div class="ttdeci">int net_if_get_by_iface(struct net_if *iface)</div><div class="ttdoc">Get interface index according to pointer.</div></div>
+<div class="ttc" id="agroup__net__if_html_ga8b008203fa46ca5861f772f62f6155c2"><div class="ttname"><a href="group__net__if.html#ga8b008203fa46ca5861f772f62f6155c2">net_if_get_by_index</a></div><div class="ttdeci">__syscall struct net_if * net_if_get_by_index(int index)</div><div class="ttdoc">Get interface according to index.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__if_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__if_8h.html">net_if.h</a></div><div class="ttdoc">Public API for network interface.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__ip_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2net__ip_8h.html">net_ip.h</a></div><div class="ttdoc">IPv6 and IPv4 definitions.</div></div>
+<div class="ttc" id="anet__stats_8h_html"><div class="ttname"><a href="net__stats_8h.html">net_stats.h</a></div><div class="ttdoc">Network statistics.</div></div>
+<div class="ttc" id="astructin6__addr_html"><div class="ttname"><a href="structin6__addr.html">in6_addr</a></div><div class="ttdef"><b>Definição</b> net_ip.h:139</div></div>
+<div class="ttc" id="astructin__addr_html"><div class="ttname"><a href="structin__addr.html">in_addr</a></div><div class="ttdef"><b>Definição</b> net_ip.h:151</div></div>
+<div class="ttc" id="astructk__condvar_html"><div class="ttname"><a href="structk__condvar.html">k_condvar</a></div><div class="ttdef"><b>Definição</b> kernel.h:3024</div></div>
+<div class="ttc" id="astructk__fifo_html"><div class="ttname"><a href="structk__fifo.html">k_fifo</a></div><div class="ttdef"><b>Definição</b> kernel.h:2386</div></div>
+<div class="ttc" id="astructk__mutex_html"><div class="ttname"><a href="structk__mutex.html">k_mutex</a></div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:31</div></div>
+<div class="ttc" id="astructk__timeout__t_html"><div class="ttname"><a href="structk__timeout__t.html">k_timeout_t</a></div><div class="ttdoc">Kernel timeout type.</div><div class="ttdef"><b>Definição</b> sys_clock.h:65</div></div>
+<div class="ttc" id="astructmsghdr_html"><div class="ttname"><a href="structmsghdr.html">msghdr</a></div><div class="ttdef"><b>Definição</b> net_ip.h:238</div></div>
+<div class="ttc" id="astructnet__buf__pool_html"><div class="ttname"><a href="structnet__buf__pool.html">net_buf_pool</a></div><div class="ttdoc">Network buffer pool representation.</div><div class="ttdef"><b>Definição</b> buf.h:971</div></div>
+<div class="ttc" id="astructnet__context_html"><div class="ttname"><a href="structnet__context.html">net_context</a></div><div class="ttdef"><b>Definição</b> net_context.h:201</div></div>
+<div class="ttc" id="astructnet__context_html_a0ae23462dcc7f84c95e0cc69dfeb6d5a"><div class="ttname"><a href="structnet__context.html#a0ae23462dcc7f84c95e0cc69dfeb6d5a">net_context::refcount</a></div><div class="ttdeci">atomic_t refcount</div><div class="ttdef"><b>Definição</b> net_context.h:212</div></div>
+<div class="ttc" id="astructnet__context_html_a1679e131dd6626bc210f23938df3fbcb"><div class="ttname"><a href="structnet__context.html#a1679e131dd6626bc210f23938df3fbcb">net_context::user_data</a></div><div class="ttdeci">void * user_data</div><div class="ttdef"><b>Definição</b> net_context.h:208</div></div>
+<div class="ttc" id="astructnet__context_html_a2c6f6d484e8744ec97aa966d6f0079c7"><div class="ttname"><a href="structnet__context.html#a2c6f6d484e8744ec97aa966d6f0079c7">net_context::fifo_reserved</a></div><div class="ttdeci">void * fifo_reserved</div><div class="ttdef"><b>Definição</b> net_context.h:204</div></div>
+<div class="ttc" id="astructnet__context_html_a300e382f78b20f220fc1b450784bbd3c"><div class="ttname"><a href="structnet__context.html#a300e382f78b20f220fc1b450784bbd3c">net_context::flags</a></div><div class="ttdeci">uint16_t flags</div><div class="ttdef"><b>Definição</b> net_context.h:341</div></div>
+<div class="ttc" id="astructnet__context_html_a38c83746c8b2fcddf187a20299d6eb3c"><div class="ttname"><a href="structnet__context.html#a38c83746c8b2fcddf187a20299d6eb3c">net_context::send_cb</a></div><div class="ttdeci">net_context_send_cb_t send_cb</div><div class="ttdef"><b>Definição</b> net_context.h:239</div></div>
+<div class="ttc" id="astructnet__context_html_a4a58fc21990e3c3ddb5ebf77c8212b9c"><div class="ttname"><a href="structnet__context.html#a4a58fc21990e3c3ddb5ebf77c8212b9c">net_context::remote</a></div><div class="ttdeci">struct sockaddr remote</div><div class="ttdef"><b>Definição</b> net_context.h:226</div></div>
+<div class="ttc" id="astructnet__context_html_a730e72866e94ed1695010b50c618a281"><div class="ttname"><a href="structnet__context.html#a730e72866e94ed1695010b50c618a281">net_context::lock</a></div><div class="ttdeci">struct k_mutex lock</div><div class="ttdef"><b>Definição</b> net_context.h:216</div></div>
+<div class="ttc" id="astructnet__context_html_a7ed765f4d8b9cdc0fbd080287215f955"><div class="ttname"><a href="structnet__context.html#a7ed765f4d8b9cdc0fbd080287215f955">net_context::local</a></div><div class="ttdeci">struct sockaddr_ptr local</div><div class="ttdef"><b>Definição</b> net_context.h:221</div></div>
+<div class="ttc" id="astructnet__context_html_a7f2b2ccc57881adec723e20a500d6774"><div class="ttname"><a href="structnet__context.html#a7f2b2ccc57881adec723e20a500d6774">net_context::options</a></div><div class="ttdeci">struct net_context::@332 options</div></div>
+<div class="ttc" id="astructnet__context_html_abc30f85e6016901b1d6fbb771b07370d"><div class="ttname"><a href="structnet__context.html#abc30f85e6016901b1d6fbb771b07370d">net_context::connect_cb</a></div><div class="ttdeci">net_context_connect_cb_t connect_cb</div><div class="ttdef"><b>Definição</b> net_context.h:244</div></div>
+<div class="ttc" id="astructnet__context_html_abd8ff1b4826535df911d2af14b46e312"><div class="ttname"><a href="structnet__context.html#abd8ff1b4826535df911d2af14b46e312">net_context::conn_handler</a></div><div class="ttdeci">struct net_conn_handle * conn_handler</div><div class="ttdef"><b>Definição</b> net_context.h:229</div></div>
+<div class="ttc" id="astructnet__context_html_abfb04fc163636498f72b29aa12087e19"><div class="ttname"><a href="structnet__context.html#abfb04fc163636498f72b29aa12087e19">net_context::proto</a></div><div class="ttdeci">uint16_t proto</div><div class="ttdef"><b>Definição</b> net_context.h:338</div></div>
+<div class="ttc" id="astructnet__context_html_ad71d151e1e9e35b934949482066f1947"><div class="ttname"><a href="structnet__context.html#ad71d151e1e9e35b934949482066f1947">net_context::iface</a></div><div class="ttdeci">int8_t iface</div><div class="ttdef"><b>Definição</b> net_context.h:344</div></div>
+<div class="ttc" id="astructnet__context_html_af551b252faf29ee6018d4bd783c5f2b4"><div class="ttname"><a href="structnet__context.html#af551b252faf29ee6018d4bd783c5f2b4">net_context::recv_cb</a></div><div class="ttdeci">net_context_recv_cb_t recv_cb</div><div class="ttdef"><b>Definição</b> net_context.h:234</div></div>
+<div class="ttc" id="astructnet__if_html"><div class="ttname"><a href="structnet__if.html">net_if</a></div><div class="ttdoc">Network Interface structure.</div><div class="ttdef"><b>Definição</b> net_if.h:598</div></div>
+<div class="ttc" id="astructnet__pkt_html"><div class="ttname"><a href="structnet__pkt.html">net_pkt</a></div><div class="ttdoc">Network packet.</div><div class="ttdef"><b>Definição</b> net_pkt.h:63</div></div>
+<div class="ttc" id="astructsockaddr_html"><div class="ttname"><a href="structsockaddr.html">sockaddr</a></div><div class="ttdef"><b>Definição</b> net_ip.h:347</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

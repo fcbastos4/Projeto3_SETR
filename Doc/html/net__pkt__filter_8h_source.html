@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/net/net_pkt_filter.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_e87a4ba8d8d39971580ab67f13eff592.html">net</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">net_pkt_filter.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="net__pkt__filter_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> * Copyright (c) 2021 BayLibre SAS</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_NET_PKT_FILTER_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define ZEPHYR_INCLUDE_NET_PKT_FILTER_H_</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;limits.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="slist_8h.html">zephyr/sys/slist.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="net__core_8h.html">zephyr/net/net_core.h</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2ethernet_8h.html">zephyr/net/ethernet.h</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">struct </span><a class="code hl_struct" href="structnpf__test.html">npf_test</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">typedef</span> bool (npf_test_fn_t)(<span class="keyword">struct </span><a class="code hl_struct" href="structnpf__test.html">npf_test</a> *test, <span class="keyword">struct </span><a class="code hl_struct" href="structnet__pkt.html">net_pkt</a> *pkt);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structnpf__test.html">   43</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnpf__test.html">npf_test</a> {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structnpf__test.html#ac49921514690a71986ca4d07245cfe7d">   44</a></span>    npf_test_fn_t *<a class="code hl_variable" href="structnpf__test.html#ac49921514690a71986ca4d07245cfe7d">fn</a>;  </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
+</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="};">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structnpf__rule.html">   48</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnpf__rule.html">npf_rule</a> {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> node;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structnpf__rule.html#a872daf53310dd8e20477eafd6808481f">   50</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__net__core.html#ga8e5393f3bdd85491f221324e637c3896">net_verdict</a> <a class="code hl_variable" href="structnpf__rule.html#a872daf53310dd8e20477eafd6808481f">result</a>;    </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structnpf__rule.html#a06045c693cf06e6ebfc5a74b8c3f5ef7">   51</a></span>    uint32_t <a class="code hl_variable" href="structnpf__rule.html#a06045c693cf06e6ebfc5a74b8c3f5ef7">nb_tests</a>;      </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structnpf__rule.html#a72c032c55535c82f365b2cd1229cb1e0">   52</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnpf__test.html">npf_test</a> *<a class="code hl_variable" href="structnpf__rule.html#a72c032c55535c82f365b2cd1229cb1e0">tests</a>[];   </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">extern</span> <span class="keyword">struct </span><a class="code hl_struct" href="structnpf__rule.html">npf_rule</a> <a class="code hl_variable" href="group__net__pkt__filter.html#gaac489d75c023952243589cba7ff7367a">npf_default_ok</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">extern</span> <span class="keyword">struct </span><a class="code hl_struct" href="structnpf__rule.html">npf_rule</a> <a class="code hl_variable" href="group__net__pkt__filter.html#ga8fc592feedeceb5172f8747a29697dd7">npf_default_drop</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="};">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structnpf__rule__list.html">   61</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnpf__rule__list.html">npf_rule_list</a> {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga44658c336b634c03938a251cdc8134f8">sys_slist_t</a> rule_head;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__spinlock.html">k_spinlock</a> lock;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>};</div>
+</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keyword">extern</span> <span class="keyword">struct </span><a class="code hl_struct" href="structnpf__rule__list.html">npf_rule_list</a> <a class="code hl_variable" href="group__net__pkt__filter.html#ga8017a041d3168c76e39bdfac011b9315">npf_send_rules</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">extern</span> <span class="keyword">struct </span><a class="code hl_struct" href="structnpf__rule__list.html">npf_rule_list</a> <a class="code hl_variable" href="group__net__pkt__filter.html#ga9714529658625e906264a46ad1a9be6f">npf_recv_rules</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">extern</span> <span class="keyword">struct </span><a class="code hl_struct" href="structnpf__rule__list.html">npf_rule_list</a> <a class="code hl_variable" href="group__net__pkt__filter.html#ga571e9fb34eb4e3cbf38f885b5e786021">npf_local_in_recv_rules</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">extern</span> <span class="keyword">struct </span><a class="code hl_struct" href="structnpf__rule__list.html">npf_rule_list</a> <a class="code hl_variable" href="group__net__pkt__filter.html#gad521d7ac3270970833aec48d8a517d85">npf_ipv4_recv_rules</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">extern</span> <span class="keyword">struct </span><a class="code hl_struct" href="structnpf__rule__list.html">npf_rule_list</a> <a class="code hl_variable" href="group__net__pkt__filter.html#gab91ca81aab2da48066538d72caf0c8ae">npf_ipv6_recv_rules</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="group__net__pkt__filter.html#ga3b2a85558b6756e76760d9a40c780e28">   83</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__net__pkt__filter.html#ga3b2a85558b6756e76760d9a40c780e28">npf_insert_rule</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnpf__rule__list.html">npf_rule_list</a> *rules, <span class="keyword">struct</span> <a class="code hl_struct" href="structnpf__rule.html">npf_rule</a> *rule);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="group__net__pkt__filter.html#gadfa956e4af3c45460846fc22f863e697">   91</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__net__pkt__filter.html#gadfa956e4af3c45460846fc22f863e697">npf_append_rule</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnpf__rule__list.html">npf_rule_list</a> *rules, <span class="keyword">struct</span> <a class="code hl_struct" href="structnpf__rule.html">npf_rule</a> *rule);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="group__net__pkt__filter.html#ga4d7426db901debff35e1de5805e06c71">  100</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__net__pkt__filter.html#ga4d7426db901debff35e1de5805e06c71">npf_remove_rule</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnpf__rule__list.html">npf_rule_list</a> *rules, <span class="keyword">struct</span> <a class="code hl_struct" href="structnpf__rule.html">npf_rule</a> *rule);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="group__net__pkt__filter.html#ga54916eb4943e4b47cd31eb23827d0dd5">  108</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__net__pkt__filter.html#ga54916eb4943e4b47cd31eb23827d0dd5">npf_remove_all_rules</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structnpf__rule__list.html">npf_rule_list</a> *rules);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="comment">/* convenience shortcuts */</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#define npf_insert_send_rule(rule) npf_insert_rule(&amp;npf_send_rules, rule)</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">#define npf_insert_recv_rule(rule) npf_insert_rule(&amp;npf_recv_rules, rule)</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#define npf_append_send_rule(rule) npf_append_rule(&amp;npf_send_rules, rule)</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#define npf_append_recv_rule(rule) npf_append_rule(&amp;npf_recv_rules, rule)</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="preprocessor">#define npf_remove_send_rule(rule) npf_remove_rule(&amp;npf_send_rules, rule)</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="preprocessor">#define npf_remove_recv_rule(rule) npf_remove_rule(&amp;npf_recv_rules, rule)</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">#define npf_remove_all_send_rules() npf_remove_all_rules(&amp;npf_send_rules)</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">#define npf_remove_all_recv_rules() npf_remove_all_rules(&amp;npf_recv_rules)</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#ifdef CONFIG_NET_PKT_FILTER_LOCAL_IN_HOOK</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="preprocessor">#define npf_insert_local_in_recv_rule(rule) npf_insert_rule(&amp;npf_local_in_recv_rules, rule)</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#define npf_append_local_in_recv_rule(rule) npf_append_rule(&amp;npf_local_in_recv_rules, rule)</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="preprocessor">#define npf_remove_local_in_recv_rule(rule) npf_remove_rule(&amp;npf_local_in_recv_rules, rule)</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">#define npf_remove_all_local_in_recv_rules() npf_remove_all_rules(&amp;npf_local_in_recv_rules)</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_PKT_FILTER_LOCAL_IN_HOOK */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#ifdef CONFIG_NET_PKT_FILTER_IPV4_HOOK</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">#define npf_insert_ipv4_recv_rule(rule) npf_insert_rule(&amp;npf_ipv4_recv_rules, rule)</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">#define npf_append_ipv4_recv_rule(rule) npf_append_rule(&amp;npf_ipv4_recv_rules, rule)</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="preprocessor">#define npf_remove_ipv4_recv_rule(rule) npf_remove_rule(&amp;npf_ipv4_recv_rules, rule)</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">#define npf_remove_all_ipv4_recv_rules() npf_remove_all_rules(&amp;npf_ipv4_recv_rules)</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_PKT_FILTER_IPV4_HOOK */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">#ifdef CONFIG_NET_PKT_FILTER_IPV6_HOOK</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">#define npf_insert_ipv6_recv_rule(rule) npf_insert_rule(&amp;npf_ipv6_recv_rules, rule)</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">#define npf_append_ipv6_recv_rule(rule) npf_append_rule(&amp;npf_ipv6_recv_rules, rule)</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#define npf_remove_ipv6_recv_rule(rule) npf_remove_rule(&amp;npf_ipv6_recv_rules, rule)</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#define npf_remove_all_ipv6_recv_rules() npf_remove_all_rules(&amp;npf_ipv6_recv_rules)</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_NET_PKT_FILTER_IPV6_HOOK */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="foldopen" id="foldopen00195" data-start="" data-end="">
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="group__net__pkt__filter.html#ga2f45093d5ad164d5c51a8996f7f04d32">  195</a></span><span class="preprocessor">#define NPF_RULE(_name, _result, ...) \</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">    struct npf_rule _name = { \</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="preprocessor">        .result = (_result), \</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">        .nb_tests = NUM_VA_ARGS_LESS_1(__VA_ARGS__) + 1, \</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">        .tests = { FOR_EACH(Z_NPF_TEST_ADDR, (,), __VA_ARGS__) }, \</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="preprocessor">#define Z_NPF_TEST_ADDR(arg) &amp;arg.test</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="keyword">struct </span>npf_test_iface {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnpf__test.html">npf_test</a> test;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__if.html">net_if</a> *iface;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>};</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="keyword">extern</span> npf_test_fn_t npf_iface_match;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="keyword">extern</span> npf_test_fn_t npf_iface_unmatch;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="keyword">extern</span> npf_test_fn_t npf_orig_iface_match;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="keyword">extern</span> npf_test_fn_t npf_orig_iface_unmatch;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="foldopen" id="foldopen00232" data-start="" data-end="">
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="group__npf__basic__cond.html#ga465578272b616c6267ecd13fd86ca73b">  232</a></span><span class="preprocessor">#define NPF_IFACE_MATCH(_name, _iface) \</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="preprocessor">    struct npf_test_iface _name = { \</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="preprocessor">        .iface = (_iface), \</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="preprocessor">        .test.fn = npf_iface_match, \</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="foldopen" id="foldopen00244" data-start="" data-end="">
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="group__npf__basic__cond.html#gac3607a6736d70b0ea044a2ec7ab6d313">  244</a></span><span class="preprocessor">#define NPF_IFACE_UNMATCH(_name, _iface) \</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="preprocessor">    struct npf_test_iface _name = { \</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="preprocessor">        .iface = (_iface), \</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="preprocessor">        .test.fn = npf_iface_unmatch, \</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="foldopen" id="foldopen00256" data-start="" data-end="">
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="group__npf__basic__cond.html#ga55021acd131e4684568aaf6434b08789">  256</a></span><span class="preprocessor">#define NPF_ORIG_IFACE_MATCH(_name, _iface) \</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="preprocessor">    struct npf_test_iface _name = { \</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="preprocessor">        .iface = (_iface), \</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="preprocessor">        .test.fn = npf_orig_iface_match, \</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="foldopen" id="foldopen00268" data-start="" data-end="">
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="group__npf__basic__cond.html#gad959dc62d47ca3b4d2f24a6c862c7623">  268</a></span><span class="preprocessor">#define NPF_ORIG_IFACE_UNMATCH(_name, _iface) \</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="preprocessor">    struct npf_test_iface _name = { \</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="preprocessor">        .iface = (_iface), \</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="preprocessor">        .test.fn = npf_orig_iface_unmatch, \</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="keyword">struct </span>npf_test_size_bounds {</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnpf__test.html">npf_test</a> test;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keywordtype">size_t</span> min;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="keywordtype">size_t</span> max;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>};</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="keyword">extern</span> npf_test_fn_t npf_size_inbounds;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="foldopen" id="foldopen00292" data-start="" data-end="">
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="group__npf__basic__cond.html#gaf142455f9bea3dea8faa0a913072b63e">  292</a></span><span class="preprocessor">#define NPF_SIZE_MIN(_name, _size) \</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="preprocessor">    struct npf_test_size_bounds _name = { \</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="preprocessor">        .min = (_size), \</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="preprocessor">        .max = SIZE_MAX, \</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="preprocessor">        .test.fn = npf_size_inbounds, \</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
+<div class="foldopen" id="foldopen00305" data-start="" data-end="">
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="group__npf__basic__cond.html#gacd56b9bcf2b2ba4759402650a9bff67a">  305</a></span><span class="preprocessor">#define NPF_SIZE_MAX(_name, _size) \</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="preprocessor">    struct npf_test_size_bounds _name = { \</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="preprocessor">        .min = 0, \</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="preprocessor">        .max = (_size), \</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="preprocessor">        .test.fn = npf_size_inbounds, \</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="foldopen" id="foldopen00319" data-start="" data-end="">
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="group__npf__basic__cond.html#gab402bb13c7899d57532d3dcf8a36ed4b">  319</a></span><span class="preprocessor">#define NPF_SIZE_BOUNDS(_name, _min_size, _max_size) \</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="preprocessor">    struct npf_test_size_bounds _name = { \</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="preprocessor">        .min = (_min_size), \</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="preprocessor">        .max = (_max_size), \</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="preprocessor">        .test.fn = npf_size_inbounds, \</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="keyword">struct </span>npf_test_ip {</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnpf__test.html">npf_test</a> test;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    uint8_t addr_family;</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keywordtype">void</span> *ipaddr;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    uint32_t ipaddr_num;</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>};</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="keyword">extern</span> npf_test_fn_t npf_ip_src_addr_match;</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="keyword">extern</span> npf_test_fn_t npf_ip_src_addr_unmatch;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="foldopen" id="foldopen00352" data-start="" data-end="">
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno"><a class="line" href="group__npf__basic__cond.html#ga4dd013f0fb92eb0433f174cf40e89e00">  352</a></span><span class="preprocessor">#define NPF_IP_SRC_ADDR_ALLOWLIST(_name, _ip_addr_array, _ip_addr_num, _af) \</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="preprocessor">    struct npf_test_ip _name = { \</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="preprocessor">        .addr_family = _af, \</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="preprocessor">        .ipaddr = (_ip_addr_array), \</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="preprocessor">        .ipaddr_num = _ip_addr_num, \</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="preprocessor">        .test.fn = npf_ip_src_addr_match, \</span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
+<div class="foldopen" id="foldopen00372" data-start="" data-end="">
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno"><a class="line" href="group__npf__basic__cond.html#ga57fe28a992b1afaf33581292fe5015bd">  372</a></span><span class="preprocessor">#define NPF_IP_SRC_ADDR_BLOCKLIST(_name, _ip_addr_array, _ip_addr_num, _af) \</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="preprocessor">    struct npf_test_ip _name = { \</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="preprocessor">        .addr_family = _af, \</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="preprocessor">        .ipaddr = (_ip_addr_array), \</span></div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span><span class="preprocessor">        .ipaddr_num = _ip_addr_num, \</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span><span class="preprocessor">        .test.fn = npf_ip_src_addr_unmatch, \</span></div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span> </div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span><span class="keyword">struct </span>npf_test_eth_addr {</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnpf__test.html">npf_test</a> test;</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nb_addresses;</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    <span class="keyword">struct </span>net_eth_addr *addresses;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    <span class="keyword">struct </span>net_eth_addr mask;</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>};</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span> </div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span><span class="keyword">extern</span> npf_test_fn_t npf_eth_src_addr_match;</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span><span class="keyword">extern</span> npf_test_fn_t npf_eth_src_addr_unmatch;</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span><span class="keyword">extern</span> npf_test_fn_t npf_eth_dst_addr_match;</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="keyword">extern</span> npf_test_fn_t npf_eth_dst_addr_unmatch;</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
+<div class="foldopen" id="foldopen00413" data-start="" data-end="">
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno"><a class="line" href="group__npf__eth__cond.html#gad2141ad8d6639c9b92569d55130ca1b1">  413</a></span><span class="preprocessor">#define NPF_ETH_SRC_ADDR_MATCH(_name, _addr_array) \</span></div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span><span class="preprocessor">    struct npf_test_eth_addr _name = { \</span></div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span><span class="preprocessor">        .addresses = (_addr_array), \</span></div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span><span class="preprocessor">        .nb_addresses = ARRAY_SIZE(_addr_array), \</span></div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span><span class="preprocessor">        .test.fn = npf_eth_src_addr_match, \</span></div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span><span class="preprocessor">        .mask.addr = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }, \</span></div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span> </div>
+<div class="foldopen" id="foldopen00430" data-start="" data-end="">
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno"><a class="line" href="group__npf__eth__cond.html#ga228eaa3784f663d8f2e2711e26409043">  430</a></span><span class="preprocessor">#define NPF_ETH_SRC_ADDR_UNMATCH(_name, _addr_array) \</span></div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span><span class="preprocessor">    struct npf_test_eth_addr _name = { \</span></div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span><span class="preprocessor">        .addresses = (_addr_array), \</span></div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span><span class="preprocessor">        .nb_addresses = ARRAY_SIZE(_addr_array), \</span></div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span><span class="preprocessor">        .test.fn = npf_eth_src_addr_unmatch, \</span></div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span><span class="preprocessor">        .mask.addr = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }, \</span></div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span> </div>
+<div class="foldopen" id="foldopen00447" data-start="" data-end="">
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno"><a class="line" href="group__npf__eth__cond.html#ga3d22d687bcd56b7727c51c7bc7f36cac">  447</a></span><span class="preprocessor">#define NPF_ETH_DST_ADDR_MATCH(_name, _addr_array) \</span></div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span><span class="preprocessor">    struct npf_test_eth_addr _name = { \</span></div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span><span class="preprocessor">        .addresses = (_addr_array), \</span></div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span><span class="preprocessor">        .nb_addresses = ARRAY_SIZE(_addr_array), \</span></div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span><span class="preprocessor">        .test.fn = npf_eth_dst_addr_match, \</span></div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span><span class="preprocessor">        .mask.addr = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }, \</span></div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span> </div>
+<div class="foldopen" id="foldopen00464" data-start="" data-end="">
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno"><a class="line" href="group__npf__eth__cond.html#ga3b8a8a22eb992c0e02223f70723c3641">  464</a></span><span class="preprocessor">#define NPF_ETH_DST_ADDR_UNMATCH(_name, _addr_array) \</span></div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span><span class="preprocessor">    struct npf_test_eth_addr _name = { \</span></div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span><span class="preprocessor">        .addresses = (_addr_array), \</span></div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span><span class="preprocessor">        .nb_addresses = ARRAY_SIZE(_addr_array), \</span></div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span><span class="preprocessor">        .test.fn = npf_eth_dst_addr_unmatch, \</span></div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span><span class="preprocessor">        .mask.addr = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }, \</span></div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span> </div>
+<div class="foldopen" id="foldopen00482" data-start="" data-end="">
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno"><a class="line" href="group__npf__eth__cond.html#ga0e06ebc4c9a1a960651be1ba89eeb2fd">  482</a></span><span class="preprocessor">#define NPF_ETH_SRC_ADDR_MASK_MATCH(_name, _addr_array, ...) \</span></div>
+<div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span><span class="preprocessor">    struct npf_test_eth_addr _name = { \</span></div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span><span class="preprocessor">        .addresses = (_addr_array), \</span></div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span><span class="preprocessor">        .nb_addresses = ARRAY_SIZE(_addr_array), \</span></div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span><span class="preprocessor">        .mask.addr = { __VA_ARGS__ }, \</span></div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span><span class="preprocessor">        .test.fn = npf_eth_src_addr_match, \</span></div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span> </div>
+<div class="foldopen" id="foldopen00500" data-start="" data-end="">
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno"><a class="line" href="group__npf__eth__cond.html#ga7cf793af7b91eccc6e675ff19ed59a14">  500</a></span><span class="preprocessor">#define NPF_ETH_DST_ADDR_MASK_MATCH(_name, _addr_array, ...) \</span></div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span><span class="preprocessor">    struct npf_test_eth_addr _name = { \</span></div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span><span class="preprocessor">        .addresses = (_addr_array), \</span></div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span><span class="preprocessor">        .nb_addresses = ARRAY_SIZE(_addr_array), \</span></div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span><span class="preprocessor">        .mask.addr = { __VA_ARGS__ }, \</span></div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span><span class="preprocessor">        .test.fn = npf_eth_dst_addr_match, \</span></div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span> </div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span><span class="keyword">struct </span>npf_test_eth_type {</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnpf__test.html">npf_test</a> test;</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>    uint16_t type;          <span class="comment">/* type in network order */</span></div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>};</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span> </div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span><span class="keyword">extern</span> npf_test_fn_t npf_eth_type_match;</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span><span class="keyword">extern</span> npf_test_fn_t npf_eth_type_unmatch;</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span> </div>
+<div class="foldopen" id="foldopen00526" data-start="" data-end="">
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno"><a class="line" href="group__npf__eth__cond.html#gace7de72d4c64e128a825f28f94d8b1b2">  526</a></span><span class="preprocessor">#define NPF_ETH_TYPE_MATCH(_name, _type) \</span></div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span><span class="preprocessor">    struct npf_test_eth_type _name = { \</span></div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span><span class="preprocessor">        .type = htons(_type), \</span></div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span><span class="preprocessor">        .test.fn = npf_eth_type_match, \</span></div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span> </div>
+<div class="foldopen" id="foldopen00538" data-start="" data-end="">
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno"><a class="line" href="group__npf__eth__cond.html#gab9bf6d58433e273220c5fab76f608545">  538</a></span><span class="preprocessor">#define NPF_ETH_TYPE_UNMATCH(_name, _type) \</span></div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span><span class="preprocessor">    struct npf_test_eth_type _name = { \</span></div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span><span class="preprocessor">        .type = htons(_type), \</span></div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span><span class="preprocessor">        .test.fn = npf_eth_type_unmatch, \</span></div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span> </div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>}</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> </div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_NET_PKT_FILTER_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__net__core_html_ga8e5393f3bdd85491f221324e637c3896"><div class="ttname"><a href="group__net__core.html#ga8e5393f3bdd85491f221324e637c3896">net_verdict</a></div><div class="ttdeci">net_verdict</div><div class="ttdoc">Net Verdict.</div><div class="ttdef"><b>Definição</b> net_core.h:98</div></div>
+<div class="ttc" id="agroup__net__pkt__filter_html_ga3b2a85558b6756e76760d9a40c780e28"><div class="ttname"><a href="group__net__pkt__filter.html#ga3b2a85558b6756e76760d9a40c780e28">npf_insert_rule</a></div><div class="ttdeci">void npf_insert_rule(struct npf_rule_list *rules, struct npf_rule *rule)</div><div class="ttdoc">Insert a rule at the front of given rule list.</div></div>
+<div class="ttc" id="agroup__net__pkt__filter_html_ga4d7426db901debff35e1de5805e06c71"><div class="ttname"><a href="group__net__pkt__filter.html#ga4d7426db901debff35e1de5805e06c71">npf_remove_rule</a></div><div class="ttdeci">bool npf_remove_rule(struct npf_rule_list *rules, struct npf_rule *rule)</div><div class="ttdoc">Remove a rule from the given rule list.</div></div>
+<div class="ttc" id="agroup__net__pkt__filter_html_ga54916eb4943e4b47cd31eb23827d0dd5"><div class="ttname"><a href="group__net__pkt__filter.html#ga54916eb4943e4b47cd31eb23827d0dd5">npf_remove_all_rules</a></div><div class="ttdeci">bool npf_remove_all_rules(struct npf_rule_list *rules)</div><div class="ttdoc">Remove all rules from the given rule list.</div></div>
+<div class="ttc" id="agroup__net__pkt__filter_html_ga571e9fb34eb4e3cbf38f885b5e786021"><div class="ttname"><a href="group__net__pkt__filter.html#ga571e9fb34eb4e3cbf38f885b5e786021">npf_local_in_recv_rules</a></div><div class="ttdeci">struct npf_rule_list npf_local_in_recv_rules</div><div class="ttdoc">rule list applied for local incoming packets</div></div>
+<div class="ttc" id="agroup__net__pkt__filter_html_ga8017a041d3168c76e39bdfac011b9315"><div class="ttname"><a href="group__net__pkt__filter.html#ga8017a041d3168c76e39bdfac011b9315">npf_send_rules</a></div><div class="ttdeci">struct npf_rule_list npf_send_rules</div><div class="ttdoc">rule list applied to outgoing packets</div></div>
+<div class="ttc" id="agroup__net__pkt__filter_html_ga8fc592feedeceb5172f8747a29697dd7"><div class="ttname"><a href="group__net__pkt__filter.html#ga8fc592feedeceb5172f8747a29697dd7">npf_default_drop</a></div><div class="ttdeci">struct npf_rule npf_default_drop</div><div class="ttdoc">Default rule list termination for rejecting a packet.</div></div>
+<div class="ttc" id="agroup__net__pkt__filter_html_ga9714529658625e906264a46ad1a9be6f"><div class="ttname"><a href="group__net__pkt__filter.html#ga9714529658625e906264a46ad1a9be6f">npf_recv_rules</a></div><div class="ttdeci">struct npf_rule_list npf_recv_rules</div><div class="ttdoc">rule list applied to incoming packets</div></div>
+<div class="ttc" id="agroup__net__pkt__filter_html_gaac489d75c023952243589cba7ff7367a"><div class="ttname"><a href="group__net__pkt__filter.html#gaac489d75c023952243589cba7ff7367a">npf_default_ok</a></div><div class="ttdeci">struct npf_rule npf_default_ok</div><div class="ttdoc">Default rule list termination for accepting a packet.</div></div>
+<div class="ttc" id="agroup__net__pkt__filter_html_gab91ca81aab2da48066538d72caf0c8ae"><div class="ttname"><a href="group__net__pkt__filter.html#gab91ca81aab2da48066538d72caf0c8ae">npf_ipv6_recv_rules</a></div><div class="ttdeci">struct npf_rule_list npf_ipv6_recv_rules</div><div class="ttdoc">rule list applied for IPv6 incoming packets</div></div>
+<div class="ttc" id="agroup__net__pkt__filter_html_gad521d7ac3270970833aec48d8a517d85"><div class="ttname"><a href="group__net__pkt__filter.html#gad521d7ac3270970833aec48d8a517d85">npf_ipv4_recv_rules</a></div><div class="ttdeci">struct npf_rule_list npf_ipv4_recv_rules</div><div class="ttdoc">rule list applied for IPv4 incoming packets</div></div>
+<div class="ttc" id="agroup__net__pkt__filter_html_gadfa956e4af3c45460846fc22f863e697"><div class="ttname"><a href="group__net__pkt__filter.html#gadfa956e4af3c45460846fc22f863e697">npf_append_rule</a></div><div class="ttdeci">void npf_append_rule(struct npf_rule_list *rules, struct npf_rule *rule)</div><div class="ttdoc">Append a rule at the end of given rule list.</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga44658c336b634c03938a251cdc8134f8"><div class="ttname"><a href="group__single-linked-list__apis.html#ga44658c336b634c03938a251cdc8134f8">sys_slist_t</a></div><div class="ttdeci">struct _slist sys_slist_t</div><div class="ttdef"><b>Definição</b> slist.h:49</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2net_2ethernet_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2net_2ethernet_8h.html">ethernet.h</a></div><div class="ttdoc">Ethernet.</div></div>
+<div class="ttc" id="anet__core_8h_html"><div class="ttname"><a href="net__core_8h.html">net_core.h</a></div><div class="ttdoc">Network core definitions.</div></div>
+<div class="ttc" id="aslist_8h_html"><div class="ttname"><a href="slist_8h.html">slist.h</a></div></div>
+<div class="ttc" id="astructk__spinlock_html"><div class="ttname"><a href="structk__spinlock.html">k_spinlock</a></div><div class="ttdoc">Kernel Spin Lock.</div><div class="ttdef"><b>Definição</b> spinlock.h:45</div></div>
+<div class="ttc" id="astructnet__if_html"><div class="ttname"><a href="structnet__if.html">net_if</a></div><div class="ttdoc">Network Interface structure.</div><div class="ttdef"><b>Definição</b> net_if.h:598</div></div>
+<div class="ttc" id="astructnet__pkt_html"><div class="ttname"><a href="structnet__pkt.html">net_pkt</a></div><div class="ttdoc">Network packet.</div><div class="ttdef"><b>Definição</b> net_pkt.h:63</div></div>
+<div class="ttc" id="astructnpf__rule__list_html"><div class="ttname"><a href="structnpf__rule__list.html">npf_rule_list</a></div><div class="ttdoc">rule set for a given test location</div><div class="ttdef"><b>Definição</b> net_pkt_filter.h:61</div></div>
+<div class="ttc" id="astructnpf__rule_html"><div class="ttname"><a href="structnpf__rule.html">npf_rule</a></div><div class="ttdoc">filter rule structure</div><div class="ttdef"><b>Definição</b> net_pkt_filter.h:48</div></div>
+<div class="ttc" id="astructnpf__rule_html_a06045c693cf06e6ebfc5a74b8c3f5ef7"><div class="ttname"><a href="structnpf__rule.html#a06045c693cf06e6ebfc5a74b8c3f5ef7">npf_rule::nb_tests</a></div><div class="ttdeci">uint32_t nb_tests</div><div class="ttdef"><b>Definição</b> net_pkt_filter.h:51</div></div>
+<div class="ttc" id="astructnpf__rule_html_a72c032c55535c82f365b2cd1229cb1e0"><div class="ttname"><a href="structnpf__rule.html#a72c032c55535c82f365b2cd1229cb1e0">npf_rule::tests</a></div><div class="ttdeci">struct npf_test * tests[]</div><div class="ttdef"><b>Definição</b> net_pkt_filter.h:52</div></div>
+<div class="ttc" id="astructnpf__rule_html_a872daf53310dd8e20477eafd6808481f"><div class="ttname"><a href="structnpf__rule.html#a872daf53310dd8e20477eafd6808481f">npf_rule::result</a></div><div class="ttdeci">enum net_verdict result</div><div class="ttdef"><b>Definição</b> net_pkt_filter.h:50</div></div>
+<div class="ttc" id="astructnpf__test_html"><div class="ttname"><a href="structnpf__test.html">npf_test</a></div><div class="ttdoc">common filter test structure to be embedded into larger structures</div><div class="ttdef"><b>Definição</b> net_pkt_filter.h:43</div></div>
+<div class="ttc" id="astructnpf__test_html_ac49921514690a71986ca4d07245cfe7d"><div class="ttname"><a href="structnpf__test.html#ac49921514690a71986ca4d07245cfe7d">npf_test::fn</a></div><div class="ttdeci">npf_test_fn_t * fn</div><div class="ttdef"><b>Definição</b> net_pkt_filter.h:44</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

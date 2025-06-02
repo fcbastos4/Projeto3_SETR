@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/serial/uart_async_rx.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_e7a13b38b6b00f25937ee7cc6d6c4c3a.html">serial</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">uart_async_rx.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="uart__async__rx_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2023 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef ZEPHYR_DRIVERS_SERIAL_UART_ASYNC_RX_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define ZEPHYR_DRIVERS_SERIAL_UART_ASYNC_RX_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">/* @brief RX buffer structure which holds the buffer and its state. */</span></div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structuart__async__rx__buf.html">   22</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structuart__async__rx__buf.html">uart_async_rx_buf</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">/* Write index which is incremented whenever new data is reported to be</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">     * received to that buffer.</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    uint8_t wr_idx;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">/* Read index which is incremented whenever data is consumed from the buffer.</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">     * Read index cannot be higher than the write index.</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    uint8_t rd_idx;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">/* Set to one if buffer is released by the driver. */</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    uint8_t completed;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">/* Location which is passed to the UART driver. */</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    uint8_t buffer[];</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
+</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structuart__async__rx.html">   41</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structuart__async__rx.html">uart_async_rx</a> {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">/* Pointer to the configuration structure. Structure must be persistent. */</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structuart__async__rx__config.html">uart_async_rx_config</a> *config;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">/* Total amount of pending bytes. Bytes may be spread across multiple RX buffers. */</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    atomic_t pending_bytes;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">/* Number of buffers which are free. */</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    atomic_t free_buf_cnt;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">/* Single buffer size. */</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    uint8_t buf_len;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">/* Index of the next buffer to be provided to the driver. */</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    uint8_t drv_buf_idx;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">/* Current buffer to which data is written. */</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    uint8_t wr_buf_idx;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">/* Current buffer from which data is being consumed. */</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    uint8_t rd_buf_idx;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="};">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structuart__async__rx__config.html">   65</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structuart__async__rx__config.html">uart_async_rx_config</a> {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment">/* Pointer to the buffer. */</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    uint8_t *buffer;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">/* Buffer length. */</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">size_t</span> length;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">/* Number of buffers into provided space shall be split. */</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    uint8_t buf_cnt;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>};</div>
+</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t uart_async_rx_get_buf_len(<span class="keyword">struct</span> <a class="code hl_struct" href="structuart__async__rx.html">uart_async_rx</a> *async_rx)</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>{</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">return</span> async_rx-&gt;buf_len;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="uart__async__rx_8h.html#ab845a83272799083bf3ecd7a9c8cf2ce">   95</a></span><span class="preprocessor">#define UART_ASYNC_RX_BUF_OVERHEAD offsetof(struct uart_async_rx_buf, buffer)</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="uart__async__rx_8h.html#a8daddb05f11ad43c8c4510a4312cf38f">  104</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="uart__async__rx_8h.html#a8daddb05f11ad43c8c4510a4312cf38f">uart_async_rx_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structuart__async__rx.html">uart_async_rx</a> *async_rx,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>               <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structuart__async__rx__config.html">uart_async_rx_config</a> *config);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="uart__async__rx_8h.html#ad551b1684437c8ab48c0708fb5b0d1f6">  114</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="uart__async__rx_8h.html#ad551b1684437c8ab48c0708fb5b0d1f6">uart_async_rx_reset</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structuart__async__rx.html">uart_async_rx</a> *async_rx);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="uart__async__rx_8h.html#acca21c43fa833b4789edbc1bc92bab2b">  124</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="uart__async__rx_8h.html#acca21c43fa833b4789edbc1bc92bab2b">uart_async_rx_on_rdy</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structuart__async__rx.html">uart_async_rx</a> *async_rx, uint8_t *buffer, <span class="keywordtype">size_t</span> length);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="uart__async__rx_8h.html#a1eede7070affe966616148924ba2c519">  136</a></span>uint8_t *<a class="code hl_function" href="uart__async__rx_8h.html#a1eede7070affe966616148924ba2c519">uart_async_rx_buf_req</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structuart__async__rx.html">uart_async_rx</a> *async_rx);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="uart__async__rx_8h.html#a2064f3d760adb4cf6912caf12f7a54cc">  145</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="uart__async__rx_8h.html#a2064f3d760adb4cf6912caf12f7a54cc">uart_async_rx_on_buf_rel</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structuart__async__rx.html">uart_async_rx</a> *async_rx, uint8_t *buf);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="uart__async__rx_8h.html#a8d5ed81dfa4c067f173249744b25561e">  161</a></span><span class="keywordtype">size_t</span> <a class="code hl_function" href="uart__async__rx_8h.html#a8d5ed81dfa4c067f173249744b25561e">uart_async_rx_data_claim</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structuart__async__rx.html">uart_async_rx</a> *async_rx, uint8_t **data, <span class="keywordtype">size_t</span> length);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="uart__async__rx_8h.html#a67d1ea95129feb4d4d54f0b2812def5f">  170</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="uart__async__rx_8h.html#a67d1ea95129feb4d4d54f0b2812def5f">uart_async_rx_data_consume</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structuart__async__rx.html">uart_async_rx</a> *async_rx, <span class="keywordtype">size_t</span> length);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>}</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_DRIVERS_SERIAL_UART_ASYNC_RX_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructuart__async__rx__buf_html"><div class="ttname"><a href="structuart__async__rx__buf.html">uart_async_rx_buf</a></div><div class="ttdef"><b>Definição</b> uart_async_rx.h:22</div></div>
+<div class="ttc" id="astructuart__async__rx__config_html"><div class="ttname"><a href="structuart__async__rx__config.html">uart_async_rx_config</a></div><div class="ttdoc">UART asynchronous RX helper configuration structure.</div><div class="ttdef"><b>Definição</b> uart_async_rx.h:65</div></div>
+<div class="ttc" id="astructuart__async__rx_html"><div class="ttname"><a href="structuart__async__rx.html">uart_async_rx</a></div><div class="ttdoc">UART asynchronous RX helper structure.</div><div class="ttdef"><b>Definição</b> uart_async_rx.h:41</div></div>
+<div class="ttc" id="auart__async__rx_8h_html_a1eede7070affe966616148924ba2c519"><div class="ttname"><a href="uart__async__rx_8h.html#a1eede7070affe966616148924ba2c519">uart_async_rx_buf_req</a></div><div class="ttdeci">uint8_t * uart_async_rx_buf_req(struct uart_async_rx *async_rx)</div><div class="ttdoc">Get next RX buffer.</div></div>
+<div class="ttc" id="auart__async__rx_8h_html_a2064f3d760adb4cf6912caf12f7a54cc"><div class="ttname"><a href="uart__async__rx_8h.html#a2064f3d760adb4cf6912caf12f7a54cc">uart_async_rx_on_buf_rel</a></div><div class="ttdeci">void uart_async_rx_on_buf_rel(struct uart_async_rx *async_rx, uint8_t *buf)</div><div class="ttdoc">Indicate that buffer is no longer used by the UART driver.</div></div>
+<div class="ttc" id="auart__async__rx_8h_html_a67d1ea95129feb4d4d54f0b2812def5f"><div class="ttname"><a href="uart__async__rx_8h.html#a67d1ea95129feb4d4d54f0b2812def5f">uart_async_rx_data_consume</a></div><div class="ttdeci">void uart_async_rx_data_consume(struct uart_async_rx *async_rx, size_t length)</div><div class="ttdoc">Consume claimed data.</div></div>
+<div class="ttc" id="auart__async__rx_8h_html_a8d5ed81dfa4c067f173249744b25561e"><div class="ttname"><a href="uart__async__rx_8h.html#a8d5ed81dfa4c067f173249744b25561e">uart_async_rx_data_claim</a></div><div class="ttdeci">size_t uart_async_rx_data_claim(struct uart_async_rx *async_rx, uint8_t **data, size_t length)</div><div class="ttdoc">Claim received data for processing.</div></div>
+<div class="ttc" id="auart__async__rx_8h_html_a8daddb05f11ad43c8c4510a4312cf38f"><div class="ttname"><a href="uart__async__rx_8h.html#a8daddb05f11ad43c8c4510a4312cf38f">uart_async_rx_init</a></div><div class="ttdeci">int uart_async_rx_init(struct uart_async_rx *async_rx, const struct uart_async_rx_config *config)</div><div class="ttdoc">Initialize the helper instance.</div></div>
+<div class="ttc" id="auart__async__rx_8h_html_acca21c43fa833b4789edbc1bc92bab2b"><div class="ttname"><a href="uart__async__rx_8h.html#acca21c43fa833b4789edbc1bc92bab2b">uart_async_rx_on_rdy</a></div><div class="ttdeci">void uart_async_rx_on_rdy(struct uart_async_rx *async_rx, uint8_t *buffer, size_t length)</div><div class="ttdoc">Indicate received data.</div></div>
+<div class="ttc" id="auart__async__rx_8h_html_ad551b1684437c8ab48c0708fb5b0d1f6"><div class="ttname"><a href="uart__async__rx_8h.html#ad551b1684437c8ab48c0708fb5b0d1f6">uart_async_rx_reset</a></div><div class="ttdeci">void uart_async_rx_reset(struct uart_async_rx *async_rx)</div><div class="ttdoc">Reset state of the helper instance.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

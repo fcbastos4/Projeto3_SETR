@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Referência ao ficheiro src/lib/cmd_proc.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3c87b2fa1d6c4f620d118bbd7fef182.html">src</a></li><li class="navelem"><a class="el" href="dir_8b3fcbc492313622bac063bf67013253.html">lib</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Funções</a> &#124;
+<a href="#var-members">Variáveis</a>  </div>
+  <div class="headertitle"><div class="title">Referência ao ficheiro cmd_proc.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Este módulo é responsável por implementar as funções e variáveis.  
+<a href="#details">Mais...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_source.html">zephyr/kernel.h</a>&gt;</code><br />
+<code>#include &lt;zephyr/device.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2uart_8h_source.html">zephyr/drivers/uart.h</a>&gt;</code><br />
+<code>#include &lt;zephyr/sys/printk.h&gt;</code><br />
+<code>#include &lt;zephyr/logging/log.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;ctype.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="cmd__proc_8h_source.html">cmd_proc.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="task__control_8h_source.html">task_control.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="RTDB_8h_source.html">RTDB.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Diagrama de dependências de inclusão para cmd_proc.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="cmd__proc_8c__incl.png" border="0" usemap="#asrc_2lib_2cmd__proc_8c" alt=""/></div>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a0089618b175978ea4daae0a8ccc48559" id="r_a0089618b175978ea4daae0a8ccc48559"><td class="memItemLeft" align="right" valign="top"><a id="a0089618b175978ea4daae0a8ccc48559" name="a0089618b175978ea4daae0a8ccc48559"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>S_O_Frame</b>&#160;&#160;&#160;'#'</td></tr>
+<tr class="separator:a0089618b175978ea4daae0a8ccc48559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae155ce4f24952c93b884958308d72787" id="r_ae155ce4f24952c93b884958308d72787"><td class="memItemLeft" align="right" valign="top"><a id="ae155ce4f24952c93b884958308d72787" name="ae155ce4f24952c93b884958308d72787"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>E_O_Frame</b>&#160;&#160;&#160;'!'</td></tr>
+<tr class="separator:ae155ce4f24952c93b884958308d72787"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a044b6fecb5de651a5c4c768ff6395c54" id="r_a044b6fecb5de651a5c4c768ff6395c54"><td class="memItemLeft" align="right" valign="top"><a id="a044b6fecb5de651a5c4c768ff6395c54" name="a044b6fecb5de651a5c4c768ff6395c54"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RECEIVE_BUFF_SIZE</b>&#160;&#160;&#160;128</td></tr>
+<tr class="separator:a044b6fecb5de651a5c4c768ff6395c54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:ac9c416886984da0dc71dd1f1fcfa35bb" id="r_ac9c416886984da0dc71dd1f1fcfa35bb"><td class="memItemLeft" align="right" valign="top"><a id="ac9c416886984da0dc71dd1f1fcfa35bb" name="ac9c416886984da0dc71dd1f1fcfa35bb"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>LOG_MODULE_REGISTER</b> (cmd_proc, LOG_LEVEL_DBG)</td></tr>
+<tr class="separator:ac9c416886984da0dc71dd1f1fcfa35bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25b1bd2b987615b598b4647f9f70ebf2" id="r_a25b1bd2b987615b598b4647f9f70ebf2"><td class="memItemLeft" align="right" valign="top"><a id="a25b1bd2b987615b598b4647f9f70ebf2" name="a25b1bd2b987615b598b4647f9f70ebf2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>uart_send</b> (const char *data)</td></tr>
+<tr class="separator:a25b1bd2b987615b598b4647f9f70ebf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65e773d7c3d7cd03255037fe3a491659" id="r_a65e773d7c3d7cd03255037fe3a491659"><td class="memItemLeft" align="right" valign="top"><a id="a65e773d7c3d7cd03255037fe3a491659" name="a65e773d7c3d7cd03255037fe3a491659"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>compute_checksum</b> (const char *cmd, const char *data)</td></tr>
+<tr class="separator:a65e773d7c3d7cd03255037fe3a491659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fa48c44c69e9aad7de0b3f96799e5c8" id="r_a0fa48c44c69e9aad7de0b3f96799e5c8"><td class="memItemLeft" align="right" valign="top"><a id="a0fa48c44c69e9aad7de0b3f96799e5c8" name="a0fa48c44c69e9aad7de0b3f96799e5c8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>send_ack</b> (const char *code)</td></tr>
+<tr class="separator:a0fa48c44c69e9aad7de0b3f96799e5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fce95df32b51080b159da20168d3cad" id="r_a2fce95df32b51080b159da20168d3cad"><td class="memItemLeft" align="right" valign="top"><a id="a2fce95df32b51080b159da20168d3cad" name="a2fce95df32b51080b159da20168d3cad"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>process_command</b> (const char *cmd, const char *data)</td></tr>
+<tr class="separator:a2fce95df32b51080b159da20168d3cad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4544cb3c1bf62dfe0f33953033c340a1" id="r_a4544cb3c1bf62dfe0f33953033c340a1"><td class="memItemLeft" align="right" valign="top"><a id="a4544cb3c1bf62dfe0f33953033c340a1" name="a4544cb3c1bf62dfe0f33953033c340a1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>process_frame</b> (const char *frame)</td></tr>
+<tr class="separator:a4544cb3c1bf62dfe0f33953033c340a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85a326c25ef30471871daed62352dd7f" id="r_a85a326c25ef30471871daed62352dd7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmd__proc_8c.html#a85a326c25ef30471871daed62352dd7f">cmd_proc_uart_handler</a> (const struct <a class="el" href="structdevice.html">device</a> *dev, struct <a class="el" href="structuart__event.html">uart_event</a> *evt, void *user_data)</td></tr>
+<tr class="memdesc:a85a326c25ef30471871daed62352dd7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manipulador de eventos UART.  <br /></td></tr>
+<tr class="separator:a85a326c25ef30471871daed62352dd7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab142081f49032727548b9552446572ad" id="r_ab142081f49032727548b9552446572ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmd__proc_8c.html#ab142081f49032727548b9552446572ad">cmd_proc_init</a> (void)</td></tr>
+<tr class="memdesc:ab142081f49032727548b9552446572ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa o módulo de processamento de comandos.  <br /></td></tr>
+<tr class="separator:ab142081f49032727548b9552446572ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variáveis</h2></td></tr>
+<tr class="memitem:a7dee997e1a185467314b43f216e2d5f9" id="r_a7dee997e1a185467314b43f216e2d5f9"><td class="memItemLeft" align="right" valign="top"><a id="a7dee997e1a185467314b43f216e2d5f9" name="a7dee997e1a185467314b43f216e2d5f9"></a>
+const struct <a class="el" href="structdevice.html">device</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>uart</b></td></tr>
+<tr class="separator:a7dee997e1a185467314b43f216e2d5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Este módulo é responsável por implementar as funções e variáveis. </p>
+<p>Este módulo é responsável por interpretar comandos recebidos da UART, validar o checksum e executar ações como leitura e configuração de parâmetros como temperatura máxima ou histerese.</p>
+<dl class="section author"><dt>Autor</dt><dd>Guilherme Santos, 103143 </dd>
+<dd>
+Francisco Bastos, 103359 </dd></dl>
+<dl class="section date"><dt>Data</dt><dd>22/05/20025 </dd></dl>
+</div><h2 class="groupheader">Documentação das funções</h2>
+<a id="ab142081f49032727548b9552446572ad" name="ab142081f49032727548b9552446572ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab142081f49032727548b9552446572ad">&#9670;&#160;</a></span>cmd_proc_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cmd_proc_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inicializa o módulo de processamento de comandos. </p>
+<p>Regista o callback da UART e prepara buffers ou estruturas necessárias para o funcionamento. </p>
+
+</div>
+</div>
+<a id="a85a326c25ef30471871daed62352dd7f" name="a85a326c25ef30471871daed62352dd7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85a326c25ef30471871daed62352dd7f">&#9670;&#160;</a></span>cmd_proc_uart_handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cmd_proc_uart_handler </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structdevice.html">device</a> *&#160;</td>
+          <td class="paramname"><em>dev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structuart__event.html">uart_event</a> *&#160;</td>
+          <td class="paramname"><em>evt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>user_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Manipulador de eventos UART. </p>
+<p>Esta função deve ser registada como callback da UART e será chamada sempre que ocorrer um evento UART, como receção de dados.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dev</td><td>Ponteiro para o dispositivo UART. </td></tr>
+    <tr><td class="paramname">evt</td><td>Estrutura contendo informações sobre o evento UART. </td></tr>
+    <tr><td class="paramname">user_data</td><td>Ponteiro para dados do utilizador (não utilizados aqui). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

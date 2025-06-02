@@ -1,0 +1,1609 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Work Queue APIs</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Estruturas de Dados</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Definições de tipos</a> &#124;
+<a href="#enum-members">Enumerações</a> &#124;
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle"><div class="title">Work Queue APIs<div class="ingroups"><a class="el" href="group__kernel__apis.html">Kernel APIs</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+Diagrama de colaboração para Work Queue APIs:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__workqueue__apis.png" border="0" usemap="#agroup____workqueue____apis" alt=""/></div>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Estruturas de Dados</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structk__work.html">k_work</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure used to submit work.  <a href="structk__work.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structk__work__delayable.html">k_work_delayable</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure used to submit work after a delay.  <a href="structk__work__delayable.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structk__work__sync.html">k_work_sync</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure holding internal state for a pending synchronous operation on a work item or queue.  <a href="structk__work__sync.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structk__work__queue__config.html">k_work_queue_config</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure holding optional configuration items for a work queue.  <a href="structk__work__queue__config.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structk__work__q.html">k_work_q</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure used to hold work until it can be processed.  <a href="structk__work__q.html#details">Mais...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga322bf3458590eb93a7cf41c24b01a2ed" id="r_ga322bf3458590eb93a7cf41c24b01a2ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga322bf3458590eb93a7cf41c24b01a2ed">Z_WORK_INITIALIZER</a>(work_handler)</td></tr>
+<tr class="separator:ga322bf3458590eb93a7cf41c24b01a2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga90ebcbf1d59dad80d75bc0e786e96478" id="r_ga90ebcbf1d59dad80d75bc0e786e96478"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga90ebcbf1d59dad80d75bc0e786e96478">Z_WORK_DELAYABLE_INITIALIZER</a>(work_handler)</td></tr>
+<tr class="separator:ga90ebcbf1d59dad80d75bc0e786e96478"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga893b281f3d2bc0088650536899e17903" id="r_ga893b281f3d2bc0088650536899e17903"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga893b281f3d2bc0088650536899e17903">K_WORK_DELAYABLE_DEFINE</a>(work,  work_handler)</td></tr>
+<tr class="memdesc:ga893b281f3d2bc0088650536899e17903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a statically-defined delayable work item.  <br /></td></tr>
+<tr class="separator:ga893b281f3d2bc0088650536899e17903"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8aa4d7d9f3f4a05fb6f51d98922d906c" id="r_ga8aa4d7d9f3f4a05fb6f51d98922d906c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga8aa4d7d9f3f4a05fb6f51d98922d906c">Z_WORK_USER_INITIALIZER</a>(work_handler)</td></tr>
+<tr class="separator:ga8aa4d7d9f3f4a05fb6f51d98922d906c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4f3eac1fc56d5c9c21a3afa9b964b0bf" id="r_ga4f3eac1fc56d5c9c21a3afa9b964b0bf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga4f3eac1fc56d5c9c21a3afa9b964b0bf">K_WORK_USER_DEFINE</a>(work,  work_handler)&#160;&#160;&#160;	struct k_work_user work = Z_WORK_USER_INITIALIZER(work_handler)</td></tr>
+<tr class="memdesc:ga4f3eac1fc56d5c9c21a3afa9b964b0bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a statically-defined user work item.  <br /></td></tr>
+<tr class="separator:ga4f3eac1fc56d5c9c21a3afa9b964b0bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf8e003eefa5dd66ba883688f9d39c333" id="r_gaf8e003eefa5dd66ba883688f9d39c333"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gaf8e003eefa5dd66ba883688f9d39c333">K_WORK_DEFINE</a>(work,  work_handler)&#160;&#160;&#160;	struct <a class="el" href="structk__work.html">k_work</a> work = Z_WORK_INITIALIZER(work_handler)</td></tr>
+<tr class="memdesc:gaf8e003eefa5dd66ba883688f9d39c333"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a statically-defined work item.  <br /></td></tr>
+<tr class="separator:gaf8e003eefa5dd66ba883688f9d39c333"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Definições de tipos</h2></td></tr>
+<tr class="memitem:ga5add9ef0dce306a08413c4140fc0bdda" id="r_ga5add9ef0dce306a08413c4140fc0bdda"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga5add9ef0dce306a08413c4140fc0bdda">k_work_handler_t</a>) (struct <a class="el" href="structk__work.html">k_work</a> *work)</td></tr>
+<tr class="memdesc:ga5add9ef0dce306a08413c4140fc0bdda"><td class="mdescLeft">&#160;</td><td class="mdescRight">The signature for a work item handler function.  <br /></td></tr>
+<tr class="separator:ga5add9ef0dce306a08413c4140fc0bdda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafdb3f5f2225b3d5d1fe682cb97f3b328" id="r_gafdb3f5f2225b3d5d1fe682cb97f3b328"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gafdb3f5f2225b3d5d1fe682cb97f3b328">k_work_user_handler_t</a>) (struct k_work_user *work)</td></tr>
+<tr class="memdesc:gafdb3f5f2225b3d5d1fe682cb97f3b328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Work item handler function type for user work queues.  <br /></td></tr>
+<tr class="separator:gafdb3f5f2225b3d5d1fe682cb97f3b328"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerações</h2></td></tr>
+<tr class="memitem:ga5ebea2f4f6d4457d66de7733a8ea7bd3" id="r_ga5ebea2f4f6d4457d66de7733a8ea7bd3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="group__workqueue__apis.html#gga5ebea2f4f6d4457d66de7733a8ea7bd3ac6bee9a104cf6ee3853579f5eb15c165">K_WORK_RUNNING</a> = BIT(K_WORK_RUNNING_BIT)
+, <a class="el" href="group__workqueue__apis.html#gga5ebea2f4f6d4457d66de7733a8ea7bd3a9fdc4327489bcdcca3de0ee9eed6b732">K_WORK_CANCELING</a> = BIT(K_WORK_CANCELING_BIT)
+, <a class="el" href="group__workqueue__apis.html#gga5ebea2f4f6d4457d66de7733a8ea7bd3aa7f8855bc9931bff79062ce53b06eb85">K_WORK_QUEUED</a> = BIT(K_WORK_QUEUED_BIT)
+, <a class="el" href="group__workqueue__apis.html#gga5ebea2f4f6d4457d66de7733a8ea7bd3ab4bf9e74435077b2bbfe1de1f4e80aed">K_WORK_DELAYED</a> = BIT(K_WORK_DELAYED_BIT)
+ }</td></tr>
+<tr class="separator:ga5ebea2f4f6d4457d66de7733a8ea7bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:gaf20080884a2893d39cd8e862b34a2a30" id="r_gaf20080884a2893d39cd8e862b34a2a30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gaf20080884a2893d39cd8e862b34a2a30">k_work_init</a> (struct <a class="el" href="structk__work.html">k_work</a> *work, <a class="el" href="group__workqueue__apis.html#ga5add9ef0dce306a08413c4140fc0bdda">k_work_handler_t</a> handler)</td></tr>
+<tr class="memdesc:gaf20080884a2893d39cd8e862b34a2a30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a (non-delayable) work structure.  <br /></td></tr>
+<tr class="separator:gaf20080884a2893d39cd8e862b34a2a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaba8a8734768d768b433f9d8490e7df7b" id="r_gaba8a8734768d768b433f9d8490e7df7b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gaba8a8734768d768b433f9d8490e7df7b">k_work_busy_get</a> (const struct <a class="el" href="structk__work.html">k_work</a> *work)</td></tr>
+<tr class="memdesc:gaba8a8734768d768b433f9d8490e7df7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busy state flags from the work item.  <br /></td></tr>
+<tr class="separator:gaba8a8734768d768b433f9d8490e7df7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5353e76f73db070614f50d06d292d05c" id="r_ga5353e76f73db070614f50d06d292d05c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga5353e76f73db070614f50d06d292d05c">k_work_submit_to_queue</a> (struct <a class="el" href="structk__work__q.html">k_work_q</a> *queue, struct <a class="el" href="structk__work.html">k_work</a> *work)</td></tr>
+<tr class="memdesc:ga5353e76f73db070614f50d06d292d05c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit a work item to a queue.  <br /></td></tr>
+<tr class="separator:ga5353e76f73db070614f50d06d292d05c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gace61b59575093d7442f39ccb7be686d7" id="r_gace61b59575093d7442f39ccb7be686d7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gace61b59575093d7442f39ccb7be686d7">k_work_submit</a> (struct <a class="el" href="structk__work.html">k_work</a> *work)</td></tr>
+<tr class="memdesc:gace61b59575093d7442f39ccb7be686d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit a work item to the system queue.  <br /></td></tr>
+<tr class="separator:gace61b59575093d7442f39ccb7be686d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd1cda459bab538fb2d6dfd84a73b253" id="r_gabd1cda459bab538fb2d6dfd84a73b253"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gabd1cda459bab538fb2d6dfd84a73b253">k_work_flush</a> (struct <a class="el" href="structk__work.html">k_work</a> *work, struct <a class="el" href="structk__work__sync.html">k_work_sync</a> *sync)</td></tr>
+<tr class="memdesc:gabd1cda459bab538fb2d6dfd84a73b253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for last-submitted instance to complete.  <br /></td></tr>
+<tr class="separator:gabd1cda459bab538fb2d6dfd84a73b253"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga389fe2a8fb20f9bd593cf8d990727078" id="r_ga389fe2a8fb20f9bd593cf8d990727078"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga389fe2a8fb20f9bd593cf8d990727078">k_work_cancel</a> (struct <a class="el" href="structk__work.html">k_work</a> *work)</td></tr>
+<tr class="memdesc:ga389fe2a8fb20f9bd593cf8d990727078"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancel a work item.  <br /></td></tr>
+<tr class="separator:ga389fe2a8fb20f9bd593cf8d990727078"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab2b05cfe3af08f7d32c3946fa1c808f9" id="r_gab2b05cfe3af08f7d32c3946fa1c808f9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gab2b05cfe3af08f7d32c3946fa1c808f9">k_work_cancel_sync</a> (struct <a class="el" href="structk__work.html">k_work</a> *work, struct <a class="el" href="structk__work__sync.html">k_work_sync</a> *sync)</td></tr>
+<tr class="memdesc:gab2b05cfe3af08f7d32c3946fa1c808f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancel a work item and wait for it to complete.  <br /></td></tr>
+<tr class="separator:gab2b05cfe3af08f7d32c3946fa1c808f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gada77d818ea9e4d07c14a960872ed5492" id="r_gada77d818ea9e4d07c14a960872ed5492"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gada77d818ea9e4d07c14a960872ed5492">k_work_queue_init</a> (struct <a class="el" href="structk__work__q.html">k_work_q</a> *queue)</td></tr>
+<tr class="memdesc:gada77d818ea9e4d07c14a960872ed5492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a work queue structure.  <br /></td></tr>
+<tr class="separator:gada77d818ea9e4d07c14a960872ed5492"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadfc56554f9bfe7b52309d79660188593" id="r_gadfc56554f9bfe7b52309d79660188593"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gadfc56554f9bfe7b52309d79660188593">k_work_queue_start</a> (struct <a class="el" href="structk__work__q.html">k_work_q</a> *queue, <a class="el" href="structz__thread__stack__element.html">k_thread_stack_t</a> *stack, size_t stack_size, int prio, const struct <a class="el" href="structk__work__queue__config.html">k_work_queue_config</a> *cfg)</td></tr>
+<tr class="memdesc:gadfc56554f9bfe7b52309d79660188593"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a work queue.  <br /></td></tr>
+<tr class="separator:gadfc56554f9bfe7b52309d79660188593"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0fefe3e0225ac99b47b250849f6cd863" id="r_ga0fefe3e0225ac99b47b250849f6cd863"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga0fefe3e0225ac99b47b250849f6cd863">k_work_queue_drain</a> (struct <a class="el" href="structk__work__q.html">k_work_q</a> *queue, bool plug)</td></tr>
+<tr class="memdesc:ga0fefe3e0225ac99b47b250849f6cd863"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait until the work queue has drained, optionally plugging it.  <br /></td></tr>
+<tr class="separator:ga0fefe3e0225ac99b47b250849f6cd863"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa0463bb79af3ec470f7d3be02052139f" id="r_gaa0463bb79af3ec470f7d3be02052139f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gaa0463bb79af3ec470f7d3be02052139f">k_work_queue_unplug</a> (struct <a class="el" href="structk__work__q.html">k_work_q</a> *queue)</td></tr>
+<tr class="memdesc:gaa0463bb79af3ec470f7d3be02052139f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release a work queue to accept new submissions.  <br /></td></tr>
+<tr class="separator:gaa0463bb79af3ec470f7d3be02052139f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2876c5d82fb2340a093bc4d689a55465" id="r_ga2876c5d82fb2340a093bc4d689a55465"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga2876c5d82fb2340a093bc4d689a55465">k_work_init_delayable</a> (struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *dwork, <a class="el" href="group__workqueue__apis.html#ga5add9ef0dce306a08413c4140fc0bdda">k_work_handler_t</a> handler)</td></tr>
+<tr class="memdesc:ga2876c5d82fb2340a093bc4d689a55465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a delayable work structure.  <br /></td></tr>
+<tr class="separator:ga2876c5d82fb2340a093bc4d689a55465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1b76969667844f0981d348c9c671bc9f" id="r_ga1b76969667844f0981d348c9c671bc9f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga1b76969667844f0981d348c9c671bc9f">k_work_delayable_busy_get</a> (const struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *dwork)</td></tr>
+<tr class="memdesc:ga1b76969667844f0981d348c9c671bc9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busy state flags from the delayable work item.  <br /></td></tr>
+<tr class="separator:ga1b76969667844f0981d348c9c671bc9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga17f863c9f6ff2fb41dc0f3b7de4fdf23" id="r_ga17f863c9f6ff2fb41dc0f3b7de4fdf23"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga17f863c9f6ff2fb41dc0f3b7de4fdf23">k_work_schedule_for_queue</a> (struct <a class="el" href="structk__work__q.html">k_work_q</a> *queue, struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *dwork, <a class="el" href="structk__timeout__t.html">k_timeout_t</a> delay)</td></tr>
+<tr class="memdesc:ga17f863c9f6ff2fb41dc0f3b7de4fdf23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit an idle work item to a queue after a delay.  <br /></td></tr>
+<tr class="separator:ga17f863c9f6ff2fb41dc0f3b7de4fdf23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5c113ea2bc8e8e5cd7a5c8bc5ec595d3" id="r_ga5c113ea2bc8e8e5cd7a5c8bc5ec595d3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga5c113ea2bc8e8e5cd7a5c8bc5ec595d3">k_work_schedule</a> (struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *dwork, <a class="el" href="structk__timeout__t.html">k_timeout_t</a> delay)</td></tr>
+<tr class="memdesc:ga5c113ea2bc8e8e5cd7a5c8bc5ec595d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit an idle work item to the system work queue after a delay.  <br /></td></tr>
+<tr class="separator:ga5c113ea2bc8e8e5cd7a5c8bc5ec595d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf5db091eac19b19a4e12c0cb381f0a8" id="r_gabf5db091eac19b19a4e12c0cb381f0a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gabf5db091eac19b19a4e12c0cb381f0a8">k_work_reschedule_for_queue</a> (struct <a class="el" href="structk__work__q.html">k_work_q</a> *queue, struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *dwork, <a class="el" href="structk__timeout__t.html">k_timeout_t</a> delay)</td></tr>
+<tr class="memdesc:gabf5db091eac19b19a4e12c0cb381f0a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reschedule a work item to a queue after a delay.  <br /></td></tr>
+<tr class="separator:gabf5db091eac19b19a4e12c0cb381f0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaacaab408fb7c848d466ad1f069dfa648" id="r_gaacaab408fb7c848d466ad1f069dfa648"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gaacaab408fb7c848d466ad1f069dfa648">k_work_reschedule</a> (struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *dwork, <a class="el" href="structk__timeout__t.html">k_timeout_t</a> delay)</td></tr>
+<tr class="memdesc:gaacaab408fb7c848d466ad1f069dfa648"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reschedule a work item to the system work queue after a delay.  <br /></td></tr>
+<tr class="separator:gaacaab408fb7c848d466ad1f069dfa648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad47d54e513030304be2600d75b1a965f" id="r_gad47d54e513030304be2600d75b1a965f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gad47d54e513030304be2600d75b1a965f">k_work_flush_delayable</a> (struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *dwork, struct <a class="el" href="structk__work__sync.html">k_work_sync</a> *sync)</td></tr>
+<tr class="memdesc:gad47d54e513030304be2600d75b1a965f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flush delayable work.  <br /></td></tr>
+<tr class="separator:gad47d54e513030304be2600d75b1a965f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga92355914ee178d4c3e848a1946bed3e4" id="r_ga92355914ee178d4c3e848a1946bed3e4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga92355914ee178d4c3e848a1946bed3e4">k_work_cancel_delayable</a> (struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *dwork)</td></tr>
+<tr class="memdesc:ga92355914ee178d4c3e848a1946bed3e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancel delayable work.  <br /></td></tr>
+<tr class="separator:ga92355914ee178d4c3e848a1946bed3e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7e7ec237648556fc16bfda8d35f7cd86" id="r_ga7e7ec237648556fc16bfda8d35f7cd86"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga7e7ec237648556fc16bfda8d35f7cd86">k_work_cancel_delayable_sync</a> (struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *dwork, struct <a class="el" href="structk__work__sync.html">k_work_sync</a> *sync)</td></tr>
+<tr class="memdesc:ga7e7ec237648556fc16bfda8d35f7cd86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancel delayable work and wait.  <br /></td></tr>
+<tr class="separator:ga7e7ec237648556fc16bfda8d35f7cd86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3091bc8fab5311252e41634a97a18589" id="r_ga3091bc8fab5311252e41634a97a18589"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga3091bc8fab5311252e41634a97a18589">k_work_user_queue_start</a> (struct k_work_user_q *work_q, <a class="el" href="structz__thread__stack__element.html">k_thread_stack_t</a> *stack, size_t stack_size, int prio, const char *name)</td></tr>
+<tr class="memdesc:ga3091bc8fab5311252e41634a97a18589"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start a workqueue in user mode.  <br /></td></tr>
+<tr class="separator:ga3091bc8fab5311252e41634a97a18589"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga371dab33a40622bea19b07d852863443" id="r_ga371dab33a40622bea19b07d852863443"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga371dab33a40622bea19b07d852863443">k_work_poll_init</a> (struct k_work_poll *work, <a class="el" href="group__workqueue__apis.html#ga5add9ef0dce306a08413c4140fc0bdda">k_work_handler_t</a> handler)</td></tr>
+<tr class="memdesc:ga371dab33a40622bea19b07d852863443"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a triggered work item.  <br /></td></tr>
+<tr class="separator:ga371dab33a40622bea19b07d852863443"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0abafd7f851e42fd3572c8438e600a53" id="r_ga0abafd7f851e42fd3572c8438e600a53"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga0abafd7f851e42fd3572c8438e600a53">k_work_poll_submit_to_queue</a> (struct <a class="el" href="structk__work__q.html">k_work_q</a> *work_q, struct k_work_poll *work, struct <a class="el" href="structk__poll__event.html">k_poll_event</a> *events, int num_events, <a class="el" href="structk__timeout__t.html">k_timeout_t</a> timeout)</td></tr>
+<tr class="memdesc:ga0abafd7f851e42fd3572c8438e600a53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit a triggered work item.  <br /></td></tr>
+<tr class="separator:ga0abafd7f851e42fd3572c8438e600a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad9f222e46d72c4f98739395a0c8bb4ea" id="r_gad9f222e46d72c4f98739395a0c8bb4ea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#gad9f222e46d72c4f98739395a0c8bb4ea">k_work_poll_submit</a> (struct k_work_poll *work, struct <a class="el" href="structk__poll__event.html">k_poll_event</a> *events, int num_events, <a class="el" href="structk__timeout__t.html">k_timeout_t</a> timeout)</td></tr>
+<tr class="memdesc:gad9f222e46d72c4f98739395a0c8bb4ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submit a triggered work item to the system workqueue.  <br /></td></tr>
+<tr class="separator:gad9f222e46d72c4f98739395a0c8bb4ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2a19547d04dc1a202e80b752e3177215" id="r_ga2a19547d04dc1a202e80b752e3177215"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__workqueue__apis.html#ga2a19547d04dc1a202e80b752e3177215">k_work_poll_cancel</a> (struct k_work_poll *work)</td></tr>
+<tr class="memdesc:ga2a19547d04dc1a202e80b752e3177215"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancel a triggered work item.  <br /></td></tr>
+<tr class="separator:ga2a19547d04dc1a202e80b752e3177215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<h2 class="groupheader">Documentação das macros</h2>
+<a id="gaf8e003eefa5dd66ba883688f9d39c333" name="gaf8e003eefa5dd66ba883688f9d39c333"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf8e003eefa5dd66ba883688f9d39c333">&#9670;&#160;</a></span>K_WORK_DEFINE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define K_WORK_DEFINE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">work, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">work_handler&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;	struct <a class="el" href="structk__work.html">k_work</a> work = Z_WORK_INITIALIZER(work_handler)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize a statically-defined work item. </p>
+<p>This macro can be used to initialize a statically-defined workqueue work item, prior to its first use. For example,</p>
+<div class="fragment"><div class="line"><span class="keyword">static</span> <a class="code hl_define" href="group__workqueue__apis.html#gaf8e003eefa5dd66ba883688f9d39c333">K_WORK_DEFINE</a>(&lt;work&gt;, &lt;work_handler&gt;); </div>
+<div class="ttc" id="agroup__workqueue__apis_html_gaf8e003eefa5dd66ba883688f9d39c333"><div class="ttname"><a href="group__workqueue__apis.html#gaf8e003eefa5dd66ba883688f9d39c333">K_WORK_DEFINE</a></div><div class="ttdeci">#define K_WORK_DEFINE(work, work_handler)</div><div class="ttdoc">Initialize a statically-defined work item.</div><div class="ttdef"><b>Definição</b> kernel.h:4289</div></div>
+</div><!-- fragment --><dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>Symbol name for work item object </td></tr>
+    <tr><td class="paramname">work_handler</td><td>Function to invoke each time work item is processed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga893b281f3d2bc0088650536899e17903" name="ga893b281f3d2bc0088650536899e17903"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga893b281f3d2bc0088650536899e17903">&#9670;&#160;</a></span>K_WORK_DELAYABLE_DEFINE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define K_WORK_DELAYABLE_DEFINE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">work, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">work_handler&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a> work \</div>
+<div class="line">      = Z_WORK_DELAYABLE_INITIALIZER(work_handler)</div>
+<div class="ttc" id="astructk__work__delayable_html"><div class="ttname"><a href="structk__work__delayable.html">k_work_delayable</a></div><div class="ttdoc">A structure used to submit work after a delay.</div><div class="ttdef"><b>Definição</b> kernel.h:3894</div></div>
+</div><!-- fragment -->
+<p>Initialize a statically-defined delayable work item. </p>
+<p>This macro can be used to initialize a statically-defined delayable work item, prior to its first use. For example,</p>
+<div class="fragment"><div class="line"><span class="keyword">static</span> <a class="code hl_define" href="group__workqueue__apis.html#ga893b281f3d2bc0088650536899e17903">K_WORK_DELAYABLE_DEFINE</a>(&lt;dwork&gt;, &lt;work_handler&gt;); </div>
+<div class="ttc" id="agroup__workqueue__apis_html_ga893b281f3d2bc0088650536899e17903"><div class="ttname"><a href="group__workqueue__apis.html#ga893b281f3d2bc0088650536899e17903">K_WORK_DELAYABLE_DEFINE</a></div><div class="ttdeci">#define K_WORK_DELAYABLE_DEFINE(work, work_handler)</div><div class="ttdoc">Initialize a statically-defined delayable work item.</div><div class="ttdef"><b>Definição</b> kernel.h:3928</div></div>
+</div><!-- fragment --><p>Note that if the runtime dependencies support initialization with <a class="el" href="group__workqueue__apis.html#ga2876c5d82fb2340a093bc4d689a55465" title="Initialize a delayable work structure.">k_work_init_delayable()</a> using that will eliminate the initialized object in ROM that is produced by this macro and copied in at system startup.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>Symbol name for delayable work item object </td></tr>
+    <tr><td class="paramname">work_handler</td><td>Function to invoke each time work item is processed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga4f3eac1fc56d5c9c21a3afa9b964b0bf" name="ga4f3eac1fc56d5c9c21a3afa9b964b0bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4f3eac1fc56d5c9c21a3afa9b964b0bf">&#9670;&#160;</a></span>K_WORK_USER_DEFINE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define K_WORK_USER_DEFINE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">work, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">work_handler&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;	struct k_work_user work = Z_WORK_USER_INITIALIZER(work_handler)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize a statically-defined user work item. </p>
+<p>This macro can be used to initialize a statically-defined user work item, prior to its first use. For example,</p>
+<div class="fragment"><div class="line"><span class="keyword">static</span> <a class="code hl_define" href="group__workqueue__apis.html#ga4f3eac1fc56d5c9c21a3afa9b964b0bf">K_WORK_USER_DEFINE</a>(&lt;work&gt;, &lt;work_handler&gt;); </div>
+<div class="ttc" id="agroup__workqueue__apis_html_ga4f3eac1fc56d5c9c21a3afa9b964b0bf"><div class="ttname"><a href="group__workqueue__apis.html#ga4f3eac1fc56d5c9c21a3afa9b964b0bf">K_WORK_USER_DEFINE</a></div><div class="ttdeci">#define K_WORK_USER_DEFINE(work, work_handler)</div><div class="ttdoc">Initialize a statically-defined user work item.</div><div class="ttdef"><b>Definição</b> kernel.h:4135</div></div>
+</div><!-- fragment --><dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>Symbol name for work item object </td></tr>
+    <tr><td class="paramname">work_handler</td><td>Function to invoke each time work item is processed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga90ebcbf1d59dad80d75bc0e786e96478" name="ga90ebcbf1d59dad80d75bc0e786e96478"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga90ebcbf1d59dad80d75bc0e786e96478">&#9670;&#160;</a></span>Z_WORK_DELAYABLE_INITIALIZER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Z_WORK_DELAYABLE_INITIALIZER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">work_handler</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">    { \</div>
+<div class="line">    .work = { \</div>
+<div class="line">        .handler = work_handler, \</div>
+<div class="line">        .flags = K_WORK_DELAYABLE, \</div>
+<div class="line">    }, \</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga322bf3458590eb93a7cf41c24b01a2ed" name="ga322bf3458590eb93a7cf41c24b01a2ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga322bf3458590eb93a7cf41c24b01a2ed">&#9670;&#160;</a></span>Z_WORK_INITIALIZER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Z_WORK_INITIALIZER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">work_handler</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">    { \</div>
+<div class="line">    .handler = work_handler, \</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga8aa4d7d9f3f4a05fb6f51d98922d906c" name="ga8aa4d7d9f3f4a05fb6f51d98922d906c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8aa4d7d9f3f4a05fb6f51d98922d906c">&#9670;&#160;</a></span>Z_WORK_USER_INITIALIZER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Z_WORK_USER_INITIALIZER</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">work_handler</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">    { \</div>
+<div class="line">    ._reserved = NULL, \</div>
+<div class="line">    .handler = work_handler, \</div>
+<div class="line">    .flags = 0 \</div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentação dos tipos</h2>
+<a id="ga5add9ef0dce306a08413c4140fc0bdda" name="ga5add9ef0dce306a08413c4140fc0bdda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5add9ef0dce306a08413c4140fc0bdda">&#9670;&#160;</a></span>k_work_handler_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* k_work_handler_t) (struct <a class="el" href="structk__work.html">k_work</a> *work)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The signature for a work item handler function. </p>
+<p>The function will be invoked by the thread animating a work queue.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>the work item that provided the handler. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gafdb3f5f2225b3d5d1fe682cb97f3b328" name="gafdb3f5f2225b3d5d1fe682cb97f3b328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafdb3f5f2225b3d5d1fe682cb97f3b328">&#9670;&#160;</a></span>k_work_user_handler_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">k_work_user_handler_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Work item handler function type for user work queues. </p>
+<p>A work item's handler function is executed by a user workqueue's thread when the work item is processed by the workqueue.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>Address of the work item. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação dos valores da enumeração</h2>
+<a id="ga5ebea2f4f6d4457d66de7733a8ea7bd3" name="ga5ebea2f4f6d4457d66de7733a8ea7bd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5ebea2f4f6d4457d66de7733a8ea7bd3">&#9670;&#160;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Valores de enumerações</th></tr><tr><td class="fieldname"><a id="gga5ebea2f4f6d4457d66de7733a8ea7bd3ac6bee9a104cf6ee3853579f5eb15c165" name="gga5ebea2f4f6d4457d66de7733a8ea7bd3ac6bee9a104cf6ee3853579f5eb15c165"></a>K_WORK_RUNNING&#160;</td><td class="fielddoc"><p>Flag indicating a work item that is running under a work queue thread. </p>
+<p>Accessed via <a class="el" href="group__workqueue__apis.html#gaba8a8734768d768b433f9d8490e7df7b" title="Busy state flags from the work item.">k_work_busy_get()</a>. May co-occur with other flags. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ebea2f4f6d4457d66de7733a8ea7bd3a9fdc4327489bcdcca3de0ee9eed6b732" name="gga5ebea2f4f6d4457d66de7733a8ea7bd3a9fdc4327489bcdcca3de0ee9eed6b732"></a>K_WORK_CANCELING&#160;</td><td class="fielddoc"><p>Flag indicating a work item that is being canceled. </p>
+<p>Accessed via <a class="el" href="group__workqueue__apis.html#gaba8a8734768d768b433f9d8490e7df7b" title="Busy state flags from the work item.">k_work_busy_get()</a>. May co-occur with other flags. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ebea2f4f6d4457d66de7733a8ea7bd3aa7f8855bc9931bff79062ce53b06eb85" name="gga5ebea2f4f6d4457d66de7733a8ea7bd3aa7f8855bc9931bff79062ce53b06eb85"></a>K_WORK_QUEUED&#160;</td><td class="fielddoc"><p>Flag indicating a work item that has been submitted to a queue but has not started running. </p>
+<p>Accessed via <a class="el" href="group__workqueue__apis.html#gaba8a8734768d768b433f9d8490e7df7b" title="Busy state flags from the work item.">k_work_busy_get()</a>. May co-occur with other flags. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga5ebea2f4f6d4457d66de7733a8ea7bd3ab4bf9e74435077b2bbfe1de1f4e80aed" name="gga5ebea2f4f6d4457d66de7733a8ea7bd3ab4bf9e74435077b2bbfe1de1f4e80aed"></a>K_WORK_DELAYED&#160;</td><td class="fielddoc"><p>Flag indicating a delayed work item that is scheduled for submission to a queue. </p>
+<p>Accessed via <a class="el" href="group__workqueue__apis.html#gaba8a8734768d768b433f9d8490e7df7b" title="Busy state flags from the work item.">k_work_busy_get()</a>. May co-occur with other flags. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação das funções</h2>
+<a id="gaba8a8734768d768b433f9d8490e7df7b" name="gaba8a8734768d768b433f9d8490e7df7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaba8a8734768d768b433f9d8490e7df7b">&#9670;&#160;</a></span>k_work_busy_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_busy_get </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structk__work.html">k_work</a> *&#160;</td>
+          <td class="paramname"><em>work</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Busy state flags from the work item. </p>
+<p>A zero return value indicates the work item appears to be idle.</p>
+<dl class="section note"><dt>Nota</dt><dd>This is a live snapshot of state, which may change before the result is checked. Use locks where appropriate.</dd></dl>
+<p>@funcprops \isr_ok</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>pointer to the work item.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>a mask of flags K_WORK_DELAYED, K_WORK_QUEUED, K_WORK_RUNNING, and K_WORK_CANCELING. </dd></dl>
+
+</div>
+</div>
+<a id="ga389fe2a8fb20f9bd593cf8d990727078" name="ga389fe2a8fb20f9bd593cf8d990727078"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga389fe2a8fb20f9bd593cf8d990727078">&#9670;&#160;</a></span>k_work_cancel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_cancel </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work.html">k_work</a> *&#160;</td>
+          <td class="paramname"><em>work</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cancel a work item. </p>
+<p>This attempts to prevent a pending (non-delayable) work item from being processed by removing it from the work queue. If the item is being processed, the work item will continue to be processed, but resubmissions are rejected until cancellation completes.</p>
+<p>If this returns zero cancellation is complete, otherwise something (probably a work queue thread) is still referencing the item.</p>
+<p>See also <a class="el" href="group__workqueue__apis.html#gab2b05cfe3af08f7d32c3946fa1c808f9" title="Cancel a work item and wait for it to complete.">k_work_cancel_sync()</a>.</p>
+<p>@funcprops \isr_ok</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>pointer to the work item.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>the <a class="el" href="group__workqueue__apis.html#gaba8a8734768d768b433f9d8490e7df7b" title="Busy state flags from the work item.">k_work_busy_get()</a> status indicating the state of the item after all cancellation steps performed by this call are completed. </dd></dl>
+
+</div>
+</div>
+<a id="ga92355914ee178d4c3e848a1946bed3e4" name="ga92355914ee178d4c3e848a1946bed3e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga92355914ee178d4c3e848a1946bed3e4">&#9670;&#160;</a></span>k_work_cancel_delayable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_cancel_delayable </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *&#160;</td>
+          <td class="paramname"><em>dwork</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cancel delayable work. </p>
+<p>Similar to <a class="el" href="group__workqueue__apis.html#ga389fe2a8fb20f9bd593cf8d990727078" title="Cancel a work item.">k_work_cancel()</a> but for delayable work. If the work is scheduled or submitted it is canceled. This function does not wait for the cancellation to complete.</p>
+<dl class="section note"><dt>Nota</dt><dd>The work may still be running when this returns. Use <a class="el" href="group__workqueue__apis.html#gad47d54e513030304be2600d75b1a965f" title="Flush delayable work.">k_work_flush_delayable()</a> or <a class="el" href="group__workqueue__apis.html#ga7e7ec237648556fc16bfda8d35f7cd86" title="Cancel delayable work and wait.">k_work_cancel_delayable_sync()</a> to ensure it is not running.</dd>
+<dd>
+Canceling delayable work does not prevent rescheduling it. It does prevent submitting it until the cancellation completes.</dd></dl>
+<p>@funcprops \isr_ok</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dwork</td><td>pointer to the delayable work item.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>the <a class="el" href="group__workqueue__apis.html#ga1b76969667844f0981d348c9c671bc9f" title="Busy state flags from the delayable work item.">k_work_delayable_busy_get()</a> status indicating the state of the item after all cancellation steps performed by this call are completed. </dd></dl>
+
+</div>
+</div>
+<a id="ga7e7ec237648556fc16bfda8d35f7cd86" name="ga7e7ec237648556fc16bfda8d35f7cd86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7e7ec237648556fc16bfda8d35f7cd86">&#9670;&#160;</a></span>k_work_cancel_delayable_sync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool k_work_cancel_delayable_sync </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *&#160;</td>
+          <td class="paramname"><em>dwork</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structk__work__sync.html">k_work_sync</a> *&#160;</td>
+          <td class="paramname"><em>sync</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cancel delayable work and wait. </p>
+<p>Like <a class="el" href="group__workqueue__apis.html#ga92355914ee178d4c3e848a1946bed3e4" title="Cancel delayable work.">k_work_cancel_delayable()</a> but waits until the work becomes idle.</p>
+<dl class="section note"><dt>Nota</dt><dd>Canceling delayable work does not prevent rescheduling it. It does prevent submitting it until the cancellation completes.</dd>
+<dd>
+Be careful of caller and work queue thread relative priority. If this function sleeps it will not return until the work queue thread completes the tasks that allow this thread to resume.</dd>
+<dd>
+Behavior is undefined if this function is invoked on <code>dwork</code> from a work queue running <code>dwork</code>.</dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dwork</td><td>pointer to the delayable work item.</td></tr>
+    <tr><td class="paramname">sync</td><td>pointer to an opaque item containing state related to the pending cancellation. The object must persist until the call returns, and be accessible from both the caller thread and the work queue thread. The object must not be used for any other flush or cancel operation until this one completes. On architectures with CONFIG_KERNEL_COHERENCE the object must be allocated in coherent memory.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>if work was not idle (call had to wait for cancellation of a running handler to complete, or scheduled or submitted operations were cancelled); </td></tr>
+    <tr><td class="paramname">false</td><td>otherwise </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gab2b05cfe3af08f7d32c3946fa1c808f9" name="gab2b05cfe3af08f7d32c3946fa1c808f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab2b05cfe3af08f7d32c3946fa1c808f9">&#9670;&#160;</a></span>k_work_cancel_sync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool k_work_cancel_sync </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work.html">k_work</a> *&#160;</td>
+          <td class="paramname"><em>work</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structk__work__sync.html">k_work_sync</a> *&#160;</td>
+          <td class="paramname"><em>sync</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cancel a work item and wait for it to complete. </p>
+<p>Same as <a class="el" href="group__workqueue__apis.html#ga389fe2a8fb20f9bd593cf8d990727078" title="Cancel a work item.">k_work_cancel()</a> but does not return until cancellation is complete. This can be invoked by a thread after <a class="el" href="group__workqueue__apis.html#ga389fe2a8fb20f9bd593cf8d990727078" title="Cancel a work item.">k_work_cancel()</a> to synchronize with a previous cancellation.</p>
+<p>On return the work structure will be idle unless something submits it after the cancellation was complete.</p>
+<dl class="section note"><dt>Nota</dt><dd>Be careful of caller and work queue thread relative priority. If this function sleeps it will not return until the work queue thread completes the tasks that allow this thread to resume.</dd>
+<dd>
+Behavior is undefined if this function is invoked on <code>work</code> from a work queue running <code>work</code>.</dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>pointer to the work item.</td></tr>
+    <tr><td class="paramname">sync</td><td>pointer to an opaque item containing state related to the pending cancellation. The object must persist until the call returns, and be accessible from both the caller thread and the work queue thread. The object must not be used for any other flush or cancel operation until this one completes. On architectures with CONFIG_KERNEL_COHERENCE the object must be allocated in coherent memory.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>if work was pending (call had to wait for cancellation of a running handler to complete, or scheduled or submitted operations were cancelled); </td></tr>
+    <tr><td class="paramname">false</td><td>otherwise </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga1b76969667844f0981d348c9c671bc9f" name="ga1b76969667844f0981d348c9c671bc9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1b76969667844f0981d348c9c671bc9f">&#9670;&#160;</a></span>k_work_delayable_busy_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_delayable_busy_get </td>
+          <td>(</td>
+          <td class="paramtype">const struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *&#160;</td>
+          <td class="paramname"><em>dwork</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Busy state flags from the delayable work item. </p>
+<p>@funcprops \isr_ok</p>
+<dl class="section note"><dt>Nota</dt><dd>This is a live snapshot of state, which may change before the result can be inspected. Use locks where appropriate.</dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dwork</td><td>pointer to the delayable work item.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>a mask of flags K_WORK_DELAYED, K_WORK_QUEUED, K_WORK_RUNNING, and K_WORK_CANCELING. A zero return value indicates the work item appears to be idle. </dd></dl>
+
+</div>
+</div>
+<a id="gabd1cda459bab538fb2d6dfd84a73b253" name="gabd1cda459bab538fb2d6dfd84a73b253"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabd1cda459bab538fb2d6dfd84a73b253">&#9670;&#160;</a></span>k_work_flush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool k_work_flush </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work.html">k_work</a> *&#160;</td>
+          <td class="paramname"><em>work</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structk__work__sync.html">k_work_sync</a> *&#160;</td>
+          <td class="paramname"><em>sync</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wait for last-submitted instance to complete. </p>
+<p>Resubmissions may occur while waiting, including chained submissions (from within the handler).</p>
+<dl class="section note"><dt>Nota</dt><dd>Be careful of caller and work queue thread relative priority. If this function sleeps it will not return until the work queue thread completes the tasks that allow this thread to resume.</dd>
+<dd>
+Behavior is undefined if this function is invoked on <code>work</code> from a work queue running <code>work</code>.</dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>pointer to the work item.</td></tr>
+    <tr><td class="paramname">sync</td><td>pointer to an opaque item containing state related to the pending cancellation. The object must persist until the call returns, and be accessible from both the caller thread and the work queue thread. The object must not be used for any other flush or cancel operation until this one completes. On architectures with CONFIG_KERNEL_COHERENCE the object must be allocated in coherent memory.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>if call had to wait for completion </td></tr>
+    <tr><td class="paramname">false</td><td>if work was already idle </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gad47d54e513030304be2600d75b1a965f" name="gad47d54e513030304be2600d75b1a965f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad47d54e513030304be2600d75b1a965f">&#9670;&#160;</a></span>k_work_flush_delayable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool k_work_flush_delayable </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *&#160;</td>
+          <td class="paramname"><em>dwork</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structk__work__sync.html">k_work_sync</a> *&#160;</td>
+          <td class="paramname"><em>sync</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flush delayable work. </p>
+<p>If the work is scheduled, it is immediately submitted. Then the caller blocks until the work completes, as with <a class="el" href="group__workqueue__apis.html#gabd1cda459bab538fb2d6dfd84a73b253" title="Wait for last-submitted instance to complete.">k_work_flush()</a>.</p>
+<dl class="section note"><dt>Nota</dt><dd>Be careful of caller and work queue thread relative priority. If this function sleeps it will not return until the work queue thread completes the tasks that allow this thread to resume.</dd>
+<dd>
+Behavior is undefined if this function is invoked on <code>dwork</code> from a work queue running <code>dwork</code>.</dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dwork</td><td>pointer to the delayable work item.</td></tr>
+    <tr><td class="paramname">sync</td><td>pointer to an opaque item containing state related to the pending cancellation. The object must persist until the call returns, and be accessible from both the caller thread and the work queue thread. The object must not be used for any other flush or cancel operation until this one completes. On architectures with CONFIG_KERNEL_COHERENCE the object must be allocated in coherent memory.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>if call had to wait for completion </td></tr>
+    <tr><td class="paramname">false</td><td>if work was already idle </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaf20080884a2893d39cd8e862b34a2a30" name="gaf20080884a2893d39cd8e862b34a2a30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf20080884a2893d39cd8e862b34a2a30">&#9670;&#160;</a></span>k_work_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void k_work_init </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work.html">k_work</a> *&#160;</td>
+          <td class="paramname"><em>work</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__workqueue__apis.html#ga5add9ef0dce306a08413c4140fc0bdda">k_work_handler_t</a>&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize a (non-delayable) work structure. </p>
+<p>This must be invoked before submitting a work structure for the first time. It need not be invoked again on the same work structure. It can be re-invoked to change the associated handler, but this must be done when the work item is idle.</p>
+<p>@funcprops \isr_ok</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>the work structure to be initialized.</td></tr>
+    <tr><td class="paramname">handler</td><td>the handler to be invoked by the work item. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga2876c5d82fb2340a093bc4d689a55465" name="ga2876c5d82fb2340a093bc4d689a55465"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2876c5d82fb2340a093bc4d689a55465">&#9670;&#160;</a></span>k_work_init_delayable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void k_work_init_delayable </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *&#160;</td>
+          <td class="paramname"><em>dwork</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__workqueue__apis.html#ga5add9ef0dce306a08413c4140fc0bdda">k_work_handler_t</a>&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize a delayable work structure. </p>
+<p>This must be invoked before scheduling a delayable work structure for the first time. It need not be invoked again on the same work structure. It can be re-invoked to change the associated handler, but this must be done when the work item is idle.</p>
+<p>@funcprops \isr_ok</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dwork</td><td>the delayable work structure to be initialized.</td></tr>
+    <tr><td class="paramname">handler</td><td>the handler to be invoked by the work item. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga2a19547d04dc1a202e80b752e3177215" name="ga2a19547d04dc1a202e80b752e3177215"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2a19547d04dc1a202e80b752e3177215">&#9670;&#160;</a></span>k_work_poll_cancel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_poll_cancel </td>
+          <td>(</td>
+          <td class="paramtype">struct k_work_poll *&#160;</td>
+          <td class="paramname"><em>work</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cancel a triggered work item. </p>
+<p>This routine cancels the submission of triggered work item <em>work</em>. A triggered work item can only be canceled if no event triggered work submission.</p>
+<p>@funcprops \isr_ok</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>Address of delayed work item.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>Work item canceled. </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>Work item is being processed or has completed its work. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga371dab33a40622bea19b07d852863443" name="ga371dab33a40622bea19b07d852863443"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga371dab33a40622bea19b07d852863443">&#9670;&#160;</a></span>k_work_poll_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void k_work_poll_init </td>
+          <td>(</td>
+          <td class="paramtype">struct k_work_poll *&#160;</td>
+          <td class="paramname"><em>work</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__workqueue__apis.html#ga5add9ef0dce306a08413c4140fc0bdda">k_work_handler_t</a>&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize a triggered work item. </p>
+<p>This routine initializes a workqueue triggered work item, prior to its first use.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>Address of triggered work item. </td></tr>
+    <tr><td class="paramname">handler</td><td>Function to invoke each time work item is processed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gad9f222e46d72c4f98739395a0c8bb4ea" name="gad9f222e46d72c4f98739395a0c8bb4ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad9f222e46d72c4f98739395a0c8bb4ea">&#9670;&#160;</a></span>k_work_poll_submit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_poll_submit </td>
+          <td>(</td>
+          <td class="paramtype">struct k_work_poll *&#160;</td>
+          <td class="paramname"><em>work</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structk__poll__event.html">k_poll_event</a> *&#160;</td>
+          <td class="paramname"><em>events</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num_events</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structk__timeout__t.html">k_timeout_t</a>&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Submit a triggered work item to the system workqueue. </p>
+<p>This routine schedules work item <em>work</em> to be processed by system workqueue when one of the given <em>events</em> is signaled. The routine initiates internal poller for the work item and then returns to the caller. Only when one of the watched events happen the work item is actually submitted to the workqueue and becomes pending.</p>
+<p>Submitting a previously submitted triggered work item that is still waiting for the event cancels the existing submission and reschedules it the using the new event list. Note that this behavior is inherently subject to race conditions with the pre-existing triggered work item and work queue, so care must be taken to synchronize such resubmissions externally.</p>
+<p>@funcprops \isr_ok</p>
+<dl class="section warning"><dt>Aviso</dt><dd>Provided array of events as well as a triggered work item must not be modified until the item has been processed by the workqueue.</dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>Address of delayed work item. </td></tr>
+    <tr><td class="paramname">events</td><td>An array of events which trigger the work. </td></tr>
+    <tr><td class="paramname">num_events</td><td>The number of events in the array. </td></tr>
+    <tr><td class="paramname">timeout</td><td>Timeout after which the work will be scheduled for execution even if not triggered.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>Work item started watching for events. </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>Work item is being processed or has completed its work. </td></tr>
+    <tr><td class="paramname">-EADDRINUSE</td><td>Work item is pending on a different workqueue. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0abafd7f851e42fd3572c8438e600a53" name="ga0abafd7f851e42fd3572c8438e600a53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0abafd7f851e42fd3572c8438e600a53">&#9670;&#160;</a></span>k_work_poll_submit_to_queue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_poll_submit_to_queue </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__q.html">k_work_q</a> *&#160;</td>
+          <td class="paramname"><em>work_q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct k_work_poll *&#160;</td>
+          <td class="paramname"><em>work</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structk__poll__event.html">k_poll_event</a> *&#160;</td>
+          <td class="paramname"><em>events</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num_events</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structk__timeout__t.html">k_timeout_t</a>&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Submit a triggered work item. </p>
+<p>This routine schedules work item <em>work</em> to be processed by workqueue <em>work_q</em> when one of the given <em>events</em> is signaled. The routine initiates internal poller for the work item and then returns to the caller. Only when one of the watched events happen the work item is actually submitted to the workqueue and becomes pending.</p>
+<p>Submitting a previously submitted triggered work item that is still waiting for the event cancels the existing submission and reschedules it the using the new event list. Note that this behavior is inherently subject to race conditions with the pre-existing triggered work item and work queue, so care must be taken to synchronize such resubmissions externally.</p>
+<p>@funcprops \isr_ok</p>
+<dl class="section warning"><dt>Aviso</dt><dd>Provided array of events as well as a triggered work item must be placed in persistent memory (valid until work handler execution or work cancellation) and cannot be modified after submission.</dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work_q</td><td>Address of workqueue. </td></tr>
+    <tr><td class="paramname">work</td><td>Address of delayed work item. </td></tr>
+    <tr><td class="paramname">events</td><td>An array of events which trigger the work. </td></tr>
+    <tr><td class="paramname">num_events</td><td>The number of events in the array. </td></tr>
+    <tr><td class="paramname">timeout</td><td>Timeout after which the work will be scheduled for execution even if not triggered.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>Work item started watching for events. </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>Work item is being processed or has completed its work. </td></tr>
+    <tr><td class="paramname">-EADDRINUSE</td><td>Work item is pending on a different workqueue. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0fefe3e0225ac99b47b250849f6cd863" name="ga0fefe3e0225ac99b47b250849f6cd863"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0fefe3e0225ac99b47b250849f6cd863">&#9670;&#160;</a></span>k_work_queue_drain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_queue_drain </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__q.html">k_work_q</a> *&#160;</td>
+          <td class="paramname"><em>queue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>plug</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wait until the work queue has drained, optionally plugging it. </p>
+<p>This blocks submission to the work queue except when coming from queue thread, and blocks the caller until no more work items are available in the queue.</p>
+<p>If <code>plug</code> is true then submission will continue to be blocked after the drain operation completes until <a class="el" href="group__workqueue__apis.html#gaa0463bb79af3ec470f7d3be02052139f" title="Release a work queue to accept new submissions.">k_work_queue_unplug()</a> is invoked.</p>
+<p>Note that work items that are delayed are not yet associated with their work queue. They must be cancelled externally if a goal is to ensure the work queue remains empty. The <code>plug</code> feature can be used to prevent delayed items from being submitted after the drain completes.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queue</td><td>pointer to the queue structure.</td></tr>
+    <tr><td class="paramname">plug</td><td>if true the work queue will continue to block new submissions after all items have drained.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">1</td><td>if call had to wait for the drain to complete </td></tr>
+    <tr><td class="paramname">0</td><td>if call did not have to wait </td></tr>
+    <tr><td class="paramname">negative</td><td>if wait was interrupted or failed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gada77d818ea9e4d07c14a960872ed5492" name="gada77d818ea9e4d07c14a960872ed5492"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gada77d818ea9e4d07c14a960872ed5492">&#9670;&#160;</a></span>k_work_queue_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void k_work_queue_init </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__q.html">k_work_q</a> *&#160;</td>
+          <td class="paramname"><em>queue</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize a work queue structure. </p>
+<p>This must be invoked before starting a work queue structure for the first time. It need not be invoked again on the same work queue structure.</p>
+<p>@funcprops \isr_ok</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queue</td><td>the queue structure to be initialized. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gadfc56554f9bfe7b52309d79660188593" name="gadfc56554f9bfe7b52309d79660188593"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadfc56554f9bfe7b52309d79660188593">&#9670;&#160;</a></span>k_work_queue_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void k_work_queue_start </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__q.html">k_work_q</a> *&#160;</td>
+          <td class="paramname"><em>queue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structz__thread__stack__element.html">k_thread_stack_t</a> *&#160;</td>
+          <td class="paramname"><em>stack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>stack_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>prio</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct <a class="el" href="structk__work__queue__config.html">k_work_queue_config</a> *&#160;</td>
+          <td class="paramname"><em>cfg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize a work queue. </p>
+<p>This configures the work queue thread and starts it running. The function should not be re-invoked on a queue.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queue</td><td>pointer to the queue structure. It must be initialized in zeroed/bss memory or with <a class="el" href="group__workqueue__apis.html#gada77d818ea9e4d07c14a960872ed5492">k_work_queue_init</a> before use.</td></tr>
+    <tr><td class="paramname">stack</td><td>pointer to the work thread stack area.</td></tr>
+    <tr><td class="paramname">stack_size</td><td>size of the the work thread stack area, in bytes.</td></tr>
+    <tr><td class="paramname">prio</td><td>initial thread priority</td></tr>
+    <tr><td class="paramname">cfg</td><td>optional additional configuration parameters. Pass <code>NULL</code> if not required, to use the defaults documented in <a class="el" href="structk__work__queue__config.html" title="A structure holding optional configuration items for a work queue.">k_work_queue_config</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaa0463bb79af3ec470f7d3be02052139f" name="gaa0463bb79af3ec470f7d3be02052139f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa0463bb79af3ec470f7d3be02052139f">&#9670;&#160;</a></span>k_work_queue_unplug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_queue_unplug </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__q.html">k_work_q</a> *&#160;</td>
+          <td class="paramname"><em>queue</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Release a work queue to accept new submissions. </p>
+<p>This releases the block on new submissions placed when <a class="el" href="group__workqueue__apis.html#ga0fefe3e0225ac99b47b250849f6cd863" title="Wait until the work queue has drained, optionally plugging it.">k_work_queue_drain()</a> is invoked with the <code>plug</code> option enabled. If this is invoked before the drain completes new items may be submitted as soon as the drain completes.</p>
+<p>@funcprops \isr_ok</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queue</td><td>pointer to the queue structure.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>if successfully unplugged </td></tr>
+    <tr><td class="paramname">-EALREADY</td><td>if the work queue was not plugged. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaacaab408fb7c848d466ad1f069dfa648" name="gaacaab408fb7c848d466ad1f069dfa648"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaacaab408fb7c848d466ad1f069dfa648">&#9670;&#160;</a></span>k_work_reschedule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_reschedule </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *&#160;</td>
+          <td class="paramname"><em>dwork</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structk__timeout__t.html">k_timeout_t</a>&#160;</td>
+          <td class="paramname"><em>delay</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reschedule a work item to the system work queue after a delay. </p>
+<p>This is a thin wrapper around <a class="el" href="group__workqueue__apis.html#gabf5db091eac19b19a4e12c0cb381f0a8" title="Reschedule a work item to a queue after a delay.">k_work_reschedule_for_queue()</a>, with all the API characteristics of that function.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dwork</td><td>pointer to the delayable work item.</td></tr>
+    <tr><td class="paramname">delay</td><td>the time to wait before submitting the work item.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>as with <a class="el" href="group__workqueue__apis.html#gabf5db091eac19b19a4e12c0cb381f0a8" title="Reschedule a work item to a queue after a delay.">k_work_reschedule_for_queue()</a>. </dd></dl>
+
+</div>
+</div>
+<a id="gabf5db091eac19b19a4e12c0cb381f0a8" name="gabf5db091eac19b19a4e12c0cb381f0a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabf5db091eac19b19a4e12c0cb381f0a8">&#9670;&#160;</a></span>k_work_reschedule_for_queue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_reschedule_for_queue </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__q.html">k_work_q</a> *&#160;</td>
+          <td class="paramname"><em>queue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *&#160;</td>
+          <td class="paramname"><em>dwork</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structk__timeout__t.html">k_timeout_t</a>&#160;</td>
+          <td class="paramname"><em>delay</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reschedule a work item to a queue after a delay. </p>
+<p>Unlike <a class="el" href="group__workqueue__apis.html#ga17f863c9f6ff2fb41dc0f3b7de4fdf23" title="Submit an idle work item to a queue after a delay.">k_work_schedule_for_queue()</a> this function can change the deadline of a scheduled work item, and will schedule a work item that is in any state (e.g. is idle, submitted, or running). This function does not affect ("unsubmit") a work item that has been submitted to a queue.</p>
+<p>@funcprops \isr_ok</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queue</td><td>the queue on which the work item should be submitted after the delay.</td></tr>
+    <tr><td class="paramname">dwork</td><td>pointer to the delayable work item.</td></tr>
+    <tr><td class="paramname">delay</td><td>the time to wait before submitting the work item. If <code>K_NO_WAIT</code> this is equivalent to <a class="el" href="group__workqueue__apis.html#ga5353e76f73db070614f50d06d292d05c" title="Submit a work item to a queue.">k_work_submit_to_queue()</a> after canceling any previous scheduled submission.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>If delay is <code>K_NO_WAIT</code> ("no delay") the return values are as with <a class="el" href="group__workqueue__apis.html#ga5353e76f73db070614f50d06d292d05c" title="Submit a work item to a queue.">k_work_submit_to_queue()</a>.</dd></dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>if delay is <code>K_NO_WAIT</code> and work was already on a queue </td></tr>
+    <tr><td class="paramname">1</td><td>if<ul>
+<li>delay is <code>K_NO_WAIT</code> and work was not submitted but has now been queued to <code>queue</code>; or</li>
+<li>delay not <code>K_NO_WAIT</code> and work has been scheduled </li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">2</td><td>if delay is <code>K_NO_WAIT</code> and work was running and has been queued to the queue that was running it </td></tr>
+    <tr><td class="paramname">-EBUSY</td><td>if <code>delay</code> is <code>K_NO_WAIT</code> and <a class="el" href="group__workqueue__apis.html#ga5353e76f73db070614f50d06d292d05c" title="Submit a work item to a queue.">k_work_submit_to_queue()</a> fails with this code. </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>if <code>delay</code> is <code>K_NO_WAIT</code> and <a class="el" href="group__workqueue__apis.html#ga5353e76f73db070614f50d06d292d05c" title="Submit a work item to a queue.">k_work_submit_to_queue()</a> fails with this code. </td></tr>
+    <tr><td class="paramname">-ENODEV</td><td>if <code>delay</code> is <code>K_NO_WAIT</code> and <a class="el" href="group__workqueue__apis.html#ga5353e76f73db070614f50d06d292d05c" title="Submit a work item to a queue.">k_work_submit_to_queue()</a> fails with this code. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga5c113ea2bc8e8e5cd7a5c8bc5ec595d3" name="ga5c113ea2bc8e8e5cd7a5c8bc5ec595d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5c113ea2bc8e8e5cd7a5c8bc5ec595d3">&#9670;&#160;</a></span>k_work_schedule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_schedule </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *&#160;</td>
+          <td class="paramname"><em>dwork</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structk__timeout__t.html">k_timeout_t</a>&#160;</td>
+          <td class="paramname"><em>delay</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Submit an idle work item to the system work queue after a delay. </p>
+<p>This is a thin wrapper around <a class="el" href="group__workqueue__apis.html#ga17f863c9f6ff2fb41dc0f3b7de4fdf23" title="Submit an idle work item to a queue after a delay.">k_work_schedule_for_queue()</a>, with all the API characteristics of that function.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dwork</td><td>pointer to the delayable work item.</td></tr>
+    <tr><td class="paramname">delay</td><td>the time to wait before submitting the work item. If <code>K_NO_WAIT</code> this is equivalent to <a class="el" href="group__workqueue__apis.html#ga5353e76f73db070614f50d06d292d05c" title="Submit a work item to a queue.">k_work_submit_to_queue()</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>as with <a class="el" href="group__workqueue__apis.html#ga17f863c9f6ff2fb41dc0f3b7de4fdf23" title="Submit an idle work item to a queue after a delay.">k_work_schedule_for_queue()</a>. </dd></dl>
+
+</div>
+</div>
+<a id="ga17f863c9f6ff2fb41dc0f3b7de4fdf23" name="ga17f863c9f6ff2fb41dc0f3b7de4fdf23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga17f863c9f6ff2fb41dc0f3b7de4fdf23">&#9670;&#160;</a></span>k_work_schedule_for_queue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_schedule_for_queue </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__q.html">k_work_q</a> *&#160;</td>
+          <td class="paramname"><em>queue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structk__work__delayable.html">k_work_delayable</a> *&#160;</td>
+          <td class="paramname"><em>dwork</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structk__timeout__t.html">k_timeout_t</a>&#160;</td>
+          <td class="paramname"><em>delay</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Submit an idle work item to a queue after a delay. </p>
+<p>Unlike <a class="el" href="group__workqueue__apis.html#gabf5db091eac19b19a4e12c0cb381f0a8" title="Reschedule a work item to a queue after a delay.">k_work_reschedule_for_queue()</a> this is a no-op if the work item is already scheduled or submitted, even if <code>delay</code> is <code>K_NO_WAIT</code>.</p>
+<p>@funcprops \isr_ok</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queue</td><td>the queue on which the work item should be submitted after the delay.</td></tr>
+    <tr><td class="paramname">dwork</td><td>pointer to the delayable work item.</td></tr>
+    <tr><td class="paramname">delay</td><td>the time to wait before submitting the work item. If <code>K_NO_WAIT</code> and the work is not pending this is equivalent to <a class="el" href="group__workqueue__apis.html#ga5353e76f73db070614f50d06d292d05c" title="Submit a work item to a queue.">k_work_submit_to_queue()</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>if work was already scheduled or submitted. </td></tr>
+    <tr><td class="paramname">1</td><td>if work has been scheduled. </td></tr>
+    <tr><td class="paramname">-EBUSY</td><td>if <code>delay</code> is <code>K_NO_WAIT</code> and <a class="el" href="group__workqueue__apis.html#ga5353e76f73db070614f50d06d292d05c" title="Submit a work item to a queue.">k_work_submit_to_queue()</a> fails with this code. </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>if <code>delay</code> is <code>K_NO_WAIT</code> and <a class="el" href="group__workqueue__apis.html#ga5353e76f73db070614f50d06d292d05c" title="Submit a work item to a queue.">k_work_submit_to_queue()</a> fails with this code. </td></tr>
+    <tr><td class="paramname">-ENODEV</td><td>if <code>delay</code> is <code>K_NO_WAIT</code> and <a class="el" href="group__workqueue__apis.html#ga5353e76f73db070614f50d06d292d05c" title="Submit a work item to a queue.">k_work_submit_to_queue()</a> fails with this code. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gace61b59575093d7442f39ccb7be686d7" name="gace61b59575093d7442f39ccb7be686d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gace61b59575093d7442f39ccb7be686d7">&#9670;&#160;</a></span>k_work_submit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_submit </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work.html">k_work</a> *&#160;</td>
+          <td class="paramname"><em>work</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Submit a work item to the system queue. </p>
+<p>@funcprops \isr_ok</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>pointer to the work item.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>as with <a class="el" href="group__workqueue__apis.html#ga5353e76f73db070614f50d06d292d05c" title="Submit a work item to a queue.">k_work_submit_to_queue()</a>. </dd></dl>
+
+</div>
+</div>
+<a id="ga5353e76f73db070614f50d06d292d05c" name="ga5353e76f73db070614f50d06d292d05c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5353e76f73db070614f50d06d292d05c">&#9670;&#160;</a></span>k_work_submit_to_queue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int k_work_submit_to_queue </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structk__work__q.html">k_work_q</a> *&#160;</td>
+          <td class="paramname"><em>queue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structk__work.html">k_work</a> *&#160;</td>
+          <td class="paramname"><em>work</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Submit a work item to a queue. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queue</td><td>pointer to the work queue on which the item should run. If NULL the queue from the most recent submission will be used.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>@funcprops \isr_ok</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work</td><td>pointer to the work item.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Valores retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>if work was already submitted to a queue </td></tr>
+    <tr><td class="paramname">1</td><td>if work was not submitted and has been queued to <code>queue</code> </td></tr>
+    <tr><td class="paramname">2</td><td>if work was running and has been queued to the queue that was running it </td></tr>
+    <tr><td class="paramname">-EBUSY</td><td><ul>
+<li>if work submission was rejected because the work item is cancelling; or</li>
+<li><code>queue</code> is draining; or</li>
+<li><code>queue</code> is plugged. </li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>if <code>queue</code> is null and the work item has never been run. </td></tr>
+    <tr><td class="paramname">-ENODEV</td><td>if <code>queue</code> has not been started. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga3091bc8fab5311252e41634a97a18589" name="ga3091bc8fab5311252e41634a97a18589"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3091bc8fab5311252e41634a97a18589">&#9670;&#160;</a></span>k_work_user_queue_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void k_work_user_queue_start </td>
+          <td>(</td>
+          <td class="paramtype">struct k_work_user_q *&#160;</td>
+          <td class="paramname"><em>work_q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structz__thread__stack__element.html">k_thread_stack_t</a> *&#160;</td>
+          <td class="paramname"><em>stack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>stack_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>prio</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start a workqueue in user mode. </p>
+<p>This works identically to <a class="el" href="group__workqueue__apis.html#gadfc56554f9bfe7b52309d79660188593" title="Initialize a work queue.">k_work_queue_start()</a> except it is callable from user mode, and the worker thread created will run in user mode. The caller must have permissions granted on both the work_q parameter's thread and queue objects, and the same restrictions on priority apply as k_thread_create().</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">work_q</td><td>Address of workqueue. </td></tr>
+    <tr><td class="paramname">stack</td><td>Pointer to work queue thread's stack space, as defined by K_THREAD_STACK_DEFINE() </td></tr>
+    <tr><td class="paramname">stack_size</td><td>Size of the work queue thread's stack (in bytes), which should either be the same constant passed to K_THREAD_STACK_DEFINE() or the value of K_THREAD_STACK_SIZEOF(). </td></tr>
+    <tr><td class="paramname">prio</td><td>Priority of the work queue's thread. </td></tr>
+    <tr><td class="paramname">name</td><td>optional thread name. If not null a copy is made into the thread's name buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

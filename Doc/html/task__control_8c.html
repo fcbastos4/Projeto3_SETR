@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Referência ao ficheiro src/lib/task_control.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b3c87b2fa1d6c4f620d118bbd7fef182.html">src</a></li><li class="navelem"><a class="el" href="dir_8b3fcbc492313622bac063bf67013253.html">lib</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle"><div class="title">Referência ao ficheiro task_control.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Implementação do controlo de aquecimento via PWM.  
+<a href="#details">Mais...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_source.html">zephyr/kernel.h</a>&gt;</code><br />
+<code>#include &lt;zephyr/sys/printk.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2gpio_8h_source.html">zephyr/drivers/gpio.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2pwm_8h_source.html">zephyr/drivers/pwm.h</a>&gt;</code><br />
+<code>#include &lt;zephyr/device.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="devicetree_8h_source.html">zephyr/devicetree.h</a>&gt;</code><br />
+<code>#include &lt;zephyr/logging/log.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="task__control_8h_source.html">task_control.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sensor__temp_8h_source.html">sensor_temp.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="RTDB_8h_source.html">RTDB.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Diagrama de dependências de inclusão para task_control.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="task__control_8c__incl.png" border="0" usemap="#asrc_2lib_2task__control_8c" alt=""/></div>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a516354509ce1004018d00ada0052a188" id="r_a516354509ce1004018d00ada0052a188"><td class="memItemLeft" align="right" valign="top"><a id="a516354509ce1004018d00ada0052a188" name="a516354509ce1004018d00ada0052a188"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LEDPWM_NODE</b>&#160;&#160;&#160;DT_NODELABEL(pwm_led2)</td></tr>
+<tr class="separator:a516354509ce1004018d00ada0052a188"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacaca0988244bd3a888ca5befa89f44b" id="r_aacaca0988244bd3a888ca5befa89f44b"><td class="memItemLeft" align="right" valign="top"><a id="aacaca0988244bd3a888ca5befa89f44b" name="aacaca0988244bd3a888ca5befa89f44b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PWM_PERIOD</b>&#160;&#160;&#160;<a class="el" href="group__pwm__interface.html#ga1cccc226a23866dd2dcac9467ff3af0e">PWM_MSEC</a>(20)</td></tr>
+<tr class="separator:aacaca0988244bd3a888ca5befa89f44b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c653240078f906d13dfd6c646efecbb" id="r_a5c653240078f906d13dfd6c646efecbb"><td class="memItemLeft" align="right" valign="top"><a id="a5c653240078f906d13dfd6c646efecbb" name="a5c653240078f906d13dfd6c646efecbb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONTROL_THREAD_PRIORITY</b>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:a5c653240078f906d13dfd6c646efecbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9cccd83619e76e3bed45ece14854b1a" id="r_ae9cccd83619e76e3bed45ece14854b1a"><td class="memItemLeft" align="right" valign="top"><a id="ae9cccd83619e76e3bed45ece14854b1a" name="ae9cccd83619e76e3bed45ece14854b1a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CONTROL_INTERVAL_MS</b>&#160;&#160;&#160;500</td></tr>
+<tr class="separator:ae9cccd83619e76e3bed45ece14854b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a5858370ba78e8a9a68c4cc6a87d5d5d8" id="r_a5858370ba78e8a9a68c4cc6a87d5d5d8"><td class="memItemLeft" align="right" valign="top"><a id="a5858370ba78e8a9a68c4cc6a87d5d5d8" name="a5858370ba78e8a9a68c4cc6a87d5d5d8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>LOG_MODULE_REGISTER</b> (task_control, LOG_LEVEL_INF)</td></tr>
+<tr class="separator:a5858370ba78e8a9a68c4cc6a87d5d5d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae32e2a316d230fa946cb0fd989c0369a" id="r_ae32e2a316d230fa946cb0fd989c0369a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="task__control_8c.html#ae32e2a316d230fa946cb0fd989c0369a">task_control_init</a> (void)</td></tr>
+<tr class="memdesc:ae32e2a316d230fa946cb0fd989c0369a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa o módulo de controlo.  <br /></td></tr>
+<tr class="separator:ae32e2a316d230fa946cb0fd989c0369a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Implementação do controlo de aquecimento via PWM. </p>
+<p>Este módulo implementa uma thread responsável por controlar o estado da temperatura atual, setpoint e histerese, utilizando um sinal PWM para aquecer uma resitencia de aquecimento.</p>
+<dl class="section author"><dt>Autor</dt><dd>Guilherme Santos, 103143 <br  />
+ </dd>
+<dd>
+Francisco Bastos, 103359 <br  />
+ </dd></dl>
+<dl class="section date"><dt>Data</dt><dd>22/05/2025 </dd></dl>
+</div><h2 class="groupheader">Documentação das funções</h2>
+<a id="ae32e2a316d230fa946cb0fd989c0369a" name="ae32e2a316d230fa946cb0fd989c0369a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae32e2a316d230fa946cb0fd989c0369a">&#9670;&#160;</a></span>task_control_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void task_control_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inicializa o módulo de controlo. </p>
+<p>Configura os dispositivos necessários ( PWM ) para o controlo dos atuadores responsáveis pelo sistema de aquecimento. Esta função deve ser chamada no arranque do sistema. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

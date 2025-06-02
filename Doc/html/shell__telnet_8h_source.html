@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/shell/shell_telnet.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_c0b63281e132a21c8d95feffde9845e0.html">shell</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">shell_telnet.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2019 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef SHELL_TELNET_H__</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define SHELL_TELNET_H__</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;zephyr/shell/shell.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structshell__transport__api.html">shell_transport_api</a> shell_telnet_transport_api;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structshell__telnet__line__buf.html">   19</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structshell__telnet__line__buf.html">shell_telnet_line_buf</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structshell__telnet__line__buf.html#afdbfe1cad9640b8d9575303c77a8a97e">   21</a></span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="structshell__telnet__line__buf.html#afdbfe1cad9640b8d9575303c77a8a97e">buf</a>[CONFIG_SHELL_TELNET_LINE_BUF_SIZE];</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structshell__telnet__line__buf.html#aaad811b725d1cb7a4601457c0a98b4aa">   24</a></span>    uint16_t <a class="code hl_variable" href="structshell__telnet__line__buf.html#aaad811b725d1cb7a4601457c0a98b4aa">len</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>};</div>
+</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structshell__telnet.html">   28</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structshell__telnet.html">shell_telnet</a> {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structshell__telnet.html#a24d3153d685bb02815de5c3fc7384e3f">   30</a></span>    shell_transport_handler_t <a class="code hl_variable" href="structshell__telnet.html#a24d3153d685bb02815de5c3fc7384e3f">shell_handler</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structshell__telnet.html#a4aca00a70a037d7d4564c9e8f6600225">   33</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structshell__telnet.html#a4aca00a70a037d7d4564c9e8f6600225">shell_context</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structshell__telnet.html#a753f176c0d29c02a97899c79d62d2f1e">   36</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structshell__telnet__line__buf.html">shell_telnet_line_buf</a> <a class="code hl_variable" href="structshell__telnet.html#a753f176c0d29c02a97899c79d62d2f1e">line_out</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structshell__telnet.html#a4181dc4c7835e0c4b5cf3e2f80b5b895">   39</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__context.html">net_context</a> *<a class="code hl_variable" href="structshell__telnet.html#a4181dc4c7835e0c4b5cf3e2f80b5b895">client_ctx</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structshell__telnet.html#af3d3839f8eccd43658e6b14c3fefe174">   42</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__fifo.html">k_fifo</a> <a class="code hl_variable" href="structshell__telnet.html#af3d3839f8eccd43658e6b14c3fefe174">rx_fifo</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structshell__telnet.html#a1b3150a2d968fb8bb9bfe46f1b940979">   48</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__delayable.html">k_work_delayable</a> <a class="code hl_variable" href="structshell__telnet.html#a1b3150a2d968fb8bb9bfe46f1b940979">send_work</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__work__sync.html">k_work_sync</a> work_sync;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structshell__telnet.html#aaa088d04a181344111d2675f3e22a49b">   52</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structshell__telnet.html#aaa088d04a181344111d2675f3e22a49b">output_lock</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#define SHELL_TELNET_DEFINE(_name)                  \</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">    static struct shell_telnet _name##_shell_telnet;        \</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">    struct shell_transport _name = {                \</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">        .api = &amp;shell_telnet_transport_api,         \</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">        .ctx = (struct shell_telnet *)&amp;_name##_shell_telnet \</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structshell.html">shell</a> *shell_backend_telnet_get_ptr(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#endif </span><span class="comment">/* SHELL_TELNET_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="astructk__fifo_html"><div class="ttname"><a href="structk__fifo.html">k_fifo</a></div><div class="ttdef"><b>Definição</b> kernel.h:2386</div></div>
+<div class="ttc" id="astructk__work__delayable_html"><div class="ttname"><a href="structk__work__delayable.html">k_work_delayable</a></div><div class="ttdoc">A structure used to submit work after a delay.</div><div class="ttdef"><b>Definição</b> kernel.h:3894</div></div>
+<div class="ttc" id="astructk__work__sync_html"><div class="ttname"><a href="structk__work__sync.html">k_work_sync</a></div><div class="ttdoc">A structure holding internal state for a pending synchronous operation on a work item or queue.</div><div class="ttdef"><b>Definição</b> kernel.h:3977</div></div>
+<div class="ttc" id="astructnet__context_html"><div class="ttname"><a href="structnet__context.html">net_context</a></div><div class="ttdef"><b>Definição</b> net_context.h:201</div></div>
+<div class="ttc" id="astructshell__telnet__line__buf_html"><div class="ttname"><a href="structshell__telnet__line__buf.html">shell_telnet_line_buf</a></div><div class="ttdef"><b>Definição</b> shell_telnet.h:19</div></div>
+<div class="ttc" id="astructshell__telnet__line__buf_html_aaad811b725d1cb7a4601457c0a98b4aa"><div class="ttname"><a href="structshell__telnet__line__buf.html#aaad811b725d1cb7a4601457c0a98b4aa">shell_telnet_line_buf::len</a></div><div class="ttdeci">uint16_t len</div><div class="ttdef"><b>Definição</b> shell_telnet.h:24</div></div>
+<div class="ttc" id="astructshell__telnet__line__buf_html_afdbfe1cad9640b8d9575303c77a8a97e"><div class="ttname"><a href="structshell__telnet__line__buf.html#afdbfe1cad9640b8d9575303c77a8a97e">shell_telnet_line_buf::buf</a></div><div class="ttdeci">char buf[CONFIG_SHELL_TELNET_LINE_BUF_SIZE]</div><div class="ttdef"><b>Definição</b> shell_telnet.h:21</div></div>
+<div class="ttc" id="astructshell__telnet_html"><div class="ttname"><a href="structshell__telnet.html">shell_telnet</a></div><div class="ttdef"><b>Definição</b> shell_telnet.h:28</div></div>
+<div class="ttc" id="astructshell__telnet_html_a1b3150a2d968fb8bb9bfe46f1b940979"><div class="ttname"><a href="structshell__telnet.html#a1b3150a2d968fb8bb9bfe46f1b940979">shell_telnet::send_work</a></div><div class="ttdeci">struct k_work_delayable send_work</div><div class="ttdef"><b>Definição</b> shell_telnet.h:48</div></div>
+<div class="ttc" id="astructshell__telnet_html_a24d3153d685bb02815de5c3fc7384e3f"><div class="ttname"><a href="structshell__telnet.html#a24d3153d685bb02815de5c3fc7384e3f">shell_telnet::shell_handler</a></div><div class="ttdeci">shell_transport_handler_t shell_handler</div><div class="ttdef"><b>Definição</b> shell_telnet.h:30</div></div>
+<div class="ttc" id="astructshell__telnet_html_a4181dc4c7835e0c4b5cf3e2f80b5b895"><div class="ttname"><a href="structshell__telnet.html#a4181dc4c7835e0c4b5cf3e2f80b5b895">shell_telnet::client_ctx</a></div><div class="ttdeci">struct net_context * client_ctx</div><div class="ttdef"><b>Definição</b> shell_telnet.h:39</div></div>
+<div class="ttc" id="astructshell__telnet_html_a4aca00a70a037d7d4564c9e8f6600225"><div class="ttname"><a href="structshell__telnet.html#a4aca00a70a037d7d4564c9e8f6600225">shell_telnet::shell_context</a></div><div class="ttdeci">void * shell_context</div><div class="ttdef"><b>Definição</b> shell_telnet.h:33</div></div>
+<div class="ttc" id="astructshell__telnet_html_a753f176c0d29c02a97899c79d62d2f1e"><div class="ttname"><a href="structshell__telnet.html#a753f176c0d29c02a97899c79d62d2f1e">shell_telnet::line_out</a></div><div class="ttdeci">struct shell_telnet_line_buf line_out</div><div class="ttdef"><b>Definição</b> shell_telnet.h:36</div></div>
+<div class="ttc" id="astructshell__telnet_html_aaa088d04a181344111d2675f3e22a49b"><div class="ttname"><a href="structshell__telnet.html#aaa088d04a181344111d2675f3e22a49b">shell_telnet::output_lock</a></div><div class="ttdeci">bool output_lock</div><div class="ttdef"><b>Definição</b> shell_telnet.h:52</div></div>
+<div class="ttc" id="astructshell__telnet_html_af3d3839f8eccd43658e6b14c3fefe174"><div class="ttname"><a href="structshell__telnet.html#af3d3839f8eccd43658e6b14c3fefe174">shell_telnet::rx_fifo</a></div><div class="ttdeci">struct k_fifo rx_fifo</div><div class="ttdef"><b>Definição</b> shell_telnet.h:42</div></div>
+<div class="ttc" id="astructshell__transport__api_html"><div class="ttname"><a href="structshell__transport__api.html">shell_transport_api</a></div><div class="ttdoc">Unified shell transport interface.</div><div class="ttdef"><b>Definição</b> shell.h:612</div></div>
+<div class="ttc" id="astructshell_html"><div class="ttname"><a href="structshell.html">shell</a></div><div class="ttdoc">Shell instance internals.</div><div class="ttdef"><b>Definição</b> shell.h:848</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

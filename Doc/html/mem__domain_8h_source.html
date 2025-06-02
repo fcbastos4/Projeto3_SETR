@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/app_memory/mem_domain.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_4cf9fc223695d50b5174c0a7e5bb6366.html">app_memory</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">mem_domain.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2017 Linaro Limited</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2018-2020 Intel Corporation</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef INCLUDE_APP_MEMORY_MEM_DOMAIN_H</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define INCLUDE_APP_MEMORY_MEM_DOMAIN_H</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="dlist_8h.html">zephyr/sys/dlist.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="toolchain_8h.html">zephyr/toolchain.h</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;zephyr/kernel/thread.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#ifdef CONFIG_USERSPACE</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#ifdef _ARCH_MEM_PARTITION_ALIGN_CHECK</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#define K_MEM_PARTITION_DEFINE(name, start, size, attr) \</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">    _ARCH_MEM_PARTITION_ALIGN_CHECK(start, size); \</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">    struct k_mem_partition name =\</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">        { (uintptr_t)start, size, attr}</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#define K_MEM_PARTITION_DEFINE(name, start, size, attr) \</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">    struct k_mem_partition name =\</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">        { (uintptr_t)start, size, attr}</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#endif </span><span class="comment">/* _ARCH_MEM_PARTITION_ALIGN_CHECK */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">struct </span>k_mem_partition {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    uintptr_t start;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">size_t</span> size;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_struct" href="structk__mem__partition__attr__t.html">k_mem_partition_attr_t</a> attr;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">struct </span>k_mem_domain {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#ifdef CONFIG_ARCH_MEM_DOMAIN_DATA</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structarch__mem__domain.html">arch_mem_domain</a> arch;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_ARCH_MEM_DOMAIN_DATA */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">struct </span>k_mem_partition partitions[CONFIG_MAX_DOMAIN_PARTITIONS];</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <a class="code hl_struct" href="struct__dnode.html">sys_dlist_t</a> mem_domain_q;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    uint8_t num_partitions;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>};</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keyword">extern</span> <span class="keyword">struct </span>k_mem_domain k_mem_domain_default;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">/* To support use of IS_ENABLED for the APIs below */</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">struct </span>k_mem_domain;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="keyword">struct </span>k_mem_partition;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_USERSPACE */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="group__mem__domain__apis.html#ga8a987bc85c02925685fe87213fe26c5a">  129</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="group__mem__domain__apis.html#ga8a987bc85c02925685fe87213fe26c5a">k_mem_domain_init</a>(<span class="keyword">struct</span> k_mem_domain *domain, uint8_t num_parts,</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                 <span class="keyword">struct</span> k_mem_partition *parts[]);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="group__mem__domain__apis.html#ga07da0cf76f8db54373b88d40be63b138">  159</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="group__mem__domain__apis.html#ga07da0cf76f8db54373b88d40be63b138">k_mem_domain_add_partition</a>(<span class="keyword">struct</span> k_mem_domain *domain,</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                      <span class="keyword">struct</span> k_mem_partition *part);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="group__mem__domain__apis.html#gada4f8ce609d6b720ee88e11544555fc2">  174</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="group__mem__domain__apis.html#gada4f8ce609d6b720ee88e11544555fc2">k_mem_domain_remove_partition</a>(<span class="keyword">struct</span> k_mem_domain *domain,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>                     <span class="keyword">struct</span> k_mem_partition *part);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="group__mem__domain__apis.html#ga7b4d6148d9375f020a268961d5afde2d">  188</a></span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="group__mem__domain__apis.html#ga7b4d6148d9375f020a268961d5afde2d">k_mem_domain_add_thread</a>(<span class="keyword">struct</span> k_mem_domain *domain,</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                   <a class="code hl_struct" href="structk__thread.html">k_tid_t</a> thread);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>}</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">#endif </span><span class="comment">/* INCLUDE_APP_MEMORY_MEM_DOMAIN_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adlist_8h_html"><div class="ttname"><a href="dlist_8h.html">dlist.h</a></div></div>
+<div class="ttc" id="agroup__mem__domain__apis_html_ga07da0cf76f8db54373b88d40be63b138"><div class="ttname"><a href="group__mem__domain__apis.html#ga07da0cf76f8db54373b88d40be63b138">k_mem_domain_add_partition</a></div><div class="ttdeci">int k_mem_domain_add_partition(struct k_mem_domain *domain, struct k_mem_partition *part)</div><div class="ttdoc">Add a memory partition into a memory domain.</div></div>
+<div class="ttc" id="agroup__mem__domain__apis_html_ga7b4d6148d9375f020a268961d5afde2d"><div class="ttname"><a href="group__mem__domain__apis.html#ga7b4d6148d9375f020a268961d5afde2d">k_mem_domain_add_thread</a></div><div class="ttdeci">int k_mem_domain_add_thread(struct k_mem_domain *domain, k_tid_t thread)</div><div class="ttdoc">Add a thread into a memory domain.</div></div>
+<div class="ttc" id="agroup__mem__domain__apis_html_ga8a987bc85c02925685fe87213fe26c5a"><div class="ttname"><a href="group__mem__domain__apis.html#ga8a987bc85c02925685fe87213fe26c5a">k_mem_domain_init</a></div><div class="ttdeci">int k_mem_domain_init(struct k_mem_domain *domain, uint8_t num_parts, struct k_mem_partition *parts[])</div><div class="ttdoc">Initialize a memory domain.</div></div>
+<div class="ttc" id="agroup__mem__domain__apis_html_gada4f8ce609d6b720ee88e11544555fc2"><div class="ttname"><a href="group__mem__domain__apis.html#gada4f8ce609d6b720ee88e11544555fc2">k_mem_domain_remove_partition</a></div><div class="ttdeci">int k_mem_domain_remove_partition(struct k_mem_domain *domain, struct k_mem_partition *part)</div><div class="ttdoc">Remove a memory partition from a memory domain.</div></div>
+<div class="ttc" id="astruct__dnode_html"><div class="ttname"><a href="struct__dnode.html">_dnode</a></div><div class="ttdef"><b>Definição</b> dlist.h:37</div></div>
+<div class="ttc" id="astructarch__mem__domain_html"><div class="ttname"><a href="structarch__mem__domain.html">arch_mem_domain</a></div><div class="ttdef"><b>Definição</b> arch.h:46</div></div>
+<div class="ttc" id="astructk__mem__partition__attr__t_html"><div class="ttname"><a href="structk__mem__partition__attr__t.html">k_mem_partition_attr_t</a></div><div class="ttdef"><b>Definição</b> arm_mpu_v7m.h:160</div></div>
+<div class="ttc" id="astructk__thread_html"><div class="ttname"><a href="structk__thread.html">k_thread</a></div><div class="ttdef"><b>Definição</b> thread.h:250</div></div>
+<div class="ttc" id="atoolchain_8h_html"><div class="ttname"><a href="toolchain_8h.html">toolchain.h</a></div><div class="ttdoc">Macros to abstract toolchain specific capabilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

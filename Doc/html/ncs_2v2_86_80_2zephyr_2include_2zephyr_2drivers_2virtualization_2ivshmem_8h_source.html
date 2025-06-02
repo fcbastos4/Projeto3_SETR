@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/virtualization/ivshmem.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_f442b119e1ff1845e9b6746f8312c324.html">virtualization</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ivshmem.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2020 Intel Corporation</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_VIRTUALIZATION_IVSHMEM_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_VIRTUALIZATION_IVSHMEM_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#define IVSHMEM_V2_PROTO_UNDEFINED  0x0000</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#define IVSHMEM_V2_PROTO_NET        0x0001</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">typedef</span> size_t (*ivshmem_get_mem_f)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                    uintptr_t *memmap);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">typedef</span> uint32_t (*ivshmem_get_id_f)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">typedef</span> uint16_t (*ivshmem_get_vectors_f)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">typedef</span> int (*ivshmem_int_peer_f)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                  uint32_t peer_id, uint16_t vector);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">typedef</span> int (*ivshmem_register_handler_f)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                      <span class="keyword">struct </span><a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *signal,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                      uint16_t vector);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#ifdef CONFIG_IVSHMEM_V2</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">typedef</span> size_t (*ivshmem_get_rw_mem_section_f)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                           uintptr_t *memmap);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">typedef</span> size_t (*ivshmem_get_output_mem_section_f)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                           uint32_t peer_id,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                           uintptr_t *memmap);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">typedef</span> uint32_t (*ivshmem_get_state_f)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                    uint32_t peer_id);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">typedef</span> int (*ivshmem_set_state_f)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                   uint32_t <a class="code hl_variable" href="structdevice.html#abe18f600adc4ab760963928477cc944e">state</a>);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">typedef</span> uint32_t (*ivshmem_get_max_peers_f)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">typedef</span> uint16_t (*ivshmem_get_protocol_f)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">typedef</span> int (*ivshmem_enable_interrupts_f)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                       <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_IVSHMEM_V2 */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="};">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structivshmem__driver__api.html">   67</a></span>__subsystem <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    ivshmem_get_mem_f get_mem;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    ivshmem_get_id_f get_id;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    ivshmem_get_vectors_f get_vectors;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    ivshmem_int_peer_f int_peer;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    ivshmem_register_handler_f register_handler;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#ifdef CONFIG_IVSHMEM_V2</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    ivshmem_get_rw_mem_section_f get_rw_mem_section;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    ivshmem_get_output_mem_section_f get_output_mem_section;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    ivshmem_get_state_f get_state;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    ivshmem_set_state_f set_state;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    ivshmem_get_max_peers_f get_max_peers;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    ivshmem_get_protocol_f get_protocol;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    ivshmem_enable_interrupts_f enable_interrupts;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>};</div>
+</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="group__ivshmem.html#gab858c49fabd514826e7b1281d932752d">   92</a></span>__syscall <span class="keywordtype">size_t</span> <a class="code hl_function" href="group__ivshmem.html#gab858c49fabd514826e7b1281d932752d">ivshmem_get_mem</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                 uintptr_t *memmap);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">size_t</span> z_impl_ivshmem_get_mem(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                        uintptr_t *memmap)</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>{</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *api =</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">return</span> api-&gt;get_mem(dev, memmap);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="group__ivshmem.html#gaab39590ffe0666b9c17dc2e4ca831173">  111</a></span>__syscall uint32_t <a class="code hl_function" href="group__ivshmem.html#gaab39590ffe0666b9c17dc2e4ca831173">ivshmem_get_id</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t z_impl_ivshmem_get_id(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>{</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *api =</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">return</span> api-&gt;get_id(dev);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>}</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="group__ivshmem.html#ga98ed158a9ac70af03686f26bf5f680e4">  128</a></span>__syscall uint16_t <a class="code hl_function" href="group__ivshmem.html#ga98ed158a9ac70af03686f26bf5f680e4">ivshmem_get_vectors</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="keyword">static</span> <span class="keyword">inline</span> uint16_t z_impl_ivshmem_get_vectors(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>{</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *api =</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordflow">return</span> api-&gt;get_vectors(dev);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>}</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="group__ivshmem.html#ga9c50c20b072ca8a0d9e6fe3c892e73e9">  147</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__ivshmem.html#ga9c50c20b072ca8a0d9e6fe3c892e73e9">ivshmem_int_peer</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                   uint32_t peer_id, uint16_t vector);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_ivshmem_int_peer(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                      uint32_t peer_id, uint16_t vector)</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>{</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *api =</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordflow">return</span> api-&gt;int_peer(dev, peer_id, vector);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>}</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="group__ivshmem.html#gae56df4e569adcc7337db270aa83382c7">  174</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__ivshmem.html#gae56df4e569adcc7337db270aa83382c7">ivshmem_register_handler</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>                       <span class="keyword">struct</span> <a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *signal,</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>                       uint16_t vector);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_ivshmem_register_handler(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                          <span class="keyword">struct</span> <a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *signal,</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>                          uint16_t vector)</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>{</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *api =</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keywordflow">return</span> api-&gt;register_handler(dev, signal, vector);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>}</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">#ifdef CONFIG_IVSHMEM_V2</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>__syscall <span class="keywordtype">size_t</span> ivshmem_get_rw_mem_section(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>                        uintptr_t *memmap);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">size_t</span> z_impl_ivshmem_get_rw_mem_section(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                               uintptr_t *memmap)</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>{</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *api =</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordflow">return</span> api-&gt;get_rw_mem_section(dev, memmap);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>}</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>__syscall <span class="keywordtype">size_t</span> ivshmem_get_output_mem_section(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>                        uint32_t peer_id,</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>                        uintptr_t *memmap);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">size_t</span> z_impl_ivshmem_get_output_mem_section(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                               uint32_t peer_id,</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>                               uintptr_t *memmap)</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>{</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *api =</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordflow">return</span> api-&gt;get_output_mem_section(dev, peer_id, memmap);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>}</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>__syscall uint32_t ivshmem_get_state(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                     uint32_t peer_id);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t z_impl_ivshmem_get_state(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                        uint32_t peer_id)</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>{</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *api =</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordflow">return</span> api-&gt;get_state(dev, peer_id);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>}</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>__syscall <span class="keywordtype">int</span> ivshmem_set_state(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>                uint32_t state);</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_ivshmem_set_state(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                       uint32_t state)</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>{</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *api =</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keywordflow">return</span> api-&gt;set_state(dev, state);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>}</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>__syscall uint32_t ivshmem_get_max_peers(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t z_impl_ivshmem_get_max_peers(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>{</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *api =</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <span class="keywordflow">return</span> api-&gt;get_max_peers(dev);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>}</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>__syscall uint16_t ivshmem_get_protocol(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="keyword">static</span> <span class="keyword">inline</span> uint16_t z_impl_ivshmem_get_protocol(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>{</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *api =</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <span class="keywordflow">return</span> api-&gt;get_protocol(dev);</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>}</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>__syscall <span class="keywordtype">int</span> ivshmem_enable_interrupts(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>                    <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_ivshmem_enable_interrupts(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>                           <span class="keywordtype">bool</span> enable)</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>{</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *api =</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>        (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structivshmem__driver__api.html">ivshmem_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keywordflow">return</span> api-&gt;enable_interrupts(dev, enable);</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>}</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span> </div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_IVSHMEM_V2 */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>}</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="preprocessor">#include &lt;syscalls/ivshmem.h&gt;</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_VIRTUALIZATION_IVSHMEM_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__ivshmem_html_ga98ed158a9ac70af03686f26bf5f680e4"><div class="ttname"><a href="group__ivshmem.html#ga98ed158a9ac70af03686f26bf5f680e4">ivshmem_get_vectors</a></div><div class="ttdeci">__syscall uint16_t ivshmem_get_vectors(const struct device *dev)</div><div class="ttdoc">Get the number of interrupt vectors we can use.</div></div>
+<div class="ttc" id="agroup__ivshmem_html_ga9c50c20b072ca8a0d9e6fe3c892e73e9"><div class="ttname"><a href="group__ivshmem.html#ga9c50c20b072ca8a0d9e6fe3c892e73e9">ivshmem_int_peer</a></div><div class="ttdeci">__syscall int ivshmem_int_peer(const struct device *dev, uint32_t peer_id, uint16_t vector)</div><div class="ttdoc">Interrupt another VM.</div></div>
+<div class="ttc" id="agroup__ivshmem_html_gaab39590ffe0666b9c17dc2e4ca831173"><div class="ttname"><a href="group__ivshmem.html#gaab39590ffe0666b9c17dc2e4ca831173">ivshmem_get_id</a></div><div class="ttdeci">__syscall uint32_t ivshmem_get_id(const struct device *dev)</div><div class="ttdoc">Get our VM ID.</div></div>
+<div class="ttc" id="agroup__ivshmem_html_gab858c49fabd514826e7b1281d932752d"><div class="ttname"><a href="group__ivshmem.html#gab858c49fabd514826e7b1281d932752d">ivshmem_get_mem</a></div><div class="ttdeci">__syscall size_t ivshmem_get_mem(const struct device *dev, uintptr_t *memmap)</div><div class="ttdoc">Get the inter-VM shared memory.</div></div>
+<div class="ttc" id="agroup__ivshmem_html_gae56df4e569adcc7337db270aa83382c7"><div class="ttname"><a href="group__ivshmem.html#gae56df4e569adcc7337db270aa83382c7">ivshmem_register_handler</a></div><div class="ttdeci">__syscall int ivshmem_register_handler(const struct device *dev, struct k_poll_signal *signal, uint16_t vector)</div><div class="ttdoc">Register a vector notification (interrupt) handler.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructdevice_html_abe18f600adc4ab760963928477cc944e"><div class="ttname"><a href="structdevice.html#abe18f600adc4ab760963928477cc944e">device::state</a></div><div class="ttdeci">struct device_state * state</div><div class="ttdef"><b>Definição</b> device.h:393</div></div>
+<div class="ttc" id="astructivshmem__driver__api_html"><div class="ttname"><a href="structivshmem__driver__api.html">ivshmem_driver_api</a></div><div class="ttdef"><b>Definição</b> ivshmem.h:67</div></div>
+<div class="ttc" id="astructk__poll__signal_html"><div class="ttname"><a href="structk__poll__signal.html">k_poll_signal</a></div><div class="ttdef"><b>Definição</b> kernel.h:5629</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

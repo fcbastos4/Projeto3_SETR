@@ -1,0 +1,53 @@
+digraph "net_if"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [id="Node000001",label="net_if",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Network Interface structure."];
+  Node2 -> Node1 [id="edge1_Node000001_Node000002",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" if_dev",fontcolor="grey" ];
+  Node2 [id="Node000002",label="net_if_dev",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structnet__if__dev.html",tooltip="Network Interface Device structure."];
+  Node3 -> Node2 [id="edge2_Node000002_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" dev",fontcolor="grey" ];
+  Node3 [id="Node000003",label="device",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structdevice.html",tooltip="Runtime device structure (in ROM) per driver instance."];
+  Node4 -> Node3 [id="edge3_Node000003_Node000004",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" state",fontcolor="grey" ];
+  Node4 [id="Node000004",label="device_state",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structdevice__state.html",tooltip="Runtime device dynamic structure (in RAM) per driver instance."];
+  Node5 -> Node2 [id="edge4_Node000002_Node000005",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" l2",fontcolor="grey" ];
+  Node5 [id="Node000005",label="net_l2",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structnet__l2.html",tooltip="Network L2 structure."];
+  Node6 -> Node2 [id="edge5_Node000002_Node000006",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" link_addr",fontcolor="grey" ];
+  Node6 [id="Node000006",label="net_linkaddr",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structnet__linkaddr.html",tooltip="Hardware link address structure."];
+  Node7 -> Node1 [id="edge6_Node000001_Node000007",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" config",fontcolor="grey" ];
+  Node7 [id="Node000007",label="net_if_config",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structnet__if__config.html",tooltip="IP and other configuration related data for network interface."];
+  Node8 -> Node1 [id="edge7_Node000001_Node000008",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" lock\ntx_lock",fontcolor="grey" ];
+  Node8 [id="Node000008",label="k_mutex",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structk__mutex.html",tooltip=" "];
+  Node9 -> Node8 [id="edge8_Node000008_Node000009",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" wait_q",fontcolor="grey" ];
+  Node9 [id="Node000009",label="_wait_q_t",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$struct__wait__q__t.html",tooltip=" "];
+  Node10 -> Node9 [id="edge9_Node000009_Node000010",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" waitq",fontcolor="grey" ];
+  Node10 [id="Node000010",label="_dnode",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$struct__dnode.html",tooltip=" "];
+  Node10 -> Node10 [id="edge10_Node000010_Node000010",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" head\nnext\nprev\ntail",fontcolor="grey" ];
+  Node11 -> Node8 [id="edge11_Node000008_Node000011",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" owner",fontcolor="grey" ];
+  Node11 [id="Node000011",label="k_thread",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structk__thread.html",tooltip=" "];
+  Node12 -> Node11 [id="edge12_Node000011_Node000012",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" base",fontcolor="grey" ];
+  Node12 [id="Node000012",label="_thread_base",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$struct__thread__base.html",tooltip=" "];
+  Node10 -> Node12 [id="edge13_Node000012_Node000010",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" qnode_dlist",fontcolor="grey" ];
+  Node13 -> Node12 [id="edge14_Node000012_Node000013",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" qnode_rb",fontcolor="grey" ];
+  Node13 [id="Node000013",label="rbnode",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structrbnode.html",tooltip="Balanced red/black tree node structure."];
+  Node9 -> Node12 [id="edge15_Node000012_Node000009",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" pended_on",fontcolor="grey" ];
+  Node14 -> Node11 [id="edge16_Node000011_Node000014",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" callee_saved",fontcolor="grey" ];
+  Node14 [id="Node000014",label="_callee_saved",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$struct__callee__saved.html",tooltip=" "];
+  Node9 -> Node11 [id="edge17_Node000011_Node000009",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" join_queue",fontcolor="grey" ];
+  Node15 -> Node11 [id="edge18_Node000011_Node000015",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" resource_pool",fontcolor="grey" ];
+  Node15 [id="Node000015",label="k_heap",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$structk__heap.html",tooltip=" "];
+  Node16 -> Node15 [id="edge19_Node000015_Node000016",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" heap",fontcolor="grey" ];
+  Node16 [id="Node000016",label="sys_heap",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$structsys__heap.html",tooltip=" "];
+  Node9 -> Node15 [id="edge20_Node000015_Node000009",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" wait_q",fontcolor="grey" ];
+  Node17 -> Node15 [id="edge21_Node000015_Node000017",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" lock",fontcolor="grey" ];
+  Node17 [id="Node000017",label="k_spinlock",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structk__spinlock.html",tooltip="Kernel Spin Lock."];
+  Node18 -> Node11 [id="edge22_Node000011_Node000018",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" arch",fontcolor="grey" ];
+  Node18 [id="Node000018",label="_thread_arch",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$struct__thread__arch.html",tooltip=" "];
+  Node19 -> Node18 [id="edge23_Node000018_Node000019",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" preempFloatReg",fontcolor="grey" ];
+  Node19 [id="Node000019",label="s_preempFloatReg",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$structs__preempFloatReg.html",tooltip=" "];
+  Node20 -> Node19 [id="edge24_Node000019_Node000020",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" fpRegs",fontcolor="grey" ];
+  Node20 [id="Node000020",label="s_FpRegSet",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$structs__FpRegSet.html",tooltip=" "];
+  Node21 -> Node19 [id="edge25_Node000019_Node000021",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" fpRegsEx",fontcolor="grey" ];
+  Node21 [id="Node000021",label="s_FpRegSetEx",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$structs__FpRegSetEx.html",tooltip=" "];
+}

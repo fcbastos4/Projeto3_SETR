@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/sd/sd.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_0985f71fa6c9a5d8730bf834c4085494.html">sd</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">sd.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="sd_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright 2022 NXP</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_SD_SD_H_</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define ZEPHYR_INCLUDE_SD_SD_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sdhc_8h.html">zephyr/drivers/sdhc.h</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="sd_8h.html#a52167aac735d93085a5eebc6f50e1bba">   26</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="sd_8h.html#a52167aac735d93085a5eebc6f50e1bba">card_status</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="sd_8h.html#a52167aac735d93085a5eebc6f50e1bbaaa059e919850b36b85ebe33a07050e453">   27</a></span>    <a class="code hl_enumvalue" href="sd_8h.html#a52167aac735d93085a5eebc6f50e1bbaaa059e919850b36b85ebe33a07050e453">CARD_UNINITIALIZED</a> = 0, </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="sd_8h.html#a52167aac735d93085a5eebc6f50e1bbaa5458e6fab05f8c1afbe7d191eb489e5e">   28</a></span>    <a class="code hl_enumvalue" href="sd_8h.html#a52167aac735d93085a5eebc6f50e1bbaa5458e6fab05f8c1afbe7d191eb489e5e">CARD_ERROR</a> = 1, </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="sd_8h.html#a52167aac735d93085a5eebc6f50e1bbaa839d17bb0bee41a125a617683bce17c9">   29</a></span>    <a class="code hl_enumvalue" href="sd_8h.html#a52167aac735d93085a5eebc6f50e1bbaa839d17bb0bee41a125a617683bce17c9">CARD_INITIALIZED</a> = 2, </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
+</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14">   35</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14">card_type</a> {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14a8b26749346e26d9257cd53c48a68eda4">   36</a></span>    <a class="code hl_enumvalue" href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14a8b26749346e26d9257cd53c48a68eda4">CARD_SDMMC</a> = 0, </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14a5afc0338b5a0541bb34f1a5b67139b6b">   37</a></span>    <a class="code hl_enumvalue" href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14a5afc0338b5a0541bb34f1a5b67139b6b">CARD_SDIO</a> = 1, </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14ad527710e81e76e0938689015c2013090">   38</a></span>    <a class="code hl_enumvalue" href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14ad527710e81e76e0938689015c2013090">CARD_COMBO</a> = 2, </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14a868625c31f4384780de3992d78b93345">   39</a></span>    <a class="code hl_enumvalue" href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14a868625c31f4384780de3992d78b93345">CARD_MMC</a> = 3, </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
+</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="};">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structsdio__func.html">   48</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structsdio__func.html">sdio_func</a> {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structsdio__func.html#a3bc320f1ca7268344b848a998ace615c">   49</a></span>    <span class="keyword">enum</span> sdio_func_num <a class="code hl_variable" href="structsdio__func.html#a3bc320f1ca7268344b848a998ace615c">num</a>; </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structsdio__func.html#a7387979362ba892c013a7a69e004d96b">   50</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsd__card.html">sd_card</a> *<a class="code hl_variable" href="structsdio__func.html#a7387979362ba892c013a7a69e004d96b">card</a>; </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structsdio__func.html#af83e71e628841b8acf70130261a97060">   51</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsdio__cis.html">sdio_cis</a> <a class="code hl_variable" href="structsdio__func.html#af83e71e628841b8acf70130261a97060">cis</a>; </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structsdio__func.html#aa4ad13eb77f656020b38f6cf165e2965">   52</a></span>    uint16_t <a class="code hl_variable" href="structsdio__func.html#aa4ad13eb77f656020b38f6cf165e2965">block_size</a>; </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structsd__card.html">   63</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structsd__card.html">sd_card</a> {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structsd__card.html#afabeaa207f2f5caaec8cfedac6b35661">   64</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_variable" href="structsd__card.html#afabeaa207f2f5caaec8cfedac6b35661">sdhc</a>; </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structsd__card.html#a875b7081a3e647b782cdb835372f5029">   65</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsdhc__io.html">sdhc_io</a> <a class="code hl_variable" href="structsd__card.html#a875b7081a3e647b782cdb835372f5029">bus_io</a>; </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structsd__card.html#ae8e85d2fc44a97b42247d87a5c2aafdf">   66</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__sdhc__interface.html#ga34041edf280f125b8500809226b3de5d">sd_voltage</a> <a class="code hl_variable" href="structsd__card.html#ae8e85d2fc44a97b42247d87a5c2aafdf">card_voltage</a>; </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structsd__card.html#aba2501397066d0930691c40778405aa7">   67</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__mutex.html">k_mutex</a> <a class="code hl_variable" href="structsd__card.html#aba2501397066d0930691c40778405aa7">lock</a>; </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structsd__card.html#a9f597007072d3af5b70ea5cc2a4cbd29">   68</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsdhc__host__props.html">sdhc_host_props</a> <a class="code hl_variable" href="structsd__card.html#a9f597007072d3af5b70ea5cc2a4cbd29">host_props</a>; </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structsd__card.html#a856e7ea75577c62be17dc5d8c99908f4">   69</a></span>    uint32_t <a class="code hl_variable" href="structsd__card.html#a856e7ea75577c62be17dc5d8c99908f4">ocr</a>; </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structsd__card.html#a03eac55046f7222c97d60fa919e3cae9">   70</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsd__switch__caps.html">sd_switch_caps</a> <a class="code hl_variable" href="structsd__card.html#a03eac55046f7222c97d60fa919e3cae9">switch_caps</a>; </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structsd__card.html#a17a021db8aa3a8ad224e422f3854eafc">   71</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structsd__card.html#a17a021db8aa3a8ad224e422f3854eafc">num_io</a>: 3; </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structsd__card.html#a1db9545598f0eb6b6440e63d4941d2ab">   72</a></span>    uint16_t <a class="code hl_variable" href="structsd__card.html#a1db9545598f0eb6b6440e63d4941d2ab">relative_addr</a>; </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structsd__card.html#acdcfdaab67d284ef3a8ee3202fd7a538">   73</a></span>    uint32_t <a class="code hl_variable" href="structsd__card.html#acdcfdaab67d284ef3a8ee3202fd7a538">block_count</a>; </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structsd__card.html#a3d29b73f029af5182475c2a2d365173b">   74</a></span>    uint16_t <a class="code hl_variable" href="structsd__card.html#a3d29b73f029af5182475c2a2d365173b">block_size</a>; </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structsd__card.html#a5a9a627df5daf23b468ce705bf5f5f81">   75</a></span>    uint8_t <a class="code hl_variable" href="structsd__card.html#a5a9a627df5daf23b468ce705bf5f5f81">sd_version</a>; </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="structsd__card.html#a8beccfe60fc714c159528fbd2c122b16">   76</a></span>    uint8_t <a class="code hl_variable" href="structsd__card.html#a8beccfe60fc714c159528fbd2c122b16">card_speed</a>; </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structsd__card.html#a03d7be3154dcd881df60921681a4f308">   77</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="sd_8h.html#a52167aac735d93085a5eebc6f50e1bba">card_status</a> <a class="code hl_variable" href="structsd__card.html#a03d7be3154dcd881df60921681a4f308">status</a>; </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structsd__card.html#a798acb1bb9495d1009a23f139d269108">   78</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14">card_type</a> <a class="code hl_variable" href="structsd__card.html#a798acb1bb9495d1009a23f139d269108">type</a>; </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structsd__card.html#ad5d6e798ae8b04d829fb8131f6cb1ccf">   79</a></span>    uint16_t <a class="code hl_variable" href="structsd__card.html#ad5d6e798ae8b04d829fb8131f6cb1ccf">flags</a>; </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structsd__card.html#a38383b8f5c1f9bff1537f407fbec9faf">   80</a></span>    uint8_t <a class="code hl_variable" href="structsd__card.html#a38383b8f5c1f9bff1537f407fbec9faf">bus_width</a>; </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structsd__card.html#ab122e442ab3ba5078c99a98a861ec908">   81</a></span>    uint32_t <a class="code hl_variable" href="structsd__card.html#ab122e442ab3ba5078c99a98a861ec908">cccr_flags</a>; </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structsd__card.html#a93986ee5db729d9931b4ababe41c303a">   82</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsdio__func.html">sdio_func</a> <a class="code hl_variable" href="structsd__card.html#a93986ee5db729d9931b4ababe41c303a">func0</a>; </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    uint8_t card_buffer[CONFIG_SD_BUFFER_SIZE]</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        __aligned(CONFIG_SDHC_BUFFER_ALIGNMENT); <span class="comment">/* Card internal buffer */</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>};</div>
+</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="sd_8h.html#ac02b6fe46112b8b891e9713ef24bd131">   99</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="sd_8h.html#ac02b6fe46112b8b891e9713ef24bd131">sd_init</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *sdhc_dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structsd__card.html">sd_card</a> *<a class="code hl_variable" href="structsdio__func.html#a7387979362ba892c013a7a69e004d96b">card</a>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="sd_8h.html#aed46c9c492c5c6434a6ae4d6151ac7d3">  108</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="sd_8h.html#aed46c9c492c5c6434a6ae4d6151ac7d3">sd_is_card_present</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *sdhc_dev);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>}</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_SD_SD_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__sdhc__interface_html_ga34041edf280f125b8500809226b3de5d"><div class="ttname"><a href="group__sdhc__interface.html#ga34041edf280f125b8500809226b3de5d">sd_voltage</a></div><div class="ttdeci">sd_voltage</div><div class="ttdoc">SD voltage.</div><div class="ttdef"><b>Definição</b> sdhc.h:144</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sdhc_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2sdhc_8h.html">sdhc.h</a></div><div class="ttdoc">SD Host Controller public API header file.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="asd_8h_html_a52167aac735d93085a5eebc6f50e1bba"><div class="ttname"><a href="sd_8h.html#a52167aac735d93085a5eebc6f50e1bba">card_status</a></div><div class="ttdeci">card_status</div><div class="ttdoc">card status. Used interally by subsystem.</div><div class="ttdef"><b>Definição</b> sd.h:26</div></div>
+<div class="ttc" id="asd_8h_html_a52167aac735d93085a5eebc6f50e1bbaa5458e6fab05f8c1afbe7d191eb489e5e"><div class="ttname"><a href="sd_8h.html#a52167aac735d93085a5eebc6f50e1bbaa5458e6fab05f8c1afbe7d191eb489e5e">CARD_ERROR</a></div><div class="ttdeci">@ CARD_ERROR</div><div class="ttdef"><b>Definição</b> sd.h:28</div></div>
+<div class="ttc" id="asd_8h_html_a52167aac735d93085a5eebc6f50e1bbaa839d17bb0bee41a125a617683bce17c9"><div class="ttname"><a href="sd_8h.html#a52167aac735d93085a5eebc6f50e1bbaa839d17bb0bee41a125a617683bce17c9">CARD_INITIALIZED</a></div><div class="ttdeci">@ CARD_INITIALIZED</div><div class="ttdef"><b>Definição</b> sd.h:29</div></div>
+<div class="ttc" id="asd_8h_html_a52167aac735d93085a5eebc6f50e1bbaaa059e919850b36b85ebe33a07050e453"><div class="ttname"><a href="sd_8h.html#a52167aac735d93085a5eebc6f50e1bbaaa059e919850b36b85ebe33a07050e453">CARD_UNINITIALIZED</a></div><div class="ttdeci">@ CARD_UNINITIALIZED</div><div class="ttdef"><b>Definição</b> sd.h:27</div></div>
+<div class="ttc" id="asd_8h_html_ac02b6fe46112b8b891e9713ef24bd131"><div class="ttname"><a href="sd_8h.html#ac02b6fe46112b8b891e9713ef24bd131">sd_init</a></div><div class="ttdeci">int sd_init(const struct device *sdhc_dev, struct sd_card *card)</div><div class="ttdoc">Initialize an SD device.</div></div>
+<div class="ttc" id="asd_8h_html_aed46c9c492c5c6434a6ae4d6151ac7d3"><div class="ttname"><a href="sd_8h.html#aed46c9c492c5c6434a6ae4d6151ac7d3">sd_is_card_present</a></div><div class="ttdeci">bool sd_is_card_present(const struct device *sdhc_dev)</div><div class="ttdoc">checks to see if card is present in the SD slot</div></div>
+<div class="ttc" id="asd_8h_html_aee707e2ff5691dbdefd9341a18de7b14"><div class="ttname"><a href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14">card_type</a></div><div class="ttdeci">card_type</div><div class="ttdoc">card type. Used interally by subsystem.</div><div class="ttdef"><b>Definição</b> sd.h:35</div></div>
+<div class="ttc" id="asd_8h_html_aee707e2ff5691dbdefd9341a18de7b14a5afc0338b5a0541bb34f1a5b67139b6b"><div class="ttname"><a href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14a5afc0338b5a0541bb34f1a5b67139b6b">CARD_SDIO</a></div><div class="ttdeci">@ CARD_SDIO</div><div class="ttdef"><b>Definição</b> sd.h:37</div></div>
+<div class="ttc" id="asd_8h_html_aee707e2ff5691dbdefd9341a18de7b14a868625c31f4384780de3992d78b93345"><div class="ttname"><a href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14a868625c31f4384780de3992d78b93345">CARD_MMC</a></div><div class="ttdeci">@ CARD_MMC</div><div class="ttdef"><b>Definição</b> sd.h:39</div></div>
+<div class="ttc" id="asd_8h_html_aee707e2ff5691dbdefd9341a18de7b14a8b26749346e26d9257cd53c48a68eda4"><div class="ttname"><a href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14a8b26749346e26d9257cd53c48a68eda4">CARD_SDMMC</a></div><div class="ttdeci">@ CARD_SDMMC</div><div class="ttdef"><b>Definição</b> sd.h:36</div></div>
+<div class="ttc" id="asd_8h_html_aee707e2ff5691dbdefd9341a18de7b14ad527710e81e76e0938689015c2013090"><div class="ttname"><a href="sd_8h.html#aee707e2ff5691dbdefd9341a18de7b14ad527710e81e76e0938689015c2013090">CARD_COMBO</a></div><div class="ttdeci">@ CARD_COMBO</div><div class="ttdef"><b>Definição</b> sd.h:38</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructk__mutex_html"><div class="ttname"><a href="structk__mutex.html">k_mutex</a></div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:31</div></div>
+<div class="ttc" id="astructsd__card_html"><div class="ttname"><a href="structsd__card.html">sd_card</a></div><div class="ttdoc">SD card structure.</div><div class="ttdef"><b>Definição</b> sd.h:63</div></div>
+<div class="ttc" id="astructsd__card_html_a03d7be3154dcd881df60921681a4f308"><div class="ttname"><a href="structsd__card.html#a03d7be3154dcd881df60921681a4f308">sd_card::status</a></div><div class="ttdeci">enum card_status status</div><div class="ttdef"><b>Definição</b> sd.h:77</div></div>
+<div class="ttc" id="astructsd__card_html_a03eac55046f7222c97d60fa919e3cae9"><div class="ttname"><a href="structsd__card.html#a03eac55046f7222c97d60fa919e3cae9">sd_card::switch_caps</a></div><div class="ttdeci">struct sd_switch_caps switch_caps</div><div class="ttdef"><b>Definição</b> sd.h:70</div></div>
+<div class="ttc" id="astructsd__card_html_a17a021db8aa3a8ad224e422f3854eafc"><div class="ttname"><a href="structsd__card.html#a17a021db8aa3a8ad224e422f3854eafc">sd_card::num_io</a></div><div class="ttdeci">unsigned int num_io</div><div class="ttdef"><b>Definição</b> sd.h:71</div></div>
+<div class="ttc" id="astructsd__card_html_a1db9545598f0eb6b6440e63d4941d2ab"><div class="ttname"><a href="structsd__card.html#a1db9545598f0eb6b6440e63d4941d2ab">sd_card::relative_addr</a></div><div class="ttdeci">uint16_t relative_addr</div><div class="ttdef"><b>Definição</b> sd.h:72</div></div>
+<div class="ttc" id="astructsd__card_html_a38383b8f5c1f9bff1537f407fbec9faf"><div class="ttname"><a href="structsd__card.html#a38383b8f5c1f9bff1537f407fbec9faf">sd_card::bus_width</a></div><div class="ttdeci">uint8_t bus_width</div><div class="ttdef"><b>Definição</b> sd.h:80</div></div>
+<div class="ttc" id="astructsd__card_html_a3d29b73f029af5182475c2a2d365173b"><div class="ttname"><a href="structsd__card.html#a3d29b73f029af5182475c2a2d365173b">sd_card::block_size</a></div><div class="ttdeci">uint16_t block_size</div><div class="ttdef"><b>Definição</b> sd.h:74</div></div>
+<div class="ttc" id="astructsd__card_html_a5a9a627df5daf23b468ce705bf5f5f81"><div class="ttname"><a href="structsd__card.html#a5a9a627df5daf23b468ce705bf5f5f81">sd_card::sd_version</a></div><div class="ttdeci">uint8_t sd_version</div><div class="ttdef"><b>Definição</b> sd.h:75</div></div>
+<div class="ttc" id="astructsd__card_html_a798acb1bb9495d1009a23f139d269108"><div class="ttname"><a href="structsd__card.html#a798acb1bb9495d1009a23f139d269108">sd_card::type</a></div><div class="ttdeci">enum card_type type</div><div class="ttdef"><b>Definição</b> sd.h:78</div></div>
+<div class="ttc" id="astructsd__card_html_a856e7ea75577c62be17dc5d8c99908f4"><div class="ttname"><a href="structsd__card.html#a856e7ea75577c62be17dc5d8c99908f4">sd_card::ocr</a></div><div class="ttdeci">uint32_t ocr</div><div class="ttdef"><b>Definição</b> sd.h:69</div></div>
+<div class="ttc" id="astructsd__card_html_a875b7081a3e647b782cdb835372f5029"><div class="ttname"><a href="structsd__card.html#a875b7081a3e647b782cdb835372f5029">sd_card::bus_io</a></div><div class="ttdeci">struct sdhc_io bus_io</div><div class="ttdef"><b>Definição</b> sd.h:65</div></div>
+<div class="ttc" id="astructsd__card_html_a8beccfe60fc714c159528fbd2c122b16"><div class="ttname"><a href="structsd__card.html#a8beccfe60fc714c159528fbd2c122b16">sd_card::card_speed</a></div><div class="ttdeci">uint8_t card_speed</div><div class="ttdef"><b>Definição</b> sd.h:76</div></div>
+<div class="ttc" id="astructsd__card_html_a93986ee5db729d9931b4ababe41c303a"><div class="ttname"><a href="structsd__card.html#a93986ee5db729d9931b4ababe41c303a">sd_card::func0</a></div><div class="ttdeci">struct sdio_func func0</div><div class="ttdef"><b>Definição</b> sd.h:82</div></div>
+<div class="ttc" id="astructsd__card_html_a9f597007072d3af5b70ea5cc2a4cbd29"><div class="ttname"><a href="structsd__card.html#a9f597007072d3af5b70ea5cc2a4cbd29">sd_card::host_props</a></div><div class="ttdeci">struct sdhc_host_props host_props</div><div class="ttdef"><b>Definição</b> sd.h:68</div></div>
+<div class="ttc" id="astructsd__card_html_ab122e442ab3ba5078c99a98a861ec908"><div class="ttname"><a href="structsd__card.html#ab122e442ab3ba5078c99a98a861ec908">sd_card::cccr_flags</a></div><div class="ttdeci">uint32_t cccr_flags</div><div class="ttdef"><b>Definição</b> sd.h:81</div></div>
+<div class="ttc" id="astructsd__card_html_aba2501397066d0930691c40778405aa7"><div class="ttname"><a href="structsd__card.html#aba2501397066d0930691c40778405aa7">sd_card::lock</a></div><div class="ttdeci">struct k_mutex lock</div><div class="ttdef"><b>Definição</b> sd.h:67</div></div>
+<div class="ttc" id="astructsd__card_html_acdcfdaab67d284ef3a8ee3202fd7a538"><div class="ttname"><a href="structsd__card.html#acdcfdaab67d284ef3a8ee3202fd7a538">sd_card::block_count</a></div><div class="ttdeci">uint32_t block_count</div><div class="ttdef"><b>Definição</b> sd.h:73</div></div>
+<div class="ttc" id="astructsd__card_html_ad5d6e798ae8b04d829fb8131f6cb1ccf"><div class="ttname"><a href="structsd__card.html#ad5d6e798ae8b04d829fb8131f6cb1ccf">sd_card::flags</a></div><div class="ttdeci">uint16_t flags</div><div class="ttdef"><b>Definição</b> sd.h:79</div></div>
+<div class="ttc" id="astructsd__card_html_ae8e85d2fc44a97b42247d87a5c2aafdf"><div class="ttname"><a href="structsd__card.html#ae8e85d2fc44a97b42247d87a5c2aafdf">sd_card::card_voltage</a></div><div class="ttdeci">enum sd_voltage card_voltage</div><div class="ttdef"><b>Definição</b> sd.h:66</div></div>
+<div class="ttc" id="astructsd__card_html_afabeaa207f2f5caaec8cfedac6b35661"><div class="ttname"><a href="structsd__card.html#afabeaa207f2f5caaec8cfedac6b35661">sd_card::sdhc</a></div><div class="ttdeci">const struct device * sdhc</div><div class="ttdef"><b>Definição</b> sd.h:64</div></div>
+<div class="ttc" id="astructsd__switch__caps_html"><div class="ttname"><a href="structsd__switch__caps.html">sd_switch_caps</a></div><div class="ttdoc">SD switch capabilities.</div><div class="ttdef"><b>Definição</b> sd_spec.h:488</div></div>
+<div class="ttc" id="astructsdhc__host__props_html"><div class="ttname"><a href="structsdhc__host__props.html">sdhc_host_props</a></div><div class="ttdoc">SD host controller properties.</div><div class="ttdef"><b>Definição</b> sdhc.h:223</div></div>
+<div class="ttc" id="astructsdhc__io_html"><div class="ttname"><a href="structsdhc__io.html">sdhc_io</a></div><div class="ttdoc">SD host controller I/O control structure.</div><div class="ttdef"><b>Definição</b> sdhc.h:208</div></div>
+<div class="ttc" id="astructsdio__cis_html"><div class="ttname"><a href="structsdio__cis.html">sdio_cis</a></div><div class="ttdoc">SDIO common CIS tuple properties.</div><div class="ttdef"><b>Definição</b> sd_spec.h:901</div></div>
+<div class="ttc" id="astructsdio__func_html"><div class="ttname"><a href="structsdio__func.html">sdio_func</a></div><div class="ttdoc">SDIO function definition.</div><div class="ttdef"><b>Definição</b> sd.h:48</div></div>
+<div class="ttc" id="astructsdio__func_html_a3bc320f1ca7268344b848a998ace615c"><div class="ttname"><a href="structsdio__func.html#a3bc320f1ca7268344b848a998ace615c">sdio_func::num</a></div><div class="ttdeci">enum sdio_func_num num</div><div class="ttdef"><b>Definição</b> sd.h:49</div></div>
+<div class="ttc" id="astructsdio__func_html_a7387979362ba892c013a7a69e004d96b"><div class="ttname"><a href="structsdio__func.html#a7387979362ba892c013a7a69e004d96b">sdio_func::card</a></div><div class="ttdeci">struct sd_card * card</div><div class="ttdef"><b>Definição</b> sd.h:50</div></div>
+<div class="ttc" id="astructsdio__func_html_aa4ad13eb77f656020b38f6cf165e2965"><div class="ttname"><a href="structsdio__func.html#aa4ad13eb77f656020b38f6cf165e2965">sdio_func::block_size</a></div><div class="ttdeci">uint16_t block_size</div><div class="ttdef"><b>Definição</b> sd.h:52</div></div>
+<div class="ttc" id="astructsdio__func_html_af83e71e628841b8acf70130261a97060"><div class="ttname"><a href="structsdio__func.html#af83e71e628841b8acf70130261a97060">sdio_func::cis</a></div><div class="ttdeci">struct sdio_cis cis</div><div class="ttdef"><b>Definição</b> sd.h:51</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

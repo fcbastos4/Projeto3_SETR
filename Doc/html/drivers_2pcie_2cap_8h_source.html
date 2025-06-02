@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/pcie/cap.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_788a9880ebb5eeb5807f257361732b7b.html">pcie</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">cap.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="drivers_2pcie_2cap_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2021 BayLibre, SAS</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_PCIE_CAP_H_</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_PCIE_CAP_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga890142bda671b3558cd881f4b91a43ab">   23</a></span><span class="preprocessor">#define PCI_CAP_ID_NULL     0x00U   </span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga9379bf318dd400e1076fbd5f0e331adb">   24</a></span><span class="preprocessor">#define PCI_CAP_ID_PM       0x01U   </span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gac68c228e23e701fd4040b89c42537eac">   25</a></span><span class="preprocessor">#define PCI_CAP_ID_AGP      0x02U   </span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gaf419a56a517635f4d9f8a5c6f5fd9d08">   26</a></span><span class="preprocessor">#define PCI_CAP_ID_VPD      0x03U   </span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga6d286311dd9f54468f125fd367683f74">   27</a></span><span class="preprocessor">#define PCI_CAP_ID_SLOTID   0x04U   </span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gad19597699011d0e047083968d2e835bd">   28</a></span><span class="preprocessor">#define PCI_CAP_ID_MSI      0x05U   </span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga74356319083570ca7e5cf9a3eaaadd9b">   29</a></span><span class="preprocessor">#define PCI_CAP_ID_CHSWP    0x06U   </span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga24709fe61430ca25fabe665d8b1efca0">   30</a></span><span class="preprocessor">#define PCI_CAP_ID_PCIX     0x07U   </span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gad50ed1a81153a04fa19534823d0109c9">   31</a></span><span class="preprocessor">#define PCI_CAP_ID_HT       0x08U   </span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga11b65631db23369276e062560f53b433">   32</a></span><span class="preprocessor">#define PCI_CAP_ID_VNDR     0x09U   </span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga5a37d779c6259232cd4ec7bc3d80bc83">   33</a></span><span class="preprocessor">#define PCI_CAP_ID_DBG      0x0AU   </span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gad45dfbc6ea8d963703e243dacdee084f">   34</a></span><span class="preprocessor">#define PCI_CAP_ID_CCRC     0x0BU   </span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gae538cdbc7eba80aac860f3340823f559">   35</a></span><span class="preprocessor">#define PCI_CAP_ID_SHPC     0x0CU   </span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga8814c4f32748170e8b5f15dc2ade5dc5">   36</a></span><span class="preprocessor">#define PCI_CAP_ID_SSVID    0x0DU   </span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gae351b2497f7231bfa2c08e97ba589cb7">   37</a></span><span class="preprocessor">#define PCI_CAP_ID_AGP3     0x0EU   </span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga20c7aadce06547a3ea37ce705ff0d289">   38</a></span><span class="preprocessor">#define PCI_CAP_ID_SECDEV   0x0FU   </span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga9b0efbb129a8600203135a64377beed0">   39</a></span><span class="preprocessor">#define PCI_CAP_ID_EXP      0x10U   </span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga419307c3f83f3dca9aaa329de41dae63">   40</a></span><span class="preprocessor">#define PCI_CAP_ID_MSIX     0x11U   </span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga437d2f840145a2aae97880ad3579ca7d">   41</a></span><span class="preprocessor">#define PCI_CAP_ID_SATA     0x12U   </span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga7bf330224972c1a16cbafa907387b9ed">   42</a></span><span class="preprocessor">#define PCI_CAP_ID_AF       0x13U   </span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga591d30c052c32a4f3cbb510e8b052b62">   43</a></span><span class="preprocessor">#define PCI_CAP_ID_EA       0x14U   </span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gad00f421c7bc8613ad7770ea2e0a5d8da">   44</a></span><span class="preprocessor">#define PCI_CAP_ID_FPB      0x14U   </span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga2f6c4feb384e41711aa53545952e3cac">   54</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_NULL    0x0000U </span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga224acf772427857ca1f5a0b155c30d63">   55</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_ERR 0x0001U </span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gaaa8d5de1c1925dea16e40b72fafa5b8f">   56</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_VC  0x0002U </span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga29a18f51cad5281e3f6a283d3c7acb49">   57</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_DSN 0x0003U </span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gadc91da3b61af0b0a047ec74860dc3201">   58</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_PWR 0x0004U </span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga46f3607fa47b26ef099f9bfdcdb0763f">   59</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_RCLD    0x0005U </span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga973a2816ae68ab75d5b4118890fd4383">   60</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_RCILC   0x0006U </span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga78b98a43b8e6661d6745df19c8591f47">   61</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_RCEC    0x0007U </span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga2cfa2f9212fb923c3811c0cdc769a877">   62</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_MFVC    0x0008U </span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga7c2b491e1c994730afe08880dfb1b036">   63</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_MFVC_VC 0x0009U </span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga356973ae03fb0d33df4092a311818e9b">   64</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_RCRB    0x000AU </span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gac864550f144038d5bbdf5e556faa640e">   65</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_VNDR    0x000BU </span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gaff6494cd92013933dedbab2e2ae5c6b3">   66</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_CAC 0x000CU </span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga6b63b04d182b916db526525b064ed285">   67</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_ACS 0x000DU </span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gaf890e2f4f3873b60ac83df345ab0cd8f">   68</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_ARI 0x000EU </span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga79a9cb071afc5cff9e699c232841623c">   69</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_ATS 0x000FU </span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gae8767a1dd6e203aa2ccd75d1fd05eb7d">   70</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_SRIOV   0x0010U </span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gaa117a86f2691d8711fa6b70e196ead01">   71</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_MRIOV   0x0011U </span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga2810671833871608043e6e910d79dffd">   72</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_MCAST   0x0012U </span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga37e0ac002e9742bb9177588d2dfa850b">   73</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_PRI 0x0013U </span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gab8be630bf1dc810f2964e979ac46f77c">   74</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_AMD_XXX 0x0014U </span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gabae7e5d40435723e6d808c377753332a">   75</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_REBAR   0x0015U </span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga812c156b93d070a06d3a56b5785788fd">   76</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_DPA 0x0016U </span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga558289987600691fce5574feb253b4cb">   77</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_TPH 0x0017U </span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga9545f09c97f2dd4f751767e6e54326ec">   78</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_LTR 0x0018U </span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gacd1a90cce3892bacc40939a04b707d20">   79</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_SECPCI  0x0019U </span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gaf6c41b4ad9e32c4420cb89cc5a0d51c2">   80</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_PMUX    0x001AU </span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga0c3b5efb8d9fb69a8fdbb9ca147a3069">   81</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_PASID   0x001BU </span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga40f83a1c280acb8f3f3908d860874015">   82</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_DPC 0x001DU </span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga3006998c35d9c8f8e3d69716cda6def7">   83</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_L1SS    0x001EU </span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga134d53764458500ea4ca58fe016f46fa">   84</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_PTM 0x001FU </span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#gab1d94b05177a5064a78e4048eff473b1">   85</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_DVSEC   0x0023U </span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga2e8324ea3b27a63e213252bed6c78ca6">   86</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_DLF 0x0025U </span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga60203711f9fe698f3e7e138e0468645a">   87</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_PL_16GT 0x0026U </span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga56b3b2bd686b6b99c2ae34ae57228160">   88</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_LMR 0x0027U </span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga0087a39c01053f83b3ac3bb3b057ac2a">   89</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_HID 0x0028U </span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga03dafb2eb5449f17dc18898ea319d729">   90</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_NPEM    0x0029U </span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga8a8768d04866a479114bcf276466501f">   91</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_PL_32GT 0x002AU </span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga53e188f6e71f04012e7739e75a015398">   92</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_AP  0x002BU </span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="group__pcie__capabilities.html#ga0e173611874d25c0cd5bd62372542380">   93</a></span><span class="preprocessor">#define PCIE_EXT_CAP_ID_SFI 0x002CU </span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_PCIE_CAP_H_ */</span><span class="preprocessor"></span></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

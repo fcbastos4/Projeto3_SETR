@@ -1,0 +1,722 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/logging/log_msg.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_0a26069ceed4878360ed90003e5f954d.html">logging</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">log_msg.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2021 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_LOGGING_LOG_MSG_H_</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define ZEPHYR_INCLUDE_LOGGING_LOG_MSG_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;zephyr/logging/log_instance.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;zephyr/sys/mpsc_packet.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;zephyr/sys/cbprintf.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;zephyr/sys/atomic.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;zephyr/sys/iterable_sections.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">zephyr/sys/util.h</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="toolchain_8h.html">zephyr/toolchain.h</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifdef __GNUC__</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef alloca</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define alloca __builtin_alloca</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;alloca.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#define LOG_MSG_DEBUG 0</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#define LOG_MSG_DBG(...) IF_ENABLED(LOG_MSG_DEBUG, (printk(__VA_ARGS__)))</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#ifdef CONFIG_LOG_TIMESTAMP_64BIT</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">typedef</span> uint64_t log_timestamp_t;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">typedef</span> uint32_t log_timestamp_t;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define Z_LOG_MSG_LOG 0</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#define Z_LOG_MSG_PACKAGE_BITS 11</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#define Z_LOG_MSG_MAX_PACKAGE BIT_MASK(Z_LOG_MSG_PACKAGE_BITS)</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#define LOG_MSG_GENERIC_HDR \</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">    MPSC_PBUF_HDR;\</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">    uint32_t type:1</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="};">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structlog__msg__desc.html">   56</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structlog__msg__desc.html">log_msg_desc</a> {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    LOG_MSG_GENERIC_HDR;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    uint32_t domain:3;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    uint32_t level:3;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    uint32_t package_len:Z_LOG_MSG_PACKAGE_BITS;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    uint32_t data_len:12;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="};">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="unionlog__msg__source.html">   64</a></span><span class="keyword">union </span><a class="code hl_union" href="unionlog__msg__source.html">log_msg_source</a> {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structlog__source__const__data.html">log_source_const_data</a> *fixed;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structlog__source__dynamic__data.html">log_source_dynamic_data</a> *dynamic;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span> *raw;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>};</div>
+</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="};">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structlog__msg__hdr.html">   70</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structlog__msg__hdr.html">log_msg_hdr</a> {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structlog__msg__desc.html">log_msg_desc</a> desc;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">/* Attempting to keep best alignment. When address is 64 bit and timestamp 32</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment"> * swap the order to have 16 byte header instead of 24 byte.</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#if (INTPTR_MAX &gt; INT32_MAX) &amp;&amp; !CONFIG_LOG_TIMESTAMP_64BIT</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    log_timestamp_t timestamp;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">const</span> <span class="keywordtype">void</span> *source;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">const</span> <span class="keywordtype">void</span> *source;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    log_timestamp_t timestamp;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#if defined(CONFIG_LOG_THREAD_ID_PREFIX)</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordtype">void</span> *tid;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>};</div>
+</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">/* Messages are aligned to alignment required by cbprintf package. */</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="preprocessor">#define Z_LOG_MSG_ALIGNMENT CBPRINTF_PACKAGE_ALIGNMENT</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">#define Z_LOG_MSG_PADDING \</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">    ((sizeof(struct log_msg_hdr) % Z_LOG_MSG_ALIGNMENT) &gt; 0 ? \</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">    (Z_LOG_MSG_ALIGNMENT - (sizeof(struct log_msg_hdr) % Z_LOG_MSG_ALIGNMENT)) : \</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">        0)</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="foldopen" id="foldopen00094" data-start="{" data-end="};">
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="structlog__msg.html">   94</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structlog__msg.html">log_msg</a> {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structlog__msg__hdr.html">log_msg_hdr</a> hdr;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="comment">/* Adding padding to ensure that cbprintf package that follows is</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">     * properly aligned.</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    uint8_t padding[Z_LOG_MSG_PADDING];</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    uint8_t data[];</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>};</div>
+</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>BUILD_ASSERT(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structlog__msg.html">log_msg</a>) % Z_LOG_MSG_ALIGNMENT == 0,</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>         <span class="stringliteral">&quot;Log msg size must aligned&quot;</span>);</div>
+<div class="foldopen" id="foldopen00113" data-start="{" data-end="};">
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="structlog__msg__generic__hdr.html">  113</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structlog__msg__generic__hdr.html">log_msg_generic_hdr</a> {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    LOG_MSG_GENERIC_HDR;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>};</div>
+</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="};">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="unionlog__msg__generic.html">  117</a></span><span class="keyword">union </span><a class="code hl_union" href="unionlog__msg__generic.html">log_msg_generic</a> {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">union </span><a class="code hl_union" href="unionmpsc__pbuf__generic.html">mpsc_pbuf_generic</a> buf;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structlog__msg__generic__hdr.html">log_msg_generic_hdr</a> generic;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structlog__msg.html">log_msg</a> log;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>};</div>
+</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="foldopen" id="foldopen00127" data-start="{" data-end="};">
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="group__log__msg.html#ga90b3717897f4e41e46450bbd75ff533b">  127</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__log__msg.html#ga90b3717897f4e41e46450bbd75ff533b">z_log_msg_mode</a> {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">/* Runtime mode is least efficient but supports all cases thus it is</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment">     * treated as a fallback method when others cannot be used.</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    Z_LOG_MSG_MODE_RUNTIME,</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">/* Mode creates statically a string package on stack and calls a</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment">     * function for creating a message. It takes code size than</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment">     * Z_LOG_MSG_MODE_ZERO_COPY but is a bit slower.</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    Z_LOG_MSG_MODE_FROM_STACK,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="comment">/* Mode calculates size of the message and allocates it and writes</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment">     * directly to the message space. It is the fastest method but requires</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment">     * more code size.</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    Z_LOG_MSG_MODE_ZERO_COPY,</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">/* Mode optimized for simple messages with 0 to 2 32 bit word arguments.*/</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    Z_LOG_MSG_MODE_SIMPLE,</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>};</div>
+</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">#define Z_LOG_MSG_DESC_INITIALIZER(_domain_id, _level, _plen, _dlen) \</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">{ \</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">    .valid = 0, \</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">    .busy = 0, \</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">    .type = Z_LOG_MSG_LOG, \</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">    .domain = _domain_id, \</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor">    .level = _level, \</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">    .package_len = _plen, \</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">    .data_len = _dlen, \</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">}</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">#define Z_LOG_MSG_CBPRINTF_FLAGS(_cstr_cnt) \</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="preprocessor">    (CBPRINTF_PACKAGE_FIRST_RO_STR_CNT(_cstr_cnt) | \</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="preprocessor">    (IS_ENABLED(CONFIG_LOG_MSG_APPEND_RO_STRING_LOC) ? \</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">     CBPRINTF_PACKAGE_ADD_STRING_IDXS : 0))</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">#ifdef CONFIG_LOG_USE_VLA</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="preprocessor">#define Z_LOG_MSG_ON_STACK_ALLOC(ptr, len) \</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">    long long _ll_buf[DIV_ROUND_UP(len, sizeof(long long))]; \</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">    long double _ld_buf[DIV_ROUND_UP(len, sizeof(long double))]; \</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">    ptr = (sizeof(long double) == Z_LOG_MSG_ALIGNMENT) ? \</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">            (struct log_msg *)_ld_buf : (struct log_msg *)_ll_buf; \</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="preprocessor">    if (IS_ENABLED(CONFIG_LOG_TEST_CLEAR_MESSAGE_SPACE)) { \</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="preprocessor">        </span><span class="comment">/* During test fill with 0&#39;s to simplify message comparison */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="preprocessor">        memset(ptr, 0, len); \</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="preprocessor">#else </span><span class="comment">/* Z_LOG_MSG_USE_VLA */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="comment">/* When VLA cannot be used we need to trick compiler a bit and create multiple</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="comment"> * fixed size arrays and take the smallest one that will fit the message.</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="comment"> * Compiler will remove unused arrays and stack usage will be kept similar</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment"> * to vla case, rounded to the size of the used buffer.</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">#define Z_LOG_MSG_ON_STACK_ALLOC(ptr, len) \</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">    long long _ll_buf32[32 / sizeof(long long)]; \</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="preprocessor">    long long _ll_buf48[48 / sizeof(long long)]; \</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">    long long _ll_buf64[64 / sizeof(long long)]; \</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="preprocessor">    long long _ll_buf128[128 / sizeof(long long)]; \</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="preprocessor">    long long _ll_buf256[256 / sizeof(long long)]; \</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="preprocessor">    long double _ld_buf32[32 / sizeof(long double)]; \</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="preprocessor">    long double _ld_buf48[48 / sizeof(long double)]; \</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">    long double _ld_buf64[64 / sizeof(long double)]; \</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="preprocessor">    long double _ld_buf128[128 / sizeof(long double)]; \</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="preprocessor">    long double _ld_buf256[256 / sizeof(long double)]; \</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="preprocessor">    if (sizeof(long double) == Z_LOG_MSG_ALIGNMENT) { \</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="preprocessor">        ptr = (len &gt; 128) ? (struct log_msg *)_ld_buf256 : \</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">            ((len &gt; 64) ? (struct log_msg *)_ld_buf128 : \</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">            ((len &gt; 48) ? (struct log_msg *)_ld_buf64 : \</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="preprocessor">            ((len &gt; 32) ? (struct log_msg *)_ld_buf48 : \</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">                      (struct log_msg *)_ld_buf32)));\</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="preprocessor">    } else { \</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">        ptr = (len &gt; 128) ? (struct log_msg *)_ll_buf256 : \</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">            ((len &gt; 64) ? (struct log_msg *)_ll_buf128 : \</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">            ((len &gt; 48) ? (struct log_msg *)_ll_buf64 : \</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="preprocessor">            ((len &gt; 32) ? (struct log_msg *)_ll_buf48 : \</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="preprocessor">                      (struct log_msg *)_ll_buf32)));\</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="preprocessor">    } \</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="preprocessor">    if (IS_ENABLED(CONFIG_LOG_TEST_CLEAR_MESSAGE_SPACE)) { \</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="preprocessor">        </span><span class="comment">/* During test fill with 0&#39;s to simplify message comparison */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="preprocessor">        memset(ptr, 0, len); \</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="preprocessor">#endif </span><span class="comment">/* Z_LOG_MSG_USE_VLA */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="preprocessor">#define Z_LOG_MSG_ALIGN_OFFSET \</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="preprocessor">    offsetof(struct log_msg, data)</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="preprocessor">#define Z_LOG_MSG_LEN(pkg_len, data_len) \</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="preprocessor">    (offsetof(struct log_msg, data) + pkg_len + (data_len))</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="preprocessor">#define Z_LOG_MSG_ALIGNED_WLEN(pkg_len, data_len) \</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="preprocessor">    DIV_ROUND_UP(ROUND_UP(Z_LOG_MSG_LEN(pkg_len, data_len), \</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="preprocessor">                  Z_LOG_MSG_ALIGNMENT), \</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="preprocessor">             sizeof(uint32_t))</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment"> * With Zephyr SDK 0.14.2, aarch64-zephyr-elf-gcc (10.3.0) fails to ensure $sp</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment"> * is below the active memory during message construction. As a result,</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment"> * interrupts happening in the middle of that process can end up smashing active</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment"> * data and causing a logging fault. Work around this by inserting a compiler</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment"> * barrier after the allocation and before any use to make sure GCC moves the</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment"> * stack pointer soon enough</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="preprocessor">#define Z_LOG_ARM64_VLA_PROTECT() compiler_barrier()</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="preprocessor">#define _LOG_MSG_SIMPLE_XXXX0 1</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="preprocessor">#define _LOG_MSG_SIMPLE_XXXX1 1</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="preprocessor">#define _LOG_MSG_SIMPLE_XXXX2 1</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment">/* Determine if amount of arguments (less than 3) qualifies to  simple message. */</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="preprocessor">#define LOG_MSG_SIMPLE_ARG_CNT_CHECK(...) \</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="preprocessor">    COND_CODE_1(UTIL_CAT(_LOG_MSG_SIMPLE_XXXX, NUM_VA_ARGS_LESS_1(__VA_ARGS__)), (1), (0))</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="comment">/* Set of marcos used to determine if arguments type allows simplified message creation mode. */</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="preprocessor">#define LOG_MSG_SIMPLE_ARG_TYPE_CHECK_0(fmt) 1</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="preprocessor">#define LOG_MSG_SIMPLE_ARG_TYPE_CHECK_1(fmt, arg) Z_CBPRINTF_IS_WORD_NUM(arg)</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="preprocessor">#define LOG_MSG_SIMPLE_ARG_TYPE_CHECK_2(fmt, arg0, arg1) \</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="preprocessor">    Z_CBPRINTF_IS_WORD_NUM(arg0) &amp;&amp; Z_CBPRINTF_IS_WORD_NUM(arg1)</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="foldopen" id="foldopen00250" data-start="" data-end="">
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="group__log__msg.html#gafe4a2adbb6cf19bf4df58311ad6beac8">  250</a></span><span class="preprocessor">#define LOG_MSG_SIMPLE_ARG_TYPE_CHECK(...) \</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="preprocessor">    UTIL_CAT(LOG_MSG_SIMPLE_ARG_TYPE_CHECK_, NUM_VA_ARGS_LESS_1(__VA_ARGS__))(__VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="foldopen" id="foldopen00265" data-start="" data-end="">
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno"><a class="line" href="group__log__msg.html#ga90e5d1e83ce78f638f35add7b98bf7ae">  265</a></span><span class="preprocessor">#define LOG_MSG_SIMPLE_CHECK(...) \</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="preprocessor">    COND_CODE_1(CONFIG_64BIT, (0), (\</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="preprocessor">        COND_CODE_1(LOG_MSG_SIMPLE_ARG_CNT_CHECK(__VA_ARGS__), ( \</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="preprocessor">                LOG_MSG_SIMPLE_ARG_TYPE_CHECK(__VA_ARGS__)), (0))))</span></div>
+</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="comment">/* Helper macro for handing log with one argument. Macro casts the first argument to uint32_t. */</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="preprocessor">#define Z_LOG_MSG_SIMPLE_CREATE_1(_source, _level, ...) \</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="preprocessor">    z_log_msg_simple_create_1(_source, _level, GET_ARG_N(1, __VA_ARGS__), \</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="preprocessor">            (uint32_t)(uintptr_t)GET_ARG_N(2, __VA_ARGS__))</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="comment">/* Helper macro for handing log with two arguments. Macro casts arguments to uint32_t.</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="preprocessor">#define Z_LOG_MSG_SIMPLE_CREATE_2(_source, _level, ...) \</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="preprocessor">    z_log_msg_simple_create_2(_source, _level, GET_ARG_N(1, __VA_ARGS__), \</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="preprocessor">            (uint32_t)(uintptr_t)GET_ARG_N(2, __VA_ARGS__), \</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="preprocessor">            (uint32_t)(uintptr_t)GET_ARG_N(3, __VA_ARGS__))</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="comment">/* Call specific function based on the number of arguments.</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="comment"> * Since up 2 to arguments are supported COND_CODE_0 and COND_CODE_1 can be used to</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="comment"> * handle all cases (0, 1 and 2 arguments). When tracing is enable then for each</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="comment"> * function a macro is create. The difference between function and macro is that</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="comment"> * macro is applied to any input arguments so we need to make sure that it is</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="comment"> * always called with proper number of arguments. For that it is wrapped around</span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="comment"> * into another macro and dummy arguments to cover for cases when there is less</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span><span class="comment"> * arguments in a log call.</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="preprocessor">#define Z_LOG_MSG_SIMPLE_FUNC2(arg_cnt, _source, _level, ...) \</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="preprocessor">    COND_CODE_0(arg_cnt, \</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="preprocessor">            (z_log_msg_simple_create_0(_source, _level, GET_ARG_N(1, __VA_ARGS__))), \</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="preprocessor">            (COND_CODE_1(arg_cnt, ( \</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="preprocessor">                Z_LOG_MSG_SIMPLE_CREATE_1(_source, _level, __VA_ARGS__, dummy) \</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="preprocessor">                ), ( \</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="preprocessor">                Z_LOG_MSG_SIMPLE_CREATE_2(_source, _level, __VA_ARGS__, dummy, dummy) \</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="preprocessor">                ) \</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="preprocessor">            )))</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="foldopen" id="foldopen00310" data-start="" data-end="">
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno"><a class="line" href="group__log__msg.html#gaf39825bcdef376cf77e9844aa87b426c">  310</a></span><span class="preprocessor">#define LOG_MSG_SIMPLE_FUNC(_source, _level, ...) \</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="preprocessor">    Z_LOG_MSG_SIMPLE_FUNC2(NUM_VA_ARGS_LESS_1(__VA_ARGS__), _source, _level, __VA_ARGS__)</span></div>
+</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="foldopen" id="foldopen00323" data-start="" data-end="">
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno"><a class="line" href="group__log__msg.html#ga57d4e6a938cc78e8e840529a8262cd78">  323</a></span><span class="preprocessor">#define Z_LOG_MSG_SIMPLE_ARGS_CREATE(_domain_id, _source, _level, ...) \</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="preprocessor">    IF_ENABLED(LOG_MSG_SIMPLE_ARG_CNT_CHECK(__VA_ARGS__), (\</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="preprocessor">        LOG_MSG_SIMPLE_FUNC(_source, _level, __VA_ARGS__); \</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="preprocessor">    ))</span></div>
+</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="preprocessor">#define Z_LOG_MSG_STACK_CREATE(_cstr_cnt, _domain_id, _source, _level, _data, _dlen, ...) \</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="preprocessor">do { \</span></div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span><span class="preprocessor">    int _plen; \</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="preprocessor">    uint32_t _options = Z_LOG_MSG_CBPRINTF_FLAGS(_cstr_cnt) | \</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="preprocessor">              CBPRINTF_PACKAGE_ADD_RW_STR_POS; \</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="preprocessor">    if (GET_ARG_N(1, __VA_ARGS__) == NULL) { \</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="preprocessor">        _plen = 0; \</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="preprocessor">    } else { \</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="preprocessor">        CBPRINTF_STATIC_PACKAGE(NULL, 0, _plen, Z_LOG_MSG_ALIGN_OFFSET, _options, \</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="preprocessor">                    __VA_ARGS__); \</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="preprocessor">    } \</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="preprocessor">    TOOLCHAIN_IGNORE_WSHADOW_BEGIN \</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="preprocessor">    struct log_msg *_msg; \</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="preprocessor">    TOOLCHAIN_IGNORE_WSHADOW_END \</span></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><span class="preprocessor">    Z_LOG_MSG_ON_STACK_ALLOC(_msg, Z_LOG_MSG_LEN(_plen, 0)); \</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="preprocessor">    Z_LOG_ARM64_VLA_PROTECT(); \</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span><span class="preprocessor">    if (_plen != 0) { \</span></div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="preprocessor">        CBPRINTF_STATIC_PACKAGE(_msg-&gt;data, _plen, \</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="preprocessor">                    _plen, Z_LOG_MSG_ALIGN_OFFSET, _options, \</span></div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="preprocessor">                    __VA_ARGS__);\</span></div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="preprocessor">    } \</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="preprocessor">    struct log_msg_desc _desc = \</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="preprocessor">        Z_LOG_MSG_DESC_INITIALIZER(_domain_id, _level, \</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="preprocessor">                       (uint32_t)_plen, _dlen); \</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="preprocessor">    LOG_MSG_DBG(&quot;creating message on stack: package len: %d, data len: %d\n&quot;, \</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="preprocessor">            _plen, (int)(_dlen)); \</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="preprocessor">    z_log_msg_static_create((void *)_source, _desc, _msg-&gt;data, _data); \</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="preprocessor">} while (false)</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="preprocessor">#ifdef CONFIG_LOG_SPEED</span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="preprocessor">#define Z_LOG_MSG_SIMPLE_CREATE(_cstr_cnt, _domain_id, _source, _level, ...) do { \</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="preprocessor">    int _plen; \</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="preprocessor">    CBPRINTF_STATIC_PACKAGE(NULL, 0, _plen, Z_LOG_MSG_ALIGN_OFFSET, \</span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="preprocessor">                Z_LOG_MSG_CBPRINTF_FLAGS(_cstr_cnt), \</span></div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="preprocessor">                __VA_ARGS__); \</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="preprocessor">    size_t _msg_wlen = Z_LOG_MSG_ALIGNED_WLEN(_plen, 0); \</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="preprocessor">    struct log_msg *_msg = z_log_msg_alloc(_msg_wlen); \</span></div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span><span class="preprocessor">    struct log_msg_desc _desc = \</span></div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="preprocessor">        Z_LOG_MSG_DESC_INITIALIZER(_domain_id, _level, (uint32_t)_plen, 0); \</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="preprocessor">    LOG_MSG_DBG(&quot;creating message zero copy: package len: %d, msg: %p\n&quot;, \</span></div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="preprocessor">            _plen, _msg); \</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span><span class="preprocessor">    if (_msg) { \</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="preprocessor">        CBPRINTF_STATIC_PACKAGE(_msg-&gt;data, _plen, _plen, \</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="preprocessor">                    Z_LOG_MSG_ALIGN_OFFSET, \</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="preprocessor">                    Z_LOG_MSG_CBPRINTF_FLAGS(_cstr_cnt), \</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="preprocessor">                    __VA_ARGS__); \</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="preprocessor">    } \</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="preprocessor">    z_log_msg_finalize(_msg, (void *)_source, _desc, NULL); \</span></div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span><span class="preprocessor">} while (false)</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span><span class="comment">/* Alternative empty macro created to speed up compilation when LOG_SPEED is</span></div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span><span class="comment"> * disabled (default).</span></div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span><span class="preprocessor">#define Z_LOG_MSG_SIMPLE_CREATE(...)</span></div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span> </div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span><span class="comment">/* Macro handles case when local variable with log message string is created. It</span></div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span><span class="comment"> * replaces original string literal with that variable.</span></div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span><span class="preprocessor">#define Z_LOG_FMT_ARGS_2(_name, ...) \</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="preprocessor">    COND_CODE_1(CONFIG_LOG_FMT_SECTION, \</span></div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="preprocessor">        (COND_CODE_0(NUM_VA_ARGS_LESS_1(__VA_ARGS__), \</span></div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span><span class="preprocessor">           (_name), (_name, GET_ARGS_LESS_N(1, __VA_ARGS__)))), \</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span><span class="preprocessor">        (__VA_ARGS__))</span></div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span> </div>
+<div class="foldopen" id="foldopen00402" data-start="" data-end="">
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno"><a class="line" href="group__log__msg.html#gac5964fcbca968712be8174e4a46d6d1c">  402</a></span><span class="preprocessor">#define Z_LOG_FMT_ARGS(_name, ...) \</span></div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span><span class="preprocessor">    COND_CODE_0(NUM_VA_ARGS_LESS_1(_, ##__VA_ARGS__), \</span></div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span><span class="preprocessor">        (NULL), \</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span><span class="preprocessor">        (Z_LOG_FMT_ARGS_2(_name, ##__VA_ARGS__)))</span></div>
+</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span> </div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span><span class="preprocessor">#if defined(CONFIG_LOG_USE_TAGGED_ARGUMENTS)</span></div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span> </div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span><span class="preprocessor">#define Z_LOG_FMT_TAGGED_ARGS_2(_name, ...) \</span></div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span><span class="preprocessor">    COND_CODE_1(CONFIG_LOG_FMT_SECTION, \</span></div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span><span class="preprocessor">            (_name, Z_CBPRINTF_TAGGED_ARGS(NUM_VA_ARGS_LESS_1(__VA_ARGS__), \</span></div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span><span class="preprocessor">                           GET_ARGS_LESS_N(1, __VA_ARGS__))), \</span></div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span><span class="preprocessor">            (GET_ARG_N(1, __VA_ARGS__), \</span></div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span><span class="preprocessor">             Z_CBPRINTF_TAGGED_ARGS(NUM_VA_ARGS_LESS_1(__VA_ARGS__), \</span></div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span><span class="preprocessor">                        GET_ARGS_LESS_N(1, __VA_ARGS__))))</span></div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span> </div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span><span class="preprocessor">#define Z_LOG_FMT_TAGGED_ARGS(_name, ...) \</span></div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span><span class="preprocessor">    COND_CODE_0(NUM_VA_ARGS_LESS_1(_, ##__VA_ARGS__), \</span></div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span><span class="preprocessor">        (Z_CBPRINTF_TAGGED_ARGS(0)), \</span></div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span><span class="preprocessor">        (Z_LOG_FMT_TAGGED_ARGS_2(_name, ##__VA_ARGS__)))</span></div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span> </div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span><span class="preprocessor">#define Z_LOG_FMT_RUNTIME_ARGS(...) \</span></div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span><span class="preprocessor">    Z_LOG_FMT_TAGGED_ARGS(__VA_ARGS__)</span></div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span> </div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span> </div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span><span class="preprocessor">#define Z_LOG_FMT_RUNTIME_ARGS(...) \</span></div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span><span class="preprocessor">    Z_LOG_FMT_ARGS(__VA_ARGS__)</span></div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span> </div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_LOG_USE_TAGGED_ARGUMENTS */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span> </div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span><span class="comment">/* Macro handles case when there is no string provided, in that case variable</span></div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span><span class="comment"> * is not created.</span></div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span><span class="preprocessor">#define Z_LOG_MSG_STR_VAR_IN_SECTION(_name, ...) \</span></div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span><span class="preprocessor">    COND_CODE_0(NUM_VA_ARGS_LESS_1(_, ##__VA_ARGS__), \</span></div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span><span class="preprocessor">            (</span><span class="comment">/* No args provided, no variable */</span><span class="preprocessor">), \</span></div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span><span class="preprocessor">            (static const char _name[] \</span></div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span><span class="preprocessor">             __in_section(_log_strings, static, _CONCAT(_name, _)) __used __noasan = \</span></div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span><span class="preprocessor">            GET_ARG_N(1, __VA_ARGS__);))</span></div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span> </div>
+<div class="foldopen" id="foldopen00459" data-start="" data-end="">
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno"><a class="line" href="group__log__msg.html#ga4d43258ce2b7284adc22c78b507ea8d7">  459</a></span><span class="preprocessor">#define Z_LOG_MSG_STR_VAR(_name, ...) \</span></div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span><span class="preprocessor">    IF_ENABLED(CONFIG_LOG_FMT_SECTION, \</span></div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span><span class="preprocessor">           (Z_LOG_MSG_STR_VAR_IN_SECTION(_name, ##__VA_ARGS__)))</span></div>
+</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span> </div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span><span class="preprocessor">#if defined(CONFIG_LOG_ALWAYS_RUNTIME) || \</span></div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span><span class="preprocessor">    (!defined(CONFIG_LOG) &amp;&amp; \</span></div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span><span class="preprocessor">        (!TOOLCHAIN_HAS_PRAGMA_DIAG || !TOOLCHAIN_HAS_C_AUTO_TYPE))</span></div>
+<div class="foldopen" id="foldopen00505" data-start="" data-end="">
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno"><a class="line" href="group__log__msg.html#ga707435cf1e831f7ef48d24fae91e3425">  505</a></span><span class="preprocessor">#define Z_LOG_MSG_CREATE2(_try_0cpy, _mode,  _cstr_cnt, _domain_id, _source,\</span></div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span><span class="preprocessor">              _level, _data, _dlen, ...) \</span></div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span><span class="preprocessor">do {\</span></div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span><span class="preprocessor">    Z_LOG_MSG_STR_VAR(_fmt, ##__VA_ARGS__) \</span></div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span><span class="preprocessor">    z_log_msg_runtime_create(_domain_id, (void *)_source, \</span></div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span><span class="preprocessor">                  _level, (uint8_t *)_data, _dlen,\</span></div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span><span class="preprocessor">                  Z_LOG_MSG_CBPRINTF_FLAGS(_cstr_cnt) | \</span></div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span><span class="preprocessor">                  (IS_ENABLED(CONFIG_LOG_USE_TAGGED_ARGUMENTS) ? \</span></div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span><span class="preprocessor">                   CBPRINTF_PACKAGE_ARGS_ARE_TAGGED : 0), \</span></div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span><span class="preprocessor">                  Z_LOG_FMT_RUNTIME_ARGS(_fmt, ##__VA_ARGS__));\</span></div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span><span class="preprocessor">    _mode = Z_LOG_MSG_MODE_RUNTIME; \</span></div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span><span class="preprocessor">} while (false)</span></div>
+</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span><span class="preprocessor">#else </span><span class="comment">/* CONFIG_LOG_ALWAYS_RUNTIME */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span><span class="preprocessor">#define Z_LOG_MSG_CREATE3(_try_0cpy, _mode,  _cstr_cnt, _domain_id, _source,\</span></div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span><span class="preprocessor">              _level, _data, _dlen, ...) \</span></div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span><span class="preprocessor">do { \</span></div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span><span class="preprocessor">    Z_LOG_MSG_STR_VAR(_fmt, ##__VA_ARGS__); \</span></div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span><span class="preprocessor">    bool has_rw_str = CBPRINTF_MUST_RUNTIME_PACKAGE( \</span></div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span><span class="preprocessor">                    Z_LOG_MSG_CBPRINTF_FLAGS(_cstr_cnt), \</span></div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span><span class="preprocessor">                    __VA_ARGS__); \</span></div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span><span class="preprocessor">    if (IS_ENABLED(CONFIG_LOG_SPEED) &amp;&amp; _try_0cpy &amp;&amp; ((_dlen) == 0) &amp;&amp; !has_rw_str) {\</span></div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span><span class="preprocessor">        LOG_MSG_DBG(&quot;create zero-copy message\n&quot;);\</span></div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span><span class="preprocessor">        Z_LOG_MSG_SIMPLE_CREATE(_cstr_cnt, _domain_id, _source, \</span></div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span><span class="preprocessor">                    _level, Z_LOG_FMT_ARGS(_fmt, ##__VA_ARGS__)); \</span></div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span><span class="preprocessor">        _mode = Z_LOG_MSG_MODE_ZERO_COPY; \</span></div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span><span class="preprocessor">    } else { \</span></div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span><span class="preprocessor">        IF_ENABLED(UTIL_AND(IS_ENABLED(CONFIG_LOG_SIMPLE_MSG_OPTIMIZE), \</span></div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span><span class="preprocessor">                    UTIL_AND(UTIL_NOT(_domain_id), UTIL_NOT(_cstr_cnt))), \</span></div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span><span class="preprocessor">            ( \</span></div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span><span class="preprocessor">            bool can_simple = LOG_MSG_SIMPLE_CHECK(__VA_ARGS__); \</span></div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span><span class="preprocessor">            if (can_simple &amp;&amp; ((_dlen) == 0) &amp;&amp; !k_is_user_context()) { \</span></div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span><span class="preprocessor">                LOG_MSG_DBG(&quot;create fast message\n&quot;);\</span></div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span><span class="preprocessor">                Z_LOG_MSG_SIMPLE_ARGS_CREATE(_domain_id, _source, _level, \</span></div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span><span class="preprocessor">                             Z_LOG_FMT_ARGS(_fmt, ##__VA_ARGS__)); \</span></div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span><span class="preprocessor">                _mode = Z_LOG_MSG_MODE_SIMPLE; \</span></div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span><span class="preprocessor">                break; \</span></div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span><span class="preprocessor">            } \</span></div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span><span class="preprocessor">            ) \</span></div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span><span class="preprocessor">        ) \</span></div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span><span class="preprocessor">        LOG_MSG_DBG(&quot;create on stack message\n&quot;);\</span></div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span><span class="preprocessor">        Z_LOG_MSG_STACK_CREATE(_cstr_cnt, _domain_id, _source, _level, _data, \</span></div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span><span class="preprocessor">                    _dlen, Z_LOG_FMT_ARGS(_fmt, ##__VA_ARGS__)); \</span></div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span><span class="preprocessor">        _mode = Z_LOG_MSG_MODE_FROM_STACK; \</span></div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span><span class="preprocessor">    } \</span></div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span><span class="preprocessor">    (void)_mode; \</span></div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span><span class="preprocessor">} while (false)</span></div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span> </div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span><span class="preprocessor">#if defined(__cplusplus)</span></div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span><span class="preprocessor">#define Z_AUTO_TYPE auto</span></div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span><span class="preprocessor">#define Z_AUTO_TYPE __auto_type</span></div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span> </div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span><span class="comment">/* Macro for getting name of a local variable with the exception of the first argument</span></div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span><span class="comment"> * which is a formatted string in log message.</span></div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span><span class="preprocessor">#define Z_LOG_LOCAL_ARG_NAME(idx, arg) COND_CODE_0(idx, (arg), (_v##idx))</span></div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span> </div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span><span class="comment">/* Create local variable from input variable (expect for the first (fmt) argument). */</span></div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span><span class="preprocessor">#define Z_LOG_LOCAL_ARG_CREATE(idx, arg) \</span></div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span><span class="preprocessor">    COND_CODE_0(idx, (), (Z_AUTO_TYPE Z_LOG_LOCAL_ARG_NAME(idx, arg) = (arg) + 0))</span></div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span> </div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span><span class="comment">/* First level of processing creates stack variables to be passed for further processing.</span></div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span><span class="comment"> * This is done to prevent multiple evaluations of input arguments (in case argument</span></div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span><span class="comment"> * evaluation has side effects, e.g. it is a non-pure function call).</span></div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span><span class="preprocessor">#define Z_LOG_MSG_CREATE2(_try_0cpy, _mode, _cstr_cnt,  _domain_id, _source, \</span></div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span><span class="preprocessor">               _level, _data, _dlen, ...) \</span></div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span><span class="preprocessor">do { \</span></div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span><span class="preprocessor">    _Pragma(&quot;GCC diagnostic push&quot;) \</span></div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span><span class="preprocessor">    _Pragma(&quot;GCC diagnostic ignored \&quot;-Wpointer-arith\&quot;&quot;) \</span></div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span><span class="preprocessor">    FOR_EACH_IDX(Z_LOG_LOCAL_ARG_CREATE, (;), __VA_ARGS__); \</span></div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span><span class="preprocessor">    _Pragma(&quot;GCC diagnostic pop&quot;) \</span></div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span><span class="preprocessor">    Z_LOG_MSG_CREATE3(_try_0cpy, _mode,  _cstr_cnt, _domain_id, _source,\</span></div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span><span class="preprocessor">               _level, _data, _dlen, \</span></div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span><span class="preprocessor">               FOR_EACH_IDX(Z_LOG_LOCAL_ARG_NAME, (,), __VA_ARGS__)); \</span></div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span><span class="preprocessor">} while (false)</span></div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_LOG_ALWAYS_RUNTIME ||</span></div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span><span class="comment">    * (!LOG &amp;&amp; (!TOOLCHAIN_HAS_PRAGMA_DIAG || !TOOLCHAIN_HAS_C_AUTO_TYPE))</span></div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span><span class="comment">    */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span> </div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span> </div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span><span class="preprocessor">#define Z_LOG_MSG_CREATE(_try_0cpy, _mode,  _domain_id, _source,\</span></div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span><span class="preprocessor">              _level, _data, _dlen, ...) \</span></div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span><span class="preprocessor">    Z_LOG_MSG_CREATE2(_try_0cpy, _mode, UTIL_CAT(Z_LOG_FUNC_PREFIX_, _level), \</span></div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span><span class="preprocessor">               _domain_id, _source, _level, _data, _dlen, \</span></div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span><span class="preprocessor">               Z_LOG_STR(_level, __VA_ARGS__))</span></div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span> </div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno"><a class="line" href="group__log__msg.html#ga77f90672db34e5627061f2e14e6ef552">  599</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structlog__msg.html">log_msg</a> *<a class="code hl_function" href="group__log__msg.html#ga77f90672db34e5627061f2e14e6ef552">z_log_msg_alloc</a>(uint32_t wlen);</div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span> </div>
+<div class="line"><a id="l00614" name="l00614"></a><span class="lineno"><a class="line" href="group__log__msg.html#gaa01ddbb99618bccfa39b83f8c454ba8d">  614</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__log__msg.html#gaa01ddbb99618bccfa39b83f8c454ba8d">z_log_msg_finalize</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structlog__msg.html">log_msg</a> *msg, <span class="keyword">const</span> <span class="keywordtype">void</span> *source,</div>
+<div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span>             <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structlog__msg__desc.html">log_msg_desc</a> desc, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span> </div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno"><a class="line" href="group__log__msg.html#ga28f3a2695ec2795cca79617c4c0484cd">  623</a></span>__syscall <span class="keywordtype">void</span> <a class="code hl_function" href="group__log__msg.html#ga28f3a2695ec2795cca79617c4c0484cd">z_log_msg_simple_create_0</a>(<span class="keyword">const</span> <span class="keywordtype">void</span> *source, uint32_t level,</div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>                     <span class="keyword">const</span> <span class="keywordtype">char</span> *fmt);</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span> </div>
+<div class="line"><a id="l00633" name="l00633"></a><span class="lineno"><a class="line" href="group__log__msg.html#ga0b4f8e9e8b3e8c87e7d578ab4ff0fc11">  633</a></span>__syscall <span class="keywordtype">void</span> <a class="code hl_function" href="group__log__msg.html#ga0b4f8e9e8b3e8c87e7d578ab4ff0fc11">z_log_msg_simple_create_1</a>(<span class="keyword">const</span> <span class="keywordtype">void</span> *source, uint32_t level,</div>
+<div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span>                     <span class="keyword">const</span> <span class="keywordtype">char</span> *fmt, uint32_t arg);</div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span> </div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno"><a class="line" href="group__log__msg.html#ga6763ee63b10525cdadee45c1d277ad2d">  644</a></span>__syscall <span class="keywordtype">void</span> <a class="code hl_function" href="group__log__msg.html#ga6763ee63b10525cdadee45c1d277ad2d">z_log_msg_simple_create_2</a>(<span class="keyword">const</span> <span class="keywordtype">void</span> *source, uint32_t level,</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>                     <span class="keyword">const</span> <span class="keywordtype">char</span> *fmt, uint32_t arg0, uint32_t arg1);</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span> </div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno"><a class="line" href="group__log__msg.html#ga5c60fc000bc3db1b559c8daf5dbdd847">  657</a></span>__syscall <span class="keywordtype">void</span> <a class="code hl_function" href="group__log__msg.html#ga5c60fc000bc3db1b559c8daf5dbdd847">z_log_msg_static_create</a>(<span class="keyword">const</span> <span class="keywordtype">void</span> *source,</div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span>                    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structlog__msg__desc.html">log_msg_desc</a> desc,</div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>                    uint8_t *package, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span> </div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno"><a class="line" href="group__log__msg.html#ga1d51490f2d74011e375673af3b1f4a85">  682</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__log__msg.html#ga1d51490f2d74011e375673af3b1f4a85">z_log_msg_runtime_vcreate</a>(uint8_t domain_id, <span class="keyword">const</span> <span class="keywordtype">void</span> *source,</div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span>                uint8_t level, <span class="keyword">const</span> <span class="keywordtype">void</span> *data,</div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>                <span class="keywordtype">size_t</span> dlen, uint32_t package_flags,</div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>                <span class="keyword">const</span> <span class="keywordtype">char</span> *fmt,</div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>                va_list ap);</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span> </div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> z_log_msg_runtime_create(uint8_t domain_id,</div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span>                         <span class="keyword">const</span> <span class="keywordtype">void</span> *source,</div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>                         uint8_t level, <span class="keyword">const</span> <span class="keywordtype">void</span> *data,</div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>                         <span class="keywordtype">size_t</span> dlen, uint32_t package_flags,</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span>                         <span class="keyword">const</span> <span class="keywordtype">char</span> *fmt, ...)</div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span>{</div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>    va_list ap;</div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span> </div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>    va_start(ap, fmt);</div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>    <a class="code hl_function" href="group__log__msg.html#ga1d51490f2d74011e375673af3b1f4a85">z_log_msg_runtime_vcreate</a>(domain_id, source, level,</div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span>                   data, dlen, package_flags, fmt, ap);</div>
+<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span>    va_end(ap);</div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span>}</div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span> </div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> z_log_item_is_msg(<span class="keyword">const</span> <span class="keyword">union</span> <a class="code hl_union" href="unionlog__msg__generic.html">log_msg_generic</a> *msg)</div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span>{</div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>    <span class="keywordflow">return</span> msg-&gt;generic.type == Z_LOG_MSG_LOG;</div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span>}</div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span> </div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t log_msg_get_total_wlen(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structlog__msg__desc.html">log_msg_desc</a> desc)</div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>{</div>
+<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>    <span class="keywordflow">return</span> Z_LOG_MSG_ALIGNED_WLEN(desc.package_len, desc.data_len);</div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>}</div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span> </div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t log_msg_generic_get_wlen(<span class="keyword">const</span> <span class="keyword">union</span> <a class="code hl_union" href="unionmpsc__pbuf__generic.html">mpsc_pbuf_generic</a> *item)</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>{</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>    <span class="keyword">const</span> <span class="keyword">union </span><a class="code hl_union" href="unionlog__msg__generic.html">log_msg_generic</a> *generic_msg = (<span class="keyword">const</span> <span class="keyword">union </span><a class="code hl_union" href="unionlog__msg__generic.html">log_msg_generic</a> *)item;</div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span> </div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span>    <span class="keywordflow">if</span> (z_log_item_is_msg(generic_msg)) {</div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structlog__msg.html">log_msg</a> *msg = (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structlog__msg.html">log_msg</a> *)generic_msg;</div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span> </div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>        <span class="keywordflow">return</span> log_msg_get_total_wlen(msg-&gt;hdr.desc);</div>
+<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>    }</div>
+<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span> </div>
+<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>}</div>
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span> </div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t log_msg_get_domain(<span class="keyword">struct</span> <a class="code hl_struct" href="structlog__msg.html">log_msg</a> *msg)</div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span>{</div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span>    <span class="keywordflow">return</span> msg-&gt;hdr.desc.domain;</div>
+<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span>}</div>
+<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span> </div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t log_msg_get_level(<span class="keyword">struct</span> <a class="code hl_struct" href="structlog__msg.html">log_msg</a> *msg)</div>
+<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span>{</div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span>    <span class="keywordflow">return</span> msg-&gt;hdr.desc.level;</div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span>}</div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span> </div>
+<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">void</span> *log_msg_get_source(<span class="keyword">struct</span> <a class="code hl_struct" href="structlog__msg.html">log_msg</a> *msg)</div>
+<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span>{</div>
+<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span>    <span class="keywordflow">return</span> msg-&gt;hdr.source;</div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span>}</div>
+<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span> </div>
+<div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span><span class="keyword">static</span> <span class="keyword">inline</span> log_timestamp_t log_msg_get_timestamp(<span class="keyword">struct</span> <a class="code hl_struct" href="structlog__msg.html">log_msg</a> *msg)</div>
+<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span>{</div>
+<div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span>    <span class="keywordflow">return</span> msg-&gt;hdr.timestamp;</div>
+<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span>}</div>
+<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span> </div>
+<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> *log_msg_get_tid(<span class="keyword">struct</span> <a class="code hl_struct" href="structlog__msg.html">log_msg</a> *msg)</div>
+<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span>{</div>
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span><span class="preprocessor">#if defined(CONFIG_LOG_THREAD_ID_PREFIX)</span></div>
+<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>    <span class="keywordflow">return</span> msg-&gt;hdr.tid;</div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>    ARG_UNUSED(msg);</div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span>}</div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span> </div>
+<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t *log_msg_get_data(<span class="keyword">struct</span> <a class="code hl_struct" href="structlog__msg.html">log_msg</a> *msg, <span class="keywordtype">size_t</span> *len)</div>
+<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span>{</div>
+<div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span>    *len = msg-&gt;hdr.desc.data_len;</div>
+<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span> </div>
+<div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span>    <span class="keywordflow">return</span> msg-&gt;data + msg-&gt;hdr.desc.package_len;</div>
+<div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span>}</div>
+<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span> </div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span><span class="keyword">static</span> <span class="keyword">inline</span> uint8_t *log_msg_get_package(<span class="keyword">struct</span> <a class="code hl_struct" href="structlog__msg.html">log_msg</a> *msg, <span class="keywordtype">size_t</span> *len)</div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>{</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>    *len = msg-&gt;hdr.desc.package_len;</div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span> </div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span>    <span class="keywordflow">return</span> msg-&gt;data;</div>
+<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span>}</div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span> </div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span><span class="preprocessor">#include &lt;syscalls/log_msg.h&gt;</span></div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span> </div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>}</div>
+<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span> </div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_LOGGING_LOG_MSG_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__log__msg_html_ga0b4f8e9e8b3e8c87e7d578ab4ff0fc11"><div class="ttname"><a href="group__log__msg.html#ga0b4f8e9e8b3e8c87e7d578ab4ff0fc11">z_log_msg_simple_create_1</a></div><div class="ttdeci">__syscall void z_log_msg_simple_create_1(const void *source, uint32_t level, const char *fmt, uint32_t arg)</div><div class="ttdoc">Create log message using simplified method for string with a one argument.</div></div>
+<div class="ttc" id="agroup__log__msg_html_ga1d51490f2d74011e375673af3b1f4a85"><div class="ttname"><a href="group__log__msg.html#ga1d51490f2d74011e375673af3b1f4a85">z_log_msg_runtime_vcreate</a></div><div class="ttdeci">void z_log_msg_runtime_vcreate(uint8_t domain_id, const void *source, uint8_t level, const void *data, size_t dlen, uint32_t package_flags, const char *fmt, va_list ap)</div><div class="ttdoc">Create message at runtime.</div></div>
+<div class="ttc" id="agroup__log__msg_html_ga28f3a2695ec2795cca79617c4c0484cd"><div class="ttname"><a href="group__log__msg.html#ga28f3a2695ec2795cca79617c4c0484cd">z_log_msg_simple_create_0</a></div><div class="ttdeci">__syscall void z_log_msg_simple_create_0(const void *source, uint32_t level, const char *fmt)</div><div class="ttdoc">Create log message using simplified method for string with no arguments.</div></div>
+<div class="ttc" id="agroup__log__msg_html_ga5c60fc000bc3db1b559c8daf5dbdd847"><div class="ttname"><a href="group__log__msg.html#ga5c60fc000bc3db1b559c8daf5dbdd847">z_log_msg_static_create</a></div><div class="ttdeci">__syscall void z_log_msg_static_create(const void *source, const struct log_msg_desc desc, uint8_t *package, const void *data)</div><div class="ttdoc">Create a logging message from message details and string package.</div></div>
+<div class="ttc" id="agroup__log__msg_html_ga6763ee63b10525cdadee45c1d277ad2d"><div class="ttname"><a href="group__log__msg.html#ga6763ee63b10525cdadee45c1d277ad2d">z_log_msg_simple_create_2</a></div><div class="ttdeci">__syscall void z_log_msg_simple_create_2(const void *source, uint32_t level, const char *fmt, uint32_t arg0, uint32_t arg1)</div><div class="ttdoc">Create log message using simplified method for string with two arguments.</div></div>
+<div class="ttc" id="agroup__log__msg_html_ga77f90672db34e5627061f2e14e6ef552"><div class="ttname"><a href="group__log__msg.html#ga77f90672db34e5627061f2e14e6ef552">z_log_msg_alloc</a></div><div class="ttdeci">struct log_msg * z_log_msg_alloc(uint32_t wlen)</div><div class="ttdoc">Allocate log message.</div></div>
+<div class="ttc" id="agroup__log__msg_html_ga90b3717897f4e41e46450bbd75ff533b"><div class="ttname"><a href="group__log__msg.html#ga90b3717897f4e41e46450bbd75ff533b">z_log_msg_mode</a></div><div class="ttdeci">z_log_msg_mode</div><div class="ttdoc">Method used for creating a log message.</div><div class="ttdef"><b>Definição</b> log_msg.h:127</div></div>
+<div class="ttc" id="agroup__log__msg_html_gaa01ddbb99618bccfa39b83f8c454ba8d"><div class="ttname"><a href="group__log__msg.html#gaa01ddbb99618bccfa39b83f8c454ba8d">z_log_msg_finalize</a></div><div class="ttdeci">void z_log_msg_finalize(struct log_msg *msg, const void *source, const struct log_msg_desc desc, const void *data)</div><div class="ttdoc">Finalize message.</div></div>
+<div class="ttc" id="astructlog__msg__desc_html"><div class="ttname"><a href="structlog__msg__desc.html">log_msg_desc</a></div><div class="ttdef"><b>Definição</b> log_msg.h:56</div></div>
+<div class="ttc" id="astructlog__msg__generic__hdr_html"><div class="ttname"><a href="structlog__msg__generic__hdr.html">log_msg_generic_hdr</a></div><div class="ttdef"><b>Definição</b> log_msg.h:113</div></div>
+<div class="ttc" id="astructlog__msg__hdr_html"><div class="ttname"><a href="structlog__msg__hdr.html">log_msg_hdr</a></div><div class="ttdef"><b>Definição</b> log_msg.h:70</div></div>
+<div class="ttc" id="astructlog__msg_html"><div class="ttname"><a href="structlog__msg.html">log_msg</a></div><div class="ttdef"><b>Definição</b> log_msg.h:94</div></div>
+<div class="ttc" id="astructlog__source__const__data_html"><div class="ttname"><a href="structlog__source__const__data.html">log_source_const_data</a></div><div class="ttdoc">Constant data associated with the source of log messages.</div><div class="ttdef"><b>Definição</b> log_instance.h:17</div></div>
+<div class="ttc" id="astructlog__source__dynamic__data_html"><div class="ttname"><a href="structlog__source__dynamic__data.html">log_source_dynamic_data</a></div><div class="ttdoc">Dynamic data associated with the source of log messages.</div><div class="ttdef"><b>Definição</b> log_instance.h:30</div></div>
+<div class="ttc" id="atoolchain_8h_html"><div class="ttname"><a href="toolchain_8h.html">toolchain.h</a></div><div class="ttdoc">Macros to abstract toolchain specific capabilities.</div></div>
+<div class="ttc" id="aunionlog__msg__generic_html"><div class="ttname"><a href="unionlog__msg__generic.html">log_msg_generic</a></div><div class="ttdef"><b>Definição</b> log_msg.h:117</div></div>
+<div class="ttc" id="aunionlog__msg__source_html"><div class="ttname"><a href="unionlog__msg__source.html">log_msg_source</a></div><div class="ttdef"><b>Definição</b> log_msg.h:64</div></div>
+<div class="ttc" id="aunionmpsc__pbuf__generic_html"><div class="ttname"><a href="unionmpsc__pbuf__generic.html">mpsc_pbuf_generic</a></div><div class="ttdoc">Generic packet header.</div><div class="ttdef"><b>Definição</b> mpsc_packet.h:49</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Misc utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

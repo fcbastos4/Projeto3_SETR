@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/rtc.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">rtc.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2rtc_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2023 Trackunit Corporation</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2023 Bjarki Arge Andreasen</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_RTC_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_RTC_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;errno.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#define RTC_ALARM_TIME_MASK_SECOND  BIT(0)</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#define RTC_ALARM_TIME_MASK_MINUTE  BIT(1)</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#define RTC_ALARM_TIME_MASK_HOUR    BIT(2)</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#define RTC_ALARM_TIME_MASK_MONTHDAY    BIT(3)</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#define RTC_ALARM_TIME_MASK_MONTH   BIT(4)</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define RTC_ALARM_TIME_MASK_YEAR    BIT(5)</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#define RTC_ALARM_TIME_MASK_WEEKDAY BIT(6)</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#define RTC_ALARM_TIME_MASK_YEARDAY BIT(7)</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#define RTC_ALARM_TIME_MASK_NSEC    BIT(8)</span></div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="};">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structrtc__time.html">   59</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structrtc__time.html">rtc_time</a> {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structrtc__time.html#aed2640702991b684601d1771847bb50f">   60</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structrtc__time.html#aed2640702991b684601d1771847bb50f">tm_sec</a>; </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structrtc__time.html#a927b7e67b64708f671c1fe9409e9d794">   61</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structrtc__time.html#a927b7e67b64708f671c1fe9409e9d794">tm_min</a>; </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structrtc__time.html#aee14d277ac0339f587f4b946be53dc09">   62</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structrtc__time.html#aee14d277ac0339f587f4b946be53dc09">tm_hour</a>;    </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structrtc__time.html#af56ccbce4cca252d2ab0d7516cc5e2db">   63</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structrtc__time.html#af56ccbce4cca252d2ab0d7516cc5e2db">tm_mday</a>;    </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structrtc__time.html#aa17515d6d722d1e6e4427a129c8de9f8">   64</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structrtc__time.html#aa17515d6d722d1e6e4427a129c8de9f8">tm_mon</a>; </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structrtc__time.html#ad3fcf9be156258688742a511e8b36277">   65</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structrtc__time.html#ad3fcf9be156258688742a511e8b36277">tm_year</a>;    </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structrtc__time.html#ac44442e37e069314e2b6bae0f0747f49">   66</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structrtc__time.html#ac44442e37e069314e2b6bae0f0747f49">tm_wday</a>;    </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structrtc__time.html#a5a7837a78fb662831fa3186377d63375">   67</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structrtc__time.html#a5a7837a78fb662831fa3186377d63375">tm_yday</a>;    </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structrtc__time.html#aa26da32caecabf386e9a204937d9f786">   68</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structrtc__time.html#aa26da32caecabf386e9a204937d9f786">tm_isdst</a>;   </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structrtc__time.html#a876a66e76c713ead7c5eb2cc65d141ed">   69</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structrtc__time.html#a876a66e76c713ead7c5eb2cc65d141ed">tm_nsec</a>;    </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
+</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="group__rtc__interface.html#ga9d3eb555ac4ad86b7ff66d359652a29e">   79</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__rtc__interface.html#ga9d3eb555ac4ad86b7ff66d359652a29e">rtc_update_callback</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="group__rtc__interface.html#ga090d68fb395ab088359f868c8a17e3cb">   89</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__rtc__interface.html#ga090d68fb395ab088359f868c8a17e3cb">rtc_alarm_callback</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t id, <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keyword">typedef</span> int (*rtc_api_set_time)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structrtc__time.html">rtc_time</a> *timeptr);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">typedef</span> int (*rtc_api_get_time)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct </span><a class="code hl_struct" href="structrtc__time.html">rtc_time</a> *timeptr);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">typedef</span> int (*rtc_api_alarm_get_supported_fields)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t id,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                          uint16_t *mask);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keyword">typedef</span> int (*rtc_api_alarm_set_time)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t id, uint16_t mask,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                      <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structrtc__time.html">rtc_time</a> *timeptr);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">typedef</span> int (*rtc_api_alarm_get_time)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t id, uint16_t *mask,</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                      <span class="keyword">struct </span><a class="code hl_struct" href="structrtc__time.html">rtc_time</a> *timeptr);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keyword">typedef</span> int (*rtc_api_alarm_is_pending)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t id);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="keyword">typedef</span> int (*rtc_api_alarm_set_callback)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t id,</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>                      <a class="code hl_typedef" href="group__rtc__interface.html#ga090d68fb395ab088359f868c8a17e3cb">rtc_alarm_callback</a> callback, <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="keyword">typedef</span> int (*rtc_api_update_set_callback)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                       <a class="code hl_typedef" href="group__rtc__interface.html#ga9d3eb555ac4ad86b7ff66d359652a29e">rtc_update_callback</a> callback, <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="keyword">typedef</span> int (*rtc_api_set_calibration)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, int32_t calibration);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="keyword">typedef</span> int (*rtc_api_get_calibration)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev, int32_t *calibration);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>__subsystem <span class="keyword">struct </span>rtc_driver_api {</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    rtc_api_set_time set_time;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    rtc_api_get_time get_time;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">#if defined(CONFIG_RTC_ALARM) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    rtc_api_alarm_get_supported_fields alarm_get_supported_fields;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    rtc_api_alarm_set_time alarm_set_time;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    rtc_api_alarm_get_time alarm_get_time;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    rtc_api_alarm_is_pending alarm_is_pending;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    rtc_api_alarm_set_callback alarm_set_callback;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_RTC_ALARM */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="preprocessor">#if defined(CONFIG_RTC_UPDATE) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    rtc_api_update_set_callback update_set_callback;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_RTC_UPDATE */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="preprocessor">#if defined(CONFIG_RTC_CALIBRATION) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    rtc_api_set_calibration set_calibration;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    rtc_api_get_calibration get_calibration;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_RTC_CALIBRATION */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>};</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="group__rtc__interface.html#ga7971939e259775e7b130b23845a43a7b">  196</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__rtc__interface.html#ga7971939e259775e7b130b23845a43a7b">rtc_set_time</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structrtc__time.html">rtc_time</a> *timeptr);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_rtc_set_time(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structrtc__time.html">rtc_time</a> *timeptr)</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>{</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keywordflow">return</span> api-&gt;set_time(dev, timeptr);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>}</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="group__rtc__interface.html#ga8cb5a2be55edf3748804b2b1d3c12861">  215</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__rtc__interface.html#ga8cb5a2be55edf3748804b2b1d3c12861">rtc_get_time</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structrtc__time.html">rtc_time</a> *timeptr);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_rtc_get_time(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structrtc__time.html">rtc_time</a> *timeptr)</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>{</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="keywordflow">return</span> api-&gt;get_time(dev, timeptr);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>}</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="preprocessor">#if defined(CONFIG_RTC_ALARM) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>__syscall <span class="keywordtype">int</span> rtc_alarm_get_supported_fields(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t <span class="keywordtype">id</span>,</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                         uint16_t *mask);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_rtc_alarm_get_supported_fields(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t <span class="keywordtype">id</span>,</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                            uint16_t *mask)</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>{</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordflow">if</span> (api-&gt;alarm_get_supported_fields == NULL) {</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    }</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keywordflow">return</span> api-&gt;alarm_get_supported_fields(dev, <span class="keywordtype">id</span>, mask);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>}</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>__syscall <span class="keywordtype">int</span> rtc_alarm_set_time(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t <span class="keywordtype">id</span>, uint16_t mask,</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                 <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structrtc__time.html">rtc_time</a> *timeptr);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_rtc_alarm_set_time(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t <span class="keywordtype">id</span>, uint16_t mask,</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>                        <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structrtc__time.html">rtc_time</a> *timeptr)</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>{</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keywordflow">if</span> (api-&gt;alarm_set_time == NULL) {</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    }</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="keywordflow">return</span> api-&gt;alarm_set_time(dev, <span class="keywordtype">id</span>, mask, timeptr);</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>}</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>__syscall <span class="keywordtype">int</span> rtc_alarm_get_time(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t <span class="keywordtype">id</span>, uint16_t *mask,</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structrtc__time.html">rtc_time</a> *timeptr);</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_rtc_alarm_get_time(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t <span class="keywordtype">id</span>, uint16_t *mask,</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>                        <span class="keyword">struct</span> <a class="code hl_struct" href="structrtc__time.html">rtc_time</a> *timeptr)</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>{</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="keywordflow">if</span> (api-&gt;alarm_get_time == NULL) {</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    }</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keywordflow">return</span> api-&gt;alarm_get_time(dev, <span class="keywordtype">id</span>, mask, timeptr);</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>}</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>__syscall <span class="keywordtype">int</span> rtc_alarm_is_pending(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span> </div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_rtc_alarm_is_pending(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t <span class="keywordtype">id</span>)</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>{</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    <span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> </div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    <span class="keywordflow">if</span> (api-&gt;alarm_is_pending == NULL) {</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    }</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span> </div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    <span class="keywordflow">return</span> api-&gt;alarm_is_pending(dev, <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>}</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>__syscall <span class="keywordtype">int</span> rtc_alarm_set_callback(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t <span class="keywordtype">id</span>,</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>                     <a class="code hl_typedef" href="group__rtc__interface.html#ga090d68fb395ab088359f868c8a17e3cb">rtc_alarm_callback</a> callback, <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span> </div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_rtc_alarm_set_callback(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, uint16_t <span class="keywordtype">id</span>,</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>                        <a class="code hl_typedef" href="group__rtc__interface.html#ga090d68fb395ab088359f868c8a17e3cb">rtc_alarm_callback</a> callback, <span class="keywordtype">void</span> *user_data)</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>{</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    <span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span> </div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>    <span class="keywordflow">if</span> (api-&gt;alarm_set_callback == NULL) {</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    }</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span> </div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    <span class="keywordflow">return</span> api-&gt;alarm_set_callback(dev, <span class="keywordtype">id</span>, callback, user_data);</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>}</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span> </div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_RTC_ALARM */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span><span class="preprocessor">#if defined(CONFIG_RTC_UPDATE) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span> </div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>__syscall <span class="keywordtype">int</span> rtc_update_set_callback(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <a class="code hl_typedef" href="group__rtc__interface.html#ga9d3eb555ac4ad86b7ff66d359652a29e">rtc_update_callback</a> callback,</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>                      <span class="keywordtype">void</span> *user_data);</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span> </div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_rtc_update_set_callback(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>                         <a class="code hl_typedef" href="group__rtc__interface.html#ga9d3eb555ac4ad86b7ff66d359652a29e">rtc_update_callback</a> callback, <span class="keywordtype">void</span> *user_data)</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>{</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>    <span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> </div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>    <span class="keywordflow">if</span> (api-&gt;update_set_callback == NULL) {</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>    }</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span> </div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>    <span class="keywordflow">return</span> api-&gt;update_set_callback(dev, callback, user_data);</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>}</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span> </div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_RTC_UPDATE */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span><span class="preprocessor">#if defined(CONFIG_RTC_CALIBRATION) || defined(__DOXYGEN__)</span></div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span> </div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>__syscall <span class="keywordtype">int</span> rtc_set_calibration(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, int32_t calibration);</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span> </div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_rtc_set_calibration(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, int32_t calibration)</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>{</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>    <span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span> </div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>    <span class="keywordflow">if</span> (api-&gt;set_calibration == NULL) {</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>    }</div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span> </div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span>    <span class="keywordflow">return</span> api-&gt;set_calibration(dev, calibration);</div>
+<div class="line"><a id="l00479" name="l00479"></a><span class="lineno">  479</span>}</div>
+<div class="line"><a id="l00480" name="l00480"></a><span class="lineno">  480</span> </div>
+<div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>__syscall <span class="keywordtype">int</span> rtc_get_calibration(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, int32_t *calibration);</div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span> </div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_rtc_get_calibration(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, int32_t *calibration)</div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>{</div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>    <span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *api = (<span class="keyword">const</span> <span class="keyword">struct </span>rtc_driver_api *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span> </div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>    <span class="keywordflow">if</span> (api-&gt;get_calibration == NULL) {</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>        <span class="keywordflow">return</span> -ENOSYS;</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>    }</div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span> </div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>    <span class="keywordflow">return</span> api-&gt;get_calibration(dev, calibration);</div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>}</div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span> </div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_RTC_CALIBRATION */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span><span class="keyword">struct </span>tm;</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span> </div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">struct </span>tm *rtc_time_to_tm(<span class="keyword">struct</span> <a class="code hl_struct" href="structrtc__time.html">rtc_time</a> *timeptr)</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>{</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>    <span class="keywordflow">return</span> (<span class="keyword">struct</span> tm *)timeptr;</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span>}</div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span> </div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>}</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span> </div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span><span class="preprocessor">#include &lt;syscalls/rtc.h&gt;</span></div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span> </div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_RTC_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__rtc__interface_html_ga090d68fb395ab088359f868c8a17e3cb"><div class="ttname"><a href="group__rtc__interface.html#ga090d68fb395ab088359f868c8a17e3cb">rtc_alarm_callback</a></div><div class="ttdeci">void(* rtc_alarm_callback)(const struct device *dev, uint16_t id, void *user_data)</div><div class="ttdoc">RTC alarm triggered callback.</div><div class="ttdef"><b>Definição</b> rtc.h:89</div></div>
+<div class="ttc" id="agroup__rtc__interface_html_ga7971939e259775e7b130b23845a43a7b"><div class="ttname"><a href="group__rtc__interface.html#ga7971939e259775e7b130b23845a43a7b">rtc_set_time</a></div><div class="ttdeci">__syscall int rtc_set_time(const struct device *dev, const struct rtc_time *timeptr)</div><div class="ttdoc">API for setting RTC time.</div></div>
+<div class="ttc" id="agroup__rtc__interface_html_ga8cb5a2be55edf3748804b2b1d3c12861"><div class="ttname"><a href="group__rtc__interface.html#ga8cb5a2be55edf3748804b2b1d3c12861">rtc_get_time</a></div><div class="ttdeci">__syscall int rtc_get_time(const struct device *dev, struct rtc_time *timeptr)</div><div class="ttdoc">API for getting RTC time.</div></div>
+<div class="ttc" id="agroup__rtc__interface_html_ga9d3eb555ac4ad86b7ff66d359652a29e"><div class="ttname"><a href="group__rtc__interface.html#ga9d3eb555ac4ad86b7ff66d359652a29e">rtc_update_callback</a></div><div class="ttdeci">void(* rtc_update_callback)(const struct device *dev, void *user_data)</div><div class="ttdoc">RTC update event callback.</div><div class="ttdef"><b>Definição</b> rtc.h:79</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructrtc__time_html"><div class="ttname"><a href="structrtc__time.html">rtc_time</a></div><div class="ttdoc">Structure for storing date and time values with sub-second precision.</div><div class="ttdef"><b>Definição</b> rtc.h:59</div></div>
+<div class="ttc" id="astructrtc__time_html_a5a7837a78fb662831fa3186377d63375"><div class="ttname"><a href="structrtc__time.html#a5a7837a78fb662831fa3186377d63375">rtc_time::tm_yday</a></div><div class="ttdeci">int tm_yday</div><div class="ttdef"><b>Definição</b> rtc.h:67</div></div>
+<div class="ttc" id="astructrtc__time_html_a876a66e76c713ead7c5eb2cc65d141ed"><div class="ttname"><a href="structrtc__time.html#a876a66e76c713ead7c5eb2cc65d141ed">rtc_time::tm_nsec</a></div><div class="ttdeci">int tm_nsec</div><div class="ttdef"><b>Definição</b> rtc.h:69</div></div>
+<div class="ttc" id="astructrtc__time_html_a927b7e67b64708f671c1fe9409e9d794"><div class="ttname"><a href="structrtc__time.html#a927b7e67b64708f671c1fe9409e9d794">rtc_time::tm_min</a></div><div class="ttdeci">int tm_min</div><div class="ttdef"><b>Definição</b> rtc.h:61</div></div>
+<div class="ttc" id="astructrtc__time_html_aa17515d6d722d1e6e4427a129c8de9f8"><div class="ttname"><a href="structrtc__time.html#aa17515d6d722d1e6e4427a129c8de9f8">rtc_time::tm_mon</a></div><div class="ttdeci">int tm_mon</div><div class="ttdef"><b>Definição</b> rtc.h:64</div></div>
+<div class="ttc" id="astructrtc__time_html_aa26da32caecabf386e9a204937d9f786"><div class="ttname"><a href="structrtc__time.html#aa26da32caecabf386e9a204937d9f786">rtc_time::tm_isdst</a></div><div class="ttdeci">int tm_isdst</div><div class="ttdef"><b>Definição</b> rtc.h:68</div></div>
+<div class="ttc" id="astructrtc__time_html_ac44442e37e069314e2b6bae0f0747f49"><div class="ttname"><a href="structrtc__time.html#ac44442e37e069314e2b6bae0f0747f49">rtc_time::tm_wday</a></div><div class="ttdeci">int tm_wday</div><div class="ttdef"><b>Definição</b> rtc.h:66</div></div>
+<div class="ttc" id="astructrtc__time_html_ad3fcf9be156258688742a511e8b36277"><div class="ttname"><a href="structrtc__time.html#ad3fcf9be156258688742a511e8b36277">rtc_time::tm_year</a></div><div class="ttdeci">int tm_year</div><div class="ttdef"><b>Definição</b> rtc.h:65</div></div>
+<div class="ttc" id="astructrtc__time_html_aed2640702991b684601d1771847bb50f"><div class="ttname"><a href="structrtc__time.html#aed2640702991b684601d1771847bb50f">rtc_time::tm_sec</a></div><div class="ttdeci">int tm_sec</div><div class="ttdef"><b>Definição</b> rtc.h:60</div></div>
+<div class="ttc" id="astructrtc__time_html_aee14d277ac0339f587f4b946be53dc09"><div class="ttname"><a href="structrtc__time.html#aee14d277ac0339f587f4b946be53dc09">rtc_time::tm_hour</a></div><div class="ttdeci">int tm_hour</div><div class="ttdef"><b>Definição</b> rtc.h:62</div></div>
+<div class="ttc" id="astructrtc__time_html_af56ccbce4cca252d2ab0d7516cc5e2db"><div class="ttname"><a href="structrtc__time.html#af56ccbce4cca252d2ab0d7516cc5e2db">rtc_time::tm_mday</a></div><div class="ttdeci">int tm_mday</div><div class="ttdef"><b>Definição</b> rtc.h:63</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

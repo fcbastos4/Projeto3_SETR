@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/disk.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">disk.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="disk_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2016 Intel Corporation.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2021 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_DISK_H_</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_DISK_H_</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;<a class="code" href="dlist_8h.html">zephyr/sys/dlist.h</a>&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="group__disk__driver__interface.html#ga7e75d3121989e64a8c6e218409e8fe95">   41</a></span><span class="preprocessor">#define DISK_IOCTL_GET_SECTOR_COUNT     1</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="group__disk__driver__interface.html#ga03dcb39dd5be7144d8f6ae76b7415e9a">   43</a></span><span class="preprocessor">#define DISK_IOCTL_GET_SECTOR_SIZE      2</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__disk__driver__interface.html#ga7ffc5d075a4e8d6eb659ee4ea73e62a0">   45</a></span><span class="preprocessor">#define DISK_IOCTL_RESERVED         3</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="group__disk__driver__interface.html#ga2444e2a2884f9e0d6dd93aedc5d654ac">   47</a></span><span class="preprocessor">#define DISK_IOCTL_GET_ERASE_BLOCK_SZ       4</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__disk__driver__interface.html#ga656aaa245cc142f3ff82a003bb307d62">   49</a></span><span class="preprocessor">#define DISK_IOCTL_CTRL_SYNC            5</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="group__disk__driver__interface.html#gae1730a7bf4ca0210bc8eefe3b590623a">   56</a></span><span class="preprocessor">#define DISK_STATUS_OK          0x00</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="group__disk__driver__interface.html#ga533eb718a946ba60e0ad6e0e4fd4f75a">   58</a></span><span class="preprocessor">#define DISK_STATUS_UNINIT      0x01</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="group__disk__driver__interface.html#ga1c70c8182b3497f606091f19c142be59">   60</a></span><span class="preprocessor">#define DISK_STATUS_NOMEDIA     0x02</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="group__disk__driver__interface.html#ga0a5ba8f4be6241f62a969ea56c26f7e3">   62</a></span><span class="preprocessor">#define DISK_STATUS_WR_PROTECT      0x04</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">struct </span><a class="code hl_struct" href="structdisk__operations.html">disk_operations</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="};">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structdisk__info.html">   69</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structdisk__info.html">disk_info</a> {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structdisk__info.html#ab3413d8809d5181c671e1890a4662ba2">   71</a></span>    <a class="code hl_struct" href="struct__dnode.html">sys_dnode_t</a> <a class="code hl_variable" href="structdisk__info.html#ab3413d8809d5181c671e1890a4662ba2">node</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structdisk__info.html#a817b13306aa7deab4d366482b77e4dfc">   73</a></span>    <span class="keywordtype">char</span> *<a class="code hl_variable" href="structdisk__info.html#a817b13306aa7deab4d366482b77e4dfc">name</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structdisk__info.html#a329a571f988718fd4737b8974d4f7ada">   75</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdisk__operations.html">disk_operations</a> *<a class="code hl_variable" href="structdisk__info.html#a329a571f988718fd4737b8974d4f7ada">ops</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structdisk__info.html#ae316915bd577f22dc9d353fc4b2f04bb">   77</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_variable" href="structdisk__info.html#ae316915bd577f22dc9d353fc4b2f04bb">dev</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="};">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structdisk__operations.html">   83</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structdisk__operations.html">disk_operations</a> {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    int (*init)(<span class="keyword">struct </span><a class="code hl_struct" href="structdisk__info.html">disk_info</a> *disk);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    int (*status)(<span class="keyword">struct </span><a class="code hl_struct" href="structdisk__info.html">disk_info</a> *disk);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    int (*read)(<span class="keyword">struct </span><a class="code hl_struct" href="structdisk__info.html">disk_info</a> *disk, uint8_t *data_buf,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            uint32_t start_sector, uint32_t num_sector);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    int (*write)(<span class="keyword">struct </span><a class="code hl_struct" href="structdisk__info.html">disk_info</a> *disk, <span class="keyword">const</span> uint8_t *data_buf,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>             uint32_t start_sector, uint32_t num_sector);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    int (*ioctl)(<span class="keyword">struct </span><a class="code hl_struct" href="structdisk__info.html">disk_info</a> *disk, uint8_t cmd, <span class="keywordtype">void</span> *buff);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>};</div>
+</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="group__disk__driver__interface.html#gaa11586a0b8ae6f2f0c142cec0df0c5fa">  100</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__disk__driver__interface.html#gaa11586a0b8ae6f2f0c142cec0df0c5fa">disk_access_register</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structdisk__info.html">disk_info</a> *disk);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="group__disk__driver__interface.html#gada802c6be65186009162a25f391dfb71">  109</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__disk__driver__interface.html#gada802c6be65186009162a25f391dfb71">disk_access_unregister</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structdisk__info.html">disk_info</a> *disk);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>}</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_DISK_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adlist_8h_html"><div class="ttname"><a href="dlist_8h.html">dlist.h</a></div></div>
+<div class="ttc" id="agroup__disk__driver__interface_html_gaa11586a0b8ae6f2f0c142cec0df0c5fa"><div class="ttname"><a href="group__disk__driver__interface.html#gaa11586a0b8ae6f2f0c142cec0df0c5fa">disk_access_register</a></div><div class="ttdeci">int disk_access_register(struct disk_info *disk)</div><div class="ttdoc">Register disk.</div></div>
+<div class="ttc" id="agroup__disk__driver__interface_html_gada802c6be65186009162a25f391dfb71"><div class="ttname"><a href="group__disk__driver__interface.html#gada802c6be65186009162a25f391dfb71">disk_access_unregister</a></div><div class="ttdeci">int disk_access_unregister(struct disk_info *disk)</div><div class="ttdoc">Unregister disk.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astruct__dnode_html"><div class="ttname"><a href="struct__dnode.html">_dnode</a></div><div class="ttdef"><b>Definição</b> dlist.h:37</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdisk__info_html"><div class="ttname"><a href="structdisk__info.html">disk_info</a></div><div class="ttdoc">Disk info.</div><div class="ttdef"><b>Definição</b> disk.h:69</div></div>
+<div class="ttc" id="astructdisk__info_html_a329a571f988718fd4737b8974d4f7ada"><div class="ttname"><a href="structdisk__info.html#a329a571f988718fd4737b8974d4f7ada">disk_info::ops</a></div><div class="ttdeci">const struct disk_operations * ops</div><div class="ttdef"><b>Definição</b> disk.h:75</div></div>
+<div class="ttc" id="astructdisk__info_html_a817b13306aa7deab4d366482b77e4dfc"><div class="ttname"><a href="structdisk__info.html#a817b13306aa7deab4d366482b77e4dfc">disk_info::name</a></div><div class="ttdeci">char * name</div><div class="ttdef"><b>Definição</b> disk.h:73</div></div>
+<div class="ttc" id="astructdisk__info_html_ab3413d8809d5181c671e1890a4662ba2"><div class="ttname"><a href="structdisk__info.html#ab3413d8809d5181c671e1890a4662ba2">disk_info::node</a></div><div class="ttdeci">sys_dnode_t node</div><div class="ttdef"><b>Definição</b> disk.h:71</div></div>
+<div class="ttc" id="astructdisk__info_html_ae316915bd577f22dc9d353fc4b2f04bb"><div class="ttname"><a href="structdisk__info.html#ae316915bd577f22dc9d353fc4b2f04bb">disk_info::dev</a></div><div class="ttdeci">const struct device * dev</div><div class="ttdef"><b>Definição</b> disk.h:77</div></div>
+<div class="ttc" id="astructdisk__operations_html"><div class="ttname"><a href="structdisk__operations.html">disk_operations</a></div><div class="ttdoc">Disk operations.</div><div class="ttdef"><b>Definição</b> disk.h:83</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

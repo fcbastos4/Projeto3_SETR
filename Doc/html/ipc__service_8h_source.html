@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/ipc/ipc_service.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_37061a2917679f99fa500ca704bb1799.html">ipc</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ipc_service.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2021 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_IPC_IPC_SERVICE_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define ZEPHYR_INCLUDE_IPC_IPC_SERVICE_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="foldopen" id="foldopen00145" data-start="{" data-end="};">
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="structipc__service__cb.html">  145</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structipc__service__cb.html">ipc_service_cb</a> {</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="structipc__service__cb.html#a76be12bf8a7964977b5d7512dd010110">  152</a></span>    void (*<a class="code hl_variable" href="structipc__service__cb.html#a76be12bf8a7964977b5d7512dd010110">bound</a>)(<span class="keywordtype">void</span> *priv);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="structipc__service__cb.html#a7b67edec6902fd6d8254ebfec4ee9fb5">  166</a></span>    void (*<a class="code hl_variable" href="structipc__service__cb.html#a7b67edec6902fd6d8254ebfec4ee9fb5">received</a>)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data, <span class="keywordtype">size_t</span> len, <span class="keywordtype">void</span> *priv);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="structipc__service__cb.html#ac40fd19ae5263f1880df1fe3dca55647">  173</a></span>    void (*<a class="code hl_variable" href="structipc__service__cb.html#ac40fd19ae5263f1880df1fe3dca55647">error</a>)(<span class="keyword">const</span> <span class="keywordtype">char</span> *message, <span class="keywordtype">void</span> *priv);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>};</div>
+</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="foldopen" id="foldopen00181" data-start="{" data-end="};">
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="structipc__ept.html">  181</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structipc__ept.html">ipc_ept</a> {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="structipc__ept.html#a4f043fd1ed7df3e1774ba7639c2caf1d">  184</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_variable" href="structipc__ept.html#a4f043fd1ed7df3e1774ba7639c2caf1d">instance</a>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="structipc__ept.html#a234002020af2b8a2f31ff3727ecf0964">  187</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structipc__ept.html#a234002020af2b8a2f31ff3727ecf0964">token</a>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>};</div>
+</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="foldopen" id="foldopen00191" data-start="{" data-end="};">
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="structipc__ept__cfg.html">  191</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structipc__ept__cfg.html">ipc_ept_cfg</a> {</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="structipc__ept__cfg.html#a6008673337256dc8a71052e121d2d0c6">  194</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structipc__ept__cfg.html#a6008673337256dc8a71052e121d2d0c6">name</a>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="structipc__ept__cfg.html#a8a85a116e7c0069121d4ef5dc9b55a4d">  197</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structipc__ept__cfg.html#a8a85a116e7c0069121d4ef5dc9b55a4d">prio</a>;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="structipc__ept__cfg.html#a0cd24dc49dbfe7f8cda02ee37d36529c">  200</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structipc__service__cb.html">ipc_service_cb</a> <a class="code hl_variable" href="structipc__ept__cfg.html#a0cd24dc49dbfe7f8cda02ee37d36529c">cb</a>;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="structipc__ept__cfg.html#a4b14515e74e5429d62e13c0478070893">  203</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structipc__ept__cfg.html#a4b14515e74e5429d62e13c0478070893">priv</a>;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>};</div>
+</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="group__ipc__service__api.html#gafef0b817299aedc870a004ab223bd20a">  220</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ipc__service__api.html#gafef0b817299aedc870a004ab223bd20a">ipc_service_open_instance</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *instance);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="group__ipc__service__api.html#ga78c837d30cfd8989efe63e0a397148a7">  239</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ipc__service__api.html#ga78c837d30cfd8989efe63e0a397148a7">ipc_service_close_instance</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *instance);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="group__ipc__service__api.html#gabfb8bab2e2e8cfe8908a050d4844666b">  261</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ipc__service__api.html#gabfb8bab2e2e8cfe8908a050d4844666b">ipc_service_register_endpoint</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *instance,</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>                  <span class="keyword">struct</span> <a class="code hl_struct" href="structipc__ept.html">ipc_ept</a> *ept,</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                  <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structipc__ept__cfg.html">ipc_ept_cfg</a> *cfg);</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="group__ipc__service__api.html#ga35c788240922fbca7b49af265100b68b">  281</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ipc__service__api.html#ga35c788240922fbca7b49af265100b68b">ipc_service_deregister_endpoint</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structipc__ept.html">ipc_ept</a> *ept);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno"><a class="line" href="group__ipc__service__api.html#gac002253b7436902c6a3e0c93933d23fc">  301</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ipc__service__api.html#gac002253b7436902c6a3e0c93933d23fc">ipc_service_send</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structipc__ept.html">ipc_ept</a> *ept, <span class="keyword">const</span> <span class="keywordtype">void</span> *data, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="group__ipc__service__api.html#ga5bcce96a208b4282e3eceb6e0ff451e4">  319</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ipc__service__api.html#ga5bcce96a208b4282e3eceb6e0ff451e4">ipc_service_get_tx_buffer_size</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structipc__ept.html">ipc_ept</a> *ept);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="group__ipc__service__api.html#gab2371bd26ad85b5dffac3b4000e51191">  368</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ipc__service__api.html#gab2371bd26ad85b5dffac3b4000e51191">ipc_service_get_tx_buffer</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structipc__ept.html">ipc_ept</a> *ept, <span class="keywordtype">void</span> **data, uint32_t *size, <a class="code hl_struct" href="structk__timeout__t.html">k_timeout_t</a> wait);</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno"><a class="line" href="group__ipc__service__api.html#ga3eb7168f73f5bc45fdced3af6d374860">  390</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ipc__service__api.html#ga3eb7168f73f5bc45fdced3af6d374860">ipc_service_drop_tx_buffer</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structipc__ept.html">ipc_ept</a> *ept, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span> </div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno"><a class="line" href="group__ipc__service__api.html#ga72aa5da1530908230478c49b5a012dc1">  424</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ipc__service__api.html#ga72aa5da1530908230478c49b5a012dc1">ipc_service_send_nocopy</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structipc__ept.html">ipc_ept</a> *ept, <span class="keyword">const</span> <span class="keywordtype">void</span> *data, <span class="keywordtype">size_t</span> len);</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno"><a class="line" href="group__ipc__service__api.html#gadd957653c3e2bc32c494a9d643c0a0bd">  449</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ipc__service__api.html#gadd957653c3e2bc32c494a9d643c0a0bd">ipc_service_hold_rx_buffer</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structipc__ept.html">ipc_ept</a> *ept, <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span> </div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno"><a class="line" href="group__ipc__service__api.html#gaf4fd99716e7c83006a76f7f1bc85f228">  475</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__ipc__service__api.html#gaf4fd99716e7c83006a76f7f1bc85f228">ipc_service_release_rx_buffer</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structipc__ept.html">ipc_ept</a> *ept, <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span> </div>
+<div class="line"><a id="l00481" name="l00481"></a><span class="lineno">  481</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span>}</div>
+<div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span> </div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_IPC_IPC_SERVICE_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__ipc__service__api_html_ga35c788240922fbca7b49af265100b68b"><div class="ttname"><a href="group__ipc__service__api.html#ga35c788240922fbca7b49af265100b68b">ipc_service_deregister_endpoint</a></div><div class="ttdeci">int ipc_service_deregister_endpoint(struct ipc_ept *ept)</div><div class="ttdoc">Deregister an IPC endpoint from its instance.</div></div>
+<div class="ttc" id="agroup__ipc__service__api_html_ga3eb7168f73f5bc45fdced3af6d374860"><div class="ttname"><a href="group__ipc__service__api.html#ga3eb7168f73f5bc45fdced3af6d374860">ipc_service_drop_tx_buffer</a></div><div class="ttdeci">int ipc_service_drop_tx_buffer(struct ipc_ept *ept, const void *data)</div><div class="ttdoc">Drop and release a TX buffer.</div></div>
+<div class="ttc" id="agroup__ipc__service__api_html_ga5bcce96a208b4282e3eceb6e0ff451e4"><div class="ttname"><a href="group__ipc__service__api.html#ga5bcce96a208b4282e3eceb6e0ff451e4">ipc_service_get_tx_buffer_size</a></div><div class="ttdeci">int ipc_service_get_tx_buffer_size(struct ipc_ept *ept)</div><div class="ttdoc">Get the TX buffer size.</div></div>
+<div class="ttc" id="agroup__ipc__service__api_html_ga72aa5da1530908230478c49b5a012dc1"><div class="ttname"><a href="group__ipc__service__api.html#ga72aa5da1530908230478c49b5a012dc1">ipc_service_send_nocopy</a></div><div class="ttdeci">int ipc_service_send_nocopy(struct ipc_ept *ept, const void *data, size_t len)</div><div class="ttdoc">Send data in a TX buffer reserved by ipc_service_get_tx_buffer using the given IPC endpoint.</div></div>
+<div class="ttc" id="agroup__ipc__service__api_html_ga78c837d30cfd8989efe63e0a397148a7"><div class="ttname"><a href="group__ipc__service__api.html#ga78c837d30cfd8989efe63e0a397148a7">ipc_service_close_instance</a></div><div class="ttdeci">int ipc_service_close_instance(const struct device *instance)</div><div class="ttdoc">Close an instance.</div></div>
+<div class="ttc" id="agroup__ipc__service__api_html_gab2371bd26ad85b5dffac3b4000e51191"><div class="ttname"><a href="group__ipc__service__api.html#gab2371bd26ad85b5dffac3b4000e51191">ipc_service_get_tx_buffer</a></div><div class="ttdeci">int ipc_service_get_tx_buffer(struct ipc_ept *ept, void **data, uint32_t *size, k_timeout_t wait)</div><div class="ttdoc">Get an empty TX buffer to be sent using ipc_service_send_nocopy.</div></div>
+<div class="ttc" id="agroup__ipc__service__api_html_gabfb8bab2e2e8cfe8908a050d4844666b"><div class="ttname"><a href="group__ipc__service__api.html#gabfb8bab2e2e8cfe8908a050d4844666b">ipc_service_register_endpoint</a></div><div class="ttdeci">int ipc_service_register_endpoint(const struct device *instance, struct ipc_ept *ept, const struct ipc_ept_cfg *cfg)</div><div class="ttdoc">Register IPC endpoint onto an instance.</div></div>
+<div class="ttc" id="agroup__ipc__service__api_html_gac002253b7436902c6a3e0c93933d23fc"><div class="ttname"><a href="group__ipc__service__api.html#gac002253b7436902c6a3e0c93933d23fc">ipc_service_send</a></div><div class="ttdeci">int ipc_service_send(struct ipc_ept *ept, const void *data, size_t len)</div><div class="ttdoc">Send data using given IPC endpoint.</div></div>
+<div class="ttc" id="agroup__ipc__service__api_html_gadd957653c3e2bc32c494a9d643c0a0bd"><div class="ttname"><a href="group__ipc__service__api.html#gadd957653c3e2bc32c494a9d643c0a0bd">ipc_service_hold_rx_buffer</a></div><div class="ttdeci">int ipc_service_hold_rx_buffer(struct ipc_ept *ept, void *data)</div><div class="ttdoc">Holds the RX buffer for usage outside the receive callback.</div></div>
+<div class="ttc" id="agroup__ipc__service__api_html_gaf4fd99716e7c83006a76f7f1bc85f228"><div class="ttname"><a href="group__ipc__service__api.html#gaf4fd99716e7c83006a76f7f1bc85f228">ipc_service_release_rx_buffer</a></div><div class="ttdeci">int ipc_service_release_rx_buffer(struct ipc_ept *ept, void *data)</div><div class="ttdoc">Release the RX buffer for future reuse.</div></div>
+<div class="ttc" id="agroup__ipc__service__api_html_gafef0b817299aedc870a004ab223bd20a"><div class="ttname"><a href="group__ipc__service__api.html#gafef0b817299aedc870a004ab223bd20a">ipc_service_open_instance</a></div><div class="ttdeci">int ipc_service_open_instance(const struct device *instance)</div><div class="ttdoc">Open an instance.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructipc__ept__cfg_html"><div class="ttname"><a href="structipc__ept__cfg.html">ipc_ept_cfg</a></div><div class="ttdoc">Endpoint configuration structure.</div><div class="ttdef"><b>Definição</b> ipc_service.h:191</div></div>
+<div class="ttc" id="astructipc__ept__cfg_html_a0cd24dc49dbfe7f8cda02ee37d36529c"><div class="ttname"><a href="structipc__ept__cfg.html#a0cd24dc49dbfe7f8cda02ee37d36529c">ipc_ept_cfg::cb</a></div><div class="ttdeci">struct ipc_service_cb cb</div><div class="ttdef"><b>Definição</b> ipc_service.h:200</div></div>
+<div class="ttc" id="astructipc__ept__cfg_html_a4b14515e74e5429d62e13c0478070893"><div class="ttname"><a href="structipc__ept__cfg.html#a4b14515e74e5429d62e13c0478070893">ipc_ept_cfg::priv</a></div><div class="ttdeci">void * priv</div><div class="ttdef"><b>Definição</b> ipc_service.h:203</div></div>
+<div class="ttc" id="astructipc__ept__cfg_html_a6008673337256dc8a71052e121d2d0c6"><div class="ttname"><a href="structipc__ept__cfg.html#a6008673337256dc8a71052e121d2d0c6">ipc_ept_cfg::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definição</b> ipc_service.h:194</div></div>
+<div class="ttc" id="astructipc__ept__cfg_html_a8a85a116e7c0069121d4ef5dc9b55a4d"><div class="ttname"><a href="structipc__ept__cfg.html#a8a85a116e7c0069121d4ef5dc9b55a4d">ipc_ept_cfg::prio</a></div><div class="ttdeci">int prio</div><div class="ttdef"><b>Definição</b> ipc_service.h:197</div></div>
+<div class="ttc" id="astructipc__ept_html"><div class="ttname"><a href="structipc__ept.html">ipc_ept</a></div><div class="ttdoc">Endpoint instance.</div><div class="ttdef"><b>Definição</b> ipc_service.h:181</div></div>
+<div class="ttc" id="astructipc__ept_html_a234002020af2b8a2f31ff3727ecf0964"><div class="ttname"><a href="structipc__ept.html#a234002020af2b8a2f31ff3727ecf0964">ipc_ept::token</a></div><div class="ttdeci">void * token</div><div class="ttdef"><b>Definição</b> ipc_service.h:187</div></div>
+<div class="ttc" id="astructipc__ept_html_a4f043fd1ed7df3e1774ba7639c2caf1d"><div class="ttname"><a href="structipc__ept.html#a4f043fd1ed7df3e1774ba7639c2caf1d">ipc_ept::instance</a></div><div class="ttdeci">const struct device * instance</div><div class="ttdef"><b>Definição</b> ipc_service.h:184</div></div>
+<div class="ttc" id="astructipc__service__cb_html"><div class="ttname"><a href="structipc__service__cb.html">ipc_service_cb</a></div><div class="ttdoc">Event callback structure.</div><div class="ttdef"><b>Definição</b> ipc_service.h:145</div></div>
+<div class="ttc" id="astructipc__service__cb_html_a76be12bf8a7964977b5d7512dd010110"><div class="ttname"><a href="structipc__service__cb.html#a76be12bf8a7964977b5d7512dd010110">ipc_service_cb::bound</a></div><div class="ttdeci">void(* bound)(void *priv)</div><div class="ttdoc">Bind was successful.</div><div class="ttdef"><b>Definição</b> ipc_service.h:152</div></div>
+<div class="ttc" id="astructipc__service__cb_html_a7b67edec6902fd6d8254ebfec4ee9fb5"><div class="ttname"><a href="structipc__service__cb.html#a7b67edec6902fd6d8254ebfec4ee9fb5">ipc_service_cb::received</a></div><div class="ttdeci">void(* received)(const void *data, size_t len, void *priv)</div><div class="ttdoc">New packet arrived.</div><div class="ttdef"><b>Definição</b> ipc_service.h:166</div></div>
+<div class="ttc" id="astructipc__service__cb_html_ac40fd19ae5263f1880df1fe3dca55647"><div class="ttname"><a href="structipc__service__cb.html#ac40fd19ae5263f1880df1fe3dca55647">ipc_service_cb::error</a></div><div class="ttdeci">void(* error)(const char *message, void *priv)</div><div class="ttdoc">An error occurred.</div><div class="ttdef"><b>Definição</b> ipc_service.h:173</div></div>
+<div class="ttc" id="astructk__timeout__t_html"><div class="ttname"><a href="structk__timeout__t.html">k_timeout_t</a></div><div class="ttdoc">Kernel timeout type.</div><div class="ttdef"><b>Definição</b> sys_clock.h:65</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

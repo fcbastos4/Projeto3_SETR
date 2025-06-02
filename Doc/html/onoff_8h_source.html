@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/sys/onoff.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_791a8e330d3bfcbb2b6e2254610c12ab.html">sys</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">onoff.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2019 Peter Bigot Consulting, LLC</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Copyright (c) 2020 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_SYS_ONOFF_H_</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define ZEPHYR_INCLUDE_SYS_ONOFF_H_</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;zephyr/types.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;zephyr/sys/notify.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#ga9ae0c3528254b10f5e1a9743aea234dd">   30</a></span><span class="preprocessor">#define ONOFF_FLAG_ERROR BIT(0)</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#define ONOFF_FLAG_ONOFF BIT(1)</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#define ONOFF_FLAG_TRANSITION BIT(2)</span></div>
+<div class="foldopen" id="foldopen00045" data-start="" data-end="">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#ga0e06eafdf5021ce970027f20fc001acc">   45</a></span><span class="preprocessor">#define ONOFF_STATE_MASK (ONOFF_FLAG_ERROR   \</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">              | ONOFF_FLAG_ONOFF \</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">              | ONOFF_FLAG_TRANSITION)</span></div>
+</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#gab9e5380dce026a5dfea770f999400484">   52</a></span><span class="preprocessor">#define ONOFF_STATE_OFF 0U</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#ga7cd0fba52afba2e337ab7c830d3058d7">   57</a></span><span class="preprocessor">#define ONOFF_STATE_ON ONOFF_FLAG_ONOFF</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#gac005a25d149568208a6fbaa2ceaa1ac6">   63</a></span><span class="preprocessor">#define ONOFF_STATE_ERROR ONOFF_FLAG_ERROR</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#gac4a0d8a7b501adb011aa1c4c4da3f2a3">   69</a></span><span class="preprocessor">#define ONOFF_STATE_TO_ON (ONOFF_FLAG_TRANSITION | ONOFF_STATE_ON)</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#ga235a04122763f1a2cbb849c56df65d26">   75</a></span><span class="preprocessor">#define ONOFF_STATE_TO_OFF (ONOFF_FLAG_TRANSITION | ONOFF_STATE_OFF)</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#gacc0438b5c81c639e0035ada5caec940b">   81</a></span><span class="preprocessor">#define ONOFF_STATE_RESETTING (ONOFF_FLAG_TRANSITION | ONOFF_STATE_ERROR)</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">/* Forward declarations */</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keyword">struct </span><a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="keyword">struct </span><a class="code hl_struct" href="structonoff__monitor.html">onoff_monitor</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#gac05f7946a14fa23ef67212eba30c98ac">  101</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__resource__mgmt__onoff__apis.html#gac05f7946a14fa23ef67212eba30c98ac">onoff_notify_fn</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> *mgr,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                <span class="keywordtype">int</span> res);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#ga51fdf83642c5fa16112ce143382ec5d1">  129</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__resource__mgmt__onoff__apis.html#ga51fdf83642c5fa16112ce143382ec5d1">onoff_transition_fn</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> *mgr,</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                    <a class="code hl_typedef" href="group__resource__mgmt__onoff__apis.html#gac05f7946a14fa23ef67212eba30c98ac">onoff_notify_fn</a> notify);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="foldopen" id="foldopen00133" data-start="{" data-end="};">
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="structonoff__transitions.html">  133</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structonoff__transitions.html">onoff_transitions</a> {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="structonoff__transitions.html#a86417dd542c8f259ad1fc1c7d3c26545">  135</a></span>    <a class="code hl_typedef" href="group__resource__mgmt__onoff__apis.html#ga51fdf83642c5fa16112ce143382ec5d1">onoff_transition_fn</a> <a class="code hl_variable" href="structonoff__transitions.html#a86417dd542c8f259ad1fc1c7d3c26545">start</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="structonoff__transitions.html#a91a1805daabae70d362441634bfa508d">  138</a></span>    <a class="code hl_typedef" href="group__resource__mgmt__onoff__apis.html#ga51fdf83642c5fa16112ce143382ec5d1">onoff_transition_fn</a> <a class="code hl_variable" href="structonoff__transitions.html#a91a1805daabae70d362441634bfa508d">stop</a>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="structonoff__transitions.html#a335d7d2f8418e78b237cfb4199b6f6aa">  143</a></span>    <a class="code hl_typedef" href="group__resource__mgmt__onoff__apis.html#ga51fdf83642c5fa16112ce143382ec5d1">onoff_transition_fn</a> <a class="code hl_variable" href="structonoff__transitions.html#a335d7d2f8418e78b237cfb4199b6f6aa">reset</a>;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>};</div>
+</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="foldopen" id="foldopen00154" data-start="{" data-end="};">
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="structonoff__manager.html">  154</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="structonoff__manager.html#a3eb50568d4b7c83597a194c7facd383b">  158</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga44658c336b634c03938a251cdc8134f8">sys_slist_t</a> <a class="code hl_variable" href="structonoff__manager.html#a3eb50568d4b7c83597a194c7facd383b">clients</a>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="structonoff__manager.html#a501bb2c1c84293b1e4fbd011c62f5c69">  163</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga44658c336b634c03938a251cdc8134f8">sys_slist_t</a> <a class="code hl_variable" href="structonoff__manager.html#a501bb2c1c84293b1e4fbd011c62f5c69">monitors</a>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="structonoff__manager.html#adcbe3b90e1618d3e7e223da106790457">  166</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structonoff__transitions.html">onoff_transitions</a> *<a class="code hl_variable" href="structonoff__manager.html#adcbe3b90e1618d3e7e223da106790457">transitions</a>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="structonoff__manager.html#af87f180f0494f02054e33086ee940493">  169</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__spinlock.html">k_spinlock</a> <a class="code hl_variable" href="structonoff__manager.html#af87f180f0494f02054e33086ee940493">lock</a>;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="structonoff__manager.html#a5f555de973d72ba1889655c3342c8dc7">  172</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structonoff__manager.html#a5f555de973d72ba1889655c3342c8dc7">last_res</a>;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="structonoff__manager.html#a50d51cd3700e610b2f650607373afeb4">  175</a></span>    uint16_t <a class="code hl_variable" href="structonoff__manager.html#a50d51cd3700e610b2f650607373afeb4">flags</a>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="structonoff__manager.html#a43c40829b6acd4c91517a34ebd371dd9">  178</a></span>    uint16_t <a class="code hl_variable" href="structonoff__manager.html#a43c40829b6acd4c91517a34ebd371dd9">refs</a>;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>};</div>
+</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="foldopen" id="foldopen00190" data-start="" data-end="">
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#ga8c1171a844ef1d9d6541d342124492ff">  190</a></span><span class="preprocessor">#define ONOFF_TRANSITIONS_INITIALIZER(_start, _stop, _reset) { \</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="preprocessor">        .start = _start,                   \</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="preprocessor">        .stop = _stop,                     \</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">        .reset = _reset,                   \</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">}</span></div>
+</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="preprocessor">#define ONOFF_MANAGER_INITIALIZER(_transitions) { \</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">        .transitions = _transitions,      \</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">}</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#ga73d52272baab03d1df2f267429390978">  221</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__resource__mgmt__onoff__apis.html#ga73d52272baab03d1df2f267429390978">onoff_manager_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> *mgr,</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>               <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__transitions.html">onoff_transitions</a> *transitions);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment">/* Forward declaration */</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="keyword">struct </span><a class="code hl_struct" href="structonoff__client.html">onoff_client</a>;</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#ga41b94526182c5772d7adebb1d1745068">  252</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__resource__mgmt__onoff__apis.html#ga41b94526182c5772d7adebb1d1745068">onoff_client_callback</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> *mgr,</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>                      <span class="keyword">struct </span><a class="code hl_struct" href="structonoff__client.html">onoff_client</a> *cli,</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                      uint32_t state,</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                      <span class="keywordtype">int</span> res);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="foldopen" id="foldopen00274" data-start="{" data-end="};">
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno"><a class="line" href="structonoff__client.html">  274</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structonoff__client.html">onoff_client</a> {</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> node;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno"><a class="line" href="structonoff__client.html#a40f8029732122f7887bb021de362742c">  285</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structsys__notify.html">sys_notify</a> <a class="code hl_variable" href="structonoff__client.html#a40f8029732122f7887bb021de362742c">notify</a>;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>};</div>
+</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#gad61d053ae4e9ee12efe8d37372a16c63">  300</a></span><span class="preprocessor">#define ONOFF_CLIENT_EXTENSION_POS SYS_NOTIFY_EXTENSION_POS</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> onoff_has_error(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> *mgr)</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>{</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="keywordflow">return</span> (mgr-&gt;<a class="code hl_variable" href="structonoff__manager.html#a50d51cd3700e610b2f650607373afeb4">flags</a> &amp; <a class="code hl_define" href="group__resource__mgmt__onoff__apis.html#ga9ae0c3528254b10f5e1a9743aea234dd">ONOFF_FLAG_ERROR</a>) != 0;</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>}</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#ga20dcb358e405deb87b7fbb7846ef9d68">  347</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__resource__mgmt__onoff__apis.html#ga20dcb358e405deb87b7fbb7846ef9d68">onoff_request</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> *mgr,</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>          <span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__client.html">onoff_client</a> *cli);</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#ga19da5359f10fa2e2eb034d1e72235ea6">  368</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__resource__mgmt__onoff__apis.html#ga19da5359f10fa2e2eb034d1e72235ea6">onoff_release</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> *mgr);</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#gad05d32f1548e56b508628e84ba101554">  401</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__resource__mgmt__onoff__apis.html#gad05d32f1548e56b508628e84ba101554">onoff_cancel</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> *mgr,</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>         <span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__client.html">onoff_client</a> *cli);</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> onoff_cancel_or_release(<span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> *mgr,</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>                      <span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__client.html">onoff_client</a> *cli)</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>{</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>    <span class="keywordtype">int</span> rv = <a class="code hl_function" href="group__resource__mgmt__onoff__apis.html#gad05d32f1548e56b508628e84ba101554">onoff_cancel</a>(mgr, cli);</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span> </div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>    <span class="keywordflow">if</span> (rv == -EALREADY) {</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>        rv = <a class="code hl_function" href="group__resource__mgmt__onoff__apis.html#ga19da5359f10fa2e2eb034d1e72235ea6">onoff_release</a>(mgr);</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>    }</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>    <span class="keywordflow">return</span> rv;</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>}</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span> </div>
+<div class="line"><a id="l00481" name="l00481"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#gaf7b46a5f2e43d1bab193c18b8f6c8ba8">  481</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__resource__mgmt__onoff__apis.html#gaf7b46a5f2e43d1bab193c18b8f6c8ba8">onoff_reset</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> *mgr,</div>
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span>        <span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__client.html">onoff_client</a> *cli);</div>
+<div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span> </div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#gaee41b38d408cf5f5efc9cd007f377545">  512</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="group__resource__mgmt__onoff__apis.html#gaee41b38d408cf5f5efc9cd007f377545">onoff_monitor_callback</a>)(<span class="keyword">struct </span><a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> *mgr,</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>                       <span class="keyword">struct </span><a class="code hl_struct" href="structonoff__monitor.html">onoff_monitor</a> *mon,</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>                       uint32_t state,</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>                       <span class="keywordtype">int</span> res);</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span> </div>
+<div class="foldopen" id="foldopen00524" data-start="{" data-end="};">
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno"><a class="line" href="structonoff__monitor.html">  524</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structonoff__monitor.html">onoff_monitor</a> {</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno"><a class="line" href="structonoff__monitor.html#a732a81eb0d9b36376b39b1a340fd1fe6">  529</a></span>    <a class="code hl_typedef" href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a> <a class="code hl_variable" href="structonoff__monitor.html#a732a81eb0d9b36376b39b1a340fd1fe6">node</a>;</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span> </div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno"><a class="line" href="structonoff__monitor.html#ab26d8ae8a0dac5e03549e2d9aca243a4">  535</a></span>    <a class="code hl_typedef" href="group__resource__mgmt__onoff__apis.html#gaee41b38d408cf5f5efc9cd007f377545">onoff_monitor_callback</a> <a class="code hl_variable" href="structonoff__monitor.html#ab26d8ae8a0dac5e03549e2d9aca243a4">callback</a>;</div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>};</div>
+</div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span> </div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#ga9897d93359fe58359c0204da46b4c01e">  549</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__resource__mgmt__onoff__apis.html#ga9897d93359fe58359c0204da46b4c01e">onoff_monitor_register</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> *mgr,</div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>               <span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__monitor.html">onoff_monitor</a> *mon);</div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span> </div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#ga50a51da8e701a3f19f242af5183d807a">  563</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__resource__mgmt__onoff__apis.html#ga50a51da8e701a3f19f242af5183d807a">onoff_monitor_unregister</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__manager.html">onoff_manager</a> *mgr,</div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__monitor.html">onoff_monitor</a> *mon);</div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span> </div>
+<div class="foldopen" id="foldopen00576" data-start="{" data-end="};">
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno"><a class="line" href="structonoff__sync__service.html">  576</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structonoff__sync__service.html">onoff_sync_service</a> {</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno"><a class="line" href="structonoff__sync__service.html#ac08d780a80fed2d89c1334cc3c65eeed">  578</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__spinlock.html">k_spinlock</a> <a class="code hl_variable" href="structonoff__sync__service.html#ac08d780a80fed2d89c1334cc3c65eeed">lock</a>;</div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span> </div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno"><a class="line" href="structonoff__sync__service.html#adff029426035dffb57fda0de44f2abae">  581</a></span>    int32_t <a class="code hl_variable" href="structonoff__sync__service.html#adff029426035dffb57fda0de44f2abae">count</a>;</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>};</div>
+</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span> </div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#ga174cadf7dfa5d3c4dc5c8185994f3825">  600</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__resource__mgmt__onoff__apis.html#ga174cadf7dfa5d3c4dc5c8185994f3825">onoff_sync_lock</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__sync__service.html">onoff_sync_service</a> *srv,</div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span>            <a class="code hl_struct" href="structz__spinlock__key.html">k_spinlock_key_t</a> *keyp);</div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span> </div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno"><a class="line" href="group__resource__mgmt__onoff__apis.html#gae3331bdad9d03309ee78e86c487b7f26">  635</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__resource__mgmt__onoff__apis.html#gae3331bdad9d03309ee78e86c487b7f26">onoff_sync_finalize</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__sync__service.html">onoff_sync_service</a> *srv,</div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>             <a class="code hl_struct" href="structz__spinlock__key.html">k_spinlock_key_t</a> key,</div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span>             <span class="keyword">struct</span> <a class="code hl_struct" href="structonoff__client.html">onoff_client</a> *cli,</div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span>             <span class="keywordtype">int</span> res,</div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span>             <span class="keywordtype">bool</span> on);</div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span> </div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>}</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span> </div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_SYS_ONOFF_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_ga174cadf7dfa5d3c4dc5c8185994f3825"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#ga174cadf7dfa5d3c4dc5c8185994f3825">onoff_sync_lock</a></div><div class="ttdeci">int onoff_sync_lock(struct onoff_sync_service *srv, k_spinlock_key_t *keyp)</div><div class="ttdoc">Lock a synchronous onoff service and provide its state.</div></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_ga19da5359f10fa2e2eb034d1e72235ea6"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#ga19da5359f10fa2e2eb034d1e72235ea6">onoff_release</a></div><div class="ttdeci">int onoff_release(struct onoff_manager *mgr)</div><div class="ttdoc">Release a reserved use of an on-off service.</div></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_ga20dcb358e405deb87b7fbb7846ef9d68"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#ga20dcb358e405deb87b7fbb7846ef9d68">onoff_request</a></div><div class="ttdeci">int onoff_request(struct onoff_manager *mgr, struct onoff_client *cli)</div><div class="ttdoc">Request a reservation to use an on-off service.</div></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_ga41b94526182c5772d7adebb1d1745068"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#ga41b94526182c5772d7adebb1d1745068">onoff_client_callback</a></div><div class="ttdeci">void(* onoff_client_callback)(struct onoff_manager *mgr, struct onoff_client *cli, uint32_t state, int res)</div><div class="ttdoc">Signature used to notify an on-off service client of the completion of an operation.</div><div class="ttdef"><b>Definição</b> onoff.h:252</div></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_ga50a51da8e701a3f19f242af5183d807a"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#ga50a51da8e701a3f19f242af5183d807a">onoff_monitor_unregister</a></div><div class="ttdeci">int onoff_monitor_unregister(struct onoff_manager *mgr, struct onoff_monitor *mon)</div><div class="ttdoc">Remove a monitor of state changes from a manager.</div></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_ga51fdf83642c5fa16112ce143382ec5d1"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#ga51fdf83642c5fa16112ce143382ec5d1">onoff_transition_fn</a></div><div class="ttdeci">void(* onoff_transition_fn)(struct onoff_manager *mgr, onoff_notify_fn notify)</div><div class="ttdoc">Signature used by service implementations to effect a transition.</div><div class="ttdef"><b>Definição</b> onoff.h:129</div></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_ga73d52272baab03d1df2f267429390978"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#ga73d52272baab03d1df2f267429390978">onoff_manager_init</a></div><div class="ttdeci">int onoff_manager_init(struct onoff_manager *mgr, const struct onoff_transitions *transitions)</div><div class="ttdoc">Initialize an on-off service to off state.</div></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_ga9897d93359fe58359c0204da46b4c01e"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#ga9897d93359fe58359c0204da46b4c01e">onoff_monitor_register</a></div><div class="ttdeci">int onoff_monitor_register(struct onoff_manager *mgr, struct onoff_monitor *mon)</div><div class="ttdoc">Add a monitor of state changes for a manager.</div></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_ga9ae0c3528254b10f5e1a9743aea234dd"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#ga9ae0c3528254b10f5e1a9743aea234dd">ONOFF_FLAG_ERROR</a></div><div class="ttdeci">#define ONOFF_FLAG_ERROR</div><div class="ttdoc">Flag indicating an error state.</div><div class="ttdef"><b>Definição</b> onoff.h:30</div></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_gac05f7946a14fa23ef67212eba30c98ac"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#gac05f7946a14fa23ef67212eba30c98ac">onoff_notify_fn</a></div><div class="ttdeci">void(* onoff_notify_fn)(struct onoff_manager *mgr, int res)</div><div class="ttdoc">Signature used to notify an on-off manager that a transition has completed.</div><div class="ttdef"><b>Definição</b> onoff.h:101</div></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_gad05d32f1548e56b508628e84ba101554"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#gad05d32f1548e56b508628e84ba101554">onoff_cancel</a></div><div class="ttdeci">int onoff_cancel(struct onoff_manager *mgr, struct onoff_client *cli)</div><div class="ttdoc">Attempt to cancel an in-progress client operation.</div></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_gae3331bdad9d03309ee78e86c487b7f26"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#gae3331bdad9d03309ee78e86c487b7f26">onoff_sync_finalize</a></div><div class="ttdeci">int onoff_sync_finalize(struct onoff_sync_service *srv, k_spinlock_key_t key, struct onoff_client *cli, int res, bool on)</div><div class="ttdoc">Process the completion of a transition in a synchronous service and release lock.</div></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_gaee41b38d408cf5f5efc9cd007f377545"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#gaee41b38d408cf5f5efc9cd007f377545">onoff_monitor_callback</a></div><div class="ttdeci">void(* onoff_monitor_callback)(struct onoff_manager *mgr, struct onoff_monitor *mon, uint32_t state, int res)</div><div class="ttdoc">Signature used to notify a monitor of an onoff service of errors or completion of a state transition.</div><div class="ttdef"><b>Definição</b> onoff.h:512</div></div>
+<div class="ttc" id="agroup__resource__mgmt__onoff__apis_html_gaf7b46a5f2e43d1bab193c18b8f6c8ba8"><div class="ttname"><a href="group__resource__mgmt__onoff__apis.html#gaf7b46a5f2e43d1bab193c18b8f6c8ba8">onoff_reset</a></div><div class="ttdeci">int onoff_reset(struct onoff_manager *mgr, struct onoff_client *cli)</div><div class="ttdoc">Clear errors on an on-off service and reset it to its off state.</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga44658c336b634c03938a251cdc8134f8"><div class="ttname"><a href="group__single-linked-list__apis.html#ga44658c336b634c03938a251cdc8134f8">sys_slist_t</a></div><div class="ttdeci">struct _slist sys_slist_t</div><div class="ttdef"><b>Definição</b> slist.h:49</div></div>
+<div class="ttc" id="agroup__single-linked-list__apis_html_ga69bf43aad81e3ee2d55250c59b857493"><div class="ttname"><a href="group__single-linked-list__apis.html#ga69bf43aad81e3ee2d55250c59b857493">sys_snode_t</a></div><div class="ttdeci">struct _snode sys_snode_t</div><div class="ttdef"><b>Definição</b> slist.h:39</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructk__spinlock_html"><div class="ttname"><a href="structk__spinlock.html">k_spinlock</a></div><div class="ttdoc">Kernel Spin Lock.</div><div class="ttdef"><b>Definição</b> spinlock.h:45</div></div>
+<div class="ttc" id="astructonoff__client_html"><div class="ttname"><a href="structonoff__client.html">onoff_client</a></div><div class="ttdoc">State associated with a client of an on-off service.</div><div class="ttdef"><b>Definição</b> onoff.h:274</div></div>
+<div class="ttc" id="astructonoff__client_html_a40f8029732122f7887bb021de362742c"><div class="ttname"><a href="structonoff__client.html#a40f8029732122f7887bb021de362742c">onoff_client::notify</a></div><div class="ttdeci">struct sys_notify notify</div><div class="ttdoc">Notification configuration.</div><div class="ttdef"><b>Definição</b> onoff.h:285</div></div>
+<div class="ttc" id="astructonoff__manager_html"><div class="ttname"><a href="structonoff__manager.html">onoff_manager</a></div><div class="ttdoc">State associated with an on-off manager.</div><div class="ttdef"><b>Definição</b> onoff.h:154</div></div>
+<div class="ttc" id="astructonoff__manager_html_a3eb50568d4b7c83597a194c7facd383b"><div class="ttname"><a href="structonoff__manager.html#a3eb50568d4b7c83597a194c7facd383b">onoff_manager::clients</a></div><div class="ttdeci">sys_slist_t clients</div><div class="ttdef"><b>Definição</b> onoff.h:158</div></div>
+<div class="ttc" id="astructonoff__manager_html_a43c40829b6acd4c91517a34ebd371dd9"><div class="ttname"><a href="structonoff__manager.html#a43c40829b6acd4c91517a34ebd371dd9">onoff_manager::refs</a></div><div class="ttdeci">uint16_t refs</div><div class="ttdef"><b>Definição</b> onoff.h:178</div></div>
+<div class="ttc" id="astructonoff__manager_html_a501bb2c1c84293b1e4fbd011c62f5c69"><div class="ttname"><a href="structonoff__manager.html#a501bb2c1c84293b1e4fbd011c62f5c69">onoff_manager::monitors</a></div><div class="ttdeci">sys_slist_t monitors</div><div class="ttdef"><b>Definição</b> onoff.h:163</div></div>
+<div class="ttc" id="astructonoff__manager_html_a50d51cd3700e610b2f650607373afeb4"><div class="ttname"><a href="structonoff__manager.html#a50d51cd3700e610b2f650607373afeb4">onoff_manager::flags</a></div><div class="ttdeci">uint16_t flags</div><div class="ttdef"><b>Definição</b> onoff.h:175</div></div>
+<div class="ttc" id="astructonoff__manager_html_a5f555de973d72ba1889655c3342c8dc7"><div class="ttname"><a href="structonoff__manager.html#a5f555de973d72ba1889655c3342c8dc7">onoff_manager::last_res</a></div><div class="ttdeci">int last_res</div><div class="ttdef"><b>Definição</b> onoff.h:172</div></div>
+<div class="ttc" id="astructonoff__manager_html_adcbe3b90e1618d3e7e223da106790457"><div class="ttname"><a href="structonoff__manager.html#adcbe3b90e1618d3e7e223da106790457">onoff_manager::transitions</a></div><div class="ttdeci">const struct onoff_transitions * transitions</div><div class="ttdef"><b>Definição</b> onoff.h:166</div></div>
+<div class="ttc" id="astructonoff__manager_html_af87f180f0494f02054e33086ee940493"><div class="ttname"><a href="structonoff__manager.html#af87f180f0494f02054e33086ee940493">onoff_manager::lock</a></div><div class="ttdeci">struct k_spinlock lock</div><div class="ttdef"><b>Definição</b> onoff.h:169</div></div>
+<div class="ttc" id="astructonoff__monitor_html"><div class="ttname"><a href="structonoff__monitor.html">onoff_monitor</a></div><div class="ttdoc">Registration state for notifications of onoff service transitions.</div><div class="ttdef"><b>Definição</b> onoff.h:524</div></div>
+<div class="ttc" id="astructonoff__monitor_html_a732a81eb0d9b36376b39b1a340fd1fe6"><div class="ttname"><a href="structonoff__monitor.html#a732a81eb0d9b36376b39b1a340fd1fe6">onoff_monitor::node</a></div><div class="ttdeci">sys_snode_t node</div><div class="ttdef"><b>Definição</b> onoff.h:529</div></div>
+<div class="ttc" id="astructonoff__monitor_html_ab26d8ae8a0dac5e03549e2d9aca243a4"><div class="ttname"><a href="structonoff__monitor.html#ab26d8ae8a0dac5e03549e2d9aca243a4">onoff_monitor::callback</a></div><div class="ttdeci">onoff_monitor_callback callback</div><div class="ttdef"><b>Definição</b> onoff.h:535</div></div>
+<div class="ttc" id="astructonoff__sync__service_html"><div class="ttname"><a href="structonoff__sync__service.html">onoff_sync_service</a></div><div class="ttdoc">State used when a driver uses the on-off service API for synchronous operations.</div><div class="ttdef"><b>Definição</b> onoff.h:576</div></div>
+<div class="ttc" id="astructonoff__sync__service_html_ac08d780a80fed2d89c1334cc3c65eeed"><div class="ttname"><a href="structonoff__sync__service.html#ac08d780a80fed2d89c1334cc3c65eeed">onoff_sync_service::lock</a></div><div class="ttdeci">struct k_spinlock lock</div><div class="ttdef"><b>Definição</b> onoff.h:578</div></div>
+<div class="ttc" id="astructonoff__sync__service_html_adff029426035dffb57fda0de44f2abae"><div class="ttname"><a href="structonoff__sync__service.html#adff029426035dffb57fda0de44f2abae">onoff_sync_service::count</a></div><div class="ttdeci">int32_t count</div><div class="ttdef"><b>Definição</b> onoff.h:581</div></div>
+<div class="ttc" id="astructonoff__transitions_html"><div class="ttname"><a href="structonoff__transitions.html">onoff_transitions</a></div><div class="ttdoc">On-off service transition functions.</div><div class="ttdef"><b>Definição</b> onoff.h:133</div></div>
+<div class="ttc" id="astructonoff__transitions_html_a335d7d2f8418e78b237cfb4199b6f6aa"><div class="ttname"><a href="structonoff__transitions.html#a335d7d2f8418e78b237cfb4199b6f6aa">onoff_transitions::reset</a></div><div class="ttdeci">onoff_transition_fn reset</div><div class="ttdef"><b>Definição</b> onoff.h:143</div></div>
+<div class="ttc" id="astructonoff__transitions_html_a86417dd542c8f259ad1fc1c7d3c26545"><div class="ttname"><a href="structonoff__transitions.html#a86417dd542c8f259ad1fc1c7d3c26545">onoff_transitions::start</a></div><div class="ttdeci">onoff_transition_fn start</div><div class="ttdef"><b>Definição</b> onoff.h:135</div></div>
+<div class="ttc" id="astructonoff__transitions_html_a91a1805daabae70d362441634bfa508d"><div class="ttname"><a href="structonoff__transitions.html#a91a1805daabae70d362441634bfa508d">onoff_transitions::stop</a></div><div class="ttdeci">onoff_transition_fn stop</div><div class="ttdef"><b>Definição</b> onoff.h:138</div></div>
+<div class="ttc" id="astructsys__notify_html"><div class="ttname"><a href="structsys__notify.html">sys_notify</a></div><div class="ttdoc">State associated with notification for an asynchronous operation.</div><div class="ttdef"><b>Definição</b> notify.h:138</div></div>
+<div class="ttc" id="astructz__spinlock__key_html"><div class="ttname"><a href="structz__spinlock__key.html">z_spinlock_key</a></div><div class="ttdef"><b>Definição</b> spinlock.h:34</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

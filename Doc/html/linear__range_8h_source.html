@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/sys/linear_range.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_791a8e330d3bfcbb2b6e2254610c12ab.html">sys</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">linear_range.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (C) 2022, Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef INCLUDE_ZEPHYR_SYS_LINEAR_RANGE_H_</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define INCLUDE_ZEPHYR_SYS_LINEAR_RANGE_H_</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;errno.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">zephyr/sys/util.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="};">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structlinear__range.html">   61</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structlinear__range.html">linear_range</a> {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structlinear__range.html#a4523369fa49fa1d6aa58f0d2634eb41d">   63</a></span>    int32_t <a class="code hl_variable" href="structlinear__range.html#a4523369fa49fa1d6aa58f0d2634eb41d">min</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structlinear__range.html#a963889c27dd8541f7cd6528ac82401b3">   65</a></span>    uint32_t <a class="code hl_variable" href="structlinear__range.html#a963889c27dd8541f7cd6528ac82401b3">step</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structlinear__range.html#a705275f156fc4bcf5bb111be01aff6ef">   67</a></span>    uint16_t <a class="code hl_variable" href="structlinear__range.html#a705275f156fc4bcf5bb111be01aff6ef">min_idx</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structlinear__range.html#a84af63957a1b3e829cf1d53fa6342982">   69</a></span>    uint16_t <a class="code hl_variable" href="structlinear__range.html#a84af63957a1b3e829cf1d53fa6342982">max_idx</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
+</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="foldopen" id="foldopen00080" data-start="" data-end="">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="group__linear__range.html#ga3f936124e81ea46aa5f8dd4d9bde9ece">   80</a></span><span class="preprocessor">#define LINEAR_RANGE_INIT(_min, _step, _min_idx, _max_idx)                     \</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">    {                                                                      \</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">        .min = (_min),                                                 \</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">        .step = (_step),                                               \</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">        .min_idx = (_min_idx),                                         \</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">        .max_idx = (_max_idx),                                         \</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">    }</span></div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t linear_range_values_count(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structlinear__range.html">linear_range</a> *r)</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>{</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">return</span> r-&gt;max_idx - r-&gt;min_idx + 1U;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="keyword">static</span> <span class="keyword">inline</span> uint32_t linear_range_group_values_count(</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structlinear__range.html">linear_range</a> *r, <span class="keywordtype">size_t</span> r_cnt)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>{</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    uint32_t values = 0U;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0U; i &lt; r_cnt; i++) {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        values += linear_range_values_count(&amp;r[i]);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">return</span> values;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>}</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">static</span> <span class="keyword">inline</span> int32_t linear_range_get_max_value(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structlinear__range.html">linear_range</a> *r)</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>{</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">return</span> r-&gt;min + (int32_t)(r-&gt;step * (r-&gt;max_idx - r-&gt;min_idx));</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>}</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> linear_range_get_value(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structlinear__range.html">linear_range</a> *r,</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>                     uint16_t idx, int32_t *val)</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>{</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordflow">if</span> ((idx &lt; r-&gt;min_idx) || (idx &gt; r-&gt;max_idx)) {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <span class="keywordflow">return</span> -EINVAL;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    }</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    *val = r-&gt;min + (int32_t)(r-&gt;step * (idx - r-&gt;min_idx));</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>}</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> linear_range_group_get_value(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structlinear__range.html">linear_range</a> *r,</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>                           <span class="keywordtype">size_t</span> r_cnt, uint16_t idx,</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>                           int32_t *val)</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>{</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keywordtype">int</span> ret = -EINVAL;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0U; (ret != 0) &amp;&amp; (i &lt; r_cnt); i++) {</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        ret = linear_range_get_value(&amp;r[i], idx, val);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    }</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>}</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> linear_range_get_index(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structlinear__range.html">linear_range</a> *r,</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>                     int32_t val, uint16_t *idx)</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>{</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordflow">if</span> (val &lt; r-&gt;min) {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        *idx = r-&gt;min_idx;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keywordflow">return</span> -ERANGE;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    }</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordflow">if</span> (val &gt; linear_range_get_max_value(r)) {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        *idx = r-&gt;max_idx;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        <span class="keywordflow">return</span> -ERANGE;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    }</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordflow">if</span> (r-&gt;step == 0U) {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        *idx = r-&gt;min_idx;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        *idx = r-&gt;min_idx + <a class="code hl_define" href="group__sys-util.html#gae664e7492e37d324831caf2321ddda37">DIV_ROUND_UP</a>((uint32_t)(val - r-&gt;min),</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>                         r-&gt;step);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    }</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>}</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> linear_range_group_get_index(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structlinear__range.html">linear_range</a> *r,</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>                           <span class="keywordtype">size_t</span> r_cnt, int32_t val,</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                           uint16_t *idx)</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>{</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0U; i &lt; r_cnt; i++) {</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        <span class="keywordflow">if</span> ((val &gt; linear_range_get_max_value(&amp;r[i])) &amp;&amp;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>            (i &lt; (r_cnt - 1U))) {</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        }</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <span class="keywordflow">return</span> linear_range_get_index(&amp;r[i], val, idx);</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    }</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keywordflow">return</span> -EINVAL;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>}</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> linear_range_get_win_index(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structlinear__range.html">linear_range</a> *r,</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                         int32_t val_min, int32_t val_max,</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>                         uint16_t *idx)</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>{</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    int32_t r_max = linear_range_get_max_value(r);</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="keywordflow">if</span> ((val_max &lt; r-&gt;min) || (val_min &gt; r_max)) {</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        <span class="keywordflow">return</span> -EINVAL;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    }</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordflow">if</span> (val_min &lt; r-&gt;min) {</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        *idx = r-&gt;min_idx;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        <span class="keywordflow">return</span> -ERANGE;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    }</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordflow">if</span> (val_max &gt; r_max) {</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        *idx = r-&gt;max_idx;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>        <span class="keywordflow">return</span> -ERANGE;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    }</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <span class="keywordflow">if</span> (r-&gt;step == 0U) {</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>        *idx = r-&gt;min_idx;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    }</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    *idx = r-&gt;min_idx + <a class="code hl_define" href="group__sys-util.html#gae664e7492e37d324831caf2321ddda37">DIV_ROUND_UP</a>((uint32_t)(val_min - r-&gt;min), r-&gt;step);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keywordflow">if</span> ((r-&gt;min + r-&gt;step * (*idx - r-&gt;min_idx)) &gt; val_max) {</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        <span class="keywordflow">return</span> -EINVAL;</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    }</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>}</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> linear_range_group_get_win_index(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structlinear__range.html">linear_range</a> *r,</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>                           <span class="keywordtype">size_t</span> r_cnt,</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>                           int32_t val_min,</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>                           int32_t val_max,</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>                           uint16_t *idx)</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>{</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0U; i &lt; r_cnt; i++) {</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>        <span class="keywordflow">if</span> (val_min &gt; linear_range_get_max_value(&amp;r[i])) {</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>        }</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        <span class="keywordflow">return</span> linear_range_get_win_index(&amp;r[i], val_min, val_max, idx);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    }</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <span class="keywordflow">return</span> -EINVAL;</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>}</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>}</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="preprocessor">#endif </span><span class="comment">/* INCLUDE_ZEPHYR_SYS_LINEAR_RANGE_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__sys-util_html_gae664e7492e37d324831caf2321ddda37"><div class="ttname"><a href="group__sys-util.html#gae664e7492e37d324831caf2321ddda37">DIV_ROUND_UP</a></div><div class="ttdeci">#define DIV_ROUND_UP(n, d)</div><div class="ttdoc">Divide and round up.</div><div class="ttdef"><b>Definição</b> util.h:295</div></div>
+<div class="ttc" id="astructlinear__range_html"><div class="ttname"><a href="structlinear__range.html">linear_range</a></div><div class="ttdoc">Linear range.</div><div class="ttdef"><b>Definição</b> linear_range.h:61</div></div>
+<div class="ttc" id="astructlinear__range_html_a4523369fa49fa1d6aa58f0d2634eb41d"><div class="ttname"><a href="structlinear__range.html#a4523369fa49fa1d6aa58f0d2634eb41d">linear_range::min</a></div><div class="ttdeci">int32_t min</div><div class="ttdef"><b>Definição</b> linear_range.h:63</div></div>
+<div class="ttc" id="astructlinear__range_html_a705275f156fc4bcf5bb111be01aff6ef"><div class="ttname"><a href="structlinear__range.html#a705275f156fc4bcf5bb111be01aff6ef">linear_range::min_idx</a></div><div class="ttdeci">uint16_t min_idx</div><div class="ttdef"><b>Definição</b> linear_range.h:67</div></div>
+<div class="ttc" id="astructlinear__range_html_a84af63957a1b3e829cf1d53fa6342982"><div class="ttname"><a href="structlinear__range.html#a84af63957a1b3e829cf1d53fa6342982">linear_range::max_idx</a></div><div class="ttdeci">uint16_t max_idx</div><div class="ttdef"><b>Definição</b> linear_range.h:69</div></div>
+<div class="ttc" id="astructlinear__range_html_a963889c27dd8541f7cd6528ac82401b3"><div class="ttname"><a href="structlinear__range.html#a963889c27dd8541f7cd6528ac82401b3">linear_range::step</a></div><div class="ttdeci">uint32_t step</div><div class="ttdef"><b>Definição</b> linear_range.h:65</div></div>
+<div class="ttc" id="autil_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Misc utilities.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

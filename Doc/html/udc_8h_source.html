@@ -1,0 +1,470 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/usb/udc.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li><li class="navelem"><a class="el" href="dir_7663a2eb644177e0593d061db5927bc8.html">usb</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">udc.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="udc_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> * Copyright (c) 2021-2022 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_UDC_H</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define ZEPHYR_INCLUDE_UDC_H</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="net_2buf_8h.html">zephyr/net/buf.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;zephyr/sys/atomic.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="usb__ch9_8h.html">zephyr/usb/usb_ch9.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="udc_8h.html#ac254f8a970f890d14e35c43474c915fd">   24</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="udc_8h.html#ac254f8a970f890d14e35c43474c915fd">udc_mps0</a> {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    UDC_MPS0_8,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    UDC_MPS0_16,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    UDC_MPS0_32,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    UDC_MPS0_64,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>};</div>
+</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structudc__device__caps.html">   36</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structudc__device__caps.html">udc_device_caps</a> {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structudc__device__caps.html#aea376ff4a0c5a27c3b8f7d4416e17b5b">   38</a></span>    uint32_t <a class="code hl_variable" href="structudc__device__caps.html#aea376ff4a0c5a27c3b8f7d4416e17b5b">hs</a> : 1;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structudc__device__caps.html#aab85e74e40876040c3d2f961c36b9780">   40</a></span>    uint32_t <a class="code hl_variable" href="structudc__device__caps.html#aab85e74e40876040c3d2f961c36b9780">rwup</a> : 1;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structudc__device__caps.html#a0adada5003bccfbd6df8329198639dc0">   42</a></span>    uint32_t <a class="code hl_variable" href="structudc__device__caps.html#a0adada5003bccfbd6df8329198639dc0">out_ack</a> : 1;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structudc__device__caps.html#a63affa3fe08cbaec8351297ad9d26911">   44</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="udc_8h.html#ac254f8a970f890d14e35c43474c915fd">udc_mps0</a> <a class="code hl_variable" href="structudc__device__caps.html#a63affa3fe08cbaec8351297ad9d26911">mps0</a> : 2;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
+</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="};">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1b">   50</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1b">udc_bus_speed</a> {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1ba872aa49861a213ad970012f43db7d35d">   52</a></span>    <a class="code hl_enumvalue" href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1ba872aa49861a213ad970012f43db7d35d">UDC_BUS_UNKNOWN</a>,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1ba8177d4c8e8cb0456f9c2a553c76dc0d5">   54</a></span>    <a class="code hl_enumvalue" href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1ba8177d4c8e8cb0456f9c2a553c76dc0d5">UDC_BUS_SPEED_FS</a>,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1ba9fc26a4b4ba8db446731274b67182599">   56</a></span>    <a class="code hl_enumvalue" href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1ba9fc26a4b4ba8db446731274b67182599">UDC_BUS_SPEED_HS</a>,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1ba71b0e0a870859cf1f0c11380833f790a">   58</a></span>    <a class="code hl_enumvalue" href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1ba71b0e0a870859cf1f0c11380833f790a">UDC_BUS_SPEED_SS</a>,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>};</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="};">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structudc__ep__caps.html">   64</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structudc__ep__caps.html">udc_ep_caps</a> {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structudc__ep__caps.html#a5e90d1362855dd77a1f7ef9e0cd82ef8">   66</a></span>    uint32_t <a class="code hl_variable" href="structudc__ep__caps.html#a5e90d1362855dd77a1f7ef9e0cd82ef8">mps</a> : 16;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structudc__ep__caps.html#a98afb85c03ff01ba82d55884cea0ea31">   68</a></span>    uint32_t <a class="code hl_variable" href="structudc__ep__caps.html#a98afb85c03ff01ba82d55884cea0ea31">control</a> : 1;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structudc__ep__caps.html#a73f06f9e2af5770cab84d2adb76d42de">   70</a></span>    uint32_t <a class="code hl_variable" href="structudc__ep__caps.html#a73f06f9e2af5770cab84d2adb76d42de">interrupt</a> : 1;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structudc__ep__caps.html#a73ec7e7c7fd043065a7c59c89c6cc36e">   72</a></span>    uint32_t <a class="code hl_variable" href="structudc__ep__caps.html#a73ec7e7c7fd043065a7c59c89c6cc36e">bulk</a> : 1;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structudc__ep__caps.html#a15ce10028e09b3af021a83dc36eba99a">   74</a></span>    uint32_t <a class="code hl_variable" href="structudc__ep__caps.html#a15ce10028e09b3af021a83dc36eba99a">iso</a> : 1;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="structudc__ep__caps.html#a3a944cda429c916b60cff3a332b970a7">   76</a></span>    uint32_t <a class="code hl_variable" href="structudc__ep__caps.html#a3a944cda429c916b60cff3a332b970a7">in</a> : 1;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structudc__ep__caps.html#afc424ee2bb31c19451facc0b79bb73c7">   78</a></span>    uint32_t <a class="code hl_variable" href="structudc__ep__caps.html#afc424ee2bb31c19451facc0b79bb73c7">out</a> : 1;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};</div>
+</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="foldopen" id="foldopen00084" data-start="{" data-end="};">
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structudc__ep__stat.html">   84</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structudc__ep__stat.html">udc_ep_stat</a> {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="structudc__ep__stat.html#a448c82eb3884dba20e1bdf0980d3a2b3">   86</a></span>    uint32_t <a class="code hl_variable" href="structudc__ep__stat.html#a448c82eb3884dba20e1bdf0980d3a2b3">enabled</a> : 1;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="structudc__ep__stat.html#af245db473a046885e4f97b00493718e2">   88</a></span>    uint32_t <a class="code hl_variable" href="structudc__ep__stat.html#af245db473a046885e4f97b00493718e2">halted</a> : 1;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structudc__ep__stat.html#a30b66675236f30c75837c446b87ced91">   90</a></span>    uint32_t <a class="code hl_variable" href="structudc__ep__stat.html#a30b66675236f30c75837c446b87ced91">data1</a> : 1;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structudc__ep__stat.html#a0a437fb1e4b9a79eea7e4c6b0316c450">   92</a></span>    uint32_t <a class="code hl_variable" href="structudc__ep__stat.html#a0a437fb1e4b9a79eea7e4c6b0316c450">odd</a> : 1;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="structudc__ep__stat.html#ad515a667ffd705408617dd28700db1e9">   94</a></span>    uint32_t <a class="code hl_variable" href="structudc__ep__stat.html#ad515a667ffd705408617dd28700db1e9">busy</a> : 1;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>};</div>
+</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="};">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="structudc__ep__config.html">  104</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structudc__ep__config.html">udc_ep_config</a> {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="structudc__ep__config.html#aa62ff3f308771d51563df88439570918">  106</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__fifo.html">k_fifo</a> <a class="code hl_variable" href="structudc__ep__config.html#aa62ff3f308771d51563df88439570918">fifo</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="structudc__ep__config.html#a706987205ac971574d1b81bf72d03248">  108</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structudc__ep__caps.html">udc_ep_caps</a> <a class="code hl_variable" href="structudc__ep__config.html#a706987205ac971574d1b81bf72d03248">caps</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structudc__ep__config.html#ad42f77d1a9d65239cdb142209050e38e">  110</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structudc__ep__stat.html">udc_ep_stat</a> <a class="code hl_struct" href="structstat.html">stat</a>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="structudc__ep__config.html#ac795b839cbd426d233a1f91d10d5fc7e">  112</a></span>    uint8_t <a class="code hl_variable" href="structudc__ep__config.html#ac795b839cbd426d233a1f91d10d5fc7e">addr</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="structudc__ep__config.html#acbeab755d1b03da0c58f43aff5bd7d00">  114</a></span>    uint8_t <a class="code hl_variable" href="structudc__ep__config.html#acbeab755d1b03da0c58f43aff5bd7d00">attributes</a>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="structudc__ep__config.html#ae4f75e52d1c822f5d873095a761c6b48">  116</a></span>    uint16_t <a class="code hl_variable" href="structudc__ep__config.html#ae4f75e52d1c822f5d873095a761c6b48">mps</a>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="structudc__ep__config.html#a1f2afc2d5e512229688764e1b7cd0171">  118</a></span>    uint8_t <a class="code hl_variable" href="structudc__ep__config.html#a1f2afc2d5e512229688764e1b7cd0171">interval</a>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>};</div>
+</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="foldopen" id="foldopen00125" data-start="{" data-end="};">
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040">  125</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040">udc_event_type</a> {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a010cfc9f43a6faf68323201ae02fa00d">  127</a></span>    <a class="code hl_enumvalue" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a010cfc9f43a6faf68323201ae02fa00d">UDC_EVT_VBUS_READY</a>,</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a4bdf374daa2aeb4f7b6b6c5fe2a46432">  129</a></span>    <a class="code hl_enumvalue" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a4bdf374daa2aeb4f7b6b6c5fe2a46432">UDC_EVT_VBUS_REMOVED</a>,</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a0e0da320fe601eb1de24c142fc60f332">  131</a></span>    <a class="code hl_enumvalue" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a0e0da320fe601eb1de24c142fc60f332">UDC_EVT_RESUME</a>,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a120dc649618040f41da7542bf639159f">  133</a></span>    <a class="code hl_enumvalue" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a120dc649618040f41da7542bf639159f">UDC_EVT_SUSPEND</a>,</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040aa174f33c3802cec8d6c37606bc5ba9bb">  135</a></span>    <a class="code hl_enumvalue" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040aa174f33c3802cec8d6c37606bc5ba9bb">UDC_EVT_RESET</a>,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040af20153f2fde8ea2bb1a985f2e17a2f78">  137</a></span>    <a class="code hl_enumvalue" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040af20153f2fde8ea2bb1a985f2e17a2f78">UDC_EVT_SOF</a>,</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a52bb5ea941db9a025ccb73de3fc6d55b">  139</a></span>    <a class="code hl_enumvalue" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a52bb5ea941db9a025ccb73de3fc6d55b">UDC_EVT_EP_REQUEST</a>,</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a8ff69c0bc684eb113f1d4e0ec02dd70d">  144</a></span>    <a class="code hl_enumvalue" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a8ff69c0bc684eb113f1d4e0ec02dd70d">UDC_EVT_ERROR</a>,</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>};</div>
+</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="foldopen" id="foldopen00155" data-start="{" data-end="};">
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="structudc__event.html">  155</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structudc__event.html">udc_event</a> {</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="structudc__event.html#a3acfe5d21d16f6edfa24e9964b636434">  157</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040">udc_event_type</a> <a class="code hl_variable" href="structudc__event.html#a3acfe5d21d16f6edfa24e9964b636434">type</a>;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="structudc__event.html#ada24e0e920c39bc60a6c7fbbe54277f4">  160</a></span>        uint32_t <a class="code hl_variable" href="structudc__event.html#ada24e0e920c39bc60a6c7fbbe54277f4">value</a>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="structudc__event.html#a0707d65716a4b1e6dd3132a0bb370770">  162</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="structudc__event.html#a0707d65716a4b1e6dd3132a0bb370770">status</a>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="structudc__event.html#ac1ff3bc9d629eb9b6c55602e7861e945">  164</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<a class="code hl_variable" href="structudc__event.html#ac1ff3bc9d629eb9b6c55602e7861e945">buf</a>;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    };</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="structudc__event.html#a900404c46850d34cd7121eeedc2fce9d">  167</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_variable" href="structudc__event.html#a900404c46850d34cd7121eeedc2fce9d">dev</a>;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>};</div>
+</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="foldopen" id="foldopen00177" data-start="{" data-end="};">
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="structudc__buf__info.html">  177</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structudc__buf__info.html">udc_buf_info</a> {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="structudc__buf__info.html#a0a1c09f587d3f6847cb7ce77514a3321">  179</a></span>    uint8_t <a class="code hl_variable" href="structudc__buf__info.html#a0a1c09f587d3f6847cb7ce77514a3321">ep</a>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="structudc__buf__info.html#a9664e1f7cddd36dbc7d206b52da45170">  181</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structudc__buf__info.html#a9664e1f7cddd36dbc7d206b52da45170">setup</a> : 1;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="structudc__buf__info.html#ab500ff0bf12ecdbbd4f3cb48d0556ed2">  183</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structudc__buf__info.html#ab500ff0bf12ecdbbd4f3cb48d0556ed2">data</a> : 1;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="structudc__buf__info.html#a84cf74496eddc4a69a47d23dcdbf753f">  185</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structudc__buf__info.html#a84cf74496eddc4a69a47d23dcdbf753f">status</a> : 1;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="structudc__buf__info.html#afc2d0c391aca7f68a1ae5539a1fed8a0">  187</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structudc__buf__info.html#afc2d0c391aca7f68a1ae5539a1fed8a0">zlp</a> : 1;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="structudc__buf__info.html#a9b03b6dd8418d4200733a612aac73daa">  189</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structudc__buf__info.html#a9b03b6dd8418d4200733a612aac73daa">claimed</a> : 1;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="structudc__buf__info.html#a4cd2e83000a0551d126bebe89552eab9">  191</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structudc__buf__info.html#a4cd2e83000a0551d126bebe89552eab9">queued</a> : 1;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="structudc__buf__info.html#a33e927f23d227a4974915c65927284ec">  193</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structudc__buf__info.html#a33e927f23d227a4974915c65927284ec">owner</a>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="structudc__buf__info.html#af1c92f1cdd6e0474a19f788140fdc573">  195</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structudc__buf__info.html#af1c92f1cdd6e0474a19f788140fdc573">err</a>;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>} <a class="code hl_enumeration" href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a>;</div>
+</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="udc_8h.html#a0018f9d740cc739eec825ff7ffd0bf8b">  211</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="udc_8h.html#a0018f9d740cc739eec825ff7ffd0bf8b">udc_event_cb_t</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>                  <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structudc__event.html">udc_event</a> *<span class="keyword">const</span> event);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="foldopen" id="foldopen00220" data-start="{" data-end="};">
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="structudc__api.html">  220</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structudc__api.html">udc_api</a> {</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1b">udc_bus_speed</a> (*device_speed)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    int (*ep_enqueue)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>              <span class="keyword">struct </span><a class="code hl_struct" href="structudc__ep__config.html">udc_ep_config</a> *<span class="keyword">const</span> cfg,</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>              <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<span class="keyword">const</span> buf);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    int (*ep_dequeue)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>              <span class="keyword">struct </span><a class="code hl_struct" href="structudc__ep__config.html">udc_ep_config</a> *<span class="keyword">const</span> cfg);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    int (*ep_set_halt)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>               <span class="keyword">struct </span><a class="code hl_struct" href="structudc__ep__config.html">udc_ep_config</a> *<span class="keyword">const</span> cfg);</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    int (*ep_clear_halt)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                 <span class="keyword">struct </span><a class="code hl_struct" href="structudc__ep__config.html">udc_ep_config</a> *<span class="keyword">const</span> cfg);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    int (*ep_try_config)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>                 <span class="keyword">struct </span><a class="code hl_struct" href="structudc__ep__config.html">udc_ep_config</a> *<span class="keyword">const</span> cfg);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    int (*ep_enable)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>             <span class="keyword">struct </span><a class="code hl_struct" href="structudc__ep__config.html">udc_ep_config</a> *<span class="keyword">const</span> cfg);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    int (*ep_disable)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>              <span class="keyword">struct </span><a class="code hl_struct" href="structudc__ep__config.html">udc_ep_config</a> *<span class="keyword">const</span> cfg);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    int (*host_wakeup)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    int (*set_address)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>               <span class="keyword">const</span> uint8_t addr);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    int (*enable)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    int (*disable)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    int (*init)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    int (*shutdown)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    int (*lock)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    int (*unlock)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>};</div>
+</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="udc_8h.html#a8c96946734085924e2afc591ac502551">  252</a></span><span class="preprocessor">#define UDC_STATUS_INITIALIZED      0</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="udc_8h.html#ad10596af54465c3cb10cc59ae9a507d2">  257</a></span><span class="preprocessor">#define UDC_STATUS_ENABLED      1</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno"><a class="line" href="udc_8h.html#ac3a36aa8cb3aab95d7931cb602631c36">  259</a></span><span class="preprocessor">#define UDC_STATUS_SUSPENDED        2</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="foldopen" id="foldopen00267" data-start="{" data-end="};">
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="structudc__data.html">  267</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structudc__data.html">udc_data</a> {</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="structudc__data.html#acc471b34bb24453377b1ae54d33fa415">  269</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structudc__ep__config.html">udc_ep_config</a> *<a class="code hl_variable" href="structudc__data.html#acc471b34bb24453377b1ae54d33fa415">ep_lut</a>[32];</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="structudc__data.html#aae68bfba2e92894851c36dd40c33c0f0">  271</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structudc__device__caps.html">udc_device_caps</a> <a class="code hl_variable" href="structudc__data.html#aae68bfba2e92894851c36dd40c33c0f0">caps</a>;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="structudc__data.html#a1ba1b93af26bca4f4554a43a65ab3c2a">  273</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structk__mutex.html">k_mutex</a> <a class="code hl_variable" href="structudc__data.html#a1ba1b93af26bca4f4554a43a65ab3c2a">mutex</a>;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="structudc__data.html#a9bb216d0c87b9ff4e2e99f0c3cfbb381">  275</a></span>    <a class="code hl_typedef" href="udc_8h.html#a0018f9d740cc739eec825ff7ffd0bf8b">udc_event_cb_t</a> <a class="code hl_variable" href="structudc__data.html#a9bb216d0c87b9ff4e2e99f0c3cfbb381">event_cb</a>;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="structudc__data.html#a9c1ae6e5e204b5a0ed15e92f8b3b384f">  277</a></span>    atomic_t <a class="code hl_variable" href="structudc__data.html#a9c1ae6e5e204b5a0ed15e92f8b3b384f">status</a>;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="structudc__data.html#ab957eea73de90379642ed56ddbb84989">  279</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structudc__data.html#ab957eea73de90379642ed56ddbb84989">stage</a>;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="structudc__data.html#a1bbb7a70a14368efc4b933a7d1945fb5">  281</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<a class="code hl_variable" href="structudc__data.html#a1bbb7a70a14368efc4b933a7d1945fb5">setup</a>;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="structudc__data.html#ac58682fa2f37bf2034a69cc9b6b10dfb">  283</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structudc__data.html#ac58682fa2f37bf2034a69cc9b6b10dfb">priv</a>;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>};</div>
+</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> udc_is_initialized(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>{</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structudc__data.html">udc_data</a> *data = dev-&gt;<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <span class="keywordflow">return</span> atomic_test_bit(&amp;data-&gt;status, <a class="code hl_define" href="udc_8h.html#a8c96946734085924e2afc591ac502551">UDC_STATUS_INITIALIZED</a>);</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>}</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> udc_is_enabled(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>{</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structudc__data.html">udc_data</a> *data = dev-&gt;<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="keywordflow">return</span> atomic_test_bit(&amp;data-&gt;status, <a class="code hl_define" href="udc_8h.html#ad10596af54465c3cb10cc59ae9a507d2">UDC_STATUS_ENABLED</a>);</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>}</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> udc_is_suspended(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>{</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structudc__data.html">udc_data</a> *data = dev-&gt;<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <span class="keywordflow">return</span> atomic_test_bit(&amp;data-&gt;status, <a class="code hl_define" href="udc_8h.html#ac3a36aa8cb3aab95d7931cb602631c36">UDC_STATUS_SUSPENDED</a>);</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>}</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno"><a class="line" href="group__udc__api.html#gab365e4326d53ccba92fd167e3710ed7c">  349</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__udc__api.html#gab365e4326d53ccba92fd167e3710ed7c">udc_init</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <a class="code hl_typedef" href="udc_8h.html#a0018f9d740cc739eec825ff7ffd0bf8b">udc_event_cb_t</a> <a class="code hl_variable" href="structudc__data.html#a9bb216d0c87b9ff4e2e99f0c3cfbb381">event_cb</a>);</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno"><a class="line" href="group__udc__api.html#gafbb0dec089f83fd674bd19670a882c65">  363</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__udc__api.html#gafbb0dec089f83fd674bd19670a882c65">udc_enable</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno"><a class="line" href="group__udc__api.html#gaa7c2eaa52bdbe1d763b2961124570e8a">  376</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__udc__api.html#gaa7c2eaa52bdbe1d763b2961124570e8a">udc_disable</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno"><a class="line" href="group__udc__api.html#ga59a92eb60575ca80d205cc29b4fb4f21">  389</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__udc__api.html#ga59a92eb60575ca80d205cc29b4fb4f21">udc_shutdown</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">struct </span><a class="code hl_struct" href="structudc__device__caps.html">udc_device_caps</a> udc_caps(const struct <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>{</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structudc__data.html">udc_data</a> *data = dev-&gt;<a class="code hl_variable" href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">data</a>;</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span> </div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>    <span class="keywordflow">return</span> data-&gt;caps;</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>}</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> </div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno"><a class="line" href="group__udc__api.html#gab936f04015b0fee584756bcdf40d2f50">  418</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1b">udc_bus_speed</a> <a class="code hl_function" href="group__udc__api.html#gab936f04015b0fee584756bcdf40d2f50">udc_device_speed</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev);</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span> </div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> udc_set_address(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> uint8_t addr)</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>{</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structudc__api.html">udc_api</a> *api = dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>    <span class="keywordflow">if</span> (!udc_is_enabled(dev)) {</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>        <span class="keywordflow">return</span> -EPERM;</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>    }</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span> </div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>    api-&gt;lock(dev);</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>    ret = api-&gt;set_address(dev, addr);</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>    api-&gt;unlock(dev);</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span> </div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>}</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span> </div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> udc_host_wakeup(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>{</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structudc__api.html">udc_api</a> *api = dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>    <span class="keywordtype">int</span> ret;</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span> </div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>    <span class="keywordflow">if</span> (!udc_is_enabled(dev)) {</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>        <span class="keywordflow">return</span> -EPERM;</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>    }</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span> </div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>    api-&gt;lock(dev);</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>    ret = api-&gt;host_wakeup(dev);</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>    api-&gt;unlock(dev);</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span> </div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>}</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span> </div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno"><a class="line" href="group__udc__api.html#ga81307ae4ab17ccd86be64bdf1653df0e">  494</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__udc__api.html#ga81307ae4ab17ccd86be64bdf1653df0e">udc_ep_try_config</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>              <span class="keyword">const</span> uint8_t ep,</div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>              <span class="keyword">const</span> uint8_t attributes,</div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>              uint16_t *<span class="keyword">const</span> mps,</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>              <span class="keyword">const</span> uint8_t interval);</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span> </div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno"><a class="line" href="group__udc__api.html#gacc4b5c127532c994406df30bacab5684">  518</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__udc__api.html#gacc4b5c127532c994406df30bacab5684">udc_ep_enable</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>          <span class="keyword">const</span> uint8_t ep,</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>          <span class="keyword">const</span> uint8_t attributes,</div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>          <span class="keyword">const</span> uint16_t mps,</div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>          <span class="keyword">const</span> uint8_t interval);</div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span> </div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno"><a class="line" href="group__udc__api.html#ga52da2366ac5da1a695caa8826b342cbc">  538</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__udc__api.html#ga52da2366ac5da1a695caa8826b342cbc">udc_ep_disable</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> uint8_t ep);</div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span> </div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno"><a class="line" href="group__udc__api.html#ga19488ec4c93d81592bb5ffccfc1eadc4">  553</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__udc__api.html#ga19488ec4c93d81592bb5ffccfc1eadc4">udc_ep_set_halt</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> uint8_t ep);</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span> </div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno"><a class="line" href="group__udc__api.html#gadec9c8af89b28984028fd8e0b1a8c776">  568</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__udc__api.html#gadec9c8af89b28984028fd8e0b1a8c776">udc_ep_clear_halt</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> uint8_t ep);</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span> </div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno"><a class="line" href="group__udc__api.html#gacb2dc96353f1cffcc3d5e9710133fc0d">  585</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__udc__api.html#gacb2dc96353f1cffcc3d5e9710133fc0d">udc_ep_enqueue</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<span class="keyword">const</span> buf);</div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span> </div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno"><a class="line" href="group__udc__api.html#ga6e6fb62fb8ebceca7e8e6b590c32efc2">  603</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__udc__api.html#ga6e6fb62fb8ebceca7e8e6b590c32efc2">udc_ep_dequeue</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">const</span> uint8_t ep);</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span> </div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno"><a class="line" href="group__udc__api.html#gad3fb1d64b6e0cf051627011ce673bb1e">  616</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<a class="code hl_function" href="group__udc__api.html#gad3fb1d64b6e0cf051627011ce673bb1e">udc_ep_buf_alloc</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span>                 <span class="keyword">const</span> uint8_t ep,</div>
+<div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span>                 <span class="keyword">const</span> <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structnet__buf.html#a1522d81a002804223e25300a6961f527">size</a>);</div>
+<div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span> </div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno"><a class="line" href="group__udc__api.html#gaedd615defad234b001e74448f89488e1">  630</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__udc__api.html#gaedd615defad234b001e74448f89488e1">udc_ep_buf_free</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev, <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<span class="keyword">const</span> buf);</div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span> </div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> udc_ep_buf_set_zlp(<span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<span class="keyword">const</span> buf)</div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span>{</div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structudc__buf__info.html">udc_buf_info</a> *bi;</div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span> </div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>    __ASSERT_NO_MSG(buf);</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>    bi = (<span class="keyword">struct </span><a class="code hl_struct" href="structudc__buf__info.html">udc_buf_info</a> *)net_buf_user_data(buf);</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>    <span class="keywordflow">if</span> (<a class="code hl_define" href="usb__ch9_8h.html#a495d790dfb00609ce029631f40d0a422">USB_EP_DIR_IS_IN</a>(bi-&gt;<a class="code hl_variable" href="structudc__buf__info.html#a0a1c09f587d3f6847cb7ce77514a3321">ep</a>)) {</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>        bi-&gt;<a class="code hl_variable" href="structudc__buf__info.html#afc2d0c391aca7f68a1ae5539a1fed8a0">zlp</a> = 1;</div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>    }</div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>}</div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span> </div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">struct </span><a class="code hl_struct" href="structudc__buf__info.html">udc_buf_info</a> *udc_get_buf_info(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structnet__buf.html">net_buf</a> *<span class="keyword">const</span> buf)</div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span>{</div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>    __ASSERT_NO_MSG(buf);</div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>    <span class="keywordflow">return</span> (<span class="keyword">struct</span> <a class="code hl_struct" href="structudc__buf__info.html">udc_buf_info</a> *)net_buf_user_data(buf);</div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>}</div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span> </div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span><span class="preprocessor">#endif </span><span class="comment">/* ZEPHYR_INCLUDE_UDC_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__bt__conn_html_gab3cdadb15ef89cfe197d88b4d3fdb596"><div class="ttname"><a href="group__bt__conn.html#gab3cdadb15ef89cfe197d88b4d3fdb596">__packed</a></div><div class="ttdeci">__packed</div><div class="ttdef"><b>Definição</b> conn.h:352</div></div>
+<div class="ttc" id="agroup__udc__api_html_ga19488ec4c93d81592bb5ffccfc1eadc4"><div class="ttname"><a href="group__udc__api.html#ga19488ec4c93d81592bb5ffccfc1eadc4">udc_ep_set_halt</a></div><div class="ttdeci">int udc_ep_set_halt(const struct device *dev, const uint8_t ep)</div><div class="ttdoc">Halt endpoint.</div></div>
+<div class="ttc" id="agroup__udc__api_html_ga52da2366ac5da1a695caa8826b342cbc"><div class="ttname"><a href="group__udc__api.html#ga52da2366ac5da1a695caa8826b342cbc">udc_ep_disable</a></div><div class="ttdeci">int udc_ep_disable(const struct device *dev, const uint8_t ep)</div><div class="ttdoc">Disable endpoint.</div></div>
+<div class="ttc" id="agroup__udc__api_html_ga59a92eb60575ca80d205cc29b4fb4f21"><div class="ttname"><a href="group__udc__api.html#ga59a92eb60575ca80d205cc29b4fb4f21">udc_shutdown</a></div><div class="ttdeci">int udc_shutdown(const struct device *dev)</div><div class="ttdoc">Poweroff USB device controller.</div></div>
+<div class="ttc" id="agroup__udc__api_html_ga6e6fb62fb8ebceca7e8e6b590c32efc2"><div class="ttname"><a href="group__udc__api.html#ga6e6fb62fb8ebceca7e8e6b590c32efc2">udc_ep_dequeue</a></div><div class="ttdeci">int udc_ep_dequeue(const struct device *dev, const uint8_t ep)</div><div class="ttdoc">Remove all USB device controller requests from endpoint queue.</div></div>
+<div class="ttc" id="agroup__udc__api_html_ga81307ae4ab17ccd86be64bdf1653df0e"><div class="ttname"><a href="group__udc__api.html#ga81307ae4ab17ccd86be64bdf1653df0e">udc_ep_try_config</a></div><div class="ttdeci">int udc_ep_try_config(const struct device *dev, const uint8_t ep, const uint8_t attributes, uint16_t *const mps, const uint8_t interval)</div><div class="ttdoc">Try an endpoint configuration.</div></div>
+<div class="ttc" id="agroup__udc__api_html_gaa7c2eaa52bdbe1d763b2961124570e8a"><div class="ttname"><a href="group__udc__api.html#gaa7c2eaa52bdbe1d763b2961124570e8a">udc_disable</a></div><div class="ttdeci">int udc_disable(const struct device *dev)</div><div class="ttdoc">Disable USB device controller.</div></div>
+<div class="ttc" id="agroup__udc__api_html_gab365e4326d53ccba92fd167e3710ed7c"><div class="ttname"><a href="group__udc__api.html#gab365e4326d53ccba92fd167e3710ed7c">udc_init</a></div><div class="ttdeci">int udc_init(const struct device *dev, udc_event_cb_t event_cb)</div><div class="ttdoc">Initialize USB device controller.</div></div>
+<div class="ttc" id="agroup__udc__api_html_gab936f04015b0fee584756bcdf40d2f50"><div class="ttname"><a href="group__udc__api.html#gab936f04015b0fee584756bcdf40d2f50">udc_device_speed</a></div><div class="ttdeci">enum udc_bus_speed udc_device_speed(const struct device *dev)</div><div class="ttdoc">Get actual USB device speed.</div></div>
+<div class="ttc" id="agroup__udc__api_html_gacb2dc96353f1cffcc3d5e9710133fc0d"><div class="ttname"><a href="group__udc__api.html#gacb2dc96353f1cffcc3d5e9710133fc0d">udc_ep_enqueue</a></div><div class="ttdeci">int udc_ep_enqueue(const struct device *dev, struct net_buf *const buf)</div><div class="ttdoc">Queue USB device controller request.</div></div>
+<div class="ttc" id="agroup__udc__api_html_gacc4b5c127532c994406df30bacab5684"><div class="ttname"><a href="group__udc__api.html#gacc4b5c127532c994406df30bacab5684">udc_ep_enable</a></div><div class="ttdeci">int udc_ep_enable(const struct device *dev, const uint8_t ep, const uint8_t attributes, const uint16_t mps, const uint8_t interval)</div><div class="ttdoc">Configure and enable endpoint.</div></div>
+<div class="ttc" id="agroup__udc__api_html_gad3fb1d64b6e0cf051627011ce673bb1e"><div class="ttname"><a href="group__udc__api.html#gad3fb1d64b6e0cf051627011ce673bb1e">udc_ep_buf_alloc</a></div><div class="ttdeci">struct net_buf * udc_ep_buf_alloc(const struct device *dev, const uint8_t ep, const size_t size)</div><div class="ttdoc">Allocate UDC request buffer.</div></div>
+<div class="ttc" id="agroup__udc__api_html_gadec9c8af89b28984028fd8e0b1a8c776"><div class="ttname"><a href="group__udc__api.html#gadec9c8af89b28984028fd8e0b1a8c776">udc_ep_clear_halt</a></div><div class="ttdeci">int udc_ep_clear_halt(const struct device *dev, const uint8_t ep)</div><div class="ttdoc">Clear endpoint halt.</div></div>
+<div class="ttc" id="agroup__udc__api_html_gaedd615defad234b001e74448f89488e1"><div class="ttname"><a href="group__udc__api.html#gaedd615defad234b001e74448f89488e1">udc_ep_buf_free</a></div><div class="ttdeci">int udc_ep_buf_free(const struct device *dev, struct net_buf *const buf)</div><div class="ttdoc">Free UDC request buffer.</div></div>
+<div class="ttc" id="agroup__udc__api_html_gafbb0dec089f83fd674bd19670a882c65"><div class="ttname"><a href="group__udc__api.html#gafbb0dec089f83fd674bd19670a882c65">udc_enable</a></div><div class="ttdeci">int udc_enable(const struct device *dev)</div><div class="ttdoc">Enable USB device controller.</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="anet_2buf_8h_html"><div class="ttname"><a href="net_2buf_8h.html">buf.h</a></div><div class="ttdoc">Buffer management.</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a27573cbd10ee145f8bb1396242b27a3e"><div class="ttname"><a href="structdevice.html#a27573cbd10ee145f8bb1396242b27a3e">device::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definição</b> device.h:395</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructk__fifo_html"><div class="ttname"><a href="structk__fifo.html">k_fifo</a></div><div class="ttdef"><b>Definição</b> kernel.h:2386</div></div>
+<div class="ttc" id="astructk__mutex_html"><div class="ttname"><a href="structk__mutex.html">k_mutex</a></div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:31</div></div>
+<div class="ttc" id="astructnet__buf_html"><div class="ttname"><a href="structnet__buf.html">net_buf</a></div><div class="ttdoc">Network buffer representation.</div><div class="ttdef"><b>Definição</b> buf.h:906</div></div>
+<div class="ttc" id="astructnet__buf_html_a1522d81a002804223e25300a6961f527"><div class="ttname"><a href="structnet__buf.html#a1522d81a002804223e25300a6961f527">net_buf::size</a></div><div class="ttdeci">uint16_t size</div><div class="ttdef"><b>Definição</b> buf.h:938</div></div>
+<div class="ttc" id="astructstat_html"><div class="ttname"><a href="structstat.html">stat</a></div><div class="ttdef"><b>Definição</b> stat.h:92</div></div>
+<div class="ttc" id="astructudc__api_html"><div class="ttname"><a href="structudc__api.html">udc_api</a></div><div class="ttdoc">UDC driver API This is the mandatory API any USB device controller driver needs to expose with except...</div><div class="ttdef"><b>Definição</b> udc.h:220</div></div>
+<div class="ttc" id="astructudc__buf__info_html"><div class="ttname"><a href="structudc__buf__info.html">udc_buf_info</a></div><div class="ttdef"><b>Definição</b> udc.h:177</div></div>
+<div class="ttc" id="astructudc__buf__info_html_a0a1c09f587d3f6847cb7ce77514a3321"><div class="ttname"><a href="structudc__buf__info.html#a0a1c09f587d3f6847cb7ce77514a3321">udc_buf_info::ep</a></div><div class="ttdeci">uint8_t ep</div><div class="ttdef"><b>Definição</b> udc.h:179</div></div>
+<div class="ttc" id="astructudc__buf__info_html_a33e927f23d227a4974915c65927284ec"><div class="ttname"><a href="structudc__buf__info.html#a33e927f23d227a4974915c65927284ec">udc_buf_info::owner</a></div><div class="ttdeci">void * owner</div><div class="ttdef"><b>Definição</b> udc.h:193</div></div>
+<div class="ttc" id="astructudc__buf__info_html_a4cd2e83000a0551d126bebe89552eab9"><div class="ttname"><a href="structudc__buf__info.html#a4cd2e83000a0551d126bebe89552eab9">udc_buf_info::queued</a></div><div class="ttdeci">unsigned int queued</div><div class="ttdef"><b>Definição</b> udc.h:191</div></div>
+<div class="ttc" id="astructudc__buf__info_html_a84cf74496eddc4a69a47d23dcdbf753f"><div class="ttname"><a href="structudc__buf__info.html#a84cf74496eddc4a69a47d23dcdbf753f">udc_buf_info::status</a></div><div class="ttdeci">unsigned int status</div><div class="ttdef"><b>Definição</b> udc.h:185</div></div>
+<div class="ttc" id="astructudc__buf__info_html_a9664e1f7cddd36dbc7d206b52da45170"><div class="ttname"><a href="structudc__buf__info.html#a9664e1f7cddd36dbc7d206b52da45170">udc_buf_info::setup</a></div><div class="ttdeci">unsigned int setup</div><div class="ttdef"><b>Definição</b> udc.h:181</div></div>
+<div class="ttc" id="astructudc__buf__info_html_a9b03b6dd8418d4200733a612aac73daa"><div class="ttname"><a href="structudc__buf__info.html#a9b03b6dd8418d4200733a612aac73daa">udc_buf_info::claimed</a></div><div class="ttdeci">unsigned int claimed</div><div class="ttdef"><b>Definição</b> udc.h:189</div></div>
+<div class="ttc" id="astructudc__buf__info_html_ab500ff0bf12ecdbbd4f3cb48d0556ed2"><div class="ttname"><a href="structudc__buf__info.html#ab500ff0bf12ecdbbd4f3cb48d0556ed2">udc_buf_info::data</a></div><div class="ttdeci">unsigned int data</div><div class="ttdef"><b>Definição</b> udc.h:183</div></div>
+<div class="ttc" id="astructudc__buf__info_html_af1c92f1cdd6e0474a19f788140fdc573"><div class="ttname"><a href="structudc__buf__info.html#af1c92f1cdd6e0474a19f788140fdc573">udc_buf_info::err</a></div><div class="ttdeci">int err</div><div class="ttdef"><b>Definição</b> udc.h:195</div></div>
+<div class="ttc" id="astructudc__buf__info_html_afc2d0c391aca7f68a1ae5539a1fed8a0"><div class="ttname"><a href="structudc__buf__info.html#afc2d0c391aca7f68a1ae5539a1fed8a0">udc_buf_info::zlp</a></div><div class="ttdeci">unsigned int zlp</div><div class="ttdef"><b>Definição</b> udc.h:187</div></div>
+<div class="ttc" id="astructudc__data_html"><div class="ttname"><a href="structudc__data.html">udc_data</a></div><div class="ttdef"><b>Definição</b> udc.h:267</div></div>
+<div class="ttc" id="astructudc__data_html_a1ba1b93af26bca4f4554a43a65ab3c2a"><div class="ttname"><a href="structudc__data.html#a1ba1b93af26bca4f4554a43a65ab3c2a">udc_data::mutex</a></div><div class="ttdeci">struct k_mutex mutex</div><div class="ttdef"><b>Definição</b> udc.h:273</div></div>
+<div class="ttc" id="astructudc__data_html_a1bbb7a70a14368efc4b933a7d1945fb5"><div class="ttname"><a href="structudc__data.html#a1bbb7a70a14368efc4b933a7d1945fb5">udc_data::setup</a></div><div class="ttdeci">struct net_buf * setup</div><div class="ttdef"><b>Definição</b> udc.h:281</div></div>
+<div class="ttc" id="astructudc__data_html_a9bb216d0c87b9ff4e2e99f0c3cfbb381"><div class="ttname"><a href="structudc__data.html#a9bb216d0c87b9ff4e2e99f0c3cfbb381">udc_data::event_cb</a></div><div class="ttdeci">udc_event_cb_t event_cb</div><div class="ttdef"><b>Definição</b> udc.h:275</div></div>
+<div class="ttc" id="astructudc__data_html_a9c1ae6e5e204b5a0ed15e92f8b3b384f"><div class="ttname"><a href="structudc__data.html#a9c1ae6e5e204b5a0ed15e92f8b3b384f">udc_data::status</a></div><div class="ttdeci">atomic_t status</div><div class="ttdef"><b>Definição</b> udc.h:277</div></div>
+<div class="ttc" id="astructudc__data_html_aae68bfba2e92894851c36dd40c33c0f0"><div class="ttname"><a href="structudc__data.html#aae68bfba2e92894851c36dd40c33c0f0">udc_data::caps</a></div><div class="ttdeci">struct udc_device_caps caps</div><div class="ttdef"><b>Definição</b> udc.h:271</div></div>
+<div class="ttc" id="astructudc__data_html_ab957eea73de90379642ed56ddbb84989"><div class="ttname"><a href="structudc__data.html#ab957eea73de90379642ed56ddbb84989">udc_data::stage</a></div><div class="ttdeci">int stage</div><div class="ttdef"><b>Definição</b> udc.h:279</div></div>
+<div class="ttc" id="astructudc__data_html_ac58682fa2f37bf2034a69cc9b6b10dfb"><div class="ttname"><a href="structudc__data.html#ac58682fa2f37bf2034a69cc9b6b10dfb">udc_data::priv</a></div><div class="ttdeci">void * priv</div><div class="ttdef"><b>Definição</b> udc.h:283</div></div>
+<div class="ttc" id="astructudc__data_html_acc471b34bb24453377b1ae54d33fa415"><div class="ttname"><a href="structudc__data.html#acc471b34bb24453377b1ae54d33fa415">udc_data::ep_lut</a></div><div class="ttdeci">struct udc_ep_config * ep_lut[32]</div><div class="ttdef"><b>Definição</b> udc.h:269</div></div>
+<div class="ttc" id="astructudc__device__caps_html"><div class="ttname"><a href="structudc__device__caps.html">udc_device_caps</a></div><div class="ttdef"><b>Definição</b> udc.h:36</div></div>
+<div class="ttc" id="astructudc__device__caps_html_a0adada5003bccfbd6df8329198639dc0"><div class="ttname"><a href="structudc__device__caps.html#a0adada5003bccfbd6df8329198639dc0">udc_device_caps::out_ack</a></div><div class="ttdeci">uint32_t out_ack</div><div class="ttdef"><b>Definição</b> udc.h:42</div></div>
+<div class="ttc" id="astructudc__device__caps_html_a63affa3fe08cbaec8351297ad9d26911"><div class="ttname"><a href="structudc__device__caps.html#a63affa3fe08cbaec8351297ad9d26911">udc_device_caps::mps0</a></div><div class="ttdeci">enum udc_mps0 mps0</div><div class="ttdef"><b>Definição</b> udc.h:44</div></div>
+<div class="ttc" id="astructudc__device__caps_html_aab85e74e40876040c3d2f961c36b9780"><div class="ttname"><a href="structudc__device__caps.html#aab85e74e40876040c3d2f961c36b9780">udc_device_caps::rwup</a></div><div class="ttdeci">uint32_t rwup</div><div class="ttdef"><b>Definição</b> udc.h:40</div></div>
+<div class="ttc" id="astructudc__device__caps_html_aea376ff4a0c5a27c3b8f7d4416e17b5b"><div class="ttname"><a href="structudc__device__caps.html#aea376ff4a0c5a27c3b8f7d4416e17b5b">udc_device_caps::hs</a></div><div class="ttdeci">uint32_t hs</div><div class="ttdef"><b>Definição</b> udc.h:38</div></div>
+<div class="ttc" id="astructudc__ep__caps_html"><div class="ttname"><a href="structudc__ep__caps.html">udc_ep_caps</a></div><div class="ttdef"><b>Definição</b> udc.h:64</div></div>
+<div class="ttc" id="astructudc__ep__caps_html_a15ce10028e09b3af021a83dc36eba99a"><div class="ttname"><a href="structudc__ep__caps.html#a15ce10028e09b3af021a83dc36eba99a">udc_ep_caps::iso</a></div><div class="ttdeci">uint32_t iso</div><div class="ttdef"><b>Definição</b> udc.h:74</div></div>
+<div class="ttc" id="astructudc__ep__caps_html_a3a944cda429c916b60cff3a332b970a7"><div class="ttname"><a href="structudc__ep__caps.html#a3a944cda429c916b60cff3a332b970a7">udc_ep_caps::in</a></div><div class="ttdeci">uint32_t in</div><div class="ttdef"><b>Definição</b> udc.h:76</div></div>
+<div class="ttc" id="astructudc__ep__caps_html_a5e90d1362855dd77a1f7ef9e0cd82ef8"><div class="ttname"><a href="structudc__ep__caps.html#a5e90d1362855dd77a1f7ef9e0cd82ef8">udc_ep_caps::mps</a></div><div class="ttdeci">uint32_t mps</div><div class="ttdef"><b>Definição</b> udc.h:66</div></div>
+<div class="ttc" id="astructudc__ep__caps_html_a73ec7e7c7fd043065a7c59c89c6cc36e"><div class="ttname"><a href="structudc__ep__caps.html#a73ec7e7c7fd043065a7c59c89c6cc36e">udc_ep_caps::bulk</a></div><div class="ttdeci">uint32_t bulk</div><div class="ttdef"><b>Definição</b> udc.h:72</div></div>
+<div class="ttc" id="astructudc__ep__caps_html_a73f06f9e2af5770cab84d2adb76d42de"><div class="ttname"><a href="structudc__ep__caps.html#a73f06f9e2af5770cab84d2adb76d42de">udc_ep_caps::interrupt</a></div><div class="ttdeci">uint32_t interrupt</div><div class="ttdef"><b>Definição</b> udc.h:70</div></div>
+<div class="ttc" id="astructudc__ep__caps_html_a98afb85c03ff01ba82d55884cea0ea31"><div class="ttname"><a href="structudc__ep__caps.html#a98afb85c03ff01ba82d55884cea0ea31">udc_ep_caps::control</a></div><div class="ttdeci">uint32_t control</div><div class="ttdef"><b>Definição</b> udc.h:68</div></div>
+<div class="ttc" id="astructudc__ep__caps_html_afc424ee2bb31c19451facc0b79bb73c7"><div class="ttname"><a href="structudc__ep__caps.html#afc424ee2bb31c19451facc0b79bb73c7">udc_ep_caps::out</a></div><div class="ttdeci">uint32_t out</div><div class="ttdef"><b>Definição</b> udc.h:78</div></div>
+<div class="ttc" id="astructudc__ep__config_html"><div class="ttname"><a href="structudc__ep__config.html">udc_ep_config</a></div><div class="ttdef"><b>Definição</b> udc.h:104</div></div>
+<div class="ttc" id="astructudc__ep__config_html_a1f2afc2d5e512229688764e1b7cd0171"><div class="ttname"><a href="structudc__ep__config.html#a1f2afc2d5e512229688764e1b7cd0171">udc_ep_config::interval</a></div><div class="ttdeci">uint8_t interval</div><div class="ttdef"><b>Definição</b> udc.h:118</div></div>
+<div class="ttc" id="astructudc__ep__config_html_a706987205ac971574d1b81bf72d03248"><div class="ttname"><a href="structudc__ep__config.html#a706987205ac971574d1b81bf72d03248">udc_ep_config::caps</a></div><div class="ttdeci">struct udc_ep_caps caps</div><div class="ttdef"><b>Definição</b> udc.h:108</div></div>
+<div class="ttc" id="astructudc__ep__config_html_aa62ff3f308771d51563df88439570918"><div class="ttname"><a href="structudc__ep__config.html#aa62ff3f308771d51563df88439570918">udc_ep_config::fifo</a></div><div class="ttdeci">struct k_fifo fifo</div><div class="ttdef"><b>Definição</b> udc.h:106</div></div>
+<div class="ttc" id="astructudc__ep__config_html_ac795b839cbd426d233a1f91d10d5fc7e"><div class="ttname"><a href="structudc__ep__config.html#ac795b839cbd426d233a1f91d10d5fc7e">udc_ep_config::addr</a></div><div class="ttdeci">uint8_t addr</div><div class="ttdef"><b>Definição</b> udc.h:112</div></div>
+<div class="ttc" id="astructudc__ep__config_html_acbeab755d1b03da0c58f43aff5bd7d00"><div class="ttname"><a href="structudc__ep__config.html#acbeab755d1b03da0c58f43aff5bd7d00">udc_ep_config::attributes</a></div><div class="ttdeci">uint8_t attributes</div><div class="ttdef"><b>Definição</b> udc.h:114</div></div>
+<div class="ttc" id="astructudc__ep__config_html_ae4f75e52d1c822f5d873095a761c6b48"><div class="ttname"><a href="structudc__ep__config.html#ae4f75e52d1c822f5d873095a761c6b48">udc_ep_config::mps</a></div><div class="ttdeci">uint16_t mps</div><div class="ttdef"><b>Definição</b> udc.h:116</div></div>
+<div class="ttc" id="astructudc__ep__stat_html"><div class="ttname"><a href="structudc__ep__stat.html">udc_ep_stat</a></div><div class="ttdef"><b>Definição</b> udc.h:84</div></div>
+<div class="ttc" id="astructudc__ep__stat_html_a0a437fb1e4b9a79eea7e4c6b0316c450"><div class="ttname"><a href="structudc__ep__stat.html#a0a437fb1e4b9a79eea7e4c6b0316c450">udc_ep_stat::odd</a></div><div class="ttdeci">uint32_t odd</div><div class="ttdef"><b>Definição</b> udc.h:92</div></div>
+<div class="ttc" id="astructudc__ep__stat_html_a30b66675236f30c75837c446b87ced91"><div class="ttname"><a href="structudc__ep__stat.html#a30b66675236f30c75837c446b87ced91">udc_ep_stat::data1</a></div><div class="ttdeci">uint32_t data1</div><div class="ttdef"><b>Definição</b> udc.h:90</div></div>
+<div class="ttc" id="astructudc__ep__stat_html_a448c82eb3884dba20e1bdf0980d3a2b3"><div class="ttname"><a href="structudc__ep__stat.html#a448c82eb3884dba20e1bdf0980d3a2b3">udc_ep_stat::enabled</a></div><div class="ttdeci">uint32_t enabled</div><div class="ttdef"><b>Definição</b> udc.h:86</div></div>
+<div class="ttc" id="astructudc__ep__stat_html_ad515a667ffd705408617dd28700db1e9"><div class="ttname"><a href="structudc__ep__stat.html#ad515a667ffd705408617dd28700db1e9">udc_ep_stat::busy</a></div><div class="ttdeci">uint32_t busy</div><div class="ttdef"><b>Definição</b> udc.h:94</div></div>
+<div class="ttc" id="astructudc__ep__stat_html_af245db473a046885e4f97b00493718e2"><div class="ttname"><a href="structudc__ep__stat.html#af245db473a046885e4f97b00493718e2">udc_ep_stat::halted</a></div><div class="ttdeci">uint32_t halted</div><div class="ttdef"><b>Definição</b> udc.h:88</div></div>
+<div class="ttc" id="astructudc__event_html"><div class="ttname"><a href="structudc__event.html">udc_event</a></div><div class="ttdef"><b>Definição</b> udc.h:155</div></div>
+<div class="ttc" id="astructudc__event_html_a0707d65716a4b1e6dd3132a0bb370770"><div class="ttname"><a href="structudc__event.html#a0707d65716a4b1e6dd3132a0bb370770">udc_event::status</a></div><div class="ttdeci">int status</div><div class="ttdef"><b>Definição</b> udc.h:162</div></div>
+<div class="ttc" id="astructudc__event_html_a3acfe5d21d16f6edfa24e9964b636434"><div class="ttname"><a href="structudc__event.html#a3acfe5d21d16f6edfa24e9964b636434">udc_event::type</a></div><div class="ttdeci">enum udc_event_type type</div><div class="ttdef"><b>Definição</b> udc.h:157</div></div>
+<div class="ttc" id="astructudc__event_html_a900404c46850d34cd7121eeedc2fce9d"><div class="ttname"><a href="structudc__event.html#a900404c46850d34cd7121eeedc2fce9d">udc_event::dev</a></div><div class="ttdeci">const struct device * dev</div><div class="ttdef"><b>Definição</b> udc.h:167</div></div>
+<div class="ttc" id="astructudc__event_html_ac1ff3bc9d629eb9b6c55602e7861e945"><div class="ttname"><a href="structudc__event.html#ac1ff3bc9d629eb9b6c55602e7861e945">udc_event::buf</a></div><div class="ttdeci">struct net_buf * buf</div><div class="ttdef"><b>Definição</b> udc.h:164</div></div>
+<div class="ttc" id="astructudc__event_html_ada24e0e920c39bc60a6c7fbbe54277f4"><div class="ttname"><a href="structudc__event.html#ada24e0e920c39bc60a6c7fbbe54277f4">udc_event::value</a></div><div class="ttdeci">uint32_t value</div><div class="ttdef"><b>Definição</b> udc.h:160</div></div>
+<div class="ttc" id="audc_8h_html_a0018f9d740cc739eec825ff7ffd0bf8b"><div class="ttname"><a href="udc_8h.html#a0018f9d740cc739eec825ff7ffd0bf8b">udc_event_cb_t</a></div><div class="ttdeci">int(* udc_event_cb_t)(const struct device *dev, const struct udc_event *const event)</div><div class="ttdoc">Callback to submit UDC event to higher layer.</div><div class="ttdef"><b>Definição</b> udc.h:211</div></div>
+<div class="ttc" id="audc_8h_html_a03749f5acb64ff8cfddc3c0b6b81a040"><div class="ttname"><a href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040">udc_event_type</a></div><div class="ttdeci">udc_event_type</div><div class="ttdoc">USB device controller event types.</div><div class="ttdef"><b>Definição</b> udc.h:125</div></div>
+<div class="ttc" id="audc_8h_html_a03749f5acb64ff8cfddc3c0b6b81a040a010cfc9f43a6faf68323201ae02fa00d"><div class="ttname"><a href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a010cfc9f43a6faf68323201ae02fa00d">UDC_EVT_VBUS_READY</a></div><div class="ttdeci">@ UDC_EVT_VBUS_READY</div><div class="ttdef"><b>Definição</b> udc.h:127</div></div>
+<div class="ttc" id="audc_8h_html_a03749f5acb64ff8cfddc3c0b6b81a040a0e0da320fe601eb1de24c142fc60f332"><div class="ttname"><a href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a0e0da320fe601eb1de24c142fc60f332">UDC_EVT_RESUME</a></div><div class="ttdeci">@ UDC_EVT_RESUME</div><div class="ttdef"><b>Definição</b> udc.h:131</div></div>
+<div class="ttc" id="audc_8h_html_a03749f5acb64ff8cfddc3c0b6b81a040a120dc649618040f41da7542bf639159f"><div class="ttname"><a href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a120dc649618040f41da7542bf639159f">UDC_EVT_SUSPEND</a></div><div class="ttdeci">@ UDC_EVT_SUSPEND</div><div class="ttdef"><b>Definição</b> udc.h:133</div></div>
+<div class="ttc" id="audc_8h_html_a03749f5acb64ff8cfddc3c0b6b81a040a4bdf374daa2aeb4f7b6b6c5fe2a46432"><div class="ttname"><a href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a4bdf374daa2aeb4f7b6b6c5fe2a46432">UDC_EVT_VBUS_REMOVED</a></div><div class="ttdeci">@ UDC_EVT_VBUS_REMOVED</div><div class="ttdef"><b>Definição</b> udc.h:129</div></div>
+<div class="ttc" id="audc_8h_html_a03749f5acb64ff8cfddc3c0b6b81a040a52bb5ea941db9a025ccb73de3fc6d55b"><div class="ttname"><a href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a52bb5ea941db9a025ccb73de3fc6d55b">UDC_EVT_EP_REQUEST</a></div><div class="ttdeci">@ UDC_EVT_EP_REQUEST</div><div class="ttdef"><b>Definição</b> udc.h:139</div></div>
+<div class="ttc" id="audc_8h_html_a03749f5acb64ff8cfddc3c0b6b81a040a8ff69c0bc684eb113f1d4e0ec02dd70d"><div class="ttname"><a href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040a8ff69c0bc684eb113f1d4e0ec02dd70d">UDC_EVT_ERROR</a></div><div class="ttdeci">@ UDC_EVT_ERROR</div><div class="ttdef"><b>Definição</b> udc.h:144</div></div>
+<div class="ttc" id="audc_8h_html_a03749f5acb64ff8cfddc3c0b6b81a040aa174f33c3802cec8d6c37606bc5ba9bb"><div class="ttname"><a href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040aa174f33c3802cec8d6c37606bc5ba9bb">UDC_EVT_RESET</a></div><div class="ttdeci">@ UDC_EVT_RESET</div><div class="ttdef"><b>Definição</b> udc.h:135</div></div>
+<div class="ttc" id="audc_8h_html_a03749f5acb64ff8cfddc3c0b6b81a040af20153f2fde8ea2bb1a985f2e17a2f78"><div class="ttname"><a href="udc_8h.html#a03749f5acb64ff8cfddc3c0b6b81a040af20153f2fde8ea2bb1a985f2e17a2f78">UDC_EVT_SOF</a></div><div class="ttdeci">@ UDC_EVT_SOF</div><div class="ttdef"><b>Definição</b> udc.h:137</div></div>
+<div class="ttc" id="audc_8h_html_a32d61ab6dbb734009102b5239a834d1b"><div class="ttname"><a href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1b">udc_bus_speed</a></div><div class="ttdeci">udc_bus_speed</div><div class="ttdoc">USB device actual speed.</div><div class="ttdef"><b>Definição</b> udc.h:50</div></div>
+<div class="ttc" id="audc_8h_html_a32d61ab6dbb734009102b5239a834d1ba71b0e0a870859cf1f0c11380833f790a"><div class="ttname"><a href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1ba71b0e0a870859cf1f0c11380833f790a">UDC_BUS_SPEED_SS</a></div><div class="ttdeci">@ UDC_BUS_SPEED_SS</div><div class="ttdef"><b>Definição</b> udc.h:58</div></div>
+<div class="ttc" id="audc_8h_html_a32d61ab6dbb734009102b5239a834d1ba8177d4c8e8cb0456f9c2a553c76dc0d5"><div class="ttname"><a href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1ba8177d4c8e8cb0456f9c2a553c76dc0d5">UDC_BUS_SPEED_FS</a></div><div class="ttdeci">@ UDC_BUS_SPEED_FS</div><div class="ttdef"><b>Definição</b> udc.h:54</div></div>
+<div class="ttc" id="audc_8h_html_a32d61ab6dbb734009102b5239a834d1ba872aa49861a213ad970012f43db7d35d"><div class="ttname"><a href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1ba872aa49861a213ad970012f43db7d35d">UDC_BUS_UNKNOWN</a></div><div class="ttdeci">@ UDC_BUS_UNKNOWN</div><div class="ttdef"><b>Definição</b> udc.h:52</div></div>
+<div class="ttc" id="audc_8h_html_a32d61ab6dbb734009102b5239a834d1ba9fc26a4b4ba8db446731274b67182599"><div class="ttname"><a href="udc_8h.html#a32d61ab6dbb734009102b5239a834d1ba9fc26a4b4ba8db446731274b67182599">UDC_BUS_SPEED_HS</a></div><div class="ttdeci">@ UDC_BUS_SPEED_HS</div><div class="ttdef"><b>Definição</b> udc.h:56</div></div>
+<div class="ttc" id="audc_8h_html_a8c96946734085924e2afc591ac502551"><div class="ttname"><a href="udc_8h.html#a8c96946734085924e2afc591ac502551">UDC_STATUS_INITIALIZED</a></div><div class="ttdeci">#define UDC_STATUS_INITIALIZED</div><div class="ttdef"><b>Definição</b> udc.h:252</div></div>
+<div class="ttc" id="audc_8h_html_ac254f8a970f890d14e35c43474c915fd"><div class="ttname"><a href="udc_8h.html#ac254f8a970f890d14e35c43474c915fd">udc_mps0</a></div><div class="ttdeci">udc_mps0</div><div class="ttdoc">Maximum packet size of control endpoint supported by the controller.</div><div class="ttdef"><b>Definição</b> udc.h:24</div></div>
+<div class="ttc" id="audc_8h_html_ac3a36aa8cb3aab95d7931cb602631c36"><div class="ttname"><a href="udc_8h.html#ac3a36aa8cb3aab95d7931cb602631c36">UDC_STATUS_SUSPENDED</a></div><div class="ttdeci">#define UDC_STATUS_SUSPENDED</div><div class="ttdef"><b>Definição</b> udc.h:259</div></div>
+<div class="ttc" id="audc_8h_html_ad10596af54465c3cb10cc59ae9a507d2"><div class="ttname"><a href="udc_8h.html#ad10596af54465c3cb10cc59ae9a507d2">UDC_STATUS_ENABLED</a></div><div class="ttdeci">#define UDC_STATUS_ENABLED</div><div class="ttdef"><b>Definição</b> udc.h:257</div></div>
+<div class="ttc" id="ausb__ch9_8h_html"><div class="ttname"><a href="usb__ch9_8h.html">usb_ch9.h</a></div><div class="ttdoc">USB Chapter 9 structures and definitions.</div></div>
+<div class="ttc" id="ausb__ch9_8h_html_a495d790dfb00609ce029631f40d0a422"><div class="ttname"><a href="usb__ch9_8h.html#a495d790dfb00609ce029631f40d0a422">USB_EP_DIR_IS_IN</a></div><div class="ttdeci">#define USB_EP_DIR_IS_IN(ep)</div><div class="ttdef"><b>Definição</b> usb_ch9.h:298</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

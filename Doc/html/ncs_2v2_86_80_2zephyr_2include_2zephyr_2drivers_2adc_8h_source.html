@@ -1,0 +1,525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Prototyping a thermal process control system: Código-Fonte de /home/francisco/ncs/v2.6.0/zephyr/include/zephyr/drivers/adc.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Prototyping a thermal process control system<span id="projectnumber">&#160;3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_ba28dd9a7199454d910dfb8f7a78c144.html">ncs</a></li><li class="navelem"><a class="el" href="dir_ebe671bb10e0452e8d5e0bcd376c3763.html">v2.6.0</a></li><li class="navelem"><a class="el" href="dir_c728ee708054fc9266f88a2aca017b16.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7f458a2cf4ab12ee61a50acfb24824e9.html">include</a></li><li class="navelem"><a class="el" href="dir_703d9d00ab2f1bcbc0d2bb26934bdd92.html">zephyr</a></li><li class="navelem"><a class="el" href="dir_7130c9617ec8343582c7e4b334f68e61.html">drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">adc.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2drivers_2adc_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> * Copyright (c) 2018 Nordic Semiconductor ASA</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> * Copyright (c) 2015 Intel Corporation</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> * SPDX-License-Identifier: Apache-2.0</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef ZEPHYR_INCLUDE_DRIVERS_ADC_H_</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define ZEPHYR_INCLUDE_DRIVERS_ADC_H_</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;zephyr/device.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;zephyr/dt-bindings/adc/adc.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">zephyr/kernel.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="group__adc__interface.html#ga306f882323c66b263d3797124ca5f3a0">   32</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__adc__interface.html#ga306f882323c66b263d3797124ca5f3a0">adc_gain</a> {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0abb26700162bfc68a2beadc1e78b758c1">   33</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0abb26700162bfc68a2beadc1e78b758c1">ADC_GAIN_1_6</a>, </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a198c40369bddfc3c0eaa8ae3bb1be0c9">   34</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a198c40369bddfc3c0eaa8ae3bb1be0c9">ADC_GAIN_1_5</a>, </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0afa55c5a94bfebb9a70638e9ab32eabf8">   35</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0afa55c5a94bfebb9a70638e9ab32eabf8">ADC_GAIN_1_4</a>, </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0af896fe01119930815ac78a4ee87635ee">   36</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0af896fe01119930815ac78a4ee87635ee">ADC_GAIN_1_3</a>, </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a4a59d3dd1e2e2fbe2ec593291ca307e0">   37</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a4a59d3dd1e2e2fbe2ec593291ca307e0">ADC_GAIN_2_5</a>, </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a2d36559128c21834d1188aed43d236d2">   38</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a2d36559128c21834d1188aed43d236d2">ADC_GAIN_1_2</a>, </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0ac720b0730cfef7c55f97777fec75dc62">   39</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0ac720b0730cfef7c55f97777fec75dc62">ADC_GAIN_2_3</a>, </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0ad0ee4a6bfc749a3213f0c44d30e8e6df">   40</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0ad0ee4a6bfc749a3213f0c44d30e8e6df">ADC_GAIN_4_5</a>, </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a76b3097b0b38d33266d36f5a5d534e54">   41</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a76b3097b0b38d33266d36f5a5d534e54">ADC_GAIN_1</a>,   </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0aff4b7cc577e333a3a684e4e56b124868">   42</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0aff4b7cc577e333a3a684e4e56b124868">ADC_GAIN_2</a>,   </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a113a3324782a4517bb71fc3b03aeef5e">   43</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a113a3324782a4517bb71fc3b03aeef5e">ADC_GAIN_3</a>,   </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a12756ff0f6a345ff3fee2077e1153300">   44</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a12756ff0f6a345ff3fee2077e1153300">ADC_GAIN_4</a>,   </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0aba255a08f5ff25388778057d725a77c8">   45</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0aba255a08f5ff25388778057d725a77c8">ADC_GAIN_6</a>,   </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0ae9a429f8b69dd0e5cae0e1ab7dbe7dc3">   46</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0ae9a429f8b69dd0e5cae0e1ab7dbe7dc3">ADC_GAIN_8</a>,   </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a3ff31845095f2b0fe7e62b2b826411e8">   47</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a3ff31845095f2b0fe7e62b2b826411e8">ADC_GAIN_12</a>,  </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a4b18ba08d86e630f2deeeea5b329f970">   48</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a4b18ba08d86e630f2deeeea5b329f970">ADC_GAIN_16</a>,  </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a5d19226b1d1728180101e65b8386ff33">   49</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a5d19226b1d1728180101e65b8386ff33">ADC_GAIN_24</a>,  </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0ac693403ea0f70f5723a98fe11967c13f">   50</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0ac693403ea0f70f5723a98fe11967c13f">ADC_GAIN_32</a>,  </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a064c567978a50dd58d48d481388dd6eb">   51</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a064c567978a50dd58d48d481388dd6eb">ADC_GAIN_64</a>,  </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a1b3c6d80db15acf962192341d4754829">   52</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a1b3c6d80db15acf962192341d4754829">ADC_GAIN_128</a>, </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="group__adc__interface.html#ga5af65795f58e8e92672bf31dc2418e23">   71</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="group__adc__interface.html#ga5af65795f58e8e92672bf31dc2418e23">adc_gain_invert</a>(<span class="keyword">enum</span> <a class="code hl_enumeration" href="group__adc__interface.html#ga306f882323c66b263d3797124ca5f3a0">adc_gain</a> gain,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            int32_t *value);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="foldopen" id="foldopen00075" data-start="{" data-end="};">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="group__adc__interface.html#ga91b0f997d73739cf9f7349b7581e1f56">   75</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__adc__interface.html#ga91b0f997d73739cf9f7349b7581e1f56">adc_reference</a> {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56ae41651d9d2ba0d3c2a976177fc6ed1b3">   76</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56ae41651d9d2ba0d3c2a976177fc6ed1b3">ADC_REF_VDD_1</a>,     </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a5f47fb0b239da79577887baf2576eb0d">   77</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a5f47fb0b239da79577887baf2576eb0d">ADC_REF_VDD_1_2</a>,   </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a8e5dfe37c3993e118d6e316c9fa0aad1">   78</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a8e5dfe37c3993e118d6e316c9fa0aad1">ADC_REF_VDD_1_3</a>,   </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a93d4dc4332b3346a7332383ecf745d2c">   79</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a93d4dc4332b3346a7332383ecf745d2c">ADC_REF_VDD_1_4</a>,   </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a239921743b35d32a558a43deee2ce709">   80</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a239921743b35d32a558a43deee2ce709">ADC_REF_INTERNAL</a>,  </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56afc15362bdf426f412e150ae9f8d224e6">   81</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56afc15362bdf426f412e150ae9f8d224e6">ADC_REF_EXTERNAL0</a>, </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a2733819da753b01a8116d076498fe52a">   82</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a2733819da753b01a8116d076498fe52a">ADC_REF_EXTERNAL1</a>, </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>};</div>
+</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="foldopen" id="foldopen00088" data-start="{" data-end="};">
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="structadc__channel__cfg.html">   88</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structadc__channel__cfg.html">adc_channel_cfg</a> {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structadc__channel__cfg.html#a20996396fa5b1d27eeea7da9ea9df848">   90</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__adc__interface.html#ga306f882323c66b263d3797124ca5f3a0">adc_gain</a> <a class="code hl_variable" href="structadc__channel__cfg.html#a20996396fa5b1d27eeea7da9ea9df848">gain</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="structadc__channel__cfg.html#a73d11ad6411a62f8f21cbfa492bc1b20">   93</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__adc__interface.html#ga91b0f997d73739cf9f7349b7581e1f56">adc_reference</a> <a class="code hl_variable" href="structadc__channel__cfg.html#a73d11ad6411a62f8f21cbfa492bc1b20">reference</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="structadc__channel__cfg.html#a426a74cf53a4b801e91c2eeb1db3477d">  104</a></span>    uint16_t <a class="code hl_variable" href="structadc__channel__cfg.html#a426a74cf53a4b801e91c2eeb1db3477d">acquisition_time</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="structadc__channel__cfg.html#aeec90a3fb60f93427a92e083326c8fcf">  128</a></span>    uint8_t <a class="code hl_variable" href="structadc__channel__cfg.html#aeec90a3fb60f93427a92e083326c8fcf">channel_id</a>   : 5;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="structadc__channel__cfg.html#a372f298a2dd87660b9508ca1387084b6">  131</a></span>    uint8_t <a class="code hl_variable" href="structadc__channel__cfg.html#a372f298a2dd87660b9508ca1387084b6">differential</a> : 1;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">#ifdef CONFIG_ADC_CONFIGURABLE_INPUTS</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    uint8_t input_positive;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    uint8_t input_negative;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_ADC_CONFIGURABLE_INPUTS */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">#ifdef CONFIG_ADC_CONFIGURABLE_EXCITATION_CURRENT_SOURCE_PIN</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    uint8_t current_source_pin_set : 1;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    uint8_t current_source_pin[2];</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_ADC_CONFIGURABLE_EXCITATION_CURRENT_SOURCE_PIN */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>};</div>
+</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="foldopen" id="foldopen00225" data-start="" data-end="">
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="group__adc__interface.html#ga8d1f7d55c94fed3247c830a4569ab05e">  225</a></span><span class="preprocessor">#define ADC_CHANNEL_CFG_DT(node_id) { \</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="preprocessor">    .gain             = DT_STRING_TOKEN(node_id, zephyr_gain), \</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="preprocessor">    .reference        = DT_STRING_TOKEN(node_id, zephyr_reference), \</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="preprocessor">    .acquisition_time = DT_PROP(node_id, zephyr_acquisition_time), \</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="preprocessor">    .channel_id       = DT_REG_ADDR(node_id), \</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="preprocessor">IF_ENABLED(CONFIG_ADC_CONFIGURABLE_INPUTS, \</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="preprocessor">    (.differential    = DT_NODE_HAS_PROP(node_id, zephyr_input_negative), \</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="preprocessor">     .input_positive  = DT_PROP_OR(node_id, zephyr_input_positive, 0), \</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="preprocessor">     .input_negative  = DT_PROP_OR(node_id, zephyr_input_negative, 0),)) \</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="preprocessor">IF_ENABLED(DT_PROP(node_id, zephyr_differential), \</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="preprocessor">    (.differential    = true,)) \</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="preprocessor">IF_ENABLED(CONFIG_ADC_CONFIGURABLE_EXCITATION_CURRENT_SOURCE_PIN, \</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="preprocessor">    (.current_source_pin_set = DT_NODE_HAS_PROP(node_id, zephyr_current_source_pin), \</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="preprocessor">     .current_source_pin = DT_PROP_OR(node_id, zephyr_current_source_pin, {0}),)) \</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="preprocessor">}</span></div>
+</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="foldopen" id="foldopen00247" data-start="{" data-end="};">
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="structadc__dt__spec.html">  247</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structadc__dt__spec.html">adc_dt_spec</a> {</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="structadc__dt__spec.html#aa2656b923d105743eaee3e03691edc44">  252</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *<a class="code hl_variable" href="structadc__dt__spec.html#aa2656b923d105743eaee3e03691edc44">dev</a>;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno"><a class="line" href="structadc__dt__spec.html#a083e6c5bc707606c2ea1459fb58e29a8">  255</a></span>    uint8_t <a class="code hl_variable" href="structadc__dt__spec.html#a083e6c5bc707606c2ea1459fb58e29a8">channel_id</a>;</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="structadc__dt__spec.html#aaf239b0c62b34158bac1a3b63e35f612">  262</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structadc__dt__spec.html#aaf239b0c62b34158bac1a3b63e35f612">channel_cfg_dt_node_exists</a>;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="structadc__dt__spec.html#a056b22daa13da07cb3ff37bd4adf199d">  269</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structadc__channel__cfg.html">adc_channel_cfg</a> <a class="code hl_variable" href="structadc__dt__spec.html#a056b22daa13da07cb3ff37bd4adf199d">channel_cfg</a>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="structadc__dt__spec.html#a9e120f52e3a905768d8e6bdc3469d20a">  277</a></span>    uint16_t <a class="code hl_variable" href="structadc__dt__spec.html#a9e120f52e3a905768d8e6bdc3469d20a">vref_mv</a>;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno"><a class="line" href="structadc__dt__spec.html#abbe7052a144541b8d16afee3fd231c10">  284</a></span>    uint8_t <a class="code hl_variable" href="structadc__dt__spec.html#abbe7052a144541b8d16afee3fd231c10">resolution</a>;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno"><a class="line" href="structadc__dt__spec.html#aa7daf451a3438847ff989f32eae11e97">  291</a></span>    uint8_t <a class="code hl_variable" href="structadc__dt__spec.html#aa7daf451a3438847ff989f32eae11e97">oversampling</a>;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>};</div>
+</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="preprocessor">#define ADC_DT_SPEC_STRUCT(ctlr, input) { \</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="preprocessor">        .dev = DEVICE_DT_GET(ctlr), \</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="preprocessor">        .channel_id = input, \</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="preprocessor">        ADC_CHANNEL_CFG_FROM_DT_NODE(\</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="preprocessor">            ADC_CHANNEL_DT_NODE(ctlr, input)) \</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="preprocessor">#define ADC_CHANNEL_DT_NODE(ctlr, input) \</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="preprocessor">    DT_FOREACH_CHILD_VARGS(ctlr, ADC_FOREACH_INPUT, input)</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="preprocessor">#define ADC_FOREACH_INPUT(node, input) \</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="preprocessor">    IF_ENABLED(IS_EQ(DT_REG_ADDR(node), input), (node))</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="preprocessor">#define ADC_CHANNEL_CFG_FROM_DT_NODE(node_id) \</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="preprocessor">    IF_ENABLED(DT_NODE_EXISTS(node_id), \</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="preprocessor">        (.channel_cfg_dt_node_exists = true, \</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="preprocessor">         .channel_cfg  = ADC_CHANNEL_CFG_DT(node_id), \</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="preprocessor">         .vref_mv      = DT_PROP_OR(node_id, zephyr_vref_mv, 0), \</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="preprocessor">         .resolution   = DT_PROP_OR(node_id, zephyr_resolution, 0), \</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="preprocessor">         .oversampling = DT_PROP_OR(node_id, zephyr_oversampling, 0),))</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
+<div class="foldopen" id="foldopen00388" data-start="" data-end="">
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gae9867df7a034d45ed3d3c58c69c246ed">  388</a></span><span class="preprocessor">#define ADC_DT_SPEC_GET_BY_IDX(node_id, idx) \</span></div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="preprocessor">    ADC_DT_SPEC_STRUCT(DT_IO_CHANNELS_CTLR_BY_IDX(node_id, idx), \</span></div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span><span class="preprocessor">               DT_IO_CHANNELS_INPUT_BY_IDX(node_id, idx))</span></div>
+</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span> </div>
+<div class="foldopen" id="foldopen00402" data-start="" data-end="">
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno"><a class="line" href="group__adc__interface.html#ga4705a1e2cc22fe73b7e967e8ba220584">  402</a></span><span class="preprocessor">#define ADC_DT_SPEC_INST_GET_BY_IDX(inst, idx) \</span></div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span><span class="preprocessor">    ADC_DT_SPEC_GET_BY_IDX(DT_DRV_INST(inst), idx)</span></div>
+</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span> </div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gad05df3d329ba785c094ea4c32e2913b7">  414</a></span><span class="preprocessor">#define ADC_DT_SPEC_GET(node_id) ADC_DT_SPEC_GET_BY_IDX(node_id, 0)</span></div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span> </div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno"><a class="line" href="group__adc__interface.html#ga96222a7d374e21d477b99f74d715bae1">  424</a></span><span class="preprocessor">#define ADC_DT_SPEC_INST_GET(inst) ADC_DT_SPEC_GET(DT_DRV_INST(inst))</span></div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span><span class="comment">/* Forward declaration of the adc_sequence structure. */</span></div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span><span class="keyword">struct </span><a class="code hl_struct" href="structadc__sequence.html">adc_sequence</a>;</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span> </div>
+<div class="foldopen" id="foldopen00432" data-start="{" data-end="};">
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno"><a class="line" href="group__adc__interface.html#ga8f6df993405679f852ae4cd8c63c6917">  432</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="group__adc__interface.html#ga8f6df993405679f852ae4cd8c63c6917">adc_action</a> {</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga8f6df993405679f852ae4cd8c63c6917ac875a64d997cb883b49447006554ba92">  434</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga8f6df993405679f852ae4cd8c63c6917ac875a64d997cb883b49447006554ba92">ADC_ACTION_CONTINUE</a> = 0,</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga8f6df993405679f852ae4cd8c63c6917a8efc10c77ea616d568f88d3ef88b1715">  440</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga8f6df993405679f852ae4cd8c63c6917a8efc10c77ea616d568f88d3ef88b1715">ADC_ACTION_REPEAT</a>,</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span> </div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gga8f6df993405679f852ae4cd8c63c6917a68a21759522a3d584417fa12359b4dc9">  443</a></span>    <a class="code hl_enumvalue" href="group__adc__interface.html#gga8f6df993405679f852ae4cd8c63c6917a68a21759522a3d584417fa12359b4dc9">ADC_ACTION_FINISH</a>,</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>};</div>
+</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span> </div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span><span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__adc__interface.html#ga8f6df993405679f852ae4cd8c63c6917">adc_action</a> (*<a class="code hl_typedef" href="group__adc__interface.html#ga9150eb6dc53d1c62b9fa225c0a371d6d">adc_sequence_callback</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>                         <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structadc__sequence.html">adc_sequence</a> *sequence,</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>                         uint16_t sampling_index);</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span> </div>
+<div class="foldopen" id="foldopen00472" data-start="{" data-end="};">
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno"><a class="line" href="structadc__sequence__options.html">  472</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structadc__sequence__options.html">adc_sequence_options</a> {</div>
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno"><a class="line" href="structadc__sequence__options.html#ad2f11727ab0eb7e32a5fbd07f04a85b2">  482</a></span>    uint32_t <a class="code hl_variable" href="structadc__sequence__options.html#ad2f11727ab0eb7e32a5fbd07f04a85b2">interval_us</a>;</div>
+<div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span> </div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno"><a class="line" href="structadc__sequence__options.html#a71bd082c14f01a1b5d1b491e7510aa91">  488</a></span>    <a class="code hl_typedef" href="group__adc__interface.html#ga9150eb6dc53d1c62b9fa225c0a371d6d">adc_sequence_callback</a> <a class="code hl_variable" href="structadc__sequence__options.html#a71bd082c14f01a1b5d1b491e7510aa91">callback</a>;</div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span> </div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno"><a class="line" href="structadc__sequence__options.html#a262fd6daefb22df02c726aafcddc6d47">  494</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structadc__sequence__options.html#a262fd6daefb22df02c726aafcddc6d47">user_data</a>;</div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span> </div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno"><a class="line" href="structadc__sequence__options.html#a29f8ac4cdf6740f56bcd70a0a027e56a">  500</a></span>    uint16_t <a class="code hl_variable" href="structadc__sequence__options.html#a29f8ac4cdf6740f56bcd70a0a027e56a">extra_samplings</a>;</div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>};</div>
+</div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span> </div>
+<div class="foldopen" id="foldopen00506" data-start="{" data-end="};">
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno"><a class="line" href="structadc__sequence.html">  506</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structadc__sequence.html">adc_sequence</a> {</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno"><a class="line" href="structadc__sequence.html#a379c6f92153dfa97439d39cbef222451">  511</a></span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structadc__sequence__options.html">adc_sequence_options</a> *<a class="code hl_variable" href="structadc__sequence.html#a379c6f92153dfa97439d39cbef222451">options</a>;</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span> </div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno"><a class="line" href="structadc__sequence.html#a5c497c4a5de20e8591063ca8661f79c1">  520</a></span>    uint32_t <a class="code hl_variable" href="structadc__sequence.html#a5c497c4a5de20e8591063ca8661f79c1">channels</a>;</div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span> </div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno"><a class="line" href="structadc__sequence.html#a5df0ee0e6d3215aa052f108476bd57ec">  533</a></span>    <span class="keywordtype">void</span> *<a class="code hl_variable" href="structadc__sequence.html#a5df0ee0e6d3215aa052f108476bd57ec">buffer</a>;</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span> </div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno"><a class="line" href="structadc__sequence.html#a8e1bc9a4361e274bbdaedeb3151b71e5">  541</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="structadc__sequence.html#a8e1bc9a4361e274bbdaedeb3151b71e5">buffer_size</a>;</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span> </div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno"><a class="line" href="structadc__sequence.html#ad5480691be25ed9ee81130b775743125">  550</a></span>    uint8_t <a class="code hl_variable" href="structadc__sequence.html#ad5480691be25ed9ee81130b775743125">resolution</a>;</div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span> </div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno"><a class="line" href="structadc__sequence.html#a233e8b20b57bb2fdbebf2c85f076c802">  558</a></span>    uint8_t <a class="code hl_variable" href="structadc__sequence.html#a233e8b20b57bb2fdbebf2c85f076c802">oversampling</a>;</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span> </div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno"><a class="line" href="structadc__sequence.html#a6023e3bec29deaa11b44c4df40eb7b04">  568</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structadc__sequence.html#a6023e3bec29deaa11b44c4df40eb7b04">calibrate</a>;</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>};</div>
+</div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span> </div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span> </div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno"><a class="line" href="group__adc__interface.html#ga871680cf9f390bfe19a10a61eb1ca092">  576</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__adc__interface.html#ga871680cf9f390bfe19a10a61eb1ca092">adc_api_channel_setup</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>                     <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structadc__channel__cfg.html">adc_channel_cfg</a> *channel_cfg);</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span> </div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno"><a class="line" href="group__adc__interface.html#ga4d4484e52ff7727fd316f50b2f404adf">  583</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__adc__interface.html#ga4d4484e52ff7727fd316f50b2f404adf">adc_api_read</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>                <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structadc__sequence.html">adc_sequence</a> *sequence);</div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span> </div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gad0160f455d1901ebfe06568e8418a22c">  591</a></span><span class="keyword">typedef</span> int (*<a class="code hl_typedef" href="group__adc__interface.html#gad0160f455d1901ebfe06568e8418a22c">adc_api_read_async</a>)(<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>                  <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structadc__sequence.html">adc_sequence</a> *sequence,</div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span>                  <span class="keyword">struct </span><a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *async);</div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span> </div>
+<div class="foldopen" id="foldopen00600" data-start="{" data-end="};">
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno"><a class="line" href="structadc__driver__api.html">  600</a></span>__subsystem <span class="keyword">struct </span><a class="code hl_struct" href="structadc__driver__api.html">adc_driver_api</a> {</div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span>    <a class="code hl_typedef" href="group__adc__interface.html#ga871680cf9f390bfe19a10a61eb1ca092">adc_api_channel_setup</a> channel_setup;</div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span>    <a class="code hl_typedef" href="group__adc__interface.html#ga4d4484e52ff7727fd316f50b2f404adf">adc_api_read</a>          read;</div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span><span class="preprocessor">#ifdef CONFIG_ADC_ASYNC</span></div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span>    <a class="code hl_typedef" href="group__adc__interface.html#gad0160f455d1901ebfe06568e8418a22c">adc_api_read_async</a>    read_async;</div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>    uint16_t ref_internal;  <span class="comment">/* mV */</span></div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>};</div>
+</div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span> </div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno"><a class="line" href="group__adc__interface.html#gab95c2374c20fbbd58c5d500eb2c90f8d">  621</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__adc__interface.html#gab95c2374c20fbbd58c5d500eb2c90f8d">adc_channel_setup</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>                <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structadc__channel__cfg.html">adc_channel_cfg</a> *channel_cfg);</div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span> </div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_adc_channel_setup(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>                       <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structadc__channel__cfg.html">adc_channel_cfg</a> *channel_cfg)</div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span>{</div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structadc__driver__api.html">adc_driver_api</a> *api =</div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>                (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structadc__driver__api.html">adc_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span> </div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>    <span class="keywordflow">return</span> api-&gt;channel_setup(dev, channel_cfg);</div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>}</div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span> </div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> adc_channel_setup_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structadc__dt__spec.html">adc_dt_spec</a> *spec)</div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>{</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>    <span class="keywordflow">if</span> (!spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#aaf239b0c62b34158bac1a3b63e35f612">channel_cfg_dt_node_exists</a>) {</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>    }</div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span> </div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__adc__interface.html#gab95c2374c20fbbd58c5d500eb2c90f8d">adc_channel_setup</a>(spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#aa2656b923d105743eaee3e03691edc44">dev</a>, &amp;spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#a056b22daa13da07cb3ff37bd4adf199d">channel_cfg</a>);</div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>}</div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span> </div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno"><a class="line" href="group__adc__interface.html#ga65ff8cc933d626ac632b13fb825504b0">  672</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__adc__interface.html#ga65ff8cc933d626ac632b13fb825504b0">adc_read</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>               <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structadc__sequence.html">adc_sequence</a> *sequence);</div>
+<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span> </div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_adc_read(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span>                  <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structadc__sequence.html">adc_sequence</a> *sequence)</div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>{</div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structadc__driver__api.html">adc_driver_api</a> *api =</div>
+<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>                (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structadc__driver__api.html">adc_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span> </div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span>    <span class="keywordflow">return</span> api-&gt;read(dev, sequence);</div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span>}</div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span> </div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> adc_read_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structadc__dt__spec.html">adc_dt_spec</a> *spec,</div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span>                  <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structadc__sequence.html">adc_sequence</a> *sequence)</div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>{</div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__adc__interface.html#ga65ff8cc933d626ac632b13fb825504b0">adc_read</a>(spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#aa2656b923d105743eaee3e03691edc44">dev</a>, sequence);</div>
+<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span>}</div>
+<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span> </div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno"><a class="line" href="group__adc__interface.html#ga98e66aac07e6266ca58e4d5609354868">  719</a></span>__syscall <span class="keywordtype">int</span> <a class="code hl_function" href="group__adc__interface.html#ga98e66aac07e6266ca58e4d5609354868">adc_read_async</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span>                 <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structadc__sequence.html">adc_sequence</a> *sequence,</div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span>                 <span class="keyword">struct</span> <a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *async);</div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span> </div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span> </div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span><span class="preprocessor">#ifdef CONFIG_ADC_ASYNC</span></div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> z_impl_adc_read_async(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev,</div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span>                    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structadc__sequence.html">adc_sequence</a> *sequence,</div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span>                    <span class="keyword">struct</span> <a class="code hl_struct" href="structk__poll__signal.html">k_poll_signal</a> *async)</div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span>{</div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structadc__driver__api.html">adc_driver_api</a> *api =</div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>                (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structadc__driver__api.html">adc_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span> </div>
+<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>    <span class="keywordflow">return</span> api-&gt;read_async(dev, sequence, async);</div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>}</div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span><span class="preprocessor">#endif </span><span class="comment">/* CONFIG_ADC_ASYNC */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span> </div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span><span class="keyword">static</span> <span class="keyword">inline</span> uint16_t adc_ref_internal(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structdevice.html">device</a> *dev)</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>{</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>    <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structadc__driver__api.html">adc_driver_api</a> *api =</div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>                (<span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structadc__driver__api.html">adc_driver_api</a> *)dev-&gt;<a class="code hl_variable" href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">api</a>;</div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span> </div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>    <span class="keywordflow">return</span> api-&gt;ref_internal;</div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>}</div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span> </div>
+<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> adc_raw_to_millivolts(int32_t ref_mv,</div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span>                    <span class="keyword">enum</span> <a class="code hl_enumeration" href="group__adc__interface.html#ga306f882323c66b263d3797124ca5f3a0">adc_gain</a> gain,</div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span>                    uint8_t resolution,</div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span>                    int32_t *valp)</div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>{</div>
+<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span>    int32_t adc_mv = *valp * ref_mv;</div>
+<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span>    <span class="keywordtype">int</span> ret = <a class="code hl_function" href="group__adc__interface.html#ga5af65795f58e8e92672bf31dc2418e23">adc_gain_invert</a>(gain, &amp;adc_mv);</div>
+<div class="line"><a id="l00783" name="l00783"></a><span class="lineno">  783</span> </div>
+<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>    <span class="keywordflow">if</span> (ret == 0) {</div>
+<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span>        *valp = (adc_mv &gt;&gt; resolution);</div>
+<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>    }</div>
+<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span> </div>
+<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span>    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span>}</div>
+<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span> </div>
+<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> adc_raw_to_millivolts_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structadc__dt__spec.html">adc_dt_spec</a> *spec,</div>
+<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>                       int32_t *valp)</div>
+<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span>{</div>
+<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>    int32_t vref_mv;</div>
+<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>    uint8_t resolution;</div>
+<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span> </div>
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>    <span class="keywordflow">if</span> (!spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#aaf239b0c62b34158bac1a3b63e35f612">channel_cfg_dt_node_exists</a>) {</div>
+<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>    }</div>
+<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span> </div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>    <span class="keywordflow">if</span> (spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#a056b22daa13da07cb3ff37bd4adf199d">channel_cfg</a>.<a class="code hl_variable" href="structadc__channel__cfg.html#a73d11ad6411a62f8f21cbfa492bc1b20">reference</a> == <a class="code hl_enumvalue" href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a239921743b35d32a558a43deee2ce709">ADC_REF_INTERNAL</a>) {</div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>        vref_mv = (int32_t)adc_ref_internal(spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#aa2656b923d105743eaee3e03691edc44">dev</a>);</div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span>        vref_mv = spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#a9e120f52e3a905768d8e6bdc3469d20a">vref_mv</a>;</div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>    }</div>
+<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span> </div>
+<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span>    resolution = spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#abbe7052a144541b8d16afee3fd231c10">resolution</a>;</div>
+<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span> </div>
+<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span><span class="comment">     * For differential channels, one bit less needs to be specified</span></div>
+<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span><span class="comment">     * for resolution to achieve correct conversion.</span></div>
+<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span>    <span class="keywordflow">if</span> (spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#a056b22daa13da07cb3ff37bd4adf199d">channel_cfg</a>.<a class="code hl_variable" href="structadc__channel__cfg.html#a372f298a2dd87660b9508ca1387084b6">differential</a>) {</div>
+<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span>        resolution -= 1U;</div>
+<div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span>    }</div>
+<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span> </div>
+<div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span>    <span class="keywordflow">return</span> adc_raw_to_millivolts(vref_mv, spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#a056b22daa13da07cb3ff37bd4adf199d">channel_cfg</a>.<a class="code hl_variable" href="structadc__channel__cfg.html#a20996396fa5b1d27eeea7da9ea9df848">gain</a>,</div>
+<div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span>                     resolution, valp);</div>
+<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span>}</div>
+<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span> </div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> adc_sequence_init_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structadc__dt__spec.html">adc_dt_spec</a> *spec,</div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>                       <span class="keyword">struct</span> <a class="code hl_struct" href="structadc__sequence.html">adc_sequence</a> *seq)</div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>{</div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>    <span class="keywordflow">if</span> (!spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#aaf239b0c62b34158bac1a3b63e35f612">channel_cfg_dt_node_exists</a>) {</div>
+<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>        <span class="keywordflow">return</span> -ENOTSUP;</div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>    }</div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span> </div>
+<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span>    seq-&gt;<a class="code hl_variable" href="structadc__sequence.html#a5c497c4a5de20e8591063ca8661f79c1">channels</a> = <a class="code hl_define" href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a>(spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#a083e6c5bc707606c2ea1459fb58e29a8">channel_id</a>);</div>
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>    seq-&gt;<a class="code hl_variable" href="structadc__sequence.html#ad5480691be25ed9ee81130b775743125">resolution</a> = spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#abbe7052a144541b8d16afee3fd231c10">resolution</a>;</div>
+<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span>    seq-&gt;<a class="code hl_variable" href="structadc__sequence.html#a233e8b20b57bb2fdbebf2c85f076c802">oversampling</a> = spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#aa7daf451a3438847ff989f32eae11e97">oversampling</a>;</div>
+<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span> </div>
+<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span>}</div>
+<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span> </div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> adc_is_ready_dt(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structadc__dt__spec.html">adc_dt_spec</a> *spec)</div>
+<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span>{</div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__device__model.html#ga0b9e6357f7cfdab3b5ad119b9b549de7">device_is_ready</a>(spec-&gt;<a class="code hl_variable" href="structadc__dt__spec.html#aa2656b923d105743eaee3e03691edc44">dev</a>);</div>
+<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>}</div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span> </div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span>}</div>
+<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span> </div>
+<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span><span class="preprocessor">#include &lt;syscalls/adc.h&gt;</span></div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span> </div>
+<div class="line"><a id="l00888" name="l00888"></a><span class="lineno">  888</span><span class="preprocessor">#endif  </span><span class="comment">/* ZEPHYR_INCLUDE_DRIVERS_ADC_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__adc__interface_html_ga306f882323c66b263d3797124ca5f3a0"><div class="ttname"><a href="group__adc__interface.html#ga306f882323c66b263d3797124ca5f3a0">adc_gain</a></div><div class="ttdeci">adc_gain</div><div class="ttdoc">ADC channel gain factors.</div><div class="ttdef"><b>Definição</b> adc.h:32</div></div>
+<div class="ttc" id="agroup__adc__interface_html_ga4d4484e52ff7727fd316f50b2f404adf"><div class="ttname"><a href="group__adc__interface.html#ga4d4484e52ff7727fd316f50b2f404adf">adc_api_read</a></div><div class="ttdeci">int(* adc_api_read)(const struct device *dev, const struct adc_sequence *sequence)</div><div class="ttdoc">Type definition of ADC API function for setting a read request. See adc_read() for argument descripti...</div><div class="ttdef"><b>Definição</b> adc.h:583</div></div>
+<div class="ttc" id="agroup__adc__interface_html_ga5af65795f58e8e92672bf31dc2418e23"><div class="ttname"><a href="group__adc__interface.html#ga5af65795f58e8e92672bf31dc2418e23">adc_gain_invert</a></div><div class="ttdeci">int adc_gain_invert(enum adc_gain gain, int32_t *value)</div><div class="ttdoc">Invert the application of gain to a measurement value.</div></div>
+<div class="ttc" id="agroup__adc__interface_html_ga65ff8cc933d626ac632b13fb825504b0"><div class="ttname"><a href="group__adc__interface.html#ga65ff8cc933d626ac632b13fb825504b0">adc_read</a></div><div class="ttdeci">__syscall int adc_read(const struct device *dev, const struct adc_sequence *sequence)</div><div class="ttdoc">Set a read request.</div></div>
+<div class="ttc" id="agroup__adc__interface_html_ga871680cf9f390bfe19a10a61eb1ca092"><div class="ttname"><a href="group__adc__interface.html#ga871680cf9f390bfe19a10a61eb1ca092">adc_api_channel_setup</a></div><div class="ttdeci">int(* adc_api_channel_setup)(const struct device *dev, const struct adc_channel_cfg *channel_cfg)</div><div class="ttdoc">Type definition of ADC API function for configuring a channel. See adc_channel_setup() for argument d...</div><div class="ttdef"><b>Definição</b> adc.h:576</div></div>
+<div class="ttc" id="agroup__adc__interface_html_ga8f6df993405679f852ae4cd8c63c6917"><div class="ttname"><a href="group__adc__interface.html#ga8f6df993405679f852ae4cd8c63c6917">adc_action</a></div><div class="ttdeci">adc_action</div><div class="ttdoc">Action to be performed after a sampling is done.</div><div class="ttdef"><b>Definição</b> adc.h:432</div></div>
+<div class="ttc" id="agroup__adc__interface_html_ga9150eb6dc53d1c62b9fa225c0a371d6d"><div class="ttname"><a href="group__adc__interface.html#ga9150eb6dc53d1c62b9fa225c0a371d6d">adc_sequence_callback</a></div><div class="ttdeci">enum adc_action(* adc_sequence_callback)(const struct device *dev, const struct adc_sequence *sequence, uint16_t sampling_index)</div><div class="ttdoc">Type definition of the optional callback function to be called after a requested sampling is done.</div><div class="ttdef"><b>Definição</b> adc.h:465</div></div>
+<div class="ttc" id="agroup__adc__interface_html_ga91b0f997d73739cf9f7349b7581e1f56"><div class="ttname"><a href="group__adc__interface.html#ga91b0f997d73739cf9f7349b7581e1f56">adc_reference</a></div><div class="ttdeci">adc_reference</div><div class="ttdoc">ADC references.</div><div class="ttdef"><b>Definição</b> adc.h:75</div></div>
+<div class="ttc" id="agroup__adc__interface_html_ga98e66aac07e6266ca58e4d5609354868"><div class="ttname"><a href="group__adc__interface.html#ga98e66aac07e6266ca58e4d5609354868">adc_read_async</a></div><div class="ttdeci">__syscall int adc_read_async(const struct device *dev, const struct adc_sequence *sequence, struct k_poll_signal *async)</div><div class="ttdoc">Set an asynchronous read request.</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gab95c2374c20fbbd58c5d500eb2c90f8d"><div class="ttname"><a href="group__adc__interface.html#gab95c2374c20fbbd58c5d500eb2c90f8d">adc_channel_setup</a></div><div class="ttdeci">__syscall int adc_channel_setup(const struct device *dev, const struct adc_channel_cfg *channel_cfg)</div><div class="ttdoc">Configure an ADC channel.</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gad0160f455d1901ebfe06568e8418a22c"><div class="ttname"><a href="group__adc__interface.html#gad0160f455d1901ebfe06568e8418a22c">adc_api_read_async</a></div><div class="ttdeci">int(* adc_api_read_async)(const struct device *dev, const struct adc_sequence *sequence, struct k_poll_signal *async)</div><div class="ttdoc">Type definition of ADC API function for setting an asynchronous read request. See adc_read_async() fo...</div><div class="ttdef"><b>Definição</b> adc.h:591</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0a064c567978a50dd58d48d481388dd6eb"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a064c567978a50dd58d48d481388dd6eb">ADC_GAIN_64</a></div><div class="ttdeci">@ ADC_GAIN_64</div><div class="ttdef"><b>Definição</b> adc.h:51</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0a113a3324782a4517bb71fc3b03aeef5e"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a113a3324782a4517bb71fc3b03aeef5e">ADC_GAIN_3</a></div><div class="ttdeci">@ ADC_GAIN_3</div><div class="ttdef"><b>Definição</b> adc.h:43</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0a12756ff0f6a345ff3fee2077e1153300"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a12756ff0f6a345ff3fee2077e1153300">ADC_GAIN_4</a></div><div class="ttdeci">@ ADC_GAIN_4</div><div class="ttdef"><b>Definição</b> adc.h:44</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0a198c40369bddfc3c0eaa8ae3bb1be0c9"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a198c40369bddfc3c0eaa8ae3bb1be0c9">ADC_GAIN_1_5</a></div><div class="ttdeci">@ ADC_GAIN_1_5</div><div class="ttdef"><b>Definição</b> adc.h:34</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0a1b3c6d80db15acf962192341d4754829"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a1b3c6d80db15acf962192341d4754829">ADC_GAIN_128</a></div><div class="ttdeci">@ ADC_GAIN_128</div><div class="ttdef"><b>Definição</b> adc.h:52</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0a2d36559128c21834d1188aed43d236d2"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a2d36559128c21834d1188aed43d236d2">ADC_GAIN_1_2</a></div><div class="ttdeci">@ ADC_GAIN_1_2</div><div class="ttdef"><b>Definição</b> adc.h:38</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0a3ff31845095f2b0fe7e62b2b826411e8"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a3ff31845095f2b0fe7e62b2b826411e8">ADC_GAIN_12</a></div><div class="ttdeci">@ ADC_GAIN_12</div><div class="ttdef"><b>Definição</b> adc.h:47</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0a4a59d3dd1e2e2fbe2ec593291ca307e0"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a4a59d3dd1e2e2fbe2ec593291ca307e0">ADC_GAIN_2_5</a></div><div class="ttdeci">@ ADC_GAIN_2_5</div><div class="ttdef"><b>Definição</b> adc.h:37</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0a4b18ba08d86e630f2deeeea5b329f970"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a4b18ba08d86e630f2deeeea5b329f970">ADC_GAIN_16</a></div><div class="ttdeci">@ ADC_GAIN_16</div><div class="ttdef"><b>Definição</b> adc.h:48</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0a5d19226b1d1728180101e65b8386ff33"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a5d19226b1d1728180101e65b8386ff33">ADC_GAIN_24</a></div><div class="ttdeci">@ ADC_GAIN_24</div><div class="ttdef"><b>Definição</b> adc.h:49</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0a76b3097b0b38d33266d36f5a5d534e54"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0a76b3097b0b38d33266d36f5a5d534e54">ADC_GAIN_1</a></div><div class="ttdeci">@ ADC_GAIN_1</div><div class="ttdef"><b>Definição</b> adc.h:41</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0aba255a08f5ff25388778057d725a77c8"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0aba255a08f5ff25388778057d725a77c8">ADC_GAIN_6</a></div><div class="ttdeci">@ ADC_GAIN_6</div><div class="ttdef"><b>Definição</b> adc.h:45</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0abb26700162bfc68a2beadc1e78b758c1"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0abb26700162bfc68a2beadc1e78b758c1">ADC_GAIN_1_6</a></div><div class="ttdeci">@ ADC_GAIN_1_6</div><div class="ttdef"><b>Definição</b> adc.h:33</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0ac693403ea0f70f5723a98fe11967c13f"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0ac693403ea0f70f5723a98fe11967c13f">ADC_GAIN_32</a></div><div class="ttdeci">@ ADC_GAIN_32</div><div class="ttdef"><b>Definição</b> adc.h:50</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0ac720b0730cfef7c55f97777fec75dc62"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0ac720b0730cfef7c55f97777fec75dc62">ADC_GAIN_2_3</a></div><div class="ttdeci">@ ADC_GAIN_2_3</div><div class="ttdef"><b>Definição</b> adc.h:39</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0ad0ee4a6bfc749a3213f0c44d30e8e6df"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0ad0ee4a6bfc749a3213f0c44d30e8e6df">ADC_GAIN_4_5</a></div><div class="ttdeci">@ ADC_GAIN_4_5</div><div class="ttdef"><b>Definição</b> adc.h:40</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0ae9a429f8b69dd0e5cae0e1ab7dbe7dc3"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0ae9a429f8b69dd0e5cae0e1ab7dbe7dc3">ADC_GAIN_8</a></div><div class="ttdeci">@ ADC_GAIN_8</div><div class="ttdef"><b>Definição</b> adc.h:46</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0af896fe01119930815ac78a4ee87635ee"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0af896fe01119930815ac78a4ee87635ee">ADC_GAIN_1_3</a></div><div class="ttdeci">@ ADC_GAIN_1_3</div><div class="ttdef"><b>Definição</b> adc.h:36</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0afa55c5a94bfebb9a70638e9ab32eabf8"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0afa55c5a94bfebb9a70638e9ab32eabf8">ADC_GAIN_1_4</a></div><div class="ttdeci">@ ADC_GAIN_1_4</div><div class="ttdef"><b>Definição</b> adc.h:35</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga306f882323c66b263d3797124ca5f3a0aff4b7cc577e333a3a684e4e56b124868"><div class="ttname"><a href="group__adc__interface.html#gga306f882323c66b263d3797124ca5f3a0aff4b7cc577e333a3a684e4e56b124868">ADC_GAIN_2</a></div><div class="ttdeci">@ ADC_GAIN_2</div><div class="ttdef"><b>Definição</b> adc.h:42</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga8f6df993405679f852ae4cd8c63c6917a68a21759522a3d584417fa12359b4dc9"><div class="ttname"><a href="group__adc__interface.html#gga8f6df993405679f852ae4cd8c63c6917a68a21759522a3d584417fa12359b4dc9">ADC_ACTION_FINISH</a></div><div class="ttdeci">@ ADC_ACTION_FINISH</div><div class="ttdef"><b>Definição</b> adc.h:443</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga8f6df993405679f852ae4cd8c63c6917a8efc10c77ea616d568f88d3ef88b1715"><div class="ttname"><a href="group__adc__interface.html#gga8f6df993405679f852ae4cd8c63c6917a8efc10c77ea616d568f88d3ef88b1715">ADC_ACTION_REPEAT</a></div><div class="ttdeci">@ ADC_ACTION_REPEAT</div><div class="ttdef"><b>Definição</b> adc.h:440</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga8f6df993405679f852ae4cd8c63c6917ac875a64d997cb883b49447006554ba92"><div class="ttname"><a href="group__adc__interface.html#gga8f6df993405679f852ae4cd8c63c6917ac875a64d997cb883b49447006554ba92">ADC_ACTION_CONTINUE</a></div><div class="ttdeci">@ ADC_ACTION_CONTINUE</div><div class="ttdef"><b>Definição</b> adc.h:434</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga91b0f997d73739cf9f7349b7581e1f56a239921743b35d32a558a43deee2ce709"><div class="ttname"><a href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a239921743b35d32a558a43deee2ce709">ADC_REF_INTERNAL</a></div><div class="ttdeci">@ ADC_REF_INTERNAL</div><div class="ttdef"><b>Definição</b> adc.h:80</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga91b0f997d73739cf9f7349b7581e1f56a2733819da753b01a8116d076498fe52a"><div class="ttname"><a href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a2733819da753b01a8116d076498fe52a">ADC_REF_EXTERNAL1</a></div><div class="ttdeci">@ ADC_REF_EXTERNAL1</div><div class="ttdef"><b>Definição</b> adc.h:82</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga91b0f997d73739cf9f7349b7581e1f56a5f47fb0b239da79577887baf2576eb0d"><div class="ttname"><a href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a5f47fb0b239da79577887baf2576eb0d">ADC_REF_VDD_1_2</a></div><div class="ttdeci">@ ADC_REF_VDD_1_2</div><div class="ttdef"><b>Definição</b> adc.h:77</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga91b0f997d73739cf9f7349b7581e1f56a8e5dfe37c3993e118d6e316c9fa0aad1"><div class="ttname"><a href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a8e5dfe37c3993e118d6e316c9fa0aad1">ADC_REF_VDD_1_3</a></div><div class="ttdeci">@ ADC_REF_VDD_1_3</div><div class="ttdef"><b>Definição</b> adc.h:78</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga91b0f997d73739cf9f7349b7581e1f56a93d4dc4332b3346a7332383ecf745d2c"><div class="ttname"><a href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56a93d4dc4332b3346a7332383ecf745d2c">ADC_REF_VDD_1_4</a></div><div class="ttdeci">@ ADC_REF_VDD_1_4</div><div class="ttdef"><b>Definição</b> adc.h:79</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga91b0f997d73739cf9f7349b7581e1f56ae41651d9d2ba0d3c2a976177fc6ed1b3"><div class="ttname"><a href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56ae41651d9d2ba0d3c2a976177fc6ed1b3">ADC_REF_VDD_1</a></div><div class="ttdeci">@ ADC_REF_VDD_1</div><div class="ttdef"><b>Definição</b> adc.h:76</div></div>
+<div class="ttc" id="agroup__adc__interface_html_gga91b0f997d73739cf9f7349b7581e1f56afc15362bdf426f412e150ae9f8d224e6"><div class="ttname"><a href="group__adc__interface.html#gga91b0f997d73739cf9f7349b7581e1f56afc15362bdf426f412e150ae9f8d224e6">ADC_REF_EXTERNAL0</a></div><div class="ttdeci">@ ADC_REF_EXTERNAL0</div><div class="ttdef"><b>Definição</b> adc.h:81</div></div>
+<div class="ttc" id="agroup__device__model_html_ga0b9e6357f7cfdab3b5ad119b9b549de7"><div class="ttname"><a href="group__device__model.html#ga0b9e6357f7cfdab3b5ad119b9b549de7">device_is_ready</a></div><div class="ttdeci">__syscall bool device_is_ready(const struct device *dev)</div><div class="ttdoc">Verify that a device is ready for use.</div></div>
+<div class="ttc" id="agroup__sys-util_html_ga3a8ea58898cb58fc96013383d39f482c"><div class="ttname"><a href="group__sys-util.html#ga3a8ea58898cb58fc96013383d39f482c">BIT</a></div><div class="ttdeci">#define BIT(n)</div><div class="ttdoc">Unsigned integer with bit position n set (signed in assembly language).</div><div class="ttdef"><b>Definição</b> util_macro.h:44</div></div>
+<div class="ttc" id="ancs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h_html"><div class="ttname"><a href="ncs_2v2_86_80_2zephyr_2include_2zephyr_2kernel_8h.html">kernel.h</a></div><div class="ttdoc">Public kernel APIs.</div></div>
+<div class="ttc" id="astructadc__channel__cfg_html"><div class="ttname"><a href="structadc__channel__cfg.html">adc_channel_cfg</a></div><div class="ttdoc">Structure for specifying the configuration of an ADC channel.</div><div class="ttdef"><b>Definição</b> adc.h:88</div></div>
+<div class="ttc" id="astructadc__channel__cfg_html_a20996396fa5b1d27eeea7da9ea9df848"><div class="ttname"><a href="structadc__channel__cfg.html#a20996396fa5b1d27eeea7da9ea9df848">adc_channel_cfg::gain</a></div><div class="ttdeci">enum adc_gain gain</div><div class="ttdef"><b>Definição</b> adc.h:90</div></div>
+<div class="ttc" id="astructadc__channel__cfg_html_a372f298a2dd87660b9508ca1387084b6"><div class="ttname"><a href="structadc__channel__cfg.html#a372f298a2dd87660b9508ca1387084b6">adc_channel_cfg::differential</a></div><div class="ttdeci">uint8_t differential</div><div class="ttdef"><b>Definição</b> adc.h:131</div></div>
+<div class="ttc" id="astructadc__channel__cfg_html_a426a74cf53a4b801e91c2eeb1db3477d"><div class="ttname"><a href="structadc__channel__cfg.html#a426a74cf53a4b801e91c2eeb1db3477d">adc_channel_cfg::acquisition_time</a></div><div class="ttdeci">uint16_t acquisition_time</div><div class="ttdef"><b>Definição</b> adc.h:104</div></div>
+<div class="ttc" id="astructadc__channel__cfg_html_a73d11ad6411a62f8f21cbfa492bc1b20"><div class="ttname"><a href="structadc__channel__cfg.html#a73d11ad6411a62f8f21cbfa492bc1b20">adc_channel_cfg::reference</a></div><div class="ttdeci">enum adc_reference reference</div><div class="ttdef"><b>Definição</b> adc.h:93</div></div>
+<div class="ttc" id="astructadc__channel__cfg_html_aeec90a3fb60f93427a92e083326c8fcf"><div class="ttname"><a href="structadc__channel__cfg.html#aeec90a3fb60f93427a92e083326c8fcf">adc_channel_cfg::channel_id</a></div><div class="ttdeci">uint8_t channel_id</div><div class="ttdef"><b>Definição</b> adc.h:128</div></div>
+<div class="ttc" id="astructadc__driver__api_html"><div class="ttname"><a href="structadc__driver__api.html">adc_driver_api</a></div><div class="ttdoc">ADC driver API.</div><div class="ttdef"><b>Definição</b> adc.h:600</div></div>
+<div class="ttc" id="astructadc__dt__spec_html"><div class="ttname"><a href="structadc__dt__spec.html">adc_dt_spec</a></div><div class="ttdoc">Container for ADC channel information specified in devicetree.</div><div class="ttdef"><b>Definição</b> adc.h:247</div></div>
+<div class="ttc" id="astructadc__dt__spec_html_a056b22daa13da07cb3ff37bd4adf199d"><div class="ttname"><a href="structadc__dt__spec.html#a056b22daa13da07cb3ff37bd4adf199d">adc_dt_spec::channel_cfg</a></div><div class="ttdeci">struct adc_channel_cfg channel_cfg</div><div class="ttdef"><b>Definição</b> adc.h:269</div></div>
+<div class="ttc" id="astructadc__dt__spec_html_a083e6c5bc707606c2ea1459fb58e29a8"><div class="ttname"><a href="structadc__dt__spec.html#a083e6c5bc707606c2ea1459fb58e29a8">adc_dt_spec::channel_id</a></div><div class="ttdeci">uint8_t channel_id</div><div class="ttdef"><b>Definição</b> adc.h:255</div></div>
+<div class="ttc" id="astructadc__dt__spec_html_a9e120f52e3a905768d8e6bdc3469d20a"><div class="ttname"><a href="structadc__dt__spec.html#a9e120f52e3a905768d8e6bdc3469d20a">adc_dt_spec::vref_mv</a></div><div class="ttdeci">uint16_t vref_mv</div><div class="ttdef"><b>Definição</b> adc.h:277</div></div>
+<div class="ttc" id="astructadc__dt__spec_html_aa2656b923d105743eaee3e03691edc44"><div class="ttname"><a href="structadc__dt__spec.html#aa2656b923d105743eaee3e03691edc44">adc_dt_spec::dev</a></div><div class="ttdeci">const struct device * dev</div><div class="ttdef"><b>Definição</b> adc.h:252</div></div>
+<div class="ttc" id="astructadc__dt__spec_html_aa7daf451a3438847ff989f32eae11e97"><div class="ttname"><a href="structadc__dt__spec.html#aa7daf451a3438847ff989f32eae11e97">adc_dt_spec::oversampling</a></div><div class="ttdeci">uint8_t oversampling</div><div class="ttdef"><b>Definição</b> adc.h:291</div></div>
+<div class="ttc" id="astructadc__dt__spec_html_aaf239b0c62b34158bac1a3b63e35f612"><div class="ttname"><a href="structadc__dt__spec.html#aaf239b0c62b34158bac1a3b63e35f612">adc_dt_spec::channel_cfg_dt_node_exists</a></div><div class="ttdeci">bool channel_cfg_dt_node_exists</div><div class="ttdef"><b>Definição</b> adc.h:262</div></div>
+<div class="ttc" id="astructadc__dt__spec_html_abbe7052a144541b8d16afee3fd231c10"><div class="ttname"><a href="structadc__dt__spec.html#abbe7052a144541b8d16afee3fd231c10">adc_dt_spec::resolution</a></div><div class="ttdeci">uint8_t resolution</div><div class="ttdef"><b>Definição</b> adc.h:284</div></div>
+<div class="ttc" id="astructadc__sequence__options_html"><div class="ttname"><a href="structadc__sequence__options.html">adc_sequence_options</a></div><div class="ttdoc">Structure defining additional options for an ADC sampling sequence.</div><div class="ttdef"><b>Definição</b> adc.h:472</div></div>
+<div class="ttc" id="astructadc__sequence__options_html_a262fd6daefb22df02c726aafcddc6d47"><div class="ttname"><a href="structadc__sequence__options.html#a262fd6daefb22df02c726aafcddc6d47">adc_sequence_options::user_data</a></div><div class="ttdeci">void * user_data</div><div class="ttdef"><b>Definição</b> adc.h:494</div></div>
+<div class="ttc" id="astructadc__sequence__options_html_a29f8ac4cdf6740f56bcd70a0a027e56a"><div class="ttname"><a href="structadc__sequence__options.html#a29f8ac4cdf6740f56bcd70a0a027e56a">adc_sequence_options::extra_samplings</a></div><div class="ttdeci">uint16_t extra_samplings</div><div class="ttdef"><b>Definição</b> adc.h:500</div></div>
+<div class="ttc" id="astructadc__sequence__options_html_a71bd082c14f01a1b5d1b491e7510aa91"><div class="ttname"><a href="structadc__sequence__options.html#a71bd082c14f01a1b5d1b491e7510aa91">adc_sequence_options::callback</a></div><div class="ttdeci">adc_sequence_callback callback</div><div class="ttdef"><b>Definição</b> adc.h:488</div></div>
+<div class="ttc" id="astructadc__sequence__options_html_ad2f11727ab0eb7e32a5fbd07f04a85b2"><div class="ttname"><a href="structadc__sequence__options.html#ad2f11727ab0eb7e32a5fbd07f04a85b2">adc_sequence_options::interval_us</a></div><div class="ttdeci">uint32_t interval_us</div><div class="ttdef"><b>Definição</b> adc.h:482</div></div>
+<div class="ttc" id="astructadc__sequence_html"><div class="ttname"><a href="structadc__sequence.html">adc_sequence</a></div><div class="ttdoc">Structure defining an ADC sampling sequence.</div><div class="ttdef"><b>Definição</b> adc.h:506</div></div>
+<div class="ttc" id="astructadc__sequence_html_a233e8b20b57bb2fdbebf2c85f076c802"><div class="ttname"><a href="structadc__sequence.html#a233e8b20b57bb2fdbebf2c85f076c802">adc_sequence::oversampling</a></div><div class="ttdeci">uint8_t oversampling</div><div class="ttdef"><b>Definição</b> adc.h:558</div></div>
+<div class="ttc" id="astructadc__sequence_html_a379c6f92153dfa97439d39cbef222451"><div class="ttname"><a href="structadc__sequence.html#a379c6f92153dfa97439d39cbef222451">adc_sequence::options</a></div><div class="ttdeci">const struct adc_sequence_options * options</div><div class="ttdef"><b>Definição</b> adc.h:511</div></div>
+<div class="ttc" id="astructadc__sequence_html_a5c497c4a5de20e8591063ca8661f79c1"><div class="ttname"><a href="structadc__sequence.html#a5c497c4a5de20e8591063ca8661f79c1">adc_sequence::channels</a></div><div class="ttdeci">uint32_t channels</div><div class="ttdef"><b>Definição</b> adc.h:520</div></div>
+<div class="ttc" id="astructadc__sequence_html_a5df0ee0e6d3215aa052f108476bd57ec"><div class="ttname"><a href="structadc__sequence.html#a5df0ee0e6d3215aa052f108476bd57ec">adc_sequence::buffer</a></div><div class="ttdeci">void * buffer</div><div class="ttdef"><b>Definição</b> adc.h:533</div></div>
+<div class="ttc" id="astructadc__sequence_html_a6023e3bec29deaa11b44c4df40eb7b04"><div class="ttname"><a href="structadc__sequence.html#a6023e3bec29deaa11b44c4df40eb7b04">adc_sequence::calibrate</a></div><div class="ttdeci">bool calibrate</div><div class="ttdef"><b>Definição</b> adc.h:568</div></div>
+<div class="ttc" id="astructadc__sequence_html_a8e1bc9a4361e274bbdaedeb3151b71e5"><div class="ttname"><a href="structadc__sequence.html#a8e1bc9a4361e274bbdaedeb3151b71e5">adc_sequence::buffer_size</a></div><div class="ttdeci">size_t buffer_size</div><div class="ttdef"><b>Definição</b> adc.h:541</div></div>
+<div class="ttc" id="astructadc__sequence_html_ad5480691be25ed9ee81130b775743125"><div class="ttname"><a href="structadc__sequence.html#ad5480691be25ed9ee81130b775743125">adc_sequence::resolution</a></div><div class="ttdeci">uint8_t resolution</div><div class="ttdef"><b>Definição</b> adc.h:550</div></div>
+<div class="ttc" id="astructdevice_html"><div class="ttname"><a href="structdevice.html">device</a></div><div class="ttdoc">Runtime device structure (in ROM) per driver instance.</div><div class="ttdef"><b>Definição</b> zyphyr_mock.h:35</div></div>
+<div class="ttc" id="astructdevice_html_a4a2e6a2cfeb6efed7d5383c33458f46d"><div class="ttname"><a href="structdevice.html#a4a2e6a2cfeb6efed7d5383c33458f46d">device::api</a></div><div class="ttdeci">const void * api</div><div class="ttdef"><b>Definição</b> device.h:391</div></div>
+<div class="ttc" id="astructk__poll__signal_html"><div class="ttname"><a href="structk__poll__signal.html">k_poll_signal</a></div><div class="ttdef"><b>Definição</b> kernel.h:5629</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
