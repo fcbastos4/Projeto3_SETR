@@ -32,6 +32,7 @@ int get_temp(void)
 {
     int ret=0; /* General return variable */   
     uint8_t temp=0; /* Temperature value (raw read from sensor)*/
+    static int last_temp = -999; // Guarda o último valor impresso
 
     if (!device_is_ready(dev_i2c.bus)) {
 	   // printk("I2C bus %s is not ready!\n\r",dev_i2c.bus->name);
@@ -54,7 +55,10 @@ int get_temp(void)
 	       // printk("Failed to read from I2C device at address %x, register  at Reg. %x \n\r", dev_i2c.addr,TC74_CMD_RTR);      
         }
 
-        printk("Last temperature reading is %d \n\r",temp);
+        if (temp != last_temp) {
+        printk("Last temperature reading is %d \n\r", temp);
+        last_temp = temp;
+    }
         
         return temp;
             

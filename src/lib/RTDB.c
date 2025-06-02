@@ -7,15 +7,20 @@
  * 	\author Francisco Bastos, 103359
  *  \date 2/06/20025 
  */
-
+#ifdef UNIT_TEST
+#include "../../test/zyphyr_mock.h"
+#include "RTDB.h"
+#else
 #include <zephyr/kernel.h>
 #include "RTDB.h"
+#include <stdbool.h>
+#endif
 
 rtdb_t rtdb = {
     .system_on = false,
     .temperature = 25,
     .max_temp = 40,
-    .setpoint = 20,
+    .setpoint = 35,
     .hysteresis = 3
 };
 

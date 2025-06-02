@@ -45,43 +45,34 @@ static void control_thread(void *a, void *b, void *c) {
     }
 
     bool heating;
+    int last_error = -999, last_temp = -999;
 
     while (1) {
-        // int temp = 0, max = 0;
+        if (rtdb_get_system_on() == 1) {
+            int temp = rtdb_get_temperature();
+            int hysteresis = rtdb_get_hysteresis();
+            int setpoint = rtdb_get_setpoint();
 
-        /* Safe access to shared variables */
-        /*k_mutex_lock(&temp_mutex, K_FOREVER);
-        temp = temperature;
-        k_mutex_unlock(&temp_mutex);
+            int error = setpoint - temp;
 
-        k_mutex_lock(&max_temp_mutex, K_FOREVER);
-        max = max_temperature;
-        k_mutex_unlock(&max_temp_mutex);*/
+            // Só imprime se algum valor mudou
+            if (error != last_error || temp != last_temp) {
+                printf("\r\nERROR: %d TEMP: %d  SETPOINT: %d  HYSTERESE: %d\r\n", error, temp, setpoint, hysteresis);
+                last_error = error;
+                last_temp = temp;
+            }
 
-        int temp = rtdb_get_temperature();
-        int max = rtdb_get_max_temp();
-        int hysteresis = rtdb_get_hysteresis();
-
-        int error = max - temp;
-
-        if(rtdb_get_system_on()) {
-            // ON/OFF control with hysteresis
             if (error >= hysteresis) {
                 heating = false;
             } else {
                 heating = true;
             }
-            printf("\r\nERROR: %d HEATING: %d\r\n",error,heating);
 
             uint32_t pulse = heating ? PWM_PERIOD : 0;
-
             int ret = pwm_set_dt(&pwm_resistor, PWM_PERIOD, pulse);
             if (ret) {
                 LOG_ERR("pwm_set_dt failed: %d", ret);
-            } /*else {
-                LOG_INF("Heating %s | Temp: %d | Setpoint: %d",
-                        heating ? "ON" : "OFF", temp, max);
-            }*/
+            }
         }
         k_msleep(CONTROL_INTERVAL_MS);
     }
@@ -90,10 +81,6 @@ static void control_thread(void *a, void *b, void *c) {
 void task_control_init(void) {
     static K_THREAD_STACK_DEFINE(control_stack, 512);
     static struct k_thread control_tid;
-
-    /* Init mutexes */
-    /*k_mutex_init(&temp_mutex);
-    k_mutex_init(&max_temp_mutex);*/
 
     k_thread_create(&control_tid,
                     control_stack,

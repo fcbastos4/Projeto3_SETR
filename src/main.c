@@ -71,14 +71,7 @@ K_SEM_DEFINE(led_sem, 0, 1); // Binary semaphore
 void update_leds() {
     /*printk("temperature: %d", temperature);
     printk("temperature: %d", desired_temp);*/
-    int dummy = 0; // Dummy variable to avoid unused variable warning
-    int state;
-    if (dummy == 0)
-    {
-        state = -1; // -1: undefined, 0: normal, 1: low, 2: high
-        dummy = 1;
-    } 
-    
+    static int state = -1; // -1: undefined, 0: normal, 1: low, 2: high
 
     int current_temp = rtdb_get_temperature();
     int desired_temp = rtdb_get_setpoint();
@@ -202,7 +195,9 @@ void button4Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 */
 int main(void)
 {
+    rtdb_init();    // Initializing RTDB, default values
     task_control_init();
+
     int ret = 0;
         
     static struct gpio_callback button1CbData; // Define variable for holding callback data
@@ -262,7 +257,7 @@ int main(void)
     gpio_add_callback(but2.port, &button2CbData);
     gpio_add_callback(but4.port, &button4CbData);
 
-    printk("System ready. Press buttons to toggle LEDs. Inicial temperature 25 C.\n");
+    printk("System ready. Press buttons to toggle LEDs.\n");
         
     int ret1;
     if (!device_is_ready(uart)) {
@@ -285,7 +280,7 @@ int main(void)
     }
     printk("UART frame parser ready\r\n");
 
-    rtdb_init();    // Initializing RTDB, default values
+    
 
         
 

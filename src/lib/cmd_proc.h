@@ -10,7 +10,7 @@
 #ifndef CMD_PROC_H
 #define CMD_PROC_H
 
-#include <zephyr/device.h>
+//#include <zephyr/device.h>
 
 extern int temperature;
 extern int max_temperature;

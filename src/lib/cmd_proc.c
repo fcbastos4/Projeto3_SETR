@@ -8,6 +8,14 @@
  *  \date 22/05/20025 
  */
 
+
+#ifdef UNIT_TEST
+#include "../../test/zyphyr_mock.h"
+#include <ctype.h>
+#include <stdlib.h>
+#include "RTDB.h"   // <-- Adiciona esta linha aqui dentro do #ifdef!
+#else
+
 #include <zephyr/kernel.h>
 #include <zephyr/device.h>
 #include <zephyr/drivers/uart.h>
@@ -20,7 +28,7 @@
 #include "cmd_proc.h"
 #include "task_control.h"
 #include "RTDB.h"
-
+#endif
 
 LOG_MODULE_REGISTER(cmd_proc, LOG_LEVEL_DBG);
 
@@ -35,7 +43,8 @@ static struct k_mutex uart_mutex;
 static uint8_t rx_buf[RECEIVE_BUFF_SIZE] = {0};
 static size_t rx_buf_index = 0;
 
-static void uart_send(const char *data) {
+#ifndef UNIT_TEST
+void uart_send(const char *data) {
     k_mutex_lock(&uart_mutex, K_FOREVER);
     int ret = uart_tx(uart, data, strlen(data), SYS_FOREVER_MS);
     k_mutex_unlock(&uart_mutex);
@@ -43,8 +52,8 @@ static void uart_send(const char *data) {
         LOG_ERR("UART send failed: %d", ret);
     }
 }
-
-static uint8_t compute_checksum(const char *cmd, const char *data) {
+#endif
+uint8_t compute_checksum(const char *cmd, const char *data) {
     uint8_t checksum = 0;
 
   for (size_t i = 0; i < strlen(cmd); i++) {
@@ -60,7 +69,7 @@ static uint8_t compute_checksum(const char *cmd, const char *data) {
     return checksum;
 }
 
-static void send_ack(const char *code) {
+void send_ack(const char *code) {
     char buf[32];
     uint8_t cs = compute_checksum(code, "");
     
@@ -68,7 +77,7 @@ static void send_ack(const char *code) {
     uart_send(buf);
 }
 
-static void process_command(const char *cmd, const char *data) {
+void process_command(const char *cmd, const char *data) {
 
     if (strcmp(cmd, "C") == 0) {
 
@@ -108,7 +117,7 @@ static void process_command(const char *cmd, const char *data) {
         int cs_input = atoi(cs_received);
         int temp_input = atoi(temp_str);
 
-        rtdb_set_max_temperature(temp_input);
+        rtdb_set_max_temp(temp_input);
 
         // printf("\r\nDATA = %s    CS = %03d    CS_INPUT = %d   TEMP_STR = %s   CS_RECEIVED = %s\r\n", data,cs,cs_input,temp_str,cs_received);
 
@@ -156,7 +165,7 @@ static void process_command(const char *cmd, const char *data) {
     }
 }
 
-static void process_frame(const char *frame) {
+void process_frame(const char *frame) {
     char cmd[2] = {0};
     char data[16] = {0};
 
@@ -202,7 +211,7 @@ static void process_frame(const char *frame) {
             
     }
     else {
-        send_ack("Ef"); // Comando invalido
+        send_ack("Ei"); // Comando invalido
         return;
     }
 
