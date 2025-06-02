@@ -13,26 +13,26 @@
 #define CMD_PROC_H
 
 
-/** @brief Temperatura atual lida do sensor. */
+/** \brief Temperatura atual lida do sensor. */
 extern int temperature;
 
-/** @brief Temperatura máxima configurada. */
+/** \brief Temperatura máxima configurada. */
 extern int max_temperature;
 
 /**
- * @brief Manipulador de eventos UART.
+ * \brief Manipulador de eventos UART.
  * 
  * Esta função deve ser registada como callback da UART e será chamada sempre
  * que ocorrer um evento UART, como receção de dados.
  * 
- * @param dev        Ponteiro para o dispositivo UART.
- * @param evt        Estrutura contendo informações sobre o evento UART.
- * @param user_data  Ponteiro para dados do utilizador (não utilizados aqui).
+ * \param dev        Ponteiro para o dispositivo UART.
+ * \param evt        Estrutura contendo informações sobre o evento UART.
+ * \param user_data  Ponteiro para dados do utilizador (não utilizados aqui).
  */
 void cmd_proc_uart_handler(const struct device *dev, struct uart_event *evt, void *user_data);
 
 /**
- * @brief Inicializa o módulo de processamento de comandos.
+ * \brief Inicializa o módulo de processamento de comandos.
  * 
  * Regista o callback da UART e prepara buffers ou estruturas necessárias para o funcionamento.
  */

@@ -1,7 +1,8 @@
 /** \file main.c
- *  \brief
+ *  \brief Ficheiro principal do sistema de controlo de temperatura.
  * 
- *  ...
+ *  Este módulo é responsável por inicializar o sistema, configurar os periféricos necessários, e criar as threads para leitura de temperatura e controlo de LEDs.
+ *  Lida também com a recepção de comandos via UART e a atualização do estado dos LEDs com base na temperatura lida e no setpoint definido.
  * 
  *  \author Guilherme Santos, 103143
  * 	\author Francisco Bastos, 103359

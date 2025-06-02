@@ -1,7 +1,9 @@
 /** \file sensor_temp.c
- *  \brief
+ *  \brief Interface do sensor de temperatura TC74 para o controlo do systema.
  * 
- *  ...
+ *  Este módulo implementa a leitura da temperatura do sensor TC74 via I2C. 
+ *  O módulo é responsável por configurar o dispositivo I2C, ler a temperatura atual e lida com possíveis erros da comunicação I2C.	
+ *  A função get_temp() retorna a temperatura lida do sensor, ou um erro fatal se a comunicação falhar.
  * 
  *  \author Guilherme Santos, 103143
  * 	\author Francisco Bastos, 103359
@@ -21,9 +23,6 @@
 /* I2C device vars and defines */
 #define I2C0_NID DT_NODELABEL(tc74sensor)
 static const struct i2c_dt_spec dev_i2c = I2C_DT_SPEC_GET(I2C0_NID);
-
-/* Other defines*/
-
 
 /* 
  * Main() function
@@ -64,39 +63,3 @@ int get_temp(void)
             
     //}
 }
-
-/*
-#include <zephyr/kernel.h>
-#include <zephyr/drivers/i2c.h>
-#include <zephyr/sys/printk.h>
-#include "i2c.h"
-
-#define TC74_NODE DT_ALIAS(tc74sensor)
-static const struct i2c_dt_spec dev_i2c = I2C_DT_SPEC_GET(TC74_NODE);
-
-#define TC74_CMD_RTR 0x00
-
-int get_temp(uint8_t *temp)
-{
-    uint8_t cmd = TC74_CMD_RTR;
-    int ret;
-
-    if (!device_is_ready(dev_i2c.bus)) {
-        printk("I2C bus %s not ready\n", dev_i2c.bus->name);
-        return -1;
-    }
-
-    ret = i2c_write_dt(&dev_i2c, &cmd, 1);
-    if (ret != 0) {
-        printk("Failed to send RTR command\n");
-        return -1;
-    }
-
-    ret = i2c_read_dt(&dev_i2c, temp, 1);
-    if (ret != 0) {
-        printk("Failed to read temperature\n");
-        return -1;
-    }
-
-    return 0;
-}*/

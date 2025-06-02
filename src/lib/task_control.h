@@ -18,7 +18,7 @@
 #include <zephyr/drivers/pwm.h>
 
 /**
- * @brief Inicializa o módulo de controlo.
+ * \brief Inicializa o módulo de controlo.
  * 
  * Configura os dispositivos necessários ( PWM ) para o controlo dos atuadores
  * responsáveis pelo sistema de aquecimento. Esta função deve ser chamada no arranque do sistema.

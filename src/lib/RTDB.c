@@ -1,14 +1,13 @@
-/** 
- * @file RTDB.c
- * @brief Implementação da Real-Time Database (RTDB) partilhada entre tarefas.
+/** \file RTDB.c
+ *  \brief Implementação da Real-Time Database (RTDB) partilhada entre tarefas.
  *
  * Este módulo implementa uma base de dados central utilizada para partilhar e sincronizar
  * variáveis de estado e controlo entre diferentes tarefas do sistema. O acesso às variáveis
  * é protegido por um mutex para evitar condições de corrida.
  * 
- * @author Guilherme Santos, 103143
- * @author Francisco Bastos, 103359
- * @date 2/06/2025
+ * \author Guilherme Santos, 103143
+ * \author Francisco Bastos, 103359
+ * \date 2/06/2025
  */
 
 #ifdef UNIT_TEST

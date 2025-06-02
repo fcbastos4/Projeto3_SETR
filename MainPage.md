@@ -31,8 +31,7 @@ Estrutura dos comandos:  **#CMD DATA CS!** (sem espaços entre os campos)
 Comandos suportados:
 * **- #Mxxxyyy!**: define o valor máximo da temperatura em "xxx"(ºC). "yyy" correspondente ao checksum;
 * **- #Cyyy!**: obtem a temperatura atual do processo. "yyy" correspondente ao checksum;
-* **- #Sxx...xxyyy!**: define os parâmetros do controlador. "xx...xx" são os parâmetros *(Kp, Ti, Td para PID/histerese para on/off controlador (apagar!!!!!!!!!))*. "yyy" correspondente ao checksum;
-* **- #_________!**: 
+* **- #Sxx...xxyyy!**: define os parâmetros do controlador. "xx...xx" são os parâmetros *(Kp, Ti, Td para PID/histerese para on/off controlador (apagar!!!!!!!!!))*. "yyy" correspondente ao checksum; 
 
 Comandos de confirmação:
 * **-#Eoyyy!**: Sem erros/Ok. "yyy" correspondente ao checksum;
@@ -49,7 +48,8 @@ Comandos de confirmação:
 * **RTDB (.c/.h)**: Ficheiros header e sua respetiva implementação do módulo de base de dados em tempo-real (Real-Time Database)
 * **unity (.c/.h)**: Ficheiros header e sua respetiva implementação das funções a utilizar para o teste dos módulos a desenvolver (ficheiros retirados da comunidade ThrowTheSwitch.org github )
 * **main.c**: Integração e implementação dos vários módulos 
-* **test.c**: Ficheiro para teste específico das funções desenvolvidas, usando unity
+* **testing.c**: Ficheiro para teste específico das funções desenvolvidas, usando unity
+* **zyphyr_mock.h**: Ficheiro que simula as funções do zephyr
 * **README.md**: Instruções de compilação e para abrir documentação html
 * **MAINPAGE.md**: Ficheiro de configuração da página principal html
 
