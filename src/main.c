@@ -161,6 +161,7 @@ void button2Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 {
     k_msleep(100); // Debounce
 
+
     int temp = rtdb_get_setpoint();
     int max = rtdb_get_max_temp();
 
@@ -170,7 +171,7 @@ void button2Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
         printk("Setpoint temperature: %d C\n", temp);
     } else {
         temp = max;
-        printk("Maximum opereating temperature!");
+        printk("\r\nMaximum opereating temperature!\r\n");
     }
     rtdb_set_setpoint(temp);
 
@@ -196,8 +197,7 @@ void button4Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 */
 int main(void)
 {
-    rtdb_init();    // Initializing RTDB, default values
-    task_control_init();
+   
 
     int ret = 0;
         
@@ -281,7 +281,8 @@ int main(void)
     }
     printk("UART frame parser ready\r\n");
 
-    
+    rtdb_init();    // Initializing RTDB, default values
+    task_control_init();
 
         
 

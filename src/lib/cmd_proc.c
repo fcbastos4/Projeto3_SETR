@@ -142,7 +142,7 @@ void process_command(const char *cmd, const char *data) {
         if(cs != cs_input) {
             send_ack("Es");  // Checksum errado
         } else {
-            snprintf(reply, sizeof(reply), "\r\n#m%03d%03d!\r\n", histerese_input, cs);
+            snprintf(reply, sizeof(reply), "\r\n#s%03d%03d!\r\n", histerese_input, cs);
             uart_send(reply);
         }
 

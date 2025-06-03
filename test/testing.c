@@ -14,6 +14,8 @@ void tearDown(void) {}
 
 void setUp(void) {
     // Reset RTDB values
+    rtdb_init();
+    rtdb_set_system_on(false);
     rtdb_set_temperature(25);
     rtdb_set_max_temp(30);
     rtdb_set_hysteresis(1);
@@ -23,7 +25,6 @@ void setUp(void) {
 void test_command_C_valid_checksum(void) {
     const char *frame = "#C067!\r"; // checksum("C") = 67
     process_frame(frame);
-    printf("UART Last Sent: %s\n", uart_last_sent);
     TEST_ASSERT_TRUE(strstr(uart_last_sent, "#c025067!"));
 }
 
@@ -61,7 +62,7 @@ void test_command_S_valid(void) {
     const char *frame = "#S005232!\r"; // 5 = hyst, 232 = checksum("S005")
     process_frame(frame);
     TEST_ASSERT_EQUAL_INT(5, rtdb_get_hysteresis());
-    TEST_ASSERT_TRUE(strstr(uart_last_sent, "#m005232!"));
+    TEST_ASSERT_TRUE(strstr(uart_last_sent, "#s005232!"));
 }
 
 void test_command_S_invalid_checksum(void) {
@@ -81,6 +82,33 @@ void test_command_D(void) {
     TEST_ASSERT_TRUE(strstr(uart_last_sent, "#Ei174"));
 }
 
+void test_rtdb_system_on(void) {
+    rtdb_set_system_on(true);
+    TEST_ASSERT_TRUE(rtdb_get_system_on());
+    rtdb_set_system_on(false);
+    TEST_ASSERT_FALSE(rtdb_get_system_on());
+}
+
+void test_rtdb_temperature(void) {
+    rtdb_set_temperature(55);
+    TEST_ASSERT_EQUAL_INT(55, rtdb_get_temperature());
+}
+
+void test_rtdb_max_temp(void) {
+    rtdb_set_max_temp(99);
+    TEST_ASSERT_EQUAL_INT(99, rtdb_get_max_temp());
+}
+
+void test_rtdb_setpoint(void) {
+    rtdb_set_setpoint(77);
+    TEST_ASSERT_EQUAL_INT(77, rtdb_get_setpoint());
+}
+
+void test_rtdb_hysteresis(void) {
+    rtdb_set_hysteresis(8);
+    TEST_ASSERT_EQUAL_INT(8, rtdb_get_hysteresis());
+}
+
 int main(void) {
     UNITY_BEGIN();
     RUN_TEST(test_command_C_valid_checksum);
@@ -93,6 +121,11 @@ int main(void) {
     RUN_TEST(test_command_S_invalid_checksum);
     RUN_TEST(test_command_S_invalid_frame);
     RUN_TEST(test_command_D);
+    RUN_TEST(test_rtdb_system_on);
+    RUN_TEST(test_rtdb_temperature);
+    RUN_TEST(test_rtdb_max_temp);
+    RUN_TEST(test_rtdb_setpoint);
+    RUN_TEST(test_rtdb_hysteresis);
 
     return UNITY_END();
 }

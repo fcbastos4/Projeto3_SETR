@@ -62,12 +62,13 @@ static void control_thread(void *a, void *b, void *c) {
             int temp = rtdb_get_temperature();
             int hysteresis = rtdb_get_hysteresis();
             int setpoint = rtdb_get_setpoint();
+            int max_temp = rtdb_get_max_temp();
 
             int error = setpoint - temp;
 
             // Apenas imprime log se algum valor tiver mudado
             if (error != last_error || temp != last_temp) {
-                printf("\r\nERROR: %d TEMP: %d  SETPOINT: %d  HYSTERESE: %d\r\n", error, temp, setpoint, hysteresis);
+                printf("\r\nERROR: %d TEMP: %d  SETPOINT: %d  HYSTERESE: %d   MAX_TEMP:%d \r\n", error, temp, setpoint, hysteresis, max_temp);
                 last_error = error;
                 last_temp = temp;
             }

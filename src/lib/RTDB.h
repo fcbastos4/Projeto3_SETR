@@ -14,8 +14,11 @@
 #ifndef RTDB_H
 #define RTDB_H
 
-#include <stdbool.h>
-#include <zephyr/kernel.h>  // Necessário para struct k_mutex
+#ifdef UNIT_TEST
+#include "../../test/zyphyr_mock.h"
+#else
+#include <zephyr/kernel.h>
+#endif
 
 /**
  * \brief Macro para compatibilidade de nomes antigos.
