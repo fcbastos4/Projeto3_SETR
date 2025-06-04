@@ -50,11 +50,6 @@ static const struct gpio_dt_spec but1 = GPIO_DT_SPEC_GET(BUT0_NODE, gpios);
 static const struct gpio_dt_spec but2 = GPIO_DT_SPEC_GET(BUT1_NODE, gpios);
 static const struct gpio_dt_spec but4 = GPIO_DT_SPEC_GET(BUT3_NODE, gpios);
 
-// static bool led1_state = false; // LED1 state (false = off, true = on)
-// int desired_temp;	            // Desired temperature
-// int temperature;		        // Actual temperature
-// int max_temperature;
-
 // Thread Priorities
 #define TEMP_THREAD_PRIORITY 4
 #define LED_THREAD_PRIORITY  6
@@ -70,8 +65,6 @@ K_SEM_DEFINE(led_sem, 0, 1); // Binary semaphore
 
 // Function to update LEDs based on temperature deviation
 void update_leds() {
-    /*printk("temperature: %d", temperature);
-    printk("temperature: %d", desired_temp);*/
     static int state = -1; // -1: undefined, 0: normal, 1: low, 2: high
 
     int current_temp = rtdb_get_temperature();
@@ -125,9 +118,9 @@ void temp_thread(void *a, void *b, void *c) {
 /* LED Thread */
 void led_thread(void *a, void *b, void *c) {
     while (1) {
-        k_sem_take(&led_sem, K_FOREVER);
+        k_sem_take(&led_sem, K_FOREVER);    // Wait for signal from temp thread
         if (rtdb_get_system_on()) {
-            update_leds();
+            update_leds();                  // Update LEDs when system is ON
         }
     }
 }
@@ -137,18 +130,15 @@ void button1Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 {
     k_msleep(100); // Debounce delay 
 
-    /*gpio_pin_toggle_dt(&led1);
-    led1_state = !led1_state; // Toggle state tracking*/
-
-    bool system_on = rtdb_get_system_on();
-    rtdb_set_system_on(!system_on);
+    bool system_on = rtdb_get_system_on();      // Get current system state
+    rtdb_set_system_on(!system_on);             // Toggle system state
 
     if (!system_on) {
-        printk("Power On. ");		// estão com muito delay
+        printk("Power On. ");		
         gpio_pin_set_dt(&led1, 1);  // LED1 ON
-        k_sem_give(&led_sem);
+        k_sem_give(&led_sem);       // Signal LED thread to update LEDs
     } else {
-        printk("Power Off\n");		// !!!!!!!!!!!!!!!!!!!!!
+        printk("Power Off\n");		
         gpio_pin_set_dt(&led1, 0);  // LED1 OFF
         gpio_pin_set_dt(&led2, 0);  // LED2 OFF
         gpio_pin_set_dt(&led3, 0);  // LED3 OFF
@@ -161,7 +151,6 @@ void button2Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 {
     k_msleep(100); // Debounce
 
-
     int temp = rtdb_get_setpoint();
     int max = rtdb_get_max_temp();
 
@@ -170,12 +159,12 @@ void button2Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
     {
         printk("Setpoint temperature: %d C\n", temp);
     } else {
-        temp = max;
+        temp = max;         // Limit to maximum temperature
         printk("\r\nMaximum opereating temperature!\r\n");
     }
     rtdb_set_setpoint(temp);
 
-    k_sem_give(&led_sem);
+    k_sem_give(&led_sem);   // Signal LED thread to update LEDs
     return;
 }
 
@@ -185,20 +174,16 @@ void button4Pressed(const struct device *dev, struct gpio_callback *cb, uint32_t
 
     int temp = rtdb_get_setpoint();
     temp--;
-    rtdb_set_setpoint(temp);
+    rtdb_set_setpoint(temp);                // Update setpoint in RTDB
     printk("New setpoint: %d C\n", temp);
 
-    k_sem_give(&led_sem);
+    k_sem_give(&led_sem);                   // Signal LED thread to update LEDs
     return;
 }
 
-/*
-* The main function
-*/
+
 int main(void)
 {
-   
-
     int ret = 0;
         
     static struct gpio_callback button1CbData; // Define variable for holding callback data
@@ -281,11 +266,10 @@ int main(void)
     }
     printk("UART frame parser ready\r\n");
 
-    rtdb_init();    // Initializing RTDB, default values
-    task_control_init();
+    rtdb_init();            // Initializing RTDB, default values
+    task_control_init();    // Initialize task control thread
 
-        
-
+    
     // Start threads
     k_thread_create(&temp_thread_data, temp_stack,
                     K_THREAD_STACK_SIZEOF(temp_stack),
